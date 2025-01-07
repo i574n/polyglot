@@ -7683,7 +7683,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7692,9 +7692,30 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="err">!</span><span class="p">(</span><span class="n">Search</span><span class="o">-</span><span class="n">Command</span> <span class="s2">"nix"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="p">{</span> <span class="o">~/.</span><span class="n">bun</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bunx</span> <span class="o">--</span><span class="n">bun</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.44.0</span> <span class="n">install</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+    <span class="p">{</span> <span class="o">~/.</span><span class="n">bun</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bunx</span> <span class="o">--</span><span class="n">bun</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.44.0</span> <span class="n">install</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre><span class="ansi-red-intense-fg ansi-bold">error: Module not found "C:\Users\i574n\AppData\Local\Temp\bunx-4183308560-playwright@1.44.0\node_modules\playwright\cli.js"</span>
+
+<span class="ansi-red-intense-fg ansi-bold">Bun v1.1.7 (Windows x64)</span>
+
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 1 / $EnvVars: {
+  "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Program Files\\Wasmtime\\bin;C:\\Program Files\\Perforce\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\openssl\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Tools;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\.;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current\\.;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\site\\bin;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\bin;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Program Files\\Wasmtime\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
+} / $Error: '' / $ScriptBlock:
+'~/.bun/bin/bunx --bun playwright@1.44.0 install'
+
+</pre>
 </div>
 </div>
 </div>
@@ -7735,6 +7756,12 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-yellow-intense-fg">WARNING: The version '1.4.8.1' of module 'PackageManagement' is currently in use. Retry the operation after closing the applications.</span>
+
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 1 / $EnvVars: {
+  "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Program Files\\Wasmtime\\bin;C:\\Program Files\\Perforce\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\openssl\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Tools;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\.;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current\\.;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\site\\bin;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\bin;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Program Files\\Wasmtime\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
+} / $Error: '' / $ScriptBlock:
+'Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser'
+
 </pre>
 </div>
 </div>
@@ -7762,7 +7789,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 0 / $EnvVars: {
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 1 / $EnvVars: {
   "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Program Files\\Wasmtime\\bin;C:\\Program Files\\Perforce\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\openssl\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Tools;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\.;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current\\.;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\site\\bin;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\bin;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Program Files\\Wasmtime\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
 } / $Error: 'Cannot find a variable with the name 'PackageManagementProvider'. Cannot find a variable with the name 'SourceLocation'.' / $ScriptBlock:
 'Set-PSRepository -Name PSGallery -InstallationPolicy Trusted'
@@ -7795,7 +7822,7 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">bun install v1.1.7 (b0b7db5c)</span>
 
-Checked 4 installs across 5 packages (no changes) [16.00ms]
+Checked 4 installs across 5 packages (no changes) [11.00ms]
 </pre>
 </div>
 </div>
@@ -7832,7 +7859,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.73
+Time Elapsed 00:00:43.23
 
 Workload updates are available. Run `dotnet workload list` for more information.
 </pre>
@@ -7864,12 +7891,12 @@ Workload updates are available. Run `dotnet workload list` for more information.
 <pre>path: ../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/
 <span class="ansi-red-intense-fg ansi-bold">bun install v1.1.7 (b0b7db5c)</span>
 
-Checked 234 installs across 253 packages (no changes) [31.00ms]
+Checked 234 installs across 253 packages (no changes) [250.00ms]
 <span class="ansi-red-intense-fg ansi-bold">$ esbuild ./src/index.ts --bundle --outfile=out/index.js --external:vscode --format=cjs --platform=node --minify</span>
 
 <span class="ansi-red-intense-fg ansi-bold">  out\index.js  644.9kb</span>
 
-<span class="ansi-red-intense-fg ansi-bold">⚡ Done in 54ms</span>
+<span class="ansi-red-intense-fg ansi-bold">⚡ Done in 114ms</span>
  INFO  Files included in the VSIX:
 spiral-lang-vscode-i574n-2.15.14.vsix
 ├─ [Content_Types].xml 
@@ -7888,6 +7915,29 @@ spiral-lang-vscode-i574n-2.15.14.vsix
 Skipping copying extension to C:\Users\i574n/.vscode/extensions
 Skipping copying extension to C:\Users\i574n/scoop/persist/vscode/data/extensions
 Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Argu.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FParsec.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FParsecCS.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Control.AsyncSeq.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Core.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Json.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharpx.Collections.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.Core.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.Platform.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.Http.Connections.Client.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.SignalR.Client.Core.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.SignalR.Client.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\SoftCircuits.OrderedDictionary.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Spiral.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\System.Reactive.dll
+Failed to delete C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\runtimes\win\lib\net9.0\System.Management.dll
+
+# Invoke-Block / $retry: 1/1 / $Location:  / Get-Location: C:\home\git\polyglot\scripts / $OnError: Continue / $exitcode: 0 / $EnvVars: {
+  "PATH": "C:\\Users\\i574n\\scoop\\apps\\pwsh\\current;C:\\Program Files\\NVIDIA\\CUDNN\\v9.1\\bin;C:\\ProgramData\\scoop\\shims;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\dotnet\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\Perforce;C:\\Program Files\\Wasmtime\\bin;C:\\Program Files\\Perforce\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Users\\i574n\\scoop\\apps\\vscode-insiders\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\elixir\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\openssl\\current\\bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Bin;C:\\Users\\i574n\\scoop\\apps\\vulkan\\current\\Tools;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\Scripts;C:\\Users\\i574n\\scoop\\apps\\python312\\current\\.;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current\\.;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\site\\bin;C:\\Users\\i574n\\scoop\\apps\\perl\\current\\perl\\bin;C:\\Users\\i574n\\scoop\\apps\\rustup\\current\\.cargo\\bin;C:\\Users\\i574n\\scoop\\apps\\latex\\current\\texmfs\\install\\miktex\\bin\\x64;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk-preview\\current;C:\\Users\\i574n\\scoop\\apps\\dotnet-sdk\\current;C:\\Users\\i574n\\scoop\\apps\\gsudo\\current;C:\\Users\\i574n\\scoop\\apps\\python\\current;C:\\Users\\i574n\\scoop\\apps\\nircmd\\current;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n/scoop/buckets/mold/home/windows/path;C:\\Users\\i574n/scoop/persist/rustup/.cargo/bin;C:\\Users\\i574n/scoop/apps/nvm/current/nodejs/nodejs;C:\\Users\\i574n/scoop/apps/cygwin/current/root/bin;C:\\Users\\i574n\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\i574n\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\i574n\\.bun\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n\\scoop\\shims;C:\\Users\\i574n\\.fly\\bin;C:\\Program Files\\Wasmtime\\bin;C:\\Users\\i574n\\.dotnet\\tools;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin;C:\\Users\\i574n/.cargo/bin;C:\\Users\\i574n/.bun/bin"
+} / $Error: 'Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\runtimes\win\lib\net9.0\System.Management.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\System.Reactive.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Spiral.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\SoftCircuits.OrderedDictionary.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.SignalR.Client.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.SignalR.Client.Core.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Microsoft.AspNetCore.Http.Connections.Client.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.Platform.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Hopac.Core.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharpx.Collections.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Json.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Core.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FSharp.Control.AsyncSeq.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FParsecCS.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\FParsec.dll' is denied." Cannot create a file when that file already exists. Exception calling "Delete" with "1" argument(s): "Access to the path 'C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\i574n.spiral-lang-vscode-i574n-2.15.12\compiler\Argu.dll' is denied."' / $ScriptBlock:
+'. "$ScriptDir/dep_spiral_extension.ps1"'
+
 </pre>
 </div>
 </div>
@@ -7929,7 +7979,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:03.61
+Time Elapsed 00:00:04.70
 
 Workload updates are available. Run `dotnet workload list` for more information.
 fable.dll path: C:\home\git\polyglot\deps\Fable\src\Fable.Cli\bin\Release\net9.0\fable.dll
@@ -7942,7 +7992,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.00
+Time Elapsed 00:00:01.30
 
 Workload updates are available. Run `dotnet workload list` for more information.
 </pre>

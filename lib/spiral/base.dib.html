@@ -8503,8 +8503,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_5170bee5 {
-    pub mod Spiral_builder {
+mod module_503290fb {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::printfn;
@@ -8520,13 +8520,9 @@ mod module_5170bee5 {
             printfn!("{0}", v0);
         }
         pub fn method0() {
-            let v3: i32 = ((9_i32 + (Spiral_builder::method1())) + 2_i32) + 1_i32;
+            let v3: i32 = ((9_i32 + (Spiral::method1())) + 2_i32) + 1_i32;
             let v4: bool = (v3) == 15_i32;
-            let v6: bool = if v4 {
-                true
-            } else {
-                Spiral_builder::method2(v4)
-            };
+            let v6: bool = if v4 { true } else { Spiral::method2(v4) };
             let v8: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("__assert_eq"),
@@ -8534,20 +8530,20 @@ mod module_5170bee5 {
                 15_i32
             );
             let v13: () = {
-                Spiral_builder::closure0(v8.clone(), ());
+                Spiral::closure0(v8.clone(), ());
                 ()
             };
             if (v6) == false {
                 panic!("{}", v8,);
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_5170bee5::*;
+pub use module_503290fb::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
+    Ok(Spiral::method0())
 }
 
 .ts:
@@ -8583,7 +8579,7 @@ method0();
 
 
 
-// spiral_builder.process_typescript
+// spiral.process_typescript
 
 .py:
 from fable_modules.fable_library.string_ import (to_text, interpolate)
@@ -8617,7 +8613,7 @@ method0()
 
 
 
-# spiral_builder.process_python
+# spiral.process_python
 
 .py (Cuda):
 kernel = r"""
@@ -8820,8 +8816,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_84d7d073 {
-    pub mod Spiral_builder {
+mod module_c1fa73ed {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::printfn;
@@ -8840,14 +8836,9 @@ mod module_84d7d073 {
             printfn!("{0}", v0);
         }
         pub fn method0() {
-            let v4: i32 =
-                ((Spiral_builder::method2(Spiral_builder::method1(), 9_i32)) + 2_i32) + 1_i32;
+            let v4: i32 = ((Spiral::method2(Spiral::method1(), 9_i32)) + 2_i32) + 1_i32;
             let v5: bool = (v4) == 15_i32;
-            let v7: bool = if v5 {
-                true
-            } else {
-                Spiral_builder::method3(v5)
-            };
+            let v7: bool = if v5 { true } else { Spiral::method3(v5) };
             let v9: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("__assert_eq"),
@@ -8855,20 +8846,20 @@ mod module_84d7d073 {
                 15_i32
             );
             let v14: () = {
-                Spiral_builder::closure0(v9.clone(), ());
+                Spiral::closure0(v9.clone(), ());
                 ()
             };
             if (v7) == false {
                 panic!("{}", v9,);
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_84d7d073::*;
+pub use module_c1fa73ed::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
+    Ok(Spiral::method0())
 }
 
 .ts:
@@ -8908,7 +8899,7 @@ method0();
 
 
 
-// spiral_builder.process_typescript
+// spiral.process_typescript
 
 .py:
 from fable_modules.fable_library.string_ import (to_text, interpolate)
@@ -8946,7 +8937,7 @@ method0()
 
 
 
-# spiral_builder.process_python
+# spiral.process_python
 
 .py (Cuda):
 kernel = r"""
@@ -9183,8 +9174,8 @@ method0()
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_e782e7b7 {
-    pub mod Spiral_builder {
+mod module_74712c29 {
+    pub mod Spiral {
         use super::*;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::printfn;
@@ -9203,13 +9194,9 @@ mod module_e782e7b7 {
             printfn!("{0}", v0);
         }
         pub fn method0() {
-            let v3: i32 = ((Spiral_builder::method2(Spiral_builder::method1())) + 2_i32) + 1_i32;
+            let v3: i32 = ((Spiral::method2(Spiral::method1())) + 2_i32) + 1_i32;
             let v4: bool = (v3) == 15_i32;
-            let v6: bool = if v4 {
-                true
-            } else {
-                Spiral_builder::method3(v4)
-            };
+            let v6: bool = if v4 { true } else { Spiral::method3(v4) };
             let v8: string = sprintf!(
                 "{} / actual: {:?} / expected: {:?}",
                 string("__assert_eq"),
@@ -9217,20 +9204,20 @@ mod module_e782e7b7 {
                 15_i32
             );
             let v13: () = {
-                Spiral_builder::closure0(v8.clone(), ());
+                Spiral::closure0(v8.clone(), ());
                 ()
             };
             if (v6) == false {
                 panic!("{}", v8,);
             }
         }
-        // on_startup!(Spiral_builder::method0());
+        // on_startup!(Spiral::method0());
     }
 }
-pub use module_e782e7b7::*;
+pub use module_74712c29::*;
 
 pub fn main() -&gt; Result&lt;(), String&gt; {
-    Ok(Spiral_builder::method0())
+    Ok(Spiral::method0())
 }
 
 .ts:
@@ -9270,7 +9257,7 @@ method0();
 
 
 
-// spiral_builder.process_typescript
+// spiral.process_typescript
 
 .py:
 from fable_modules.fable_library.string_ import (to_text, interpolate)
@@ -9308,7 +9295,7 @@ method0()
 
 
 
-# spiral_builder.process_python
+# spiral.process_python
 
 .py (Cuda):
 kernel = r"""

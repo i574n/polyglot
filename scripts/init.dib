@@ -52,7 +52,7 @@ if (!(Search-Command "leptosfmt")) {
 #!pwsh
 
 if (!(Search-Command "nix")) {
-    { ~/.bun/bin/bunx --bun playwright@1.44.0 install } | Invoke-Block
+    { ~/.bun/bin/bunx --bun playwright@1.44.0 install } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
