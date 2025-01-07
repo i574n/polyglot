@@ -685,7 +685,8 @@ let read_link (path : string) : resultm.result' path_buf stream.io_error =
         inl error'' = error |> sm'.format
         match parent with
         | _ when n >= 11 =>
-            ($'$"file_system.read_link / path: {!path} / n: {!n} / path\': {!path'} / name: {!name}"' : string)
+            ($'$"file_system.read_link / "' : string)
+            +. $'$"path: {!path} / n: {!n} / path\': {!path'} / name: {!name}"'
             |> stream.new_io_error
             |> resultm.err
         | Some parent when path' <>. "" =>
@@ -696,11 +697,13 @@ let read_link (path : string) : resultm.result' path_buf stream.io_error =
                 |> new_path_buf
                 |> resultm.ok''
             | Error error' =>
-                ($'$"file_system.read_link / error\': {!error'} / error: {!error''} / name: {!name}"' : string)
+                ($'$"file_system.read_link / "' : string)
+                +. $'$"error\': {!error'} / error: {!error''} / name: {!name}"'
                 |> stream.new_io_error
                 |> resultm.err
         | _ =>
-            ($'$"file_system.read_link / run / The file or directory is not a reparse point. / path: {!path} / error: {!error''} / path\': {!path'} / name: {!name}"' : string)
+            ($'$"file_system.read_link / run / The file or directory is not a reparse point. / "' : string)
+            +. $'$"path: {!path} / error: {!error''} / path\': {!path'} / name: {!name}"'
             |> stream.new_io_error
             |> resultm.err
 
@@ -734,8 +737,11 @@ let read_link (path : string) : resultm.result' path_buf stream.io_error =
                     |> unbox
                     |> resultm.ok''
                 else
-                    inl error = ($'$"file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: {!path} / result: {!result} / path\': {!path'} / n: {!n}"' : string)
-                    inl error = error |> stream.new_io_error
+                    inl error =
+                        ($'$"file_system.read_link / Fsharp / "' : string)
+                        +. $'$"The file or directory is not a reparse point. / "'
+                        +. $'$"path: {!path} / result: {!result} / path\': {!path'} / n: {!n}"'
+                        |> stream.new_io_error
                     path' |> run loop n error
             path |> loop 0u8
         | _ => fun () => $'Unchecked.defaultof<_>'

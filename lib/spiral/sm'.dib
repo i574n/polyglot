@@ -556,11 +556,36 @@ inl index_of (search : string) (s : string) : i32 =
 
 #!spiral
 
-inl replicate (n : i32) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => s |> $'String.replicate' n : string
-        Python = fun () => $'!s * !n ' : string
-    }
+inl replicate (n : int) (s : string) : string =
+    inl rec body i acc =
+        if i >= n
+        then acc
+        else loop (i + 1) (acc +. s)
+    and inl loop i = join_body_unit body n i
+    loop 0 ""
+
+#!spiral
+
+//// test
+///! fsharp
+//// print_code
+
+"12"
+|> replicate 3
+|> _assert_eq "121212"
+
+#!spiral
+
+//// test
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+
+"12"
+|> replicate 3
+|> _assert_eq "121212"
 
 #!markdown
 
@@ -580,13 +605,9 @@ inl obj_to_string x : string =
 
 #!spiral
 
-inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => $'!s.PadLeft (!total_width, !padding_char)' : string
-        Python = fun () =>
-            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
-            padding +. s
-    }
+inl pad_left (total_width : int) (padding_char : char) (s : string) : string =
+    inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+    padding +. s
 
 #!markdown
 
@@ -594,13 +615,9 @@ inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
 
 #!spiral
 
-inl pad_right (total_width : i32) (padding_char : char) (s : string) : string =
-    backend_switch {
-        Fsharp = fun () => $'!s.PadRight (!total_width, !padding_char)' : string
-        Python = fun () =>
-            inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
-            s +. padding
-    }
+inl pad_right (total_width : int) (padding_char : char) (s : string) : string =
+    inl padding = padding_char |> obj_to_string |> replicate (total_width - length s)
+    s +. padding
 
 #!spiral
 

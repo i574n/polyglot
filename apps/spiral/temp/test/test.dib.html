@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7559,67 +7560,46 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">i</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">e</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">s</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">n</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">t</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">f</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">j</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">nominal</span> <span class="n">p</span> <span class="o">=</span> <span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span>
 
-<span class="n">union</span> <span class="n">sensing</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Si</span> <span class="p">:</span> <span class="n">s</span> <span class="o">*</span> <span class="n">i</span>
-    <span class="o">|</span> <span class="n">Se</span> <span class="p">:</span> <span class="n">s</span> <span class="o">*</span> <span class="n">e</span>
+<span class="n">inl</span> <span class="n">jp</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"P"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"T"</span><span class="p">;</span> <span class="s2">"F"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">sn</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"S"</span><span class="p">;</span> <span class="s2">"N"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">ie</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"I"</span><span class="p">;</span> <span class="s2">"E"</span> <span class="p">]</span>
 
-<span class="n">union</span> <span class="n">intuition</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Ni</span> <span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span>
-    <span class="o">|</span> <span class="n">Ne</span> <span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">e</span>
+<span class="p">(</span><span class="n">ie</span><span class="p">,</span> <span class="p">([]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span><span class="p">))</span>
+<span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">ie</span><span class="s1">' acc =&gt;</span>
+    <span class="n">inl</span> <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span> <span class="o">=</span>
+        <span class="p">(</span><span class="n">sn</span><span class="p">,</span> <span class="n">acc</span><span class="s1">')</span>
+        <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">sn</span><span class="s1">' acc'</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' =</span>
+                <span class="err">$</span><span class="s1">'$"{!ie'</span><span class="p">}{</span><span class="err">!</span><span class="n">sn</span><span class="s1">'}{!tf'</span><span class="p">}{</span><span class="err">!</span><span class="n">jp</span><span class="s1">'}"'</span>
 
-<span class="n">union</span> <span class="n">thinking</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Ti</span> <span class="p">:</span> <span class="n">t</span> <span class="o">*</span> <span class="n">i</span>
-    <span class="o">|</span> <span class="n">Te</span> <span class="p">:</span> <span class="n">t</span> <span class="o">*</span> <span class="n">e</span>
-
-<span class="n">union</span> <span class="n">feeling</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Fi</span> <span class="p">:</span> <span class="n">f</span> <span class="o">*</span> <span class="n">i</span>
-    <span class="o">|</span> <span class="n">Fe</span> <span class="p">:</span> <span class="n">f</span> <span class="o">*</span> <span class="n">e</span>
-
-<span class="n">union</span> <span class="n">function_stack</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">FS</span> <span class="p">:</span> <span class="n">sensing</span> <span class="o">*</span> <span class="n">intuition</span> <span class="o">*</span> <span class="n">thinking</span> <span class="o">*</span> <span class="n">feeling</span>
-
-<span class="n">union</span> <span class="n">personality_type</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">ISTJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ISFJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">INFJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">INTJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ISTP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ISFP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">INFP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">INTP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ESTP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ESFP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ENFP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ENTP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ESTJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ESFJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ENFJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-    <span class="o">|</span> <span class="n">ENTJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
-
-
-<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">istj_stack</span> <span class="o">=</span> <span class="n">FS</span> <span class="p">((</span><span class="n">Si</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)),</span> <span class="n">Ne</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">Te</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)),</span> <span class="p">(</span><span class="n">Fi</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
-    <span class="n">inl</span> <span class="n">istj_personality</span> <span class="o">=</span> <span class="n">ISTJ</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">istj_stack</span><span class="p">)</span>
-    <span class="o">//</span> <span class="n">inl</span> <span class="n">isfj_stack</span> <span class="o">=</span> <span class="n">FS</span> <span class="p">((</span><span class="n">Si</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)),</span> <span class="n">Ne</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">Fe</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">e</span><span class="p">)),</span> <span class="p">(</span><span class="n">Ti</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
-    <span class="o">//</span> <span class="n">inl</span> <span class="n">isfj_personality</span> <span class="o">=</span> <span class="n">ISFJ</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">isfj_stack</span><span class="p">)</span>
-
-    <span class="p">;[</span>
-        <span class="n">istj_personality</span>
-    <span class="p">]</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"%A{!x}"'</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
-
-<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!main ()'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="k">if</span> <span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">acc</span><span class="s1">' </span><span class="si">% 4i</span><span class="s1">32 = 2 then</span>
+                <span class="p">(</span><span class="n">tf</span><span class="p">,</span> <span class="n">acc</span><span class="s1">')</span>
+                <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">tf</span><span class="s1">' acc'' =&gt;</span>
+                    <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' :: acc''</span>
+            <span class="k">else</span>
+                <span class="p">(</span><span class="n">acc</span><span class="s1">', tf)</span>
+                <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span><span class="s1">''</span> <span class="n">tf</span><span class="s1">' =&gt;</span>
+                    <span class="n">c</span><span class="s1">' ie'</span> <span class="n">sn</span><span class="s1">' tf'</span> <span class="n">jp</span><span class="s1">' :: acc''</span>
+    <span class="k">if</span> <span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">then</span>
+        <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">jp</span><span class="p">)</span>
+        <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span><span class="s1">' jp'</span> <span class="o">=&gt;</span>
+            <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span>
+    <span class="k">else</span>
+        <span class="p">(</span><span class="n">jp</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+        <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">jp</span><span class="s1">' acc'</span> <span class="o">=&gt;</span>
+            <span class="n">ssnn</span> <span class="n">acc</span><span class="s1">' jp'</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[</span>
+    <span class="s2">"ISTJ"</span><span class="p">;</span> <span class="s2">"ISFJ"</span><span class="p">;</span> <span class="s2">"INFJ"</span><span class="p">;</span> <span class="s2">"INTJ"</span>
+    <span class="s2">"ISTP"</span><span class="p">;</span> <span class="s2">"ISFP"</span><span class="p">;</span> <span class="s2">"INFP"</span><span class="p">;</span> <span class="s2">"INTP"</span>
+    <span class="s2">"ESTP"</span><span class="p">;</span> <span class="s2">"ESFP"</span><span class="p">;</span> <span class="s2">"ENFP"</span><span class="p">;</span> <span class="s2">"ENTP"</span>
+    <span class="s2">"ESTJ"</span><span class="p">;</span> <span class="s2">"ESFJ"</span><span class="p">;</span> <span class="s2">"ENFJ"</span><span class="p">;</span> <span class="s2">"ENTJ"</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7632,13 +7612,382 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "E"
+    let v1 : string = "N"
+    let v2 : string = "T"
+    let v3 : string = "J"
+    let v4 : string = $"{v0}{v1}{v2}{v3}"
+    let v5 : string = "F"
+    let v6 : string = $"{v0}{v1}{v5}{v3}"
+    let v7 : string = "S"
+    let v8 : string = $"{v0}{v7}{v5}{v3}"
+    let v9 : string = $"{v0}{v7}{v2}{v3}"
+    let v10 : string = "P"
+    let v11 : string = $"{v0}{v1}{v2}{v10}"
+    let v12 : string = $"{v0}{v1}{v5}{v10}"
+    let v13 : string = $"{v0}{v7}{v5}{v10}"
+    let v14 : string = $"{v0}{v7}{v2}{v10}"
+    let v15 : string = "I"
+    let v16 : string = $"{v15}{v1}{v2}{v10}"
+    let v17 : string = $"{v15}{v1}{v5}{v10}"
+    let v18 : string = $"{v15}{v7}{v5}{v10}"
+    let v19 : string = $"{v15}{v7}{v2}{v10}"
+    let v20 : string = $"{v15}{v1}{v2}{v3}"
+    let v21 : string = $"{v15}{v1}{v5}{v3}"
+    let v22 : string = $"{v15}{v7}{v5}{v3}"
+    let v23 : string = $"{v15}{v7}{v2}{v3}"
+    let v24 : string list = []
+    let v25 : string list = v4 :: v24 
+    let v28 : string list = v6 :: v25 
+    let v31 : string list = v8 :: v28 
+    let v34 : string list = v9 :: v31 
+    let v37 : string list = v11 :: v34 
+    let v40 : string list = v12 :: v37 
+    let v43 : string list = v13 :: v40 
+    let v46 : string list = v14 :: v43 
+    let v49 : string list = v16 :: v46 
+    let v52 : string list = v17 :: v49 
+    let v55 : string list = v18 :: v52 
+    let v58 : string list = v19 :: v55 
+    let v61 : string list = v20 :: v58 
+    let v64 : string list = v21 :: v61 
+    let v67 : string list = v22 :: v64 
+    let v70 : string list = v23 :: v67 
+    let v73 : (string list -&gt; (string [])) = List.toArray
+    let v74 : (string []) = v73 v70
+    let v77 : string = "ISTJ"
+    let v78 : string = "ISFJ"
+    let v79 : string = "INFJ"
+    let v80 : string = "INTJ"
+    let v81 : string = "ISTP"
+    let v82 : string = "ISFP"
+    let v83 : string = "INFP"
+    let v84 : string = "INTP"
+    let v85 : string = "ESTP"
+    let v86 : string = "ESFP"
+    let v87 : string = "ENFP"
+    let v88 : string = "ENTP"
+    let v89 : string = "ESTJ"
+    let v90 : string = "ESFJ"
+    let v91 : string = "ENFJ"
+    let v92 : string = "ENTJ"
+    let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+    let v94 : bool = v74 = v93 
+    let v98 : bool =
+        if v94 then
+            true
+        else
+            method1(v94)
+    let v99 : string = "__assert_eq'"
+    let v100 : string = $"{v99} / actual: %A{v74} / expected: %A{v93}"
+    let v103 : unit = ()
+    let v104 : (unit -&gt; unit) = closure0(v100)
+    let v105 : unit = (fun () -&gt; v104 (); v103) ()
+    let v107 : bool = v98 = false
+    if v107 then
+        failwith&lt;unit&gt; v100
+method0()
+
+__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span>
+
+<span class="n">inl</span> <span class="n">i_e</span> <span class="o">=</span>
+    <span class="n">listm</span><span class="s1">'.replicate 8i32 "I" ++ listm'</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">8</span><span class="n">i32</span> <span class="s2">"E"</span>
+<span class="n">inl</span> <span class="n">s_n</span> <span class="o">=</span>
+    <span class="p">[</span> <span class="s2">"S"</span><span class="p">;</span> <span class="s2">"S"</span><span class="p">;</span> <span class="s2">"N"</span><span class="p">;</span> <span class="s2">"N"</span> <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.replicate 4i32</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.collect id</span>
+<span class="n">inl</span> <span class="n">t_f</span> <span class="o">=</span>
+    <span class="p">[</span> <span class="s2">"T"</span><span class="p">;</span> <span class="s2">"F"</span><span class="p">;</span> <span class="s2">"F"</span><span class="p">;</span> <span class="s2">"T"</span> <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.replicate 4i32</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.collect id</span>
+<span class="n">inl</span> <span class="n">j_p</span> <span class="o">=</span>
+    <span class="p">[</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span> <span class="p">]</span>
+    <span class="o">++</span> <span class="p">[</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span> <span class="p">]</span>
+    <span class="o">++</span> <span class="p">[</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span><span class="p">;</span> <span class="s2">"P"</span> <span class="p">]</span>
+    <span class="o">++</span> <span class="p">[</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span><span class="p">;</span> <span class="s2">"J"</span> <span class="p">]</span>
+<span class="n">inl</span> <span class="n">mbti</span> <span class="o">=</span>
+    <span class="n">listm</span><span class="s1">'.map4 (fun a b c d =&gt; $'</span><span class="err">$</span><span class="s2">"</span><span class="si">{!a}</span><span class="s2">{!b}{!c}{!d}"</span><span class="s1">') i_e s_n t_f j_p</span>
+
+<span class="n">mbti</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[</span>
+    <span class="s2">"ISTJ"</span><span class="p">;</span> <span class="s2">"ISFJ"</span><span class="p">;</span> <span class="s2">"INFJ"</span><span class="p">;</span> <span class="s2">"INTJ"</span>
+    <span class="s2">"ISTP"</span><span class="p">;</span> <span class="s2">"ISFP"</span><span class="p">;</span> <span class="s2">"INFP"</span><span class="p">;</span> <span class="s2">"INTP"</span>
+    <span class="s2">"ESTP"</span><span class="p">;</span> <span class="s2">"ESFP"</span><span class="p">;</span> <span class="s2">"ENFP"</span><span class="p">;</span> <span class="s2">"ENTP"</span>
+    <span class="s2">"ESTJ"</span><span class="p">;</span> <span class="s2">"ESFJ"</span><span class="p">;</span> <span class="s2">"ENFJ"</span><span class="p">;</span> <span class="s2">"ENTJ"</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "I"
+    let v1 : string = "S"
+    let v2 : string = "T"
+    let v3 : string = "J"
+    let v4 : string = $"{v0}{v1}{v2}{v3}"
+    let v5 : string = "F"
+    let v6 : string = $"{v0}{v1}{v5}{v3}"
+    let v7 : string = "N"
+    let v8 : string = $"{v0}{v7}{v5}{v3}"
+    let v9 : string = $"{v0}{v7}{v2}{v3}"
+    let v10 : string = "P"
+    let v11 : string = $"{v0}{v1}{v2}{v10}"
+    let v12 : string = $"{v0}{v1}{v5}{v10}"
+    let v13 : string = $"{v0}{v7}{v5}{v10}"
+    let v14 : string = $"{v0}{v7}{v2}{v10}"
+    let v15 : string = "E"
+    let v16 : string = $"{v15}{v1}{v2}{v10}"
+    let v17 : string = $"{v15}{v1}{v5}{v10}"
+    let v18 : string = $"{v15}{v7}{v5}{v10}"
+    let v19 : string = $"{v15}{v7}{v2}{v10}"
+    let v20 : string = $"{v15}{v1}{v2}{v3}"
+    let v21 : string = $"{v15}{v1}{v5}{v3}"
+    let v22 : string = $"{v15}{v7}{v5}{v3}"
+    let v23 : string = $"{v15}{v7}{v2}{v3}"
+    let v24 : string list = []
+    let v25 : string list = v23 :: v24 
+    let v28 : string list = v22 :: v25 
+    let v31 : string list = v21 :: v28 
+    let v34 : string list = v20 :: v31 
+    let v37 : string list = v19 :: v34 
+    let v40 : string list = v18 :: v37 
+    let v43 : string list = v17 :: v40 
+    let v46 : string list = v16 :: v43 
+    let v49 : string list = v14 :: v46 
+    let v52 : string list = v13 :: v49 
+    let v55 : string list = v12 :: v52 
+    let v58 : string list = v11 :: v55 
+    let v61 : string list = v9 :: v58 
+    let v64 : string list = v8 :: v61 
+    let v67 : string list = v6 :: v64 
+    let v70 : string list = v4 :: v67 
+    let v73 : (string list -&gt; (string [])) = List.toArray
+    let v74 : (string []) = v73 v70
+    let v77 : string = "ISTJ"
+    let v78 : string = "ISFJ"
+    let v79 : string = "INFJ"
+    let v80 : string = "INTJ"
+    let v81 : string = "ISTP"
+    let v82 : string = "ISFP"
+    let v83 : string = "INFP"
+    let v84 : string = "INTP"
+    let v85 : string = "ESTP"
+    let v86 : string = "ESFP"
+    let v87 : string = "ENFP"
+    let v88 : string = "ENTP"
+    let v89 : string = "ESTJ"
+    let v90 : string = "ESFJ"
+    let v91 : string = "ENFJ"
+    let v92 : string = "ENTJ"
+    let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+    let v94 : bool = v74 = v93 
+    let v98 : bool =
+        if v94 then
+            true
+        else
+            method1(v94)
+    let v99 : string = "__assert_eq'"
+    let v100 : string = $"{v99} / actual: %A{v74} / expected: %A{v93}"
+    let v103 : unit = ()
+    let v104 : (unit -&gt; unit) = closure0(v100)
+    let v105 : unit = (fun () -&gt; v104 (); v103) ()
+    let v107 : bool = v98 = false
+    if v107 then
+        failwith&lt;unit&gt; v100
+method0()
+
+__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">////</span> <span class="n">print_code</span>
+
+<span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">i_e</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span>
+        <span class="n">then</span> <span class="s2">"I"</span>
+        <span class="k">else</span> <span class="s2">"E"</span>
+    <span class="n">inl</span> <span class="n">s_n</span> <span class="o">=</span> 
+        <span class="n">inl</span> <span class="n">group</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">group</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">then</span> <span class="s2">"S"</span>
+        <span class="k">else</span> <span class="s2">"N"</span>
+    <span class="n">inl</span> <span class="n">t_f</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="s2">"T"</span>
+        <span class="o">|</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="s2">"F"</span>
+        <span class="o">|</span> <span class="mi">2</span> <span class="o">=&gt;</span> <span class="s2">"F"</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="s2">"T"</span>
+    <span class="n">inl</span> <span class="n">j_p</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span>
+        <span class="n">then</span> <span class="s2">"J"</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">12</span>
+        <span class="n">then</span> <span class="s2">"P"</span>
+        <span class="k">else</span> <span class="s2">"J"</span>
+    <span class="err">$</span><span class="s1">'$"{!i_e}{!s_n}{!t_f}{!j_p}"'</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">16</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.box</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.to_array'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' ;[</span>
+    <span class="s2">"ISTJ"</span><span class="p">;</span> <span class="s2">"ISFJ"</span><span class="p">;</span> <span class="s2">"INFJ"</span><span class="p">;</span> <span class="s2">"INTJ"</span>
+    <span class="s2">"ISTP"</span><span class="p">;</span> <span class="s2">"ISFP"</span><span class="p">;</span> <span class="s2">"INFP"</span><span class="p">;</span> <span class="s2">"INTP"</span>
+    <span class="s2">"ESTP"</span><span class="p">;</span> <span class="s2">"ESFP"</span><span class="p">;</span> <span class="s2">"ENFP"</span><span class="p">;</span> <span class="s2">"ENTP"</span>
+    <span class="s2">"ESTJ"</span><span class="p">;</span> <span class="s2">"ESFJ"</span><span class="p">;</span> <span class="s2">"ENFJ"</span><span class="p">;</span> <span class="s2">"ENTJ"</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and closure0 (v0 : string) () : unit =
+    let v1 : (string -&gt; unit) = System.Console.WriteLine
+    v1 v0
+and method0 () : unit =
+    let v0 : string = "I"
+    let v1 : string = "S"
+    let v2 : string = "T"
+    let v3 : string = "J"
+    let v4 : string = $"{v0}{v1}{v2}{v3}"
+    let v5 : string = "F"
+    let v6 : string = $"{v0}{v1}{v5}{v3}"
+    let v7 : string = "N"
+    let v8 : string = $"{v0}{v7}{v5}{v3}"
+    let v9 : string = $"{v0}{v7}{v2}{v3}"
+    let v10 : string = "P"
+    let v11 : string = $"{v0}{v1}{v2}{v10}"
+    let v12 : string = $"{v0}{v1}{v5}{v10}"
+    let v13 : string = $"{v0}{v7}{v5}{v10}"
+    let v14 : string = $"{v0}{v7}{v2}{v10}"
+    let v15 : string = "E"
+    let v16 : string = $"{v15}{v1}{v2}{v10}"
+    let v17 : string = $"{v15}{v1}{v5}{v10}"
+    let v18 : string = $"{v15}{v7}{v5}{v10}"
+    let v19 : string = $"{v15}{v7}{v2}{v10}"
+    let v20 : string = $"{v15}{v1}{v2}{v3}"
+    let v21 : string = $"{v15}{v1}{v5}{v3}"
+    let v22 : string = $"{v15}{v7}{v5}{v3}"
+    let v23 : string = $"{v15}{v7}{v2}{v3}"
+    let v24 : string list = []
+    let v25 : string list = v23 :: v24 
+    let v28 : string list = v22 :: v25 
+    let v31 : string list = v21 :: v28 
+    let v34 : string list = v20 :: v31 
+    let v37 : string list = v19 :: v34 
+    let v40 : string list = v18 :: v37 
+    let v43 : string list = v17 :: v40 
+    let v46 : string list = v16 :: v43 
+    let v49 : string list = v14 :: v46 
+    let v52 : string list = v13 :: v49 
+    let v55 : string list = v12 :: v52 
+    let v58 : string list = v11 :: v55 
+    let v61 : string list = v9 :: v58 
+    let v64 : string list = v8 :: v61 
+    let v67 : string list = v6 :: v64 
+    let v70 : string list = v4 :: v67 
+    let v73 : (string list -&gt; (string [])) = List.toArray
+    let v74 : (string []) = v73 v70
+    let v77 : string = "ISTJ"
+    let v78 : string = "ISFJ"
+    let v79 : string = "INFJ"
+    let v80 : string = "INTJ"
+    let v81 : string = "ISTP"
+    let v82 : string = "ISFP"
+    let v83 : string = "INFP"
+    let v84 : string = "INTP"
+    let v85 : string = "ESTP"
+    let v86 : string = "ESFP"
+    let v87 : string = "ENFP"
+    let v88 : string = "ENTP"
+    let v89 : string = "ESTJ"
+    let v90 : string = "ESFJ"
+    let v91 : string = "ENFJ"
+    let v92 : string = "ENTJ"
+    let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+    let v94 : bool = v74 = v93 
+    let v98 : bool =
+        if v94 then
+            true
+        else
+            method1(v94)
+    let v99 : string = "__assert_eq'"
+    let v100 : string = $"{v99} / actual: %A{v74} / expected: %A{v93}"
+    let v103 : unit = ()
+    let v104 : (unit -&gt; unit) = closure0(v100)
+    let v105 : unit = (fun () -&gt; v104 (); v103) ()
+    let v107 : bool = v98 = false
+    if v107 then
+        failwith&lt;unit&gt; v100
+method0()
+
+__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7782,7 +8131,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7852,7 +8201,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7862,7 +8211,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7880,7 +8229,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

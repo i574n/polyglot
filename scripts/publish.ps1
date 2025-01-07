@@ -42,6 +42,7 @@ rsync -av `
     --include '*.gitignore' `
     --include '*.html' `
     --include '*.ico' `
+    --include '*.png' `
     --include '*.ipynb' `
     --include '*.js' `
     --include '*.json' `

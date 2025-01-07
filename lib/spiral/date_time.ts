@@ -5,7 +5,7 @@ import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/
 import { toString as toString_1, hours } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
 import { int32, uint8 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
-import { padLeft, replace, concat } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { replace, concat } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { parse as parse_2 } from "../../deps/Fable/src/fable-library-ts/Long.js";
 
@@ -204,40 +204,57 @@ export function closure3(unitVar: void, v0_1: string): Date {
     return parse_1(closure4(undefined, v0_1.slice(undefined, 24 + 1)));
 }
 
+export function closure7(v0_1: int32, v1_1: string, v2_1: int32, v3_1: string): string {
+    if (v2_1 >= v0_1) {
+        return v3_1;
+    }
+    else {
+        return method5(v0_1, v1_1, v2_1 + 1)(v3_1 + v1_1);
+    }
+}
+
+export function method5(v0_1: int32, v1_1: string, v2_1: int32): ((arg0: string) => string) {
+    return (v: string): string => closure7(v0_1, v1_1, v2_1, v);
+}
+
 export function closure6(v0_1: string, v1_1: int64): string {
     const v3_1: string = v0_1;
-    const v10: string = padLeft(int64ToString(v1_1), 18, "0");
-    return parse(`${v10.slice(0, 7 + 1)}-${v10.slice(8, 11 + 1)}-${v10.slice(12, 15 + 1)}-${v10.slice(16, 17 + 1)}${v3_1.slice(21, v3_1.length)}`);
+    const v7_1: string = int64ToString(v1_1);
+    const v11 = "0";
+    const v20: string = method5(18 - v7_1.length, v11, 0)("") + v7_1;
+    return parse(`${v20.slice(0, 7 + 1)}-${v20.slice(8, 11 + 1)}-${v20.slice(12, 15 + 1)}-${v20.slice(16, 17 + 1)}${v3_1.slice(21, v3_1.length)}`);
 }
 
 export function closure5(unitVar: void, v0_1: string): ((arg0: int64) => string) {
     return (v: int64): string => closure6(v0_1, v);
 }
 
-export function closure7(unitVar: void, v0_1: string): int64 {
+export function closure8(unitVar: void, v0_1: string): int64 {
     const v2_1: string = v0_1;
     return toInt64(parse_2(concat(v2_1.slice(0, 7 + 1), v2_1.slice(9, 12 + 1), v2_1.slice(14, 17 + 1), ...v2_1.slice(19, 20 + 1)), 511, false, 64));
 }
 
-export function closure8(unitVar: void, v0_1: Date): string {
+export function closure9(unitVar: void, v0_1: Date): string {
     return method0(newGuid(), v0_1);
 }
 
-export function closure9(unitVar: void, v0_1: int64): string {
+export function closure10(unitVar: void, v0_1: int64): string {
     const v6_1: string = newGuid();
-    const v13: string = padLeft(int64ToString(v0_1), 18, "0");
-    return parse(`${v13.slice(0, 7 + 1)}-${v13.slice(8, 11 + 1)}-${v13.slice(12, 15 + 1)}-${v13.slice(16, 17 + 1)}${v6_1.slice(21, v6_1.length)}`);
+    const v10: string = int64ToString(v0_1);
+    const v14 = "0";
+    const v23: string = method5(18 - v10.length, v14, 0)("") + v10;
+    return parse(`${v23.slice(0, 7 + 1)}-${v23.slice(8, 11 + 1)}-${v23.slice(12, 15 + 1)}-${v23.slice(16, 17 + 1)}${v6_1.slice(21, v6_1.length)}`);
 }
 
-export function closure11(v0_1: string, v1_1: Date): string {
+export function closure12(v0_1: string, v1_1: Date): string {
     return toString(v1_1, (v0_1 === "") ? "M-d-y hh:mm:ss tt" : v0_1);
 }
 
-export function closure10(unitVar: void, v0_1: string): ((arg0: Date) => string) {
-    return (v: Date): string => closure11(v0_1, v);
+export function closure11(unitVar: void, v0_1: string): ((arg0: Date) => string) {
+    return (v: Date): string => closure12(v0_1, v);
 }
 
-export function closure12(unitVar: void, v0_1: Date): string {
+export function closure13(unitVar: void, v0_1: Date): string {
     return toString(v0_1, "yyyy-MM-ddTHH-mm-ss.fff");
 }
 
@@ -259,31 +276,31 @@ export function timestamp_guid_from_timestamp(x: string): ((arg0: int64) => stri
     return v2(x);
 }
 
-export const v3 = (v: string): int64 => closure7(undefined, v);
+export const v3 = (v: string): int64 => closure8(undefined, v);
 
 export function timestamp_from_guid(x: string): int64 {
     return v3(x);
 }
 
-export const v4 = (v: Date): string => closure8(undefined, v);
+export const v4 = (v: Date): string => closure9(undefined, v);
 
 export function new_guid_from_date_time(x: Date): string {
     return v4(x);
 }
 
-export const v5 = (v: int64): string => closure9(undefined, v);
+export const v5 = (v: int64): string => closure10(undefined, v);
 
 export function new_guid_from_timestamp(x: int64): string {
     return v5(x);
 }
 
-export const v6 = (v: string): ((arg0: Date) => string) => closure10(undefined, v);
+export const v6 = (v: string): ((arg0: Date) => string) => closure11(undefined, v);
 
 export function format(x: string): ((arg0: Date) => string) {
     return v6(x);
 }
 
-export const v7 = (v: Date): string => closure12(undefined, v);
+export const v7 = (v: Date): string => closure13(undefined, v);
 
 export function format_iso8601(x: Date): string {
     return v7(x);

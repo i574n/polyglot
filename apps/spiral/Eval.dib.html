@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -8298,7 +8299,7 @@ a.anchor-link {
             <span class="n">builderCommands</span>
             <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">builderCommand</span> <span class="o">-&gt;</span>
                 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
-                    <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"workspace/target/release/spiral_builder{SpiralPlatform.get_executable_suffix ()}"</span>
+                    <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"deps/spiral/workspace/target/release/spiral{SpiralPlatform.get_executable_suffix ()}"</span>
                     <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
                 <span class="n">let</span> <span class="n">commands</span> <span class="o">=</span>
                     <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
@@ -8332,7 +8333,7 @@ a.anchor-link {
                         <span class="p">)</span>
                         <span class="o">|&gt;</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span>
                     <span class="n">trace</span> <span class="n">Debug</span>
-                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / spiral_builder"</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.processSpiralOutput / spiral cli"</span><span class="p">)</span>
                         <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / builderCommand: </span><span class="si">{builderCommand}</span><span class="s2"> / command: </span><span class="si">{command}</span><span class="s2"> / result: {result |&gt; SpiralSm.ellipsis_end 400} / {_locals ()}"</span><span class="p">)</span>
                     <span class="k">return</span>
                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span>
@@ -8604,7 +8605,7 @@ a.anchor-link {
                     <span class="k">match</span> <span class="n">buildCodeResult</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">backend</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">code</span><span class="p">),</span> <span class="n">spiralErrors</span><span class="p">)</span> <span class="o">-&gt;</span>
                         <span class="n">let</span> <span class="n">spiralErrors</span> <span class="o">=</span>
-                            <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
+                            <span class="n">allCode</span> <span class="o">|&gt;</span> <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span>
                         <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
                             <span class="n">processSpiralOutput</span>
                                 <span class="p">{</span><span class="o">|</span>
@@ -8628,7 +8629,7 @@ a.anchor-link {
                                 <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="n">errors</span>
                     <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="n">when</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
                         <span class="k">return</span> <span class="n">errors</span><span class="o">.</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="ne">Exception</span> <span class="o">|&gt;</span> <span class="n">Error</span><span class="p">,</span>
-                        <span class="n">mapErrors</span> <span class="p">(</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
+                        <span class="n">allCode</span> <span class="o">|&gt;</span> <span class="n">mapErrors</span> <span class="p">(</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span>
                     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">acc</span>
                 <span class="p">})</span>
             <span class="n">let</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">defaultArg</span> <span class="n">props</span><span class="o">.</span><span class="n">cancellationToken</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
@@ -8856,7 +8857,7 @@ a.anchor-link {
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="mi">60000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
-        <span class="n">let</span> <span class="n">boolArg</span> <span class="k">def</span> <span class="nf">command</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">boolArg</span> <span class="k">def</span><span class="w"> </span><span class="nf">command</span> <span class="o">=</span>
             <span class="n">lines</span>
             <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryPick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
                 <span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"//// </span><span class="si">{command}</span><span class="s2">"</span>
@@ -8869,7 +8870,7 @@ a.anchor-link {
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="k">def</span>
 
-        <span class="nf">let</span> <span class="n">printCode</span> <span class="o">=</span> <span class="s2">"print_code"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
+<span class="w">        </span><span class="nf">let</span> <span class="n">printCode</span> <span class="o">=</span> <span class="s2">"print_code"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
         <span class="n">let</span> <span class="n">isTraceToggle</span> <span class="o">=</span> <span class="s2">"trace_toggle"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
         <span class="n">let</span> <span class="n">isTrace</span> <span class="o">=</span> <span class="s2">"trace"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>
         <span class="n">let</span> <span class="n">isCache</span> <span class="o">=</span> <span class="s2">"cache"</span> <span class="o">|&gt;</span> <span class="n">boolArg</span> <span class="n">false</span>

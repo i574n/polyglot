@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -9502,7 +9503,7 @@ __assert_eq / actual: UH0_1 ("a", UH0_1 ("b", UH0_0)) / expected: UH0_1 ("a", UH
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-                <span class="err">$</span><span class="s1">'for i = 0 to !items.Length - 1 do yield !items.[i]'</span>
+                <span class="n">items</span> <span class="o">|&gt;</span> <span class="n">yield_from</span>
             <span class="o">|&gt;</span> <span class="n">new_seq</span>
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">seq</span><span class="s1">' t</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!items '</span> <span class="p">:</span> <span class="n">seq</span><span class="s1">' t</span>

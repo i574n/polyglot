@@ -243,3 +243,75 @@ get_tasks ()
 |> listm'.try_item 0i32
 |> fun (Some task) => task.task.name
 |> _assert_eq (task_name "01")
+
+#!spiral
+
+//// test
+///! fsharp
+////! cuda
+////! typescript
+////! python
+///// print_code
+
+inl print padding cols =
+    ({ lines = []; last_lines = []; max_acc = 0i32 }, cols)
+    ||> listm.fold fun { last_lines max_acc } lines =>
+        inl { count max } =
+            (lines, { count = 0i32; max = 0i32 })
+            ||> listm.foldBack fun line { count max } => {
+                count = count + 1
+                max =
+                    inl len = line |> sm'.length
+                    if len > max
+                    then len
+                    else max
+            }
+        inl { lines } =
+            (lines, { lines = []; i = 0i32 })
+            ||> listm.foldBack fun line { lines i } => {
+                lines =
+                    inl last_line =
+                        last_lines
+                        |> listm'.try_item (count - i - 1)
+                        |> optionm'.default_with fun () =>
+                            " " |> sm'.replicate max_acc
+                    inl line =
+                        if padding = 0
+                        then line
+                        else
+                            inl padding = " " |> sm'.replicate padding
+                            $'$"{!line}{!padding}"'
+                    inl line = line |> sm'.pad_right (max + padding) ' '
+                    $'$"{!last_line}{!line}"' :: lines
+                i = i + 1
+            }
+        {
+            lines
+            last_lines = lines
+            max_acc = max_acc + max + padding
+        }
+    |> fun x => x.lines
+    |> listm'.box
+    |> seq.of_list'
+    |> sm'.concat "\n"
+
+inl col () =
+    [ "Task" ]
+    ++ (
+        get_tasks ()
+        |> listm.map fun task =>
+            inl (task_name name) = task.task.name
+            name
+    )
+
+inl cols () =
+    [
+        col ()
+        col ()
+        [ "a"; "b"; "c"; "d"; "e" ]
+    ]
+
+inl main () =
+    cols ()
+    |> print 1i32
+    |> console.write_line

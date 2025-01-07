@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7651,7 +7652,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">Supervisor</span><span class="err">$</span><span class="p">(</span><span class="n">_exe</span><span class="p">)</span> <span class="o">--</span><span class="n">execute</span><span class="o">-</span><span class="n">command</span> <span class="s2">"../../../../workspace/target/release/spiral_builder$(_exe) dib --path test.dib --retries 3"</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">Supervisor</span><span class="err">$</span><span class="p">(</span><span class="n">_exe</span><span class="p">)</span> <span class="o">--</span><span class="n">execute</span><span class="o">-</span><span class="n">command</span> <span class="s2">"../../../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path test.dib --retries 3"</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
 </pre></div>
 </div>
 </div>
@@ -7665,347 +7666,665 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 networking.test_port_open / { port = 13806; ex = System.AggregateException: One or more errors occurred. (Connection refused) }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options_async / { file_name = ../../../../workspace/target/release/spiral_builder; arguments = US5_0 "dib --path test.dib --retries 3"; options = { command = ../../../../workspace/target/release/spiral_builder dib --path test.dib --retries 3; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #2 &gt; 00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 spiral_builder.main / { args = Array(MutCell(["dib", "--path", "test.dib", "--retries", "3"])) }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options_async / { file_name = ../../../../deps/spiral/workspace/target/release/spiral; arguments = US5_0 "dib --path test.dib --retries 3"; options = { command = ../../../../deps/spiral/workspace/target/release/spiral dib --path test.dib --retries 3; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 &gt; 00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 spiral.main / { args = Array(MutCell(["dib", "--path", "test.dib", "--retries", "3"])) }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #3 &gt; 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = dotnet; arguments = ["repl", "--exit-after-run", "--run", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib", "--output-path", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb"]; options = { command = dotnet repl --exit-after-run --run "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib" --output-path "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
 00:00:01 <span class="ansi-black-intense-fg">v</span> #4 &gt; &gt;
 00:00:01 <span class="ansi-black-intense-fg">v</span> #5 &gt; &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
-00:00:02 <span class="ansi-black-intense-fg">v</span> #6 &gt; &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
-00:00:02 <span class="ansi-black-intense-fg">v</span> #7 &gt; &gt; <span style="color: rgb(135,135,175)">│</span> # test (Polyglot)                                                            <span style="color: rgb(135,135,175)">│</span>
-00:00:02 <span class="ansi-black-intense-fg">v</span> #8 &gt; &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
-00:00:04 <span class="ansi-black-intense-fg">v</span> #9 &gt; &gt;
-00:00:04 <span class="ansi-black-intense-fg">v</span> #10 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
-00:00:04 <span class="ansi-black-intense-fg">v</span> #11 &gt; &gt; //// test
-00:00:04 <span class="ansi-black-intense-fg">v</span> #12 &gt; &gt;
-00:00:04 <span class="ansi-black-intense-fg">v</span> #13 &gt; &gt; open testing
-00:00:08 <span class="ansi-black-intense-fg">v</span> #14 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #15 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
-00:00:08 <span class="ansi-black-intense-fg">v</span> #16 &gt; &gt; nominal i = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #17 &gt; &gt; nominal e = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #18 &gt; &gt; nominal s = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #19 &gt; &gt; nominal n = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #20 &gt; &gt; nominal t = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #21 &gt; &gt; nominal f = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #22 &gt; &gt; nominal j = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #23 &gt; &gt; nominal p = ()
-00:00:08 <span class="ansi-black-intense-fg">v</span> #24 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #25 &gt; &gt; union sensing =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #26 &gt; &gt;     | Si : s * i
-00:00:08 <span class="ansi-black-intense-fg">v</span> #27 &gt; &gt;     | Se : s * e
-00:00:08 <span class="ansi-black-intense-fg">v</span> #28 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #29 &gt; &gt; union intuition =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #30 &gt; &gt;     | Ni : n * i
-00:00:08 <span class="ansi-black-intense-fg">v</span> #31 &gt; &gt;     | Ne : n * e
-00:00:08 <span class="ansi-black-intense-fg">v</span> #32 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #33 &gt; &gt; union thinking =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #34 &gt; &gt;     | Ti : t * i
-00:00:08 <span class="ansi-black-intense-fg">v</span> #35 &gt; &gt;     | Te : t * e
-00:00:08 <span class="ansi-black-intense-fg">v</span> #36 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #37 &gt; &gt; union feeling =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #38 &gt; &gt;     | Fi : f * i
-00:00:08 <span class="ansi-black-intense-fg">v</span> #39 &gt; &gt;     | Fe : f * e
-00:00:08 <span class="ansi-black-intense-fg">v</span> #40 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #41 &gt; &gt; union function_stack =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #42 &gt; &gt;     | FS : sensing * intuition * thinking * feeling
-00:00:08 <span class="ansi-black-intense-fg">v</span> #43 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #44 &gt; &gt; union personality_type =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #45 &gt; &gt;     | ISTJ : i * s * t * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #46 &gt; &gt;     | ISFJ : i * s * f * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #47 &gt; &gt;     | INFJ : i * n * f * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #48 &gt; &gt;     | INTJ : i * n * t * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #49 &gt; &gt;     | ISTP : i * s * t * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #50 &gt; &gt;     | ISFP : i * s * f * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #51 &gt; &gt;     | INFP : i * n * f * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #52 &gt; &gt;     | INTP : i * n * t * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #53 &gt; &gt;     | ESTP : e * s * t * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #54 &gt; &gt;     | ESFP : e * s * f * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #55 &gt; &gt;     | ENFP : e * n * f * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #56 &gt; &gt;     | ENTP : e * n * t * p * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #57 &gt; &gt;     | ESTJ : e * s * t * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #58 &gt; &gt;     | ESFJ : e * s * f * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #59 &gt; &gt;     | ENFJ : e * n * f * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #60 &gt; &gt;     | ENTJ : e * n * t * j * function_stack
-00:00:08 <span class="ansi-black-intense-fg">v</span> #61 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #62 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #63 &gt; &gt; inl main () =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #64 &gt; &gt;     inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
-00:00:08 <span class="ansi-black-intense-fg">v</span> #65 &gt; &gt;     inl istj_personality = ISTJ (i, s, t, j, istj_stack)
-00:00:08 <span class="ansi-black-intense-fg">v</span> #66 &gt; &gt;     // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
-00:00:08 <span class="ansi-black-intense-fg">v</span> #67 &gt; &gt;     // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
-00:00:08 <span class="ansi-black-intense-fg">v</span> #68 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #69 &gt; &gt;     ;[[
-00:00:08 <span class="ansi-black-intense-fg">v</span> #70 &gt; &gt;         istj_personality
-00:00:08 <span class="ansi-black-intense-fg">v</span> #71 &gt; &gt;     ]]
-00:00:08 <span class="ansi-black-intense-fg">v</span> #72 &gt; &gt;     |&gt; fun x =&gt; $'$"%A{!x}"' : string
-00:00:08 <span class="ansi-black-intense-fg">v</span> #73 &gt; &gt;     |&gt; console.write_line
-00:00:08 <span class="ansi-black-intense-fg">v</span> #74 &gt; &gt;
-00:00:08 <span class="ansi-black-intense-fg">v</span> #75 &gt; &gt; inl main () =
-00:00:08 <span class="ansi-black-intense-fg">v</span> #76 &gt; &gt;     $'!main ()' : ()
-00:00:09 <span class="ansi-black-intense-fg">v</span> #77 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #78 &gt; &gt; <span class="ansi-green-fg">╭─[ 1.29s - stdout ]───────────────────────────────────────────────────────────╮</span>
-00:00:10 <span class="ansi-black-intense-fg">v</span> #79 &gt; &gt; <span class="ansi-green-fg">│</span> [|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]                               <span class="ansi-green-fg">│</span>
-00:00:10 <span class="ansi-black-intense-fg">v</span> #80 &gt; &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
-00:00:10 <span class="ansi-black-intense-fg">v</span> #81 &gt; &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
-00:00:10 <span class="ansi-black-intense-fg">v</span> #82 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #83 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
-00:00:10 <span class="ansi-black-intense-fg">v</span> #84 &gt; &gt; type PhonologicalFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #85 &gt; &gt;     | VowelFeature of
-00:00:10 <span class="ansi-black-intense-fg">v</span> #86 &gt; &gt;         height: Height
-00:00:10 <span class="ansi-black-intense-fg">v</span> #87 &gt; &gt;         * backness: Backness
-00:00:10 <span class="ansi-black-intense-fg">v</span> #88 &gt; &gt;         * roundedness: Roundedness
-00:00:10 <span class="ansi-black-intense-fg">v</span> #89 &gt; &gt;         * tone: Option&lt;Tone&gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #90 &gt; &gt;         * stress: Option&lt;Stress&gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #91 &gt; &gt;         * length: Option&lt;Length&gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #92 &gt; &gt;     | ConsonantFeature of
-00:00:10 <span class="ansi-black-intense-fg">v</span> #93 &gt; &gt;         place: PlaceOfArticulation
-00:00:10 <span class="ansi-black-intense-fg">v</span> #94 &gt; &gt;         * manner: MannerOfArticulation
-00:00:10 <span class="ansi-black-intense-fg">v</span> #95 &gt; &gt;         * voicing: Voicing
-00:00:10 <span class="ansi-black-intense-fg">v</span> #96 &gt; &gt;         * length: Option&lt;Length&gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #97 &gt; &gt;     | VowelHarmonyFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #98 &gt; &gt;     | PitchAccentFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #99 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #100 &gt; &gt; and Stress = Primary | Secondary
-00:00:10 <span class="ansi-black-intense-fg">v</span> #101 &gt; &gt; and Length = Long | Short | HalfLong
-00:00:10 <span class="ansi-black-intense-fg">v</span> #102 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #103 &gt; &gt; and Height =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #104 &gt; &gt;     | High | NearHigh | HighMid
-00:00:10 <span class="ansi-black-intense-fg">v</span> #105 &gt; &gt;     | Mid | LowMid | NearLow
-00:00:10 <span class="ansi-black-intense-fg">v</span> #106 &gt; &gt;     | Low
-00:00:10 <span class="ansi-black-intense-fg">v</span> #107 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #108 &gt; &gt; and Backness = Front | Central | Back
-00:00:10 <span class="ansi-black-intense-fg">v</span> #109 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #110 &gt; &gt; and Roundedness = Rounded | Unrounded
-00:00:10 <span class="ansi-black-intense-fg">v</span> #111 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #112 &gt; &gt; and PlaceOfArticulation =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #113 &gt; &gt;     | Bilabial | Labiodental | Dental
-00:00:10 <span class="ansi-black-intense-fg">v</span> #114 &gt; &gt;     | Alveolar | Postalveolar | Retroflex
-00:00:10 <span class="ansi-black-intense-fg">v</span> #115 &gt; &gt;     | Palatal | Velar | Uvular
-00:00:10 <span class="ansi-black-intense-fg">v</span> #116 &gt; &gt;     | Pharyngeal | Epiglottal | Glottal
-00:00:10 <span class="ansi-black-intense-fg">v</span> #117 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #118 &gt; &gt; and MannerOfArticulation =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #119 &gt; &gt;     | Plosive | Nasal | Trill
-00:00:10 <span class="ansi-black-intense-fg">v</span> #120 &gt; &gt;     | TapOrFlap | Fricative | LateralFricative
-00:00:10 <span class="ansi-black-intense-fg">v</span> #121 &gt; &gt;     | Approximant | LateralApproximant
-00:00:10 <span class="ansi-black-intense-fg">v</span> #122 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #123 &gt; &gt; and Voicing = Voiced | Voiceless
-00:00:10 <span class="ansi-black-intense-fg">v</span> #124 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #125 &gt; &gt; and SecondaryArticulation =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #126 &gt; &gt;     | Labialization | Palatalization | Velarization
-00:00:10 <span class="ansi-black-intense-fg">v</span> #127 &gt; &gt;     | Pharyngealization | Aspiration
-00:00:10 <span class="ansi-black-intense-fg">v</span> #128 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #129 &gt; &gt; and Tone =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #130 &gt; &gt;     | LevelTone of int
-00:00:10 <span class="ansi-black-intense-fg">v</span> #131 &gt; &gt;     | ContourTone of int list
-00:00:10 <span class="ansi-black-intense-fg">v</span> #132 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #133 &gt; &gt; and MorphologicalFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #134 &gt; &gt;     | RootFeature of string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #135 &gt; &gt;     | AffixFeature of AffixType * string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #136 &gt; &gt;     | IncorporationFeature of string * MorphologicalFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #137 &gt; &gt;     | NonConcatenativePattern of string * string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #138 &gt; &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #139 &gt; &gt;     | HonorificFeature of HonorificType * string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #140 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #141 &gt; &gt; and AgglutinativeAffixType = Suffix | Prefix
-00:00:10 <span class="ansi-black-intense-fg">v</span> #142 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #143 &gt; &gt; and HonorificType = VerbHonorific | NounHonorific
-00:00:10 <span class="ansi-black-intense-fg">v</span> #144 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #145 &gt; &gt; and AffixType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #146 &gt; &gt;     | Prefix | Suffix | Infix
-00:00:10 <span class="ansi-black-intense-fg">v</span> #147 &gt; &gt;     | Circumfix
-00:00:10 <span class="ansi-black-intense-fg">v</span> #148 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #149 &gt; &gt; type SyntacticFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #150 &gt; &gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
-00:00:10 <span class="ansi-black-intense-fg">v</span> #151 &gt; &gt;     | PhraseFeature of PhraseType * SyntacticFeature list
-00:00:10 <span class="ansi-black-intense-fg">v</span> #152 &gt; &gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
-00:00:10 <span class="ansi-black-intense-fg">v</span> #153 &gt; &gt;     | SOVOrderFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #154 &gt; &gt;     | TopicCommentFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #155 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #156 &gt; &gt; and GrammaticalRelationType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #157 &gt; &gt;     | Ergative | Absolutive | Nominative
-00:00:10 <span class="ansi-black-intense-fg">v</span> #158 &gt; &gt;     | Accusative
-00:00:10 <span class="ansi-black-intense-fg">v</span> #159 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #160 &gt; &gt; and LexicalCategory =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #161 &gt; &gt;     | Noun | Verb | Adjective
-00:00:10 <span class="ansi-black-intense-fg">v</span> #162 &gt; &gt;     | Adverb | Pronoun | Preposition
-00:00:10 <span class="ansi-black-intense-fg">v</span> #163 &gt; &gt;     | Conjunction | Determiner | Interjection
-00:00:10 <span class="ansi-black-intense-fg">v</span> #164 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #165 &gt; &gt; and PhraseType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #166 &gt; &gt;     | NP | VP | AP
-00:00:10 <span class="ansi-black-intense-fg">v</span> #167 &gt; &gt;     | PP | CP
-00:00:10 <span class="ansi-black-intense-fg">v</span> #168 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #169 &gt; &gt; and SemanticFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #170 &gt; &gt;     | Meaning of string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #171 &gt; &gt;     | SemanticRole of SemanticRoleType * SemanticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #172 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #173 &gt; &gt; and SemanticRoleType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #174 &gt; &gt;     | Agent | Patient | Instrument
-00:00:10 <span class="ansi-black-intense-fg">v</span> #175 &gt; &gt;     | Location | Time | Cause
-00:00:10 <span class="ansi-black-intense-fg">v</span> #176 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #177 &gt; &gt; and PragmaticFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #178 &gt; &gt;     | UseContext of string
-00:00:10 <span class="ansi-black-intense-fg">v</span> #179 &gt; &gt;     | PolitenessLevel of Politeness
-00:00:10 <span class="ansi-black-intense-fg">v</span> #180 &gt; &gt;     | SpeechAct of SpeechActType
-00:00:10 <span class="ansi-black-intense-fg">v</span> #181 &gt; &gt;     | SpeechLevel of SpeechLevelType
-00:00:10 <span class="ansi-black-intense-fg">v</span> #182 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #183 &gt; &gt; and Politeness = Formal | Informal | Neutral
-00:00:10 <span class="ansi-black-intense-fg">v</span> #184 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #185 &gt; &gt; and SpeechActType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #186 &gt; &gt;     | Assertive | Directive | Commissive
-00:00:10 <span class="ansi-black-intense-fg">v</span> #187 &gt; &gt;     | Expressive | Declarative
-00:00:10 <span class="ansi-black-intense-fg">v</span> #188 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #189 &gt; &gt; and SpeechLevelType =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #190 &gt; &gt;     | FormalHigh | FormalLow | InformalHigh
-00:00:10 <span class="ansi-black-intense-fg">v</span> #191 &gt; &gt;     | InformalLow | Neutral
-00:00:10 <span class="ansi-black-intense-fg">v</span> #192 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #193 &gt; &gt; type LinguisticFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #194 &gt; &gt;     | Phonological of PhonologicalFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #195 &gt; &gt;     | Morphological of MorphologicalFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #196 &gt; &gt;     | Syntactic of SyntacticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #197 &gt; &gt;     | Semantic of SemanticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #198 &gt; &gt;     | Pragmatic of PragmaticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #199 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #200 &gt; &gt; type LanguageConstruct =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #201 &gt; &gt;     | LanguageElement of LinguisticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #202 &gt; &gt;     | LanguageStructure of LanguageConstruct list
-00:00:10 <span class="ansi-black-intense-fg">v</span> #203 &gt; &gt;     | TranslationElement of TranslationFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #204 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #205 &gt; &gt; and TranslationFeature =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #206 &gt; &gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #207 &gt; &gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #208 &gt; &gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #209 &gt; &gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
-00:00:10 <span class="ansi-black-intense-fg">v</span> #210 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #211 &gt; &gt; type Discourse = DiscourseUnit of LanguageConstruct list
-00:00:10 <span class="ansi-black-intense-fg">v</span> #212 &gt; &gt;
-00:00:10 <span class="ansi-black-intense-fg">v</span> #213 &gt; &gt; type LanguageModel =
-00:00:10 <span class="ansi-black-intense-fg">v</span> #214 &gt; &gt;     | Model of discourse: Discourse
-00:00:11 <span class="ansi-black-intense-fg">v</span> #215 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #216 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #217 &gt; &gt; let testEnglish =
-00:00:11 <span class="ansi-black-intense-fg">v</span> #218 &gt; &gt;     Model(
-00:00:11 <span class="ansi-black-intense-fg">v</span> #219 &gt; &gt;         DiscourseUnit [[
-00:00:11 <span class="ansi-black-intense-fg">v</span> #220 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #221 &gt; &gt; Voiced, Some(HalfLong))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #222 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #223 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #224 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #225 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #226 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #227 &gt; &gt; Voiceless, Some(HalfLong))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #228 &gt; &gt;             LanguageElement (Morphological (RootFeature "I"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #229 &gt; &gt;             LanguageElement (Morphological (RootFeature "see"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #230 &gt; &gt;             LanguageElement (Morphological (RootFeature "a"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #231 &gt; &gt;             LanguageElement (Morphological (RootFeature "cat"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #232 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #233 &gt; &gt; ([[RootFeature "I"]], Pronoun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #234 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #235 &gt; &gt; ([[RootFeature "see"]], Verb)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #236 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #237 &gt; &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #238 &gt; &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
-00:00:11 <span class="ansi-black-intense-fg">v</span> #239 &gt; &gt; the speaker"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #240 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
-00:00:11 <span class="ansi-black-intense-fg">v</span> #241 &gt; &gt; observed"))
-00:00:11 <span class="ansi-black-intense-fg">v</span> #242 &gt; &gt;         ]]
-00:00:11 <span class="ansi-black-intense-fg">v</span> #243 &gt; &gt;     )
-00:00:11 <span class="ansi-black-intense-fg">v</span> #244 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #245 &gt; &gt; let testPortuguese =
-00:00:11 <span class="ansi-black-intense-fg">v</span> #246 &gt; &gt;     Model(
-00:00:11 <span class="ansi-black-intense-fg">v</span> #247 &gt; &gt;         DiscourseUnit [[
-00:00:11 <span class="ansi-black-intense-fg">v</span> #248 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #249 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #250 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #251 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #252 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #253 &gt; &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #254 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #255 &gt; &gt; Voiceless, Some(HalfLong))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #256 &gt; &gt;             LanguageElement (Morphological (RootFeature "Eu"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #257 &gt; &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #258 &gt; &gt; AffixFeature (Suffix, "o")));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #259 &gt; &gt;             LanguageElement (Morphological (RootFeature "um"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #260 &gt; &gt;             LanguageElement (Morphological (RootFeature "gato"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #261 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #262 &gt; &gt; ([[RootFeature "Eu"]], Pronoun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #263 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #264 &gt; &gt; ([[RootFeature "vejo"]], Verb)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #265 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #266 &gt; &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #267 &gt; &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
-00:00:11 <span class="ansi-black-intense-fg">v</span> #268 &gt; &gt; pelo falante"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #269 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
-00:00:11 <span class="ansi-black-intense-fg">v</span> #270 &gt; &gt; observada"))
-00:00:11 <span class="ansi-black-intense-fg">v</span> #271 &gt; &gt;         ]]
-00:00:11 <span class="ansi-black-intense-fg">v</span> #272 &gt; &gt;     )
-00:00:11 <span class="ansi-black-intense-fg">v</span> #273 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #274 &gt; &gt; let testKorean =
-00:00:11 <span class="ansi-black-intense-fg">v</span> #275 &gt; &gt;     Model(
-00:00:11 <span class="ansi-black-intense-fg">v</span> #276 &gt; &gt;         DiscourseUnit [[
-00:00:11 <span class="ansi-black-intense-fg">v</span> #277 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #278 &gt; &gt; Voiced, Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #279 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #280 &gt; &gt; None, None, Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #281 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #282 &gt; &gt; None, None, Some(Long))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #283 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
-00:00:11 <span class="ansi-black-intense-fg">v</span> #284 &gt; &gt; Voiceless, Some(Short))));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #285 &gt; &gt;             LanguageElement (Morphological (RootFeature "나"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #286 &gt; &gt;             LanguageElement (Morphological (RootFeature "보다"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #287 &gt; &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #288 &gt; &gt;             LanguageElement (Morphological (RootFeature "고양이"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #289 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #290 &gt; &gt; ([[RootFeature "나"]], Pronoun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #291 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #292 &gt; &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #293 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
-00:00:11 <span class="ansi-black-intense-fg">v</span> #294 &gt; &gt; ([[RootFeature "고양이"]], Noun)]])));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #295 &gt; &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
-00:00:11 <span class="ansi-black-intense-fg">v</span> #296 &gt; &gt; 행위"));
-00:00:11 <span class="ansi-black-intense-fg">v</span> #297 &gt; &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
-00:00:11 <span class="ansi-black-intense-fg">v</span> #298 &gt; &gt;         ]]
-00:00:11 <span class="ansi-black-intense-fg">v</span> #299 &gt; &gt;     )
-00:00:11 <span class="ansi-black-intense-fg">v</span> #300 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #301 &gt; &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #302 &gt; &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #303 &gt; &gt; <span style="color: rgb(135,135,175)">│</span> ## main                                                                      <span style="color: rgb(135,135,175)">│</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #304 &gt; &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #305 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #306 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
-00:00:11 <span class="ansi-black-intense-fg">v</span> #307 &gt; &gt; inl main (_args : array_base string) =
-00:00:11 <span class="ansi-black-intense-fg">v</span> #308 &gt; &gt;     0i32
-00:00:11 <span class="ansi-black-intense-fg">v</span> #309 &gt; &gt;
-00:00:11 <span class="ansi-black-intense-fg">v</span> #310 &gt; &gt; inl main () =
-00:00:11 <span class="ansi-black-intense-fg">v</span> #311 &gt; &gt;     $'let main args = !main args' : ()
-00:00:12 <span class="ansi-black-intense-fg">v</span> #312 &gt; &gt;
-00:00:12 <span class="ansi-black-intense-fg">v</span> #313 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
-00:00:12 <span class="ansi-black-intense-fg">v</span> #314 &gt; &gt; inl app () =
-00:00:12 <span class="ansi-black-intense-fg">v</span> #315 &gt; &gt;     "test" |&gt; console.write_line
-00:00:12 <span class="ansi-black-intense-fg">v</span> #316 &gt; &gt;     0i32
-00:00:12 <span class="ansi-black-intense-fg">v</span> #317 &gt; &gt;
-00:00:12 <span class="ansi-black-intense-fg">v</span> #318 &gt; &gt; inl main () =
-00:00:12 <span class="ansi-black-intense-fg">v</span> #319 &gt; &gt;     print_static "&lt;test&gt;"
-00:00:12 <span class="ansi-black-intense-fg">v</span> #320 &gt; &gt;
-00:00:12 <span class="ansi-black-intense-fg">v</span> #321 &gt; &gt;     app
-00:00:12 <span class="ansi-black-intense-fg">v</span> #322 &gt; &gt;     |&gt; dyn
-00:00:12 <span class="ansi-black-intense-fg">v</span> #323 &gt; &gt;     |&gt; ignore
-00:00:12 <span class="ansi-black-intense-fg">v</span> #324 &gt; &gt;
-00:00:12 <span class="ansi-black-intense-fg">v</span> #325 &gt; &gt;     print_static "&lt;/test&gt;"
-00:00:12 <span class="ansi-black-intense-fg">v</span> #326 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 11263 }
-00:00:12 <span class="ansi-black-intense-fg">v</span> #327 &gt; 00:00:12 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:13 <span class="ansi-black-intense-fg">v</span> #328 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
-00:00:13 <span class="ansi-black-intense-fg">v</span> #329 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #6 ! /opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
-00:00:13 <span class="ansi-black-intense-fg">v</span> #330 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
-00:00:13 <span class="ansi-black-intense-fg">v</span> #331 &gt; 00:00:13 <span class="ansi-black-intense-fg">v</span> #8 ! /opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
-00:00:13 <span class="ansi-black-intense-fg">v</span> #332 &gt; 00:00:13 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
-00:00:14 <span class="ansi-black-intense-fg">v</span> #333 &gt; 00:00:13 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 318991 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
-00:00:14 <span class="ansi-black-intense-fg">v</span> #334 &gt; 00:00:13 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 914 }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #335 &gt; 00:00:13 <span class="ansi-blue-intense-fg">d</span> #12 spiral_builder.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 914 }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #336 &gt; 00:00:13 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #337 &gt; 00:00:14 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #338 &gt; 00:00:14 <span class="ansi-blue-intense-fg">d</span> #15 spiral_builder.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #339 &gt; 00:00:14 <span class="ansi-blue-intense-fg">d</span> #16 spiral_builder.run / dib / { exit_code = 0; result_length = 12236 }
-00:00:14 <span class="ansi-blue-intense-fg">d</span> #340 runtime.execute_with_options_async / { exit_code = 0; output_length = 15637 }
-00:00:14 <span class="ansi-blue-intense-fg">d</span> #1 main / executeCommand / exitCode: 0 / command: ../../../../workspace/target/release/spiral_builder dib --path test.dib --retries 3
+00:00:01 <span class="ansi-black-intense-fg">v</span> #6 &gt; &gt; <span style="color: rgb(146,146,178)">│</span> # test (Polyglot)
+00:00:04 <span class="ansi-black-intense-fg">v</span> #7 &gt; &gt;
+00:00:04 <span class="ansi-black-intense-fg">v</span> #8 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:04 <span class="ansi-black-intense-fg">v</span> #9 &gt; &gt; //// test
+00:00:04 <span class="ansi-black-intense-fg">v</span> #10 &gt; &gt;
+00:00:04 <span class="ansi-black-intense-fg">v</span> #11 &gt; &gt; open testing
+00:00:07 <span class="ansi-black-intense-fg">v</span> #12 &gt; &gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #13 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:07 <span class="ansi-black-intense-fg">v</span> #14 &gt; &gt; //// test
+00:00:07 <span class="ansi-black-intense-fg">v</span> #15 &gt; &gt; //// print_code
+00:00:07 <span class="ansi-black-intense-fg">v</span> #16 &gt; &gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #17 &gt; &gt; inl jp = [[ "J"; "P" ]]
+00:00:07 <span class="ansi-black-intense-fg">v</span> #18 &gt; &gt; inl tf = [[ "T"; "F" ]]
+00:00:07 <span class="ansi-black-intense-fg">v</span> #19 &gt; &gt; inl sn = [[ "S"; "N" ]]
+00:00:07 <span class="ansi-black-intense-fg">v</span> #20 &gt; &gt; inl ie = [[ "I"; "E" ]]
+00:00:07 <span class="ansi-black-intense-fg">v</span> #21 &gt; &gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #22 &gt; &gt; (ie, ([[]] : _ string))
+00:00:07 <span class="ansi-black-intense-fg">v</span> #23 &gt; &gt; ||&gt; listm.foldBack fun ie' acc =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #24 &gt; &gt;     inl ssnn acc' jp' =
+00:00:07 <span class="ansi-black-intense-fg">v</span> #25 &gt; &gt;         (sn, acc')
+00:00:07 <span class="ansi-black-intense-fg">v</span> #26 &gt; &gt;         ||&gt; listm.foldBack fun sn' acc' =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #27 &gt; &gt;             inl c' ie' sn' tf' jp' =
+00:00:07 <span class="ansi-black-intense-fg">v</span> #28 &gt; &gt;                 $'$"{!ie'}{!sn'}{!tf'}{!jp'}"'
+00:00:07 <span class="ansi-black-intense-fg">v</span> #29 &gt; &gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #30 &gt; &gt;             if listm.length acc' % 4i32 = 2 then
+00:00:07 <span class="ansi-black-intense-fg">v</span> #31 &gt; &gt;                 (tf, acc')
+00:00:07 <span class="ansi-black-intense-fg">v</span> #32 &gt; &gt;                 ||&gt; listm.foldBack fun tf' acc'' =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #33 &gt; &gt;                     c' ie' sn' tf' jp' :: acc''
+00:00:07 <span class="ansi-black-intense-fg">v</span> #34 &gt; &gt;             else
+00:00:07 <span class="ansi-black-intense-fg">v</span> #35 &gt; &gt;                 (acc', tf)
+00:00:07 <span class="ansi-black-intense-fg">v</span> #36 &gt; &gt;                 ||&gt; listm.fold fun acc'' tf' =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #37 &gt; &gt;                     c' ie' sn' tf' jp' :: acc''
+00:00:07 <span class="ansi-black-intense-fg">v</span> #38 &gt; &gt;     if acc = [[]] then
+00:00:07 <span class="ansi-black-intense-fg">v</span> #39 &gt; &gt;         (acc, jp)
+00:00:07 <span class="ansi-black-intense-fg">v</span> #40 &gt; &gt;         ||&gt; listm.fold fun acc' jp' =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #41 &gt; &gt;             ssnn acc' jp'
+00:00:07 <span class="ansi-black-intense-fg">v</span> #42 &gt; &gt;     else
+00:00:07 <span class="ansi-black-intense-fg">v</span> #43 &gt; &gt;         (jp, acc)
+00:00:07 <span class="ansi-black-intense-fg">v</span> #44 &gt; &gt;         ||&gt; listm.foldBack fun jp' acc' =&gt;
+00:00:07 <span class="ansi-black-intense-fg">v</span> #45 &gt; &gt;             ssnn acc' jp'
+00:00:07 <span class="ansi-black-intense-fg">v</span> #46 &gt; &gt; |&gt; listm'.box
+00:00:07 <span class="ansi-black-intense-fg">v</span> #47 &gt; &gt; |&gt; listm'.to_array'
+00:00:07 <span class="ansi-black-intense-fg">v</span> #48 &gt; &gt; |&gt; _assert_eq' ;[[
+00:00:07 <span class="ansi-black-intense-fg">v</span> #49 &gt; &gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+00:00:07 <span class="ansi-black-intense-fg">v</span> #50 &gt; &gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+00:00:07 <span class="ansi-black-intense-fg">v</span> #51 &gt; &gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+00:00:07 <span class="ansi-black-intense-fg">v</span> #52 &gt; &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+00:00:07 <span class="ansi-black-intense-fg">v</span> #53 &gt; &gt; ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #54 &gt; &gt;
+00:00:08 <span class="ansi-black-intense-fg">v</span> #55 &gt; &gt; <span class="ansi-green-fg">── [ 922.51ms - stdout ] ───────────────────────────────────────────────────────</span>
+00:00:08 <span class="ansi-black-intense-fg">v</span> #56 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #57 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v0
+00:00:08 <span class="ansi-black-intense-fg">v</span> #58 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #59 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+00:00:08 <span class="ansi-black-intense-fg">v</span> #60 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+00:00:08 <span class="ansi-black-intense-fg">v</span> #61 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #62 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "E"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #63 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "N"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #64 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #65 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #66 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #67 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #68 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #69 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "S"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #70 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #71 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #72 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #73 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #74 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #75 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #76 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #77 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "I"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #78 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #79 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #80 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #81 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #82 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #83 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #84 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #85 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #86 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+00:00:08 <span class="ansi-black-intense-fg">v</span> #87 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v4 :: v24
+00:00:08 <span class="ansi-black-intense-fg">v</span> #88 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v6 :: v25
+00:00:08 <span class="ansi-black-intense-fg">v</span> #89 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v8 :: v28
+00:00:08 <span class="ansi-black-intense-fg">v</span> #90 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v9 :: v31
+00:00:08 <span class="ansi-black-intense-fg">v</span> #91 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v11 :: v34
+00:00:08 <span class="ansi-black-intense-fg">v</span> #92 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v12 :: v37
+00:00:08 <span class="ansi-black-intense-fg">v</span> #93 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v13 :: v40
+00:00:08 <span class="ansi-black-intense-fg">v</span> #94 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v14 :: v43
+00:00:08 <span class="ansi-black-intense-fg">v</span> #95 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v16 :: v46
+00:00:08 <span class="ansi-black-intense-fg">v</span> #96 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v17 :: v49
+00:00:08 <span class="ansi-black-intense-fg">v</span> #97 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v18 :: v52
+00:00:08 <span class="ansi-black-intense-fg">v</span> #98 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v19 :: v55
+00:00:08 <span class="ansi-black-intense-fg">v</span> #99 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v20 :: v58
+00:00:08 <span class="ansi-black-intense-fg">v</span> #100 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v21 :: v61
+00:00:08 <span class="ansi-black-intense-fg">v</span> #101 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v22 :: v64
+00:00:08 <span class="ansi-black-intense-fg">v</span> #102 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v23 :: v67
+00:00:08 <span class="ansi-black-intense-fg">v</span> #103 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+00:00:08 <span class="ansi-black-intense-fg">v</span> #104 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+00:00:08 <span class="ansi-black-intense-fg">v</span> #105 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #106 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #107 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #108 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #109 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #110 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #111 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #112 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #113 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #114 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #115 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #116 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #117 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #118 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #119 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #120 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #121 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82;
+00:00:08 <span class="ansi-black-intense-fg">v</span> #122 &gt; &gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #123 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93
+00:00:08 <span class="ansi-black-intense-fg">v</span> #124 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #125 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+00:00:08 <span class="ansi-black-intense-fg">v</span> #126 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             true
+00:00:08 <span class="ansi-black-intense-fg">v</span> #127 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         else
+00:00:08 <span class="ansi-black-intense-fg">v</span> #128 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+00:00:08 <span class="ansi-black-intense-fg">v</span> #129 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #130 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+00:00:08 <span class="ansi-black-intense-fg">v</span> #131 &gt; &gt; %A{v93}"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #132 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+00:00:08 <span class="ansi-black-intense-fg">v</span> #133 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+00:00:08 <span class="ansi-black-intense-fg">v</span> #134 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+00:00:08 <span class="ansi-black-intense-fg">v</span> #135 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+00:00:08 <span class="ansi-black-intense-fg">v</span> #136 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+00:00:08 <span class="ansi-black-intense-fg">v</span> #137 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+00:00:08 <span class="ansi-black-intense-fg">v</span> #138 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> method0()
+00:00:08 <span class="ansi-black-intense-fg">v</span> #139 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:08 <span class="ansi-black-intense-fg">v</span> #140 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ";
+00:00:08 <span class="ansi-black-intense-fg">v</span> #141 &gt; &gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+00:00:08 <span class="ansi-black-intense-fg">v</span> #142 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #143 &gt; &gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP";
+00:00:08 <span class="ansi-black-intense-fg">v</span> #144 &gt; &gt; "ESTP"; "ESFP";
+00:00:08 <span class="ansi-black-intense-fg">v</span> #145 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #146 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:08 <span class="ansi-black-intense-fg">v</span> #147 &gt; &gt;
+00:00:08 <span class="ansi-black-intense-fg">v</span> #148 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:08 <span class="ansi-black-intense-fg">v</span> #149 &gt; &gt; //// test
+00:00:08 <span class="ansi-black-intense-fg">v</span> #150 &gt; &gt; //// print_code
+00:00:08 <span class="ansi-black-intense-fg">v</span> #151 &gt; &gt;
+00:00:08 <span class="ansi-black-intense-fg">v</span> #152 &gt; &gt; inl i_e =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #153 &gt; &gt;     listm'.replicate 8i32 "I" ++ listm'.replicate 8i32 "E"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #154 &gt; &gt; inl s_n =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #155 &gt; &gt;     [[ "S"; "S"; "N"; "N" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #156 &gt; &gt;     |&gt; listm'.replicate 4i32
+00:00:08 <span class="ansi-black-intense-fg">v</span> #157 &gt; &gt;     |&gt; listm'.collect id
+00:00:08 <span class="ansi-black-intense-fg">v</span> #158 &gt; &gt; inl t_f =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #159 &gt; &gt;     [[ "T"; "F"; "F"; "T" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #160 &gt; &gt;     |&gt; listm'.replicate 4i32
+00:00:08 <span class="ansi-black-intense-fg">v</span> #161 &gt; &gt;     |&gt; listm'.collect id
+00:00:08 <span class="ansi-black-intense-fg">v</span> #162 &gt; &gt; inl j_p =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #163 &gt; &gt;     [[ "J"; "J"; "J"; "J" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #164 &gt; &gt;     ++ [[ "P"; "P"; "P"; "P" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #165 &gt; &gt;     ++ [[ "P"; "P"; "P"; "P" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #166 &gt; &gt;     ++ [[ "J"; "J"; "J"; "J" ]]
+00:00:08 <span class="ansi-black-intense-fg">v</span> #167 &gt; &gt; inl mbti =
+00:00:08 <span class="ansi-black-intense-fg">v</span> #168 &gt; &gt;     listm'.map4 (fun a b c d =&gt; $'$"{!a}{!b}{!c}{!d}"') i_e s_n t_f j_p
+00:00:08 <span class="ansi-black-intense-fg">v</span> #169 &gt; &gt;
+00:00:08 <span class="ansi-black-intense-fg">v</span> #170 &gt; &gt; mbti
+00:00:08 <span class="ansi-black-intense-fg">v</span> #171 &gt; &gt; |&gt; listm'.box
+00:00:08 <span class="ansi-black-intense-fg">v</span> #172 &gt; &gt; |&gt; listm'.to_array'
+00:00:08 <span class="ansi-black-intense-fg">v</span> #173 &gt; &gt; |&gt; _assert_eq' ;[[
+00:00:08 <span class="ansi-black-intense-fg">v</span> #174 &gt; &gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #175 &gt; &gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #176 &gt; &gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #177 &gt; &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+00:00:08 <span class="ansi-black-intense-fg">v</span> #178 &gt; &gt; ]]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #179 &gt; &gt;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #180 &gt; &gt; <span class="ansi-green-fg">── [ 442.34ms - stdout ] ───────────────────────────────────────────────────────</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #181 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #182 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v0
+00:00:09 <span class="ansi-black-intense-fg">v</span> #183 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #184 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+00:00:09 <span class="ansi-black-intense-fg">v</span> #185 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+00:00:09 <span class="ansi-black-intense-fg">v</span> #186 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #187 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "I"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #188 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "S"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #189 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #190 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #191 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #192 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #193 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #194 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "N"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #195 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #196 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #197 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #198 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #199 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #200 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #201 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #202 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "E"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #203 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #204 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #205 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #206 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #207 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #208 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #209 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #210 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #211 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+00:00:09 <span class="ansi-black-intense-fg">v</span> #212 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v23 :: v24
+00:00:09 <span class="ansi-black-intense-fg">v</span> #213 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v22 :: v25
+00:00:09 <span class="ansi-black-intense-fg">v</span> #214 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v21 :: v28
+00:00:09 <span class="ansi-black-intense-fg">v</span> #215 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v20 :: v31
+00:00:09 <span class="ansi-black-intense-fg">v</span> #216 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v19 :: v34
+00:00:09 <span class="ansi-black-intense-fg">v</span> #217 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v18 :: v37
+00:00:09 <span class="ansi-black-intense-fg">v</span> #218 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v17 :: v40
+00:00:09 <span class="ansi-black-intense-fg">v</span> #219 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v16 :: v43
+00:00:09 <span class="ansi-black-intense-fg">v</span> #220 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v14 :: v46
+00:00:09 <span class="ansi-black-intense-fg">v</span> #221 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v13 :: v49
+00:00:09 <span class="ansi-black-intense-fg">v</span> #222 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v12 :: v52
+00:00:09 <span class="ansi-black-intense-fg">v</span> #223 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v11 :: v55
+00:00:09 <span class="ansi-black-intense-fg">v</span> #224 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v9 :: v58
+00:00:09 <span class="ansi-black-intense-fg">v</span> #225 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v8 :: v61
+00:00:09 <span class="ansi-black-intense-fg">v</span> #226 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v6 :: v64
+00:00:09 <span class="ansi-black-intense-fg">v</span> #227 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v4 :: v67
+00:00:09 <span class="ansi-black-intense-fg">v</span> #228 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+00:00:09 <span class="ansi-black-intense-fg">v</span> #229 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+00:00:09 <span class="ansi-black-intense-fg">v</span> #230 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #231 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #232 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #233 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #234 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #235 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #236 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #237 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #238 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #239 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #240 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #241 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #242 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #243 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #244 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #245 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #246 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #247 &gt; &gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #248 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93
+00:00:09 <span class="ansi-black-intense-fg">v</span> #249 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #250 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+00:00:09 <span class="ansi-black-intense-fg">v</span> #251 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             true
+00:00:09 <span class="ansi-black-intense-fg">v</span> #252 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         else
+00:00:09 <span class="ansi-black-intense-fg">v</span> #253 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+00:00:09 <span class="ansi-black-intense-fg">v</span> #254 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #255 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+00:00:09 <span class="ansi-black-intense-fg">v</span> #256 &gt; &gt; %A{v93}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #257 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #258 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+00:00:09 <span class="ansi-black-intense-fg">v</span> #259 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #260 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+00:00:09 <span class="ansi-black-intense-fg">v</span> #261 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+00:00:09 <span class="ansi-black-intense-fg">v</span> #262 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+00:00:09 <span class="ansi-black-intense-fg">v</span> #263 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> method0()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #264 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #265 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #266 &gt; &gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #267 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #268 &gt; &gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #269 &gt; &gt; "ESTP"; "ESFP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #270 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #271 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #272 &gt; &gt;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #273 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #274 &gt; &gt; //// test
+00:00:09 <span class="ansi-black-intense-fg">v</span> #275 &gt; &gt; //// print_code
+00:00:09 <span class="ansi-black-intense-fg">v</span> #276 &gt; &gt;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #277 &gt; &gt; fun i =&gt;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #278 &gt; &gt;     inl i_e =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #279 &gt; &gt;         if i &lt; 8
+00:00:09 <span class="ansi-black-intense-fg">v</span> #280 &gt; &gt;         then "I"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #281 &gt; &gt;         else "E"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #282 &gt; &gt;     inl s_n =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #283 &gt; &gt;         inl group = (i / 2) % 2
+00:00:09 <span class="ansi-black-intense-fg">v</span> #284 &gt; &gt;         if group = 0
+00:00:09 <span class="ansi-black-intense-fg">v</span> #285 &gt; &gt;         then "S"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #286 &gt; &gt;         else "N"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #287 &gt; &gt;     inl t_f =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #288 &gt; &gt;         match i % 4 with
+00:00:09 <span class="ansi-black-intense-fg">v</span> #289 &gt; &gt;         | 0 =&gt; "T"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #290 &gt; &gt;         | 1 =&gt; "F"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #291 &gt; &gt;         | 2 =&gt; "F"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #292 &gt; &gt;         | _ =&gt; "T"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #293 &gt; &gt;     inl j_p =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #294 &gt; &gt;         if i &lt; 4
+00:00:09 <span class="ansi-black-intense-fg">v</span> #295 &gt; &gt;         then "J"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #296 &gt; &gt;         elif i &lt; 12
+00:00:09 <span class="ansi-black-intense-fg">v</span> #297 &gt; &gt;         then "P"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #298 &gt; &gt;         else "J"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #299 &gt; &gt;     $'$"{!i_e}{!s_n}{!t_f}{!j_p}"'
+00:00:09 <span class="ansi-black-intense-fg">v</span> #300 &gt; &gt; |&gt; listm.init 16i32
+00:00:09 <span class="ansi-black-intense-fg">v</span> #301 &gt; &gt; |&gt; listm'.box
+00:00:09 <span class="ansi-black-intense-fg">v</span> #302 &gt; &gt; |&gt; listm'.to_array'
+00:00:09 <span class="ansi-black-intense-fg">v</span> #303 &gt; &gt; |&gt; _assert_eq' ;[[
+00:00:09 <span class="ansi-black-intense-fg">v</span> #304 &gt; &gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #305 &gt; &gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #306 &gt; &gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #307 &gt; &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #308 &gt; &gt; ]]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #309 &gt; &gt;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #310 &gt; &gt; <span class="ansi-green-fg">── [ 269.80ms - stdout ] ───────────────────────────────────────────────────────</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #311 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #312 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v0
+00:00:09 <span class="ansi-black-intense-fg">v</span> #313 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #314 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+00:00:09 <span class="ansi-black-intense-fg">v</span> #315 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+00:00:09 <span class="ansi-black-intense-fg">v</span> #316 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #317 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "I"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #318 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "S"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #319 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #320 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #321 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #322 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #323 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #324 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "N"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #325 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #326 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #327 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #328 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #329 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #330 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #331 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #332 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "E"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #333 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #334 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #335 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #336 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #337 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #338 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #339 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #340 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #341 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+00:00:09 <span class="ansi-black-intense-fg">v</span> #342 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v23 :: v24
+00:00:09 <span class="ansi-black-intense-fg">v</span> #343 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v22 :: v25
+00:00:09 <span class="ansi-black-intense-fg">v</span> #344 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v21 :: v28
+00:00:09 <span class="ansi-black-intense-fg">v</span> #345 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v20 :: v31
+00:00:09 <span class="ansi-black-intense-fg">v</span> #346 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v19 :: v34
+00:00:09 <span class="ansi-black-intense-fg">v</span> #347 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v18 :: v37
+00:00:09 <span class="ansi-black-intense-fg">v</span> #348 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v17 :: v40
+00:00:09 <span class="ansi-black-intense-fg">v</span> #349 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v16 :: v43
+00:00:09 <span class="ansi-black-intense-fg">v</span> #350 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v14 :: v46
+00:00:09 <span class="ansi-black-intense-fg">v</span> #351 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v13 :: v49
+00:00:09 <span class="ansi-black-intense-fg">v</span> #352 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v12 :: v52
+00:00:09 <span class="ansi-black-intense-fg">v</span> #353 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v11 :: v55
+00:00:09 <span class="ansi-black-intense-fg">v</span> #354 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v9 :: v58
+00:00:09 <span class="ansi-black-intense-fg">v</span> #355 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v8 :: v61
+00:00:09 <span class="ansi-black-intense-fg">v</span> #356 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v6 :: v64
+00:00:09 <span class="ansi-black-intense-fg">v</span> #357 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v4 :: v67
+00:00:09 <span class="ansi-black-intense-fg">v</span> #358 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+00:00:09 <span class="ansi-black-intense-fg">v</span> #359 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+00:00:09 <span class="ansi-black-intense-fg">v</span> #360 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #361 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #362 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #363 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #364 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #365 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #366 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #367 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #368 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #369 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #370 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #371 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #372 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #373 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #374 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #375 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #376 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82;
+00:00:09 <span class="ansi-black-intense-fg">v</span> #377 &gt; &gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #378 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93
+00:00:09 <span class="ansi-black-intense-fg">v</span> #379 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+00:00:09 <span class="ansi-black-intense-fg">v</span> #380 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+00:00:09 <span class="ansi-black-intense-fg">v</span> #381 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             true
+00:00:09 <span class="ansi-black-intense-fg">v</span> #382 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         else
+00:00:09 <span class="ansi-black-intense-fg">v</span> #383 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+00:00:09 <span class="ansi-black-intense-fg">v</span> #384 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #385 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+00:00:09 <span class="ansi-black-intense-fg">v</span> #386 &gt; &gt; %A{v93}"
+00:00:09 <span class="ansi-black-intense-fg">v</span> #387 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #388 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+00:00:09 <span class="ansi-black-intense-fg">v</span> #389 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #390 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+00:00:09 <span class="ansi-black-intense-fg">v</span> #391 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+00:00:09 <span class="ansi-black-intense-fg">v</span> #392 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+00:00:09 <span class="ansi-black-intense-fg">v</span> #393 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> method0()
+00:00:09 <span class="ansi-black-intense-fg">v</span> #394 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:09 <span class="ansi-black-intense-fg">v</span> #395 &gt; &gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #396 &gt; &gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #397 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #398 &gt; &gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #399 &gt; &gt; "ESTP"; "ESFP";
+00:00:09 <span class="ansi-black-intense-fg">v</span> #400 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+00:00:09 <span class="ansi-black-intense-fg">v</span> #401 &gt; &gt; <span style="color: rgb(38,140,38)">│</span>
+00:00:10 <span class="ansi-black-intense-fg">v</span> #402 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #403 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
+00:00:10 <span class="ansi-black-intense-fg">v</span> #404 &gt; &gt; type PhonologicalFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #405 &gt; &gt;     | VowelFeature of
+00:00:10 <span class="ansi-black-intense-fg">v</span> #406 &gt; &gt;         height: Height
+00:00:10 <span class="ansi-black-intense-fg">v</span> #407 &gt; &gt;         * backness: Backness
+00:00:10 <span class="ansi-black-intense-fg">v</span> #408 &gt; &gt;         * roundedness: Roundedness
+00:00:10 <span class="ansi-black-intense-fg">v</span> #409 &gt; &gt;         * tone: Option&lt;Tone&gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #410 &gt; &gt;         * stress: Option&lt;Stress&gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #411 &gt; &gt;         * length: Option&lt;Length&gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #412 &gt; &gt;     | ConsonantFeature of
+00:00:10 <span class="ansi-black-intense-fg">v</span> #413 &gt; &gt;         place: PlaceOfArticulation
+00:00:10 <span class="ansi-black-intense-fg">v</span> #414 &gt; &gt;         * manner: MannerOfArticulation
+00:00:10 <span class="ansi-black-intense-fg">v</span> #415 &gt; &gt;         * voicing: Voicing
+00:00:10 <span class="ansi-black-intense-fg">v</span> #416 &gt; &gt;         * length: Option&lt;Length&gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #417 &gt; &gt;     | VowelHarmonyFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #418 &gt; &gt;     | PitchAccentFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #419 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #420 &gt; &gt; and Stress = Primary | Secondary
+00:00:10 <span class="ansi-black-intense-fg">v</span> #421 &gt; &gt; and Length = Long | Short | HalfLong
+00:00:10 <span class="ansi-black-intense-fg">v</span> #422 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #423 &gt; &gt; and Height =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #424 &gt; &gt;     | High | NearHigh | HighMid
+00:00:10 <span class="ansi-black-intense-fg">v</span> #425 &gt; &gt;     | Mid | LowMid | NearLow
+00:00:10 <span class="ansi-black-intense-fg">v</span> #426 &gt; &gt;     | Low
+00:00:10 <span class="ansi-black-intense-fg">v</span> #427 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #428 &gt; &gt; and Backness = Front | Central | Back
+00:00:10 <span class="ansi-black-intense-fg">v</span> #429 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #430 &gt; &gt; and Roundedness = Rounded | Unrounded
+00:00:10 <span class="ansi-black-intense-fg">v</span> #431 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #432 &gt; &gt; and PlaceOfArticulation =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #433 &gt; &gt;     | Bilabial | Labiodental | Dental
+00:00:10 <span class="ansi-black-intense-fg">v</span> #434 &gt; &gt;     | Alveolar | Postalveolar | Retroflex
+00:00:10 <span class="ansi-black-intense-fg">v</span> #435 &gt; &gt;     | Palatal | Velar | Uvular
+00:00:10 <span class="ansi-black-intense-fg">v</span> #436 &gt; &gt;     | Pharyngeal | Epiglottal | Glottal
+00:00:10 <span class="ansi-black-intense-fg">v</span> #437 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #438 &gt; &gt; and MannerOfArticulation =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #439 &gt; &gt;     | Plosive | Nasal | Trill
+00:00:10 <span class="ansi-black-intense-fg">v</span> #440 &gt; &gt;     | TapOrFlap | Fricative | LateralFricative
+00:00:10 <span class="ansi-black-intense-fg">v</span> #441 &gt; &gt;     | Approximant | LateralApproximant
+00:00:10 <span class="ansi-black-intense-fg">v</span> #442 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #443 &gt; &gt; and Voicing = Voiced | Voiceless
+00:00:10 <span class="ansi-black-intense-fg">v</span> #444 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #445 &gt; &gt; and SecondaryArticulation =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #446 &gt; &gt;     | Labialization | Palatalization | Velarization
+00:00:10 <span class="ansi-black-intense-fg">v</span> #447 &gt; &gt;     | Pharyngealization | Aspiration
+00:00:10 <span class="ansi-black-intense-fg">v</span> #448 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #449 &gt; &gt; and Tone =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #450 &gt; &gt;     | LevelTone of int
+00:00:10 <span class="ansi-black-intense-fg">v</span> #451 &gt; &gt;     | ContourTone of int list
+00:00:10 <span class="ansi-black-intense-fg">v</span> #452 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #453 &gt; &gt; and MorphologicalFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #454 &gt; &gt;     | RootFeature of string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #455 &gt; &gt;     | AffixFeature of AffixType * string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #456 &gt; &gt;     | IncorporationFeature of string * MorphologicalFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #457 &gt; &gt;     | NonConcatenativePattern of string * string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #458 &gt; &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #459 &gt; &gt;     | HonorificFeature of HonorificType * string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #460 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #461 &gt; &gt; and AgglutinativeAffixType = Suffix | Prefix
+00:00:10 <span class="ansi-black-intense-fg">v</span> #462 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #463 &gt; &gt; and HonorificType = VerbHonorific | NounHonorific
+00:00:10 <span class="ansi-black-intense-fg">v</span> #464 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #465 &gt; &gt; and AffixType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #466 &gt; &gt;     | Prefix | Suffix | Infix
+00:00:10 <span class="ansi-black-intense-fg">v</span> #467 &gt; &gt;     | Circumfix
+00:00:10 <span class="ansi-black-intense-fg">v</span> #468 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #469 &gt; &gt; type SyntacticFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #470 &gt; &gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
+00:00:10 <span class="ansi-black-intense-fg">v</span> #471 &gt; &gt;     | PhraseFeature of PhraseType * SyntacticFeature list
+00:00:10 <span class="ansi-black-intense-fg">v</span> #472 &gt; &gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
+00:00:10 <span class="ansi-black-intense-fg">v</span> #473 &gt; &gt;     | SOVOrderFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #474 &gt; &gt;     | TopicCommentFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #475 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #476 &gt; &gt; and GrammaticalRelationType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #477 &gt; &gt;     | Ergative | Absolutive | Nominative
+00:00:10 <span class="ansi-black-intense-fg">v</span> #478 &gt; &gt;     | Accusative
+00:00:10 <span class="ansi-black-intense-fg">v</span> #479 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #480 &gt; &gt; and LexicalCategory =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #481 &gt; &gt;     | Noun | Verb | Adjective
+00:00:10 <span class="ansi-black-intense-fg">v</span> #482 &gt; &gt;     | Adverb | Pronoun | Preposition
+00:00:10 <span class="ansi-black-intense-fg">v</span> #483 &gt; &gt;     | Conjunction | Determiner | Interjection
+00:00:10 <span class="ansi-black-intense-fg">v</span> #484 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #485 &gt; &gt; and PhraseType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #486 &gt; &gt;     | NP | VP | AP
+00:00:10 <span class="ansi-black-intense-fg">v</span> #487 &gt; &gt;     | PP | CP
+00:00:10 <span class="ansi-black-intense-fg">v</span> #488 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #489 &gt; &gt; and SemanticFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #490 &gt; &gt;     | Meaning of string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #491 &gt; &gt;     | SemanticRole of SemanticRoleType * SemanticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #492 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #493 &gt; &gt; and SemanticRoleType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #494 &gt; &gt;     | Agent | Patient | Instrument
+00:00:10 <span class="ansi-black-intense-fg">v</span> #495 &gt; &gt;     | Location | Time | Cause
+00:00:10 <span class="ansi-black-intense-fg">v</span> #496 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #497 &gt; &gt; and PragmaticFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #498 &gt; &gt;     | UseContext of string
+00:00:10 <span class="ansi-black-intense-fg">v</span> #499 &gt; &gt;     | PolitenessLevel of Politeness
+00:00:10 <span class="ansi-black-intense-fg">v</span> #500 &gt; &gt;     | SpeechAct of SpeechActType
+00:00:10 <span class="ansi-black-intense-fg">v</span> #501 &gt; &gt;     | SpeechLevel of SpeechLevelType
+00:00:10 <span class="ansi-black-intense-fg">v</span> #502 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #503 &gt; &gt; and Politeness = Formal | Informal | Neutral
+00:00:10 <span class="ansi-black-intense-fg">v</span> #504 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #505 &gt; &gt; and SpeechActType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #506 &gt; &gt;     | Assertive | Directive | Commissive
+00:00:10 <span class="ansi-black-intense-fg">v</span> #507 &gt; &gt;     | Expressive | Declarative
+00:00:10 <span class="ansi-black-intense-fg">v</span> #508 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #509 &gt; &gt; and SpeechLevelType =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #510 &gt; &gt;     | FormalHigh | FormalLow | InformalHigh
+00:00:10 <span class="ansi-black-intense-fg">v</span> #511 &gt; &gt;     | InformalLow | Neutral
+00:00:10 <span class="ansi-black-intense-fg">v</span> #512 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #513 &gt; &gt; type LinguisticFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #514 &gt; &gt;     | Phonological of PhonologicalFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #515 &gt; &gt;     | Morphological of MorphologicalFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #516 &gt; &gt;     | Syntactic of SyntacticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #517 &gt; &gt;     | Semantic of SemanticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #518 &gt; &gt;     | Pragmatic of PragmaticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #519 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #520 &gt; &gt; type LanguageConstruct =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #521 &gt; &gt;     | LanguageElement of LinguisticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #522 &gt; &gt;     | LanguageStructure of LanguageConstruct list
+00:00:10 <span class="ansi-black-intense-fg">v</span> #523 &gt; &gt;     | TranslationElement of TranslationFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #524 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #525 &gt; &gt; and TranslationFeature =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #526 &gt; &gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #527 &gt; &gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #528 &gt; &gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #529 &gt; &gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
+00:00:10 <span class="ansi-black-intense-fg">v</span> #530 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #531 &gt; &gt; type Discourse = DiscourseUnit of LanguageConstruct list
+00:00:10 <span class="ansi-black-intense-fg">v</span> #532 &gt; &gt;
+00:00:10 <span class="ansi-black-intense-fg">v</span> #533 &gt; &gt; type LanguageModel =
+00:00:10 <span class="ansi-black-intense-fg">v</span> #534 &gt; &gt;     | Model of discourse: Discourse
+00:00:11 <span class="ansi-black-intense-fg">v</span> #535 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #536 &gt; &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
+00:00:11 <span class="ansi-black-intense-fg">v</span> #537 &gt; &gt; let testEnglish =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #538 &gt; &gt;     Model(
+00:00:11 <span class="ansi-black-intense-fg">v</span> #539 &gt; &gt;         DiscourseUnit [[
+00:00:11 <span class="ansi-black-intense-fg">v</span> #540 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #541 &gt; &gt; Voiced, Some(HalfLong))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #542 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #543 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #544 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #545 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #546 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #547 &gt; &gt; Voiceless, Some(HalfLong))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #548 &gt; &gt;             LanguageElement (Morphological (RootFeature "I"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #549 &gt; &gt;             LanguageElement (Morphological (RootFeature "see"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #550 &gt; &gt;             LanguageElement (Morphological (RootFeature "a"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #551 &gt; &gt;             LanguageElement (Morphological (RootFeature "cat"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #552 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #553 &gt; &gt; ([[RootFeature "I"]], Pronoun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #554 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #555 &gt; &gt; ([[RootFeature "see"]], Verb)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #556 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #557 &gt; &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #558 &gt; &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
+00:00:11 <span class="ansi-black-intense-fg">v</span> #559 &gt; &gt; the speaker"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #560 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
+00:00:11 <span class="ansi-black-intense-fg">v</span> #561 &gt; &gt; observed"))
+00:00:11 <span class="ansi-black-intense-fg">v</span> #562 &gt; &gt;         ]]
+00:00:11 <span class="ansi-black-intense-fg">v</span> #563 &gt; &gt;     )
+00:00:11 <span class="ansi-black-intense-fg">v</span> #564 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #565 &gt; &gt; let testPortuguese =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #566 &gt; &gt;     Model(
+00:00:11 <span class="ansi-black-intense-fg">v</span> #567 &gt; &gt;         DiscourseUnit [[
+00:00:11 <span class="ansi-black-intense-fg">v</span> #568 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #569 &gt; &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #570 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #571 &gt; &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #572 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #573 &gt; &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #574 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #575 &gt; &gt; Voiceless, Some(HalfLong))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #576 &gt; &gt;             LanguageElement (Morphological (RootFeature "Eu"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #577 &gt; &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #578 &gt; &gt; AffixFeature (Suffix, "o")));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #579 &gt; &gt;             LanguageElement (Morphological (RootFeature "um"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #580 &gt; &gt;             LanguageElement (Morphological (RootFeature "gato"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #581 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #582 &gt; &gt; ([[RootFeature "Eu"]], Pronoun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #583 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #584 &gt; &gt; ([[RootFeature "vejo"]], Verb)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #585 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #586 &gt; &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #587 &gt; &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
+00:00:11 <span class="ansi-black-intense-fg">v</span> #588 &gt; &gt; pelo falante"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #589 &gt; &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
+00:00:11 <span class="ansi-black-intense-fg">v</span> #590 &gt; &gt; observada"))
+00:00:11 <span class="ansi-black-intense-fg">v</span> #591 &gt; &gt;         ]]
+00:00:11 <span class="ansi-black-intense-fg">v</span> #592 &gt; &gt;     )
+00:00:11 <span class="ansi-black-intense-fg">v</span> #593 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #594 &gt; &gt; let testKorean =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #595 &gt; &gt;     Model(
+00:00:11 <span class="ansi-black-intense-fg">v</span> #596 &gt; &gt;         DiscourseUnit [[
+00:00:11 <span class="ansi-black-intense-fg">v</span> #597 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #598 &gt; &gt; Voiced, Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #599 &gt; &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #600 &gt; &gt; None, None, Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #601 &gt; &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #602 &gt; &gt; None, None, Some(Long))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #603 &gt; &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
+00:00:11 <span class="ansi-black-intense-fg">v</span> #604 &gt; &gt; Voiceless, Some(Short))));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #605 &gt; &gt;             LanguageElement (Morphological (RootFeature "나"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #606 &gt; &gt;             LanguageElement (Morphological (RootFeature "보다"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #607 &gt; &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #608 &gt; &gt;             LanguageElement (Morphological (RootFeature "고양이"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #609 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #610 &gt; &gt; ([[RootFeature "나"]], Pronoun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #611 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #612 &gt; &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #613 &gt; &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:11 <span class="ansi-black-intense-fg">v</span> #614 &gt; &gt; ([[RootFeature "고양이"]], Noun)]])));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #615 &gt; &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
+00:00:11 <span class="ansi-black-intense-fg">v</span> #616 &gt; &gt; 행위"));
+00:00:11 <span class="ansi-black-intense-fg">v</span> #617 &gt; &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
+00:00:11 <span class="ansi-black-intense-fg">v</span> #618 &gt; &gt;         ]]
+00:00:11 <span class="ansi-black-intense-fg">v</span> #619 &gt; &gt;     )
+00:00:11 <span class="ansi-black-intense-fg">v</span> #620 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #621 &gt; &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
+00:00:11 <span class="ansi-black-intense-fg">v</span> #622 &gt; &gt; <span style="color: rgb(146,146,178)">│</span> ## main
+00:00:11 <span class="ansi-black-intense-fg">v</span> #623 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #624 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:11 <span class="ansi-black-intense-fg">v</span> #625 &gt; &gt; inl main (_args : array_base string) =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #626 &gt; &gt;     0i32
+00:00:11 <span class="ansi-black-intense-fg">v</span> #627 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #628 &gt; &gt; inl main () =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #629 &gt; &gt;     $'let main args = !main args' : ()
+00:00:11 <span class="ansi-black-intense-fg">v</span> #630 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #631 &gt; &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:11 <span class="ansi-black-intense-fg">v</span> #632 &gt; &gt; inl app () =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #633 &gt; &gt;     "test" |&gt; console.write_line
+00:00:11 <span class="ansi-black-intense-fg">v</span> #634 &gt; &gt;     0i32
+00:00:11 <span class="ansi-black-intense-fg">v</span> #635 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #636 &gt; &gt; inl main () =
+00:00:11 <span class="ansi-black-intense-fg">v</span> #637 &gt; &gt;     print_static "&lt;test&gt;"
+00:00:11 <span class="ansi-black-intense-fg">v</span> #638 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #639 &gt; &gt;     app
+00:00:11 <span class="ansi-black-intense-fg">v</span> #640 &gt; &gt;     |&gt; dyn
+00:00:11 <span class="ansi-black-intense-fg">v</span> #641 &gt; &gt;     |&gt; ignore
+00:00:11 <span class="ansi-black-intense-fg">v</span> #642 &gt; &gt;
+00:00:11 <span class="ansi-black-intense-fg">v</span> #643 &gt; &gt;     print_static "&lt;/test&gt;"
+00:00:11 <span class="ansi-black-intense-fg">v</span> #644 &gt; 00:00:11 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 27199 }
+00:00:11 <span class="ansi-black-intense-fg">v</span> #645 &gt; 00:00:11 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:12 <span class="ansi-black-intense-fg">v</span> #646 &gt; 00:00:11 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
+00:00:12 <span class="ansi-black-intense-fg">v</span> #647 &gt; 00:00:11 <span class="ansi-black-intense-fg">v</span> #6 ! /opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:12 <span class="ansi-black-intense-fg">v</span> #648 &gt; 00:00:11 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
+00:00:12 <span class="ansi-black-intense-fg">v</span> #649 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #8 ! /opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:12 <span class="ansi-black-intense-fg">v</span> #650 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
+00:00:13 <span class="ansi-black-intense-fg">v</span> #651 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 332732 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
+00:00:13 <span class="ansi-black-intense-fg">v</span> #652 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 914 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #653 &gt; 00:00:12 <span class="ansi-blue-intense-fg">d</span> #12 spiral.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 914 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #654 &gt; 00:00:12 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #655 &gt; 00:00:12 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #656 &gt; 00:00:12 <span class="ansi-blue-intense-fg">d</span> #15 spiral.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #657 &gt; 00:00:12 <span class="ansi-blue-intense-fg">d</span> #16 spiral.run / dib / { exit_code = 0; result_length = 28172 }
+00:00:13 <span class="ansi-blue-intense-fg">d</span> #658 runtime.execute_with_options_async / { exit_code = 0; output_length = 32177 }
+00:00:13 <span class="ansi-blue-intense-fg">d</span> #1 main / executeCommand / exitCode: 0 / command: ../../../../deps/spiral/workspace/target/release/spiral dib --path test.dib --retries 3
 </pre>
 </div>
 </div>
@@ -8090,9 +8409,9 @@ a.anchor-link {
 
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 Supervisor.buildFile / takeWhileInclusive / path: test.spi / errors: [] / typeErrorCount: 0 / retry: 0 / outputContent:
 
-00:00:00 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"/// # test (Polyglot)\nnominal i = ()\nnominal e = ()\nnominal s = ()\nnomin...t\u003E\u0022\n","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result:
+00:00:00 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.sendJson / port: 13805 / json: {"FileOpen":{"spiText":"/// # test (Polyglot)\n\n/// ## main\ninl main (_args : array_base string) =...t\u003E\u0022\n","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result:
 00:00:00 <span class="ansi-black-intense-fg">v</span> #5 Supervisor.sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result:
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #6 Supervisor.buildFile / AsyncSeq.scan / path: test.spi / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 Supervisor.buildFile / AsyncSeq.scan / path: test.spi / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
 let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "test"
@@ -8105,7 +8424,7 @@ and closure0 () () : int32 =
 let v0 : (unit -&gt; int32) = closure0()
 ()
 
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #7 Supervisor.buildFile / takeWhileInclusive / path: test.spi / errors: [] / typeErrorCount: 0 / retry: 0 / outputContent:
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #7 Supervisor.buildFile / takeWhileInclusive / path: test.spi / errors: [] / typeErrorCount: 0 / retry: 0 / outputContent:
 let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "test"
@@ -8118,7 +8437,7 @@ and closure0 () () : int32 =
 let v0 : (unit -&gt; int32) = closure0()
 ()
 
-00:00:01 <span class="ansi-blue-intense-fg">d</span> #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 </pre>
 </div>
 </div>
@@ -8169,15 +8488,15 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-white-fg">Fable 5.0.0-alpha.2: F# to Rust compiler (status: alpha)
 </span><span class="ansi-white-fg">
-Thanks to the contributor! @IanManske
+Thanks to the contributor! @bentayloruk
 </span><span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua/
 
 </span><span class="ansi-white-fg">Parsing test.fsproj...
-</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 2797ms
+</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 2374ms
 
 </span><span class="ansi-white-fg">Started Fable compilation...
 </span><span class="ansi-white-fg">
-Fable compilation finished in 1173ms
+Fable compilation finished in 1124ms
 
 </span><span class="ansi-yellow-fg">./test.fsx(11,0): (11,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </span></pre>
@@ -8281,17 +8600,18 @@ Fable compilation finished in 1173ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> syn v2.0.90
+<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> byteorder v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> syn v2.0.90
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> getrandom v0.2.15
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.6.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.20.2
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> libm v0.2.11
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.42
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> libm v0.2.11
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
@@ -8303,13 +8623,13 @@ Fable compilation finished in 1173ms
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> zerocopy v0.7.35
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.69
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.20
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.69
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.5.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 12.60s
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 10.99s
 </pre>
 </div>
 </div>
@@ -8347,34 +8667,34 @@ Fable compilation finished in 1173ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bitflags v2.6.0
+<pre><span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> zerocopy v0.7.35
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fastrand v2.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bitflags v2.6.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.20.2
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fastrand v2.3.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.42
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fnv v1.0.7
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.42
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fnv v1.0.7
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.20
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> minimal-lexical v0.2.1
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> lazy_static v1.5.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> minimal-lexical v0.2.1
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.69
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.14.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.5.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 17.53s
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 15.63s
 <span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests main.rs (/home/runner/work/polyglot/polyglot/workspace/target/release/deps/spiral_temp_test-87f487a4cc8a01e4)
 
 running 3 tests
@@ -8385,262 +8705,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=Operator("/")
-input=Operator("=")
-input=Integer(-4983541431144370274)
-input=StringLiteral(" eL,0by$2Hrs&gt;{k&amp;SIXF*r)UyE/")
-input=StringLiteral("#l)'S8NAWBhX?S/:rd.$")
-input=Integer(-2506165048692501742)
-input=Integer(-3271740989298080111)
-input=StringLiteral("@B:?/")
-input=Comment("GF/{nr{`2:T")
-input=Identifier("eVqk9L220skK8C6ds0")
-input=Integer(-6358152319390945699)
-input=Integer(8496825779833651800)
+input=Integer(-2701596047684641766)
+input=Identifier("LT892Qa37u7QoBXrqQn3pIp")
+input=Comment("")
+input=StringLiteral("V&amp;a")
+input=Comment("qRX&gt;3&lt;C{`r;j^%I/%#rH.")
 input=Operator("-")
-input=StringLiteral("?.bsv%J&amp;.QWw")
-input=Integer(5607245581639305042)
-input=Integer(7276687941767929776)
+input=Integer(6372009357832004769)
+input=Comment("`&lt;\\`?Y*=$'OJ\":=d*E8}")
 input=Operator("+")
-input=Operator("(")
-input=Integer(785780213074041733)
-input=Integer(485207602638943005)
-input=Integer(8831388942414924358)
-input=StringLiteral("~_S:t(=o-tT:*xovJRwR?~%.c]@l)6")
-input=StringLiteral("d/JiS4M5(#uI")
-input=Operator(")")
-input=StringLiteral("qI")
-input=Operator(")")
-input=Comment("\"i]*~b=&gt;?OlIi%b%7nAt%")
-input=Comment("qGt%/[")
-input=Operator(")")
-input=Operator("(")
-input=StringLiteral("/a%*h")
-input=Comment("%$%l*@b=Gk_HzA\"v3Xt.")
-input=Identifier("z288fMZaDlT1j")
-input=Identifier("QaoL523Ci8V8PhRleZ0Fjh0B0h7vu")
-input=StringLiteral("ybV}-`$&lt;{}tN2ea*Y?*n%&amp;:=")
-input=Identifier("fRd2lD0PF4nJydX7NCg7AH7yW")
-input=Identifier("B8")
-input=Integer(4150655207347753833)
-input=Integer(1253754181499223559)
-input=Comment("2$-0'Mvo")
-input=Comment("T\\Zj{*[6/Yup.^4\"dw`\"R#WZcOV&gt;T")
-input=Operator(")")
-input=Comment("zpTA&amp;")
-input=Identifier("p4dFVelUp44Z69vYGO1b2S2Vqp0ur")
-input=Operator("+")
-input=Operator("=")
-input=Operator("(")
-input=Integer(-5035259702057750067)
-input=Operator("+")
-input=Integer(-4005726933349144569)
-input=StringLiteral("U`[g|p?")
-input=Integer(-1303434281002238215)
-input=StringLiteral("uJ/=%.&gt;.=-5+/*i:G{?~6@O&amp;")
-input=Identifier("lttW8SM1vS6GKn10CgbMj")
-input=StringLiteral("x{@z/`x`{{&amp;)&amp;R&lt;h#$X%.W=&lt;/&amp;.'%")
-input=Comment("$PO^")
-input=StringLiteral("EYV.Y2E:H3o`&lt;G1ib^?&amp;&amp;Y")
-input=Operator("-")
-input=Identifier("U5LD4WZ10t")
-input=Integer(3462835672684989953)
-input=StringLiteral("l&amp;&lt;.&amp;*g1)B{/D-+g&gt;x:M-O'?tv&lt;J$SE")
-input=StringLiteral("c, :f")
-input=Comment("o'Z{[:\"&gt;.&amp;1Z{N%T+D\\s%B3eg")
-input=Comment("?:7?\\1'Ig_G")
-input=Operator("-")
-input=Integer(3818777412343663688)
-input=Identifier("ZC84rvwA3bw4tHQKG4cA")
-input=Operator("=")
-input=Comment("BcA\\n\\*)0C")
-input=StringLiteral("l4t`*%*N#S?q`u*.[XR6|&amp; &lt;['aD;{t")
-input=Integer(4756146233106392998)
-input=Integer(6700237017756907556)
-input=Comment(".=LU?kY\\/@L2Nw@!&gt;(d$P-:s")
-input=StringLiteral("&lt;&lt;qf}&lt;&gt;|q$@F:O%H83M.`l&gt;=")
-input=Identifier("DtsVY8V4voVqJHh554")
-input=Comment("T&lt;d`Gs^A4D6o5Z&gt;%c/aZJ8?Q\\&lt;qo%L")
-input=Comment("K\"/B3B~{mh=")
-input=StringLiteral("-g'{]-F")
-input=Operator("/")
-input=Operator("+")
-input=Comment("G.gjl%.K=?%X9k%86m`RWV")
-input=Identifier("qJc4JkEFI278V1B")
-input=Integer(-2248237105939612853)
-input=Integer(7905340321626557100)
-input=Comment("&amp;$M$I;$`IE`{^.)/\\;s`$=/xj;t$'i")
-input=StringLiteral("1R)0")
-input=Integer(-4062942205018692678)
-input=Operator("=")
-input=Identifier("bsDIIn96llkJb9Gknp5vGPlp")
-input=Operator("+")
-input=Comment("&gt;\\zbN SW/\"&lt;74lZeXC.7*M&lt;sB=BSt")
-input=Identifier("szjkh2zB8Nmzd9JffTkWd3560PW2")
-input=Comment("&lt;G.{o9&amp;_+*_$|??-W..?&amp;5")
-input=Integer(8084724585235377081)
-input=Identifier("tYwZ1zoCUUez6m5CJZ1YViN8a2IVK7G9")
-input=Integer(1254501165408111889)
+input=StringLiteral("$~N%E}.3s&gt;.}5a)%*h0{x&lt;W[?YL")
+input=Identifier("R47Ggww4462")
+input=Comment(".[|+t:$cj%BX|/)8$?`)Ni")
+input=Identifier("hYQCTTH5adrvZDTjFAWDmDKkZa9")
+input=Integer(6726339836133320430)
+input=Integer(-5890686338243239689)
+input=Comment("&lt;_c[\":2hF&lt;AD`.(xg%2")
+input=Identifier("P9E1PepbqV")
+input=StringLiteral("u")
+input=Integer(8781713997195215850)
+input=Integer(-1010500557940113355)
+input=StringLiteral("L''")
+input=Integer(-4978387497640178173)
+input=StringLiteral("Y%=ky?=ZI[E/'!&lt;bR")
+input=StringLiteral("j1p@m%{p&gt;?S/{(BG3&lt;.B*#iE~e")
+input=Integer(-1318935698262950354)
+input=StringLiteral("d")
+input=StringLiteral("+j2{%`vR%A%f 64%^I")
+input=Comment("86&lt;C?MW7\\X{2%{;5.*\".ySXQEE4")
+input=StringLiteral(" M%Y7oR]vc'(}/l*?6&lt;=lu1f_")
+input=Comment("pC',$*=&gt;ds2yt37#C}k&gt;&amp;")
+input=Integer(-6214708627782069544)
+input=Comment("H%3%#:h#&lt;ke8")
+input=StringLiteral("o-5&lt;")
+input=Integer(-966664708372515654)
+input=Integer(5337917412359993834)
+input=Identifier("OB2gL0jUZrx3itE02W0EqQ")
+input=Comment("T{zR?*N\")a+ \\(s[R`.sJga`?[ZdCl\\")
+input=Integer(6818931685672327863)
+input=Comment("%=]{|0|o?u?6]$$`apDj?")
+input=Integer(-68509613407710432)
+input=StringLiteral("{.9^%o[`s:E&gt;n?:.:A{{: /&amp;&gt;%&amp;HC(l")
 input=Operator("*")
-input=Comment("=SjuaK?t`:r5{`Z\\zl]&amp;&lt;qxSSN&lt;:V&lt;")
-input=StringLiteral("l{:|l9noHD/bxI^#beNH_")
-input=Comment("/&lt;")
-input=Comment("F=A/yC`~5QB||_A~@&lt;'")
+input=Comment("9*X-&lt;R0Qx?G;q`?0")
+input=Identifier("TQx5X80GGrKBcQGYr")
+input=Identifier("uSs4H5h2E2XZ2ise1pBb1X9aYE")
+input=Comment("L$`%/&gt;7VS&gt;\\{m?wKX=dm{4ZH*u'")
+input=Identifier("Ufm4viulhrVE9RuphO6VnWbH4hzXX")
+input=StringLiteral(",.&amp;a|4fE")
+input=Identifier("HVAn7M3Xb2A5U3lhJmmGVi22")
+input=Operator("(")
+input=Integer(1216375375048702700)
+input=Comment("\"sL@?2j{$iTevP*/_Hyp)B")
+input=StringLiteral("i,&lt;-!w=Tk&gt;a?==7?rZ5d.&amp;KI&gt;m")
+input=Identifier("wYM11Q1d8b3D3uhLnx2")
+input=Comment(".#&amp;v%")
+input=StringLiteral("|~G/`}Ek&gt;)Iw}")
+input=StringLiteral("&amp;c['5[&amp;=]N;ky&amp;?P..PRzu@'")
 input=Operator("-")
-input=Operator("-")
-input=StringLiteral("|aC:@`*s48+H`&amp;/}xBz$e%C&amp;:&amp;GpRk;")
-input=Comment("%'H%%\\8%LE|`&lt;3N@'9I4l`{D*]`8-]")
-input=Comment("{!.t&amp;1\\Xc?%w'\"&amp;`V3Rq=1")
-input=Operator("-")
-input=Integer(7642022590472768075)
-input=Operator("-")
-input=Identifier("Pk6Ev1ZV1H23EPJA3zA7uzmZ5V0")
-input=Integer(6280995419713664175)
-input=Comment("\"jiU")
-input=StringLiteral("qVpR'4At`_0hg`,Yc9G*UV$c")
-input=Identifier("aSr6IMmb2320IbqjLDr")
-input=StringLiteral(".a`ijW&lt;C*zN3UlWfe/R&amp;g$..v&gt;?Q")
-input=Integer(7520791951461847367)
-input=Identifier("Hf4Ckb0bGwJIPGGDjrltNmY")
-input=Integer(-7130754479517899090)
-input=StringLiteral("@)Z*89&lt;lk(&lt;#2Q;wM]8o1't`")
-input=StringLiteral("mX^*@= :{jjU`?&lt;qrvTUZ-&amp;}&lt;;jLk3a")
-input=Integer(4248620730148139691)
-input=Comment("!")
+input=Comment("=WC.L8Jx#.")
+input=Comment("#`U6$&amp;XLU")
 input=Operator("=")
-input=Comment(";]+f/?g&lt;X/6.%;8Y")
-input=Operator(")")
-input=Operator("/")
+input=Comment("WXN`a|/:\"w^\"%Cz/8)g\"aZ&amp;l[.N.")
+input=Integer(8809099446357640101)
+input=Comment("g&gt;{=9`Y0")
+input=StringLiteral("&amp;%?RczD.jC_V7'9o=2abf|'=/s&gt;/")
+input=StringLiteral(")fzn/2/']q['jjVQzPw=PN+[`tyFA3")
+input=StringLiteral("Oi#??r`*/L?`&gt;Zy8vlT*'?e")
+input=Identifier("d")
+input=Comment("q:{ Y%:k=:bF&lt;OG!.]:ev4))z(m5")
+input=Integer(-3679675858667597697)
+input=Operator("=")
+input=Integer(704142031297642169)
+input=StringLiteral("qXQp,oJ%'/T%P%P=sf&amp;_zE588.P`QK")
+input=Integer(-9000210285492710561)
+input=Identifier("wnF73WA0kFk3B6RV")
+input=Integer(1953397779459800659)
+input=Identifier("b8u97G8WmOG")
+input=Comment("5@ym.&amp;\\Dq*64/\".&amp;%{L&amp;&lt;&lt;0'&amp;!HM")
 input=Operator("+")
-input=Integer(-9201268738761109289)
-input=Comment("'5H")
-input=Operator("-")
-input=StringLiteral(".")
-input=Integer(8864519888376237821)
-input=Comment("/Ei@g?=(\"^%:='CV`Qo9\"`?")
-input=StringLiteral("vnPc!vRRE%?o&gt;`%/__+hXjRq#]&amp;&gt;]+W?")
-input=Integer(7206388719577709346)
-input=Operator(")")
-input=StringLiteral("h1%5IFQ/L")
-input=StringLiteral("*?Nf&amp;59{&gt;/:%A.=^?t2pdw`-k.")
-input=Identifier("SN5fhHijR555l7GAmCE5rcrdbPnVVQ0q")
-input=StringLiteral("ck,*o%}U.Lb*2*")
-input=Integer(-2623905839106342161)
-input=Identifier("sO2JhmdbHH6iOW85cHH9evC6RDl13rB")
-input=Comment("/fD&amp;(YcBI&lt;Mn\\)&amp;z*")
-input=Identifier("l0PQ6CK61ky5xxFd8M8")
-input=Comment("O~6%29NuKus\\[/F&amp;*X8")
-input=StringLiteral("=/^?y3%YV5Q9/&gt;Nl`^.L{`9o|~c")
-input=Comment("\"0P@K2\"1^N\"I&amp;H\\Xc\"p2")
-input=Comment("3}(;KMxz*)=~rF55o`;{\"S*dQ")
-input=Integer(-3508752991675685914)
-input=StringLiteral("Rw{*yRdg`|;I[SN{!&amp;1&amp;'0E&lt;")
-input=Integer(-8064914443807223228)
-input=Integer(-7417701698752310244)
-input=Integer(-7264654052669464141)
-input=StringLiteral("0cnSO=i(i&amp;{.")
-input=StringLiteral(");l`%:[{&amp;9nz(agu+17'Gf")
-input=Operator("(")
-input=Operator("(")
-input=Integer(-6254549621312892405)
-input=StringLiteral("Y/2c)jZ,1Wdl}Ww:")
-input=Identifier("f4K7B2UfXH7IalyKBk")
-input=Operator("/")
-input=Comment("H!GSY;&amp;|f:2l\\\"O=S&lt;)ho")
-input=Identifier("EA6nD38jb9y952yArR")
-input=Comment("*y%ZpC\"{hBo:svYg$,B ")
-input=Comment("E%epcQ[Gg:")
-input=Integer(-2760765206280795097)
-input=Integer(32282768779954443)
-input=Integer(8158980154016001250)
-input=Comment("rnZ`^+")
-input=Identifier("lBAktqccOwGKW5KN")
-input=Identifier("O3DuXt")
-input=Operator("-")
-input=Integer(3866505004526024514)
-input=Integer(-5851787662061698832)
-input=Comment("Xg&gt;:R%&lt;.v&gt;C$")
-input=Comment("CY3kS=a96\"a(W=")
-input=Comment(";:")
-input=Integer(7783489159179615348)
-input=Integer(9019534683084418754)
-input=Integer(4402633446712634240)
-input=Identifier("Sg7fB")
-input=StringLiteral("}%^;nxx.?EH'IzEK4e@SV%=u;")
-input=Identifier("APlv4nkv90wUZg2dUtnssX1Zl")
+input=Comment("fsp")
+input=Identifier("fVop06bAa7XYC0A0IWeGC39")
+input=StringLiteral("=WwoR7(%?A")
+input=StringLiteral("433A`$=w.=w*")
 input=Operator("*")
-input=Identifier("MCtSF6gucXnGM14n")
-input=Operator(")")
-input=Comment("''e]")
-input=Integer(-1915312190288005057)
-input=Operator("-")
-input=Identifier("iSdV")
-input=StringLiteral("}w J6")
-input=Integer(1795459321359651782)
-input=Identifier("f6o15fy8t4j11102U7UDOiu0Lj2t25NiB")
-input=Identifier("S")
-input=Integer(3907576329732246843)
-input=Operator(")")
-input=StringLiteral("RX*^/%S/&amp;sL*phPNw%i%%@SMJr&lt;L%e")
-input=Comment("*e'E.R6")
-input=Integer(4717547761718293865)
-input=StringLiteral("?/")
-input=Operator("/")
-input=StringLiteral("v|{='q*/S5(C5!{`*E/M#%Ns")
-input=StringLiteral("+*'a")
-input=Comment("3$;c/']G\"0u&gt;v*TvkLh{9TG6\"-i{o?")
-input=Comment("n!ch=&lt;/*ANo#`L{m&lt;L{:")
-input=Identifier("UStwDhe5G0s3MpGg41g6w48I6z")
-input=Integer(529848381429574087)
-input=Integer(5020765164536761557)
-input=Operator("*")
-input=StringLiteral("_H`:Vn,&amp;=")
-input=StringLiteral(".|`?J?!$!`%.=e/&amp;`=7~|V")
-input=Identifier("jW7ERk32LuJ2")
-input=Integer(-3946549611945026411)
-input=Integer(7262088422482090323)
-input=StringLiteral("W/z,?3PmL+agN*Q=P")
-input=Integer(8475633332330369735)
-input=Identifier("Pukvb91FMZrq")
-input=Integer(2424431648741782939)
+input=StringLiteral("K`'hR[`:|)'NL6,")
+input=Integer(2302892083262733962)
 input=StringLiteral("")
-input=Operator("*")
-input=Identifier("TJ4yEl0DTL5rM")
-input=Integer(5217960475728163354)
-input=Comment("Y&lt;XEE&gt;gT/[1?h_&lt;{'?gs&amp;?\"E'0`=QrW")
-input=StringLiteral("]'f[B&amp;`%T7{$`PEs.%i%%z:[:{")
-input=Identifier("NOs37B3elP")
-input=Operator(")")
-input=Integer(4313204437940529053)
-input=Comment("Gi\\.??9H?\\;&lt;y")
+input=Comment("'e`G&lt;,_g\\%nR/B'M{=4x`{")
+input=Comment("RIG}nc{`6$Y+3p")
+input=Comment("=%S&lt;6W:$F,:D==&gt;*]K.{\"`jQz;2Er\"?")
+input=StringLiteral("L5Uw=^='k?")
+input=Comment("\\Dc/.vcAT%;&lt;]C}41&amp;&amp;k")
+input=Identifier("r8WcDO5ljMDkpaMuF6XeWTjjr4d5")
 input=Operator("/")
-input=Integer(3729257926895379100)
-input=Integer(3979746452000154561)
-input=Operator(")")
-input=Comment("##&lt;b'%fD&amp;H_mmLh%:+`")
-input=Integer(2509724685625329331)
-input=Comment("e%bt0FCvl.qv:o*lzrs=B*L{[&amp;V&amp;:9#-")
-input=Integer(-3655609255782092329)
-input=Integer(-6089507420502900968)
-input=Comment("=&amp;*$V\"yL&lt;CPC/z`*`UO)_5{{Xh%rz{")
-input=Operator("=")
-input=Comment("\\$\\a*%u'l`&amp;/{Coe'{d+")
-input=StringLiteral("LW'Q!d?=&gt;ab0WNG``d*=t%[h")
-input=Comment("0")
-input=Operator(")")
-input=Comment("6/1K@=")
-input=Identifier("QcKWgr5ofX9a")
-input=Identifier("x2G234y53v72RnQtX6k7E633Vr2")
-input=Identifier("P3ALtdim4mkoq92H8rnRH4DtR4X4EZ")
-input=Identifier("lAPfCczAd05h")
-input=Integer(-5130390440869296187)
-input=StringLiteral("z=wY{v$e1{P7d'%=")
-input=Integer(-2971771152309703676)
 input=Operator("-")
-input=Integer(2754374383381363194)
-input=Comment("enqX&amp;i3H?eNZ:5`&lt;:*|df:AQ-%\"l")
+input=Integer(272680161187241708)
+input=Comment("u")
+input=StringLiteral("r$Wdf")
+input=Identifier("ccU4Hm6i76P8Qw")
+input=Identifier("PrAK96r9jEw")
+input=Comment("`A%:S?*{")
+input=Integer(-8173265057114559600)
+input=Operator("+")
+input=Integer(-2965163969293729522)
+input=StringLiteral(";*`Zi:|b]|%0/*+:6b{{N*ky/z$^Lby")
+input=StringLiteral("O(/8*.r&amp;d7#via'W:NG ~cB$*V")
+input=Identifier("Y50kRSC")
 input=Operator("*")
-input=StringLiteral("`]=X?")
+input=Comment(".{KE:&amp;")
+input=Integer(-5022716976420479049)
+input=StringLiteral("g$d&lt;Oy")
+input=Operator("*")
+input=Integer(2633043621888318305)
+input=Integer(-585301302291030566)
+input=StringLiteral("woq.Y")
+input=Identifier("pJHd7xYmXGN07G5DFvp")
+input=Operator("=")
+input=Identifier("XLUu8cTF1P2530Hrr9V6bK")
+input=Integer(-4848742623445169338)
+input=StringLiteral("8o=@$,&amp;_kDvV6f=!JFLx&lt;&amp;G")
+input=Integer(-3572497189442314411)
+input=Operator("=")
+input=Comment("{")
+input=Identifier("Fde7ih8Hb63v87ToqWIiSm9Fn")
+input=Comment("%j&amp;%&amp;\\Bb=w&amp;Q&gt;e)I5S.!*3#j")
+input=StringLiteral("r3:$cNfn',/'=B[A8wgo:=`ksmz&gt;(")
+input=Operator("(")
+input=Identifier("O4p878ES6RAg825Lj9M3A")
+input=Operator("/")
+input=Integer(-3865342744819710876)
+input=Identifier("ZmNhnP37ss9ko2Y39fx")
+input=Identifier("qCeVP")
+input=Comment("?Z,\\&lt;2&lt;w")
+input=Operator("+")
+input=Operator("(")
+input=StringLiteral("/U7-#$&gt;&amp;skP3n=?%:oU")
+input=Operator("-")
+input=StringLiteral("^0&lt;hg/UAZO~/v{(&gt;bcYl8fD_}q:")
+input=Comment("_?wi=aw&amp;j^=N-*`{\\:f\"7&amp;&gt;/$8:*5S4/")
+input=Comment("='c/'q=2BP\\y/Q&amp;?&lt;F&amp;")
+input=Integer(-3438544421546636648)
+input=Integer(6657297528173549670)
+input=Identifier("ayl4K275O90J9gx1QVFWcXO8m8Pb")
+input=Comment("J/!.")
+input=Identifier("becW")
+input=StringLiteral("f3AA?e'*%))H$")
+input=StringLiteral("@Zkj9`%+{b&lt;=o RZa&lt;p]bz&amp;6:i")
+input=Identifier("tQWNFYDYeK3p6WBoR6IzFirv9")
+input=Integer(-1548826564450285281)
+input=Comment("&lt;z``*8#\")vEMUWU")
+input=Integer(8384929297625652608)
+input=StringLiteral("Hm")
+input=StringLiteral("V&amp;%p ")
+input=StringLiteral("!&amp;Q&lt;HKdjIT4`g/yX/&lt;'Zu=_?`tZ[g")
+input=Identifier("qPa79YsgbeW0Hp")
+input=Comment(":\\XaI%-Dv,`%&gt;JD_&gt;']/&amp;_Y:")
+input=StringLiteral("/N:7+vHQC7w&lt;yJa&amp;D]&lt;&lt;C&gt;'$)r$y6w")
+input=Integer(1315668087124005753)
+input=Operator("(")
+input=StringLiteral("X%$kQ%&amp;:x&lt;[b.mX7*H)mq%[`LP&amp;U.`G5")
+input=Comment("sF7#O_gED+=")
+input=Integer(2510602945286290646)
+input=Identifier("fu")
+input=Integer(2601334495014239487)
+input=Comment("c[L.G5=$m:_&gt;/+^,9x#g,4_A")
+input=Operator("=")
+input=Integer(-3949313912535372030)
+input=Integer(-3187137012641797829)
+input=Identifier("S96ts5vxd8Fj4I1CyKtH50sN2")
+input=Integer(-2510845914048747701)
+input=Operator("=")
+input=StringLiteral("|mC&amp;m/dP'|[c^6%a:'")
+input=Comment("r^l2+x!V{l")
+input=Operator("=")
+input=Identifier("qeZO")
+input=Comment("{?pa&lt;dFDoq|.`?&lt;P@@\\c")
+input=StringLiteral("x:MjN=&lt;fIt=|wP:zKRvJjk&lt;,")
+input=StringLiteral(":b'U{4z")
+input=Comment("UQ.v8|u&lt;Hr8$%%6A:3*Z}5y??nw&amp;&amp;pj")
+input=Comment("?\"fOD7E=*&amp;Z:$98tX\\gO`.S/=[e")
+input=Integer(-4340731656385765674)
+input=Integer(9197674831823776424)
+input=Operator("(")
+input=Integer(264062462412086769)
+input=StringLiteral("$H#{*a~IxuLTC]B`Epr")
+input=Operator(")")
+input=Comment("xrp?%\"~}IH?!&amp;A\\r|9i")
+input=StringLiteral("f4._VP&amp;aL)XP+s#GJ")
+input=Operator("*")
+input=StringLiteral("N&lt;Y#rp/ss3=0=7&lt;PlI.`4f")
+input=Comment(":=y1!%H3Q]\\.)=.&gt;s\\`&amp;E=Af{f_")
+input=Identifier("Tll9EXVjCQl3XN11rT7s")
+input=Integer(-635962484297072512)
+input=Comment("\\t?n&amp;-%Kh=S,Aw`a\\R0$g#&amp;*mJ$/A")
+input=StringLiteral("HE9on: /'D':R.=5m`N$%6mDt{:.:&amp;.")
+input=StringLiteral("Q&amp;R")
+input=Operator("=")
+input=StringLiteral("`c=%")
+input=Integer(3445718335093563768)
+input=Integer(-8972463053850628837)
+input=Comment("")
+input=Identifier("JdhAxcMiyCmC3OTQtEZWtucPZwy")
+input=Comment("j2[7];A-n(Y{]/Qq|{j&lt;&lt;#.*B\"&lt;kv")
+input=Integer(-4789701892174259836)
+input=Identifier("QF0jA7YFUls037iqGcx6wfWWf")
+input=Comment("+&lt;=zk$.RH?=@%x=&amp;")
+input=Operator("-")
+input=Integer(-1990916451327823922)
+input=Identifier("WURH62Ti4642EG3vdfriXRp6cuB9cPd")
+input=StringLiteral("4p ;S$.MosD%(")
+input=StringLiteral("E/?xi:t/mpVAesOzj{KJ/_n&amp;plUT:*4")
+input=Comment("y%$D(+g/\\#IG*`")
+input=Comment("LK_?")
+input=Operator("-")
+input=Identifier("T4L34")
+input=Integer(-6239524575975750772)
+input=Operator("=")
+input=Identifier("Q4Smj64dG73j28749nUJZ6LBZ3Qms4Ut")
+input=Identifier("Xhp5oFrW6Dobz8KFeu")
+input=StringLiteral("t*13&amp;:_wL3;'Rzrd}@VuAK5TF[i&lt;$")
+input=StringLiteral("EGu`4J*m{AZK bq%~")
+input=Identifier("y")
+input=Integer(-1893764385966313813)
+input=Identifier("m")
+input=Integer(-1722641752386624668)
+input=Comment("")
+input=StringLiteral("D-:TxKS?'!F3")
+input=Identifier("i6YSzbD")
+input=Identifier("XqJJ9AC6")
+input=Identifier("WQ1Cm84hSpCH5R7HB1iJtGU")
+input=Operator("+")
+input=Identifier("Jf4GWWrJp87F5")
+input=Comment("KQNvbRi*7x:")
+input=Integer(4426977687997308931)
+input=Identifier("XwBPPJ3u0l1")
+input=Integer(-7697011029894352648)
+input=Identifier("h1")
+input=Identifier("xD")
+input=Comment("$`#R4*,&amp;n\"Mn&lt;swF&lt;\\F-M@]5$")
+input=Integer(-4449572063031427914)
+input=StringLiteral("x%doyk&lt;dhTl*Z`'[")
+input=StringLiteral("'t=|lgbqRg%|teP{R/W")
+input=StringLiteral("5W~$Eo |S$Za&gt;,n$0&lt;")
+input=Identifier("jhGQB6qWin0nV7Z")
+input=Comment("S,D&amp;")
+input=StringLiteral("&amp;?=D/16:ZR&lt;{tD=Wi&amp;A?$")
+input=Integer(-549774849181689210)
+input=Operator(")")
+input=Comment("&gt;-{$wLL&lt;h%3-OY.Ohx'S/=@'DO")
+input=Comment("=88h")
+input=Operator("(")
+input=Comment("ha??cv:j=P$.Ros%")
+input=Comment("mZGjZ&lt;*n'RN&gt;[$9[%")
+input=Operator("=")
+input=Integer(854683755580435412)
+input=Comment("I?zu&gt;8z")
 
 
 successes:

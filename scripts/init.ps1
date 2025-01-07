@@ -75,16 +75,30 @@ dotnet tool restore
 
 { dotnet paket restore } | Invoke-Block
 
-{ . $ScriptDir/symlinks.ps1 } | Invoke-Block
-
-{ . $ScriptDir/dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
-{ . $ScriptDir/dep_dotnet-repl.ps1 } | Invoke-Block
-
 Set-Location $ScriptDir
 
+{ pwsh symlinks.ps1 } | Invoke-Block
+
+if (!$fast) {
+    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+}
+
 Invoke-Dib init.dib
+
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
-{ pwsh ../apps/spiral/builder/build.ps1 -SkipPreBuild 1 } | Invoke-Block
+
+Set-Location (New-Item "../.." -ItemType Directory -Force)
+git clone --recurse-submodules https://github.com/i574n/spiral.git
+{ git pull } | Invoke-Block -Location spiral
+Set-Location $ScriptDir
+
+{ pwsh ../../spiral/scripts/init.ps1 } | Invoke-Block
+
+EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
+
+$Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
+{ pwsh $Path -SkipPreBuild 1 } | Invoke-Block
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/python/fable/build.ps1 } | Invoke-Block

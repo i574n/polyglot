@@ -41,6 +41,10 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: blender
+
       - run: pwsh scripts/init.ps1
 
       - run: pwsh scripts/build.ps1

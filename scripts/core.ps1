@@ -7,11 +7,13 @@ function Invoke-Linux {
     if ($IsWindows) {
         if ($Distro -ne "") {
             $Distro = " -d $Distro"
-        } else {
+        }
+        else {
             $Distro = ""
         }
         Invoke-Expression "wsl$Distro --shell-type login -- $($ScriptBlock.ToString().Trim())"
-    } else {
+    }
+    else {
         & @ScriptBlock
     }
 }
@@ -41,7 +43,8 @@ function Invoke-Block {
         if ($EnvironmentVariables.Count -gt 0) {
             $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
-    } else {
+    }
+    else {
         $originalEnvironmentVariables = @{}
         foreach ($var in $EnvironmentVariables.Keys) {
             if (Test-Path "Env:$var") {
@@ -65,18 +68,21 @@ function Invoke-Block {
             $exitcode = 0
             if ($Linux -and $IsWindows) {
                 Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
-            } else {
+            }
+            else {
                 if ($Return) {
                     $result = & @ScriptBlock
                     $output = $result | Select-Object -First $($result.Count - 1)
                     $result = $result | Select-Object -Last 1
                     $output | Out-Default
-                } else {
+                }
+                else {
                     & @ScriptBlock
                 }
             }
             $exitcode = $lastexitcode ?? 0
-        } catch {
+        }
+        catch {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
@@ -86,7 +92,8 @@ function Invoke-Block {
             if ($OnError -eq "Stop" -and $retry -eq $Retries) {
                 if ($host.Name -match "Interactive") {
                     [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
-                } else {
+                }
+                else {
                     exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
                 }
             }
@@ -105,7 +112,8 @@ function Invoke-Block {
                 if (Test-Path "Env:$var") {
                     Remove-Item "Env:$var"
                 }
-            } else {
+            }
+            else {
                 Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
             }
         }
@@ -145,40 +153,93 @@ function Update-Json {
     $jsonContent | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonPath
 }
 
-function EnsureSymbolicLink([string] $Path, [string] $Target) {
+function ResolveLink (
+    [string] $Path,
+    [string] $End = ''
+) {
+    Write-Host "core.ResolveLink / Path: $Path / End: $End"
+    if (!$Path) {
+        return $End
+    }
+
+    $parent = $Path | Split-Path
+    # Write-Host "core.ResolveLink / parent: $parent"
+    if (!$parent) {
+        return Join-Path $Path $End
+    }
+
+    $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
+
+    if ($parent | Test-Path) {
+        $target = ($parent | Get-Item).Target
+
+        if ($target -and (Test-Path $target)) {
+            if ($target.StartsWith(".")) {
+                Write-Host "core.ResolveLink / target: $target / parent: $parent"
+                $parent | Remove-Item -Force -Recurse
+            } else {
+                $resolved = Join-Path $target $End
+                Write-Host "core.ResolveLink / target: $target / End: $End / resolved: $resolved"
+                return $resolved
+            }
+        }
+    }
+
+    return ResolveLink $parent $End
+}
+
+function GetFullPath([string] $Path) {
     $Location = Get-Location
+
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
+        Write-Host "core.GetFullPath / Path: $Path / Target: $Target"
         $Path = [IO.Path]::GetFullPath((Join-Path $Location $Path))
-    }
-    if ($Target.StartsWith(".") -or $Target.StartsWith("/")) {
-        $Target = [IO.Path]::GetFullPath((Join-Path $Location $Target))
-    }
+        Write-Host "core.GetFullPath / FullPath: $Path"
 
-    $Parent = Split-Path $Path
-
-    if (-Not (Test-Path $Parent)) {
-        Write-Output "Creating parent directory: $Parent"
-        New-Item $Parent -ItemType Directory
+        $Path = ResolveLink $Path
+        Write-Host "core.GetFullPath / ResolvedFullPath: $Path"
     }
 
-    if (Test-Path $Path) {
-        $attr = (Get-Item $Path).Attributes
+    return $Path
+}
+
+function EnsureSymbolicLink([string] $Path, [string] $Target) {
+    $Path = GetFullPath $Path
+
+    if (!$Path) {
+        return
+    }
+
+    $Parent = $Path | Split-Path
+
+    Write-Output "core.EnsureSymbolicLink / Path: $Path / Parent: $Parent"
+
+    if (-Not ($Parent | Test-Path)) {
+        Write-Output "core.EnsureSymbolicLink / Creating parent directory: $Parent"
+        New-Item $Parent -ItemType Directory | Out-Null
+    }
+
+    if ($Path | Test-Path) {
+        $attr = ($Path | Get-Item).Attributes
         if ($null -ne $attr `
                 -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
                 -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
-            Write-Output "Removing file: $Path ($attr)"
-            Remove-Item $Path
+            Write-Output "core.EnsureSymbolicLink / Removing file: $Path ($attr)"
+            $Path | Remove-Item
         }
     }
 
-    if (-Not (Test-Path $Path)) {
-        Write-Output "Creating symlink: $Path -> $Target"
+    $Target = GetFullPath $Target
+
+    if (-Not ($Path | Test-Path)) {
+        Write-Output "core.EnsureSymbolicLink / Creating symlink: $Path -> $Target"
         $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
         if ($null -eq $result) {
-            Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
+            Write-Error "core.EnsureSymbolicLink / Failed to create symlink: $Path -> $Target ($Error)"
         }
-    } else {
-        Write-Output "Symlink already exists: $Path -> $Target"
+    }
+    else {
+        Write-Output "core.EnsureSymbolicLink / Symlink already exists: $Path -> $Target"
     }
 }
 
@@ -188,7 +249,8 @@ function Search-Command {
     )
     try {
         return (Get-Command $CommandName).Source
-    } catch {
+    }
+    catch {
         return $null
     }
 }
@@ -196,7 +258,8 @@ function Search-Command {
 function _exe {
     if ($IsWindows) {
         return ".exe"
-    } else {
+    }
+    else {
         return ""
     }
 }
@@ -216,7 +279,8 @@ function Invoke-Dib {
     foreach ($item in $_args) {
         if ($item -match "^-") {
             $key = $item -replace "^-"
-        } elseif ($null -ne $key) {
+        }
+        elseif ($null -ne $key) {
             $mergedArgs[$key] = $item
             $key = $null
         }

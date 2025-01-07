@@ -8,7 +8,7 @@ import * as fs from "fs";
 import { ofSeq, find } from "../../deps/Fable/src/fable-library-ts/Map.js";
 import { uint8, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { toString as toString_1, milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
-import { replace, padLeft, concat, interpolate, toText, trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { replace, concat, interpolate, toText, trimStart, trimEnd } from "../../deps/Fable/src/fable-library-ts/String.js";
 import { Async, singleton } from "../../deps/Fable/src/fable-library-ts/AsyncBuilder.js";
 import { ignore, catchAsync, startChild, sleep } from "../../deps/Fable/src/fable-library-ts/Async.js";
 import { FSharpChoice$2_$union } from "../../deps/Fable/src/fable-library-ts/Choice.js";
@@ -1854,19 +1854,33 @@ export function closure34(unitVar: void, unitVar_1: void): [string, IDisposable]
     return [v0_1, method83(v0_1)] as [string, IDisposable];
 }
 
+export function closure44(v0_1: int32, v1_1: string, v2_1: int32, v3: string): string {
+    if (v2_1 >= v0_1) {
+        return v3;
+    }
+    else {
+        return method99(v0_1, v1_1, v2_1 + 1)(v3 + v1_1);
+    }
+}
+
+export function method99(v0_1: int32, v1_1: string, v2_1: int32): ((arg0: string) => string) {
+    return (v: string): string => closure44(v0_1, v1_1, v2_1, v);
+}
+
 export function method98(v0_1: string): string {
-    const v279: string = padLeft(v0_1, 32, "0");
-    const v293 = 0;
-    const v307: int32 = (8 - 1) | 0;
-    const v312 = 8;
-    const v326: int32 = (12 - 1) | 0;
-    const v331 = 12;
-    const v345: int32 = (16 - 1) | 0;
-    const v350 = 16;
-    const v364: int32 = (20 - 1) | 0;
-    const v369 = 20;
-    const v383: int32 = (32 - 1) | 0;
-    return parse(`${v279.slice(v293, v307 + 1)}-${v279.slice(v312, v326 + 1)}-${v279.slice(v331, v345 + 1)}-${v279.slice(v350, v364 + 1)}-${v279.slice(v369, v383 + 1)}`);
+    const v2_1 = "0";
+    const v11: string = method99(32 - v0_1.length, v2_1, 0)("") + v0_1;
+    const v262 = 0;
+    const v276: int32 = (8 - 1) | 0;
+    const v281 = 8;
+    const v295: int32 = (12 - 1) | 0;
+    const v300 = 12;
+    const v314: int32 = (16 - 1) | 0;
+    const v319 = 16;
+    const v333: int32 = (20 - 1) | 0;
+    const v338 = 20;
+    const v352: int32 = (32 - 1) | 0;
+    return parse(`${v11.slice(v262, v276 + 1)}-${v11.slice(v281, v295 + 1)}-${v11.slice(v300, v314 + 1)}-${v11.slice(v319, v333 + 1)}-${v11.slice(v338, v352 + 1)}`);
 }
 
 export function closure43(unitVar: void, v0_1: string): [string, IDisposable] {
@@ -1874,11 +1888,11 @@ export function closure43(unitVar: void, v0_1: string): [string, IDisposable] {
     return [v2_1, method83(v2_1)] as [string, IDisposable];
 }
 
-export function closure44(unitVar: void, unitVar_1: void): string {
+export function closure45(unitVar: void, unitVar_1: void): string {
     return "/home/runner/work/polyglot/polyglot/lib/spiral";
 }
 
-export function method103(v0_1: any): string {
+export function method104(v0_1: any): string {
     const v2_1: Mut3 = new Mut3(method18());
     let v38: any;
     closure6(v2_1, toText(interpolate("%A%P()", [v0_1])), undefined);
@@ -1886,36 +1900,36 @@ export function method103(v0_1: any): string {
     return v2_1.l0;
 }
 
-export function closure46(unitVar: void, v0_1: any): string {
-    return method103(v0_1);
+export function closure47(unitVar: void, v0_1: any): string {
+    return method104(v0_1);
 }
 
-export function method102(): ((arg0: any) => string) {
-    return (v: any): string => closure46(undefined, v);
+export function method103(): ((arg0: any) => string) {
+    return (v: any): string => closure47(undefined, v);
 }
 
-export function closure47(unitVar: void, v0_1: any): US13_$union {
+export function closure48(unitVar: void, v0_1: any): US13_$union {
     return US13_US13_0(v0_1);
 }
 
-export function method104(): ((arg0: any) => US13_$union) {
-    return (v: any): US13_$union => closure47(undefined, v);
+export function method105(): ((arg0: any) => US13_$union) {
+    return (v: any): US13_$union => closure48(undefined, v);
 }
 
-export function closure48(unitVar: void, v0_1: string): US13_$union {
+export function closure49(unitVar: void, v0_1: string): US13_$union {
     return US13_US13_1(v0_1);
 }
 
-export function method105(): ((arg0: string) => US13_$union) {
-    return (v: string): US13_$union => closure48(undefined, v);
+export function method106(): ((arg0: string) => US13_$union) {
+    return (v: string): US13_$union => closure49(undefined, v);
 }
 
-export function method108(v0_1: string): Option<string> {
+export function method109(v0_1: string): Option<string> {
     const v141: IPathDirname = path;
     return v141.dirname(v0_1);
 }
 
-export function method109(v0_1: string): string {
+export function method110(v0_1: string): string {
     const v2_1: Mut3 = new Mut3(method18());
     let v8: any;
     closure6(v2_1, v0_1, undefined);
@@ -1923,89 +1937,85 @@ export function method109(v0_1: string): string {
     return v2_1.l0;
 }
 
-export function method107(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: string, v4: string): FSharpResult$2_$union<any, any> {
+export function method108(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: string, v4: string): FSharpResult$2_$union<any, any> {
     const v5: string = method20(v4);
-    const v6: Option<string> = method108(v4);
+    const v6: Option<string> = method109(v4);
     const v20_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v6), US5_US5_1());
-    const v24_1: string = method109(v3);
+    const v24_1: string = method110(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`));
     }
     else if (v20_1.tag === /* US5_0 */ 0) {
-        const v65: string = v20_1.fields[0];
+        const v67: string = v20_1.fields[0];
         if (v4 !== "") {
-            const v72: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v65);
-            const v73: ((arg0: any) => string) = method102();
-            const v85: FSharpResult$2_$union<any, string> = (v72.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v73(v72.fields[0])) : FSharpResult$2_Ok<any, string>(v72.fields[0]);
-            const v88: ((arg0: any) => US13_$union) = method104();
-            const v89: ((arg0: string) => US13_$union) = method105();
-            const v90: US13_$union = (v85.tag === /* Error */ 1) ? v89(v85.fields[0]) : v88(v85.fields[0]);
-            if (v90.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v90.fields[0]), v5));
+            const v74: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v67);
+            const v75: ((arg0: any) => string) = method103();
+            const v87: FSharpResult$2_$union<any, string> = (v74.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v75(v74.fields[0])) : FSharpResult$2_Ok<any, string>(v74.fields[0]);
+            const v90: ((arg0: any) => US13_$union) = method105();
+            const v91: ((arg0: string) => US13_$union) = method106();
+            const v92: US13_$union = (v87.tag === /* Error */ 1) ? v91(v87.fields[0]) : v90(v87.fields[0]);
+            if (v92.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v92.fields[0]), v5));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v90.fields[0]} / error: ${v24_1} / name: ${v5}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v92.fields[0]} / error: ${v24_1} / name: ${v5}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
     }
 }
 
-export function method106(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
+export function method107(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
     return defaultOf();
 }
 
-export function closure50(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
-    return method106(v0_1, v1_1, v2_1);
+export function closure51(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
+    return method107(v0_1, v1_1, v2_1);
 }
 
-export function closure49(v0_1: string, v1_1: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) {
-    return (v: string): FSharpResult$2_$union<any, any> => closure50(v0_1, v1_1, v);
+export function closure50(v0_1: string, v1_1: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) {
+    return (v: string): FSharpResult$2_$union<any, any> => closure51(v0_1, v1_1, v);
 }
 
-export function method110(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: string): FSharpResult$2_$union<any, any> {
+export function method111(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: string): FSharpResult$2_$union<any, any> {
     const v4: string = method20(v0_1);
-    const v5: Option<string> = method108(v0_1);
+    const v5: Option<string> = method109(v0_1);
     const v19_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v5), US5_US5_1());
-    const v23_1: string = method109(v3);
+    const v23_1: string = method110(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`));
     }
     else if (v19_1.tag === /* US5_0 */ 0) {
-        const v64: string = v19_1.fields[0];
+        const v66: string = v19_1.fields[0];
         if (v0_1 !== "") {
-            const v71: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v64);
-            const v72: ((arg0: any) => string) = method102();
-            const v84: FSharpResult$2_$union<any, string> = (v71.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v72(v71.fields[0])) : FSharpResult$2_Ok<any, string>(v71.fields[0]);
-            const v87: ((arg0: any) => US13_$union) = method104();
-            const v88: ((arg0: string) => US13_$union) = method105();
-            const v89: US13_$union = (v84.tag === /* Error */ 1) ? v88(v84.fields[0]) : v87(v84.fields[0]);
-            if (v89.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v89.fields[0]), v4));
+            const v73: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v66);
+            const v74: ((arg0: any) => string) = method103();
+            const v86: FSharpResult$2_$union<any, string> = (v73.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v74(v73.fields[0])) : FSharpResult$2_Ok<any, string>(v73.fields[0]);
+            const v89: ((arg0: any) => US13_$union) = method105();
+            const v90: ((arg0: string) => US13_$union) = method106();
+            const v91: US13_$union = (v86.tag === /* Error */ 1) ? v90(v86.fields[0]) : v89(v86.fields[0]);
+            if (v91.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v91.fields[0]), v4));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v89.fields[0]} / error: ${v23_1} / name: ${v4}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v91.fields[0]} / error: ${v23_1} / name: ${v4}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
     }
 }
 
-export function method101(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
-    return defaultOf();
-}
-
-export function method112(): int32 {
+export function method102(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
     return defaultOf();
 }
 
@@ -2013,137 +2023,141 @@ export function method113(): int32 {
     return defaultOf();
 }
 
-export function method114(v0_1: int32, v1_1: int32): boolean {
+export function method114(): int32 {
     return defaultOf();
 }
 
-export function method116(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: any, v4: string): FSharpResult$2_$union<any, any> {
+export function method115(v0_1: int32, v1_1: int32): boolean {
+    return defaultOf();
+}
+
+export function method117(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: any, v4: string): FSharpResult$2_$union<any, any> {
     const v5: string = method20(v4);
-    const v6: Option<string> = method108(v4);
+    const v6: Option<string> = method109(v4);
     const v20_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v6), US5_US5_1());
-    const v24_1: string = method103(v3);
+    const v24_1: string = method104(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v4} / name: ${v5}`));
     }
     else if (v20_1.tag === /* US5_0 */ 0) {
-        const v65: string = v20_1.fields[0];
+        const v67: string = v20_1.fields[0];
         if (v4 !== "") {
-            const v72: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v65);
-            const v73: ((arg0: any) => string) = method102();
-            const v85: FSharpResult$2_$union<any, string> = (v72.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v73(v72.fields[0])) : FSharpResult$2_Ok<any, string>(v72.fields[0]);
-            const v88: ((arg0: any) => US13_$union) = method104();
-            const v89: ((arg0: string) => US13_$union) = method105();
-            const v90: US13_$union = (v85.tag === /* Error */ 1) ? v89(v85.fields[0]) : v88(v85.fields[0]);
-            if (v90.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v90.fields[0]), v5));
+            const v74: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v67);
+            const v75: ((arg0: any) => string) = method103();
+            const v87: FSharpResult$2_$union<any, string> = (v74.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v75(v74.fields[0])) : FSharpResult$2_Ok<any, string>(v74.fields[0]);
+            const v90: ((arg0: any) => US13_$union) = method105();
+            const v91: ((arg0: string) => US13_$union) = method106();
+            const v92: US13_$union = (v87.tag === /* Error */ 1) ? v91(v87.fields[0]) : v90(v87.fields[0]);
+            if (v92.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v92.fields[0]), v5));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v90.fields[0]} / error: ${v24_1} / name: ${v5}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v92.fields[0]} / error: ${v24_1} / name: ${v5}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v24_1} / path': ${v4} / name: ${v5}`));
     }
 }
 
-export function method115(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
-    const v30_1: int32 = method112(void defaultOf()) | 0;
-    const v32_1: boolean = method114(method113(), v30_1);
+export function method116(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
+    const v30_1: int32 = method113(void defaultOf()) | 0;
+    const v32_1: boolean = method115(method114(), v30_1);
     if (v32_1) {
         const v43: any = void defaultOf();
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
-        return method116(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure51(v0_1, v)), v1_1, `file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: ${v0_1} / result: ${v32_1} / path': ${v2_1} / n: ${v1_1}`, v2_1);
+        return method117(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, "file_system.read_link / Fsharp / The file or directory is not a reparse point. / " + (`path: ${v0_1} / result: ${v32_1} / path': ${v2_1} / n: ${v1_1}`), v2_1);
     }
 }
 
-export function closure52(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
-    return method115(v0_1, v1_1, v2_1);
+export function closure53(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
+    return method116(v0_1, v1_1, v2_1);
 }
 
-export function closure51(v0_1: string, v1_1: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) {
-    return (v: string): FSharpResult$2_$union<any, any> => closure52(v0_1, v1_1, v);
+export function closure52(v0_1: string, v1_1: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) {
+    return (v: string): FSharpResult$2_$union<any, any> => closure53(v0_1, v1_1, v);
 }
 
-export function method117(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: any): FSharpResult$2_$union<any, any> {
+export function method118(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FSharpResult$2_$union<any, any>), v2_1: uint8, v3: any): FSharpResult$2_$union<any, any> {
     const v4: string = method20(v0_1);
-    const v5: Option<string> = method108(v0_1);
+    const v5: Option<string> = method109(v0_1);
     const v19_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v5), US5_US5_1());
-    const v23_1: string = method103(v3);
+    const v23_1: string = method104(v3);
     if (v2_1 >= 11) {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`path: ${v0_1} / n: ${v2_1} / path': ${v0_1} / name: ${v4}`));
     }
     else if (v19_1.tag === /* US5_0 */ 0) {
-        const v64: string = v19_1.fields[0];
+        const v66: string = v19_1.fields[0];
         if (v0_1 !== "") {
-            const v71: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v64);
-            const v72: ((arg0: any) => string) = method102();
-            const v84: FSharpResult$2_$union<any, string> = (v71.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v72(v71.fields[0])) : FSharpResult$2_Ok<any, string>(v71.fields[0]);
-            const v87: ((arg0: any) => US13_$union) = method104();
-            const v88: ((arg0: string) => US13_$union) = method105();
-            const v89: US13_$union = (v84.tag === /* Error */ 1) ? v88(v84.fields[0]) : v87(v84.fields[0]);
-            if (v89.tag === /* US13_0 */ 0) {
-                return FSharpResult$2_Ok<any, any>(method80(toString_2(v89.fields[0]), v4));
+            const v73: FSharpResult$2_$union<any, any> = v1_1(v2_1 + 1, v66);
+            const v74: ((arg0: any) => string) = method103();
+            const v86: FSharpResult$2_$union<any, string> = (v73.tag === /* Error */ 1) ? FSharpResult$2_Error<any, string>(v74(v73.fields[0])) : FSharpResult$2_Ok<any, string>(v73.fields[0]);
+            const v89: ((arg0: any) => US13_$union) = method105();
+            const v90: ((arg0: string) => US13_$union) = method106();
+            const v91: US13_$union = (v86.tag === /* Error */ 1) ? v90(v86.fields[0]) : v89(v86.fields[0]);
+            if (v91.tag === /* US13_0 */ 0) {
+                return FSharpResult$2_Ok<any, any>(method80(toString_2(v91.fields[0]), v4));
             }
             else {
-                return FSharpResult$2_Error<any, any>(`file_system.read_link / error': ${v89.fields[0]} / error: ${v23_1} / name: ${v4}`);
+                return FSharpResult$2_Error<any, any>("file_system.read_link / " + (`error': ${v91.fields[0]} / error: ${v23_1} / name: ${v4}`));
             }
         }
         else {
-            return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+            return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
         }
     }
     else {
-        return FSharpResult$2_Error<any, any>(`file_system.read_link / run / The file or directory is not a reparse point. / path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`);
+        return FSharpResult$2_Error<any, any>("file_system.read_link / run / The file or directory is not a reparse point. / " + (`path: ${v0_1} / error: ${v23_1} / path': ${v0_1} / name: ${v4}`));
     }
 }
 
-export function method111(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
-    const v29_1: int32 = method112(void defaultOf()) | 0;
-    const v31_1: boolean = method114(method113(), v29_1);
+export function method112(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
+    const v29_1: int32 = method113(void defaultOf()) | 0;
+    const v31_1: boolean = method115(method114(), v29_1);
     if (v31_1) {
         const v42: any = void defaultOf();
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
-        return method117(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure51(v0_1, v)), v1_1, `file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: ${v0_1} / result: ${v31_1} / path': ${v0_1} / n: ${v1_1}`);
+        return method118(v0_1, uncurry2((v: uint8): ((arg0: string) => FSharpResult$2_$union<any, any>) => closure52(v0_1, v)), v1_1, "file_system.read_link / Fsharp / The file or directory is not a reparse point. / " + (`path: ${v0_1} / result: ${v31_1} / path': ${v0_1} / n: ${v1_1}`));
     }
 }
 
-export function method100(v0_1: string): FSharpResult$2_$union<any, any> {
+export function method101(v0_1: string): FSharpResult$2_$union<any, any> {
     return defaultOf();
 }
 
-export function closure53(unitVar: void, v0_1: any): US14_$union {
+export function closure54(unitVar: void, v0_1: any): US14_$union {
     return US14_US14_0(v0_1);
 }
 
-export function method118(): ((arg0: any) => US14_$union) {
-    return (v: any): US14_$union => closure53(undefined, v);
+export function method119(): ((arg0: any) => US14_$union) {
+    return (v: any): US14_$union => closure54(undefined, v);
 }
 
-export function method120(v0_1: string): string {
+export function method121(v0_1: string): string {
     return v0_1;
 }
 
-export function method119(v0_1: string, v1_1: string, v2_1: string): string {
+export function method120(v0_1: string, v1_1: string, v2_1: string): string {
     return defaultOf();
 }
 
-export function method99(v0_1: string): string {
+export function method100(v0_1: string): string {
     let _arg: string;
     if (v0_1 === "") {
         return "";
     }
     else {
-        const v3: FSharpResult$2_$union<any, any> = method100(v0_1);
+        const v3: FSharpResult$2_$union<any, any> = method101(v0_1);
         const v11: Option<any> = (v3.tag === /* Error */ 1) ? undefined : v3.fields[0];
-        const v31_1: US14_$union = defaultArg(map<any, US14_$union>(method118(), v11), US14_US14_1());
+        const v31_1: US14_$union = defaultArg(map<any, US14_$union>(method119(), v11), US14_US14_1());
         let v66: string;
         if (v31_1.tag === /* US14_0 */ 0) {
             const v60: string = toString_2(v31_1.fields[0]);
@@ -2156,35 +2170,35 @@ export function method99(v0_1: string): string {
             return "";
         }
         else {
-            const v71: string = method119("^\\\\\\\\\\?\\\\", "", v66);
+            const v71: string = method120("^\\\\\\\\\\?\\\\", "", v66);
             return replace(concat((_arg = v71[0], _arg.toLocaleLowerCase()), ...v71.slice(1, v71.length)), "\\", "/");
         }
     }
 }
 
-export function closure45(unitVar: void, v0_1: string): string {
-    return method99(v0_1);
+export function closure46(unitVar: void, v0_1: string): string {
+    return method100(v0_1);
 }
 
-export function closure54(unitVar: void, v0_1: string): string {
+export function closure55(unitVar: void, v0_1: string): string {
     return concat("file:///", ...trimStart(v0_1, ...["/"]));
 }
 
-export function method122(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): US15_$union {
-    method122:
+export function method123(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string): US15_$union {
+    method123:
     while (true) {
         const v0_1: string = v0_1_mut, v1_1: string = v1_1_mut, v2_1: string = v2_1_mut;
         if (method10(method80(v2_1, v0_1))) {
             return US15_US15_0(v2_1);
         }
         else {
-            const v6: Option<string> = method108(v2_1);
+            const v6: Option<string> = method109(v2_1);
             const v20_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v6), US5_US5_1());
             if (v20_1.tag === /* US5_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_1_mut = v1_1;
                 v2_1_mut = v20_1.fields[0];
-                continue method122;
+                continue method123;
             }
             else {
                 return US15_US15_1(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v2_1}')`);
@@ -2194,15 +2208,15 @@ export function method122(v0_1_mut: string, v1_1_mut: string, v2_1_mut: string):
     }
 }
 
-export function method121(v0_1: string, v1_1: string): US15_$union {
+export function method122(v0_1: string, v1_1: string): US15_$union {
     if (method10(method80(v1_1, v0_1))) {
         return US15_US15_0(v1_1);
     }
     else {
-        const v5: Option<string> = method108(v1_1);
+        const v5: Option<string> = method109(v1_1);
         const v19_1: US5_$union = defaultArg(map<string, US5_$union>(method5(), v5), US5_US5_1());
         if (v19_1.tag === /* US5_0 */ 0) {
-            return method122(v0_1, v1_1, v19_1.fields[0]);
+            return method123(v0_1, v1_1, v19_1.fields[0]);
         }
         else {
             return US15_US15_1(`No parent for ${"dir"} '${v0_1}' at '${v1_1}' (until '${v1_1}')`);
@@ -2210,7 +2224,7 @@ export function method121(v0_1: string, v1_1: string): US15_$union {
     }
 }
 
-export function method124(v0_1: string): string {
+export function method125(v0_1: string): string {
     const v2_1: Mut3 = new Mut3(method18());
     let v9: any;
     closure6(v2_1, "{ ", undefined);
@@ -2230,12 +2244,12 @@ export function method124(v0_1: string): string {
     return v2_1.l0;
 }
 
-export function method123(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: string): string {
-    const v9: string = method124(v8);
+export function method124(v0_1: Mut0, v1_1: Mut1, v2_1: Mut2, v3: Mut3, v4: Mut4, v5: Option<int64>, v6: string, v7: string, v8: string): string {
+    const v9: string = method125(v8);
     return method23(`${v6} ${v7} #${v0_1.l0} ${"file_system.get_workspace_root"} / ${v9}`);
 }
 
-export function closure56(v0_1: string, unitVar: void): void {
+export function closure57(v0_1: string, unitVar: void): void {
     if (method11(US0_US0_3())) {
         let v5: any;
         closure0(undefined, undefined);
@@ -2247,23 +2261,23 @@ export function closure56(v0_1: string, unitVar: void): void {
         const v21_1: Mut2 = patternInput[2];
         const v20_1: Mut1 = patternInput[1];
         const v19_1: Mut0 = patternInput[0];
-        method24(method123(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, method12(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1), method43(), v0_1));
+        method24(method124(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, method12(v19_1, v20_1, v21_1, v22_1, v23_1, v24_1), method43(), v0_1));
     }
 }
 
-export function method125(): string {
+export function method126(): string {
     return defaultOf();
 }
 
-export function closure55(unitVar: void, unitVar_1: void): string {
-    const v4: US15_$union = method121(method80("polyglot", ".devcontainer"), "/home/runner/work/polyglot/polyglot/lib/spiral");
+export function closure56(unitVar: void, unitVar_1: void): string {
+    const v4: US15_$union = method122(method80("polyglot", ".devcontainer"), "/home/runner/work/polyglot/polyglot/lib/spiral");
     let v52: US5_$union;
     if (v4.tag === /* US15_0 */ 0) {
         v52 = US5_US5_0(v4.fields[0]);
     }
     else {
         let v10: any;
-        closure56(v4.fields[0], undefined);
+        closure57(v4.fields[0], undefined);
         v10 = undefined;
         v52 = US5_US5_1();
     }
@@ -2272,14 +2286,14 @@ export function closure55(unitVar: void, unitVar_1: void): string {
         v107 = US5_US5_0(v52.fields[0]);
     }
     else {
-        const v55: string = method125();
-        const v57: US15_$union = method121(method80("polyglot", ".devcontainer"), v55);
+        const v55: string = method126();
+        const v57: US15_$union = method122(method80("polyglot", ".devcontainer"), v55);
         if (v57.tag === /* US15_0 */ 0) {
             v107 = US5_US5_0(v57.fields[0]);
         }
         else {
             let v63: any;
-            closure56(v57.fields[0], undefined);
+            closure57(v57.fields[0], undefined);
             v63 = undefined;
             v107 = US5_US5_1();
         }
@@ -2289,62 +2303,62 @@ export function closure55(unitVar: void, unitVar_1: void): string {
     })(), "polyglot");
 }
 
-export function closure58(v0_1: Error, unitVar: void): Error {
+export function closure59(v0_1: Error, unitVar: void): Error {
     return v0_1;
 }
 
-export function method126(v0_1: string): void {
+export function method127(v0_1: string): void {
 }
 
-export function closure57(unitVar: void, v0_1: string): void {
-    method126(v0_1);
+export function closure58(unitVar: void, v0_1: string): void {
+    method127(v0_1);
 }
 
-export function closure59(unitVar: void, v0_1: boolean): void {
+export function closure60(unitVar: void, v0_1: boolean): void {
     let v3: any;
     closure0(undefined, undefined);
     v3 = undefined;
     const patternInput: [Mut0, Mut1, Mut2, Mut3, Mut4, Option<int64>] = value_10(TraceState_trace_state());
     const v37: ((arg0: string) => void) = v0_1 ? ((v: string): void => {
-        closure57(undefined, v);
+        closure58(undefined, v);
     }) : ((v_1: string): void => {
         closure2(undefined, v_1);
     });
     patternInput[1].l0 = v37;
 }
 
-export function method127(v0_1: string, v1_1: string): void {
+export function method128(v0_1: string, v1_1: string): void {
     let v14: FSharpResult$2_$union<any, any>;
     if (method10(v0_1) === false) {
         const v4: IDisposable = method83(v0_1);
     }
-    const v7: string = defaultArg(method108(v1_1), "");
+    const v7: string = defaultArg(method109(v1_1), "");
     if (method10(v7) === false) {
         const v12: IDisposable = method83(v7);
     }
-    if (method10(v1_1) && ((v14 = method100(v1_1), true))) {
+    if (method10(v1_1) && ((v14 = method101(v1_1), true))) {
         method9(true, v1_1);
     }
     if (method10(v1_1) === false) {
     }
 }
 
-export function closure61(v0_1: string, v1_1: string): void {
-    method127(v0_1, v1_1);
+export function closure62(v0_1: string, v1_1: string): void {
+    method128(v0_1, v1_1);
 }
 
-export function closure60(unitVar: void, v0_1: string): ((arg0: string) => void) {
+export function closure61(unitVar: void, v0_1: string): ((arg0: string) => void) {
     return (v: string): void => {
-        closure61(v0_1, v);
+        closure62(v0_1, v);
     };
 }
 
-export function closure63(v0_1: string, v1_1: string): string {
+export function closure64(v0_1: string, v1_1: string): string {
     return method80(v0_1, v1_1);
 }
 
-export function closure62(unitVar: void, v0_1: string): ((arg0: string) => string) {
-    return (v: string): string => closure63(v0_1, v);
+export function closure63(unitVar: void, v0_1: string): ((arg0: string) => string) {
+    return (v: string): string => closure64(v0_1, v);
 }
 
 export const v0: any = undefined;
@@ -2433,32 +2447,32 @@ export function create_temp_dir$0027(x: string): [string, IDisposable] {
     return v28(x);
 }
 
-export const v29 = (): string => closure44(undefined, undefined);
+export const v29 = (): string => closure45(undefined, undefined);
 
 export function get_source_directory(): string {
     return v29();
 }
 
-export const v30 = (v: string): string => closure45(undefined, v);
+export const v30 = (v: string): string => closure46(undefined, v);
 
 export function normalize_path(x: string): string {
     return v30(x);
 }
 
-export const v31 = (v: string): string => closure54(undefined, v);
+export const v31 = (v: string): string => closure55(undefined, v);
 
 export function new_file_uri(x: string): string {
     return v31(x);
 }
 
-export const v32 = (): string => closure55(undefined, undefined);
+export const v32 = (): string => closure56(undefined, undefined);
 
 export function get_workspace_root(): string {
     return v32();
 }
 
 export const v33 = (v: string): void => {
-    closure57(undefined, v);
+    closure58(undefined, v);
 };
 
 export function trace_file(x: string): void {
@@ -2466,20 +2480,20 @@ export function trace_file(x: string): void {
 }
 
 export const v34 = (v: boolean): void => {
-    closure59(undefined, v);
+    closure60(undefined, v);
 };
 
 export function init_trace_file(x: boolean): void {
     v34(x);
 }
 
-export const v35 = (v: string): ((arg0: string) => void) => closure60(undefined, v);
+export const v35 = (v: string): ((arg0: string) => void) => closure61(undefined, v);
 
 export function link_directory(x: string): ((arg0: string) => void) {
     return v35(x);
 }
 
-export const v36 = (v: string): ((arg0: string) => string) => closure62(undefined, v);
+export const v36 = (v: string): ((arg0: string) => string) => closure63(undefined, v);
 
 export function op_LessDivideGreater(x: string): ((arg0: string) => string) {
     return v36(x);

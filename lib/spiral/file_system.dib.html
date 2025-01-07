@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -9606,8 +9607,51 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=140">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=140">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
+<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
+
+<span class="n">guid</span><span class="o">.</span><span class="n">hash_guid</span> <span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">create_temp_path</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_contains</span> <span class="p">(</span><span class="n">directory_separator_char</span> <span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output (rust -d chrono):
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_a91033c289203d6116e67bba253db81c55521ee192297005e965f38074b89344/00000000-0000-0000-0000-000000000000" / expected: '/'
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.fsx output:
+__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/00000000-0000-0000-0000-000000000000" / expected: '/'
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=141">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9617,7 +9661,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=141">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=142">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9633,48 +9677,6 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
             <span class="o">|&gt;</span> <span class="n">create_temp_path</span><span class="s1">'</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=142">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span> <span class="o">-</span><span class="n">d</span> <span class="n">chrono</span>
-
-<span class="n">create_temp_path</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">_assert_contains</span> <span class="p">(</span><span class="n">directory_separator_char</span> <span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_builder_bdd1966504efc7d0b755678045716a65a7aa1d172d982f7c0ef6788f8a128a7a/20241230-2009-3198-6416-000000a81cce" / expected: '/'
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx output:
-__assert_contains / actual: "/tmp/!create_temp_path_/dotnet-repl/20241230-2009-3233-3333-300000ee8db0" / expected: '/'
-</pre>
 </div>
 </div>
 </div>
@@ -10265,7 +10267,8 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
         <span class="n">inl</span> <span class="n">error</span><span class="s1">''</span> <span class="o">=</span> <span class="n">error</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format</span>
         <span class="k">match</span> <span class="n">parent</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">11</span> <span class="o">=&gt;</span>
-            <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / path: {!path} / n: {!n} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"' : string)</span>
+            <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">+.</span> <span class="err">$</span><span class="s1">'$"path: {!path} / n: {!n} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"'</span>
             <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_io_error</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">err</span>
         <span class="o">|</span> <span class="n">Some</span> <span class="n">parent</span> <span class="n">when</span> <span class="n">path</span><span class="s1">' &lt;&gt;. "" =&gt;</span>
@@ -10276,11 +10279,13 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                 <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
                 <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">ok</span><span class="s1">''</span>
             <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span><span class="s1">' =&gt;</span>
-                <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / error</span><span class="se">\'</span><span class="s1">: {!error'</span><span class="p">}</span> <span class="o">/</span> <span class="n">error</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">error</span><span class="s1">''</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"' : string)</span>
+                <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+                <span class="o">+.</span> <span class="err">$</span><span class="s1">'$"error</span><span class="se">\'</span><span class="s1">: {!error'</span><span class="p">}</span> <span class="o">/</span> <span class="n">error</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">error</span><span class="s1">''</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"'</span>
                 <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_io_error</span>
                 <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">err</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
-            <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / run / The file or directory is not a reparse point. / path: {!path} / error: {!error''} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"' : string)</span>
+            <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / run / The file or directory is not a reparse point. / "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">+.</span> <span class="err">$</span><span class="s1">'$"path: {!path} / error: {!error''} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">name</span><span class="p">}</span><span class="s2">"'</span>
             <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_io_error</span>
             <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">err</span>
 
@@ -10314,8 +10319,11 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
                     <span class="o">|&gt;</span> <span class="n">unbox</span>
                     <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">ok</span><span class="s1">''</span>
                 <span class="k">else</span>
-                    <span class="n">inl</span> <span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / Fsharp / The file or directory is not a reparse point. / path: {!path} / result: {!result} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">n</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">n</span><span class="p">}</span><span class="s2">"' : string)</span>
-                    <span class="n">inl</span> <span class="n">error</span> <span class="o">=</span> <span class="n">error</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_io_error</span>
+                    <span class="n">inl</span> <span class="n">error</span> <span class="o">=</span>
+                        <span class="p">(</span><span class="err">$</span><span class="s1">'$"file_system.read_link / Fsharp / "'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+                        <span class="o">+.</span> <span class="err">$</span><span class="s1">'$"The file or directory is not a reparse point. / "'</span>
+                        <span class="o">+.</span> <span class="err">$</span><span class="s1">'$"path: {!path} / result: {!result} / path</span><span class="se">\'</span><span class="s1">: {!path'</span><span class="p">}</span> <span class="o">/</span> <span class="n">n</span><span class="p">:</span> <span class="p">{</span><span class="err">!</span><span class="n">n</span><span class="p">}</span><span class="s2">"'</span>
+                        <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">new_io_error</span>
                     <span class="n">path</span><span class="s1">' |&gt; run loop n error</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">loop</span> <span class="mi">0</span><span class="n">u8</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'Unchecked.defaultof&lt;_&gt;'</span>
@@ -11067,7 +11075,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_builder_f21d68e7be969091089d05b0f52b67c54fcb3db7e841024a902ec5707c4d68ba/20241230-2010-2070-7927-0000002215d9 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_f21d68e7be969091089d05b0f52b67c54fcb3db7e841024a902ec5707c4d68ba/20250107-1419-1311-2156-00000028a029 }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11666,7 +11674,7 @@ __assert / actual: "LICENSE" / expected: "/home/runner/work/polyglot/polyglot/ta
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #13 6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #14 7
-__assert_between / actual: 167L / expected: struct (100L, 200L)
+__assert_between / actual: 197L / expected: struct (100L, 200L)
 __assert_eq / actual: "1" / expected: "1"
 __assert_eq / actual: true / expected: true
 </pre>
@@ -11872,7 +11880,7 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 7
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 8
 __assert_between / actual: 0L / expected: struct (0L, 0L)
-__assert_between / actual: 167L / expected: struct (100L, 200L)
+__assert_between / actual: 196L / expected: struct (100L, 200L)
 __assert_eq / actual: "0" / expected: "0"
 __assert_eq / actual: true / expected: true
 </pre>

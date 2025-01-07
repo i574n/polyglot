@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "math"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path $projectName.dib --retries $($fast -or !$env:CI ? 1 : 5)" } | Invoke-Block
+    { . ../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path $projectName.dib --retries $($fast -or !$env:CI ? 1 : 5)" } | Invoke-Block
 }
 
 { . ../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
@@ -27,7 +27,7 @@ $targetDir = GetTargetDir $projectName
 
 { BuildFable $targetDir $projectName "rs" } | Invoke-Block
 
-$path = "$targetDir/target/rs/polyglot/target/Builder/$projectName/$projectName.rs"
+$path = "$targetDir/target/rs/target/Builder/$projectName/$projectName.rs"
 if (!(Test-Path $path)) {
     { ls } | Invoke-Block -Location $targetDir/target
     $path = "$targetDir/target/rs/$projectName.rs"

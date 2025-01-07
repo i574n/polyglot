@@ -9,7 +9,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../workspace/target/release/spiral_builder$(_exe) dib --path DirTreeHtml.dib" } | Invoke-Block
+    { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path DirTreeHtml.dib" } | Invoke-Block
 
     Get-Content ../../lib/spiral/networking.fsx | Write-Output
 }

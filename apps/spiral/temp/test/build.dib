@@ -44,7 +44,7 @@
 
 #!pwsh
 
-{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../workspace/target/release/spiral_builder$(_exe) dib --path test.dib --retries 3" } | Invoke-Block
+{ . ../../../../apps/spiral/dist/Supervisor$(_exe) --execute-command "../../../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path test.dib --retries 3" } | Invoke-Block
 
 #!markdown
 

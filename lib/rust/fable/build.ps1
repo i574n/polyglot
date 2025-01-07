@@ -20,5 +20,5 @@ $rsPath = "$libPath/src/Range.rs"
 
 { cargo check } | Invoke-Block -Location $libPath -OnError Continue
 if (!$fast) {
-    { cargo clippy } | Invoke-Block -Location $libPath -OnError Continue
+    # { cargo clippy } | Invoke-Block -Location $libPath -OnError Continue
 }

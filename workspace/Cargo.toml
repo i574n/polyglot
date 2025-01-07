@@ -6,7 +6,6 @@ members = [
     "../apps/chat/contract",
     "../apps/chat/contract/tests",
     "../apps/plot",
-    "../apps/spiral/builder",
     "../apps/spiral/wasm",
     "../apps/spiral/temp/extension",
     "../apps/spiral/temp/test",
@@ -18,7 +17,7 @@ members = [
 [workspace.package]
 version = "0.0.1"
 edition = "2021"
-license-file = "./LICENSE"
+license-file = "../LICENSE"
 repository = "https://github.com/i574n/polyglot"
 
 [workspace.dependencies]

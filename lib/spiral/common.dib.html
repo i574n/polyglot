@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7569,1049 +7570,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="join_body">join_body<a class="anchor-link" href="#join_body">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">join_body</span> <span class="n">body</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">var_is</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="n">body</span> <span class="n">acc</span> <span class="n">x</span>
-    <span class="k">else</span>
-        <span class="n">inl</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">acc</span>
-        <span class="n">join</span> <span class="n">body</span> <span class="n">acc</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">rec</span> <span class="n">fold_list</span> <span class="n">f</span> <span class="n">s</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Cons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="s1">') =&gt; fold_list f (f s x) x'</span>
-    <span class="o">|</span> <span class="n">Nil</span> <span class="o">=&gt;</span> <span class="n">s</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
-<span class="o">////</span> <span class="n">print_code</span>
-
-<span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
-__assert_eq / actual: 15 / expected: 15
-
-.rs output:
-__assert_eq / actual: 15 / expected: 15
-
-.ts output:
-__assert_eq / actual: 15 / expected: 15
-
-.py output:
-__assert_eq / actual: 15 / expected: 15
-
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx:
-let rec method1 () : int32 =
-    3
-and method2 (v0 : bool) : bool =
-    v0
-and closure0 (v0 : string) () : unit =
-    let v1 : (string -&gt; unit) = System.Console.WriteLine
-    v1 v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = 9 + v0
-    let v2 : int32 = v1 + 2
-    let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
-            true
-        else
-            method2(v4)
-    let v7 : string = "__assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v11 : unit = ()
-    let v12 : (unit -&gt; unit) = closure0(v8)
-    let v13 : unit = (fun () -&gt; v12 (); v11) ()
-    let v15 : bool = v6 = false
-    if v15 then
-        failwith&lt;unit&gt; v8
-method0()
-
-
-.rs:
-#![allow(dead_code)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-#![allow(non_upper_case_globals)]
-#![allow(unreachable_code)]
-#![allow(unused_attributes)]
-#![allow(unused_imports)]
-#![allow(unused_macros)]
-#![allow(unused_parens)]
-#![allow(unused_variables)]
-#![allow(unused_assignments)]
-mod module_7e2cd9e0 {
-    pub mod Spiral_builder {
-        use super::*;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::String_::printfn;
-        use fable_library_rust::String_::sprintf;
-        use fable_library_rust::String_::string;
-        pub fn method1() -&gt; i32 {
-            3_i32
-        }
-        pub fn method2(v0: bool) -&gt; bool {
-            v0
-        }
-        pub fn closure0(v0: string, unitVar: ()) {
-            printfn!("{0}", v0);
-        }
-        pub fn method0() {
-            let v3: i32 = ((9_i32 + (Spiral_builder::method1())) + 2_i32) + 1_i32;
-            let v4: bool = (v3) == 15_i32;
-            let v6: bool = if v4 {
-                true
-            } else {
-                Spiral_builder::method2(v4)
-            };
-            let v8: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_eq"),
-                v3,
-                15_i32
-            );
-            let v13: () = {
-                Spiral_builder::closure0(v8.clone(), ());
-                ()
-            };
-            if (v6) == false {
-                panic!("{}", v8,);
-            }
-        }
-        // on_startup!(Spiral_builder::method0());
-    }
-}
-pub use module_7e2cd9e0::*;
-
-
-
-pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
-
-.ts:
-import { int32 } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Int32.js";
-import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
-
-export function method1(): int32 {
-    return 3;
-}
-
-export function method2(v0: boolean): boolean {
-    return v0;
-}
-
-export function closure0(v0: string, unitVar: void): void {
-    console.log(v0);
-}
-
-export function method0(): void {
-    const v3: int32 = (((9 + method1()) + 2) + 1) | 0;
-    const v4: boolean = v3 === 15;
-    const v6: boolean = v4 ? true : method2(v4);
-    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]));
-    let v13: any;
-    closure0(v8, undefined);
-    v13 = undefined;
-    if (v6 === false) {
-        throw new Error(v8);
-    }
-}
-
-method0();
-
-
-.py:
-from fable_modules.fable_library.string_ import (to_text, interpolate)
-
-def method1(__unit: None=None) -&gt; int:
-    return 3
-
-
-def method2(v0: bool) -&gt; bool:
-    return v0
-
-
-def closure0(v0: str, unit_var: None) -&gt; None:
-    print(v0)
-
-
-def method0(__unit: None=None) -&gt; None:
-    v3: int = (((9 + method1()) + 2) + 1) or 0
-    v4: bool = v3 == 15
-    v6: bool = True if v4 else method2(v4)
-    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]))
-    v13: None
-    closure0(v8, None)
-    v13 = None
-    if v6 == False:
-        raise Exception(v8)
-
-
-
-method0()
-
-
-.py (Cuda):
-kernel = r"""
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.append(None)
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
-        self.ptr[index] = value
-
-class static_array_list(static_array):
-    def __init__(self, length):
-        super().__init__(length)
-        self.length = 0
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
-        self.ptr[index] = value
-
-    def push(self,value):
-        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
-        self.ptr[self.length] = value
-        self.length += 1
-
-    def pop(self):
-        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
-        self.length -= 1
-        return self.ptr[self.length]
-
-    def unsafe_set_length(self,i):
-        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
-        self.length = i
-
-class dynamic_array(static_array): 
-    pass
-
-class dynamic_array_list(static_array_list):
-    def length_(self): return self.length
-
-import cupy as cp
-import numpy as np
-from dataclasses import dataclass
-from typing import NamedTuple, Union, Callable, Tuple
-i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
-cuda = False
-
-def method1() -&gt; i32:
-    return 3
-def method2(v0 : bool) -&gt; bool:
-    return v0
-def method0() -&gt; None:
-    v0 = method1()
-    v1 = 9 + v0
-    del v0
-    v2 = v1 + 2
-    del v1
-    v3 = v2 + 1
-    del v2
-    v4 = v3 == 15
-    if v4:
-        v6 = True
-    else:
-        v6 = method2(v4)
-    del v4
-    v9 = "__assert_eq"
-    v10 = f"{v9} / actual: {v3} / expected: {15}"
-    del v3, v9
-    print(v10)
-    v16 = v6 == False
-    del v6
-    if v16:
-        del v16
-        raise Exception(v10)
-    else:
-        del v10, v16
-        return 
-def main_body():
-    return method0()
-
-def main():
-    r = main_body()
-    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r
-
-if __name__ == '__main__': result = main(); None if result is None else print(result)
-
-.fsx output:
-__assert_eq / actual: 15 / expected: 15
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
-<span class="o">////</span> <span class="n">print_code</span>
-
-<span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">join_body</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
-__assert_eq / actual: 15 / expected: 15
-
-.rs output:
-__assert_eq / actual: 15 / expected: 15
-
-.ts output:
-__assert_eq / actual: 15 / expected: 15
-
-.py output:
-__assert_eq / actual: 15 / expected: 15
-
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx:
-let rec method1 () : int32 =
-    3
-and method2 (v0 : int32, v1 : int32) : int32 =
-    let v2 : int32 = v1 + v0
-    v2
-and method3 (v0 : bool) : bool =
-    v0
-and closure0 (v0 : string) () : unit =
-    let v1 : (string -&gt; unit) = System.Console.WriteLine
-    v1 v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = 9
-    let v2 : int32 = method2(v0, v1)
-    let v3 : int32 = v2 + 2
-    let v4 : int32 = v3 + 1
-    let v5 : bool = v4 = 15
-    let v7 : bool =
-        if v5 then
-            true
-        else
-            method3(v5)
-    let v8 : string = "__assert_eq"
-    let v9 : string = $"{v8} / actual: %A{v4} / expected: %A{15}"
-    let v12 : unit = ()
-    let v13 : (unit -&gt; unit) = closure0(v9)
-    let v14 : unit = (fun () -&gt; v13 (); v12) ()
-    let v16 : bool = v7 = false
-    if v16 then
-        failwith&lt;unit&gt; v9
-method0()
-
-
-.rs:
-#![allow(dead_code)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-#![allow(non_upper_case_globals)]
-#![allow(unreachable_code)]
-#![allow(unused_attributes)]
-#![allow(unused_imports)]
-#![allow(unused_macros)]
-#![allow(unused_parens)]
-#![allow(unused_variables)]
-#![allow(unused_assignments)]
-mod module_7e2cd9e0 {
-    pub mod Spiral_builder {
-        use super::*;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::String_::printfn;
-        use fable_library_rust::String_::sprintf;
-        use fable_library_rust::String_::string;
-        pub fn method1() -&gt; i32 {
-            3_i32
-        }
-        pub fn method2(v0: i32, v1: i32) -&gt; i32 {
-            (v1) + (v0)
-        }
-        pub fn method3(v0: bool) -&gt; bool {
-            v0
-        }
-        pub fn closure0(v0: string, unitVar: ()) {
-            printfn!("{0}", v0);
-        }
-        pub fn method0() {
-            let v4: i32 =
-                ((Spiral_builder::method2(Spiral_builder::method1(), 9_i32)) + 2_i32) + 1_i32;
-            let v5: bool = (v4) == 15_i32;
-            let v7: bool = if v5 {
-                true
-            } else {
-                Spiral_builder::method3(v5)
-            };
-            let v9: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_eq"),
-                v4,
-                15_i32
-            );
-            let v14: () = {
-                Spiral_builder::closure0(v9.clone(), ());
-                ()
-            };
-            if (v7) == false {
-                panic!("{}", v9,);
-            }
-        }
-        // on_startup!(Spiral_builder::method0());
-    }
-}
-pub use module_7e2cd9e0::*;
-
-
-
-pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
-
-.ts:
-import { int32 } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Int32.js";
-import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
-
-export function method1(): int32 {
-    return 3;
-}
-
-export function method2(v0: int32, v1: int32): int32 {
-    return v1 + v0;
-}
-
-export function method3(v0: boolean): boolean {
-    return v0;
-}
-
-export function closure0(v0: string, unitVar: void): void {
-    console.log(v0);
-}
-
-export function method0(): void {
-    const v4: int32 = ((method2(method1(), 9) + 2) + 1) | 0;
-    const v5: boolean = v4 === 15;
-    const v7: boolean = v5 ? true : method3(v5);
-    const v9: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v4, 15]));
-    let v14: any;
-    closure0(v9, undefined);
-    v14 = undefined;
-    if (v7 === false) {
-        throw new Error(v9);
-    }
-}
-
-method0();
-
-
-.py:
-from fable_modules.fable_library.string_ import (to_text, interpolate)
-
-def method1(__unit: None=None) -&gt; int:
-    return 3
-
-
-def method2(v0: int, v1: int) -&gt; int:
-    return v1 + v0
-
-
-def method3(v0: bool) -&gt; bool:
-    return v0
-
-
-def closure0(v0: str, unit_var: None) -&gt; None:
-    print(v0)
-
-
-def method0(__unit: None=None) -&gt; None:
-    v4: int = ((method2(method1(), 9) + 2) + 1) or 0
-    v5: bool = v4 == 15
-    v7: bool = True if v5 else method3(v5)
-    v9: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v4, 15]))
-    v14: None
-    closure0(v9, None)
-    v14 = None
-    if v7 == False:
-        raise Exception(v9)
-
-
-
-method0()
-
-
-.py (Cuda):
-kernel = r"""
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.append(None)
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
-        self.ptr[index] = value
-
-class static_array_list(static_array):
-    def __init__(self, length):
-        super().__init__(length)
-        self.length = 0
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
-        self.ptr[index] = value
-
-    def push(self,value):
-        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
-        self.ptr[self.length] = value
-        self.length += 1
-
-    def pop(self):
-        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
-        self.length -= 1
-        return self.ptr[self.length]
-
-    def unsafe_set_length(self,i):
-        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
-        self.length = i
-
-class dynamic_array(static_array): 
-    pass
-
-class dynamic_array_list(static_array_list):
-    def length_(self): return self.length
-
-import cupy as cp
-import numpy as np
-from dataclasses import dataclass
-from typing import NamedTuple, Union, Callable, Tuple
-i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
-cuda = False
-
-def method1() -&gt; i32:
-    return 3
-def method2(v0 : i32, v1 : i32) -&gt; i32:
-    v2 = v1 + v0
-    del v0, v1
-    return v2
-def method3(v0 : bool) -&gt; bool:
-    return v0
-def method0() -&gt; None:
-    v0 = method1()
-    v1 = 9
-    v2 = method2(v0, v1)
-    del v0, v1
-    v3 = v2 + 2
-    del v2
-    v4 = v3 + 1
-    del v3
-    v5 = v4 == 15
-    if v5:
-        v7 = True
-    else:
-        v7 = method3(v5)
-    del v5
-    v10 = "__assert_eq"
-    v11 = f"{v10} / actual: {v4} / expected: {15}"
-    del v4, v10
-    print(v11)
-    v17 = v7 == False
-    del v7
-    if v17:
-        del v17
-        raise Exception(v11)
-    else:
-        del v11, v17
-        return 
-def main_body():
-    return method0()
-
-def main():
-    r = main_body()
-    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r
-
-if __name__ == '__main__': result = main(); None if result is None else print(result)
-
-.fsx output:
-__assert_eq / actual: 15 / expected: 15
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="join_body_unit">join_body_unit<a class="anchor-link" href="#join_body_unit">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">join_body_unit</span> <span class="n">body</span> <span class="n">d</span> <span class="n">x</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">var_is</span> <span class="n">d</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="n">body</span> <span class="n">x</span>
-    <span class="k">else</span>
-        <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">x</span>
-        <span class="n">join</span> <span class="n">body</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">fsharp</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">cuda</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">rust</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">typescript</span>
-<span class="o">///</span><span class="err">!</span> <span class="n">python</span>
-<span class="o">////</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
-
-<span class="p">[</span> <span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">join_body_unit</span> <span class="p">((</span><span class="o">+</span><span class="p">)</span> <span class="n">acc</span><span class="p">)</span> <span class="n">n</span> <span class="n">n</span><span class="p">)</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.py output (Cuda):
-__assert_eq / actual: 15 / expected: 15
-
-.rs output:
-__assert_eq / actual: 15 / expected: 15
-
-.ts output:
-__assert_eq / actual: 15 / expected: 15
-
-.py output:
-__assert_eq / actual: 15 / expected: 15
-
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.fsx:
-let rec method1 () : int32 =
-    3
-and method2 (v0 : int32) : int32 =
-    let v1 : int32 = 9 + v0
-    v1
-and method3 (v0 : bool) : bool =
-    v0
-and closure0 (v0 : string) () : unit =
-    let v1 : (string -&gt; unit) = System.Console.WriteLine
-    v1 v0
-and method0 () : unit =
-    let v0 : int32 = method1()
-    let v1 : int32 = method2(v0)
-    let v2 : int32 = v1 + 2
-    let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
-            true
-        else
-            method3(v4)
-    let v7 : string = "__assert_eq"
-    let v8 : string = $"{v7} / actual: %A{v3} / expected: %A{15}"
-    let v11 : unit = ()
-    let v12 : (unit -&gt; unit) = closure0(v8)
-    let v13 : unit = (fun () -&gt; v12 (); v11) ()
-    let v15 : bool = v6 = false
-    if v15 then
-        failwith&lt;unit&gt; v8
-method0()
-
-
-.rs:
-#![allow(dead_code)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-#![allow(non_upper_case_globals)]
-#![allow(unreachable_code)]
-#![allow(unused_attributes)]
-#![allow(unused_imports)]
-#![allow(unused_macros)]
-#![allow(unused_parens)]
-#![allow(unused_variables)]
-#![allow(unused_assignments)]
-mod module_7e2cd9e0 {
-    pub mod Spiral_builder {
-        use super::*;
-        use fable_library_rust::Native_::on_startup;
-        use fable_library_rust::String_::printfn;
-        use fable_library_rust::String_::sprintf;
-        use fable_library_rust::String_::string;
-        pub fn method1() -&gt; i32 {
-            3_i32
-        }
-        pub fn method2(v0: i32) -&gt; i32 {
-            9_i32 + (v0)
-        }
-        pub fn method3(v0: bool) -&gt; bool {
-            v0
-        }
-        pub fn closure0(v0: string, unitVar: ()) {
-            printfn!("{0}", v0);
-        }
-        pub fn method0() {
-            let v3: i32 = ((Spiral_builder::method2(Spiral_builder::method1())) + 2_i32) + 1_i32;
-            let v4: bool = (v3) == 15_i32;
-            let v6: bool = if v4 {
-                true
-            } else {
-                Spiral_builder::method3(v4)
-            };
-            let v8: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_eq"),
-                v3,
-                15_i32
-            );
-            let v13: () = {
-                Spiral_builder::closure0(v8.clone(), ());
-                ()
-            };
-            if (v6) == false {
-                panic!("{}", v8,);
-            }
-        }
-        // on_startup!(Spiral_builder::method0());
-    }
-}
-pub use module_7e2cd9e0::*;
-
-
-
-pub fn main() -&gt; Result&lt;(), String&gt; { Ok(Spiral_builder::method0()) }
-
-.ts:
-import { int32 } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/Int32.js";
-import { interpolate, toText } from "./fable_modules/fable-library-ts.5.0.0-alpha.2/String.js";
-
-export function method1(): int32 {
-    return 3;
-}
-
-export function method2(v0: int32): int32 {
-    return 9 + v0;
-}
-
-export function method3(v0: boolean): boolean {
-    return v0;
-}
-
-export function closure0(v0: string, unitVar: void): void {
-    console.log(v0);
-}
-
-export function method0(): void {
-    const v3: int32 = ((method2(method1()) + 2) + 1) | 0;
-    const v4: boolean = v3 === 15;
-    const v6: boolean = v4 ? true : method3(v4);
-    const v8: string = toText(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]));
-    let v13: any;
-    closure0(v8, undefined);
-    v13 = undefined;
-    if (v6 === false) {
-        throw new Error(v8);
-    }
-}
-
-method0();
-
-
-.py:
-from fable_modules.fable_library.string_ import (to_text, interpolate)
-
-def method1(__unit: None=None) -&gt; int:
-    return 3
-
-
-def method2(v0: int) -&gt; int:
-    return 9 + v0
-
-
-def method3(v0: bool) -&gt; bool:
-    return v0
-
-
-def closure0(v0: str, unit_var: None) -&gt; None:
-    print(v0)
-
-
-def method0(__unit: None=None) -&gt; None:
-    v3: int = ((method2(method1()) + 2) + 1) or 0
-    v4: bool = v3 == 15
-    v6: bool = True if v4 else method3(v4)
-    v8: str = to_text(interpolate("%P() / actual: %A%P() / expected: %A%P()", ["__assert_eq", v3, 15]))
-    v13: None
-    closure0(v8, None)
-    v13 = None
-    if v6 == False:
-        raise Exception(v8)
-
-
-
-method0()
-
-
-.py (Cuda):
-kernel = r"""
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.append(None)
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
-        self.ptr[index] = value
-
-class static_array_list(static_array):
-    def __init__(self, length):
-        super().__init__(length)
-        self.length = 0
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
-        self.ptr[index] = value
-
-    def push(self,value):
-        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
-        self.ptr[self.length] = value
-        self.length += 1
-
-    def pop(self):
-        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
-        self.length -= 1
-        return self.ptr[self.length]
-
-    def unsafe_set_length(self,i):
-        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
-        self.length = i
-
-class dynamic_array(static_array): 
-    pass
-
-class dynamic_array_list(static_array_list):
-    def length_(self): return self.length
-
-import cupy as cp
-import numpy as np
-from dataclasses import dataclass
-from typing import NamedTuple, Union, Callable, Tuple
-i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
-cuda = False
-
-def method1() -&gt; i32:
-    return 3
-def method2(v0 : i32) -&gt; i32:
-    v1 = 9 + v0
-    del v0
-    return v1
-def method3(v0 : bool) -&gt; bool:
-    return v0
-def method0() -&gt; None:
-    v0 = method1()
-    v1 = method2(v0)
-    del v0
-    v2 = v1 + 2
-    del v1
-    v3 = v2 + 1
-    del v2
-    v4 = v3 == 15
-    if v4:
-        v6 = True
-    else:
-        v6 = method3(v4)
-    del v4
-    v9 = "__assert_eq"
-    v10 = f"{v9} / actual: {v3} / expected: {15}"
-    del v3, v9
-    print(v10)
-    v16 = v6 == False
-    del v6
-    if v16:
-        del v16
-        raise Exception(v10)
-    else:
-        del v10, v16
-        return 
-def main_body():
-    return method0()
-
-def main():
-    r = main_body()
-    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r
-
-if __name__ == '__main__': result = main(); None if result is None else print(result)
-
-.fsx output:
-__assert_eq / actual: 15 / expected: 15
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="retry_fn'">retry_fn'<a class="anchor-link" href="#retry_fn'">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8639,7 +7602,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8650,7 +7613,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8660,7 +7623,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8676,7 +7639,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8686,7 +7649,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8702,7 +7665,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8712,7 +7675,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8730,7 +7693,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8740,7 +7703,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8756,7 +7719,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8766,7 +7729,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8781,7 +7744,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8791,7 +7754,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8810,7 +7773,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8820,7 +7783,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8836,7 +7799,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8846,7 +7809,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8862,7 +7825,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8872,7 +7835,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8888,7 +7851,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8898,7 +7861,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8927,7 +7890,7 @@ __assert_eq / actual: 15 / expected: 15
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8985,7 +7948,7 @@ __assert_eq' / actual: US0_0 1 / expected: US0_0 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9052,11 +8015,11 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #1 common.retry_fn / { retry = 0; ex = System.Exception: test
-   at FSI_0026.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0026.method1(Mut0 v0, Int32 v1) }
+   at FSI_0017.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0017.method1(Mut0 v0, Int32 v1) }
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #2 common.retry_fn / { retry = 1; ex = System.Exception: test
-   at FSI_0026.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
-   at FSI_0026.method1(Mut0 v0, Int32 v1) }
+   at FSI_0017.closure1(Mut0 v0, Int32 v1, Unit unitVar2)
+   at FSI_0017.method1(Mut0 v0, Int32 v1) }
 __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </pre>
 </div>
@@ -9064,7 +8027,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9075,7 +8038,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9085,7 +8048,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9108,7 +8071,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9118,7 +8081,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9149,7 +8112,7 @@ __assert_eq' / actual: US0_0 2 / expected: US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9206,7 +8169,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9245,7 +8208,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9283,7 +8246,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9321,7 +8284,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9331,7 +8294,7 @@ __assert_eq / actual: 1 / expected: 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
