@@ -159,7 +159,7 @@ function ResolveLink (
 ) {
     Write-Host "core.ResolveLink / Path: $Path / End: $End"
     if (!$Path) {
-        return "$Path$End"
+        return $End
     }
 
     $parent = $Path | Split-Path
@@ -168,24 +168,21 @@ function ResolveLink (
         return Join-Path $Path $End
     }
 
-    if ($parent | Test-Path) {
-        $target = ($parent | Get-Item).Target
-    }
-
-    if ($target -and $target.StartsWith(".")) {
-        Write-Host "core.ResolveLink / target: $target"
-        $parent | Remove-Item -Force -Recurse
-        $target = ""
-    }
-
     $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
 
-    # Write-Host "core.ResolveLink / target: $target / End: $End"
+    if ($parent | Test-Path) {
+        $target = ($parent | Get-Item).Target
 
-    if ($target) {
-        $resolved = Join-Path $target $End
-        Write-Host "core.ResolveLink / target: $target / End: $End / resolved: $resolved"
-        return $resolved
+        if ($target -and (Test-Path $target)) {
+            if ($target.StartsWith(".")) {
+                Write-Host "core.ResolveLink / target: $target / parent: $parent"
+                $parent | Remove-Item -Force -Recurse
+            } else {
+                $resolved = Join-Path $target $End
+                Write-Host "core.ResolveLink / target: $target / End: $End / resolved: $resolved"
+                return $resolved
+            }
+        }
     }
 
     return ResolveLink $parent $End
