@@ -172,13 +172,19 @@ function ResolveLink (
         $target = ($parent | Get-Item).Target
     }
 
+    if ($target -and $target.StartsWith(".")) {
+        Write-Host "core.ResolveLink / target: $target"
+        $parent | Remove-Item -Force -Recurse
+        $target = ""
+    }
+
     $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
 
     # Write-Host "core.ResolveLink / target: $target / End: $End"
 
     if ($target) {
         $resolved = Join-Path $target $End
-        Write-Host "core.ResolveLink / resolved: $resolved"
+        Write-Host "core.ResolveLink / target: $target / End: $End / resolved: $resolved"
         return $resolved
     }
 
