@@ -648,7 +648,7 @@ inl get_workspace_root () =
         | Some path => Some path
         | None =>
             path ()
-            |> find_parent Directory ("polyglot" </> ".devcontainer")
+            |> find_parent Directory ("polyglot" </> "workspace")
             |> function
                 | Ok path => Some path
                 | Error error =>
