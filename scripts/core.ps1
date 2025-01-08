@@ -172,7 +172,9 @@ function ResolveLink (
 
     if ($parent | Test-Path) {
         $parent_target = ($parent | Get-Item).Target
-        $path_target = ($path | Get-Item).Target
+        if ($path | Test-Path) {
+            $path_target = ($path | Get-Item).Target
+        }
         Write-Host "core.ResolveLink / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End"
 
         if ($parent_target -and (Test-Path $parent_target)) {
@@ -196,12 +198,9 @@ function GetFullPath([string] $Path) {
 
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
         $ResolvedLocation = ResolveLink $Location
-        Write-Host "core.GetFullPath / Location: $Location / ResolvedLocation: $ResolvedLocation / Path: $Path"
+        Write-Host "core.GetFullPath / Path: $Path / Location: $Location / ResolvedLocation: $ResolvedLocation"
         $Path = [IO.Path]::GetFullPath((Join-Path $ResolvedLocation $Path))
         Write-Host "core.GetFullPath / FullPath: $Path"
-
-        $Path = ResolveLink $Path
-        Write-Host "core.GetFullPath / ResolvedFullPath: $Path"
     }
 
     return $Path
@@ -234,6 +233,9 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     }
 
     $Target = GetFullPath $Target
+    $ResolvedTarget = ResolveLink $Target
+
+    Write-Host "core.GetFullPath / FullPath: $Path / Target: $Target / ResolvedTarget: $ResolvedTarget"
 
     if (-Not ($Path | Test-Path)) {
         Write-Output "core.EnsureSymbolicLink / Creating symlink: $Path -> $Target"

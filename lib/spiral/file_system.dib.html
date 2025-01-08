@@ -7748,7 +7748,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">file_info</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">type System_IO_FileInfo = unit</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type System_IO_FileInfo = System.IO.FileInfo</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">type System_IO_FileInfo = bool</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type System_IO_FileInfo = System.IO.FileInfo</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System_IO_FileInfo'</span>
     <span class="p">)</span>
 
@@ -7782,7 +7782,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">directory_info</span> <span class="o">=</span>
     <span class="err">`</span><span class="p">(</span>
-        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">type System_IO_DirectoryInfo = unit</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type System_IO_DirectoryInfo = System.IO.DirectoryInfo</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">type System_IO_DirectoryInfo = bool</span><span class="se">\n</span><span class="s2">#else</span><span class="se">\n</span><span class="s2">type System_IO_DirectoryInfo = System.IO.DirectoryInfo</span><span class="se">\n</span><span class="s2">#endif</span><span class="se">\n</span><span class="s2">"</span>
         <span class="err">$</span><span class="s1">''</span> <span class="p">:</span> <span class="err">$</span><span class="s1">'System_IO_DirectoryInfo'</span>
     <span class="p">)</span>
 
@@ -10909,7 +10909,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>__assert_eq / actual: 87L / expected: 87L
+<pre>__assert_eq / actual: 91L / expected: 91L
 </pre>
 </div>
 </div>
@@ -11074,7 +11074,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_4b0033d71412ee2d86301af494d8f0e963730c12c31301e5157496716a8405cf\20250107-0235-2467-6566-0000008b015a }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_ced40d4c53d44afd65a0f576a0442915e47e1b6db5f8fd256ec5857f94ac0010\20250108-1742-1936-7250-0000002b85ae }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11175,7 +11175,7 @@ __assert_eq / actual: false / expected: false
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 6
-__assert_between / actual: 126L / expected: struct (50L, 180L)
+__assert_between / actual: 124L / expected: struct (50L, 180L)
 __assert_eq / actual: true / expected: true
 </pre>
 </div>
@@ -11302,6 +11302,7 @@ __assert_eq / actual: true / expected: true
 <span class="n">inl</span> <span class="n">test_dir</span> <span class="o">=</span> <span class="n">workspace_root</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/test/file_system"</span> <span class="o">&lt;/&gt;</span> <span class="n">test_hash</span>
 
 <span class="n">inl</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">test_dir</span> <span class="o">|&gt;</span> <span class="n">create_dir</span>
+<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
 <span class="n">inl</span> <span class="n">dir_path</span> <span class="o">=</span> <span class="n">test_dir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"dir1"</span>
 
@@ -11362,8 +11363,6 @@ __assert_eq / actual: true / expected: true
 <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
 <span class="o">|&gt;</span> <span class="n">convert</span>
 <span class="o">|&gt;</span> <span class="n">_assert</span> <span class="n">sm</span><span class="s1">'.ends_with "LICENSE"</span>
-
-<span class="n">disposable</span> <span class="o">|&gt;</span> <span class="n">use</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 </pre></div>
 </div>
 </div>
@@ -11668,14 +11667,14 @@ __assert / actual: "LICENSE" / expected: "C:\home\git\polyglot\target\test\file_
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:01 <span class="ansi-blue-intense-fg">d</span> #7 file_system.wait_for_file_access / { path = test.txt; retry = 100; ex = System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\613830ed-016e-d959-8d21-02dc1c63c252\test.txt' because it is being used by another process. }
-00:00:02 <span class="ansi-blue-intense-fg">d</span> #8 _3
+00:00:01 <span class="ansi-blue-intense-fg">d</span> #8 _3
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #9 _4
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #10 _5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 _6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 5
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #13 6
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #14 7
-__assert_between / actual: 128L / expected: struct (50L, 180L)
+__assert_between / actual: 127L / expected: struct (50L, 180L)
 __assert_eq / actual: "1" / expected: "1"
 __assert_eq / actual: true / expected: true
 </pre>
@@ -11870,8 +11869,8 @@ __assert_eq / actual: true / expected: true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 1
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 2
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 3
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 _1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #3 _1
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #4 3
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 _2
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #6 4
 00:00:00 <span class="ansi-yellow-intense-fg">w</span> #7 move_file_async / { old_path = test.txt; new_path = test2.txt; ex = System.IO.IOException: The process cannot access the file because it is being used by another process. }
