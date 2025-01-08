@@ -1309,7 +1309,7 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
 
                 (exit_code, output) |> return
             | _ => fun _ =>
-                global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
+                global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = bool\n  type DataReceivedEventArgs = bool\n#endif"
                 (null () : int * string) |> return
     |> async.new_async_unit
 
@@ -1696,6 +1696,7 @@ inl temp_dir, disposable =
     |> sm'.format_debug
     |> crypto.hash_text
     |> file_system.create_temp_dir'
+disposable |> use |> ignore
 inl path = temp_dir </> file_name |> file_system.normalize_path
 inl exit_code, result =
     execute $'\@$"pwsh -c ""[IO.File]::ReadAllText(\'{!path}\')"""'
@@ -1720,8 +1721,6 @@ inl exit_code, output =
 
 exit_code |> _assert_eq 0i32
 output |> _assert_eq content
-
-disposable |> use |> ignore
 
 #!markdown
 

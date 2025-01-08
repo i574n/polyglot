@@ -171,22 +171,20 @@ function ResolveLink (
     $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
 
     if ($parent | Test-Path) {
-        $target = ($parent | Get-Item).Target
+        $parent_target = ($parent | Get-Item).Target
+        $path_target = ($path | Get-Item).Target
+        Write-Host "core.ResolveLink / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End"
 
-        if ($target) {
-            if (Test-Path $target) {
-                if ($target.StartsWith(".")) {
-                    Write-Host "core.ResolveLink / target: $target / parent: $parent"
-                    $parent | Remove-Item -Force -Recurse
-                }
-                else {
-                    Write-Host "core.ResolveLink / target: $target / End: $End"
-                    $parent = $target
-                }
+        if ($parent_target -and (Test-Path $parent_target)) {
+            if ($parent_target.StartsWith(".")) {
+                $parent | Remove-Item -Force -Recurse
             }
             else {
-                Write-Host "core.ResolveLink / target: $target / parent: $parent"
+                $parent = $parent_target
             }
+        } elseif ($path_target) {
+            $parent = $path_target
+            $End = ''
         }
     }
 
@@ -218,7 +216,7 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     $Parent = $Path | Split-Path
 
-    Write-Output "core.EnsureSymbolicLink / Path: $Path / Parent: $Parent"
+    Write-Output "core.EnsureSymbolicLink / Parent: $Parent / Path: $Path"
 
     if (-Not ($Parent | Test-Path)) {
         Write-Output "core.EnsureSymbolicLink / Creating parent directory: $Parent"

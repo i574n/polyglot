@@ -78,11 +78,11 @@ def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[Cance
     return (_run_target_args_0027_v1[0], _run_target_args_0027_v1[1])
 
 
-def _arrow107(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def _arrow108(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow107
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow108
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return v0(x)

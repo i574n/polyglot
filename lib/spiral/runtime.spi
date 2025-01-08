@@ -739,7 +739,7 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
 
                 (exit_code, output) |> return
             | _ => fun _ =>
-                global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
+                global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = bool\n  type DataReceivedEventArgs = bool\n#endif"
                 (null () : int * string) |> return
     |> async.new_async_unit
 

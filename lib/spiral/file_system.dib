@@ -111,7 +111,7 @@ inl file_stream (path : string) mode access share : file_stream' =
 
 nominal file_info =
     `(
-        global "#if FABLE_COMPILER\ntype System_IO_FileInfo = unit\n#else\ntype System_IO_FileInfo = System.IO.FileInfo\n#endif\n"
+        global "#if FABLE_COMPILER\ntype System_IO_FileInfo = bool\n#else\ntype System_IO_FileInfo = System.IO.FileInfo\n#endif\n"
         $'' : $'System_IO_FileInfo'
     )
 
@@ -128,7 +128,7 @@ inl file_info (path : string) : file_info =
 
 nominal directory_info =
     `(
-        global "#if FABLE_COMPILER\ntype System_IO_DirectoryInfo = unit\n#else\ntype System_IO_DirectoryInfo = System.IO.DirectoryInfo\n#endif\n"
+        global "#if FABLE_COMPILER\ntype System_IO_DirectoryInfo = bool\n#else\ntype System_IO_DirectoryInfo = System.IO.DirectoryInfo\n#endif\n"
         $'' : $'System_IO_DirectoryInfo'
     )
 
@@ -1706,6 +1706,7 @@ inl workspace_root = get_workspace_root ()
 inl test_dir = workspace_root </> "target/test/file_system" </> test_hash
 
 inl disposable = test_dir |> create_dir
+disposable |> use |> ignore
 
 inl dir_path = test_dir </> "dir1"
 
@@ -1766,8 +1767,6 @@ link_path'
 |> path_buf_display
 |> convert
 |> _assert sm'.ends_with "LICENSE"
-
-disposable |> use |> ignore
 
 #!markdown
 

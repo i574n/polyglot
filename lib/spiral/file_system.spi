@@ -69,7 +69,7 @@ inl file_stream (path : string) mode access share : file_stream' =
 /// ### file_info
 nominal file_info =
     `(
-        global "#if FABLE_COMPILER\ntype System_IO_FileInfo = unit\n#else\ntype System_IO_FileInfo = System.IO.FileInfo\n#endif\n"
+        global "#if FABLE_COMPILER\ntype System_IO_FileInfo = bool\n#else\ntype System_IO_FileInfo = System.IO.FileInfo\n#endif\n"
         $'' : $'System_IO_FileInfo'
     )
 
@@ -81,7 +81,7 @@ inl file_info (path : string) : file_info =
 /// ### directory_info
 nominal directory_info =
     `(
-        global "#if FABLE_COMPILER\ntype System_IO_DirectoryInfo = unit\n#else\ntype System_IO_DirectoryInfo = System.IO.DirectoryInfo\n#endif\n"
+        global "#if FABLE_COMPILER\ntype System_IO_DirectoryInfo = bool\n#else\ntype System_IO_DirectoryInfo = System.IO.DirectoryInfo\n#endif\n"
         $'' : $'System_IO_DirectoryInfo'
     )
 

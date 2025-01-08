@@ -54,13 +54,13 @@ type std_io_Error = string
 #endif
 
 #if FABLE_COMPILER
-type System_IO_DirectoryInfo = unit
+type System_IO_DirectoryInfo = bool
 #else
 type System_IO_DirectoryInfo = System.IO.DirectoryInfo
 #endif
 
 #if FABLE_COMPILER
-type System_IO_FileInfo = unit
+type System_IO_FileInfo = bool
 #else
 type System_IO_FileInfo = System.IO.FileInfo
 #endif
