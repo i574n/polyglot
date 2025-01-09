@@ -88,14 +88,20 @@ Invoke-Dib init.dib
 
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
-Set-Location (New-Item "../.." -ItemType Directory -Force)
+$spiralPath = ResolveLink (GetFullPath "../..")
+
+Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / spiralPath: $spiralPath"
+
+Set-Location (New-Item $spiralPath -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/spiral.git
 { git pull } | Invoke-Block -Location spiral
-Set-Location $ScriptDir
+Set-Location (ResolveLink $ScriptDir)
+
+Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location)"
 
 { pwsh ../../spiral/scripts/init.ps1 } | Invoke-Block
 
-EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
+EnsureSymbolicLink -Path "$ScriptDir/../deps/spiral" -Target "$ScriptDir/../../spiral"
 
 $Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
 { pwsh $Path -SkipPreBuild 1 } | Invoke-Block
