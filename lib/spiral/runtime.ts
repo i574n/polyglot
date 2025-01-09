@@ -1952,7 +1952,7 @@ export function method42(v0_1: string, v1_1: Option<any>, v2_1: [string, string]
     return v2_1;
 }
 
-export function method45(): string {
+export function method45(v0_1: boolean): string {
     return defaultOf();
 }
 
@@ -1964,7 +1964,7 @@ export function method46(): ((arg0: ((arg0: [int32, string, boolean]) => Async<v
     return (v: ((arg0: [int32, string, boolean]) => Async<void>)): US14_$union => closure21(undefined, v);
 }
 
-export function method47(): int32 {
+export function method47(v0_1: boolean): int32 {
     return defaultOf();
 }
 
@@ -1994,7 +1994,7 @@ export function closure22(v0_1: string, unitVar: void): void {
     }
 }
 
-export function method44(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9: boolean, v10: void): Async<void> {
+export function method44(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: boolean, v8: any, v9: boolean, v10: boolean): Async<void> {
     return singleton.Delay<void>((): Async<void> => {
         let v43: US14_$union, v49: Async<void>;
         const v24: string = method45(v10);
@@ -2014,11 +2014,11 @@ export function method44(v0_1: string, v1_1: Option<any>, v2_1: [string, string]
     });
 }
 
-export function method43(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9: boolean, v10: void): Async<void> {
+export function method43(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: boolean, v8: any, v9: boolean, v10: boolean): Async<void> {
     return method44(v0_1, v1_1, v2_1, v3, v4, v5, v6, v7, v8, v9, v10);
 }
 
-export function closure20(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: void, v8: any, v9: boolean, v10: void): void {
+export function closure20(v0_1: string, v1_1: Option<any>, v2_1: [string, string][], v3: Option<((arg0: [int32, string, boolean]) => Async<void>)>, v4: Option<((arg0: any) => void)>, v5: boolean, v6: Option<string>, v7: boolean, v8: any, v9: boolean, v10: boolean): void {
     startImmediate(method43(v0_1, v1_1, v2_1, v3, v4, v5, v6, v7, v8, v9, v10));
 }
 
@@ -2037,14 +2037,14 @@ export function method51(v0_1: any): Async<any> {
     });
 }
 
-export function method52(): boolean {
+export function method52(v0_1: boolean): boolean {
     return defaultOf();
 }
 
-export function method53(): void {
+export function method53(v0_1: boolean): void {
 }
 
-export function closure24(v0_1: void, unitVar: void): void {
+export function closure24(v0_1: boolean, unitVar: void): void {
     if (method52(v0_1) === false) {
         method53(v0_1);
     }
@@ -2091,7 +2091,7 @@ export function closure25(v0_1: any, unitVar: void): void {
     }
 }
 
-export function method54(v0_1: void, v1_1: any, v2_1: any): Async<int32> {
+export function method54(v0_1: boolean, v1_1: any, v2_1: any): Async<int32> {
     return singleton.Delay<int32>((): Async<int32> => singleton.TryWith<int32>(singleton.Delay<int32>((): Async<int32> => {
         const v52: Async<void> = awaitTask(defaultOf());
         return singleton.Bind<void, int32>(v52, (): Async<int32> => {

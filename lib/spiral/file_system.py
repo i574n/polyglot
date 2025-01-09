@@ -1674,8 +1674,8 @@ def method92(v0_1: str) -> Callable[[], None]:
     return _arrow402
 
 
-def method93(v0_1: str) -> None:
-    pass
+def method93(v0_1: str) -> bool:
+    return None
 
 
 def method95(v0_1: str, v1_1: str) -> str:
@@ -1750,7 +1750,7 @@ def method97(v0_1: str) -> Callable[[], None]:
 
 
 def method83(v0_1: str) -> IDisposable:
-    v251: None = method93(v0_1)
+    v251: bool = method93(v0_1)
     v273: bool = None
     if v273 == False:
         v311: None
@@ -1944,7 +1944,7 @@ def method102(v0_1: str, v1_1: uint8) -> FSharpResult_2[std_path_path_buf, std_i
     return None
 
 
-def method113(v0_1: None) -> enum_type("System.IO.FileAttributes", int, [("None", 0.0), ("ReadOnly", 1.0), ("Hidden", 2.0), ("System", 4.0), ("Directory", 16.0), ("Archive", 32.0), ("Device", 64.0), ("Normal", 128.0), ("Temporary", 256.0), ("SparseFile", 512.0), ("ReparsePoint", 1024.0), ("Compressed", 2048.0), ("Offline", 4096.0), ("NotContentIndexed", 8192.0), ("Encrypted", 16384.0), ("IntegrityStream", 32768.0), ("NoScrubData", 131072.0)]):
+def method113(v0_1: bool) -> enum_type("System.IO.FileAttributes", int, [("None", 0.0), ("ReadOnly", 1.0), ("Hidden", 2.0), ("System", 4.0), ("Directory", 16.0), ("Archive", 32.0), ("Device", 64.0), ("Normal", 128.0), ("Temporary", 256.0), ("SparseFile", 512.0), ("ReparsePoint", 1024.0), ("Compressed", 2048.0), ("Offline", 4096.0), ("NotContentIndexed", 8192.0), ("Encrypted", 16384.0), ("IntegrityStream", 32768.0), ("NoScrubData", 131072.0)]):
     return None
 
 
@@ -2204,7 +2204,7 @@ def method126(__unit: None=None) -> str:
 
 
 def closure56(unit_var: None, unit_var_1: None) -> str:
-    v4: US15 = method122(method80("polyglot", ".devcontainer"), "/home/runner/work/polyglot/polyglot/lib/spiral")
+    v4: US15 = method122(method80("polyglot", "workspace"), "/home/runner/work/polyglot/polyglot/lib/spiral")
     v52: US5
     if v4.tag == 0:
         v52 = US5(0, v4.fields[0])
@@ -2221,7 +2221,7 @@ def closure56(unit_var: None, unit_var_1: None) -> str:
 
     else: 
         v55: str = method126()
-        v57: US15 = method122(method80("polyglot", ".devcontainer"), v55)
+        v57: US15 = method122(method80("polyglot", "workspace"), v55)
         if v57.tag == 0:
             v107 = US5(0, v57.fields[0])
 

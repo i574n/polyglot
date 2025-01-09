@@ -96,13 +96,13 @@ inl temp_dir, disposable =
     |> sm'.format_debug
     |> crypto.hash_text
     |> file_system.create_temp_dir'
+disposable |> use |> ignore
 inl path = temp_dir </> file_name
 text |> file_system.write_all_text path
 path
 |> get_file_hash'
 |> resultm.get
 |> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-disposable |> use |> ignore
 
 #!markdown
 
@@ -218,6 +218,7 @@ inl temp_dir, disposable =
     |> sm'.format_debug
     |> crypto.hash_text
     |> file_system.create_temp_dir'
+disposable |> use |> ignore
 
 inl path = temp_dir </> file_name
 text |> file_system.write_all_text path
@@ -226,7 +227,6 @@ path
 |> get_file_hash
 |> resultm.unwrap'
 |> _assert_eq "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
-disposable |> use |> ignore
 
 #!spiral
 
@@ -241,6 +241,7 @@ inl temp_dir, disposable =
     |> sm'.format_debug
     |> crypto.hash_text
     |> file_system.create_temp_dir'
+disposable |> use |> ignore
 
 inl path = temp_dir </> file_name
 text |> file_system.write_all_text path
@@ -248,7 +249,6 @@ path
 |> get_file_hash
 |> resultm.unwrap'
 |> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-disposable |> use |> ignore
 
 #!markdown
 

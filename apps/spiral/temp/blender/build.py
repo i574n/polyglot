@@ -46,8 +46,8 @@ light_obj.data.use_shadow = False
 
 # 5) Set rendering options (Cycles, resolution)
 bpy.context.scene.render.engine = 'CYCLES'
-bpy.context.scene.render.resolution_x = 2048
-bpy.context.scene.render.resolution_y = 2048
+bpy.context.scene.render.resolution_x = 1024
+bpy.context.scene.render.resolution_y = 1024
 
 # Render and save
 bpy.context.scene.render.filepath = os.path.join(".", f"spiral_blender.png")

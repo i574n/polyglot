@@ -49,8 +49,8 @@ type std_process_ChildStdin = class end
 [<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]
 module System =
  module Diagnostics =
-  type Process = unit
-  type DataReceivedEventArgs = unit
+  type Process = bool
+  type DataReceivedEventArgs = bool
 #endif
 type [<Struct>] US0 =
     | US0_0

@@ -1756,8 +1756,8 @@ export function method92(v0_1: string): (() => void) {
     };
 }
 
-export function method93(v0_1: string): void {
-    defaultOf();
+export function method93(v0_1: string): boolean {
+    return defaultOf();
 }
 
 export function method95(v0_1: string, v1_1: string): string {
@@ -1831,7 +1831,7 @@ export function method97(v0_1: string): (() => void) {
 }
 
 export function method83(v0_1: string): IDisposable {
-    const v132: any = method93(v0_1);
+    const v132: boolean = method93(v0_1);
     const v154: boolean = defaultOf();
     if (v154 === false) {
         let v192: any;
@@ -2019,7 +2019,7 @@ export function method102(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any,
     return defaultOf();
 }
 
-export function method113(): int32 {
+export function method113(v0_1: boolean): int32 {
     return defaultOf();
 }
 
@@ -2065,10 +2065,10 @@ export function method117(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
 }
 
 export function method116(v0_1: string, v1_1: uint8, v2_1: string): FSharpResult$2_$union<any, any> {
-    const v30_1: int32 = method113(void defaultOf()) | 0;
+    const v30_1: int32 = method113(defaultOf()) | 0;
     const v32_1: boolean = method115(method114(), v30_1);
     if (v32_1) {
-        const v43: any = void defaultOf();
+        const v43: boolean = defaultOf();
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
@@ -2118,10 +2118,10 @@ export function method118(v0_1: string, v1_1: ((arg0: uint8, arg1: string) => FS
 }
 
 export function method112(v0_1: string, v1_1: uint8): FSharpResult$2_$union<any, any> {
-    const v29_1: int32 = method113(void defaultOf()) | 0;
+    const v29_1: int32 = method113(defaultOf()) | 0;
     const v31_1: boolean = method115(method114(), v29_1);
     if (v31_1) {
-        const v42: any = void defaultOf();
+        const v42: boolean = defaultOf();
         return FSharpResult$2_Ok<any, any>(defaultOf());
     }
     else {
@@ -2270,7 +2270,7 @@ export function method126(): string {
 }
 
 export function closure56(unitVar: void, unitVar_1: void): string {
-    const v4: US15_$union = method122(method80("polyglot", ".devcontainer"), "/home/runner/work/polyglot/polyglot/lib/spiral");
+    const v4: US15_$union = method122(method80("polyglot", "workspace"), "/home/runner/work/polyglot/polyglot/lib/spiral");
     let v52: US5_$union;
     if (v4.tag === /* US15_0 */ 0) {
         v52 = US5_US5_0(v4.fields[0]);
@@ -2287,7 +2287,7 @@ export function closure56(unitVar: void, unitVar_1: void): string {
     }
     else {
         const v55: string = method126();
-        const v57: US15_$union = method122(method80("polyglot", ".devcontainer"), v55);
+        const v57: US15_$union = method122(method80("polyglot", "workspace"), v55);
         if (v57.tag === /* US15_0 */ 0) {
             v107 = US5_US5_0(v57.fields[0]);
         }

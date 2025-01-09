@@ -2663,7 +2663,7 @@ pub mod Runtime {
     ) -> Array<(string, string)> {
         v2_1
     }
-    pub fn method45(v0_1: ()) -> string {
+    pub fn method45(v0_1: bool) -> string {
         unbox::<string>(&getZero())
     }
     pub fn closure21(
@@ -2675,7 +2675,7 @@ pub mod Runtime {
     pub fn method46() -> Func1<Func1<(i32, string, bool), Arc<Async<()>>>, Runtime::US14> {
         Func1::new(move |v: Func1<(i32, string, bool), Arc<Async<()>>>| Runtime::closure21((), v))
     }
-    pub fn method47(v0_1: ()) -> i32 {
+    pub fn method47(v0_1: bool) -> i32 {
         unbox::<i32>(&getZero())
     }
     pub fn method48() -> string {
@@ -2752,10 +2752,10 @@ pub mod Runtime {
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         v5: bool,
         v6: Option<string>,
-        v7: (),
+        v7: bool,
         v8: LrcPtr<ConcurrentStack_1<string>>,
         v9: bool,
-        v10: (),
+        v10: bool,
     ) -> Arc<Async<()>> {
         getZero()
     }
@@ -2767,10 +2767,10 @@ pub mod Runtime {
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         v5: bool,
         v6: Option<string>,
-        v7: (),
+        v7: bool,
         v8: LrcPtr<ConcurrentStack_1<string>>,
         v9: bool,
-        v10: (),
+        v10: bool,
     ) -> Arc<Async<()>> {
         Runtime::method44(v0_1, v1_1, v2_1, v3, v4, v5, v6, v7, v8, v9, v10)
     }
@@ -2782,10 +2782,10 @@ pub mod Runtime {
         v4: Option<Func1<std::sync::Arc<std::sync::Mutex<std::process::ChildStdin>>, ()>>,
         v5: bool,
         v6: Option<string>,
-        v7: (),
+        v7: bool,
         v8: LrcPtr<ConcurrentStack_1<string>>,
         v9: bool,
-        v10: (),
+        v10: bool,
     ) {
         let v11: Arc<Async<()>> =
             Runtime::method43(v0_1, v1_1, v2_1, v3, v4, v5, v6, v7, v8, v9, v10);
@@ -2801,13 +2801,13 @@ pub mod Runtime {
     pub fn method51(v0_1: CancellationToken) -> Arc<Async<CancellationToken>> {
         getZero()
     }
-    pub fn method52(v0_1: ()) -> bool {
+    pub fn method52(v0_1: bool) -> bool {
         unbox::<bool>(&getZero())
     }
-    pub fn method53(v0_1: ()) {
+    pub fn method53(v0_1: bool) {
         ();
     }
-    pub fn closure24(v0_1: (), unitVar: ()) {
+    pub fn closure24(v0_1: bool, unitVar: ()) {
         if (Runtime::method52(v0_1)) == false {
             Runtime::method53(v0_1);
         };
@@ -2898,7 +2898,7 @@ pub mod Runtime {
         };
     }
     pub fn method54(
-        v0_1: (),
+        v0_1: bool,
         v1_1: LrcPtr<ConcurrentStack_1<string>>,
         v2_1: CancellationToken,
     ) -> Arc<Async<i32>> {
