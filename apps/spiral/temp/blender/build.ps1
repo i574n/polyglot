@@ -9,4 +9,6 @@ $ErrorActionPreference = "Stop"
 . ../../../../lib/spiral/lib.ps1
 
 
-blender -b --python build.py
+$Path = GetFullPath "./build.py"
+echo "blender / Path: $Path"
+blender -b --python $Path

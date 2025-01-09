@@ -2270,7 +2270,7 @@ export function method126(): string {
 }
 
 export function closure56(unitVar: void, unitVar_1: void): string {
-    const v4: US15_$union = method122(method80("polyglot", ".devcontainer"), "C:\\home\\git\\polyglot\\lib\\spiral");
+    const v4: US15_$union = method122(method80("polyglot", "workspace"), "C:\\home\\git\\polyglot\\lib\\spiral");
     let v52: US5_$union;
     if (v4.tag === /* US15_0 */ 0) {
         v52 = US5_US5_0(v4.fields[0]);
@@ -2287,7 +2287,7 @@ export function closure56(unitVar: void, unitVar_1: void): string {
     }
     else {
         const v55: string = method126();
-        const v57: US15_$union = method122(method80("polyglot", ".devcontainer"), v55);
+        const v57: US15_$union = method122(method80("polyglot", "workspace"), v55);
         if (v57.tag === /* US15_0 */ 0) {
             v107 = US5_US5_0(v57.fields[0]);
         }

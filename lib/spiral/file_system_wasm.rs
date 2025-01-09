@@ -2971,7 +2971,7 @@ pub mod File_system {
     }
     pub fn closure56(unitVar: (), unitVar_1: ()) -> string {
         let v4: File_system::US15 = File_system::method122(
-            File_system::method80(string("polyglot"), string(".devcontainer")),
+            File_system::method80(string("polyglot"), string("workspace")),
             string("C:\\home\\git\\polyglot\\lib\\spiral"),
         );
         let v52: File_system::US5 = match &v4 {
@@ -2995,7 +2995,7 @@ pub mod File_system {
             _ => {
                 let v55: string = File_system::method126();
                 let v57: File_system::US15 = File_system::method122(
-                    File_system::method80(string("polyglot"), string(".devcontainer")),
+                    File_system::method80(string("polyglot"), string("workspace")),
                     v55,
                 );
                 match &v57 {

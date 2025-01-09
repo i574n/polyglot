@@ -10,7 +10,7 @@ from fable_modules.fable_library.time_span import (hours, to_string as to_string
 from fable_modules.fable_library.types import (Array, Union, uint8, int64)
 from fable_modules.fable_library.util import int64_to_string
 
-def _expr107() -> TypeInfo:
+def _expr102() -> TypeInfo:
     return union_type("Date_time.US0", [], US0, lambda: [[("f0_0", class_type("Date_time.chrono_DateTime`1", [class_type("Date_time.chrono_Utc")]))], []])
 
 
@@ -26,9 +26,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr107
+US0_reflection = _expr102
 
-def _expr109() -> TypeInfo:
+def _expr103() -> TypeInfo:
     return union_type("Date_time.US1", [], US1, lambda: [[("f0_0", string_type)], []])
 
 
@@ -44,9 +44,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr109
+US1_reflection = _expr103
 
-def _expr110() -> TypeInfo:
+def _expr104() -> TypeInfo:
     return union_type("Date_time.US2", [], US2, lambda: [[], [], []])
 
 
@@ -62,9 +62,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2"]
 
 
-US2_reflection = _expr110
+US2_reflection = _expr104
 
-def _expr111() -> TypeInfo:
+def _expr105() -> TypeInfo:
     return union_type("Date_time.US3", [], US3, lambda: [[("f0_0", US2_reflection())], [("f1_0", US2_reflection())], [("f2_0", US2_reflection())], [("f3_0", US2_reflection())], [("f4_0", US2_reflection())]])
 
 
@@ -80,17 +80,17 @@ class US3(Union):
         return ["US3_0", "US3_1", "US3_2", "US3_3", "US3_4"]
 
 
-US3_reflection = _expr111
+US3_reflection = _expr105
 
 def closure2(unit_var: None, v0_1: chrono_date_time_1[chrono_utc]) -> US0:
     return US0(0, v0_1)
 
 
 def method1(__unit: None=None) -> Callable[[chrono_date_time_1[chrono_utc]], US0]:
-    def _arrow112(v: chrono_date_time_1[chrono_utc]) -> US0:
+    def _arrow106(v: chrono_date_time_1[chrono_utc]) -> US0:
         return closure2(None, v)
 
-    return _arrow112
+    return _arrow106
 
 
 def method2(__unit: None=None) -> str:
@@ -124,10 +124,10 @@ def closure1(v0_1: str, v1_1: Any) -> str:
 
 
 def closure0(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow113(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow110(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure1(v0_1, v)
 
-    return _arrow113
+    return _arrow110
 
 
 def closure4(unit_var: None, v0_1: str) -> str:
@@ -149,10 +149,10 @@ def closure7(v0_1: int, v1_1: str, v2_1: int, v3_1: str) -> str:
 
 
 def method5(v0_1: int, v1_1: str, v2_1: int) -> Callable[[str], str]:
-    def _arrow114(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
+    def _arrow113(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> str:
         return closure7(v0_1, v1_1, v2_1, v)
 
-    return _arrow114
+    return _arrow113
 
 
 def closure6(v0_1: str, v1_1: int64) -> str:
