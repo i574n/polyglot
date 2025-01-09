@@ -6303,25 +6303,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "spiral_wasm"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "chrono",
- "clap",
- "fable_library_rust",
- "inline_colorization",
- "near-sandbox-utils 0.12.0",
- "near-sdk",
- "near-token 0.3.0",
- "near-workspaces",
- "regex",
- "serde_json",
- "sha2 0.11.0-pre.4",
- "tokio",
-]
-
-[[package]]
 name = "stable_deref_trait"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

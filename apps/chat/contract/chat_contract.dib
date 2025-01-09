@@ -63,7 +63,6 @@ inl new () : state =
         alias_set = "alias_set" |> sm'.byte_slice |> near.new_iterable_set
         account_map = "account_map" |> sm'.byte_slice |> near.new_lookup_map
         alias_map = "alias_map" |> sm'.byte_slice |> near.new_lookup_map
-
     }
 
 #!spiral

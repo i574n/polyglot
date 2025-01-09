@@ -6,7 +6,6 @@ members = [
     "../apps/chat/contract",
     "../apps/chat/contract/tests",
     "../apps/plot",
-    "../apps/spiral/wasm",
     "../apps/spiral/temp/extension",
     "../apps/spiral/temp/test",
     "../apps/spiral/temp/cube",

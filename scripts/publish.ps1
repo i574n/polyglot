@@ -27,6 +27,7 @@ rsync -av `
     --include 'dist/*' `
 `
     --include 'LICENSE' `
+    --include 'Dockerfile' `
     --include '*.ans' `
     --include '*.cs' `
     --include '*.css' `

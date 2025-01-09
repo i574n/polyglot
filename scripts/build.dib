@@ -29,7 +29,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/spiral/wasm/build.ps1 } | Invoke-Block
+{ pwsh ../deps/spiral/apps/wasm/build.ps1 -fast 1 } | Invoke-Block
 
 #!pwsh
 

@@ -1168,7 +1168,11 @@ inl file_delete (path : string) : () =
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.File.Delete'
         | Rust (Native) => fun () =>
-            !\\(path, $'"std::fs::remove_file(&*$0).unwrap()"')
+            inl result : resultm.result' () stream.io_error =
+                !\\(path, $'"std::fs::remove_file(&*$0)"')
+            match result |> resultm.map_error' sm'.format |> resultm.unbox with
+            | Ok () => ()
+            | Error error' => trace Critical (fun () => "file_system.file_delete") fun () => { error' }
         | _ => fun () => ()
 
 #!markdown
