@@ -186,7 +186,7 @@ module Supervisor =
     /// ### buildFile
     let buildFile backend timeout port cancellationToken path =
         let rec loop retry = async {
-            let fullPath = path |> System.IO.Path.GetFullPath
+            let fullPath = path |> System.IO.Path.GetFullPath |> SpiralFileSystem.normalize_path
             let fileDir = fullPath |> System.IO.Path.GetDirectoryName
             let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
             let! code = fullPath |> SpiralFileSystem.read_all_text_async

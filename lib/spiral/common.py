@@ -23,7 +23,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr14() -> TypeInfo:
+def _expr17() -> TypeInfo:
     return class_type("Common.Disposable", None, Disposable)
 
 
@@ -36,13 +36,13 @@ class Disposable(IDisposable):
         _.f(None)
 
 
-Disposable_reflection = _expr14
+Disposable_reflection = _expr17
 
 def Disposable__ctor_3A5B6456(f: Callable[[], None]) -> Disposable:
     return Disposable(f)
 
 
-def _expr17() -> TypeInfo:
+def _expr23() -> TypeInfo:
     return union_type("Common.US0", [], US0, lambda: [[], [], [], [], []])
 
 
@@ -58,9 +58,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2", "US0_3", "US0_4"]
 
 
-US0_reflection = _expr17
+US0_reflection = _expr23
 
-def _expr19() -> TypeInfo:
+def _expr25() -> TypeInfo:
     return record_type("Common.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -68,9 +68,9 @@ def _expr19() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr19
+Mut0_reflection = _expr25
 
-def _expr20() -> TypeInfo:
+def _expr26() -> TypeInfo:
     return record_type("Common.Mut1", [], Mut1, lambda: [("l0", lambda_type(string_type, unit_type))])
 
 
@@ -78,9 +78,9 @@ def _expr20() -> TypeInfo:
 class Mut1(Record):
     l0: Callable[[str], None]
 
-Mut1_reflection = _expr20
+Mut1_reflection = _expr26
 
-def _expr21() -> TypeInfo:
+def _expr27() -> TypeInfo:
     return record_type("Common.Mut2", [], Mut2, lambda: [("l0", bool_type)])
 
 
@@ -88,9 +88,9 @@ def _expr21() -> TypeInfo:
 class Mut2(Record):
     l0: bool
 
-Mut2_reflection = _expr21
+Mut2_reflection = _expr27
 
-def _expr22() -> TypeInfo:
+def _expr28() -> TypeInfo:
     return record_type("Common.Mut3", [], Mut3, lambda: [("l0", string_type)])
 
 
@@ -98,9 +98,9 @@ def _expr22() -> TypeInfo:
 class Mut3(Record):
     l0: str
 
-Mut3_reflection = _expr22
+Mut3_reflection = _expr28
 
-def _expr23() -> TypeInfo:
+def _expr29() -> TypeInfo:
     return record_type("Common.Mut4", [], Mut4, lambda: [("l0", US0_reflection())])
 
 
@@ -108,9 +108,9 @@ def _expr23() -> TypeInfo:
 class Mut4(Record):
     l0: US0
 
-Mut4_reflection = _expr23
+Mut4_reflection = _expr29
 
-def _expr24() -> TypeInfo:
+def _expr30() -> TypeInfo:
     return union_type("Common.US1", [], US1, lambda: [[("f0_0", US0_reflection())], []])
 
 
@@ -126,9 +126,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr24
+US1_reflection = _expr30
 
-def _expr27() -> TypeInfo:
+def _expr31() -> TypeInfo:
     return union_type("Common.US2", [], US2, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -144,9 +144,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr27
+US2_reflection = _expr31
 
-def _expr30() -> TypeInfo:
+def _expr32() -> TypeInfo:
     return union_type("Common.US3", [], US3, lambda: [[], [], []])
 
 
@@ -162,9 +162,9 @@ class US3(Union):
         return ["US3_0", "US3_1", "US3_2"]
 
 
-US3_reflection = _expr30
+US3_reflection = _expr32
 
-def _expr31() -> TypeInfo:
+def _expr33() -> TypeInfo:
     return union_type("Common.US4", [], US4, lambda: [[("f0_0", US3_reflection())], [("f1_0", US3_reflection())], [("f2_0", US3_reflection())], [("f3_0", US3_reflection())], [("f4_0", US3_reflection())]])
 
 
@@ -180,9 +180,9 @@ class US4(Union):
         return ["US4_0", "US4_1", "US4_2", "US4_3", "US4_4"]
 
 
-US4_reflection = _expr31
+US4_reflection = _expr33
 
-def _expr33() -> TypeInfo:
+def _expr34() -> TypeInfo:
     return union_type("Common.US5", [], US5, lambda: [[("f0_0", string_type)], []])
 
 
@@ -198,7 +198,7 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr33
+US5_reflection = _expr34
 
 def _expr35() -> TypeInfo:
     return union_type("Common.US6", [], US6, lambda: [[], []])
@@ -373,12 +373,12 @@ def method9(v0_1: US0) -> bool:
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        class ObjectExpr64:
+        class ObjectExpr65:
             @property
             def Compare(self) -> Callable[[US0, US0], int]:
                 return compare
 
-        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr64()))
+        return find(v0_1, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr62())) >= find(v35, of_seq(to_enumerable([(US0(0), 0), (US0(1), 1), (US0(2), 2), (US0(3), 3), (US0(4), 4)]), ObjectExpr65()))
 
 
 
