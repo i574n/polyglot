@@ -199,7 +199,11 @@ function GetFullPath([string] $Path) {
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
         $ResolvedLocation = ResolveLink $Location
         Write-Host "core.GetFullPath / Path: $Path / Location: $Location / ResolvedLocation: $ResolvedLocation"
-        $Path = [IO.Path]::GetFullPath((Join-Path $ResolvedLocation $Path))
+        if ($Path.StartsWith("/")) {
+            $Path = [IO.Path]::GetFullPath($Path)
+        } else {
+            $Path = [IO.Path]::GetFullPath((Join-Path $ResolvedLocation $Path))
+        }
         Write-Host "core.GetFullPath / FullPath: $Path"
     }
 
