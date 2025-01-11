@@ -117,7 +117,9 @@ inl run_target_args' forall t u. (args : u) (fn : target -> (u -> t)) : t =
                     typecase t with
                     | () => true
                     | _ => false
+            $'(* run_target_args\''
             inl result = $'()' : unit
+            $'run_target_args\' *)'
             inl emit_result x : () =
                 if is_unit |> not
                 then $'let _run_target_args\'_!result = !x '

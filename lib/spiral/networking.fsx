@@ -92,7 +92,9 @@ and closure1 () (v0 : string) : US5 =
 and method5 () : (string -> US5) =
     closure1()
 and method2 (v0 : string) : string =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -272,7 +274,9 @@ and method1 () : struct (US1 * US2) =
         if v51 then
             US2_1
         else
+            (* run_target_args'
             let v55 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -305,7 +309,9 @@ and method1 () : struct (US1 * US2) =
             let _run_target_args'_v55 = v64 
             #endif
             let v65 : System.DateTime = _run_target_args'_v55 
+            (* run_target_args'
             let v70 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -350,7 +356,9 @@ and method1 () : struct (US1 * US2) =
 and closure2 () (v0 : string) : unit =
     ()
 and method0 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -365,14 +373,18 @@ and method0 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
     let v6 : string = "AUTOMATION"
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v8 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v8 
+    (* run_target_args'
     let v10 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -415,7 +427,9 @@ and method0 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
 #if FABLE_COMPILER_RUST && WASM
     let v36 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v37 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v36 
+    (* run_target_args'
     let v38 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -458,7 +472,9 @@ and method0 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option
 #if FABLE_COMPILER_RUST && CONTRACT
     let v64 : string = "option_env!(\"" + v6 + "\").unwrap_or(\"\")"
     let v65 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v64 
+    (* run_target_args'
     let v66 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -602,7 +618,9 @@ and method12 () : string =
     let v0 : string = "HH:mm:ss"
     v0
 and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 option) : string =
+    (* run_target_args'
     let v6 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -614,7 +632,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v117 : System.DateTime =
         match v20 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v101 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -649,7 +669,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v111 : System.DateTime = _run_target_args'_v101 
             v111
         | US2_0(v24) -> (* Some *)
+            (* run_target_args'
             let v25 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -682,7 +704,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v25 = v34 
             #endif
             let v35 : System.DateTime = _run_target_args'_v25 
+            (* run_target_args'
             let v40 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -754,7 +778,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v249 : System.DateTime =
         match v152 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v233 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -789,7 +815,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v243 : System.DateTime = _run_target_args'_v233 
             v243
         | US2_0(v156) -> (* Some *)
+            (* run_target_args'
             let v157 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -822,7 +850,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v157 = v166 
             #endif
             let v167 : System.DateTime = _run_target_args'_v157 
+            (* run_target_args'
             let v172 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -922,7 +952,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v418 : System.DateTime =
         match v321 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v402 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -957,7 +989,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v412 : System.DateTime = _run_target_args'_v402 
             v412
         | US2_0(v325) -> (* Some *)
+            (* run_target_args'
             let v326 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -990,7 +1024,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v326 = v335 
             #endif
             let v336 : System.DateTime = _run_target_args'_v326 
+            (* run_target_args'
             let v341 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1062,7 +1098,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v550 : System.DateTime =
         match v453 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v534 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1097,7 +1135,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v544 : System.DateTime = _run_target_args'_v534 
             v544
         | US2_0(v457) -> (* Some *)
+            (* run_target_args'
             let v458 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1130,7 +1170,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v458 = v467 
             #endif
             let v468 : System.DateTime = _run_target_args'_v458 
+            (* run_target_args'
             let v473 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1202,7 +1244,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v682 : System.DateTime =
         match v585 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v666 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1237,7 +1281,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v676 : System.DateTime = _run_target_args'_v666 
             v676
         | US2_0(v589) -> (* Some *)
+            (* run_target_args'
             let v590 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1270,7 +1316,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v590 = v599 
             #endif
             let v600 : System.DateTime = _run_target_args'_v590 
+            (* run_target_args'
             let v605 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1342,7 +1390,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
     let v814 : System.DateTime =
         match v717 with
         | US2_1 -> (* None *)
+            (* run_target_args'
             let v798 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1377,7 +1427,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let v808 : System.DateTime = _run_target_args'_v798 
             v808
         | US2_0(v721) -> (* Some *)
+            (* run_target_args'
             let v722 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1410,7 +1462,9 @@ and method9 (v0 : Mut0, v1 : Mut1, v2 : Mut2, v3 : Mut3, v4 : Mut4, v5 : int64 o
             let _run_target_args'_v722 = v731 
             #endif
             let v732 : System.DateTime = _run_target_args'_v722 
+            (* run_target_args'
             let v737 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -1507,14 +1561,18 @@ and method13 () : string =
     let v2 : string = v1 ()
     let v5 : char = v2.[int 0]
     let v6 : string = method14(v5)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v8 : string = "inline_colorization::color_bright_black"
     let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v8 
+    (* run_target_args'
     let v10 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1561,7 +1619,9 @@ and method13 () : string =
 #if FABLE_COMPILER_RUST && WASM
     let v40 : string = "inline_colorization::color_bright_black"
     let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
+    (* run_target_args'
     let v42 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1608,7 +1668,9 @@ and method13 () : string =
 #if FABLE_COMPILER_RUST && CONTRACT
     let v72 : string = "inline_colorization::color_bright_black"
     let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    (* run_target_args'
     let v74 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1769,7 +1831,9 @@ and method20 (v0 : string) : unit =
     let v36 : (unit -> unit) = closure8(v17)
     let v37 : unit = (fun () -> v36 (); v35) ()
     let v40 : (string -> unit) = closure9()
+    (* run_target_args'
     let v41 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1798,7 +1862,9 @@ and method20 (v0 : string) : unit =
                 let v50 : string = v48 + v49 
                 let v51 : string = v50 + v0 
                 v51
+    (* run_target_args'
     let v54 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1905,7 +1971,9 @@ and closure5 (v0 : int32, v1 : exn) () : unit =
         let struct (v20 : Mut0, v21 : Mut1, v22 : Mut2, v23 : Mut3, v24 : Mut4, v25 : int64 option) = TraceState.trace_state.Value
         let v38 : string = method9(v20, v21, v22, v23, v24, v25)
         let v39 : string = method13()
+        (* run_target_args'
         let v40 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -1941,7 +2009,9 @@ and closure5 (v0 : int32, v1 : exn) () : unit =
         let v65 : string = method17(v20, v21, v22, v23, v24, v25, v38, v39, v0, v60)
         method20(v65)
 and method7 (v0 : string, v1 : int32) : Async<bool> =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1964,7 +2034,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             let v15 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v15 = v15 
             let v16 : System.Threading.CancellationToken = v15 
+            (* run_target_args'
             let v17 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2000,7 +2072,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             use v37 = v37 
             let v42 : System_Net_Sockets_TcpClient = v37 
             try
+                (* run_target_args'
                 let v43 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2033,7 +2107,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v43 = v62 
                 #endif
                 let v63 : System.Threading.Tasks.ValueTask = _run_target_args'_v43 
+                (* run_target_args'
                 let v68 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2067,7 +2143,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v68 = v88 
                 #endif
                 let v89 : System.Threading.Tasks.Task = _run_target_args'_v68 
+                (* run_target_args'
                 let v94 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2137,7 +2215,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             let v2539 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v2539 = v2539 
             let v2540 : System.Threading.CancellationToken = v2539 
+            (* run_target_args'
             let v2541 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2173,7 +2253,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             use v2561 = v2561 
             let v2566 : System_Net_Sockets_TcpClient = v2561 
             try
+                (* run_target_args'
                 let v2567 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2206,7 +2288,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v2567 = v2586 
                 #endif
                 let v2587 : System.Threading.Tasks.ValueTask = _run_target_args'_v2567 
+                (* run_target_args'
                 let v2592 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2240,7 +2324,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v2592 = v2612 
                 #endif
                 let v2613 : System.Threading.Tasks.Task = _run_target_args'_v2592 
+                (* run_target_args'
                 let v2618 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2310,7 +2396,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             let v5063 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v5063 = v5063 
             let v5064 : System.Threading.CancellationToken = v5063 
+            (* run_target_args'
             let v5065 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2346,7 +2434,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             use v5085 = v5085 
             let v5090 : System_Net_Sockets_TcpClient = v5085 
             try
+                (* run_target_args'
                 let v5091 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2379,7 +2469,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v5091 = v5110 
                 #endif
                 let v5111 : System.Threading.Tasks.ValueTask = _run_target_args'_v5091 
+                (* run_target_args'
                 let v5116 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2413,7 +2505,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v5116 = v5136 
                 #endif
                 let v5137 : System.Threading.Tasks.Task = _run_target_args'_v5116 
+                (* run_target_args'
                 let v5142 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2483,7 +2577,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             let v7587 : Async<System.Threading.CancellationToken> = Async.CancellationToken
             let! v7587 = v7587 
             let v7588 : System.Threading.CancellationToken = v7587 
+            (* run_target_args'
             let v7589 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2519,7 +2615,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
             use v7609 = v7609 
             let v7614 : System_Net_Sockets_TcpClient = v7609 
             try
+                (* run_target_args'
                 let v7615 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2552,7 +2650,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v7615 = v7634 
                 #endif
                 let v7635 : System.Threading.Tasks.ValueTask = _run_target_args'_v7615 
+                (* run_target_args'
                 let v7640 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2586,7 +2686,9 @@ and method7 (v0 : string, v1 : int32) : Async<bool> =
                 let _run_target_args'_v7640 = v7660 
                 #endif
                 let v7661 : System.Threading.Tasks.Task = _run_target_args'_v7640 
+                (* run_target_args'
                 let v7666 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -2666,7 +2768,9 @@ and closure15 () (v0 : exn) : US7 =
 and method27 () : (exn -> US7) =
     closure15()
 and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2688,7 +2792,9 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
         async {
             let! v0 = v0 
             let v14 : Choice<bool, exn> = v0 
+            (* run_target_args'
             let v15 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2742,7 +2848,9 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
         async {
             let! v0 = v0 
             let v242 : Choice<bool, exn> = v0 
+            (* run_target_args'
             let v243 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2796,7 +2904,9 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
         async {
             let! v0 = v0 
             let v470 : Choice<bool, exn> = v0 
+            (* run_target_args'
             let v471 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2850,7 +2960,9 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
         async {
             let! v0 = v0 
             let v698 : Choice<bool, exn> = v0 
+            (* run_target_args'
             let v699 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -2901,7 +3013,9 @@ and method25 (v0 : Async<Choice<bool, exn>>) : Async<US7> =
     let v923 : Async<US7> = _run_target_args'_v1 
     v923
 and method28 (v0 : Async<US7>) : Async<US8> =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3069,14 +3183,18 @@ and method32 () : string =
     let v2 : string = v1 ()
     let v5 : char = v2.[int 0]
     let v6 : string = method14(v5)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v8 : string = "inline_colorization::color_bright_red"
     let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v8 
+    (* run_target_args'
     let v10 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3123,7 +3241,9 @@ and method32 () : string =
 #if FABLE_COMPILER_RUST && WASM
     let v40 : string = "inline_colorization::color_bright_red"
     let v41 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v40 
+    (* run_target_args'
     let v42 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3170,7 +3290,9 @@ and method32 () : string =
 #if FABLE_COMPILER_RUST && CONTRACT
     let v72 : string = "inline_colorization::color_bright_red"
     let v73 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v72 
+    (* run_target_args'
     let v74 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3307,7 +3429,9 @@ and closure17 (v0 : int32, v1 : exn) () : unit =
         let struct (v20 : Mut0, v21 : Mut1, v22 : Mut2, v23 : Mut3, v24 : Mut4, v25 : int64 option) = TraceState.trace_state.Value
         let v38 : string = method9(v20, v21, v22, v23, v24, v25)
         let v39 : string = method32()
+        (* run_target_args'
         let v40 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -3343,7 +3467,9 @@ and closure17 (v0 : int32, v1 : exn) () : unit =
         let v65 : string = method33(v20, v21, v22, v23, v24, v25, v38, v39, v0, v60)
         method20(v65)
 and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3502,7 +3628,9 @@ and method29 (v0 : int32, v1 : Async<US8>) : Async<US6> =
     let v4028 : Async<US6> = _run_target_args'_v2 
     v4028
 and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3522,7 +3650,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
     let v12 : unit = ()
     let _let'_v12 =
         async {
+            (* run_target_args'
             let v15 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3557,7 +3687,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v29 : Async<Async<bool>> = _run_target_args'_v15 
             let! v29 = v29 
             let v34 : Async<bool> = v29 
+            (* run_target_args'
             let v35 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3612,7 +3744,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
     let v384 : unit = ()
     let _let'_v384 =
         async {
+            (* run_target_args'
             let v387 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3647,7 +3781,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v401 : Async<Async<bool>> = _run_target_args'_v387 
             let! v401 = v401 
             let v406 : Async<bool> = v401 
+            (* run_target_args'
             let v407 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3702,7 +3838,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
     let v756 : unit = ()
     let _let'_v756 =
         async {
+            (* run_target_args'
             let v759 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3737,7 +3875,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v773 : Async<Async<bool>> = _run_target_args'_v759 
             let! v773 = v773 
             let v778 : Async<bool> = v773 
+            (* run_target_args'
             let v779 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3792,7 +3932,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
     let v1128 : unit = ()
     let _let'_v1128 =
         async {
+            (* run_target_args'
             let v1131 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3827,7 +3969,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
             let v1145 : Async<Async<bool>> = _run_target_args'_v1131 
             let! v1145 = v1145 
             let v1150 : Async<bool> = v1145 
+            (* run_target_args'
             let v1151 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -3881,7 +4025,9 @@ and method24 (v0 : Async<bool>, v1 : int32) : Async<US6> =
     let v1500 : Async<US6> = _run_target_args'_v2 
     v1500
 and method23 (v0 : int32, v1 : Async<bool>) : Async<US6> =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3916,7 +4062,9 @@ and method23 (v0 : int32, v1 : Async<bool>) : Async<US6> =
     let v10 : Async<US6> = _run_target_args'_v2 
     v10
 and method22 (v0 : int32, v1 : string, v2 : int32) : Async<bool> =
+    (* run_target_args'
     let v3 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4099,7 +4247,9 @@ and method40 (v0 : int32, v1 : int64, v2 : int32 option, v3 : bool) : string =
     let v95 : unit = ()
     let v96 : (unit -> unit) = closure7(v5, v92)
     let v97 : unit = (fun () -> v96 (); v95) ()
+    (* run_target_args'
     let v100 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4195,7 +4345,9 @@ and closure23 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) () : unit =
         let v42 : string = method39(v22, v23, v24, v25, v26, v27, v40, v41, v2, v3, v0, v1)
         method20(v42)
 and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64) : Async<int64> =
+    (* run_target_args'
     let v5 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4241,7 +4393,9 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                     let v45 : (unit -> unit) = closure23(v0, v1, v3, v4)
                     let v46 : unit = (fun () -> v45 (); v44) ()
                     ()
+                (* run_target_args'
                 let v86 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -4328,7 +4482,9 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                     let v753 : (unit -> unit) = closure23(v0, v1, v3, v4)
                     let v754 : unit = (fun () -> v753 (); v752) ()
                     ()
+                (* run_target_args'
                 let v794 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -4415,7 +4571,9 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                     let v1461 : (unit -> unit) = closure23(v0, v1, v3, v4)
                     let v1462 : unit = (fun () -> v1461 (); v1460) ()
                     ()
+                (* run_target_args'
                 let v1502 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -4502,7 +4660,9 @@ and method37 (v0 : int32 option, v1 : bool, v2 : string, v3 : int32, v4 : int64)
                     let v2169 : (unit -> unit) = closure23(v0, v1, v3, v4)
                     let v2170 : unit = (fun () -> v2169 (); v2168) ()
                     ()
+                (* run_target_args'
                 let v2210 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -4575,7 +4735,9 @@ and closure19 (v0 : int32 option) (v1 : bool) : (string -> (int32 -> Async<int64
 and closure18 () (v0 : int32 option) : (bool -> (string -> (int32 -> Async<int64>))) =
     closure19(v0)
 and method43 (v0 : int32 option, v1 : string, v2 : int32) : Async<int32> =
+    (* run_target_args'
     let v3 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

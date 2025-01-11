@@ -7,7 +7,9 @@ let rec closure1 () (v0 : System.Threading.CancellationToken) : US0 =
 and method0 () : (System.Threading.CancellationToken -> US0) =
     closure1()
 and closure2 (v0 : System.Threading.CancellationTokenSource) () : unit =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -40,7 +42,9 @@ and method1 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
 and method2 (v0 : System.Threading.CancellationTokenSource) : (unit -> unit) =
     closure2(v0)
 and closure0 () (v0 : System.Threading.CancellationToken option) : struct (System.Threading.CancellationToken * System.IDisposable) =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -83,7 +87,9 @@ and closure0 () (v0 : System.Threading.CancellationToken option) : struct (Syste
             let v58 : (System.Threading.CancellationToken []) = [|v57; v56|]
             let v59 : ((System.Threading.CancellationToken []) -> System.Threading.CancellationTokenSource) = System.Threading.CancellationTokenSource.CreateLinkedTokenSource
             v59 v58
+    (* run_target_args'
     let v63 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

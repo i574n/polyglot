@@ -65,7 +65,9 @@ and method4 () : string =
     let v0 : string = "hhmm"
     v0
 and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -77,7 +79,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v11 : System.DateTime = System.DateTime.SpecifyKind (v1, v10)
     let v14 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
     let v15 : System.DateTime = v14 v11
+    (* run_target_args'
     let v18 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -116,7 +120,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v18 = v33 
     #endif
     let v34 : int64 = _run_target_args'_v18 
+    (* run_target_args'
     let v51 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -190,7 +196,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v129
         | US1_0(v128) -> (* Some *)
             v128
+    (* run_target_args'
     let v132 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -224,12 +232,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v132 = v148 
     #endif
     let v149 : System.TimeZoneInfo = _run_target_args'_v132 
+    (* run_target_args'
     let v154 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v155 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -274,7 +286,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v154 = v190 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v193 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -341,7 +355,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v249 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v250 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -381,7 +397,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v274 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v275 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -429,7 +447,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v313 : string = method2()
+    (* run_target_args'
     let v314 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -475,7 +495,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v363 : int32 = v356 - 1
     let v364 : string = v339.[int v349..int v363]
     let v368 : string = $"{v131}{v337}{v364}"
+    (* run_target_args'
     let v369 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -518,7 +540,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v404 : System.DateTime = System.DateTime.SpecifyKind (v1, v403)
     let v407 : (System.DateTime -> System.DateTime) = _.ToUniversalTime()
     let v408 : System.DateTime = v407 v404
+    (* run_target_args'
     let v411 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -557,7 +581,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v411 = v426 
     #endif
     let v427 : int64 = _run_target_args'_v411 
+    (* run_target_args'
     let v444 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -631,7 +657,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v522
         | US1_0(v521) -> (* Some *)
             v521
+    (* run_target_args'
     let v525 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -665,12 +693,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v525 = v541 
     #endif
     let v542 : System.TimeZoneInfo = _run_target_args'_v525 
+    (* run_target_args'
     let v547 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v548 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -715,7 +747,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v547 = v583 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v586 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -782,7 +816,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v642 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v643 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -822,7 +858,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v667 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v668 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -870,7 +908,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v706 : string = method2()
+    (* run_target_args'
     let v707 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -916,7 +956,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v756 : int32 = v749 - 1
     let v757 : string = v732.[int v742..int v756]
     let v761 : string = $"{v524}{v730}{v757}"
+    (* run_target_args'
     let v762 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -966,7 +1008,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v792
     let v796 : (string -> string) = v1.ToString
     let v797 : string = v796 v795
+    (* run_target_args'
     let v811 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1000,12 +1044,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v811 = v827 
     #endif
     let v828 : System.TimeZoneInfo = _run_target_args'_v811 
+    (* run_target_args'
     let v833 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v834 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1050,7 +1098,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v833 = v869 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v872 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1117,7 +1167,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v928 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v929 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1157,7 +1209,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v953 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v954 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1205,7 +1259,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v992 : string = method4()
+    (* run_target_args'
     let v993 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1251,7 +1307,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v1042 : int32 = v1035 - 1
     let v1043 : string = v1018.[int v1028..int v1042]
     let v1047 : string = $"{v797}{v1016}{v1043}"
+    (* run_target_args'
     let v1048 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1297,7 +1355,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v1075
     let v1079 : (string -> string) = v1.ToString
     let v1080 : string = v1079 v1078
+    (* run_target_args'
     let v1094 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1331,12 +1391,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1094 = v1110 
     #endif
     let v1111 : System.TimeZoneInfo = _run_target_args'_v1094 
+    (* run_target_args'
     let v1116 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v1117 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1381,7 +1445,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1116 = v1152 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v1155 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1448,7 +1514,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v1211 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1212 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1488,7 +1556,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v1236 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1237 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1536,7 +1606,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v1275 : string = method4()
+    (* run_target_args'
     let v1276 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1582,7 +1654,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v1325 : int32 = v1318 - 1
     let v1326 : string = v1301.[int v1311..int v1325]
     let v1330 : string = $"{v1080}{v1299}{v1326}"
+    (* run_target_args'
     let v1331 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1628,7 +1702,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v1358
     let v1362 : (string -> string) = v1.ToString
     let v1363 : string = v1362 v1361
+    (* run_target_args'
     let v1377 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1662,12 +1738,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1377 = v1393 
     #endif
     let v1394 : System.TimeZoneInfo = _run_target_args'_v1377 
+    (* run_target_args'
     let v1399 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v1400 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1712,7 +1792,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1399 = v1435 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v1438 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1779,7 +1861,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v1494 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1495 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1819,7 +1903,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v1519 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1520 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1867,7 +1953,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v1558 : string = method4()
+    (* run_target_args'
     let v1559 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1913,7 +2001,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v1608 : int32 = v1601 - 1
     let v1609 : string = v1584.[int v1594..int v1608]
     let v1613 : string = $"{v1363}{v1582}{v1609}"
+    (* run_target_args'
     let v1614 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1959,7 +2049,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
             v1641
     let v1645 : (string -> string) = v1.ToString
     let v1646 : string = v1645 v1644
+    (* run_target_args'
     let v1660 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1993,12 +2085,16 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1660 = v1676 
     #endif
     let v1677 : System.TimeZoneInfo = _run_target_args'_v1660 
+    (* run_target_args'
     let v1682 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v1683 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2043,7 +2139,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let _run_target_args'_v1682 = v1718 
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v1721 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2110,7 +2208,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
     let v1777 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1778 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2150,7 +2250,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     #endif
 #else
     let v1802 : (System.TimeZoneInfo -> (System.DateTime -> System.TimeSpan)) = _.GetUtcOffset
+    (* run_target_args'
     let v1803 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2198,7 +2300,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
         else
             0uy
     let v1841 : string = method4()
+    (* run_target_args'
     let v1842 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2244,7 +2348,9 @@ and method0 (v0 : System.Guid, v1 : System.DateTime) : System.Guid =
     let v1891 : int32 = v1884 - 1
     let v1892 : string = v1867.[int v1877..int v1891]
     let v1896 : string = $"{v1646}{v1865}{v1892}"
+    (* run_target_args'
     let v1897 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2294,7 +2400,9 @@ and closure3 () (v0 : System.Guid) : System.DateTime =
     let v1 : (System.Guid -> string) = _.ToString()
     let v2 : string = v1 v0
     let v5 : (string -> string) = closure4()
+    (* run_target_args'
     let v6 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

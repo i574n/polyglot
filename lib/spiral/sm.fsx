@@ -90,14 +90,18 @@ and closure11 () (v0 : string) : (string -> (string -> string)) =
 and method2 (v0 : string) : string =
     v0
 and method1 (v0 : string, v1 : string, v2 : string) : string =
+    (* run_target_args'
     let v3 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v4 : string = $"regex::Regex::new(&$0)"
     let v5 : Result<regex_Regex, regex_Error> = Fable.Core.RustInterop.emitRustExpr v0 v4 
+    (* run_target_args'
     let v6 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -192,7 +196,9 @@ and method3 () : string =
 and method4 (v0 : string) : string =
     v0
 and closure23 (v0 : (string [])) (v1 : string) : (string []) =
+    (* run_target_args'
     let v2 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -407,7 +413,9 @@ and closure41 (v0 : int64) (v1 : string) : string =
 and closure40 () (v0 : int64) : (string -> string) =
     closure41(v0)
 and closure42 () (v0 : exn) : string =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
