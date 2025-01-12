@@ -147,7 +147,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v41 : (float * float) = v38, v40 
     let v42 : (bool * (float * float)) = false, v41 
     let v43 : pyo3_Python = method7(v0)
+    (* run_target_args'
     let v44 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -183,7 +185,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let _run_target_args'_v44 = v60 
     #endif
     let v63 : Ref<Str> = _run_target_args'_v44 
+    (* run_target_args'
     let v68 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -222,7 +226,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v92 : string = "std::ffi::CString::new($0).unwrap()"
     let v93 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v87 v92 
     let v94 : string = ""
+    (* run_target_args'
     let v95 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -258,7 +264,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let _run_target_args'_v95 = v111 
     #endif
     let v114 : Ref<Str> = _run_target_args'_v95 
+    (* run_target_args'
     let v119 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -302,7 +310,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v148 : bool = Fable.Core.RustInterop.emitRustExpr v146 v147 
     let v149 : string = "x"
     let v150 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v149 
+    (* run_target_args'
     let v151 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -342,7 +352,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v176 : bool = Fable.Core.RustInterop.emitRustExpr v170 v175 
     let v177 : string = "_result_map_error__"
     let v178 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v177 
+    (* run_target_args'
     let v179 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -379,7 +391,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     #endif
     let v190 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v179 
     let v193 : string = method8()
+    (* run_target_args'
     let v194 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -422,7 +436,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v222 : bool = Fable.Core.RustInterop.emitRustExpr v220 v221 
     let v223 : string = "x"
     let v224 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v223 
+    (* run_target_args'
     let v225 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -462,7 +478,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v250 : bool = Fable.Core.RustInterop.emitRustExpr v244 v249 
     let v251 : string = "_result_map_error__"
     let v252 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v251 
+    (* run_target_args'
     let v253 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -506,7 +524,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v272 : bool = Fable.Core.RustInterop.emitRustExpr v270 v271 
     let v273 : string = "x"
     let v274 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v273 
+    (* run_target_args'
     let v275 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -555,7 +575,9 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v309 : bool = Fable.Core.RustInterop.emitRustExpr v307 v308 
     let v310 : string = "x"
     let v311 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v310 
+    (* run_target_args'
     let v312 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -651,7 +673,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v41 : (float * float) = v38, v40 
     let v42 : (bool * (float * float)) = false, v41 
     let v43 : pyo3_Python = method7(v0)
+    (* run_target_args'
     let v44 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -687,7 +711,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let _run_target_args'_v44 = v60 
     #endif
     let v63 : Ref<Str> = _run_target_args'_v44 
+    (* run_target_args'
     let v68 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -726,7 +752,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v92 : string = "std::ffi::CString::new($0).unwrap()"
     let v93 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v87 v92 
     let v94 : string = ""
+    (* run_target_args'
     let v95 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -762,7 +790,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let _run_target_args'_v95 = v111 
     #endif
     let v114 : Ref<Str> = _run_target_args'_v95 
+    (* run_target_args'
     let v119 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -806,7 +836,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v148 : bool = Fable.Core.RustInterop.emitRustExpr v146 v147 
     let v149 : string = "x"
     let v150 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v149 
+    (* run_target_args'
     let v151 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -846,7 +878,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v176 : bool = Fable.Core.RustInterop.emitRustExpr v170 v175 
     let v177 : string = "_result_map_error__"
     let v178 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v177 
+    (* run_target_args'
     let v179 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -883,7 +917,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     #endif
     let v190 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v179 
     let v193 : string = method8()
+    (* run_target_args'
     let v194 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -926,7 +962,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v222 : bool = Fable.Core.RustInterop.emitRustExpr v220 v221 
     let v223 : string = "x"
     let v224 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v223 
+    (* run_target_args'
     let v225 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -966,7 +1004,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v250 : bool = Fable.Core.RustInterop.emitRustExpr v244 v249 
     let v251 : string = "_result_map_error__"
     let v252 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v251 
+    (* run_target_args'
     let v253 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1010,7 +1050,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v272 : bool = Fable.Core.RustInterop.emitRustExpr v270 v271 
     let v273 : string = "x"
     let v274 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v273 
+    (* run_target_args'
     let v275 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1059,7 +1101,9 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v309 : bool = Fable.Core.RustInterop.emitRustExpr v307 v308 
     let v310 : string = "x"
     let v311 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v310 
+    (* run_target_args'
     let v312 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1158,7 +1202,9 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v39 : string = $"        s = mpmath.gamma(s)"
         let v40 : num_complex_Complex<float> = method3(v38)
         let v41 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v39, v40)
+        (* run_target_args'
         let v42 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -1285,7 +1331,9 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v142 : string = $"        s = mpmath.gamma(s)"
                     let v143 : num_complex_Complex<float> = method3(v141)
                     let v144 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v142, v143)
+                    (* run_target_args'
                     let v145 : unit = ()
+                    run_target_args' *)
                     
 #if FABLE_COMPILER || WASM || CONTRACT
                     
@@ -1412,7 +1460,9 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v245 : string = $"        s = mpmath.gamma(s)"
                                 let v246 : num_complex_Complex<float> = method3(v244)
                                 let v247 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v245, v246)
+                                (* run_target_args'
                                 let v248 : unit = ()
+                                run_target_args' *)
                                 
 #if FABLE_COMPILER || WASM || CONTRACT
                                 
@@ -1539,7 +1589,9 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v348 : string = $"        s = mpmath.gamma(s)"
                                             let v349 : num_complex_Complex<float> = method3(v347)
                                             let v350 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v348, v349)
+                                            (* run_target_args'
                                             let v351 : unit = ()
+                                            run_target_args' *)
                                             
 #if FABLE_COMPILER || WASM || CONTRACT
                                             
@@ -1666,7 +1718,9 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v451 : string = $"        s = mpmath.gamma(s)"
                                                         let v452 : num_complex_Complex<float> = method3(v450)
                                                         let v453 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v451, v452)
+                                                        (* run_target_args'
                                                         let v454 : unit = ()
+                                                        run_target_args' *)
                                                         
 #if FABLE_COMPILER || WASM || CONTRACT
                                                         
@@ -1841,7 +1895,9 @@ and method1 (v0 : pyo3_Python) : unit =
         let v13 : num_complex_Complex<float> = method3(v10)
         let v14 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v12, v13)
         let v15 : num_complex_Complex<float> = method13(v0, v10)
+        (* run_target_args'
         let v16 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -1958,7 +2014,9 @@ and method0 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1994,7 +2052,9 @@ and method0 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2031,7 +2091,9 @@ and method21 (v0 : pyo3_Python) : unit =
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
     let v6 : num_complex_Complex<float> = method13(v0, v2)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2149,7 +2211,9 @@ and method20 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2185,7 +2249,9 @@ and method20 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2246,7 +2312,9 @@ and method25 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v7 : num_complex_Complex<float> = method3(v5)
         let v8 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v6, v7)
         let v9 : num_complex_Complex<float> = method13(v0, v5)
+        (* run_target_args'
         let v10 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -2354,7 +2422,9 @@ and method22 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2390,7 +2460,9 @@ and method22 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2443,7 +2515,9 @@ and method27 (v0 : pyo3_Python) : unit =
         let v20 : num_complex_Complex<float> = method3(v18)
         let v21 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v19, v20)
         let v22 : num_complex_Complex<float> = method13(v0, v18)
+        (* run_target_args'
         let v23 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -2563,7 +2637,9 @@ and method26 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2599,7 +2675,9 @@ and method26 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2642,7 +2720,9 @@ and method29 (v0 : pyo3_Python) : unit =
         let v10 : num_complex_Complex<float> = method3(v8)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
         let v12 : num_complex_Complex<float> = method13(v0, v8)
+        (* run_target_args'
         let v13 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -2749,7 +2829,9 @@ and method28 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2785,7 +2867,9 @@ and method28 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2822,7 +2906,9 @@ and method31 (v0 : pyo3_Python) : unit =
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
     let v6 : num_complex_Complex<float> = method13(v0, v2)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2924,7 +3010,9 @@ and method30 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2960,7 +3048,9 @@ and method30 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -2997,7 +3087,9 @@ and method33 (v0 : pyo3_Python) : unit =
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
     let v6 : num_complex_Complex<float> = method13(v0, v2)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3060,7 +3152,9 @@ and method33 (v0 : pyo3_Python) : unit =
     let v55 : num_complex_Complex<float> = method3(v53)
     let v56 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v54, v55)
     let v57 : num_complex_Complex<float> = method13(v0, v53)
+    (* run_target_args'
     let v58 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3168,7 +3262,9 @@ and method32 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3204,7 +3300,9 @@ and method32 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3241,7 +3339,9 @@ and method35 (v0 : pyo3_Python) : unit =
     let v4 : num_complex_Complex<float> = method3(v2)
     let v5 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v3, v4)
     let v6 : num_complex_Complex<float> = method13(v0, v2)
+    (* run_target_args'
     let v7 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3343,7 +3443,9 @@ and method34 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3379,7 +3481,9 @@ and method34 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3430,7 +3534,9 @@ and method39 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v7 : num_complex_Complex<float> = method3(v5)
         let v8 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v6, v7)
         let v9 : num_complex_Complex<float> = method13(v0, v5)
+        (* run_target_args'
         let v10 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -3538,7 +3644,9 @@ and method36 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3574,7 +3682,9 @@ and method36 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3628,7 +3738,9 @@ and method43 (v0 : pyo3_Python, v1 : UH1) : unit =
         let v5 : num_complex_Complex<float> = method3(v2)
         let v6 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v4, v5)
         let v7 : num_complex_Complex<float> = method13(v0, v2)
+        (* run_target_args'
         let v8 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -3736,7 +3848,9 @@ and method40 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3772,7 +3886,9 @@ and method40 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -3823,7 +3939,9 @@ and method47 (v0 : pyo3_Python, v1 : UH1) : unit =
         let v5 : num_complex_Complex<float> = method3(v2)
         let v6 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v4, v5)
         let v7 : num_complex_Complex<float> = method13(v0, v2)
+        (* run_target_args'
         let v8 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -3908,7 +4026,9 @@ and method47 (v0 : pyo3_Python, v1 : UH1) : unit =
         let v78 : string = $"        s = mpmath.gamma(s)"
         let v79 : num_complex_Complex<float> = method3(v77)
         let v80 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v78, v79)
+        (* run_target_args'
         let v81 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -3974,7 +4094,9 @@ and method47 (v0 : pyo3_Python, v1 : UH1) : unit =
         let v132 : num_complex_Complex<float> = method3(v130)
         let v133 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v131, v132)
         let v134 : num_complex_Complex<float> = method13(v0, v130)
+        (* run_target_args'
         let v135 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -4104,7 +4226,9 @@ and method44 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4140,7 +4264,9 @@ and method44 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4222,7 +4348,9 @@ and method52 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
         let v10 : num_complex_Complex<float> = method3(v6)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
         let v12 : num_complex_Complex<float> = method13(v0, v6)
+        (* run_target_args'
         let v13 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -4339,7 +4467,9 @@ and method48 () : unit =
     let x = v5 //
     let v12 : _ = x
     let v13 : unit = ()
+    (* run_target_args'
     let v14 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -4375,7 +4505,9 @@ and method48 () : unit =
     let v24 : bool = Fable.Core.RustInterop.emitRustExpr () v23 
     let v25 : string = "__run_test"
     let v26 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v25 
+    (* run_target_args'
     let v27 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

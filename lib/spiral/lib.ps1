@@ -59,11 +59,12 @@ function CopyTarget {
         )
         $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
-        $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
+        $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         if (!(Test-Path $from)) {
-            $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
+            $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
         }
-        $to = "$root/lib/$lib/$name$_runtime.$Language"
+        $to = ResolveLink "$root/lib/$lib/$name$_runtime.$Language"
+        Write-Output "polyglot/lib/spiral/lib.ps1 / CopyItem / from: $from / to: $to"
         Copy-Item $from $to -Force
 
         $text = Get-Content $to
@@ -118,6 +119,7 @@ function CopyTarget {
         }
         if ($Language -eq "py") {
             $text = $text `
+                -replace "from .....lib", "from ........polyglot.lib" `
                 -replace "from .....lib", "from ........polyglot.lib"
         }
 
