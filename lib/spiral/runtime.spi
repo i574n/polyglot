@@ -625,15 +625,13 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
         run_target_args (fun () => options) function
             | Fsharp (Native) => fun options =>
                 inl file_name, arguments = options.command |> split_command |> resultm.get
-                inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
-
+                inl working_directory =
+                    options.working_directory |> optionm'.unbox |> optionm'.default_value ""
                 trace Debug
                     fun () => "runtime.execute_with_options_async"
                     fun () => { file_name arguments options }
-
                 inl utf8 = sm'.encoding_utf8 ()
                 inl arguments = arguments |> optionm'.default_value ""
-
                 $'let start_info = System.Diagnostics.ProcessStartInfo ('
                 $'  Arguments = !arguments,'
                 $'  StandardOutputEncoding = !utf8,'
@@ -645,30 +643,25 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
                 $'  UseShellExecute = false'
                 $')'
                 inl start_info : process_start_info = $'start_info'
-
                 inl environment_variables = join options.environment_variables
                 (a environment_variables : _ i32 _)
                 |> am.iter fun key, value =>
                     $'!start_info.EnvironmentVariables.[!key] <- !value '
-
                 inl proc = start_info |> new_process |> use
                 inl output : _ string = threading.new_concurrent_stack ()
-
                 let event error (e : data_received_event_args) =
                     fun () =>
                         inl data = e |> event_data
                         if data <> null () then
                             match options.on_line |> optionm'.unbox with
                             | Some on_line =>
-                                on_line
-                                    {
-                                        process_id = proc |> process_id
-                                        line = data
-                                        error = error
-                                    }
+                                on_line {
+                                    process_id = proc |> process_id
+                                    line = data
+                                    error = error
+                                }
                                 |> async.do
                             | None => ()
-
                             inl text =
                                 if error
                                 then $'$"\! {!data}"'
@@ -676,34 +669,27 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
                             if options.trace
                             then trace Verbose (fun () => text) id
                             else text |> console.write_line
-
                             inl l = if error then $'"\\u001b[7;4m"' else ""
                             inl r = if error then $'"\\u001b[0m"' else ""
                             output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
                     |> async.new_async
-
                 proc |> process_add_output_data_received (event false >> async.start_immediate)
                 proc |> process_add_error_data_received (event true >> async.start_immediate)
-
                 if proc |> process_start |> not
                 then failwith $'$"runtime.execute_with_options_async / process_start error"'
-
                 proc |> process_begin_error_read_line
                 proc |> process_begin_output_read_line
-
                 inl ct =
                     options.cancellation_token
                     |> optionm'.unbox
                     |> optionm'.default_with threading.token_none
                     |> async.merge_cancellation_token_with_default_async
                     |> async.let'
-
                 ct |> threading.token_register fun () =>
                     if proc |> process_has_exited |> not
                     then proc |> process_kill
                 |> use
                 |> ignore
-
                 inl exit_code : i32 =
                     fun () =>
                         try_unit
@@ -725,18 +711,15 @@ let execute_with_options_async (options : execution_options) : _ (int * string) 
                                 (limit.min : i32) |> return
                     |> async.new_async_unit
                     |> async.let'
-
                 inl output =
                     output
                     |> seq.cast'
                     |> seq.rev''
                     |> fun x => x : seq.seq' string
                     |> sm'.concat "\n"
-
                 trace Debug
                     fun () => "runtime.execute_with_options_async"
                     fun () => { exit_code output_length = output |> sm'.length : i32 }
-
                 (exit_code, output) |> return
             | _ => fun _ =>
                 global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = bool\n  type DataReceivedEventArgs = bool\n#endif"

@@ -149,8 +149,8 @@ function GetTargetDir {
         [string] $ProjectName
     )
     $root = "$PSScriptRoot/../.."
-    $result = (Resolve-Path "$root/target/Builder/$ProjectName").Path
-    Write-Host "targetDir: $result"
+    $result = ResolveLink "$root/target/Builder/$ProjectName"
+    Write-Host "lib.GetTargetDir / targetDir: $result"
     $result
 }
 
