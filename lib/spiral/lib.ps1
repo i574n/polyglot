@@ -64,7 +64,7 @@ function CopyTarget {
             $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
         }
         $to = ResolveLink "$root/lib/$lib/$name$_runtime.$Language"
-        Write-Output "polyglot/lib/spiral/lib.ps1 / CopyItem / from: $from / to: $to"
+        Write-Output "polyglot/lib/spiral/lib.ps1/CopyItem / from: $from / to: $to"
         Copy-Item $from $to -Force
 
         $text = Get-Content $to
@@ -152,7 +152,7 @@ function GetTargetDir {
     )
     $root = "$PSScriptRoot/../.."
     $result = ResolveLink "$root/target/Builder/$ProjectName"
-    Write-Host "lib.GetTargetDir / targetDir: $result"
+    Write-Host "polyglot/lib/spiral/lib.ps1/GetTargetDir / targetDir: $result"
     $result
 }
 
@@ -166,7 +166,11 @@ function BuildFable {
         [string] $Language,
         [string] $Runtime
     )
-    $root = "$PSScriptRoot/../.."
+    $root = ResolveLink "$PSScriptRoot/../.."
+
+    Write-Host ("polyglot/lib/spiral/lib.ps1/BuildFable / " + `
+        "TargetDir: $TargetDir / ProjectName: $ProjectName / Language: $Language / Runtime: $Runtime / " + `
+        "root: $root")
 
     { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language --define $($IsWindows ? "_WINDOWS" : "_LINUX") $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
 
