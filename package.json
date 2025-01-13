@@ -2,7 +2,7 @@
   "name": "polyglot",
   "version": "0.0.1",
   "type": "module",
-  "main": "lib/spiral/lib.ts",
+  "main": "deps/spiral/lib/spiral/lib.ts",
   "scripts": {
     "outdated-pre": "npm-check-updates --target greatest"
   },

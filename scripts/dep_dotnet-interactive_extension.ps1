@@ -5,7 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../scripts/core.ps1
-. ../lib/spiral/lib.ps1
+. ../deps/spiral/lib/spiral/lib.ps1
 
 
 if (!$fast) {

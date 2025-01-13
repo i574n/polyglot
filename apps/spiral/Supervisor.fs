@@ -360,7 +360,7 @@ module Supervisor =
                 (if spir then $"{moduleName}_real*-" else ""),
                 if spi then moduleName else ""
 
-        let libLinkTargetPath = workspaceRoot </> "lib/spiral"
+        let libLinkTargetPath = workspaceRoot </> "deps/spiral/lib/spiral"
         let libLinkPath = packageDir </> "spiral"
 
         let packagesModule =

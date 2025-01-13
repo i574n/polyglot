@@ -5,13 +5,11 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
-. ../../lib/spiral/lib.ps1
+. ../../deps/spiral/lib/spiral/lib.ps1
 
 
 if (!$fast) {
     { . ../spiral/dist/Supervisor$(_exe) --execute-command "../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path DirTreeHtml.dib" } | Invoke-Block
-
-    Get-Content ../../lib/spiral/networking.fsx | Write-Output
 }
 
 { . ../parser/dist/DibParser$(_exe) DirTreeHtml.dib fs } | Invoke-Block

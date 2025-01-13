@@ -32,7 +32,7 @@
 
 #!pwsh
 
-. ../../../../lib/spiral/lib.ps1
+. ../../../../deps/spiral/lib/spiral/lib.ps1
 
 #!markdown
 

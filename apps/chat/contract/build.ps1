@@ -7,7 +7,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
-. ../../../lib/spiral/lib.ps1
+. ../../../deps/spiral/lib/spiral/lib.ps1
 
 
 $projectName = "chat_contract"
@@ -31,6 +31,7 @@ $targetDir = GetTargetDir $projectName
 (Get-Content "$targetDir/target/rs/$projectName.rs") `
     -replace "../../../../../lib", "../../../lib" `
     -replace "`"./lib", "`"../../../lib" `
+    -replace "`"../../../../../deps", "`"../../../deps" `
     -replace ".fsx`"]", ".rs`"]" `
     -replace ".rs`"]", "_contract.rs`"]" `
     -replace "use fable_library_rust::DateTime_::DateTime;", "type DateTime = ();" `

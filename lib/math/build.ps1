@@ -6,7 +6,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
-. ../../lib/spiral/lib.ps1
+. ../../deps/spiral/lib/spiral/lib.ps1
 
 
 $projectName = "math"
@@ -36,7 +36,7 @@ if (!(Test-Path $path)) {
 }
 Write-Output "polyglot/lib/math/build.ps1 / path: $path"
 (Get-Content $path) `
-    -replace "../../../../../lib", "../../lib" `
+    -replace "`"../../../../../deps", "`"../../deps" `
     -replace "`"./lib", "`"../../lib" `
     -replace ".fsx`"]", ".rs`"]" `
     | FixRust `

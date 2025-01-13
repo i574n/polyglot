@@ -10,15 +10,15 @@ Formatter.ListExpansionLimit <- 100
 
 #!fsharp
 
-#!import ../../../polyglot/lib/spiral/common.fsx
-#!import ../../../polyglot/lib/spiral/sm.fsx
-#!import ../../../polyglot/lib/spiral/crypto.fsx
-#!import ../../../polyglot/lib/spiral/date_time.fsx
-#!import ../../../polyglot/lib/spiral/async_.fsx
-#!import ../../../polyglot/lib/spiral/threading.fsx
-#!import ../../../polyglot/lib/spiral/networking.fsx
-#!import ../../../polyglot/lib/spiral/platform.fsx
-#!import ../../../polyglot/lib/spiral/runtime.fsx
-#!import ../../../polyglot/lib/spiral/file_system.fsx
-#!import ../../../polyglot/lib/spiral/trace.fsx
-#!import ../../../polyglot/lib/spiral/lib.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/common.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/sm.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/crypto.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/date_time.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/async_.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/threading.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/networking.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/platform.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/runtime.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/file_system.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/trace.fsx
+#!import ../../../polyglot/deps/spiral/lib/spiral/lib.fsx
