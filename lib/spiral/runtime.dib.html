@@ -10747,15 +10747,13 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
         <span class="n">run_target_args</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">options</span><span class="p">)</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">options</span> <span class="o">=&gt;</span>
                 <span class="n">inl</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">command</span> <span class="o">|&gt;</span> <span class="n">split_command</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">get</span>
-                <span class="n">inl</span> <span class="n">working_directory</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">working_directory</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox |&gt; optionm'</span><span class="o">.</span><span class="n">default_value</span> <span class="s2">""</span>
-
+                <span class="n">inl</span> <span class="n">working_directory</span> <span class="o">=</span>
+                    <span class="n">options</span><span class="o">.</span><span class="n">working_directory</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox |&gt; optionm'</span><span class="o">.</span><span class="n">default_value</span> <span class="s2">""</span>
                 <span class="n">trace</span> <span class="n">Debug</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"runtime.execute_with_options_async"</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">file_name</span> <span class="n">arguments</span> <span class="n">options</span> <span class="p">}</span>
-
                 <span class="n">inl</span> <span class="n">utf8</span> <span class="o">=</span> <span class="n">sm</span><span class="s1">'.encoding_utf8 ()</span>
                 <span class="n">inl</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">arguments</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
-
                 <span class="err">$</span><span class="s1">'let start_info = System.Diagnostics.ProcessStartInfo ('</span>
                 <span class="err">$</span><span class="s1">'  Arguments = !arguments,'</span>
                 <span class="err">$</span><span class="s1">'  StandardOutputEncoding = !utf8,'</span>
@@ -10767,30 +10765,25 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
                 <span class="err">$</span><span class="s1">'  UseShellExecute = false'</span>
                 <span class="err">$</span><span class="s1">')'</span>
                 <span class="n">inl</span> <span class="n">start_info</span> <span class="p">:</span> <span class="n">process_start_info</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'start_info'</span>
-
                 <span class="n">inl</span> <span class="n">environment_variables</span> <span class="o">=</span> <span class="n">join</span> <span class="n">options</span><span class="o">.</span><span class="n">environment_variables</span>
                 <span class="p">(</span><span class="n">a</span> <span class="n">environment_variables</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=&gt;</span>
                     <span class="err">$</span><span class="s1">'!start_info.EnvironmentVariables.[!key] &lt;- !value '</span>
-
                 <span class="n">inl</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">start_info</span> <span class="o">|&gt;</span> <span class="n">new_process</span> <span class="o">|&gt;</span> <span class="n">use</span>
                 <span class="n">inl</span> <span class="n">output</span> <span class="p">:</span> <span class="n">_</span> <span class="n">string</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">new_concurrent_stack</span> <span class="p">()</span>
-
                 <span class="n">let</span> <span class="n">event</span> <span class="n">error</span> <span class="p">(</span><span class="n">e</span> <span class="p">:</span> <span class="n">data_received_event_args</span><span class="p">)</span> <span class="o">=</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                         <span class="n">inl</span> <span class="n">data</span> <span class="o">=</span> <span class="n">e</span> <span class="o">|&gt;</span> <span class="n">event_data</span>
                         <span class="k">if</span> <span class="n">data</span> <span class="o">&lt;&gt;</span> <span class="n">null</span> <span class="p">()</span> <span class="n">then</span>
                             <span class="k">match</span> <span class="n">options</span><span class="o">.</span><span class="n">on_line</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
                             <span class="o">|</span> <span class="n">Some</span> <span class="n">on_line</span> <span class="o">=&gt;</span>
-                                <span class="n">on_line</span>
-                                    <span class="p">{</span>
-                                        <span class="n">process_id</span> <span class="o">=</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_id</span>
-                                        <span class="n">line</span> <span class="o">=</span> <span class="n">data</span>
-                                        <span class="n">error</span> <span class="o">=</span> <span class="n">error</span>
-                                    <span class="p">}</span>
+                                <span class="n">on_line</span> <span class="p">{</span>
+                                    <span class="n">process_id</span> <span class="o">=</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_id</span>
+                                    <span class="n">line</span> <span class="o">=</span> <span class="n">data</span>
+                                    <span class="n">error</span> <span class="o">=</span> <span class="n">error</span>
+                                <span class="p">}</span>
                                 <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">do</span>
                             <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="p">()</span>
-
                             <span class="n">inl</span> <span class="n">text</span> <span class="o">=</span>
                                 <span class="k">if</span> <span class="n">error</span>
                                 <span class="n">then</span> <span class="err">$</span><span class="s1">'$"\! {!data}"'</span>
@@ -10798,34 +10791,27 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
                             <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">trace</span>
                             <span class="n">then</span> <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">text</span><span class="p">)</span> <span class="nb">id</span>
                             <span class="k">else</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
-
                             <span class="n">inl</span> <span class="n">l</span> <span class="o">=</span> <span class="k">if</span> <span class="n">error</span> <span class="n">then</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[7;4m"'</span> <span class="k">else</span> <span class="s2">""</span>
                             <span class="n">inl</span> <span class="n">r</span> <span class="o">=</span> <span class="k">if</span> <span class="n">error</span> <span class="n">then</span> <span class="err">$</span><span class="s1">'"</span><span class="se">\\</span><span class="s1">u001b[0m"'</span> <span class="k">else</span> <span class="s2">""</span>
                             <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">concurrent_stack_push</span> <span class="err">$</span><span class="s1">'$"{!l}{!data}</span><span class="si">{!r}</span><span class="s1">"'</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async</span>
-
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_add_output_data_received</span> <span class="p">(</span><span class="n">event</span> <span class="n">false</span> <span class="o">&gt;&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">start_immediate</span><span class="p">)</span>
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_add_error_data_received</span> <span class="p">(</span><span class="n">event</span> <span class="n">true</span> <span class="o">&gt;&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">start_immediate</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_start</span> <span class="o">|&gt;</span> <span class="ow">not</span>
                 <span class="n">then</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"runtime.execute_with_options_async / process_start error"'</span>
-
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_begin_error_read_line</span>
                 <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_begin_output_read_line</span>
-
                 <span class="n">inl</span> <span class="n">ct</span> <span class="o">=</span>
                     <span class="n">options</span><span class="o">.</span><span class="n">cancellation_token</span>
                     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
                     <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_with threading.token_none</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">merge_cancellation_token_with_default_async</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
-
                 <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">threading</span><span class="o">.</span><span class="n">token_register</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                     <span class="k">if</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_has_exited</span> <span class="o">|&gt;</span> <span class="ow">not</span>
                     <span class="n">then</span> <span class="n">proc</span> <span class="o">|&gt;</span> <span class="n">process_kill</span>
                 <span class="o">|&gt;</span> <span class="n">use</span>
                 <span class="o">|&gt;</span> <span class="n">ignore</span>
-
                 <span class="n">inl</span> <span class="n">exit_code</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                         <span class="n">try_unit</span>
@@ -10847,18 +10833,15 @@ __assert_eq' / actual: "../../j, US1_0 "k.l -m \\"n o\\""" / expected: "../../j,
                                 <span class="p">(</span><span class="n">limit</span><span class="o">.</span><span class="n">min</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">return</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
                     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">let</span><span class="s1">'</span>
-
                 <span class="n">inl</span> <span class="n">output</span> <span class="o">=</span>
                     <span class="n">output</span>
                     <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">cast</span><span class="s1">'</span>
                     <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">rev</span><span class="s1">''</span>
                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">seq</span><span class="o">.</span><span class="n">seq</span><span class="s1">' string</span>
                     <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat "</span><span class="se">\n</span><span class="s1">"</span>
-
                 <span class="n">trace</span> <span class="n">Debug</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"runtime.execute_with_options_async"</span>
                     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="n">exit_code</span> <span class="n">output_length</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.length : i32 }</span>
-
                 <span class="p">(</span><span class="n">exit_code</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="k">return</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span>
                 <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER</span><span class="se">\n</span><span class="s2">[&lt;CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)&gt;]</span><span class="se">\n</span><span class="s2">module System =</span><span class="se">\n</span><span class="s2"> module Diagnostics =</span><span class="se">\n</span><span class="s2">  type Process = bool</span><span class="se">\n</span><span class="s2">  type DataReceivedEventArgs = bool</span><span class="se">\n</span><span class="s2">#endif"</span>
@@ -11468,22 +11451,22 @@ __assert_eq / actual: true / expected: true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
-00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
+<pre>00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548\9242780b-ce0e-9155-5e07-f6ee5667aa16 }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"]; options = { command = pwsh -c "[IO.File]::ReadAllText('c:/Users/i574n/AppData/Local/Temp/!create_temp_path_/spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548/9242780b-ce0e-9155-5e07-f6ee5667aa16/test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 ! <span class="ansi-red-intense-fg ansi-bold">MethodInvocationException: </span><span class="ansi-red-intense-fg ansi-bold">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>
 00:00:00 <span class="ansi-black-intense-fg">v</span> #4 runtime.execute_with_options / result / { exit_code = 1; std_trace_length = 304 }
 __assert_eq / actual: 1 / expected: 1
-__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
+__assert / actual: "not find file" / expected: "<span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">MethodInvocationException: </span><span class="ansi-default-inverse-fg ansi-red-intense-bg ansi-bold ansi-underline">Exception calling "ReadAllText" with "1" argument(s): "Could not find file 'c:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548\9242780b-ce0e-9155-5e07-f6ee5667aa16\test.txt'."</span>"
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #5 runtime.execute_with_options / { file_name = cat; arguments = ["test.txt"]; options = { command = cat "test.txt"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #6 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
 00:00:00 <span class="ansi-black-intense-fg">v</span> #7 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 00:00:00 <span class="ansi-blue-intense-fg">d</span> #8 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"]; options = { command = pwsh -c "[System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [IO.File]::ReadAllText('test.txt')"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = Some(
-    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_87b2c8faed838206246521d6c61daa593a5c6aae36ba4c1003e58a667eef8018\9242780b-ce0e-9155-5e07-f6ee5667aa16",
+    "C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\spiral_be65b13b22921c395dd01a2bf5805c9661bc9365b15f6bbfed726c904f4dd548\9242780b-ce0e-9155-5e07-f6ee5667aa16",
 ) } }
 00:00:00 <span class="ansi-black-intense-fg">v</span> #9 &gt; ╭─[ 你好，世界！こんにちは世界！ ]─╮
-00:00:01 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #10 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 22 }
 __assert_eq / actual: 0 / expected: 0
 __assert_eq / actual: "╭─[ 你好，世界！こんにちは世界！ ]─╮" / expected: "╭─[ 你好，世界！こんにちは世界！ ]─╮"
 </pre>
