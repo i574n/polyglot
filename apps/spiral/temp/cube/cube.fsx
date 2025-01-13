@@ -43,7 +43,9 @@ and closure1 () (v0 : string) : US2 =
 and method4 () : (string -> US2) =
     closure1()
 and method1 (v0 : string) : string =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -349,7 +351,9 @@ and closure10 (v0 : string) () : unit =
     let v1 : (string -> unit) = System.Console.WriteLine
     v1 v0
 and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async<unit> =
+    (* run_target_args'
     let v5 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -391,7 +395,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v51 : string = v50 v46
             let v54 : bool = v0 < 0
             if v54 then
+                (* run_target_args'
                 let v55 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -425,7 +431,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v61 : unit = ()
             let v62 : (unit -> unit) = closure10(v51)
             let v63 : unit = (fun () -> v62 (); v61) ()
+            (* run_target_args'
             let v65 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -520,7 +528,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v639 : string = v638 v634
             let v642 : bool = v0 < 0
             if v642 then
+                (* run_target_args'
                 let v643 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -554,7 +564,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v649 : unit = ()
             let v650 : (unit -> unit) = closure10(v639)
             let v651 : unit = (fun () -> v650 (); v649) ()
+            (* run_target_args'
             let v653 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -649,7 +661,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v1227 : string = v1226 v1222
             let v1230 : bool = v0 < 0
             if v1230 then
+                (* run_target_args'
                 let v1231 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -683,7 +697,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v1237 : unit = ()
             let v1238 : (unit -> unit) = closure10(v1227)
             let v1239 : unit = (fun () -> v1238 (); v1237) ()
+            (* run_target_args'
             let v1241 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -778,7 +794,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v1815 : string = v1814 v1810
             let v1818 : bool = v0 < 0
             if v1818 then
+                (* run_target_args'
                 let v1819 : unit = ()
+                run_target_args' *)
                 
 #if FABLE_COMPILER || WASM || CONTRACT
                 
@@ -812,7 +830,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
             let v1825 : unit = ()
             let v1826 : (unit -> unit) = closure10(v1815)
             let v1827 : unit = (fun () -> v1826 (); v1825) ()
+            (* run_target_args'
             let v1829 : unit = ()
+            run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
@@ -886,7 +906,9 @@ and method6 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async
 and method5 (v0 : int32, v1 : int32, v2 : float, v3 : float, v4 : float) : Async<unit> =
     method6(v0, v1, v2, v3, v4)
 and closure0 () (v0 : (string [])) : unit =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -991,7 +1013,9 @@ and closure0 () (v0 : (string [])) : unit =
     #endif
     let v56 : bool = _run_target_args'_v1 
     if v56 then
+        (* run_target_args'
         let v67 : unit = ()
+        run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
@@ -1034,12 +1058,16 @@ and closure0 () (v0 : (string [])) : unit =
     let v77 : float = 0.0
     let v78 : float = 0.0
     let v79 : Async<unit> = method5(v74, v75, v76, v77, v78)
+    (* run_target_args'
     let v80 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    (* run_target_args'
     let v81 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1070,7 +1098,9 @@ and closure0 () (v0 : (string [])) : unit =
     // run_target_args' is_unit
     #endif
 #if FABLE_COMPILER_RUST && WASM
+    (* run_target_args'
     let v85 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1101,7 +1131,9 @@ and closure0 () (v0 : (string [])) : unit =
     // run_target_args' is_unit
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
+    (* run_target_args'
     let v89 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1132,7 +1164,9 @@ and closure0 () (v0 : (string [])) : unit =
     // run_target_args' is_unit
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
+    (* run_target_args'
     let v93 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1171,7 +1205,9 @@ and closure0 () (v0 : (string [])) : unit =
     let v111 : Async<Async<unit>> = _run_target_args'_v93 
     #endif
 #if FABLE_COMPILER_PYTHON
+    (* run_target_args'
     let v116 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1201,7 +1237,9 @@ and closure0 () (v0 : (string [])) : unit =
     v120 v79
     #endif
     // run_target_args' is_unit
+    (* run_target_args'
     let v121 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1232,7 +1270,9 @@ and closure0 () (v0 : (string [])) : unit =
     // run_target_args' is_unit
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
+    (* run_target_args'
     let v127 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -1271,7 +1311,9 @@ and closure0 () (v0 : (string [])) : unit =
     let v145 : Async<Async<unit>> = _run_target_args'_v127 
     #endif
 #else
+    (* run_target_args'
     let v150 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

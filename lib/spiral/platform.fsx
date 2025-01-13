@@ -9,7 +9,9 @@ and [<Struct>] US1 =
     | US1_3 of f3_0 : US0
     | US1_4 of f4_0 : US0
 let rec closure0 () () : bool =
+    (* run_target_args'
     let v0 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -57,7 +59,9 @@ let rec closure0 () () : bool =
     let v21 : bool = _run_target_args'_v0 
     v21
 and closure1 () () : string =
+    (* run_target_args'
     let v0 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     

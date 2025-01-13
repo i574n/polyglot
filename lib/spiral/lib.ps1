@@ -59,11 +59,12 @@ function CopyTarget {
         )
         $name = $Language -eq "py" -and @("threading", "platform") -contains $name ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
-        $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
+        $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         if (!(Test-Path $from)) {
-            $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
+            $from = "$TargetDir/target/$Language/polyglot/lib/$lib/$name.$Language"
         }
-        $to = "$root/lib/$lib/$name$_runtime.$Language"
+        $to = ResolveLink "$root/lib/$lib/$name$_runtime.$Language"
+        Write-Output "polyglot/lib/spiral/lib.ps1/CopyItem / from: $from / to: $to"
         Copy-Item $from $to -Force
 
         $text = Get-Content $to
@@ -118,6 +119,7 @@ function CopyTarget {
         }
         if ($Language -eq "py") {
             $text = $text `
+                -replace "from .....lib", "from ........polyglot.lib" `
                 -replace "from .....lib", "from ........polyglot.lib"
         }
 
@@ -149,8 +151,8 @@ function GetTargetDir {
         [string] $ProjectName
     )
     $root = "$PSScriptRoot/../.."
-    $result = (Resolve-Path "$root/target/Builder/$ProjectName").Path
-    Write-Host "targetDir: $result"
+    $result = ResolveLink "$root/target/Builder/$ProjectName"
+    Write-Host "polyglot/lib/spiral/lib.ps1/GetTargetDir / targetDir: $result"
     $result
 }
 
@@ -164,7 +166,11 @@ function BuildFable {
         [string] $Language,
         [string] $Runtime
     )
-    $root = "$PSScriptRoot/../.."
+    $root = ResolveLink "$PSScriptRoot/../.."
+
+    Write-Host ("polyglot/lib/spiral/lib.ps1/BuildFable / " + `
+        "TargetDir: $TargetDir / ProjectName: $ProjectName / Language: $Language / Runtime: $Runtime / " + `
+        "root: $root")
 
     { dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language --define $($IsWindows ? "_WINDOWS" : "_LINUX") $($Runtime ? @("--define", $Runtime) : @()) } | Invoke-Block -Location $root
 

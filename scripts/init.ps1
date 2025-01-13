@@ -7,6 +7,10 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ./core.ps1
 
+$ResolvedScriptDir = ResolveLink $ScriptDir
+$ResolvedScriptDir | Set-Location
+
+Write-Output "polyglot/scripts/init.ps1 / ScriptDir: $ScriptDir / ResolvedScriptDir: $ResolvedScriptDir"
 
 function Search-DotnetSdk($version) {
     $sdks = & dotnet --list-sdks
@@ -75,7 +79,7 @@ dotnet tool restore
 
 { dotnet paket restore } | Invoke-Block
 
-Set-Location $ScriptDir
+Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
@@ -88,14 +92,20 @@ Invoke-Dib init.dib
 
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
-Set-Location (New-Item "../.." -ItemType Directory -Force)
+$gitPath = ResolveLink (GetFullPath "../..")
+
+Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPath: $gitPath"
+
+Set-Location (New-Item $gitPath -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/spiral.git
 { git pull } | Invoke-Block -Location spiral
-Set-Location $ScriptDir
+Set-Location $ResolvedScriptDir
+
+Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location)"
 
 { pwsh ../../spiral/scripts/init.ps1 } | Invoke-Block
 
-EnsureSymbolicLink -Path "../deps/spiral" -Target "../../spiral"
+EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
 $Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
 { pwsh $Path -SkipPreBuild 1 } | Invoke-Block

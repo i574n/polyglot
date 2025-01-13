@@ -7810,7 +7810,9 @@ a.anchor-link {
                     <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">true</span>
                     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">false</span>
+            <span class="err">$</span><span class="s1">'(* run_target_args</span><span class="se">\'</span><span class="s1">'</span>
             <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'()'</span> <span class="p">:</span> <span class="n">unit</span>
+            <span class="err">$</span><span class="s1">'run_target_args</span><span class="se">\'</span><span class="s1"> *)'</span>
             <span class="n">inl</span> <span class="n">emit_result</span> <span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
                 <span class="k">if</span> <span class="n">is_unit</span> <span class="o">|&gt;</span> <span class="ow">not</span>
                 <span class="n">then</span> <span class="err">$</span><span class="s1">'let _run_target_args</span><span class="se">\'</span><span class="s1">_!result = !x '</span>

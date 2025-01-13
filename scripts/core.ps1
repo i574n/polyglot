@@ -157,27 +157,32 @@ function ResolveLink (
     [string] $Path,
     [string] $End = ''
 ) {
-    Write-Host "core.ResolveLink / Path: $Path / End: $End"
+    # Write-Host "polyglot/scripts/core.ps1/ResolveLink / Path: $Path / End: $End"
     if (!$Path) {
         return $End
     }
 
     $parent = $Path | Split-Path
     if (!$parent) {
-        Write-Host "core.ResolveLink / parent: $parent / Path: $Path / End: $End"
+        Write-Host "polyglot/scripts/core.ps1/ResolveLink / parent: $parent / Path: $Path / End: $End"
         return Join-Path $Path $End
     }
 
-    $End = "$(Split-Path $Path -Leaf)$($End ? '/' : '')$End"
+    if ($Path.EndsWith("..")) {
+        $End = "..$($End ? '/' : '')$End"
+    } else {
+        $End = "$($Path | Split-Path -Leaf)$($End ? '/' : '')$End"
+    }
 
     if ($parent | Test-Path) {
         $parent_target = ($parent | Get-Item).Target
         if ($path | Test-Path) {
             $path_target = ($path | Get-Item).Target
         }
-        Write-Host "core.ResolveLink / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End"
+        # Write-Host ("polyglot/scripts/core.ps1/ResolveLink / " + `
+        #     "parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
 
-        if ($parent_target -and (Test-Path $parent_target)) {
+        if ($parent_target -and ($parent_target | Test-Path)) {
             if ($parent_target.StartsWith(".")) {
                 $parent | Remove-Item -Force -Recurse
             }
@@ -198,9 +203,14 @@ function GetFullPath([string] $Path) {
 
     if ($Path.StartsWith(".") -or $Path.StartsWith("/")) {
         $ResolvedLocation = ResolveLink $Location
-        Write-Host "core.GetFullPath / Path: $Path / Location: $Location / ResolvedLocation: $ResolvedLocation"
-        $Path = [IO.Path]::GetFullPath((Join-Path $ResolvedLocation $Path))
-        Write-Host "core.GetFullPath / FullPath: $Path"
+        Write-Host ("polyglot/scripts/core.ps1/GetFullPath / " + `
+            "Path: $Path / Location: $Location / ResolvedLocation: $ResolvedLocation")
+        if ($Path.StartsWith("/")) {
+            $Path = [IO.Path]::GetFullPath($Path)
+        } else {
+            $Path = [IO.Path]::GetFullPath((Join-Path $ResolvedLocation $Path))
+        }
+        Write-Host "polyglot/scripts/core.ps1/GetFullPath / FullPath: $Path"
     }
 
     return $Path
@@ -215,10 +225,10 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     $Parent = $Path | Split-Path
 
-    Write-Output "core.EnsureSymbolicLink / Parent: $Parent / Path: $Path"
+    Write-Output "polyglot/scripts/core.ps1/EnsureSymbolicLink / Parent: $Parent / Path: $Path"
 
     if (-Not ($Parent | Test-Path)) {
-        Write-Output "core.EnsureSymbolicLink / Creating parent directory: $Parent"
+        Write-Output "polyglot/scripts/core.ps1/EnsureSymbolicLink / Creating parent directory: $Parent"
         New-Item $Parent -ItemType Directory | Out-Null
     }
 
@@ -227,7 +237,7 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
         if ($null -ne $attr `
                 -and (-not ($attr -band [IO.FileAttributes]::Directory)) `
                 -and ((-not ($attr -band [IO.FileAttributes]::ReparsePoint)))) {
-            Write-Output "core.EnsureSymbolicLink / Removing file: $Path ($attr)"
+            Write-Output "polyglot/scripts/core.ps1/EnsureSymbolicLink / Removing file: $Path ($attr)"
             $Path | Remove-Item
         }
     }
@@ -235,17 +245,19 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Target = GetFullPath $Target
     $ResolvedTarget = ResolveLink $Target
 
-    Write-Host "core.GetFullPath / FullPath: $Path / Target: $Target / ResolvedTarget: $ResolvedTarget"
+    Write-Host ("polyglot/scripts/core.ps1/EnsureSymbolicLink / " + `
+        "FullPath: $Path / Target: $Target / ResolvedTarget: $ResolvedTarget")
 
     if (-Not ($Path | Test-Path)) {
-        Write-Output "core.EnsureSymbolicLink / Creating symlink: $Path -> $Target"
+        Write-Output "polyglot/scripts/core.ps1/EnsureSymbolicLink / Creating symlink: $Path -> $Target"
         $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
         if ($null -eq $result) {
-            Write-Error "core.EnsureSymbolicLink / Failed to create symlink: $Path -> $Target ($Error)"
+            Write-Error ("polyglot/scripts/core.ps1/EnsureSymbolicLink / " + `
+                "Failed to create symlink: $Path -> $Target ($Error)")
         }
     }
     else {
-        Write-Output "core.EnsureSymbolicLink / Symlink already exists: $Path -> $Target"
+        Write-Output "polyglot/scripts/core.ps1/EnsureSymbolicLink / Symlink already exists: $Path -> $Target"
     }
 }
 
@@ -291,7 +303,8 @@ function Invoke-Dib {
             $key = $null
         }
     }
-    Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
+    Write-Output ("polyglot/scripts/core.ps1/Invoke-Dib / " + `
+        "Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)")
 
     $mergedArgs["EnvironmentVariables"] = @{ LOG_LEVEL = "Verbose" }
 

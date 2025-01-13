@@ -9635,7 +9635,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output (rust -d chrono):
-__assert_contains / actual: "/tmp/!create_temp_path_/spiral_a91033c289203d6116e67bba253db81c55521ee192297005e965f38074b89344/00000000-0000-0000-0000-000000000000" / expected: '/'
+__assert_contains / actual: "/tmp/!create_temp_path_/spiral_de7d670c7f8a5918c3a4286d22cac5a3be9b49598231decb3284da5c79b217c0/00000000-0000-0000-0000-000000000000" / expected: '/'
 
 </pre>
 </div>
@@ -10234,7 +10234,11 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.Delete'</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_file(&amp;*$0).unwrap()"'</span><span class="p">)</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' () stream.io_error =</span>
+                <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::fs::remove_file(&amp;*$0)"'</span><span class="p">)</span>
+            <span class="k">match</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">map_error</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">format</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unbox</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Ok</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
+            <span class="o">|</span> <span class="n">Error</span> <span class="n">error</span><span class="s1">' =&gt; trace Critical (fun () =&gt; "file_system.file_delete") fun () =&gt; { error'</span> <span class="p">}</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
@@ -11075,7 +11079,7 @@ __assert_eq / actual: "polyglot" / expected: "polyglot"
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .rs output (rust -d chrono):
-00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_0025b4faf07c9d5f6922a5a74e4387bfc57d0f3851911b82da9c5f616c1f552e/20250109-0433-0218-0401-000000e2a8e6 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #1 file_system.create_dir / { dir = /tmp/!create_temp_path_/spiral_5bc34408d8dec78c26d2b1cee6dd78760a656d0e627cd5b43902d986cde76d67/20250113-1729-4079-8562-000000ce7bbe }
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: true / expected: true
 __assert_eq / actual: false / expected: false
@@ -11879,7 +11883,7 @@ __assert_eq / actual: true / expected: true
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #11 7
 00:00:02 <span class="ansi-blue-intense-fg">d</span> #12 8
 __assert_between / actual: 0L / expected: struct (0L, 0L)
-__assert_between / actual: 193L / expected: struct (100L, 200L)
+__assert_between / actual: 195L / expected: struct (100L, 200L)
 __assert_eq / actual: "0" / expected: "0"
 __assert_eq / actual: true / expected: true
 </pre>

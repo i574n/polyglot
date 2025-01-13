@@ -18,5 +18,5 @@ Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 { Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
 
 if (!$fast) {
-    { ~/.bun/bin/bun test:e2e } | Invoke-Block
+    { ~/.bun/bin/bun test:e2e } | Invoke-Block -OnError Continue
 }

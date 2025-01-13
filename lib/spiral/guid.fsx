@@ -1,5 +1,7 @@
 let rec closure0 () (v0 : string) : System.Guid =
+    (* run_target_args'
     let v1 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -54,7 +56,9 @@ and method0 (v0 : string) : System.Guid =
     let v9 : string = ""
     let v10 : string = v8 v9
     let v11 : string = v10 + v0 
+    (* run_target_args'
     let v12 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -80,7 +84,9 @@ and method0 (v0 : string) : System.Guid =
     let v103 : int32 = v96 - 1
     let v104 : string = v11.[int v89..int v103]
     let v108 : string = $"{v28}-{v47}-{v66}-{v85}-{v104}"
+    (* run_target_args'
     let v109 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -137,7 +143,9 @@ and method0 (v0 : string) : System.Guid =
     let v226 : int32 = v219 - 1
     let v227 : string = v11.[int v212..int v226]
     let v231 : string = $"{v151}-{v170}-{v189}-{v208}-{v227}"
+    (* run_target_args'
     let v232 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -198,7 +206,9 @@ and method0 (v0 : string) : System.Guid =
     let v352 : int32 = v345 - 1
     let v353 : string = v11.[int v338..int v352]
     let v357 : string = $"{v277}-{v296}-{v315}-{v334}-{v353}"
+    (* run_target_args'
     let v358 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -255,7 +265,9 @@ and method0 (v0 : string) : System.Guid =
     let v475 : int32 = v468 - 1
     let v476 : string = v11.[int v461..int v475]
     let v480 : string = $"{v400}-{v419}-{v438}-{v457}-{v476}"
+    (* run_target_args'
     let v481 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -312,7 +324,9 @@ and method0 (v0 : string) : System.Guid =
     let v598 : int32 = v591 - 1
     let v599 : string = v11.[int v584..int v598]
     let v603 : string = $"{v523}-{v542}-{v561}-{v580}-{v599}"
+    (* run_target_args'
     let v604 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
@@ -369,7 +383,9 @@ and method0 (v0 : string) : System.Guid =
     let v721 : int32 = v714 - 1
     let v722 : string = v11.[int v707..int v721]
     let v726 : string = $"{v646}-{v665}-{v684}-{v703}-{v722}"
+    (* run_target_args'
     let v727 : unit = ()
+    run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
