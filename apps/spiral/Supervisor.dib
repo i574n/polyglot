@@ -489,7 +489,7 @@ let persistCode (input: {| backend : Backend option; input: SpiralInput; package
 
     let packageDir' =
         if input.packages |> Array.isEmpty
-        then workspaceRoot </> "lib"
+        then workspaceRoot </> "deps/spiral/lib"
         else
             libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
             packageDir

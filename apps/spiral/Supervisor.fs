@@ -376,7 +376,7 @@ module Supervisor =
 
         let packageDir' =
             if input.packages |> Array.isEmpty
-            then workspaceRoot </> "lib"
+            then workspaceRoot </> "deps/spiral/lib"
             else
                 libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
                 packageDir
