@@ -83,13 +83,6 @@ Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
-if (!$fast) {
-    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
-}
-
-Invoke-Dib init.dib
-
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
 $gitPath = ResolveLink (GetFullPath "../..")
@@ -101,11 +94,18 @@ git clone --recurse-submodules https://github.com/i574n/spiral.git
 { git pull } | Invoke-Block -Location spiral
 Set-Location $ResolvedScriptDir
 
-Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location)"
+Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPath: $gitPath"
 
 { pwsh ../../spiral/scripts/init.ps1 } | Invoke-Block
 
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
+
+if (!$fast) {
+    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+}
+
+Invoke-Dib init.dib
 
 $Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
 { pwsh $Path -SkipPreBuild 1 } | Invoke-Block
