@@ -1,16 +1,16 @@
 from __future__ import annotations
+from fable_modules.fable_library.reflection import (TypeInfo, union_type)
+from fable_modules.fable_library.types import (Array, Union)
 from collections.abc import Callable
 from typing import Any
 from .....deps.spiral.lib.spiral.lib import SpiralTrace_trace
 from .....deps.spiral.lib.spiral.trace import US0
-from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.types import (Array, Union)
 
 nl: str = "\n"
 
 q: str = "\""
 
-def _expr190() -> TypeInfo:
+def _expr262() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr190
+TraceLevel_reflection = _expr262
 
 def to_trace_level(_arg: TraceLevel) -> US0:
     if _arg.tag == 1:

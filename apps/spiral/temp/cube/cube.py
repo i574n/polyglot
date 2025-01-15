@@ -1,12 +1,5 @@
 from __future__ import annotations
 from abc import abstractmethod
-from collections.abc import Callable
-from dataclasses import dataclass
-from math import (sin, cos)
-import os
-import sys
-sys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')
-from typing import (Any, Protocol)
 from fable_modules.fable_library.array_ import fill
 from fable_modules.fable_library.async_ import (sleep, start_immediate)
 from fable_modules.fable_library.async_builder import (singleton as singleton_1, Async)
@@ -20,6 +13,13 @@ from fable_modules.fable_library.system_text import (StringBuilder__Append_Z721C
 from fable_modules.fable_library.thread import sleep as sleep_1
 from fable_modules.fable_library.types import (Array, Union, Record, to_string)
 from fable_modules.fable_library.util import (IEnumerable_1, to_enumerable)
+from collections.abc import Callable
+from dataclasses import dataclass
+from math import (sin, cos)
+import os
+import sys
+sys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')
+from typing import (Any, Protocol)
 
 class IOsEnviron(Protocol):
     @abstractmethod
