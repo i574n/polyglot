@@ -12,16 +12,16 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../../polyglot/lib/fsharp/Notebooks.dib
 
 #!fsharp
 
-#!import ../../lib/fsharp/Common.fs
-#!import ../../lib/fsharp/CommonFSharp.fs
-#!import ../../lib/fsharp/Async.fs
-#!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Runtime.fs
-#!import ../../lib/fsharp/FileSystem.fs
+#!import ../../../polyglot/lib/fsharp/Common.fs
+#!import ../../../polyglot/lib/fsharp/CommonFSharp.fs
+#!import ../../../polyglot/lib/fsharp/Async.fs
+#!import ../../../polyglot/lib/fsharp/AsyncSeq.fs
+#!import ../../../polyglot/lib/fsharp/Runtime.fs
+#!import ../../../polyglot/lib/fsharp/FileSystem.fs
 
 #!fsharp
 

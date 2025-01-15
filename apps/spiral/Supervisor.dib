@@ -473,7 +473,7 @@ let persistCode (input: {| backend : Backend option; input: SpiralInput; package
             (if spir then $"{moduleName}_real*-" else ""),
             if spi then moduleName else ""
 
-    let libLinkTargetPath = workspaceRoot </> "lib/spiral"
+    let libLinkTargetPath = workspaceRoot </> "../spiral/lib/spiral"
     let libLinkPath = packageDir </> "spiral"
 
     let packagesModule =
@@ -489,7 +489,7 @@ let persistCode (input: {| backend : Backend option; input: SpiralInput; package
 
     let packageDir' =
         if input.packages |> Array.isEmpty
-        then workspaceRoot </> "lib"
+        then workspaceRoot </> "../spiral/lib"
         else
             libLinkPath |> SpiralFileSystem.link_directory libLinkTargetPath
             packageDir

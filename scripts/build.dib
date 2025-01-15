@@ -49,10 +49,6 @@
 
 #!pwsh
 
-{ pwsh ../lib/spiral/build.ps1 -sequential 1 } | Invoke-Block
-
-#!pwsh
-
 { pwsh ../apps/scheduler/build.ps1 } | Invoke-Block
 
 #!pwsh

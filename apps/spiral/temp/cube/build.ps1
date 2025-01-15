@@ -12,7 +12,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../../../scripts/core.ps1
-. ../../../../lib/spiral/lib.ps1
+. ../../../../deps/spiral/lib/spiral/lib.ps1
 
 
 $projectName = "cube"
@@ -46,7 +46,7 @@ if (!$SkipRs -and !$SkipFable) {
         $path = "$targetDir/target/rs/$projectName.rs"
     }
     (Get-Content $path) `
-        -replace "../../../../../lib", "./lib" `
+        -replace "`"../../../../../deps", "`"../../../../deps" `
         -replace ".fsx`"]", ".rs`"]" `
         | FixRust `
         | Set-Content "$projectName.rs"

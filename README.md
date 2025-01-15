@@ -116,10 +116,10 @@ Other Samples
 <https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
 
 - Parsing Library  
-<https://i574n.github.io/polyglot/lib/spiral/parsing.dib.html>
+<https://i574n.github.io/spiral/lib/spiral/parsing.dib.html>
 
 - Physics Sample: "Learn Physics with Functional Programming" book  
-<https://i574n.github.io/polyglot/lib/spiral/physics.dib.html>
+<https://i574n.github.io/spiral/lib/spiral/physics.dib.html>
 
 - Domain Modeling Sample: Scheduling With Recurrency  
 <https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>

@@ -1,4 +1,4 @@
-import * as crypto from "../../lib/spiral/crypto"
+import * as crypto from "../../deps/spiral/lib/spiral/crypto"
 import * as path from "path"
 import * as fs from "fs"
 
@@ -60,7 +60,7 @@ export const getFileTokenRange = async (workspaceRoot: string, text: string) => 
   const codeFile = path.join(codeDir, text.indexOf("//// real\n") >= 0 ? "main_real.spir" : "main.spi")
   const tokensFile = path.join(codeDir, "tokens.json")
 
-  console.log(`supervisor.getFileTokenRange / codeDir: ${codeDir}`)
+  console.log(`polyglot/apps/spiral/supervisor.ts/getFileTokenRange / codeDir: ${codeDir}`)
 
   if (!(await fileExists(codeFile))) {
     await fs.promises.writeFile(codeFile, text, "utf8")
@@ -82,7 +82,8 @@ export const getFileTokenRange = async (workspaceRoot: string, text: string) => 
     }
     await sleep(60)
   }
-  console.log(`supervisor.getFileTokenRange / elapsed: ${Date.now() - start} / retries: ${retries} / tokensText.length: ${tokensText.length}`)
+  console.log(`polyglot/apps/spiral/supervisor.ts/getFileTokenRange / ` +
+        `elapsed: ${Date.now() - start} / retries: ${retries} / tokensText.length: ${tokensText.length}`)
 
   const tokens = new Uint32Array(JSON.parse(tokensText))
 

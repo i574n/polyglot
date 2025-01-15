@@ -1,15 +1,15 @@
-import { toString, Record, Union } from "../../../../deps/Fable/src/fable-library-ts/Types.js";
-import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { int32, float64 } from "../../../../deps/Fable/src/fable-library-ts/Int32.js";
-import { IComparable, IEquatable } from "../../../../deps/Fable/src/fable-library-ts/Util.js";
-import { FSharpList, ofArray } from "../../../../deps/Fable/src/fable-library-ts/List.js";
-import { Option } from "../../../../deps/Fable/src/fable-library-ts/Option.js";
-import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../../../deps/Fable/src/fable-library-ts/Seq.js";
-import { fill, setItem, item } from "../../../../deps/Fable/src/fable-library-ts/Array.js";
-import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../../../deps/Fable/src/fable-library-ts/System.Text.js";
-import { Async, singleton as singleton_1 } from "../../../../deps/Fable/src/fable-library-ts/AsyncBuilder.js";
-import { rangeDouble } from "../../../../deps/Fable/src/fable-library-ts/Range.js";
-import { startChild, sleep } from "../../../../deps/Fable/src/fable-library-ts/Async.js";
+import { toString, Record, Union } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Types.js";
+import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
+import { int32, float64 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Int32.js";
+import { IComparable, IEquatable } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Util.js";
+import { FSharpList, ofArray } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/List.js";
+import { Option } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Option.js";
+import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Seq.js";
+import { fill, setItem, item } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Array.js";
+import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/System.Text.js";
+import { Async, singleton as singleton_1 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/AsyncBuilder.js";
+import { rangeDouble } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Range.js";
+import { startChild, sleep } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Async.js";
 
 export interface IOsEnviron {
     environ(): any
