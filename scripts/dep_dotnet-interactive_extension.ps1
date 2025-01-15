@@ -91,7 +91,7 @@ $path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/System.
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$dir = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/lib"
+$dir = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/lib"
 New-Item $dir -ItemType Directory -Force | Out-Null
 Copy-Item "$ScriptDir/../deps/Fable/src/fable-library-ts/lib/ts/big.js" $(Join-Path $dir "big.js") -Force
 # { ~/.bun/bin/bun build big.ts --minify --target=node --outfile=big.js } | Invoke-Block -Location $dir
