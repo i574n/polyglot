@@ -36,57 +36,57 @@ Write-Output "path: $path"
     -replace [regex]::Escape("require(`"../../"), "require(`"../../../../../../" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Array.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Array.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Choice.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Choice.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Double.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Double.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/FSharp.Collections.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/FSharp.Collections.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/FSharp.Core.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/FSharp.Core.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/List.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/List.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Map.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Map.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Result.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Result.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/Seq.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Seq.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/SystemException.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/SystemException.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
 
-$path = Join-Path $extensionSrcPath "out/deps/Fable/src/fable-library-ts/System.Text.js"
+$path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/System.Text.js"
 (Get-Content $path) `
     -replace "\(`"\./fable_modules/fable-library-ts\.[\-\w\d\.]+/", "(`"./" `
     | Set-Content $path
