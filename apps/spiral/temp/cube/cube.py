@@ -1,4 +1,7 @@
 from __future__ import annotations
+import sys
+import os
+sys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')
 from abc import abstractmethod
 from fable_modules.fable_library.array_ import fill
 from fable_modules.fable_library.async_ import (sleep, start_immediate)
@@ -16,9 +19,8 @@ from fable_modules.fable_library.util import (IEnumerable_1, to_enumerable)
 from collections.abc import Callable
 from dataclasses import dataclass
 from math import (sin, cos)
-import os
-import sys
-sys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')
+
+
 from typing import (Any, Protocol)
 
 class IOsEnviron(Protocol):

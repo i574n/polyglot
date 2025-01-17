@@ -74,9 +74,11 @@ if (!$SkipPy -and !$SkipFable) {
     if (!(Test-Path $path)) {
         $path = "$targetDir/target/py/$projectName.py"
     }
-    (Get-Content $path) `
-        -replace "import sys", "import sys`nsys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')" `
-        | Set-Content "$projectName.py"
+    $content = Get-Content $path
+    $content = $content -replace "import sys", ""
+    $content = $content -replace "import os", ""
+    $content = $content -replace "from abc import abstractmethod", "import sys`nimport os`nsys.path.insert(0, f'{os.path.dirname(__file__)}/../../../../lib/python/fable')`nfrom abc import abstractmethod"
+    $content | Set-Content "$projectName.py"
 }
 
 if ($env:CI) {
