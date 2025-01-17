@@ -157,7 +157,7 @@ function ResolveLink (
     [string] $Path,
     [string] $End = ''
 ) {
-    Write-Host "polyglot/scripts/core.ps1/ResolveLink #1 / Path: $Path / End: $End"
+    # Write-Host "polyglot/scripts/core.ps1/ResolveLink #1 / Path: $Path / End: $End"
     if (!$Path) {
         return $End
     }
@@ -179,8 +179,8 @@ function ResolveLink (
         if ($Path | Test-Path) {
             $path_target = ($Path | Get-Item).Target
         }
-        Write-Host ("polyglot/scripts/core.ps1/ResolveLink #3 / " + `
-            "parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
+        # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #3 / " + `
+        #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
 
         if ($parent_target -and ($parent_target | Test-Path)) {
             if ($parent_target.StartsWith(".")) {
@@ -194,7 +194,9 @@ function ResolveLink (
         }
     }
 
-    Write-Host "polyglot/scripts/core.ps1/ResolveLink #4 / parent: $parent / Path: $Path / End: $End"
+    Write-Host ("polyglot/scripts/core.ps1/ResolveLink #4 / " + `
+        "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / " + `
+        "End: $End")
     return ResolveLink $parent $End
 }
 
