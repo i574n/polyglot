@@ -190,13 +190,16 @@ function ResolveLink (
                 $parent = $parent_target
             }
         } elseif ($path_target) {
+            Write-Host ("polyglot/scripts/core.ps1/ResolveLink #4 / " + `
+                "Path: $Path / parent_target: $parent_target / path_target: $path_target / " + `
+                "parent: $parent / End: $End")
             return $path_target
         }
     }
 
-    Write-Host ("polyglot/scripts/core.ps1/ResolveLink #4 / " + `
-        "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / " + `
-        "End: $End")
+    # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #5 / " + `
+    #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / " + `
+    #     "End: $End")
     return ResolveLink $parent $End
 }
 
