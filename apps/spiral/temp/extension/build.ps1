@@ -14,7 +14,7 @@ if (!$fast) {
 { wasm-pack build --target web --dev <# --reference-types # --weak-refs --no-typescript #> } | Invoke-Block
 
 Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
-{ ~/.bun/bin/bunx esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block
+{ ~/.bun/bin/bunx --bun esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block
 { Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
 
 if (!$fast) {

@@ -8,6 +8,8 @@
 
 [![깃허브 코드스페이스](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=255818909)
 
+---
+
 **\* Temporary README drafted with ChatGPT.**
 
 - [Build](#build)
@@ -38,6 +40,8 @@
   - [Bridging Literate and Functional Programming](#bridging-literate-and-functional-programming)
   - [Compilation Pipeline Summary](#compilation-pipeline-summary)
 - [Conclusion](#conclusion)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Build
 
@@ -309,6 +313,14 @@ The repository’s approach, characterized by its innovative integration of Spir
 
 This document provides a bird’s-eye view of the Polyglot repository, encapsulating its essence as a hub for Spiral’s exploration and application. If there are specific sections or details you’d like to add or modify, please feel free to provide feedback or suggestions.
 
+## Contributing
+
+Contributions are welcome! Please see the [CONTRIBUTING.md](https://github.com/i574n/.github/blob/main/CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under the AGPLv3 License. See the [LICENSE](https://github.com/i574n/polyglot/blob/main/LICENSE) file for details.
+
 ---
 
-[![Star History Chart](https://api.star-history.com/svg?repos=i574n/polyglot&type=Timeline)](https://star-history.com/#i574n/polyglot&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=i574n/polyglot&type=Timeline)]
