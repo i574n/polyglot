@@ -1,15 +1,15 @@
-import { toString, Record, Union } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Types.js";
-import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Reflection.js";
-import { int32, float64 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Int32.js";
-import { IComparable, IEquatable } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Util.js";
-import { FSharpList, ofArray } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/List.js";
-import { Option } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Option.js";
-import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Seq.js";
-import { fill, setItem, item } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Array.js";
-import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/System.Text.js";
-import { Async, singleton as singleton_1 } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/AsyncBuilder.js";
-import { rangeDouble } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Range.js";
-import { startChild, sleep } from "../../deps/polyglot/deps/Fable/src/fable-library-ts/Async.js";
+import { toString, Record, Union } from "../../../../deps/Fable/src/fable-library-ts/Types.js";
+import { char_type, int32_type, record_type, float64_type, string_type, union_type, TypeInfo } from "../../../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { int32, float64 } from "../../../../deps/Fable/src/fable-library-ts/Int32.js";
+import { IComparable, IEquatable } from "../../../../deps/Fable/src/fable-library-ts/Util.js";
+import { FSharpList, ofArray } from "../../../../deps/Fable/src/fable-library-ts/List.js";
+import { Option } from "../../../../deps/Fable/src/fable-library-ts/Option.js";
+import { iterate, choose, collect, empty, singleton, append, enumerateWhile, delay } from "../../../../deps/Fable/src/fable-library-ts/Seq.js";
+import { fill, setItem, item } from "../../../../deps/Fable/src/fable-library-ts/Array.js";
+import { StringBuilder_$ctor_Z721C83C5, StringBuilder__AppendLine, StringBuilder__Append_Z721C83C5 } from "../../../../deps/Fable/src/fable-library-ts/System.Text.js";
+import { Async, singleton as singleton_1 } from "../../../../deps/Fable/src/fable-library-ts/AsyncBuilder.js";
+import { rangeDouble } from "../../../../deps/Fable/src/fable-library-ts/Range.js";
+import { startChild, sleep } from "../../../../deps/Fable/src/fable-library-ts/Async.js";
 
 export interface IOsEnviron {
     environ(): any
@@ -280,8 +280,8 @@ export function method11(v0_1: float64, v1: float64, v2: float64, v3: float64, v
 }
 
 export function closure5(unitVar: void, v0_1: US3_$union): Option<[int32, float64, string]> {
-    if (v0_1.tag === /* US3_0 */ 0) {
-        return [v0_1.fields[0], v0_1.fields[1], v0_1.fields[2]] as [int32, float64, string];
+    if ((v0_1.tag as int32) === /* US3_0 */ 0) {
+        return [v0_1.fields[0] as any, v0_1.fields[1] as any, v0_1.fields[2] as any] as [int32, float64, string];
     }
     else {
         return undefined;
@@ -316,9 +316,9 @@ export function closure7(v0_1: US4_$union[], v1: int32, _arg: [float64, string])
     const v3: string = _arg[1];
     const v2: float64 = _arg[0];
     const v4: US4_$union = item(v1, v0_1);
-    if (v4.tag === /* US4_0 */ 0) {
-        const v8: string = v4.fields[1];
-        if (v4.fields[0] >= v2) {
+    if ((v4.tag as int32) === /* US4_0 */ 0) {
+        const v8 = v4.fields[1] as any;
+        if ((v4.fields[0] as any) >= v2) {
         }
         else {
             setItem(v0_1, v1, US4_US4_0(v2, v3));
@@ -342,7 +342,7 @@ export function method14(): string {
 export function closure9(v0_1: US4_$union[], v1: any, v2: int32, v3: int32): void {
     let v9: float64;
     const v6: US4_$union = item(v3 + (v2 * 160), v0_1);
-    const v18: any = StringBuilder__Append_Z721C83C5(v1, (v6.tag === /* US4_0 */ 0) ? ((v9 = v6.fields[0], v6.fields[1])) : ".");
+    const v18: any = StringBuilder__Append_Z721C83C5(v1, ((v6.tag as int32) === /* US4_0 */ 0) ? ((v9 = (v6.fields[0] as any), v6.fields[1] as any)) : ".");
 }
 
 export function closure8(v0_1: US4_$union[], v1: any, v2: int32): void {

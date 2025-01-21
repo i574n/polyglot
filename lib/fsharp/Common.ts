@@ -1,5 +1,6 @@
 import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { US0_$union, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../../../../../../deps/spiral/lib/spiral/trace.fsx";
 import { SpiralTrace_trace } from "../../../../../../../deps/spiral/lib/spiral/lib.fsx";
 

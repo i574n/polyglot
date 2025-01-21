@@ -157,14 +157,14 @@ function ResolveLink (
     [string] $Path,
     [string] $End = ''
 ) {
-    # Write-Host "polyglot/scripts/core.ps1/ResolveLink / Path: $Path / End: $End"
+    # Write-Host "polyglot/scripts/core.ps1/ResolveLink #1 / Path: $Path / End: $End"
     if (!$Path) {
         return $End
     }
 
     $parent = $Path | Split-Path
     if (!$parent) {
-        Write-Host "polyglot/scripts/core.ps1/ResolveLink / parent: $parent / Path: $Path / End: $End"
+        Write-Host "polyglot/scripts/core.ps1/ResolveLink #2 / parent: $parent / Path: $Path / End: $End"
         return Join-Path $Path $End
     }
 
@@ -176,11 +176,11 @@ function ResolveLink (
 
     if ($parent | Test-Path) {
         $parent_target = ($parent | Get-Item).Target
-        if ($path | Test-Path) {
-            $path_target = ($path | Get-Item).Target
+        if ($Path | Test-Path) {
+            $path_target = ($Path | Get-Item).Target
         }
-        # Write-Host ("polyglot/scripts/core.ps1/ResolveLink / " + `
-        #     "parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
+        # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #3 / " + `
+        #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
 
         if ($parent_target -and ($parent_target | Test-Path)) {
             if ($parent_target.StartsWith(".")) {
@@ -190,11 +190,16 @@ function ResolveLink (
                 $parent = $parent_target
             }
         } elseif ($path_target) {
-            $parent = $path_target
-            $End = ''
+            Write-Host ("polyglot/scripts/core.ps1/ResolveLink #4 / " + `
+                "Path: $Path / parent_target: $parent_target / path_target: $path_target / " + `
+                "parent: $parent / End: $End")
+            return $path_target
         }
     }
 
+    # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #5 / " + `
+    #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / " + `
+    #     "End: $End")
     return ResolveLink $parent $End
 }
 

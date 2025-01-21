@@ -2,11 +2,11 @@ import * as crypto from "../../deps/spiral/lib/spiral/crypto"
 import * as path from "path"
 import * as fs from "fs"
 
-import * as list from "../../deps/Fable/src/fable-library-ts/List"
-import * as array from "../../deps/Fable/src/fable-library-ts/Array"
-import * as double from "../../deps/Fable/src/fable-library-ts/Double"
-import * as seq from "../../deps/Fable/src/fable-library-ts/Seq"
-import * as core from "../../deps/Fable/src/fable-library-ts/FSharp.Core"
+import * as list from "../../deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/List"
+import * as array from "../../deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Array"
+import * as double from "../../deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Double"
+import * as seq from "../../deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/Seq"
+import * as core from "../../deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/FSharp.Core"
 
 export const _FSharpList = () => list.FSharpList
 export const _array_map = () => array.map
