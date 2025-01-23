@@ -4,7 +4,7 @@
   "description": "Auxiliary utilities for Spiral in VSCode",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.89.0"
+    "vscode": "^1.96.0"
   },
   "bugs": {
     "url": "https://github.com/i574n/polyglot/issues"
@@ -52,11 +52,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "npm-check-updates": "~17.0.0-5",
+    "npm-check-updates": "~17.1.14",
     "typescript": "next",
-    "@vscode/vsce": "~2.26",
+    "@vscode/vsce": "~3.2-5",
     "vscode": "~1.1",
-    "@types/node": "~20.12",
-    "@types/vscode": "~1.89"
+    "@types/node": "~22.10",
+    "@types/vscode": "~1.96"
   }
 }
