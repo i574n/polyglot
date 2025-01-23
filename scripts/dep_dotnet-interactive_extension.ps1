@@ -8,10 +8,6 @@ $ErrorActionPreference = "Stop"
 . ../deps/spiral/lib/spiral/lib.ps1
 
 
-if (!$fast) {
-    { dotnet fable ../deps/Fable/src/fable-library-ts/Fable.Library.TypeScript.fsproj --lang typescript --extension .ts } | Invoke-Block
-}
-
 $interactivePath = "../deps/dotnet-interactive"
 
 $extensionSrcPath = "$interactivePath/src/polyglot-notebooks-vscode-insiders"
@@ -104,6 +100,12 @@ Write-Output "Packaging..."
 $extensionsPath = @()
 
 $extensionsPathHome = "$HOME/.vscode/extensions"
+
+if (Test-Path $extensionsPathHome) {
+    $extensionsPath += $extensionsPathHome
+}
+
+$extensionsPathHome = "$HOME/.vscode-remote/extensions"
 
 if (Test-Path $extensionsPathHome) {
     $extensionsPath += $extensionsPathHome
