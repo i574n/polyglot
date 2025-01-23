@@ -13,7 +13,7 @@
 
 #!pwsh
 
-{ pwsh ../deps/spiral/apps/spiral/build.ps1 -SkipFsx 1 } | Invoke-Block
+{ pwsh ../deps/spiral/apps/spiral/build.ps1 -fast 1 -SkipFsx 1 } | Invoke-Block
 
 #!pwsh
 
@@ -29,7 +29,7 @@
 
 #!pwsh
 
-{ pwsh ../deps/spiral/apps/wasm/build.ps1 -fast 1 } | Invoke-Block
+{ pwsh ../deps/spiral/apps/wasm/build.ps1 -SkipFsx 1 } | Invoke-Block
 
 #!pwsh
 

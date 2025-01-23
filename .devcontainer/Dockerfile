@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/vscode/devcontainers/universal
+FROM mcr.microsoft.com/vscode/devcontainers/universal:dev
 
 USER root
 
