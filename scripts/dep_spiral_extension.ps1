@@ -51,7 +51,7 @@ if ($extensionsPath.Count -gt 0) {
         { ~/.bun/bin/bunx --bun tsc --build } | Invoke-Block -Location $extensionSrcPath
     }
 
-    { ~/.bun/bin/bun esbuild-base -- --minify } | Invoke-Block -Location $extensionSrcPath
+    { ~/.bun/bin/bun --bun esbuild-base -- --minify } | Invoke-Block -Location $extensionSrcPath
     { ~/.bun/bin/bunx --bun @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 

@@ -109,6 +109,3 @@ Invoke-Dib init.dib
 
 $Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
 { pwsh $Path -SkipPreBuild 1 } | Invoke-Block
-
-{ pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
-{ pwsh ../lib/python/fable/build.ps1 } | Invoke-Block
