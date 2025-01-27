@@ -34,10 +34,11 @@ if ($versions.Count -gt 1) {
 Write-Output "Tool path: $netVersion"
 
 
-# { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block
 # { pwsh ../deps/dotnet-interactive/eng/build.ps1 -build -restore } | Invoke-Block
 
 if (!$fast) {
+    # { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block -OnError Continue
+
     { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
     { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
     { npm run rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
@@ -49,5 +50,5 @@ if (!$fast) {
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net9.0/**" $netVersion -Recurse -Force
 
 if ($pack) {
-    { dotnet pack -c Release /p:Version=0.1.2 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
+    { dotnet pack -c Release /p:Version=0.1.3 } | Invoke-Block -Location ../deps/dotnet-interactive/src/dotnet-interactive -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 }

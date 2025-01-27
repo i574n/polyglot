@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "Fable": {
-      "version": "5.0.0-alpha.5",
+      "version": "5.0.0-alpha.7",
       "commands": [
         "fable"
       ]
@@ -15,7 +15,7 @@
       ]
     },
     "i574n.dotnet-interactive-i574n": {
-      "version": "0.1.2",
+      "version": "0.1.3",
       "commands": [
         "dotnet-interactive-i574n"
       ]
