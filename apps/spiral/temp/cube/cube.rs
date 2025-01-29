@@ -20,7 +20,7 @@ mod module_3e76c43 {
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::NativeArray_::Array;
-        use fable_library_rust::Native_::getZero;
+        use fable_library_rust::Native_::getNull;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Arc;
         use fable_library_rust::Native_::Func0;
@@ -414,7 +414,7 @@ mod module_3e76c43 {
             printfn!("{0}", v0_1);
         }
         pub fn method6(v0_1: i32, v1: i32, v2: f64, v3: f64, v4: f64) -> Arc<Async<()>> {
-            getZero()
+            fable_library_rust::Native_::getZero()
         }
         pub fn method5(v0_1: i32, v1: i32, v2: f64, v3: f64, v4: f64) -> Arc<Async<()>> {
             Cube::method6(v0_1, v1, v2, v3, v4)
@@ -437,7 +437,7 @@ mod module_3e76c43 {
                     0.0_f64,
                     0.0_f64,
                 );
-                getZero::<()>();
+                fable_library_rust::Native_::getZero::<()>();
                 ()
             }
         }

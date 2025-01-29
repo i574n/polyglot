@@ -89,13 +89,17 @@ function Invoke-Block {
             $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
-            if ($OnError -eq "Stop" -and $retry -eq $Retries) {
-                if ($host.Name -match "Interactive") {
-                    [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+            if ($OnError -eq "Stop") {
+                if ($retry -eq $Retries) {
+                    if ($host.Name -match "Interactive") {
+                        [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+                    }
+                    else {
+                        exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
+                    }
                 }
-                else {
-                    exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
-                }
+            } else {
+                $lastexitcode = 0
             }
             $Error.Clear()
             $retry++

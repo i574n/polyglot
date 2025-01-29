@@ -28,6 +28,8 @@ class TraceLevel(Union):
 TraceLevel_reflection = _expr262
 
 def to_trace_level(_arg: TraceLevel) -> US0:
+    """## trace
+    """
     if _arg.tag == 1:
         return US0(1)
 
