@@ -19,7 +19,7 @@ mod module_31a2fc18 {
         use fable_library_rust::Map_::find;
         use fable_library_rust::Map_::ofSeq;
         use fable_library_rust::NativeArray_::new_array;
-        use fable_library_rust::Native_::getZero;
+        use fable_library_rust::Native_::getNull;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::referenceEquals;
         use fable_library_rust::Native_::unbox;
@@ -345,8 +345,8 @@ mod module_31a2fc18 {
                 if (Chat_contract::method3(string("AUTOMATION"))) != string("True") {
                     Chat_contract::US2::US2_1
                 } else {
-                    let v58: DateTime = unbox::<DateTime>(&getZero());
-                    Chat_contract::US2::US2_0(unbox::<i64>(&getZero()))
+                    let v58: DateTime = unbox::<DateTime>(fable_library_rust::Native_::getZero());
+                    Chat_contract::US2::US2_0(unbox::<i64>(fable_library_rust::Native_::getZero()))
                 },
             )
         }
@@ -1344,7 +1344,7 @@ mod module_31a2fc18 {
                     std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
                 >,
             ), /* =
-                   getZero::<()>();
+                   fable_library_rust::Native_::getZero::<()>();
                */
         );
         #[near_sdk::near_bindgen] //;
@@ -1356,7 +1356,7 @@ mod module_31a2fc18 {
                 {
                     let v18: bool = true; /*;
                                           let v19: */
-                    () /* = getZero();
+                    () /* = fable_library_rust::Native_::getZero();
                     let v23: bool = true; */;
                     let v25: string = string("b\"account_set\"");
                     let v26: &[u8] = b"account_set";
