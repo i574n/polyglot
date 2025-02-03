@@ -104,7 +104,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .collect::<Vec<_>>();
 
     for (json, svg_path) in missing_svg {
-        println!("Creating {}", svg_path.display());
+        println!("plot.main / svg_path: {}", svg_path.display());
 
         let data: Data = serde_json::from_str(&json)?;
         draw_line_plot(data, svg_path.display().to_string())?;
