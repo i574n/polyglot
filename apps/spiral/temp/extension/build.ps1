@@ -15,7 +15,7 @@ if (!$fast) {
 
 Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 { ~/.bun/bin/bunx --bun esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block -OnError Continue
-{ Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
+{ Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block -OnError Continue
 
 if (!$fast) {
     { ~/.bun/bin/bun test:e2e } | Invoke-Block -OnError Continue

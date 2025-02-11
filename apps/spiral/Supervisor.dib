@@ -1221,7 +1221,7 @@ let main args =
     let timeout =
         match argsMap |> Map.tryFind (nameof Arguments.Timeout) with
         | Some [ Arguments.Timeout timeout ] -> timeout
-        | _ -> 60000 * 60
+        | _ -> 60002 * 60 * 24
 
     let port =
         match argsMap |> Map.tryFind (nameof Arguments.Port) with

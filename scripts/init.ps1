@@ -91,7 +91,7 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 Set-Location (New-Item $gitPath -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/spiral.git
-{ git pull } | Invoke-Block -Location spiral
+{ git pull } | Invoke-Block -Location spiral -OnError Continue
 Set-Location $ResolvedScriptDir
 
 Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPath: $gitPath"
@@ -102,10 +102,9 @@ EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedS
 
 if (!$fast) {
     { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block -OnError Continue
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block -OnError Continue
 }
 
 Invoke-Dib init.dib
 
-$Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
-{ pwsh $Path -SkipPreBuild 1 } | Invoke-Block
+{ pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") -SkipPreBuild 1 } | Invoke-Block

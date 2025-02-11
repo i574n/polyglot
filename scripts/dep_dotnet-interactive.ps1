@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/dotnet-interactive.git
-{ git pull } | Invoke-Block -Location dotnet-interactive
+{ git pull } | Invoke-Block -Location dotnet-interactive -OnError Continue
 
 Set-Location $ScriptDir
 

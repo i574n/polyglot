@@ -4,7 +4,7 @@ playwright-videos/
 test-results/
 node_modules/
 fable_modules/
-dist/
+dist
 out/
 deps/
 artifacts/

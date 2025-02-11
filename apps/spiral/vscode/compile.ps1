@@ -13,4 +13,4 @@ $ErrorActionPreference = "Stop"
 { ~/.bun/bin/bunx --bun esbuild --bundle --outdir=out --external:vscode --format=cjs --platform=node `
     src/extension.ts `
     media/cellOutputScrollButtons.ts `
-} | Invoke-Block
+} | Invoke-Block -OnError Continue

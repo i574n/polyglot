@@ -31,7 +31,7 @@ function CheckJson {
 
 
 if (!$SkipPaket) {
-    { dotnet paket outdated --include-prereleases } | Invoke-Block
+    { dotnet paket outdated --include-prereleases } | Invoke-Block -OnError Continue
 }
 
 CheckToml "../workspace/Cargo.toml" `-w

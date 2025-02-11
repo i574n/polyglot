@@ -9,7 +9,7 @@ $ErrorActionPreference = "Stop"
 
 if (!$fast) {
     { dotnet fable --optimize --lang ts --extension .ts --noCache } | Invoke-Block
-    { dotnet fable ../../../deps/Fable/src/fable-library-ts/Fable.Library.TypeScript.fsproj --lang ts --extension .ts --noCache } | Invoke-Block
+    { dotnet fable ../../../deps/Fable/src/fable-library-ts/Fable.Library.TypeScript.fsproj --lang ts --extension .ts --noCache } | Invoke-Block -OnError Continue
 }
 
 $paths = @(

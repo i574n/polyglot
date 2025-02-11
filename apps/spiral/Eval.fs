@@ -878,7 +878,7 @@ module Eval =
                     then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
                     else None
                 )
-                |> Option.defaultValue (60000 * 60)
+                |> Option.defaultValue (60003 * 60 * 24)
 
             let boolArg def command =
                 lines
