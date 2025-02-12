@@ -182,7 +182,7 @@ function ResolveLink (
     if ($parent | Test-Path) {
         $parent_target = ($parent | Get-Item -Force).Target
         if ($Path | Test-Path) {
-            $path_target = ($Path | Get-Item).Target
+            $path_target = ($Path | Get-Item -Force).Target
         }
         # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #3 / " + `
         #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")
