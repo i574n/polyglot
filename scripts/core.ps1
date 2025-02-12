@@ -169,7 +169,7 @@ function ResolveLink (
 
     $parent = $Path | Split-Path
     if (!$parent) {
-        Write-Host "polyglot/scripts/core.ps1/ResolveLink #2 / parent: $parent / Path: $Path / End: $End"
+        # Write-Host "polyglot/scripts/core.ps1/ResolveLink #2 / parent: $parent / Path: $Path / End: $End"
         return Join-Path $Path $End
     }
 
@@ -180,7 +180,7 @@ function ResolveLink (
     }
 
     if ($parent | Test-Path) {
-        $parent_target = ($parent | Get-Item).Target
+        $parent_target = ($parent | Get-Item -Force).Target
         if ($Path | Test-Path) {
             $path_target = ($Path | Get-Item).Target
         }

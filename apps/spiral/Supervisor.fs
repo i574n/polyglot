@@ -263,7 +263,7 @@ module Supervisor =
                 ((None, [], 0), outputSeq)
                 ||> FSharp.Control.AsyncSeq.scan (
                     fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
-                        trace Debug (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / path: {path} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 1500}") _locals
+                        trace Verbose (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / path: {path} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 1000}") _locals
                         match outputContent, error with
                         | Some outputContent, None -> Some outputContent, errors, typeErrorCount
                         | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
