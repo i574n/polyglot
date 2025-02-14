@@ -22,6 +22,76 @@
 
 #!fsharp
 
+#r @"../../../../../../../.nuget/packages/fsharpx.collections/3.1.0/lib/netstandard2.0/FSharpx.Collections.dll"
+#r @"../../../../../../../.nuget/packages/hopac/0.5.1/lib/netstandard2.0/Hopac.dll"
+#r @"../../../../../../../.nuget/packages/hopac/0.5.1/lib/netstandard2.0/Hopac.Core.dll"
+#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"
+#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"
+
+#!fsharp
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.SignalR.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.SignalR.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.SignalR.Core.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.SignalR.Core.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Cors.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Cors.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Http.Abstractions.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Http.Abstractions.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Connections.Abstractions.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Connections.Abstractions.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Hosting.Abstractions.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Hosting.Abstractions.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Http.Connections.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Http.Connections.dll"
+#endif
+
+#if _LINUX
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/9.0.0/runtimes/linux-x64/lib/net9.0/Microsoft.AspNetCore.Routing.dll"
+#else
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.0/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Routing.dll"
+#endif
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging/9.0.0/lib/net9.0/Microsoft.Extensions.Logging.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.0/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+
+#!fsharp
+
 #!import ../../lib/fsharp/Notebooks.dib
 #!import ../../lib/fsharp/Testing.dib
 
@@ -35,6 +105,15 @@
 #!import ../../lib/fsharp/FileSystem.fs
 
 #!import ../../apps/builder/Builder.fs
+
+#!import ../../deps/spiral/apps/compiler/spiral_compiler.fs
+
+#!fsharp
+
+open spiral_compiler
+
+#!fsharp
+
 #!import ../../apps/spiral/Supervisor.fs
 
 #!fsharp
@@ -70,12 +149,12 @@ let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
     errors
     |> List.map (fun (_, error) ->
         match error with
-        | Supervisor.FatalError message ->
+        | SignalRSupervisor.FatalError message ->
             (
                 severity, message, 0, ("", (0, 0), (0, 0))
             )
             |> List.singleton
-        | Supervisor.TracedError data ->
+        | SignalRSupervisor.TracedError data ->
             data.trace
             |> List.truncate 5
             |> List.append [ data.message ]
@@ -84,10 +163,10 @@ let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
                     severity, message, 0, ("", (0, 0), (0, 0))
                 )
             )
-        | Supervisor.PackageErrors data
-        | Supervisor.TokenizerErrors data
-        | Supervisor.ParserErrors data
-        | Supervisor.TypeErrors data ->
+        | SignalRSupervisor.PackageErrors data
+        | SignalRSupervisor.TokenizerErrors data
+        | SignalRSupervisor.ParserErrors data
+        | SignalRSupervisor.TypeErrors data ->
             data.errors
             |> List.filter (fun ((rangeStart, _), _) ->
                 trace Debug (fun () -> $"Eval.mapErrors / rangeStart.line: {rangeStart.line} / lastTopLevelIndex: {lastTopLevelIndex} / allCodeLineLength: {allCodeLineLength} / filtered: {rangeStart.line > allCodeLineLength}") _locals
@@ -147,14 +226,6 @@ let targetDir = workspaceRoot </> "target/spiral_Eval"
 
 #!markdown
 
-### assemblyName
-
-#!fsharp
-
-let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
-
-#!markdown
-
 ## allCode
 
 #!fsharp
@@ -187,31 +258,12 @@ let mutable traceToggle = false
 
 #!markdown
 
-## getParentProcessId
-
-#!fsharp
-
-let getParentProcessId () =
-    if SpiralPlatform.is_windows () |> not
-    then 0u
-    else
-        let pid = System.Diagnostics.Process.GetCurrentProcess().Id
-        let query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {pid}"
-        use searcher = new System.Management.ManagementObjectSearcher (query)
-        use results = searcher.Get ()
-        let data = results |> Seq.cast<System.Management.ManagementObject>
-        if data |> Seq.isEmpty
-        then 0u
-        else data |> Seq.head |> (fun mo -> mo.["ParentProcessId"] :?> uint32)
-
-#!markdown
-
 ## startTokenRangeWatcher
 
 #!fsharp
 
 let inline startTokenRangeWatcher () =
-    if [ "dotnet-repl" ] |> List.contains assemblyName
+    if [ "dotnet-repl" ] |> List.contains spiral_compiler.assemblyName
     then new_disposable (fun () -> ())
     else
         let tokensDir = targetDir </> "tokens"
@@ -295,27 +347,10 @@ let inline startTokenRangeWatcher () =
                     | _ -> () |> Async.init
                 )
 
-            let parentAsyncChild = async {
-                let parentProcessId = getParentProcessId ()
-                trace Verbose
-                    (fun () -> "Eval.parentAsyncChild")
-                    (fun () -> $"parentProcessId: {parentProcessId} / {_locals ()}")
-
-                if parentProcessId > 0u then
-                    let parentProcess = parentProcessId |> int |> System.Diagnostics.Process.GetProcessById
-                    do! parentProcess.WaitForExitAsync () |> Async.AwaitTask
-                    trace Debug
-                        (fun () -> "Eval.parentAsyncChild / Parent process has exited. Performing cleanup...")
-                        (fun () -> $"{_locals ()}")
-                    System.Threading.Thread.Sleep 1000
-                    System.Environment.Exit 1
-            }
-
             async {
                 do! Async.Sleep 3000
                 existingFilesChild |> Async.StartImmediate
                 streamAsyncChild |> Async.Start
-                parentAsyncChild |> Async.Start
             }
             |> Async.Start
         with ex ->
@@ -518,7 +553,7 @@ let processSpiralOutput
                                 l0 = command
                                 l1 = props.cancellationToken
                                 l2 = [|
-                                    "AUTOMATION", assemblyName = "dotnet-repl" |> string
+                                    "AUTOMATION", spiral_compiler.assemblyName = "dotnet-repl" |> string
                                     "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                 |]
                                 l6 = workspaceRootExternal

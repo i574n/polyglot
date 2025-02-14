@@ -109,6 +109,10 @@ module Builder =
         <Compile Include="{filePath}" />
     </ItemGroup>
 
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
     <Import Project="{workspaceRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
@@ -141,7 +145,7 @@ module Builder =
 
         let code = System.Text.RegularExpressions.Regex.Replace (
             code,
-            @"( *)(let\s+main\s+.*?\s*=)",
+            @"( *)(let\s+main\s+\w+\s*=)",
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
