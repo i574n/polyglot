@@ -81,6 +81,7 @@ module Builder =
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
         <PublishAot>false</PublishAot>
+        <ServerGarbageCollection>true</ServerGarbageCollection>
         <PublishTrimmed>false</PublishTrimmed>
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>

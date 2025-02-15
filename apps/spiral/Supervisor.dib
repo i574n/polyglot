@@ -702,36 +702,40 @@ let v0 : (unit -> int32) = closure0()
 
 //// test
 
-SpiralTrace.TraceLevel.US0_1 |> set_trace_level
-""
-|> fun code -> Spi (code, None)
-|> buildCode Fsharp [||] false 10000 None
-|> Async.runWithTimeout 10000
-|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
-|> _assertEqual (
-    Some (
-        None,
-        [ "Cannot find `main` in file main." ]
+fun () ->
+    SpiralTrace.TraceLevel.US0_1 |> set_trace_level
+    ""
+    |> fun code -> Spi (code, None)
+    |> buildCode Fsharp [||] false 10000 None
+    |> Async.runWithTimeout 10000
+    |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+    |> _assertEqual (
+        Some (
+            None,
+            [ "Cannot find `main` in file main." ]
+        )
     )
-)
+|> ignore
 
 #!fsharp
 
 //// test
 
-"""inl main () =
-    1i32 / 0i32
-"""
-|> fun code -> Spi (code, None)
-|> buildCode Fsharp [||] false 10000 None
-|> Async.runWithTimeout 10000
-|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
-|> _assertEqual (
-    Some (
-        None,
-        [ "An attempt to divide by zero has been detected at compile time." ]
+fun () ->
+    """inl main () =
+        1i32 / 0i32
+    """
+    |> fun code -> Spi (code, None)
+    |> buildCode Fsharp [||] false 10000 None
+    |> Async.runWithTimeout 10000
+    |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+    |> _assertEqual (
+        Some (
+            None,
+            [ "An attempt to divide by zero has been detected at compile time." ]
+        )
     )
-)
+|> ignore
 
 #!fsharp
 
@@ -786,48 +790,52 @@ fun () ->
 
 //// test
 
-"""
-inl main () =
-    real
-        inl unbox_real forall a. (obj : a) : a =
-            typecase obj with
-            | _ => obj
-        unbox_real ()
-    ()
-"""
-|> fun code -> Spi (code, None)
-|> buildCode Fsharp [||] false 10000 None
-|> Async.runWithTimeout 10000
-|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
-|> _assertEqual (
-    Some (
-        None,
-        [ "Cannot apply a forall with a term." ]
+fun () ->
+    """
+    inl main () =
+        real
+            inl unbox_real forall a. (obj : a) : a =
+                typecase obj with
+                | _ => obj
+            unbox_real ()
+        ()
+    """
+    |> fun code -> Spi (code, None)
+    |> buildCode Fsharp [||] false 10000 None
+    |> Async.runWithTimeout 10000
+    |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+    |> _assertEqual (
+        Some (
+            None,
+            [ "Cannot apply a forall with a term." ]
+        )
     )
-)
+|> ignore
 
 #!fsharp
 
 //// test
 
-"""
-inl main () =
-    real
-        inl unbox_real forall a. (obj : a) : a =
-            typecase obj with
-            | _ => obj
-        unbox_real `i32 1
-"""
-|> fun code -> Spi (code, None)
-|> buildCode Fsharp [||] false 10000 None
-|> Async.runWithTimeout 10000
-|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
-|> _assertEqual (
-    Some (
-        None,
-        [ "The main function should not have a forall." ]
+fun () ->
+    """
+    inl main () =
+        real
+            inl unbox_real forall a. (obj : a) : a =
+                typecase obj with
+                | _ => obj
+            unbox_real `i32 1
+    """
+    |> fun code -> Spi (code, None)
+    |> buildCode Fsharp [||] false 10000 None
+    |> Async.runWithTimeout 10000
+    |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+    |> _assertEqual (
+        Some (
+            None,
+            [ "The main function should not have a forall." ]
+        )
     )
-)
+|> ignore
 
 #!fsharp
 
