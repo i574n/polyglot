@@ -8052,7 +8052,7 @@ a.anchor-link {
         <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
             <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                 <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
-                <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">deserialize</span><span class="o">&lt;</span><span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">ClientErrorsRes</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">())</span>
+                <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">deserialize</span><span class="o">&lt;</span><span class="n">ClientErrorsRes</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">())</span>
             <span class="p">})</span>
             <span class="p">()</span>
 
@@ -8187,7 +8187,7 @@ a.anchor-link {
         <span class="o">//</span>         <span class="n">Some</span> <span class="p">(</span><span class="n">content</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">),</span> <span class="kc">None</span>
         <span class="o">//</span>     <span class="p">)</span>
 
-        <span class="n">let</span> <span class="n">printErrorData</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">errors</span> <span class="p">:</span> <span class="n">VSCTypes</span><span class="o">.</span><span class="n">RString</span> <span class="nb">list</span> <span class="o">|</span><span class="p">})</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">printErrorData</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">errors</span> <span class="p">:</span> <span class="n">RString</span> <span class="nb">list</span> <span class="o">|</span><span class="p">})</span> <span class="o">=</span>
             <span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">uri</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileName</span>
             <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">errors</span>
@@ -8205,17 +8205,17 @@ a.anchor-link {
             <span class="n">server1</span><span class="o">.</span><span class="n">errors</span>
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">choose</span> <span class="p">(</span><span class="n">fun</span> <span class="n">error</span> <span class="o">-&gt;</span>
                 <span class="k">match</span> <span class="n">error</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">FatalError</span> <span class="n">message</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">FatalError</span> <span class="n">message</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TracedError</span> <span class="n">data</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">TracedError</span> <span class="n">data</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">PackageErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">PackageErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">data</span> <span class="o">|&gt;</span> <span class="n">printErrorData</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TokenizerErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">TokenizerErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">data</span> <span class="o">|&gt;</span> <span class="n">printErrorData</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">ParserErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">ParserErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">data</span> <span class="o">|&gt;</span> <span class="n">printErrorData</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-                <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TypeErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
+                <span class="o">|</span> <span class="n">TypeErrors</span> <span class="n">data</span> <span class="n">when</span> <span class="n">data</span><span class="o">.</span><span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">isEmpty</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="o">-&gt;</span>
                     <span class="n">Some</span> <span class="p">(</span><span class="n">data</span> <span class="o">|&gt;</span> <span class="n">printErrorData</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
             <span class="p">)</span>
@@ -8228,7 +8228,7 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">intervalMs</span>
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">let</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">option</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">option</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">ClientErrorsRes</span><span class="o">&gt;&gt;</span> <span class="p">()</span>
+        <span class="n">let</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">option</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">option</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*</span> <span class="n">ClientErrorsRes</span><span class="o">&gt;&gt;</span> <span class="p">()</span>
         <span class="o">//</span> <span class="n">let</span> <span class="n">disposable</span><span class="s1">' = connection.On&lt;string&gt; ("ServerToClientMsg", event.Trigger)</span>
         <span class="n">let</span> <span class="n">outputContentSeq</span> <span class="o">=</span>
             <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
@@ -8252,7 +8252,7 @@ a.anchor-link {
                     <span class="o">|</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span>
                     <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="p">(</span>
                         <span class="n">_</span><span class="p">,</span>
-                        <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">FatalError</span> <span class="s2">"File main has a type error somewhere in its path."</span>
+                        <span class="n">FatalError</span> <span class="s2">"File main has a type error somewhere in its path."</span>
                         <span class="p">)</span> <span class="o">-&gt;</span>
                         <span class="n">outputContentResult</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">outputContentResult</span><span class="p">,</span> <span class="n">error</span> <span class="p">::</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span>
@@ -8290,7 +8290,7 @@ a.anchor-link {
         <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span> <span class="n">fileOpenObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
         <span class="n">let</span> <span class="n">fileOpenArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">spiText</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|</span><span class="p">}</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span>
-            <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
+            <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
         
@@ -8307,12 +8307,12 @@ a.anchor-link {
         <span class="o">//</span> <span class="n">let</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
         <span class="n">let</span> <span class="n">buildFileArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">backendId</span> <span class="o">|</span><span class="p">}</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_buildFileResult</span> <span class="o">=</span>
-            <span class="n">server1</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">BuildFile</span><span class="p">(</span><span class="n">buildFileArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
+            <span class="n">server1</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">BuildFile</span><span class="p">(</span><span class="n">buildFileArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
         <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / buildFileResult: %A</span><span class="si">{_buildFileResult}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
         
         <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
-            <span class="k">if</span> <span class="n">_buildFileResult</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="k">if</span> <span class="n">_buildFileResult</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">||</span> <span class="n">_buildFileResult</span> <span class="o">=</span> <span class="n">null</span>
             <span class="n">then</span> <span class="kc">None</span>
             <span class="k">else</span> <span class="n">_buildFileResult</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Some</span>
         <span class="n">event</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -8341,7 +8341,7 @@ a.anchor-link {
                 <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span> <span class="n">fileDeleteObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
                 <span class="n">let</span> <span class="n">fileDeleteArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uris</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="n">fileDirUri</span> <span class="o">|</span><span class="p">]</span> <span class="o">|</span><span class="p">}</span>
                 <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span>
-                    <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
+                    <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
                     <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
                 <span class="p">()</span>
 
@@ -8609,7 +8609,7 @@ let v0 : (unit -&gt; int32) = closure0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8619,21 +8619,33 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-    <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
-    <span class="s2">""</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span> <span class="s2">"Cannot find `main` in file main."</span> <span class="p">]</span>
-        <span class="p">)</span>
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"Cannot find `main` in file main."</span> <span class="p">]</span>
     <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Some (None, ["Cannot find `main` in file main."])
+
+</pre>
 </div>
 </div>
 </div>
@@ -9182,7 +9194,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
     <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span> <span class="n">fileOpenObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
     <span class="n">let</span> <span class="n">fileOpenArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">spiText</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|</span><span class="p">}</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span>
-        <span class="n">server2</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
+        <span class="n">server2</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
     <span class="o">//</span> <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
@@ -9207,7 +9219,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 
     <span class="o">//</span> <span class="n">let</span> <span class="n">fileTokenRangeArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">backendId</span> <span class="o">|</span><span class="p">}</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">fileTokenRangeResult</span> <span class="o">=</span>
-        <span class="n">server2</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileTokenRange</span><span class="p">(</span><span class="n">fileTokenRangeArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
+        <span class="n">server2</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileTokenRange</span><span class="p">(</span><span class="n">fileTokenRangeArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
     <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
@@ -9217,7 +9229,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
         <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span> <span class="n">fileDeleteObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
         <span class="n">let</span> <span class="n">fileDeleteArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uris</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="n">fileDirUri</span> <span class="o">|</span><span class="p">]</span> <span class="o">|</span><span class="p">}</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span>
-            <span class="n">server2</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
+            <span class="n">server2</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server2</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
         <span class="p">()</span>
 
@@ -9386,7 +9398,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
     <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span> <span class="n">fileOpenObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
     <span class="n">let</span> <span class="n">fileOpenArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">spiText</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|</span><span class="p">}</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span>
-        <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
+        <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
     <span class="o">//</span> <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
@@ -9398,7 +9410,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
             <span class="o">|</span><span class="p">}</span>
 
     <span class="n">let</span><span class="err">!</span> <span class="n">hoverAtResult</span> <span class="o">=</span>
-        <span class="n">server1</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">HoverAt</span><span class="p">(</span><span class="n">hoverAtArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
+        <span class="n">server1</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">HoverAt</span><span class="p">(</span><span class="n">hoverAtArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
     <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
@@ -9408,7 +9420,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
         <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span> <span class="n">fileDeleteObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
         <span class="n">let</span> <span class="n">fileDeleteArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uris</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="n">fileDirUri</span> <span class="o">|</span><span class="p">]</span> <span class="o">|</span><span class="p">}</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span>
-            <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
+            <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
         <span class="p">()</span>
 

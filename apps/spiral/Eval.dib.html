@@ -7814,12 +7814,12 @@ a.anchor-link {
     <span class="n">errors</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="k">match</span> <span class="n">error</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">FatalError</span> <span class="n">message</span> <span class="o">-&gt;</span>
+        <span class="o">|</span> <span class="n">FatalError</span> <span class="n">message</span> <span class="o">-&gt;</span>
             <span class="p">(</span>
                 <span class="n">severity</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">singleton</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TracedError</span> <span class="n">data</span> <span class="o">-&gt;</span>
+        <span class="o">|</span> <span class="n">TracedError</span> <span class="n">data</span> <span class="o">-&gt;</span>
             <span class="n">data</span><span class="o">.</span><span class="n">trace</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">truncate</span> <span class="mi">5</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span> <span class="p">]</span>
@@ -7828,10 +7828,10 @@ a.anchor-link {
                     <span class="n">severity</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">PackageErrors</span> <span class="n">data</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TokenizerErrors</span> <span class="n">data</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">ParserErrors</span> <span class="n">data</span>
-        <span class="o">|</span> <span class="n">SignalRSupervisor</span><span class="o">.</span><span class="n">TypeErrors</span> <span class="n">data</span> <span class="o">-&gt;</span>
+        <span class="o">|</span> <span class="n">PackageErrors</span> <span class="n">data</span>
+        <span class="o">|</span> <span class="n">TokenizerErrors</span> <span class="n">data</span>
+        <span class="o">|</span> <span class="n">ParserErrors</span> <span class="n">data</span>
+        <span class="o">|</span> <span class="n">TypeErrors</span> <span class="n">data</span> <span class="o">-&gt;</span>
             <span class="n">data</span><span class="o">.</span><span class="n">errors</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">((</span><span class="n">rangeStart</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.mapErrors / rangeStart.line: </span><span class="si">{rangeStart.line}</span><span class="s2"> / lastTopLevelIndex: </span><span class="si">{lastTopLevelIndex}</span><span class="s2"> / allCodeLineLength: </span><span class="si">{allCodeLineLength}</span><span class="s2"> / filtered: {rangeStart.line &gt; allCodeLineLength}"</span><span class="p">)</span> <span class="n">_locals</span>

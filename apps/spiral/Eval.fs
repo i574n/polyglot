@@ -64,12 +64,12 @@ module Eval =
         errors
         |> List.map (fun (_, error) ->
             match error with
-            | SignalRSupervisor.FatalError message ->
+            | FatalError message ->
                 (
                     severity, message, 0, ("", (0, 0), (0, 0))
                 )
                 |> List.singleton
-            | SignalRSupervisor.TracedError data ->
+            | TracedError data ->
                 data.trace
                 |> List.truncate 5
                 |> List.append [ data.message ]
@@ -78,10 +78,10 @@ module Eval =
                         severity, message, 0, ("", (0, 0), (0, 0))
                     )
                 )
-            | SignalRSupervisor.PackageErrors data
-            | SignalRSupervisor.TokenizerErrors data
-            | SignalRSupervisor.ParserErrors data
-            | SignalRSupervisor.TypeErrors data ->
+            | PackageErrors data
+            | TokenizerErrors data
+            | ParserErrors data
+            | TypeErrors data ->
                 data.errors
                 |> List.filter (fun ((rangeStart, _), _) ->
                     trace Debug (fun () -> $"Eval.mapErrors / rangeStart.line: {rangeStart.line} / lastTopLevelIndex: {lastTopLevelIndex} / allCodeLineLength: {allCodeLineLength} / filtered: {rangeStart.line > allCodeLineLength}") _locals

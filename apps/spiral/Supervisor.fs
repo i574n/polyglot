@@ -177,7 +177,7 @@ module Supervisor =
             FSharp.Control.AsyncSeq.unfoldAsync
                 (fun () -> async {
                     let! msg = event.Publish |> Async.AwaitEvent
-                    return Some (msg |> FSharp.Json.Json.deserialize<SignalRSupervisor.ClientErrorsRes>, ())
+                    return Some (msg |> FSharp.Json.Json.deserialize<ClientErrorsRes>, ())
                 })
                 ()
 
@@ -243,7 +243,7 @@ module Supervisor =
             //         Some (content |> SpiralSm.replace "\r\n" "\n"), None
             //     )
 
-            let printErrorData (data : {| uri : string; errors : VSCTypes.RString list |}) =
+            let printErrorData (data : {| uri : string; errors : RString list |}) =
                 let fileName = data.uri |> System.IO.Path.GetFileName
                 let errors =
                     data.errors
@@ -261,17 +261,17 @@ module Supervisor =
                 server1.errors
                 |> FSharp.Control.AsyncSeq.choose (fun error ->
                     match error with
-                    | SignalRSupervisor.FatalError message ->
+                    | FatalError message ->
                         Some (message, error)
-                    | SignalRSupervisor.TracedError data ->
+                    | TracedError data ->
                         Some (data.message, error)
-                    | SignalRSupervisor.PackageErrors data when data.errors |> List.isEmpty |> not ->
+                    | PackageErrors data when data.errors |> List.isEmpty |> not ->
                         Some (data |> printErrorData, error)
-                    | SignalRSupervisor.TokenizerErrors data when data.errors |> List.isEmpty |> not ->
+                    | TokenizerErrors data when data.errors |> List.isEmpty |> not ->
                         Some (data |> printErrorData, error)
-                    | SignalRSupervisor.ParserErrors data when data.errors |> List.isEmpty |> not ->
+                    | ParserErrors data when data.errors |> List.isEmpty |> not ->
                         Some (data |> printErrorData, error)
-                    | SignalRSupervisor.TypeErrors data when data.errors |> List.isEmpty |> not ->
+                    | TypeErrors data when data.errors |> List.isEmpty |> not ->
                         Some (data |> printErrorData, error)
                     | _ -> None
                 )
@@ -284,7 +284,7 @@ module Supervisor =
                 |> FSharp.Control.AsyncSeq.intervalMs
                 |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
 
-            let event = Event<option<string> * option<string * SignalRSupervisor.ClientErrorsRes>> ()
+            let event = Event<option<string> * option<string * ClientErrorsRes>> ()
             // let disposable' = connection.On<string> ("ServerToClientMsg", event.Trigger)
             let outputContentSeq =
                 FSharp.Control.AsyncSeq.unfoldAsync
@@ -308,7 +308,7 @@ module Supervisor =
                         | Some outputContent, None -> Some outputContent, errors, typeErrorCount
                         | None, Some (
                             _,
-                            SignalRSupervisor.FatalError "File main has a type error somewhere in its path."
+                            FatalError "File main has a type error somewhere in its path."
                             ) ->
                             outputContentResult, errors, typeErrorCount + 1
                         | None, Some error -> outputContentResult, error :: errors, typeErrorCount
@@ -346,7 +346,7 @@ module Supervisor =
             // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
             let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
             let! _fileOpenResult =
-                server1.job_null (server1.supervisor *<+ SignalRSupervisor.SupervisorReq.FileOpen fileOpenArgs)
+                server1.job_null (server1.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
                 |> Async.AwaitTask
 
 
@@ -363,12 +363,12 @@ module Supervisor =
             // let backend = Supervisor.Fsharp
             let buildFileArgs = {| uri = fullPathUri; backend = backendId |}
             let! _buildFileResult =
-                server1.job_val (fun res -> server1.supervisor *<+ SignalRSupervisor.SupervisorReq.BuildFile(buildFileArgs,res))
+                server1.job_val (fun res -> server1.supervisor *<+ SupervisorReq.BuildFile(buildFileArgs,res))
                 |> Async.AwaitTask
             trace Verbose (fun () -> $"Supervisor.buildFile / buildFileResult: %A{_buildFileResult}") (fun () -> "")
 
             let result =
-                if _buildFileResult = ""
+                if _buildFileResult = "" || _buildFileResult = null
                 then None
                 else _buildFileResult |> SpiralSm.replace "\r\n" "\n" |> Some
             event.Trigger (result, None)
@@ -397,7 +397,7 @@ module Supervisor =
                     // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
                     let fileDeleteArgs = {| uris = [| fileDirUri |] |}
                     let! _fileDeleteResult =
-                        server1.job_null (server1.supervisor *<+ SignalRSupervisor.SupervisorReq.FileDelete fileDeleteArgs)
+                        server1.job_null (server1.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
                         |> Async.AwaitTask
                     ()
 
@@ -540,7 +540,7 @@ modules:
         // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
         let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
         let! _fileOpenResult =
-            server2.job_null (server2.supervisor *<+ SignalRSupervisor.SupervisorReq.FileOpen fileOpenArgs)
+            server2.job_null (server2.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
             |> Async.AwaitTask
 
         // do! Async.Sleep 60
@@ -565,7 +565,7 @@ modules:
 
         // let fileTokenRangeArgs = {| uri = fullPathUri; backend = backendId |}
         let! fileTokenRangeResult =
-            server2.job_val (fun res -> server2.supervisor *<+ SignalRSupervisor.SupervisorReq.FileTokenRange(fileTokenRangeArgs,res))
+            server2.job_val (fun res -> server2.supervisor *<+ SupervisorReq.FileTokenRange(fileTokenRangeArgs,res))
             |> Async.AwaitTask
 
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -575,7 +575,7 @@ modules:
             // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
             let fileDeleteArgs = {| uris = [| fileDirUri |] |}
             let! _fileDeleteResult =
-                server2.job_null (server2.supervisor *<+ SignalRSupervisor.SupervisorReq.FileDelete fileDeleteArgs)
+                server2.job_null (server2.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
                 |> Async.AwaitTask
             ()
 
@@ -630,7 +630,7 @@ modules:
         // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
         let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
         let! _fileOpenResult =
-            server1.job_null (server1.supervisor *<+ SignalRSupervisor.SupervisorReq.FileOpen fileOpenArgs)
+            server1.job_null (server1.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
             |> Async.AwaitTask
 
         // do! Async.Sleep 60
@@ -642,7 +642,7 @@ modules:
                 |}
 
         let! hoverAtResult =
-            server1.job_val (fun res -> server1.supervisor *<+ SignalRSupervisor.SupervisorReq.HoverAt(hoverAtArgs,res))
+            server1.job_val (fun res -> server1.supervisor *<+ SupervisorReq.HoverAt(hoverAtArgs,res))
             |> Async.AwaitTask
 
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -652,7 +652,7 @@ modules:
             // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
             let fileDeleteArgs = {| uris = [| fileDirUri |] |}
             let! _fileDeleteResult =
-                server1.job_null (server1.supervisor *<+ SignalRSupervisor.SupervisorReq.FileDelete fileDeleteArgs)
+                server1.job_null (server1.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
                 |> Async.AwaitTask
             ()
 
