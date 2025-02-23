@@ -80,8 +80,9 @@ module Builder =
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
-        <PublishAot>false</PublishAot>
         <ServerGarbageCollection>true</ServerGarbageCollection>
+        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+        <PublishAot>false</PublishAot>
         <PublishTrimmed>false</PublishTrimmed>
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>

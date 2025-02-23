@@ -8228,12 +8228,24 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">intervalMs</span>
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">let</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">option</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">option</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*</span> <span class="n">ClientErrorsRes</span><span class="o">&gt;&gt;</span> <span class="p">()</span>
+        <span class="n">let</span> <span class="n">compilerEvent</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">option</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">option</span><span class="o">&lt;</span><span class="n">string</span> <span class="o">*</span> <span class="n">ClientErrorsRes</span><span class="o">&gt;&gt;</span> <span class="p">()</span>
         <span class="o">//</span> <span class="n">let</span> <span class="n">disposable</span><span class="s1">' = connection.On&lt;string&gt; ("ServerToClientMsg", event.Trigger)</span>
         <span class="n">let</span> <span class="n">outputContentSeq</span> <span class="o">=</span>
             <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
                 <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                    <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
+                    <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">compilerEvent</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq unfoldAsync / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">())</span>
+                <span class="p">})</span>
+                <span class="p">()</span>
+
+        <span class="n">let</span> <span class="n">compilerEvent2</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">option</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="n">ClientErrorsRes</span><span class="p">)</span> <span class="nb">list</span> <span class="o">*</span> <span class="nb">int</span><span class="o">&gt;</span> <span class="p">()</span>
+        <span class="o">//</span> <span class="n">let</span> <span class="n">disposable</span><span class="s1">' = connection.On&lt;string&gt; ("ServerToClientMsg", event.Trigger)</span>
+        <span class="n">let</span> <span class="n">outputContentSeq2</span> <span class="o">=</span>
+            <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
+                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
+                    <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">())</span>
                 <span class="p">})</span>
                 <span class="p">()</span>
@@ -8247,7 +8259,7 @@ a.anchor-link {
             <span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">outputSeq</span><span class="p">)</span>
             <span class="o">||&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">scan</span> <span class="p">(</span>
                 <span class="n">fun</span> <span class="p">(</span><span class="n">outputContentResult</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)</span> <span class="p">(</span><span class="n">outputContent</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / AsyncSeq.scan / path: </span><span class="si">{path}</span><span class="s2"> / errors: {errors |&gt; serializeObj} / outputContentResult: </span><span class="si">{outputContentResult}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / error: </span><span class="si">{error}</span><span class="s2"> / outputContent:</span><span class="se">\n</span><span class="s2">{outputContent |&gt; Option.defaultValue System.String.Empty |&gt; SpiralSm.ellipsis_end 1000}"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / AsyncSeq.scan / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)} / errors: {errors |&gt; serializeObj} / outputContentResult: </span><span class="si">{outputContentResult}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / error: </span><span class="si">{error}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2">'"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="k">match</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">error</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span>
                     <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="p">(</span>
@@ -8263,15 +8275,19 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">takeWhileInclusive</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">trace</span>
                     <span class="n">Verbose</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / path: </span><span class="si">{path}</span><span class="s2"> / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / outputContent:</span><span class="se">\n</span><span class="s2">{outputContent |&gt; Option.defaultValue System.String.Empty |&gt; SpiralSm.ellipsis_end 1500}"</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)}' / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2">"</span><span class="p">)</span>
                     <span class="n">_locals</span>
     <span class="c1">#if INTERACTIVE</span>
-                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="c1">#else</span>
-                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="c1">#endif</span>
                 <span class="k">match</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="n">errorWait</span> <span class="o">-&gt;</span> <span class="n">false</span>
+                <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">]</span> <span class="o">-&gt;</span>
+                    <span class="n">compilerEvent</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span><span class="p">))</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">false</span>
                 <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="n">true</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
             <span class="p">)</span>
@@ -8285,6 +8301,8 @@ a.anchor-link {
 
         <span class="n">let</span> <span class="n">fullPathUri</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">normalize_path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">new_file_uri</span>
 
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / fullPathUri: %A</span><span class="si">{fullPathUri}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+
         <span class="o">//</span> <span class="n">let</span> <span class="n">fileOpenObj</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">FileOpen</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">spiText</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|</span><span class="p">}</span> <span class="o">|</span><span class="p">}</span>
 
         <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span> <span class="n">fileOpenObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
@@ -8292,8 +8310,10 @@ a.anchor-link {
         <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span>
             <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileOpen</span> <span class="n">fileOpenArgs</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">60000</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / _fileOpenResult: %A</span><span class="si">{_fileOpenResult}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
 
-        
         <span class="o">//</span> <span class="n">let</span><span class="err">!</span> <span class="n">_fileOpenResult</span> <span class="o">=</span> <span class="n">fileOpenObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">serverPort</span>
 
         <span class="o">//</span> <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
@@ -8306,34 +8326,81 @@ a.anchor-link {
         
         <span class="o">//</span> <span class="n">let</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Fsharp</span>
         <span class="n">let</span> <span class="n">buildFileArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">fullPathUri</span><span class="p">;</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">backendId</span> <span class="o">|</span><span class="p">}</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">_buildFileResult</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">buildFileResultAsync</span> <span class="o">=</span>
             <span class="n">server1</span><span class="o">.</span><span class="n">job_val</span> <span class="p">(</span><span class="n">fun</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">BuildFile</span><span class="p">(</span><span class="n">buildFileArgs</span><span class="p">,</span><span class="n">res</span><span class="p">))</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / buildFileResult: %A</span><span class="si">{_buildFileResult}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
-        
-        <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
-            <span class="k">if</span> <span class="n">_buildFileResult</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">||</span> <span class="n">_buildFileResult</span> <span class="o">=</span> <span class="n">null</span>
-            <span class="n">then</span> <span class="kc">None</span>
-            <span class="k">else</span> <span class="n">_buildFileResult</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Some</span>
-        <span class="n">event</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="n">timeout</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
 
-        <span class="n">let</span><span class="err">!</span> <span class="n">result</span><span class="p">,</span> <span class="n">typeErrorCount</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">buildFileResultAsync</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+            <span class="n">let</span><span class="err">!</span> <span class="n">buildFileResult</span> <span class="o">=</span> <span class="n">buildFileResultAsync</span>
+            <span class="n">let</span> <span class="n">buildFileResult</span> <span class="o">=</span>
+                <span class="k">if</span> <span class="n">buildFileResult</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">||</span> <span class="n">buildFileResult</span> <span class="o">=</span> <span class="n">null</span>
+                <span class="n">then</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">buildFileResult</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Some</span>
+            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / buildFileResult: %A</span><span class="si">{buildFileResult}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">buildFileResult</span><span class="o">.</span><span class="n">IsSome</span> <span class="n">then</span>
+                <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="n">buildFileResult</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">buildFileResult</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
+        <span class="p">}</span>
+
+        <span class="n">let</span> <span class="n">resultAsync</span> <span class="o">=</span>
             <span class="n">outputChild</span>
-            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild / x: %A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)))</span> <span class="o">-&gt;</span>
-                    <span class="p">(</span><span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span><span class="p">),</span> <span class="n">typeErrorCount</span>
+                    <span class="n">let</span> <span class="n">x</span> <span class="o">=</span>
+                        <span class="k">match</span> <span class="n">errors</span> <span class="k">with</span>
+                        <span class="o">|</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">]</span> <span class="o">-&gt;</span>
+                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map"</span><span class="p">)</span> <span class="n">_locals</span>
+                            <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map"</span><span class="p">)</span> <span class="n">_locals</span>
+                        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
+                    <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span><span class="p">,</span> <span class="n">typeErrorCount</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
                     <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / error: {ex |&gt; SpiralSm.format_exception} / retry: </span><span class="si">{retry}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
-                    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[]),</span> <span class="mi">0</span>
-                <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[]),</span> <span class="mi">0</span>
+                    <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
+                <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
             <span class="p">)</span>
 
-        <span class="k">match</span> <span class="n">result</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-&gt;</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / before result: %A{()}"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+        
+        <span class="o">//</span> <span class="n">let</span> <span class="n">resultSeq</span> <span class="o">=</span>
+        <span class="o">//</span>     <span class="p">[</span><span class="o">|</span> <span class="n">buildFileResultAsync</span><span class="p">;</span> <span class="n">resultAsync</span> <span class="o">|</span><span class="p">]</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeqAsync</span>
+        
+        
+        <span class="n">let</span> <span class="n">buildFileResultSeq</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="n">buildFileResultAsync</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeqAsync</span>
+        <span class="n">let</span> <span class="n">resultSeq</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="n">resultAsync</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeqAsync</span>
+
+        <span class="n">let</span> <span class="n">resultSeq</span> <span class="o">=</span>
+            <span class="p">[</span> <span class="n">outputContentSeq2</span><span class="p">;</span> <span class="n">buildFileResultSeq</span><span class="p">;</span> <span class="n">resultSeq</span> <span class="p">]</span>
+            <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">mergeAll</span>
+
+        <span class="n">let</span><span class="err">!</span> <span class="n">buildFileResult</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">typeErrorCount</span> <span class="o">=</span>
+            <span class="n">resultSeq</span>
+            <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">Array</span><span class="o">.</span><span class="n">singleton</span> <span class="o">&gt;&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeq</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+                <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / ofSeqAsync / x: %A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
+                <span class="o">|</span> <span class="n">Some</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">as</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="n">x</span> <span class="o">|</span><span class="p">]</span>
+                <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="p">::</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">as</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="n">x</span> <span class="o">|</span><span class="p">]</span>
+                <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+                <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeq</span>
+            <span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">tryFirst</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
+
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / result: %A</span><span class="si">{result}</span><span class="s2"> / buildFileResult: %A</span><span class="si">{buildFileResult}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+
+        <span class="k">match</span> <span class="n">buildFileResult</span> <span class="k">with</span>
+        <span class="o">//</span> <span class="o">|</span> <span class="kc">None</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-&gt;</span>
+        <span class="o">//</span>     <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / result: </span><span class="si">{result}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / fileDir: </span><span class="si">{fileDir}</span><span class="s2"> / targetDir: </span><span class="si">{targetDir}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+        <span class="o">//</span>     <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
             <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">workspaceRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target"</span>
-            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / retry: </span><span class="si">{retry}</span><span class="s2"> / fileDir: </span><span class="si">{fileDir}</span><span class="s2"> / targetDir: </span><span class="si">{targetDir}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / retry: </span><span class="si">{retry}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / fileDir: </span><span class="si">{fileDir}</span><span class="s2"> / targetDir: </span><span class="si">{targetDir}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
             <span class="k">if</span> <span class="n">fileDir</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">targetDir</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">fileDirUri</span> <span class="o">=</span> <span class="n">fileDir</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">normalize_path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">new_file_uri</span>
 
@@ -8346,7 +8413,7 @@ a.anchor-link {
                 <span class="p">()</span>
 
             <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">fileDir</span> <span class="o">&lt;/&gt;</span> <span class="n">outputFileName</span>
-            <span class="k">return</span> <span class="n">outputPath</span><span class="p">,</span> <span class="n">result</span>
+            <span class="k">return</span> <span class="n">outputPath</span><span class="p">,</span> <span class="n">buildFileResult</span><span class="p">,</span> <span class="n">result</span>
     <span class="p">}</span>
     <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
@@ -8527,7 +8594,7 @@ a.anchor-link {
     <span class="k">match</span> <span class="n">outputCache</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">outputCode</span><span class="p">)</span> <span class="n">when</span> <span class="n">isCache</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">mainPath</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">outputCode</span><span class="p">),</span> <span class="p">[]</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">outputPath</span><span class="p">,</span> <span class="p">(</span><span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="o">=</span> <span class="n">mainPath</span> <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">backend</span> <span class="n">timeout</span> <span class="kc">None</span> <span class="n">cancellationToken</span>
+        <span class="n">let</span><span class="err">!</span> <span class="n">outputPath</span><span class="p">,</span> <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">mainPath</span> <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">backend</span> <span class="n">timeout</span> <span class="kc">None</span> <span class="n">cancellationToken</span>
         <span class="k">return</span> <span class="n">mainPath</span><span class="p">,</span> <span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">outputCode</span><span class="p">),</span> <span class="n">errors</span>
 <span class="p">}</span>
 </pre></div>
@@ -8545,7 +8612,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
 <span class="sd">"""inl app () =</span>
 <span class="sd">    console.write_line "text"</span>
 <span class="sd">    1i32</span>
@@ -8556,8 +8623,8 @@ a.anchor-link {
 <span class="sd">    |&gt; ignore</span>
 <span class="sd">"""</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">15000</span> <span class="kc">None</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">15000</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">20000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">21000</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Some</span> <span class="p">(</span>
@@ -8588,7 +8655,103 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some
+<pre>00:02:06 <span class="ansi-black-intense-fg">v</span> #1 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"
+00:02:06 <span class="ansi-black-intense-fg">v</span> #2 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:06 <span class="ansi-black-intense-fg">v</span> #3 Supervisor.buildFile / before result: ()
+00:02:06 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:06 <span class="ansi-black-intense-fg">v</span> #5 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:06 <span class="ansi-black-intense-fg">v</span> #6 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:07 <span class="ansi-black-intense-fg">v</span> #214 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:07 <span class="ansi-black-intense-fg">v</span> #215 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:07 <span class="ansi-black-intense-fg">v</span> #754 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:07 <span class="ansi-black-intense-fg">v</span> #755 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:08 <span class="ansi-black-intense-fg">v</span> #834 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:08 <span class="ansi-black-intense-fg">v</span> #835 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:08 <span class="ansi-black-intense-fg">v</span> #1085 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:08 <span class="ansi-black-intense-fg">v</span> #1086 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:09 <span class="ansi-black-intense-fg">v</span> #1161 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:09 <span class="ansi-black-intense-fg">v</span> #1162 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:09 <span class="ansi-black-intense-fg">v</span> #1288 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:09 <span class="ansi-black-intense-fg">v</span> #1289 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1304 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1305 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1306 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1307 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1308 Supervisor.buildFile / buildFileResult: Some
+  "let rec closure1 () () : unit =
+    let v0 : (string -&gt; unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
+and closure0 () () : int32 =
+    let v0 : unit = ()
+    let v1 : (unit -&gt; unit) = closure1()
+    let v2 : unit = (fun () -&gt; v1 (); v0) ()
+    1
+let v0 : (unit -&gt; int32) = closure0()
+()
+"
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1309 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
+   "let rec closure1 () () : unit =
+    let v0 : (string -&gt; unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
+and closure0 () () : int32 =
+    let v0 : unit = ()
+    let v1 : (unit -&gt; unit) = closure1()
+    let v2 : unit = (fun () -&gt; v1 (); v0) ()
+    1
+let v0 : (unit -&gt; int32) = closure0()
+()
+",
+ [], 0)
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1310 Supervisor.buildFile / ofSeqAsync / x: (Some
+   "let rec closure1 () () : unit =
+    let v0 : (string -&gt; unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
+and closure0 () () : int32 =
+    let v0 : unit = ()
+    let v1 : (unit -&gt; unit) = closure1()
+    let v2 : unit = (fun () -&gt; v1 (); v0) ()
+    1
+let v0 : (unit -&gt; int32) = closure0()
+()
+",
+ [], 0)
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1311 Supervisor.buildFile / result: [] / buildFileResult: Some
+  "let rec closure1 () () : unit =
+    let v0 : (string -&gt; unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
+and closure0 () () : int32 =
+    let v0 : unit = ()
+    let v1 : (unit -&gt; unit) = closure1()
+    let v2 : unit = (fun () -&gt; v1 (); v0) ()
+    1
+let v0 : (unit -&gt; int32) = closure0()
+()
+" / typeErrorCount: 0
+00:02:10 <span class="ansi-black-intense-fg">v</span> #1312 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6 / targetDir: c:/home/git\polyglot\target
+Some
   (Some
      "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
@@ -8619,217 +8782,6 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
-<span class="s2">""</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-    <span class="n">Some</span> <span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span>
-        <span class="p">[</span> <span class="s2">"Cannot find `main` in file main."</span> <span class="p">]</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some (None, ["Cannot find `main` in file main."])
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""inl main () =</span>
-<span class="sd">        1i32 / 0i32</span>
-<span class="sd">    """</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span> <span class="s2">"An attempt to divide by zero has been detected at compile time."</span> <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""inl main () =</span>
-<span class="sd">        1 + ""</span>
-<span class="sd">    """</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span>
-                <span class="s2">"main.spi:</span>
-    <span class="n">Constraint</span> <span class="n">satisfaction</span> <span class="n">error</span><span class="o">.</span>
-    <span class="n">Got</span><span class="p">:</span> <span class="n">string</span>
-    <span class="n">Fails</span> <span class="n">to</span> <span class="n">satisfy</span><span class="p">:</span> <span class="n">number</span><span class="s2">"</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""inl main () =</span>
-<span class="sd">        x + y</span>
-<span class="sd">    """</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span>
-                <span class="s2">"main.spi:</span>
-    <span class="n">Unbound</span> <span class="n">variable</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span>
-    <span class="n">Unbound</span> <span class="n">variable</span><span class="p">:</span> <span class="n">y</span><span class="o">.</span><span class="s2">"</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    inl main () =</span>
-<span class="sd">        real</span>
-<span class="sd">            inl unbox_real forall a. (obj : a) : a =</span>
-<span class="sd">                typecase obj with</span>
-<span class="sd">                | _ =&gt; obj</span>
-<span class="sd">            unbox_real ()</span>
-<span class="sd">        ()</span>
-<span class="sd">    """</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span> <span class="s2">"Cannot apply a forall with a term."</span> <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    inl main () =</span>
-<span class="sd">        real</span>
-<span class="sd">            inl unbox_real forall a. (obj : a) : a =</span>
-<span class="sd">                typecase obj with</span>
-<span class="sd">                | _ =&gt; obj</span>
-<span class="sd">            unbox_real `i32 1</span>
-<span class="sd">    """</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span> <span class="s2">"The main function should not have a forall."</span> <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
 <span class="sd">"""</span>
 <span class="sd">inl init_series start end inc =</span>
 <span class="sd">    inl total : f64 = conv ((end - start) / inc) + 1</span>
@@ -8848,7 +8800,7 @@ let v0 : (unit -&gt; int32) = closure0()
 <span class="sd">"""</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Some</span> <span class="p">(</span>
@@ -8868,7 +8820,25 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some (Some "0.3325000000000001
+<pre>00:02:11 <span class="ansi-black-intense-fg">v</span> #1315 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1316 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi'
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1317 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1318 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1319 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1320 Supervisor.buildFile / before result: ()
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1552 Supervisor.buildFile / buildFileResult: Some "0.3325000000000001
+"
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1553 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.3325000000000001
+", [], 0)
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1554 Supervisor.buildFile / ofSeqAsync / x: (Some "0.3325000000000001
+", [], 0)
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1555 Supervisor.buildFile / result: [] / buildFileResult: Some "0.3325000000000001
+" / typeErrorCount: 0
+00:02:11 <span class="ansi-black-intense-fg">v</span> #1556 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db / targetDir: c:/home/git\polyglot\target
+Some (Some "0.3325000000000001
 ", [])
 
 </pre>
@@ -8876,7 +8846,7 @@ let v0 : (unit -&gt; int32) = closure0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8904,7 +8874,7 @@ let v0 : (unit -&gt; int32) = closure0()
 <span class="sd">"""</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Cuda</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Some</span> <span class="p">(</span>
@@ -8989,7 +8959,287 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some
+<pre>00:02:12 <span class="ansi-black-intense-fg">v</span> #1560 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1561 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi'
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1562 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1563 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1564 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1565 Supervisor.buildFile / before result: ()
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1800 Supervisor.buildFile / buildFileResult: Some
+  "kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def main_body():
+    return 0.3325000000000001
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+"
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1801 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
+   "kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def main_body():
+    return 0.3325000000000001
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+",
+ [], 0)
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1802 Supervisor.buildFile / ofSeqAsync / x: (Some
+   "kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def main_body():
+    return 0.3325000000000001
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+",
+ [], 0)
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1803 Supervisor.buildFile / result: [] / buildFileResult: Some
+  "kernel = r"""
+"""
+class static_array():
+    def __init__(self, length):
+        self.ptr = []
+        for _ in range(length):
+            self.ptr.append(None)
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
+        self.ptr[index] = value
+
+class static_array_list(static_array):
+    def __init__(self, length):
+        super().__init__(length)
+        self.length = 0
+
+    def __getitem__(self, index):
+        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
+        return self.ptr[index]
+    
+    def __setitem__(self, index, value):
+        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
+        self.ptr[index] = value
+
+    def push(self,value):
+        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
+        self.ptr[self.length] = value
+        self.length += 1
+
+    def pop(self):
+        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
+        self.length -= 1
+        return self.ptr[self.length]
+
+    def unsafe_set_length(self,i):
+        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
+        self.length = i
+
+class dynamic_array(static_array): 
+    pass
+
+class dynamic_array_list(static_array_list):
+    def length_(self): return self.length
+
+import cupy as cp
+import numpy as np
+from dataclasses import dataclass
+from typing import NamedTuple, Union, Callable, Tuple
+i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
+cuda = False
+
+def main_body():
+    return 0.3325000000000001
+
+def main():
+    r = main_body()
+    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r
+
+if __name__ == '__main__': result = main(); None if result is None else print(result)
+" / typeErrorCount: 0
+00:02:12 <span class="ansi-black-intense-fg">v</span> #1804 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8 / targetDir: c:/home/git\polyglot\target
+Some
   (Some
      "kernel = r"""
 """
@@ -9064,7 +9314,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9074,6 +9324,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
 <span class="sd">"""</span>
 <span class="sd">inl init_series start end inc =</span>
 <span class="sd">    inl total : f64 = conv ((end - start) / inc) + 1</span>
@@ -9092,7 +9343,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <span class="sd">"""</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Some</span> <span class="p">(</span>
@@ -9114,7 +9365,25 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some (Some "0.33332500000000004
+<pre>00:02:13 <span class="ansi-black-intense-fg">v</span> #1810 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
+00:02:13 <span class="ansi-black-intense-fg">v</span> #1811 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi'
+00:02:13 <span class="ansi-black-intense-fg">v</span> #1812 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
+00:02:13 <span class="ansi-black-intense-fg">v</span> #1813 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"
+00:02:13 <span class="ansi-black-intense-fg">v</span> #1814 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:13 <span class="ansi-black-intense-fg">v</span> #1815 Supervisor.buildFile / before result: ()
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2048 Supervisor.buildFile / buildFileResult: Some "0.33332500000000004
+"
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2049 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.33332500000000004
+", [], 0)
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2050 Supervisor.buildFile / ofSeqAsync / x: (Some "0.33332500000000004
+", [], 0)
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2051 Supervisor.buildFile / result: [] / buildFileResult: Some "0.33332500000000004
+" / typeErrorCount: 0
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2052 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4 / targetDir: c:/home/git\polyglot\target
+Some (Some "0.33332500000000004
 ", [])
 
 </pre>
@@ -9122,7 +9391,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9132,33 +9401,1184 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-<span class="w">    </span><span class="sd">"""inl rec main () = main"""</span>
-    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-    <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
-        <span class="n">Some</span> <span class="p">(</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">[</span>
-                <span class="s2">"main.spi:</span>
-    <span class="n">Recursive</span> <span class="n">metavariables</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">allowed</span><span class="o">.</span> <span class="n">A</span> <span class="n">metavar</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">unified</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">type</span> <span class="n">that</span> <span class="n">has</span> <span class="n">itself</span><span class="o">.</span>
-    <span class="n">Got</span><span class="p">:</span>      <span class="s1">'a</span>
-    <span class="n">Expected</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s1">'a"</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="s2">""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"Cannot find `main` in file main."</span> <span class="p">]</span>
     <span class="p">)</span>
-    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
-    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">printfn</span> <span class="err">$</span><span class="s2">"{x.ToDisplayString ()}"</span>
-<span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:13 <span class="ansi-black-intense-fg">v</span> #2060 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2061 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi'
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2062 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2063 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2064 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:13 <span class="ansi-black-intense-fg">v</span> #2065 Supervisor.buildFile / before result: ()
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2303 Supervisor.buildFile / buildFileResult: None
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2304 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2313 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot find `main` in file main., FatalError "Cannot find `main` in file main.")) / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi'
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2314 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "Cannot find `main` in file main.",
+    {
+      "FatalError": "Cannot find `main` in file main."
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2316 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("Cannot find `main` in file main.",
+           FatalError "Cannot find `main` in file main.")], 0)))
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2321 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("Cannot find `main` in file main.",
+   FatalError "Cannot find `main` in file main.")], 0)
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2322 Supervisor.buildFile / result: [("Cannot find `main` in file main.",
+  FatalError "Cannot find `main` in file main.")] / buildFileResult: None / typeErrorCount: 0
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2323 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa / targetDir: c:/home/git\polyglot\target
+Some (None, ["Cannot find `main` in file main."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""inl main () =</span>
+<span class="sd">    1i32 / 0i32</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"An attempt to divide by zero has been detected at compile time."</span> <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:14 <span class="ansi-black-intense-fg">v</span> #2324 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2325 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi'
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2326 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2327 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2328 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2329 Supervisor.buildFile / before result: ()
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2562 Supervisor.buildFile / buildFileResult: None
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2563 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2564 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((An attempt to divide by zero has been detected at compile time., TracedError
+  { message = "An attempt to divide by zero has been detected at compile time."
+    trace =
+     ["Error trace on line: 1, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+inl main () =
+         ^
+";
+      "Error trace on line: 2, column: 5 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+    1i32 / 0i32
+    ^
+"] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi'
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2565 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "An attempt to divide by zero has been detected at compile time.",
+    {
+      "TracedError": {
+        "message": "An attempt to divide by zero has been detected at compile time.",
+        "trace": [
+          "Error trace on line: 1, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+inl main () =
+         ^
+",
+          "Error trace on line: 2, column: 5 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+    1i32 / 0i32
+    ^
+"
+        ]
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2567 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("An attempt to divide by zero has been detected at compile time.",
+           TracedError
+             { message =
+                "An attempt to divide by zero has been detected at compile time."
+               trace =
+                ["Error trace on line: 1, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+inl main () =
+         ^
+";
+                 "Error trace on line: 2, column: 5 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+    1i32 / 0i32
+    ^
+"] })],
+         0)))
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2568 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("An attempt to divide by zero has been detected at compile time.",
+   TracedError
+     { message =
+        "An attempt to divide by zero has been detected at compile time."
+       trace =
+        ["Error trace on line: 1, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+inl main () =
+         ^
+";
+         "Error trace on line: 2, column: 5 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+    1i32 / 0i32
+    ^
+"] })],
+ 0)
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2569 Supervisor.buildFile / result: [("An attempt to divide by zero has been detected at compile time.",
+  TracedError
+    { message =
+       "An attempt to divide by zero has been detected at compile time."
+      trace =
+       ["Error trace on line: 1, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+inl main () =
+         ^
+";
+        "Error trace on line: 2, column: 5 in module: c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi.
+    1i32 / 0i32
+    ^
+"] })] / buildFileResult: None / typeErrorCount: 0
+00:02:14 <span class="ansi-black-intense-fg">v</span> #2570 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2 / targetDir: c:/home/git\polyglot\target
+Some (None, ["An attempt to divide by zero has been detected at compile time."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""</span>
+<span class="sd">inl main () =</span>
+<span class="sd">    real</span>
+<span class="sd">        inl unbox_real forall a. (obj : a) : a =</span>
+<span class="sd">            typecase obj with</span>
+<span class="sd">            | _ =&gt; obj</span>
+<span class="sd">        unbox_real ()</span>
+<span class="sd">    ()</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"Cannot apply a forall with a term."</span> <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:15 <span class="ansi-black-intense-fg">v</span> #2571 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2572 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2573 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2574 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2575 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2576 Supervisor.buildFile / before result: ()
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2808 Supervisor.buildFile / buildFileResult: None
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2809 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2810 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
+  { message = "Cannot apply a forall with a term."
+    trace =
+     ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+      "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+      "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2811 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "Cannot apply a forall with a term.",
+    {
+      "TracedError": {
+        "message": "Cannot apply a forall with a term.",
+        "trace": [
+          "Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+",
+          "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+",
+          "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"
+        ]
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2813 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("Cannot apply a forall with a term.",
+           TracedError
+             { message = "Cannot apply a forall with a term."
+               trace =
+                ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+                 "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+                 "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })],
+         0)))
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2814 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("Cannot apply a forall with a term.",
+   TracedError
+     { message = "Cannot apply a forall with a term."
+       trace =
+        ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+         "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+         "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })],
+ 0)
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2815 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+  TracedError
+    { message = "Cannot apply a forall with a term."
+      trace =
+       ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+        "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+        "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })] / buildFileResult: None / typeErrorCount: 0
+00:02:15 <span class="ansi-black-intense-fg">v</span> #2816 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
+Some (None, ["Cannot apply a forall with a term."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""</span>
+<span class="sd">inl main () =</span>
+<span class="sd">    real</span>
+<span class="sd">        inl unbox_real forall a. (obj : a) : a =</span>
+<span class="sd">            typecase obj with</span>
+<span class="sd">            | _ =&gt; obj</span>
+<span class="sd">        unbox_real `i32 1</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"The main function should not have a forall."</span> <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:16 <span class="ansi-black-intense-fg">v</span> #2817 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:02:16 <span class="ansi-black-intense-fg">v</span> #2818 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi'
+00:02:16 <span class="ansi-black-intense-fg">v</span> #2819 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:02:16 <span class="ansi-black-intense-fg">v</span> #2820 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"
+00:02:16 <span class="ansi-black-intense-fg">v</span> #2821 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:16 <span class="ansi-black-intense-fg">v</span> #2822 Supervisor.buildFile / before result: ()
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3055 Supervisor.buildFile / buildFileResult: None
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3056 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3057 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((The main function should not have a forall., TracedError { message = "The main function should not have a forall."
+              trace = [] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi'
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3058 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "The main function should not have a forall.",
+    {
+      "TracedError": {
+        "message": "The main function should not have a forall.",
+        "trace": []
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3060 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("The main function should not have a forall.",
+           TracedError { message = "The main function should not have a forall."
+                         trace = [] })], 0)))
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3061 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("The main function should not have a forall.",
+   TracedError { message = "The main function should not have a forall."
+                 trace = [] })], 0)
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3062 Supervisor.buildFile / result: [("The main function should not have a forall.",
+  TracedError { message = "The main function should not have a forall."
+                trace = [] })] / buildFileResult: None / typeErrorCount: 0
+00:02:16 <span class="ansi-black-intense-fg">v</span> #3063 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f / targetDir: c:/home/git\polyglot\target
+Some (None, ["The main function should not have a forall."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""</span>
+<span class="sd">inl main () =</span>
+<span class="sd">    real</span>
+<span class="sd">        inl unbox_real forall a. (obj : a) : a =</span>
+<span class="sd">            typecase obj with</span>
+<span class="sd">            | _ =&gt; obj</span>
+<span class="sd">        unbox_real ()</span>
+<span class="sd">    ()</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span> <span class="s2">"Cannot apply a forall with a term."</span> <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:17 <span class="ansi-black-intense-fg">v</span> #3064 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3065 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3066 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3067 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3068 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3069 Supervisor.buildFile / before result: ()
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3298 Supervisor.buildFile / buildFileResult: None
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3299 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3300 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
+  { message = "Cannot apply a forall with a term."
+    trace =
+     ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+      "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+      "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3301 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "Cannot apply a forall with a term.",
+    {
+      "TracedError": {
+        "message": "Cannot apply a forall with a term.",
+        "trace": [
+          "Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+",
+          "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+",
+          "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"
+        ]
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3303 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("Cannot apply a forall with a term.",
+           TracedError
+             { message = "Cannot apply a forall with a term."
+               trace =
+                ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+                 "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+                 "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })],
+         0)))
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3304 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("Cannot apply a forall with a term.",
+   TracedError
+     { message = "Cannot apply a forall with a term."
+       trace =
+        ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+         "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+         "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })],
+ 0)
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3305 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+  TracedError
+    { message = "Cannot apply a forall with a term."
+      trace =
+       ["Error trace on line: 2, column: 10 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+inl main () =
+         ^
+";
+        "Error trace on line: 4, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        inl unbox_real forall a. (obj : a) : a =
+        ^
+";
+        "Error trace on line: 7, column: 9 in module: c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi.
+        unbox_real ()
+        ^
+"] })] / buildFileResult: None / typeErrorCount: 0
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3306 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
+Some (None, ["Cannot apply a forall with a term."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""inl main () =</span>
+<span class="sd">    1 + ""</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s2">"main.spi:</span>
+<span class="n">Constraint</span> <span class="n">satisfaction</span> <span class="n">error</span><span class="o">.</span>
+<span class="n">Got</span><span class="p">:</span> <span class="n">string</span>
+<span class="n">Fails</span> <span class="n">to</span> <span class="n">satisfy</span><span class="p">:</span> <span class="n">number</span><span class="s2">"</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:17 <span class="ansi-black-intense-fg">v</span> #3307 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3308 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi'
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3309 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3310 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3311 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3312 Supervisor.buildFile / before result: ()
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3398 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number, TypeErrors
+  { errors =
+     [(({ character = 8
+          line = 1 }, { character = 10
+                        line = 1 }),
+       "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+    uri =
+     "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi'
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3405 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+    {
+      "TypeErrors": {
+        "errors": [
+          [
+            [
+              {
+                "character": 8,
+                "line": 1
+              },
+              {
+                "character": 10,
+                "line": 1
+              }
+            ],
+            "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number"
+          ]
+        ],
+        "uri": "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3413 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+ Some
+   ("main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+    TypeErrors
+      { errors =
+         [(({ character = 8
+              line = 1 }, { character = 10
+                            line = 1 }),
+           "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+        uri =
+         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" }))
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3415 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3423 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+           TypeErrors
+             { errors =
+                [(({ character = 8
+                     line = 1 }, { character = 10
+                                   line = 1 }),
+                  "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+               uri =
+                "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
+         0)))
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3426 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3431 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+ [("main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+   TypeErrors
+     { errors =
+        [(({ character = 8
+             line = 1 }, { character = 10
+                           line = 1 }),
+          "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
+ 0)
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3435 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+   TypeErrors
+     { errors =
+        [(({ character = 8
+             line = 1 }, { character = 10
+                           line = 1 }),
+          "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
+ 0)
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3439 Supervisor.buildFile / result: [("main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number",
+  TypeErrors
+    { errors =
+       [(({ character = 8
+            line = 1 }, { character = 10
+                          line = 1 }),
+         "Constraint satisfaction error.
+Got: string
+Fails to satisfy: number")]
+      uri =
+       "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })] / buildFileResult: None / typeErrorCount: 0
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3440 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0 / targetDir: c:/home/git\polyglot\target
+00:02:17 <span class="ansi-black-intense-fg">v</span> #3442 Supervisor.buildFile / outputChild |&gt; Async.map
+Some (None, ["main.spi:
+Constraint satisfaction error.
+Got: string
+Fails to satisfy: number"])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""inl main () =</span>
+<span class="sd">    x + y</span>
+<span class="sd">"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s2">"main.spi:</span>
+<span class="n">Unbound</span> <span class="n">variable</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span>
+<span class="n">Unbound</span> <span class="n">variable</span><span class="p">:</span> <span class="n">y</span><span class="o">.</span><span class="s2">"</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:18 <span class="ansi-black-intense-fg">v</span> #3557 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3558 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi'
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3559 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3560 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3561 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3562 Supervisor.buildFile / before result: ()
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3603 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+Unbound variable: x.
+Unbound variable: y., TypeErrors
+  { errors =
+     [(({ character = 4
+          line = 1 }, { character = 5
+                        line = 1 }), "Unbound variable: x.");
+      (({ character = 8
+          line = 1 }, { character = 9
+                        line = 1 }), "Unbound variable: y.")]
+    uri =
+     "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi'
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3605 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+    {
+      "TypeErrors": {
+        "errors": [
+          [
+            [
+              {
+                "character": 4,
+                "line": 1
+              },
+              {
+                "character": 5,
+                "line": 1
+              }
+            ],
+            "Unbound variable: x."
+          ],
+          [
+            [
+              {
+                "character": 8,
+                "line": 1
+              },
+              {
+                "character": 9,
+                "line": 1
+              }
+            ],
+            "Unbound variable: y."
+          ]
+        ],
+        "uri": "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3609 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+ Some
+   ("main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+    TypeErrors
+      { errors =
+         [(({ character = 4
+              line = 1 }, { character = 5
+                            line = 1 }), "Unbound variable: x.");
+          (({ character = 8
+              line = 1 }, { character = 9
+                            line = 1 }), "Unbound variable: y.")]
+        uri =
+         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" }))
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3610 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3616 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+           TypeErrors
+             { errors =
+                [(({ character = 4
+                     line = 1 }, { character = 5
+                                   line = 1 }), "Unbound variable: x.");
+                 (({ character = 8
+                     line = 1 }, { character = 9
+                                   line = 1 }), "Unbound variable: y.")]
+               uri =
+                "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
+         0)))
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3617 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3620 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+ [("main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+   TypeErrors
+     { errors =
+        [(({ character = 4
+             line = 1 }, { character = 5
+                           line = 1 }), "Unbound variable: x.");
+         (({ character = 8
+             line = 1 }, { character = 9
+                           line = 1 }), "Unbound variable: y.")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
+ 0)
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3623 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+   TypeErrors
+     { errors =
+        [(({ character = 4
+             line = 1 }, { character = 5
+                           line = 1 }), "Unbound variable: x.");
+         (({ character = 8
+             line = 1 }, { character = 9
+                           line = 1 }), "Unbound variable: y.")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
+ 0)
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3626 Supervisor.buildFile / result: [("main.spi:
+Unbound variable: x.
+Unbound variable: y.",
+  TypeErrors
+    { errors =
+       [(({ character = 4
+            line = 1 }, { character = 5
+                          line = 1 }), "Unbound variable: x.");
+        (({ character = 8
+            line = 1 }, { character = 9
+                          line = 1 }), "Unbound variable: y.")]
+      uri =
+       "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })] / buildFileResult: None / typeErrorCount: 0
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3627 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1 / targetDir: c:/home/git\polyglot\target
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3629 Supervisor.buildFile / outputChild |&gt; Async.map
+Some (None, ["main.spi:
+Unbound variable: x.
+Unbound variable: y."])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+<span class="sd">"""inl rec main () = main"""</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">code</span> <span class="o">-&gt;</span> <span class="n">Spi</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">Fsharp</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="n">false</span> <span class="mi">10000</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">11000</span>
+<span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">),</span> <span class="n">errors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
+    <span class="n">Some</span> <span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s2">"main.spi:</span>
+<span class="n">Recursive</span> <span class="n">metavariables</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">allowed</span><span class="o">.</span> <span class="n">A</span> <span class="n">metavar</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">unified</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">type</span> <span class="n">that</span> <span class="n">has</span> <span class="n">itself</span><span class="o">.</span>
+<span class="n">Got</span><span class="p">:</span>      <span class="s1">'a</span>
+<span class="n">Expected</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s1">'a"</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">printfn</span> <span class="err">$</span><span class="s2">"{x.ToDisplayString ()}"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:02:18 <span class="ansi-black-intense-fg">v</span> #3807 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3808 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi'
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3809 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3810 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3811 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3812 Supervisor.buildFile / before result: ()
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3854 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a, TypeErrors
+  { errors =
+     [(({ character = 18
+          line = 0 }, { character = 22
+                        line = 0 }),
+       "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+    uri =
+     "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi'
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3856 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [
+  [
+    "main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+    {
+      "TypeErrors": {
+        "errors": [
+          [
+            [
+              {
+                "character": 18,
+                "line": 0
+              },
+              {
+                "character": 22,
+                "line": 0
+              }
+            ],
+            "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a"
+          ]
+        ],
+        "uri": "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
+      }
+    }
+  ]
+] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3859 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+ Some
+   ("main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+    TypeErrors
+      { errors =
+         [(({ character = 18
+              line = 0 }, { character = 22
+                            line = 0 }),
+           "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+        uri =
+         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" }))
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3860 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3865 Supervisor.buildFile / outputChild / x: Some
+  (Ok
+     (Some
+        (None,
+         [("main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+           TypeErrors
+             { errors =
+                [(({ character = 18
+                     line = 0 }, { character = 22
+                                   line = 0 }),
+                  "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+               uri =
+                "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
+         0)))
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3866 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3869 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+ [("main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+   TypeErrors
+     { errors =
+        [(({ character = 18
+             line = 0 }, { character = 22
+                           line = 0 }),
+          "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
+ 0)
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3872 Supervisor.buildFile / ofSeqAsync / x: (None,
+ [("main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+   TypeErrors
+     { errors =
+        [(({ character = 18
+             line = 0 }, { character = 22
+                           line = 0 }),
+          "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+       uri =
+        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
+ 0)
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3874 Supervisor.buildFile / result: [("main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a",
+  TypeErrors
+    { errors =
+       [(({ character = 18
+            line = 0 }, { character = 22
+                          line = 0 }),
+         "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a")]
+      uri =
+       "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })] / buildFileResult: None / typeErrorCount: 0
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3875 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7 / targetDir: c:/home/git\polyglot\target
+00:02:18 <span class="ansi-black-intense-fg">v</span> #3876 Supervisor.buildFile / outputChild |&gt; Async.map
+Some
+  (None,
+   ["main.spi:
+Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+Got:      'a
+Expected: () -&gt; 'a"])
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9168,7 +10588,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9241,7 +10661,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9251,7 +10671,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9286,7 +10706,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9321,7 +10741,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9357,7 +10777,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9367,7 +10787,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9422,6 +10842,8 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
         <span class="n">let</span><span class="err">!</span> <span class="n">_fileDeleteResult</span> <span class="o">=</span>
             <span class="n">server1</span><span class="o">.</span><span class="n">job_null</span> <span class="p">(</span><span class="n">server1</span><span class="o">.</span><span class="n">supervisor</span> <span class="o">*&lt;+</span> <span class="n">SupervisorReq</span><span class="o">.</span><span class="n">FileDelete</span> <span class="n">fileDeleteArgs</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">60000</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
         <span class="p">()</span>
 
     <span class="k">return</span> <span class="n">hoverAtResult</span> <span class="o">|&gt;</span> <span class="n">Some</span>
@@ -9432,7 +10854,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9442,7 +10864,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9477,7 +10899,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9510,7 +10932,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9543,7 +10965,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9576,7 +10998,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9610,7 +11032,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9620,7 +11042,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9655,7 +11077,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9706,7 +11128,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9716,7 +11138,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=68">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9792,7 +11214,7 @@ OPTIONS:
         <span class="n">let</span> <span class="n">buildFileAsync</span> <span class="o">=</span>
             <span class="n">buildFileActions</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">inputPath</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">_outputPath</span><span class="p">,</span> <span class="p">(</span><span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span> <span class="o">=</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">_outputPath</span><span class="p">,</span> <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span>
                     <span class="n">let</span> <span class="n">backend</span> <span class="o">=</span>
                         <span class="k">if</span> <span class="n">outputPath</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">".fsx"</span>
                         <span class="n">then</span> <span class="n">Fsharp</span>
@@ -9890,7 +11312,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
