@@ -41,6 +41,10 @@ if (!(Search-Command "nix")) {
         if (!(Search-Command "pip")) {
             sudo apt install -y python3-pip
         }
+    } else {
+        if (!(Test-Path "~/.bun/bin/bun")) {
+            Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression
+        }
     }
 
     { pip install -r ../requirements.txt } | Invoke-Block
