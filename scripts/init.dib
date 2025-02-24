@@ -52,7 +52,7 @@ if (!(Search-Command "leptosfmt")) {
 #!pwsh
 
 if (!(Search-Command "nix")) {
-    { ~/.bun/bin/bunx --bun playwright@1.44.0 install } | Invoke-Block -OnError Continue
+    { . $(Search-Command bunx) --bun playwright@1.44.0 install } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
@@ -69,7 +69,7 @@ if (!(Search-Command "nix")) {
 
 #!pwsh
 
-{ ~/.bun/bin/bun install --cwd .. --frozen-lockfile } | Invoke-Block
+{ . $(Search-Command bun) install --cwd .. --frozen-lockfile } | Invoke-Block
 
 #!pwsh
 

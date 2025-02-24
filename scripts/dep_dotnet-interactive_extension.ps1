@@ -24,7 +24,7 @@ if (!$fast) {
 Remove-Item $vsixPath -Force -ErrorAction Ignore
 
 Write-Output "Compiling..."
-{ ~/.bun/bin/bun --bun compile } | Invoke-Block -Location $extensionSrcPath
+{ . $(Search-Command bun) --bun compile } | Invoke-Block -Location $extensionSrcPath
 
 $path = Join-Path $extensionSrcPath "out/deps/dotnet-interactive/src/polyglot-notebooks-vscode-insiders/src/vscode-common/documentSemanticTokenProvider.js"
 Write-Output "path: $path"
@@ -90,11 +90,11 @@ $path = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/sr
 $dir = Join-Path $extensionSrcPath "out/deps/spiral/deps/polyglot/deps/Fable/src/fable-library-ts/lib"
 New-Item $dir -ItemType Directory -Force | Out-Null
 Copy-Item "$ScriptDir/../deps/Fable/src/fable-library-ts/lib/ts/big.js" $(Join-Path $dir "big.js") -Force
-# { ~/.bun/bin/bun --bun build big.ts --minify --target=node --outfile=big.js } | Invoke-Block -Location $dir
+# { . $(Search-Command bun) --bun build big.ts --minify --target=node --outfile=big.js } | Invoke-Block -Location $dir
 # Remove-Item $(Join-Path $dir "big.ts") -Force -ErrorAction Ignore
 
 Write-Output "Packaging..."
-{ ~/.bun/bin/bun --bun package } | Invoke-Block -Location $extensionSrcPath
+{ . $(Search-Command bun)--bun package } | Invoke-Block -Location $extensionSrcPath
 
 
 $extensionsPath = @()

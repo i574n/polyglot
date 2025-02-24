@@ -41,7 +41,7 @@ if (!$fast) {
 
     { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
     { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
-    { npm run rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
+    { npm run rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser -OnError Continue
     { npm run compile-library } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
 }
 
