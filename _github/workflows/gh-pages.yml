@@ -45,13 +45,7 @@ jobs:
         with:
           packages: blender
 
-      - run: pwsh scripts/init.ps1
-
-      - run: pwsh scripts/build.ps1
-
-      - run: pwsh scripts/publish.ps1
-
-      - run: pwsh dist/scripts/publish-bin.ps1
+      - run: pwsh scripts/workflow.ps1
         env:
             NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
 

@@ -8,15 +8,15 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block
+    { . $(Search-Command bun) install --frozen-lockfile } | Invoke-Block
 }
 
 { wasm-pack build --target web --dev <# --reference-types # --weak-refs --no-typescript #> } | Invoke-Block
 
 Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
-{ ~/.bun/bin/bunx --bun esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block -OnError Continue
-{ Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
+{ . $(Search-Command bunx) --bun esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block -OnError Continue
+{ Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block -OnError Continue
 
 if (!$fast) {
-    { ~/.bun/bin/bun test:e2e } | Invoke-Block -OnError Continue
+    { . $(Search-Command bun) test:e2e } | Invoke-Block -OnError Continue
 }

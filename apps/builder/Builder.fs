@@ -80,6 +80,8 @@ module Builder =
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+        <ServerGarbageCollection>true</ServerGarbageCollection>
+        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
         <PublishAot>false</PublishAot>
         <PublishTrimmed>false</PublishTrimmed>
         <PublishSingleFile>true</PublishSingleFile>
@@ -107,6 +109,10 @@ module Builder =
     <ItemGroup>
         {modulesCode}
         <Compile Include="{filePath}" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <Import Project="{workspaceRoot}/.paket/Paket.Restore.targets" />
@@ -141,7 +147,7 @@ module Builder =
 
         let code = System.Text.RegularExpressions.Regex.Replace (
             code,
-            @"( *)(let\s+main\s+.*?\s*=)",
+            @"( *)(let\s+main\s+\w+\s*=)",
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
@@ -217,7 +223,7 @@ module Builder =
         if persistOnly
         then path |> persistFile packages modules |> Async.map (fun _ -> 0)
         else path |> buildFile runtime packages modules
-        |> Async.runWithTimeout (60000 * 60)
+        |> Async.runWithTimeout (60001 * 60 * 24)
         |> function
             | Some exitCode -> exitCode
             | None -> 1

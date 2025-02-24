@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/Fable.git
-{ git pull } | Invoke-Block -Location Fable
+{ git pull } | Invoke-Block -Location Fable -OnError Continue
 
 $path = "$HOME/.nuget/packages/fable"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"

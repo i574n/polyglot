@@ -6,10 +6,10 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block
+{ . $(Search-Command bun) install --frozen-lockfile } | Invoke-Block
 
 EnsureSymbolicLink -Path "./LICENSE" -Target "../../../LICENSE"
 
 { pwsh ./compile.ps1 } | Invoke-Block
 
-{ ~/.bun/bin/bunx --bun @vscode/vsce package --pre-release --out "out/" } | Invoke-Block
+{ . $(Search-Command bunx) --bun @vscode/vsce package --pre-release --out "out/" } | Invoke-Block

@@ -86,7 +86,8 @@ function Invoke-Block {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            # / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json)
+            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
             if ($OnError -eq "Stop") {
@@ -168,7 +169,7 @@ function ResolveLink (
 
     $parent = $Path | Split-Path
     if (!$parent) {
-        Write-Host "polyglot/scripts/core.ps1/ResolveLink #2 / parent: $parent / Path: $Path / End: $End"
+        # Write-Host "polyglot/scripts/core.ps1/ResolveLink #2 / parent: $parent / Path: $Path / End: $End"
         return Join-Path $Path $End
     }
 
@@ -179,9 +180,9 @@ function ResolveLink (
     }
 
     if ($parent | Test-Path) {
-        $parent_target = ($parent | Get-Item).Target
+        $parent_target = ($parent | Get-Item -Force).Target
         if ($Path | Test-Path) {
-            $path_target = ($Path | Get-Item).Target
+            $path_target = ($Path | Get-Item -Force).Target
         }
         # Write-Host ("polyglot/scripts/core.ps1/ResolveLink #3 / " + `
         #     "Path: $Path / parent_target: $parent_target / path_target: $path_target / parent: $parent / End: $End")

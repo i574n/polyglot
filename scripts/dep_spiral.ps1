@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/The-Spiral-Language.git
-{ git pull } | Invoke-Block -Location The-Spiral-Language
+{ git pull } | Invoke-Block -Location The-Spiral-Language -OnError Continue
 Set-Location $ScriptDir
 
 { dotnet build -c Release "../deps/The-Spiral-Language/The Spiral Language 2/The Spiral Language 2.fsproj" } | Invoke-Block

@@ -4,6 +4,44 @@ namespace Polyglot
 
 module Eval =
 
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+    open spiral_compiler
+
 #if !INTERACTIVE
     open Lib
 #endif
@@ -26,12 +64,12 @@ module Eval =
         errors
         |> List.map (fun (_, error) ->
             match error with
-            | Supervisor.FatalError message ->
+            | FatalError message ->
                 (
                     severity, message, 0, ("", (0, 0), (0, 0))
                 )
                 |> List.singleton
-            | Supervisor.TracedError data ->
+            | TracedError data ->
                 data.trace
                 |> List.truncate 5
                 |> List.append [ data.message ]
@@ -40,10 +78,10 @@ module Eval =
                         severity, message, 0, ("", (0, 0), (0, 0))
                     )
                 )
-            | Supervisor.PackageErrors data
-            | Supervisor.TokenizerErrors data
-            | Supervisor.ParserErrors data
-            | Supervisor.TypeErrors data ->
+            | PackageErrors data
+            | TokenizerErrors data
+            | ParserErrors data
+            | TypeErrors data ->
                 data.errors
                 |> List.filter (fun ((rangeStart, _), _) ->
                     trace Debug (fun () -> $"Eval.mapErrors / rangeStart.line: {rangeStart.line} / lastTopLevelIndex: {lastTopLevelIndex} / allCodeLineLength: {allCodeLineLength} / filtered: {rangeStart.line > allCodeLineLength}") _locals
@@ -91,9 +129,6 @@ module Eval =
     [ targetDir ]
     |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
-    /// ### assemblyName
-    let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
-
     /// ## allCode
     let mutable allCode = ""
 
@@ -106,23 +141,9 @@ module Eval =
     /// ## traceToggle
     let mutable traceToggle = false
 
-    /// ## getParentProcessId
-    let getParentProcessId () =
-        if SpiralPlatform.is_windows () |> not
-        then 0u
-        else
-            let pid = System.Diagnostics.Process.GetCurrentProcess().Id
-            let query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {pid}"
-            use searcher = new System.Management.ManagementObjectSearcher (query)
-            use results = searcher.Get ()
-            let data = results |> Seq.cast<System.Management.ManagementObject>
-            if data |> Seq.isEmpty
-            then 0u
-            else data |> Seq.head |> (fun mo -> mo.["ParentProcessId"] :?> uint32)
-
     /// ## startTokenRangeWatcher
     let inline startTokenRangeWatcher () =
-        if [ "dotnet-repl" ] |> List.contains assemblyName
+        if [ "dotnet-repl" ] |> List.contains spiral_compiler.assemblyName
         then new_disposable (fun () -> ())
         else
             let tokensDir = targetDir </> "tokens"
@@ -206,27 +227,10 @@ module Eval =
                         | _ -> () |> Async.init
                     )
 
-                let parentAsyncChild = async {
-                    let parentProcessId = getParentProcessId ()
-                    trace Verbose
-                        (fun () -> "Eval.parentAsyncChild")
-                        (fun () -> $"parentProcessId: {parentProcessId} / {_locals ()}")
-
-                    if parentProcessId > 0u then
-                        let parentProcess = parentProcessId |> int |> System.Diagnostics.Process.GetProcessById
-                        do! parentProcess.WaitForExitAsync () |> Async.AwaitTask
-                        trace Debug
-                            (fun () -> "Eval.parentAsyncChild / Parent process has exited. Performing cleanup...")
-                            (fun () -> $"{_locals ()}")
-                        System.Threading.Thread.Sleep 1000
-                        System.Environment.Exit 1
-                }
-
                 async {
                     do! Async.Sleep 3000
                     existingFilesChild |> Async.StartImmediate
                     streamAsyncChild |> Async.Start
-                    parentAsyncChild |> Async.Start
                 }
                 |> Async.Start
             with ex ->
@@ -414,7 +418,7 @@ module Eval =
                                     l0 = command
                                     l1 = props.cancellationToken
                                     l2 = [|
-                                        "AUTOMATION", assemblyName = "dotnet-repl" |> string
+                                        "AUTOMATION", spiral_compiler.assemblyName = "dotnet-repl" |> string
                                         "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                     |]
                                     l6 = workspaceRootExternal
@@ -878,7 +882,7 @@ module Eval =
                     then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
                     else None
                 )
-                |> Option.defaultValue (60000 * 60)
+                |> Option.defaultValue (60003 * 60 * 24)
 
             let boolArg def command =
                 lines

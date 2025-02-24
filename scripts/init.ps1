@@ -41,6 +41,10 @@ if (!(Search-Command "nix")) {
         if (!(Search-Command "pip")) {
             sudo apt install -y python3-pip
         }
+    } else {
+        if (!(Test-Path "~/.bun/bin/bun")) {
+            Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression
+        }
     }
 
     { pip install -r ../requirements.txt } | Invoke-Block
@@ -68,7 +72,11 @@ rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
 rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-10-07
-rustup default nightly-2024-10-07
+
+rustup install nightly-2025-02-22
+rustup +nightly-2025-02-22 target add wasm32-unknown-unknown
+rustup +nightly-2025-02-22 component add clippy rust-src rustfmt
+rustup default nightly-2025-02-22
 
 
 if ($init) {
@@ -91,7 +99,7 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 Set-Location (New-Item $gitPath -ItemType Directory -Force)
 git clone --recurse-submodules https://github.com/i574n/spiral.git
-{ git pull } | Invoke-Block -Location spiral
+{ git pull } | Invoke-Block -Location spiral -OnError Continue
 Set-Location $ResolvedScriptDir
 
 Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPath: $gitPath"
@@ -102,10 +110,9 @@ EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedS
 
 if (!$fast) {
     { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block -OnError Continue
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block -OnError Continue
 }
 
 Invoke-Dib init.dib
 
-$Path = ResolveLink "../deps/spiral/apps/spiral/build.ps1"
-{ pwsh $Path -SkipPreBuild 1 } | Invoke-Block
+{ pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") -SkipPreBuild 1 } | Invoke-Block

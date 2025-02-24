@@ -6,4 +6,4 @@ $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
 
-{ ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block
+{ . $(Search-Command bun) install --frozen-lockfile } | Invoke-Block

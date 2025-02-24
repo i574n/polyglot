@@ -38,29 +38,76 @@ module Supervisor =
         |> System.Text.Json.JsonSerializer.Serialize
         |> sendJson port
 
-    /// ### VSCPos
-    type VSCPos = {| line : int; character : int |}
-
-    /// ### VSCRange
-    type VSCRange = VSCPos * VSCPos
-
-    /// ### RString
-    type RString = VSCRange * string
-
-    /// ### TracedError
-    type TracedError = {| trace : string list; message : string |}
-
-    /// ### ClientErrorsRes
-    type ClientErrorsRes =
-        | FatalError of string
-        | TracedError of TracedError
-        | PackageErrors of {| uri : string; errors : RString list |}
-        | TokenizerErrors of {| uri : string; errors : RString list |}
-        | ParserErrors of {| uri : string; errors : RString list |}
-        | TypeErrors of {| uri : string; errors : RString list |}
-
     /// ### workspaceRoot
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
+
+    /// ### getFilePathFromUri
+    let getFilePathFromUri uri =
+        match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
+        | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
+        | _ -> failwith "invalid uri"
+
+    /// ### getCompilerPort
+    let getCompilerPort () =
+        13805
+
+    /// ### serialize_obj
+    let serializeObj obj =
+            try
+                obj
+                |> FSharp.Json.Json.serialize
+                |> SpiralSm.replace "\\\\" "\\"
+                |> SpiralSm.replace "\\r\\n" "\n"
+                |> SpiralSm.replace "\\n" "\n"
+            with ex ->
+                trace Critical (fun () -> "Supervisor.serialize_obj / obj: %A{obj}") _locals
+                ""
+
+    /// ### Backend
+    type Backend =
+        | Fsharp
+        | Cuda
+
+
+
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+#if _LINUX
+#else
+#endif
+
+    open spiral_compiler
 
     /// ### awaitCompiler
     let awaitCompiler port cancellationToken = async {
@@ -73,16 +120,16 @@ module Supervisor =
             if availablePort <> port then
                 inbox.Post (port, false)
             else
-                let compilerPath =
-                    workspaceRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
+                let compilerDir =
+                    workspaceRoot </> "deps/spiral/apps/compiler/dist"
                     |> System.IO.Path.GetFullPath
 
-                let dllPath = compilerPath </> "Spiral.dll"
+                let compilerPath = compilerDir </> $"spiral_compiler{SpiralPlatform.get_executable_suffix ()}"
 
                 let! exitCode, result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
-                            l0 = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+                            l0 = $"\"{compilerPath}\" --port {availablePort} --default-int i32 --default-float f64"
                             l1 = Some ct
                             l3 = Some (fun struct (_, line, _) -> async {
                                 if line |> SpiralSm.contains $"System.IO.IOException: Failed to bind to address http://{host}:{port}: address already in use." then
@@ -156,32 +203,12 @@ module Supervisor =
             disposable'
     }
 
-    /// ### getFilePathFromUri
-    let getFilePathFromUri uri =
-        match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
-        | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
-        | _ -> failwith "invalid uri"
+    open Hopac
+    open Hopac.Infixes
 
-    /// ### getCompilerPort
-    let getCompilerPort () =
-        13805
-
-    /// ### serialize_obj
-    let serializeObj obj =
-            try
-                obj
-                |> FSharp.Json.Json.serialize
-                |> SpiralSm.replace "\\\\" "\\"
-                |> SpiralSm.replace "\\r\\n" "\n"
-                |> SpiralSm.replace "\\n" "\n"
-            with ex ->
-                trace Critical (fun () -> "Supervisor.serialize_obj / obj: %A{obj}") _locals
-                ""
-
-    /// ### Backend
-    type Backend =
-        | Fsharp
-        | Cuda
+    /// ### server
+    let server1 = new_server<Job<unit>, obj, string option, Job<unit>, unit> ()
+    let server2 = new_server<Job<unit>, obj, int array, Job<unit>, unit> ()
 
     /// ### buildFile
     let buildFile backend timeout port cancellationToken path =
@@ -191,14 +218,10 @@ module Supervisor =
             let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
             let! code = fullPath |> SpiralFileSystem.read_all_text_async
 
-            let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> true)
-            use _ = disposable
+            // let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> true)
+            // use _ = disposable
 
             let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
-            use _ = disposable
-
-            let port = port |> Option.defaultWith getCompilerPort
-            let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
             use _ = disposable
 
             let outputFileName =
@@ -206,19 +229,19 @@ module Supervisor =
                 | Fsharp -> $"{fileName}.fsx"
                 | Cuda -> $"{fileName}.py"
 
-            let outputContentSeq =
-                stream
-                |> FSharp.Control.AsyncSeq.chooseAsync (function
-                    | _, (FileSystem.FileSystemChange.Changed (path, Some text))
-                        when (path |> System.IO.Path.GetFileName) = outputFileName
-                        ->
-                            // fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
-                            text |> Some |> Async.init
-                    | _ -> None |> Async.init
-                )
-                |> FSharp.Control.AsyncSeq.map (fun content ->
-                    Some (content |> SpiralSm.replace "\r\n" "\n"), None
-                )
+            // let outputContentSeq =
+            //     stream
+            //     |> FSharp.Control.AsyncSeq.chooseAsync (function
+            //         | _, (FileSystem.FileSystemChange.Changed (path, Some text))
+            //             when (path |> System.IO.Path.GetFileName) = outputFileName
+            //             ->
+            //                 // fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
+            //                 text |> Some |> Async.init
+            //         | _ -> None |> Async.init
+            //     )
+            //     |> FSharp.Control.AsyncSeq.map (fun content ->
+            //         Some (content |> SpiralSm.replace "\r\n" "\n"), None
+            //     )
 
             let printErrorData (data : {| uri : string; errors : RString list |}) =
                 let fileName = data.uri |> System.IO.Path.GetFileName
@@ -228,8 +251,14 @@ module Supervisor =
                     |> SpiralSm.concat "\n"
                 $"{fileName}:\n{errors}"
 
+
+            let port = port |> Option.defaultWith getCompilerPort
+            // let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
+            let serverPort = port
+            // use _ = disposable
+
             let errorsSeq =
-                errors
+                server1.errors
                 |> FSharp.Control.AsyncSeq.choose (fun error ->
                     match error with
                     | FatalError message ->
@@ -255,18 +284,44 @@ module Supervisor =
                 |> FSharp.Control.AsyncSeq.intervalMs
                 |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
 
+            let compilerEvent = Event<option<string> * option<string * ClientErrorsRes>> ()
+            // let disposable' = connection.On<string> ("ServerToClientMsg", event.Trigger)
+            let outputContentSeq =
+                FSharp.Control.AsyncSeq.unfoldAsync
+                    (fun () -> async {
+                        let! msg = compilerEvent.Publish |> Async.AwaitEvent
+                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq unfoldAsync / msg: %A{msg}") _locals
+                        return Some (msg, ())
+                    })
+                    ()
+
+            let compilerEvent2 = Event<option<string> * (string * ClientErrorsRes) list * int> ()
+            // let disposable' = connection.On<string> ("ServerToClientMsg", event.Trigger)
+            let outputContentSeq2 =
+                FSharp.Control.AsyncSeq.unfoldAsync
+                    (fun () -> async {
+                        let! msg = compilerEvent2.Publish |> Async.AwaitEvent
+                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: %A{msg}") _locals
+                        return Some (msg, ())
+                    })
+                    ()
+
             let outputSeq =
                 [ outputContentSeq; errorsSeq; timerSeq ]
+                // [ errorsSeq; timerSeq ]
                 |> FSharp.Control.AsyncSeq.mergeAll
 
             let! outputChild =
                 ((None, [], 0), outputSeq)
                 ||> FSharp.Control.AsyncSeq.scan (
                     fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
-                        trace Debug (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / path: {path} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 1500}") _locals
+                        trace Verbose (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / path: {path}'") _locals
                         match outputContent, error with
                         | Some outputContent, None -> Some outputContent, errors, typeErrorCount
-                        | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
+                        | None, Some (
+                            _,
+                            FatalError "File main has a type error somewhere in its path."
+                            ) ->
                             outputContentResult, errors, typeErrorCount + 1
                         | None, Some error -> outputContentResult, error :: errors, typeErrorCount
                         | None, None when typeErrorCount >= 1 ->
@@ -274,19 +329,26 @@ module Supervisor =
                         | _ -> outputContentResult, errors, typeErrorCount
                 )
                 |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
-                    trace Debug (fun () -> $"Supervisor.buildFile / takeWhileInclusive / path: {path} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / outputContent:\n{outputContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 1500}") _locals
+                    trace
+                        Verbose
+                        (fun () -> $"Supervisor.buildFile / takeWhileInclusive / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)}' / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / path: {path}")
+                        _locals
         #if INTERACTIVE
-                    let errorWait = 2
+                    let errorWait = 1
         #else
-                    let errorWait = 2
+                    let errorWait = 1
         #endif
                     match outputContent, errors with
                     | None, [] when typeErrorCount > errorWait -> false
+                    | _, [ message, TypeErrors errors ] ->
+                        compilerEvent.Trigger (None, Some (message, TypeErrors errors))
+                        trace Verbose (fun () -> $"Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger") _locals
+                        false
                     | None, [] -> true
                     | _ -> false
                 )
                 |> FSharp.Control.AsyncSeq.tryLast
-                |> Async.withCancellationToken ct
+                // |> Async.withCancellationToken ct
                 |> Async.catch
                 |> Async.runWithTimeoutAsync timeout
                 |> Async.StartChild
@@ -295,8 +357,20 @@ module Supervisor =
 
             let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
 
-            let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
-            let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+            trace Verbose (fun () -> $"Supervisor.buildFile / fullPathUri: %A{fullPathUri}") (fun () -> "")
+
+            // let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+
+            // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+            let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
+            let! _fileOpenResult =
+                server1.job_null (server1.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
+                |> Async.AwaitTask
+                |> Async.runWithTimeoutAsync 60000
+                |> Async.map Option.get
+            trace Verbose (fun () -> $"Supervisor.buildFile / _fileOpenResult: %A{_fileOpenResult}") (fun () -> "")
+
+            // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
             // do! Async.Sleep 60
 
@@ -304,32 +378,98 @@ module Supervisor =
                 match backend with
                 | Fsharp -> "Fsharp"
                 | Cuda -> "Python + Cuda"
-            let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
-            let! _buildFileResult = buildFileObj |> sendObj serverPort
+            // let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
 
-            let! result, typeErrorCount =
+            // let backend = Supervisor.Fsharp
+            let buildFileArgs = {| uri = fullPathUri; backend = backendId |}
+            let buildFileResultAsync =
+                server1.job_val (fun res -> server1.supervisor *<+ SupervisorReq.BuildFile(buildFileArgs,res))
+                |> Async.AwaitTask
+                |> Async.runWithTimeoutAsync timeout
+                |> Async.map Option.get
+
+            let buildFileResultAsync = async {
+                let! buildFileResult = buildFileResultAsync
+                let buildFileResult =
+                    if buildFileResult = "" || buildFileResult = null
+                    then None
+                    else buildFileResult |> SpiralSm.replace "\r\n" "\n" |> Some
+                trace Verbose (fun () -> $"Supervisor.buildFile / buildFileResult: %A{buildFileResult}") (fun () -> "")
+                if buildFileResult.IsSome then
+                    compilerEvent2.Trigger (buildFileResult, [], 0)
+                return buildFileResult, [], 0
+            }
+
+            let resultAsync =
                 outputChild
-                |> Async.map (function
+                |> Async.map (fun x ->
+                    trace Verbose (fun () -> $"Supervisor.buildFile / outputChild / x: %A{x}") _locals
+                    match x with
                     | Some (Ok (Some (outputCode, errors, typeErrorCount))) ->
-                        (outputCode, errors |> List.distinct |> List.rev), typeErrorCount
+                        let x =
+                            match errors with
+                            | [ message, TypeErrors errors ] ->
+                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map") _locals
+                                compilerEvent2.Trigger (None, [ message, TypeErrors errors ], 0)
+                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map") _locals
+                            | _ -> ()
+                        outputCode, errors |> List.distinct |> List.rev, typeErrorCount
                     | Some (Error ex) ->
                         trace Critical (fun () -> $"Supervisor.buildFile / error: {ex |> SpiralSm.format_exception} / retry: {retry}") _locals
-                        (None, []), 0
-                    | _ -> (None, []), 0
+                        None, [], 0
+                    | _ -> None, [], 0
                 )
 
-            match result with
-            | None, _ when typeErrorCount > 0 && retry = 0 ->
-                return! loop (retry + 1)
+            trace Verbose (fun () -> $"Supervisor.buildFile / before result: %A{()}") (fun () -> "")
+
+            // let resultSeq =
+            //     [| buildFileResultAsync; resultAsync |]
+            //     |> FSharp.Control.AsyncSeq.ofSeqAsync
+
+
+            let buildFileResultSeq = [| buildFileResultAsync |] |> FSharp.Control.AsyncSeq.ofSeqAsync
+            let resultSeq = [| resultAsync |] |> FSharp.Control.AsyncSeq.ofSeqAsync
+
+            let resultSeq =
+                [ outputContentSeq2; buildFileResultSeq; resultSeq ]
+                |> FSharp.Control.AsyncSeq.mergeAll
+
+            let! buildFileResult, result, typeErrorCount =
+                resultSeq
+                // |> FSharp.Control.AsyncSeq.collect (Array.singleton >> FSharp.Control.AsyncSeq.ofSeq)
+                |> FSharp.Control.AsyncSeq.collect (fun x ->
+                    trace Verbose (fun () -> $"Supervisor.buildFile / ofSeqAsync / x: %A{x}") _locals
+                    match x with
+                    | Some _, _, _ as x -> [| x |]
+                    | _, _ :: _, _ as x -> [| x |]
+                    | _ -> [||]
+                    |> FSharp.Control.AsyncSeq.ofSeq
+                )
+                |> FSharp.Control.AsyncSeq.tryFirst
+                |> Async.map Option.get
+
+            trace Verbose (fun () -> $"Supervisor.buildFile / result: %A{result} / buildFileResult: %A{buildFileResult} / typeErrorCount: {typeErrorCount}") (fun () -> "")
+
+            match buildFileResult with
+            // | None when typeErrorCount > 0 && retry = 0 ->
+            //     trace Verbose (fun () -> $"Supervisor.buildFile / result: {result} / retry: {retry} / typeErrorCount: {typeErrorCount} / fileDir: {fileDir} / targetDir: {targetDir}") _locals
+            //     return! loop (retry + 1)
             | _ ->
-                if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+                let targetDir = workspaceRoot </> "target"
+                trace Verbose (fun () -> $"Supervisor.buildFile / retry: {retry} / typeErrorCount: {typeErrorCount} / fileDir: {fileDir} / targetDir: {targetDir}") _locals
+                if fileDir |> SpiralSm.starts_with targetDir then
                     let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-                    let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
-                    let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+
+                    // let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+                    // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+                    let fileDeleteArgs = {| uris = [| fileDirUri |] |}
+                    let! _fileDeleteResult =
+                        server1.job_null (server1.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
+                        |> Async.AwaitTask
                     ()
 
                 let outputPath = fileDir </> outputFileName
-                return outputPath, result
+                return outputPath, buildFileResult, result
         }
         loop 0
 
@@ -444,7 +584,7 @@ modules:
         match outputCache with
         | Some (outputPath, outputCode) when isCache -> return mainPath, (outputPath, Some outputCode), []
         | _ ->
-            let! outputPath, (outputCode, errors) = mainPath |> buildFile backend timeout None cancellationToken
+            let! outputPath, outputCode, errors = mainPath |> buildFile backend timeout None cancellationToken
             return mainPath, (outputPath, outputCode), errors
     }
 
@@ -458,47 +598,55 @@ modules:
         use _ = disposable
 
         let port = port |> Option.defaultWith getCompilerPort
-        let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
-        use _ = disposable
+        // let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
+        // use _ = disposable
 
         let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
 
-        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
-        let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+        // let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+        // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+        let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
+        let! _fileOpenResult =
+            server2.job_null (server2.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
+            |> Async.AwaitTask
 
         // do! Async.Sleep 60
 
-        let fileTokenRangeObj =
+        let fileTokenRangeArgs =
             {|
-                FileTokenRange =
+                uri = fullPathUri
+                range =
                     {|
-                        uri = fullPathUri
-                        range =
-                            [|
-                                {|
-                                    line = 0
-                                    character = 0
-                                |}
-                                {|
-                                    line = lines.Length - 1
-                                    character = lines.[lines.Length - 1].Length
-                                |}
-                            |]
+                        line = 0
+                        character = 0
+                    |},
+                    {|
+                        line = lines.Length - 1
+                        character = lines.[lines.Length - 1].Length
                     |}
             |}
+        // let! fileTokenRangeResult =
+        //     fileTokenRangeObj
+        //     |> sendObj serverPort
+        //     |> Async.withCancellationToken ct
+
+        // let fileTokenRangeArgs = {| uri = fullPathUri; backend = backendId |}
         let! fileTokenRangeResult =
-            fileTokenRangeObj
-            |> sendObj serverPort
-            |> Async.withCancellationToken ct
+            server2.job_val (fun res -> server2.supervisor *<+ SupervisorReq.FileTokenRange(fileTokenRangeArgs,res))
+            |> Async.AwaitTask
 
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
             let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-            let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
-            let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            // let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+            // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            let fileDeleteArgs = {| uris = [| fileDirUri |] |}
+            let! _fileDeleteResult =
+                server2.job_null (server2.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
+                |> Async.AwaitTask
             ()
 
-        return fileTokenRangeResult |> Option.map FSharp.Json.Json.deserialize<int array>
+        return fileTokenRangeResult |> FSharp.Json.Json.deserialize<int array> |> Some
     }
 
     /// ## getCodeTokenRange
@@ -540,37 +688,44 @@ modules:
         use _ = disposable
 
         let port = port |> Option.defaultWith getCompilerPort
-        let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
-        use _ = disposable
+        // let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
+        // use _ = disposable
 
         let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
 
-        let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
-        let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+        // let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+        // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+        let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
+        let! _fileOpenResult =
+            server1.job_null (server1.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
+            |> Async.AwaitTask
 
         // do! Async.Sleep 60
 
-        let hoverAtObj =
-            {|
-                HoverAt =
-                    {|
-                        uri = fullPathUri
-                        pos = position
-                    |}
-            |}
+        let hoverAtArgs =
+                {|
+                    uri = fullPathUri
+                    pos = position
+                |}
+
         let! hoverAtResult =
-            hoverAtObj
-            |> sendObj serverPort
-            |> Async.withCancellationToken ct
+            server1.job_val (fun res -> server1.supervisor *<+ SupervisorReq.HoverAt(hoverAtArgs,res))
+            |> Async.AwaitTask
 
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
             let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-            let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
-            let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            // let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+            // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+            let fileDeleteArgs = {| uris = [| fileDirUri |] |}
+            let! _fileDeleteResult =
+                server1.job_null (server1.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
+                |> Async.AwaitTask
+                |> Async.runWithTimeoutAsync 60000
+                |> Async.map Option.get
             ()
 
-        return hoverAtResult
+        return hoverAtResult |> Some
     }
 
     /// ## getCodeHoverAt
@@ -623,6 +778,7 @@ modules:
 
     /// ## main
     let main args =
+        SpiralTrace.TraceLevel.US0_1 |> set_trace_level
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 
         let buildFileActions =
@@ -665,7 +821,7 @@ modules:
         let timeout =
             match argsMap |> Map.tryFind (nameof Arguments.Timeout) with
             | Some [ Arguments.Timeout timeout ] -> timeout
-            | _ -> 60000 * 60
+            | _ -> 60002 * 60 * 24
 
         let port =
             match argsMap |> Map.tryFind (nameof Arguments.Port) with
@@ -681,13 +837,15 @@ modules:
                 port
                 |> Option.defaultWith getCompilerPort
             let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
-            let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
+            // let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
+            let serverPort = port
+            let struct (compilerToken, disposable) = SpiralThreading.new_disposable_token None
             use _ = disposable
 
             let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let! _outputPath, (outputCode, errors) =
+                    let! _outputPath, outputCode, errors =
                         let backend =
                             if outputPath |> SpiralSm.ends_with ".fsx"
                             then Fsharp
