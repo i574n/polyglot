@@ -10,7 +10,7 @@ nl: str = "\n"
 
 q: str = "\""
 
-def _expr253() -> TypeInfo:
+def _expr206() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr253
+TraceLevel_reflection = _expr206
 
 def to_trace_level(_arg: TraceLevel) -> US0:
     """## trace
