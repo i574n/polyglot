@@ -39,10 +39,10 @@ Write-Output "Tool path: $netVersion"
 if (!$fast) {
     # { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block -OnError Continue
 
-    { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
-    { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
-    { npm run rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser -OnError Continue
-    { npm run compile-library } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
+    { . $(Search-Command bun) install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
+    { . $(Search-Command bun) install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
+    { . $(Search-Command bun) --bun rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser -OnError Continue
+    { . $(Search-Command bun) --bun compile-library } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
 }
 
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
