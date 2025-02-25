@@ -23,9 +23,6 @@ rsync -av `
     --exclude 'pkg' `
     --exclude 'target' `
 `
-    --exclude 'dist/*.pdb' `
-    --include 'dist/*' `
-`
     --include 'LICENSE' `
     --include 'Dockerfile' `
     --include '*.ans' `
