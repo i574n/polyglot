@@ -25,7 +25,7 @@ function Search-DotnetSdk($version) {
 if (!(Search-Command "nix")) {
     if (!$IsWindows) {
         if (!(Search-DotnetSdk "9")) {
-            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.101"
+            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.200"
         }
 
         if (!(Test-Path "~/.bun/bin/bun")) {
