@@ -22,38 +22,6 @@ function Search-DotnetSdk($version) {
     return $false
 }
 
-if (!(Search-Command "nix")) {
-    if (!$IsWindows) {
-        if (!(Search-DotnetSdk "9")) {
-            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.200"
-        }
-
-        if (!(Test-Path "~/.bun/bin/bun")) {
-            curl -sSL https://bun.sh/install | bash
-            $env:PATH = "~/.bun/bin:$env:PATH"
-        }
-
-        # if (!(Search-Command "mono")) {
-        #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-        #     sudo apt install -y mono-complete
-        # }
-
-        if (!(Search-Command "pip")) {
-            sudo apt install -y python3-pip
-        }
-    } else {
-        if (!(Test-Path "~/.bun/bin/bun")) {
-            Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression
-        }
-    }
-
-    { pip install -r ../requirements.txt } | Invoke-Block
-} else {
-    mkdir -p ~/.bun/bin
-    ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
-    ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
-}
-
 if (!(Search-Command "rustup")) {
     if ($IsWindows) {
         $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
@@ -78,6 +46,37 @@ rustup +nightly-2025-02-22 target add wasm32-unknown-unknown
 rustup +nightly-2025-02-22 component add clippy rust-src rustfmt
 rustup default nightly-2025-02-22
 
+if (!(Search-Command "nix")) {
+    if (!$IsWindows) {
+        if (!(Search-DotnetSdk "9")) {
+            curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.200"
+        }
+
+        if (!(Test-Path "~/.bun/bin/bun")) {
+            curl -sSL https://bun.sh/install | bash
+            $env:PATH = "~/.bun/bin:$env:PATH"
+        }
+
+        # if (!(Search-Command "mono")) {
+        #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
+        #     sudo apt install -y mono-complete
+        # }
+
+        if (!(Search-Command "pip")) {
+            sudo apt install -y python3-pip
+        }
+    } else {
+        if (!(Test-Path "~/.bun/bin/bun")) {
+            { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
+        }
+    }
+
+    { pip install -r ../requirements.txt } | Invoke-Block
+} else {
+    mkdir -p ~/.bun/bin
+    ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
+    ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
+}
 
 if ($init) {
     exit
