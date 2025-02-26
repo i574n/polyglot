@@ -12,7 +12,8 @@
 
 **\* Temporary README drafted with ChatGPT.**
 
-- [Build](#build)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
 - [Links](#links)
 - [Introduction](#introduction)
   - [Repository Overview](#repository-overview)
@@ -43,11 +44,21 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-## Build
+## Getting Started
 
-```ps1
-pwsh scripts/init.ps1
-pwsh scripts/build.ps1
+### Installation
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/i574n/polyglot.git
+```
+
+Navigate to the directory, initialize dependencies and build the project:
+
+```powershell
+cd polyglot
+pwsh scripts/workflow.ps1
 ```
 
 ## Links
@@ -62,7 +73,7 @@ Documentation
 </td>
 <td>
 
-- Repository File Tree (HTML)  
+- Repository file tree (HTML)  
 <https://i574n.github.io/polyglot>
 
 </td>
@@ -76,13 +87,13 @@ Build
 </td>
 <td>
 
-- Initialization Output (PowerShell)  
+- Initialization output (PowerShell)  
 <https://i574n.github.io/polyglot/scripts/init.dib.html>
 
-- Full Build Output (PowerShell)  
+- Full build output (PowerShell)  
 <https://i574n.github.io/polyglot/scripts/build.dib.html>
 
-- Spiral Supervisor Code (F#)  
+- Spiral supervisor notebook (F#)  
 <https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
 
 </td>
@@ -91,44 +102,24 @@ Build
 <tr>
 <td>
 
-Dice Sample
+Samples
 
 </td>
 <td>
 
-- Dice Library  
-<https://i574n.github.io/dice/lib/dice.dib.html>
-
-- Dice Contract  
-<https://i574n.github.io/dice/contract/dice_contract.dib.html>
-
-- Smart Contract Dice Rolls History (Rust WASM frontend, display of on-chain data using NEAR Protocol queried from their Public API)  
-<https://i574n.github.io/dice/ui/dist>
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-Other Samples
-
-</td>
-<td>
-
-- Performance Tests  
+- Performance tests  
 <https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
 
-- Parsing Library  
-<https://i574n.github.io/spiral/lib/spiral/parsing.dib.html>
+- Multiplatform rotating ASCII cube (F#, Rust, TypeScript, Python)  
+<https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.dib.html>
 
-- Physics Sample: "Learn Physics with Functional Programming" book  
-<https://i574n.github.io/spiral/lib/spiral/physics.dib.html>
+- Chat smart contract notebook (Rust, NEAR Protocol)  
+<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.dib.html>
 
-- Domain Modeling Sample: Scheduling With Recurrency  
+- Domain Modeling Sample: Scheduling with recurrency  
 <https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
 
-- Computational Mathematics: Unit Testing With Spiral, Rust and Python  
+- Computational Mathematics: Unit testing with Spiral, Rust and Python  
 <https://i574n.github.io/polyglot/lib/math/math.dib.html>
 
 </td>
@@ -142,10 +133,10 @@ Social
 </td>
 <td>
 
-- Spiral ChatGPT Pitch Conversation (en-US)  
+- Spiral ChatGPT pitch conversation (en-US)  
 <https://chat.openai.com/share/62ae3405-4d5f-4cff-a7d9-10ed67cc7cf2>
 
-- Spiral ChatGPT Pitch Conversation (pt-BR)  
+- Spiral ChatGPT pitch conversation (pt-BR)  
 <https://chat.openai.com/share/1ad5a1de-ca7a-4d26-8594-f1901c56281c>
 
 - Forum Post (pt-BR): Pitch: A linguagem de programação Spiral  
