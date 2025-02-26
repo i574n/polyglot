@@ -8,7 +8,7 @@ const baseURL = `http://localhost:${PORT}`
 export default {
   timeout: 60 * 1000,
   testDir: path.join(__dirname, "e2e"),
-  retries: 1,
+  retries: process.env.CI ? 1 : 0,
   outputDir: "test-results/",
   fullyParallel: true,
   reporter: "html",
