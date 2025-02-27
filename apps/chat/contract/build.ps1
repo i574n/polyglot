@@ -13,7 +13,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "chat_contract"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path $projectName.dib --retries $($fast -or !$env:CI ? 1 : 5) } | Invoke-Block
+    { . ../../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path "$projectName.dib" --retries $($fast -or !$env:CI ? 1 : 5) } | Invoke-Block
 }
 
 { . ../../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
