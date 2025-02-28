@@ -26,3 +26,5 @@ if (!$fast) {
 }
 
 { . ../parser/dist/DibParser$(_exe) Eval.dib fs } | Invoke-Block
+
+Write-Output "polyglot/apps/spiral/build.ps1 / `$env:CI:$env:CI"
