@@ -81,6 +81,8 @@ if (!$SkipPy -and !$SkipFable) {
     $content | Set-Content "$projectName.py"
 }
 
+Write-Output "polyglot/apps/spiral/temp/cube/build.ps1 / `$targetDir: $targetDir / `$projectName: $projectName / `$env:CI:$env:CI"
+
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
 }

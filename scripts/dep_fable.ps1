@@ -14,7 +14,7 @@ $path = "$HOME/.nuget/packages/fable"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
 $toolVersionPath = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
-Write-Output "Tool path: $toolVersionPath"
+Write-Output "polyglot/scripts/dep_fable.ps1 / `$toolVersionPath: $toolVersionPath"
 
 $projectPath = "../deps/Fable/src/Fable.Cli"
 
@@ -24,7 +24,7 @@ $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
-Write-Output "fable.dll path: $dllPath"
+Write-Output "polyglot/scripts/dep_fable.ps1 / `$dllPath: $dllPath"
 
 Copy-Item "$releasePath/$dotnetVersion/**" $toolVersionPath -Recurse -Force
 
@@ -36,7 +36,7 @@ $path = "$HOME/.nuget/packages/fable.core"
 $lib = Get-LastSortedItem -Path $path -Filter "lib"
 $libVersionPath = Get-LastSortedItem -Path $lib.FullName -Filter "netstandard2.0"
 
-Write-Output "Lib path: $libVersionPath"
+Write-Output "polyglot/scripts/dep_fable.ps1 / `$libVersionPath: $libVersionPath"
 
 $projectPath = "../deps/Fable/src/Fable.Core"
 
@@ -50,6 +50,8 @@ Copy-Item "$releasePath/$dotnetVersion/**" $libVersionPath -Recurse -Force
 
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/python/fable/build.ps1 } | Invoke-Block
+
+Write-Output "polyglot/scripts/dep_fable.ps1 / `$dotnetVersion: $dotnetVersion / `$env:CI:$env:CI"
 
 if ($env:CI) {
     Remove-Item "../deps/Fable" -Recurse -Force -ErrorAction Ignore

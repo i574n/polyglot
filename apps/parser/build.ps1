@@ -25,3 +25,5 @@ if (!$fast) {
 }
 
 { . dist/DibParser$(_exe) JsonParser.dib fs Parser.dib fs } | Invoke-Block
+
+Write-Output "polyglot/apps/parser/build.ps1 / `$env:CI:$env:CI"

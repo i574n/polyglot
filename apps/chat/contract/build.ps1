@@ -47,3 +47,5 @@ Copy-Item ../../../workspace/target/wasm32-unknown-unknown/release/chat_contract
 if (!$fast -and !$SkipTests) {
     { ../../../workspace/target/release/chat_contract_tests } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100 }
 }
+
+Write-Output "polyglot/apps/chat/contract/build.ps1 / `$targetDir = $targetDir / `$projectName: $projectName / `$env:CI:$env:CI"

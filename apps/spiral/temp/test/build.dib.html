@@ -7651,7 +7651,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">Supervisor</span><span class="err">$</span><span class="p">(</span><span class="n">_exe</span><span class="p">)</span> <span class="o">--</span><span class="n">execute</span><span class="o">-</span><span class="n">command</span> <span class="s2">"../../../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path test.dib --retries 3"</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">deps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="n">spiral</span><span class="err">$</span><span class="p">(</span><span class="n">_exe</span><span class="p">)</span> <span class="n">dib</span> <span class="o">--</span><span class="n">path</span> <span class="n">test</span><span class="o">.</span><span class="n">dib</span> <span class="o">--</span><span class="n">retries</span> <span class="mi">3</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
 </pre></div>
 </div>
 </div>
@@ -7664,9 +7664,662 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options_async / { file_name = ../../../../deps/spiral/workspace/target/release/spiral.exe; arguments = US5_0 "dib --path test.dib --retries 3"; options = { command = ../../../../deps/spiral/workspace/target/release/spiral.exe dib --path test.dib --retries 3; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:22 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options_async / { exit_code = 0; output_length = 31826; options = { command = ../../../../deps/spiral/workspace/target/release/spiral.exe dib --path test.dib --retries 3; cancellation_token = Some System.Threading.CancellationToken; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:22 <span class="ansi-blue-intense-fg">d</span> #1 main / executeCommand / exitCode: 0 / command: ../../../../deps/spiral/workspace/target/release/spiral.exe dib --path test.dib --retries 3
+<pre>00:00:00 <span class="ansi-blue-intense-fg">d</span> #1 spiral.main / { args = Array(MutCell(["dib", "--path", "test.dib", "--retries", "3"])) }
+00:00:00 <span class="ansi-blue-intense-fg">d</span> #2 runtime.execute_with_options / { file_name = dotnet; arguments = ["repl", "--exit-after-run", "--run", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib", "--output-path", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb"]; options = { command = dotnet repl --exit-after-run --run "c:/home/git/polyglot/apps/spiral/temp/test/test.dib" --output-path "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb"; cancellation_token = None; environment_variables = Array(MutCell([("TRACE_LEVEL", "Verbose"), ("AUTOMATION", "True")])); on_line = None; stdin = None; trace = false; working_directory = None } }
+&gt; 
+&gt; ── markdown ────────────────────────────────────────────────────────────────────
+&gt; <span style="color: rgb(146,146,178)">│</span> # test (Polyglot)
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; //// test
+&gt; 
+&gt; open testing
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; //// test
+&gt; //// print_code
+&gt; 
+&gt; inl jp = [[ "J"; "P" ]]
+&gt; inl tf = [[ "T"; "F" ]]
+&gt; inl sn = [[ "S"; "N" ]]
+&gt; inl ie = [[ "I"; "E" ]]
+&gt; 
+&gt; (ie, ([[]] : _ string))
+&gt; ||&gt; listm.foldBack fun ie' acc =&gt;
+&gt;     inl ssnn acc' jp' =
+&gt;         (sn, acc')
+&gt;         ||&gt; listm.foldBack fun sn' acc' =&gt;
+&gt;             inl c' ie' sn' tf' jp' =
+&gt;                 $'$"{!ie'}{!sn'}{!tf'}{!jp'}"'
+&gt; 
+&gt;             if listm.length acc' % 4i32 = 2 then
+&gt;                 (tf, acc')
+&gt;                 ||&gt; listm.foldBack fun tf' acc'' =&gt;
+&gt;                     c' ie' sn' tf' jp' :: acc''
+&gt;             else
+&gt;                 (acc', tf)
+&gt;                 ||&gt; listm.fold fun acc'' tf' =&gt;
+&gt;                     c' ie' sn' tf' jp' :: acc''
+&gt;     if acc = [[]] then
+&gt;         (acc, jp)
+&gt;         ||&gt; listm.fold fun acc' jp' =&gt;
+&gt;             ssnn acc' jp'
+&gt;     else
+&gt;         (jp, acc)
+&gt;         ||&gt; listm.foldBack fun jp' acc' =&gt;
+&gt;             ssnn acc' jp'
+&gt; |&gt; listm'.box
+&gt; |&gt; listm'.to_array'
+&gt; |&gt; _assert_eq' ;[[
+&gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+&gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+&gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+&gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+&gt; ]]
+&gt; 
+&gt; ── [ 2.15s - stdout ] ──────────────────────────────────────────────────────────
+&gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>     v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+&gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "E"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "N"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "S"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "I"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v4 :: v24 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v6 :: v25 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v8 :: v28 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v9 :: v31 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v11 :: v34 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v12 :: v37 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v13 :: v40 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v14 :: v43 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v16 :: v46 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v17 :: v49 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v18 :: v52 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v19 :: v55 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v20 :: v58 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v21 :: v61 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v22 :: v64 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v23 :: v67 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; 
+&gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+&gt; <span style="color: rgb(38,140,38)">│</span>             true
+&gt; <span style="color: rgb(38,140,38)">│</span>         else
+&gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+&gt; %A{v93}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+&gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+&gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+&gt; <span style="color: rgb(38,140,38)">│</span> method0()
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; 
+&gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / 
+&gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; 
+&gt; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; //// test
+&gt; //// print_code
+&gt; 
+&gt; inl i_e =
+&gt;     listm'.replicate 8i32 "I" ++ listm'.replicate 8i32 "E"
+&gt; inl s_n =
+&gt;     [[ "S"; "S"; "N"; "N" ]]
+&gt;     |&gt; listm'.replicate 4i32
+&gt;     |&gt; listm'.collect id
+&gt; inl t_f =
+&gt;     [[ "T"; "F"; "F"; "T" ]]
+&gt;     |&gt; listm'.replicate 4i32
+&gt;     |&gt; listm'.collect id
+&gt; inl j_p =
+&gt;     [[ "J"; "J"; "J"; "J" ]]
+&gt;     ++ [[ "P"; "P"; "P"; "P" ]]
+&gt;     ++ [[ "P"; "P"; "P"; "P" ]]
+&gt;     ++ [[ "J"; "J"; "J"; "J" ]]
+&gt; inl mbti =
+&gt;     listm'.map4 (fun a b c d =&gt; $'$"{!a}{!b}{!c}{!d}"') i_e s_n t_f j_p
+&gt; 
+&gt; mbti
+&gt; |&gt; listm'.box
+&gt; |&gt; listm'.to_array'
+&gt; |&gt; _assert_eq' ;[[
+&gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+&gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+&gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+&gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+&gt; ]]
+&gt; 
+&gt; ── [ 447.57ms - stdout ] ───────────────────────────────────────────────────────
+&gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>     v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+&gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "I"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "S"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "N"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "E"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v23 :: v24 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v22 :: v25 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v21 :: v28 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v20 :: v31 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v19 :: v34 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v18 :: v37 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v17 :: v40 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v16 :: v43 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v14 :: v46 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v13 :: v49 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v12 :: v52 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v11 :: v55 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v9 :: v58 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v8 :: v61 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v6 :: v64 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v4 :: v67 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; 
+&gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+&gt; <span style="color: rgb(38,140,38)">│</span>             true
+&gt; <span style="color: rgb(38,140,38)">│</span>         else
+&gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+&gt; %A{v93}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+&gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+&gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+&gt; <span style="color: rgb(38,140,38)">│</span> method0()
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; 
+&gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / 
+&gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; 
+&gt; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; //// test
+&gt; //// print_code
+&gt; 
+&gt; fun i =&gt;
+&gt;     inl i_e =
+&gt;         if i &lt; 8
+&gt;         then "I"
+&gt;         else "E"
+&gt;     inl s_n = 
+&gt;         inl group = (i / 2) % 2
+&gt;         if group = 0
+&gt;         then "S"
+&gt;         else "N"
+&gt;     inl t_f =
+&gt;         match i % 4 with
+&gt;         | 0 =&gt; "T"
+&gt;         | 1 =&gt; "F"
+&gt;         | 2 =&gt; "F"
+&gt;         | _ =&gt; "T"
+&gt;     inl j_p =
+&gt;         if i &lt; 4
+&gt;         then "J"
+&gt;         elif i &lt; 12
+&gt;         then "P"
+&gt;         else "J"
+&gt;     $'$"{!i_e}{!s_n}{!t_f}{!j_p}"'
+&gt; |&gt; listm.init 16i32
+&gt; |&gt; listm'.box
+&gt; |&gt; listm'.to_array'
+&gt; |&gt; _assert_eq' ;[[
+&gt;     "ISTJ"; "ISFJ"; "INFJ"; "INTJ"
+&gt;     "ISTP"; "ISFP"; "INFP"; "INTP"
+&gt;     "ESTP"; "ESFP"; "ENFP"; "ENTP"
+&gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
+&gt; ]]
+&gt; 
+&gt; ── [ 755.22ms - stdout ] ───────────────────────────────────────────────────────
+&gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>     v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and closure0 (v0 : string) () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
+&gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
+&gt; <span style="color: rgb(38,140,38)">│</span> and method0 () : unit =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v0 : string = "I"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : string = "S"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = "T"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = "J"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = $"{v0}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v5 : string = "F"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = $"{v0}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "N"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v0}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v9 : string = $"{v0}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v10 : string = "P"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v11 : string = $"{v0}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v12 : string = $"{v0}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v13 : string = $"{v0}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v14 : string = $"{v0}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : string = "E"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : string = $"{v15}{v1}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : string = $"{v15}{v1}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : string = $"{v15}{v7}{v5}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v19 : string = $"{v15}{v7}{v2}{v10}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v20 : string = $"{v15}{v1}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v21 : string = $"{v15}{v1}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v22 : string = $"{v15}{v7}{v5}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v23 : string = $"{v15}{v7}{v2}{v3}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v24 : string list = []
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string list = v23 :: v24 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v28 : string list = v22 :: v25 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v31 : string list = v21 :: v28 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : string list = v20 :: v31 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : string list = v19 :: v34 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v40 : string list = v18 :: v37 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v43 : string list = v17 :: v40 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string list = v16 :: v43 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v49 : string list = v14 :: v46 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v52 : string list = v13 :: v49 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : string list = v12 :: v52 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v58 : string list = v11 :: v55 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v61 : string list = v9 :: v58 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v64 : string list = v8 :: v61 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v67 : string list = v6 :: v64 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : string list = v4 :: v67 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : (string list -&gt; (string [])) = List.toArray
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v74 : (string []) = v73 v70
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v77 : string = "ISTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v78 : string = "ISFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v79 : string = "INFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "INTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "ISTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = "ISFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v83 : string = "INFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v84 : string = "INTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v85 : string = "ESTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v86 : string = "ESFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v87 : string = "ENFP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v88 : string = "ENTP"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : string = "ESTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : string = "ESFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : string = "ENFJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : string = "ENTJ"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v93 : (string []) = [|v77; v78; v79; v80; v81; v82; 
+&gt; v83; v84; v85; v86; v87; v88; v89; v90; v91; v92|]
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v94 : bool = v74 = v93 
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v98 : bool =
+&gt; <span style="color: rgb(38,140,38)">│</span>         if v94 then
+&gt; <span style="color: rgb(38,140,38)">│</span>             true
+&gt; <span style="color: rgb(38,140,38)">│</span>         else
+&gt; <span style="color: rgb(38,140,38)">│</span>             method1(v94)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "__assert_eq'"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99} / actual: %A{v74} / expected:
+&gt; %A{v93}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v103 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v104 : (unit -&gt; unit) = closure0(v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v105 : unit = (fun () -&gt; v104 (); v103) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v107 : bool = v98 = false
+&gt; <span style="color: rgb(38,140,38)">│</span>     if v107 then
+&gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v100
+&gt; <span style="color: rgb(38,140,38)">│</span> method0()
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; <span style="color: rgb(38,140,38)">│</span> __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; 
+&gt; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / 
+&gt; expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; 
+&gt; "ESTP"; "ESFP";
+&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+&gt; <span style="color: rgb(38,140,38)">│</span> 
+&gt; 
+&gt; ── fsharp ──────────────────────────────────────────────────────────────────────
+&gt; type PhonologicalFeature =
+&gt;     | VowelFeature of
+&gt;         height: Height
+&gt;         * backness: Backness
+&gt;         * roundedness: Roundedness
+&gt;         * tone: Option&lt;Tone&gt;
+&gt;         * stress: Option&lt;Stress&gt;
+&gt;         * length: Option&lt;Length&gt;
+&gt;     | ConsonantFeature of
+&gt;         place: PlaceOfArticulation
+&gt;         * manner: MannerOfArticulation
+&gt;         * voicing: Voicing
+&gt;         * length: Option&lt;Length&gt;
+&gt;     | VowelHarmonyFeature
+&gt;     | PitchAccentFeature
+&gt; 
+&gt; and Stress = Primary | Secondary
+&gt; and Length = Long | Short | HalfLong
+&gt; 
+&gt; and Height =
+&gt;     | High | NearHigh | HighMid
+&gt;     | Mid | LowMid | NearLow
+&gt;     | Low
+&gt; 
+&gt; and Backness = Front | Central | Back
+&gt; 
+&gt; and Roundedness = Rounded | Unrounded
+&gt; 
+&gt; and PlaceOfArticulation =
+&gt;     | Bilabial | Labiodental | Dental
+&gt;     | Alveolar | Postalveolar | Retroflex
+&gt;     | Palatal | Velar | Uvular
+&gt;     | Pharyngeal | Epiglottal | Glottal
+&gt; 
+&gt; and MannerOfArticulation =
+&gt;     | Plosive | Nasal | Trill
+&gt;     | TapOrFlap | Fricative | LateralFricative
+&gt;     | Approximant | LateralApproximant
+&gt; 
+&gt; and Voicing = Voiced | Voiceless
+&gt; 
+&gt; and SecondaryArticulation =
+&gt;     | Labialization | Palatalization | Velarization
+&gt;     | Pharyngealization | Aspiration
+&gt; 
+&gt; and Tone =
+&gt;     | LevelTone of int
+&gt;     | ContourTone of int list
+&gt; 
+&gt; and MorphologicalFeature =
+&gt;     | RootFeature of string
+&gt;     | AffixFeature of AffixType * string
+&gt;     | IncorporationFeature of string * MorphologicalFeature
+&gt;     | NonConcatenativePattern of string * string
+&gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
+&gt;     | HonorificFeature of HonorificType * string
+&gt; 
+&gt; and AgglutinativeAffixType = Suffix | Prefix
+&gt; 
+&gt; and HonorificType = VerbHonorific | NounHonorific
+&gt; 
+&gt; and AffixType =
+&gt;     | Prefix | Suffix | Infix
+&gt;     | Circumfix
+&gt; 
+&gt; type SyntacticFeature =
+&gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
+&gt;     | PhraseFeature of PhraseType * SyntacticFeature list
+&gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
+&gt;     | SOVOrderFeature
+&gt;     | TopicCommentFeature
+&gt; 
+&gt; and GrammaticalRelationType =
+&gt;     | Ergative | Absolutive | Nominative
+&gt;     | Accusative
+&gt; 
+&gt; and LexicalCategory =
+&gt;     | Noun | Verb | Adjective
+&gt;     | Adverb | Pronoun | Preposition
+&gt;     | Conjunction | Determiner | Interjection
+&gt; 
+&gt; and PhraseType =
+&gt;     | NP | VP | AP
+&gt;     | PP | CP
+&gt; 
+&gt; and SemanticFeature =
+&gt;     | Meaning of string
+&gt;     | SemanticRole of SemanticRoleType * SemanticFeature
+&gt; 
+&gt; and SemanticRoleType =
+&gt;     | Agent | Patient | Instrument
+&gt;     | Location | Time | Cause
+&gt; 
+&gt; and PragmaticFeature =
+&gt;     | UseContext of string
+&gt;     | PolitenessLevel of Politeness
+&gt;     | SpeechAct of SpeechActType
+&gt;     | SpeechLevel of SpeechLevelType
+&gt; 
+&gt; and Politeness = Formal | Informal | Neutral
+&gt; 
+&gt; and SpeechActType =
+&gt;     | Assertive | Directive | Commissive
+&gt;     | Expressive | Declarative
+&gt; 
+&gt; and SpeechLevelType =
+&gt;     | FormalHigh | FormalLow | InformalHigh
+&gt;     | InformalLow | Neutral
+&gt; 
+&gt; type LinguisticFeature =
+&gt;     | Phonological of PhonologicalFeature
+&gt;     | Morphological of MorphologicalFeature
+&gt;     | Syntactic of SyntacticFeature
+&gt;     | Semantic of SemanticFeature
+&gt;     | Pragmatic of PragmaticFeature
+&gt; 
+&gt; type LanguageConstruct =
+&gt;     | LanguageElement of LinguisticFeature
+&gt;     | LanguageStructure of LanguageConstruct list
+&gt;     | TranslationElement of TranslationFeature
+&gt; 
+&gt; and TranslationFeature =
+&gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
+&gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
+&gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
+&gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
+&gt; 
+&gt; type Discourse = DiscourseUnit of LanguageConstruct list
+&gt; 
+&gt; type LanguageModel =
+&gt;     | Model of discourse: Discourse
+&gt; 
+&gt; ── fsharp ──────────────────────────────────────────────────────────────────────
+&gt; let testEnglish =
+&gt;     Model(
+&gt;         DiscourseUnit [[
+&gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal, 
+&gt; Voiced, Some(HalfLong))));
+&gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+&gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+&gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded, 
+&gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+&gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive, 
+&gt; Voiceless, Some(HalfLong))));
+&gt;             LanguageElement (Morphological (RootFeature "I"));
+&gt;             LanguageElement (Morphological (RootFeature "see"));
+&gt;             LanguageElement (Morphological (RootFeature "a"));
+&gt;             LanguageElement (Morphological (RootFeature "cat"));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "I"]], Pronoun)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature 
+&gt; ([[RootFeature "see"]], Verb)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
+&gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by 
+&gt; the speaker"));
+&gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
+&gt; observed"))
+&gt;         ]]
+&gt;     )
+&gt; 
+&gt; let testPortuguese =
+&gt;     Model(
+&gt;         DiscourseUnit [[
+&gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+&gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+&gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded, 
+&gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+&gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded, 
+&gt; Some(LevelTone 3), Some(Primary), Some(Short))));
+&gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive, 
+&gt; Voiceless, Some(HalfLong))));
+&gt;             LanguageElement (Morphological (RootFeature "Eu"));
+&gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore; 
+&gt; AffixFeature (Suffix, "o")));
+&gt;             LanguageElement (Morphological (RootFeature "um"));
+&gt;             LanguageElement (Morphological (RootFeature "gato"));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "Eu"]], Pronoun)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature 
+&gt; ([[RootFeature "vejo"]], Verb)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
+&gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino 
+&gt; pelo falante"));
+&gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
+&gt; observada"))
+&gt;         ]]
+&gt;     )
+&gt; 
+&gt; let testKorean =
+&gt;     Model(
+&gt;         DiscourseUnit [[
+&gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal, 
+&gt; Voiced, Some(Short))));
+&gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded, 
+&gt; None, None, Some(Short))));
+&gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded, 
+&gt; None, None, Some(Long))));
+&gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive, 
+&gt; Voiceless, Some(Short))));
+&gt;             LanguageElement (Morphological (RootFeature "나"));
+&gt;             LanguageElement (Morphological (RootFeature "보다"));
+&gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
+&gt;             LanguageElement (Morphological (RootFeature "고양이"));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "나"]], Pronoun)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature 
+&gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
+&gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature 
+&gt; ([[RootFeature "고양이"]], Noun)]])));
+&gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰 
+&gt; 행위"));
+&gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
+&gt;         ]]
+&gt;     )
+&gt; 
+&gt; ── markdown ────────────────────────────────────────────────────────────────────
+&gt; <span style="color: rgb(146,146,178)">│</span> ## main
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; inl main (_args : array_base string) =
+&gt;     0i32
+&gt; 
+&gt; inl main () =
+&gt;     $'let main args = !main args' : ()
+&gt; 
+&gt; ── spiral ──────────────────────────────────────────────────────────────────────
+&gt; inl app () =
+&gt;     "test" |&gt; console.write_line
+&gt;     0i32
+&gt; 
+&gt; inl main () =
+&gt;     print_static "&lt;test&gt;"
+&gt; 
+&gt;     app
+&gt;     |&gt; dyn
+&gt;     |&gt; ignore
+&gt; 
+&gt;     print_static "&lt;/test&gt;"
+00:00:21 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 27010 }
+00:00:21 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:22 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
+00:00:22 <span class="ansi-black-intense-fg">v</span> #6 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbformat\__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:22 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
+00:00:23 <span class="ansi-black-intense-fg">v</span> #8 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbconvert\filters\highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:23 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
+00:00:23 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 332700 bytes to c:\home\git\polyglot\apps\spiral\temp\test\test.dib.html
+00:00:23 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 872 }
+00:00:23 <span class="ansi-blue-intense-fg">d</span> #12 spiral.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 872 }
+00:00:23 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:24 <span class="ansi-blue-intense-fg">d</span> #15 spiral.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:24 <span class="ansi-blue-intense-fg">d</span> #16 spiral.run / dib / { exit_code = 0; result_length = 27941 }
 </pre>
 </div>
 </div>
@@ -7795,16 +8448,16 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Fable 5.0.0-alpha.9: F# to Rust compiler (status: alpha)
 
-Thanks to the contributor! @vbfox
+Thanks to the contributor! @selketjah
 Stand with Ukraine! https://standwithukraine.com.ua/
 
 Parsing test.fsproj...
 Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
-Project and references (1 source files) parsed in 162ms
+Project and references (1 source files) parsed in 156ms
 
 Started Fable compilation...
 
-Fable compilation finished in 2078ms
+Fable compilation finished in 1612ms
 
 .\test.fsx(11,0): (11,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </pre>
@@ -7910,7 +8563,7 @@ Fable compilation finished in 2078ms
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 8.76s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 8.19s</span>
 </pre>
 </div>
 </div>
@@ -7950,7 +8603,7 @@ Fable compilation finished in 2078ms
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 31.99s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 21.83s</span>
 <span class="ansi-red-intense-fg ansi-bold">     Running unittests main.rs (C:\home\git\polyglot\workspace\target\release\deps\spiral_temp_test-6f297c6a0c232188.exe)</span>
 
 running 3 tests
@@ -7961,262 +8614,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=Comment("&lt;$*)wf'/=.Y")
-input=Identifier("ulfdf0")
-input=Comment("&amp;\"Cz/$d\\")
-input=Integer(-4691956768194981509)
-input=StringLiteral("R&lt;;.}=?&amp;'(NG")
-input=StringLiteral("OlY3ot.$`#")
-input=Operator("-")
-input=Operator(")")
-input=Comment("*W=xa.s|Ra")
-input=Identifier("lm2Alm")
-input=Identifier("VI8bKF8N528cwmp69RL3Xdo")
-input=Integer(-6043029334280836520)
-input=Identifier("tDJ")
-input=Identifier("dwUUjdEGrzlAGLM1Yv95YKoJ")
-input=Integer(-2620431222116785927)
-input=Integer(-5822922878265489120)
-input=Operator("(")
-input=Integer(-1894711483915549955)
-input=Integer(-938640932698268635)
-input=Integer(1061532535680863266)
-input=Operator(")")
-input=StringLiteral(")q%!&gt;~:Q@.jR%'6U~Y`")
-input=Comment("`)V&lt;")
-input=Integer(2948940360420383617)
-input=Operator("=")
-input=Comment("%x/hfnKMnqvM")
-input=Operator("(")
-input=StringLiteral("n$wqvn*t;v&lt;qwBQJ,W=&amp;%`")
-input=StringLiteral(",G=gs0'")
-input=StringLiteral("u)D:=*_G/%Op@/H{`&lt;q{3+%~%")
-input=Integer(-4554536881533160131)
-input=Integer(4136588563464324664)
-input=Operator("=")
-input=Integer(-6886767505738526042)
-input=Comment("]lc3h:^/\"%{")
-input=Comment("`=9N]7*I/p2@$=?,oVn8e&amp;=Oms")
-input=Comment("&amp;$%ThO.\"\\L*:")
-input=StringLiteral("F/yhwn.aL?{;&amp;H^!5%s*pN")
-input=Operator("-")
-input=StringLiteral("F_=3%")
-input=Integer(7938524464605997835)
-input=Operator("=")
-input=Integer(5133031767211311030)
-input=StringLiteral("TA)%I&lt;w+o&lt;pq")
-input=Operator("=")
-input=Identifier("odTf67S")
-input=Identifier("fzSf1fk0SdD7N2lWKH")
-input=Comment("&amp;l")
-input=Comment("`'pn4R1Xy3/*VwA.P1p\"/dqW{Y4xg@")
-input=Comment("nWjr/i&lt;?0J&amp;/Fs=g{:.G*~x1q")
-input=Identifier("KkMoDS0Y8WRdlJCh6dgeBg0vLmkKiDW")
-input=Identifier("c8EDQHGR2UVBSAxaG")
-input=StringLiteral(",rzEq&amp;/*=g?")
-input=Identifier("rbGeB")
-input=StringLiteral("?,3u/IgnvC,*=`/8d&lt;x&lt;2&gt;*tk")
-input=Integer(4981709999844440231)
-input=Comment("/")
-input=Comment("q&lt;8G%'$Gf7'pb:=rZl(g&gt;xHIQs")
-input=StringLiteral(";,:cQe?")
-input=Operator(")")
-input=Identifier("C0dSZY4LYm52f44sgq094Wv4B963H6VSj")
-input=StringLiteral("~a8]a4&amp;:u&amp;Gw*!/N{g_qdZ7z")
-input=Comment("Rb Ngs.c*&amp;.t*r")
-input=Identifier("z41Tqfls5l7z6oPOO")
-input=Operator("(")
-input=StringLiteral("1L&lt;^}{]B")
-input=Identifier("eU50opKnWVu1FZe075DDDgTGYx9F")
-input=Comment("(.*$I:p/ul\\")
-input=Integer(-325707129534508562)
-input=Identifier("aN")
-input=Integer(4131666298036103586)
-input=Operator("+")
-input=Integer(-2313630535031809162)
-input=Comment("7OO:@")
-input=Comment("0`ep~\\")
-input=Integer(-8695779313530853126)
-input=Identifier("qxi7gy220SCO5H7av")
-input=Integer(1584619679051325331)
-input=Operator("/")
-input=Identifier("NsXNRHxLUqpiNHLCw1SR")
-input=Identifier("f1U59P5F2Iy9I")
-input=StringLiteral("`{:X?L@.09:_d?$g^m3TD=#&amp;=0&lt;%")
-input=Comment("p=/vr_KV(")
-input=Operator("+")
-input=Comment("&amp;_b{KV\\&gt;G&gt;DC:XEo=/%\\${$9'")
-input=Operator("+")
-input=StringLiteral("&amp;q{Y$'PB'y~:Q%&amp;X.&amp;w8@D")
-input=StringLiteral("pez/+yeK'rV")
-input=Identifier("hWa")
-input=Operator("-")
-input=Operator("(")
-input=Identifier("Z9TX0o8zt4om5")
-input=Operator("+")
-input=Operator("(")
-input=Comment("XC/4WA&lt;6S`ky{8\\'R")
-input=Integer(-4307812346879199936)
-input=StringLiteral("{&amp;o.+qHu??bl.sfC")
-input=StringLiteral("/)6IGlc=@)'PDDDEgiCe'f$.#?aK%|d")
-input=Comment("r'^A&amp;{")
-input=Comment("")
-input=Operator("=")
-input=Integer(7426330827329554586)
-input=Operator("(")
-input=Comment("%\"G*4js")
-input=Integer(4293146709471911107)
-input=StringLiteral("f)ZCz'Plh0V&amp;.&amp;")
-input=Identifier("BZvUtddqm7Et3i1dxWiAfeg9j")
-input=StringLiteral("'.sv")
-input=Identifier("aZy9rxDLvewO6wo3SA6KHQgQW")
-input=Integer(-968383618041786810)
-input=StringLiteral("JlOK")
-input=Operator("=")
-input=Integer(8207735412404722536)
-input=Identifier("vk")
-input=StringLiteral("K'ksi0(&lt;sn*/O/n?:;a[V%e")
-input=Operator("-")
-input=StringLiteral("?=&lt;=")
-input=Integer(8631778492014249342)
-input=Integer(4406117893361038398)
+input=Comment("H?&amp;%SyVO=0&amp;7#G'{&lt;'j*=?L$b'm")
+input=StringLiteral("_:/%/.+AH?l6P`= @w?A?*ctQV$")
+input=Integer(-4727143544272918873)
 input=StringLiteral("")
-input=Comment("\\ff&amp;&lt;l .MamaP8%t:&lt;H^mg $z'&amp;?n")
+input=Integer(-6709606047229850321)
+input=Comment("/D.G`.\"8")
+input=Operator(")")
+input=StringLiteral(";p/{%*3J'.E")
+input=Operator("(")
+input=Identifier("Wq9z0wIq5pzuLYiNTTLSq2IdvtPkVN4Rd")
+input=Comment("\\g#/E'F&amp;s")
+input=Comment("")
+input=Comment("SyIaU&gt;o73Jnixdzd9%&amp;u9d")
+input=Identifier("Z9")
+input=Integer(-7922025762682263236)
+input=StringLiteral("Hz&gt;xS o%I*uW&amp;q/;SciN|?sh%jp?")
+input=Identifier("oGkG391nH60BVPK")
+input=Operator("-")
 input=Operator("+")
-input=Operator("-")
+input=Integer(-4776852211505323976)
+input=Integer(-3499500690034324252)
 input=Operator(")")
-input=Integer(-7023680835325706390)
+input=Comment("`U\"*\"P3'%Q`/#YRg}(9f&gt;*=q.rU=A")
+input=Integer(1640839297842668324)
+input=Comment("}.z%]dzgz&gt;mc==")
+input=Operator("-")
+input=Identifier("q0ceLERJJU91M0CS9Y4A50ydlinJdY8")
+input=Integer(1808386002980574965)
+input=StringLiteral(":L=*?'$x%d1S`^QMK:GOT{?&amp;")
+input=StringLiteral("u@W5]&amp;i(1")
+input=Operator("-")
+input=Comment("k#F'?q^=:F;*:Jc8")
+input=StringLiteral("Z2D+%q`@")
+input=StringLiteral(".G6&lt;%A.?$'&lt;B/D.x==$")
+input=StringLiteral("{`QV7E")
+input=Comment("WS%%x/:\\({yt!`w*\\O,P")
+input=Integer(6831944869613969676)
+input=Comment("El&gt;nEB%r\"")
+input=StringLiteral("q5Z.0SJ6l#:PH:=`x%A$zr.:")
+input=Comment("g0$&amp;v\"J y\"Z")
+input=Integer(545273697368303511)
+input=Comment("ga\\h9Q\"4\"A&lt;y[nE-q$&lt;2QwH&gt;=:")
+input=Operator("-")
+input=Comment("$T/{H /\"iTQk]&lt;y+=A&amp;I|.")
+input=StringLiteral("G:.G^3%O'_ld{`")
+input=Comment("L*:N$/k&amp;Wt{E%.Ofa")
+input=Comment("/,U{&amp;`j:%.\\/&lt;cN;t&gt;r3.KC|e")
+input=Integer(4936879499545876451)
+input=Integer(-5313172456134722852)
+input=Operator("-")
+input=Identifier("SA51")
+input=StringLiteral("N7/c%2ov*['")
+input=Integer(-8540144778056249612)
+input=Operator(")")
+input=Integer(-1359828396622792481)
+input=Identifier("syUSApNbc6b8")
+input=Integer(1646948336796360714)
+input=Comment("Je6R\\bJ")
+input=Identifier("dT18nY2cF")
+input=Comment("?r=%")
+input=Integer(-9117329234367226038)
+input=Integer(1289391093748728505)
+input=Integer(-7961722600143562807)
+input=Comment("m:JzHO%=W..Mxu\\.}")
+input=Integer(-8010174998934315240)
+input=Identifier("laLeADZ4Ut58")
+input=StringLiteral("V")
+input=Comment("=&lt;('}$Z[Z~L'2&amp;&amp;5\\&lt;i!:D")
+input=Integer(-4822843168661628146)
+input=Comment("Lt{0&lt;9M2vsgH&lt;&lt;&amp;tdCG{gIO")
+input=Identifier("ZF0svIB3UkciXut7Fi7D7NrV1vC")
+input=Comment(".!`$3N%j*'X:'&gt;\\=+4`")
+input=Operator("(")
+input=StringLiteral("*YKj*mc}")
+input=Identifier("v")
+input=Integer(-6427283292216622817)
+input=Operator(")")
+input=Identifier("qHaQ")
+input=Identifier("L6ul6n42t")
+input=Identifier("C7IoC90347u0x")
+input=Integer(-5580078888423679856)
+input=Comment(":+Deq_%")
+input=StringLiteral("fHf//*LlGEFaKg:m9")
+input=Operator("(")
+input=Operator("-")
+input=StringLiteral("4G]({3$Lne?E!/AHn5Jq]Bh")
+input=Identifier("xMz")
+input=Comment(":*-\"J`yS)8g${h.&amp;&gt;!(&gt;")
+input=StringLiteral("&lt;JmP?=?kr*.lh*kR^,%C/0||VQ")
+input=Operator("+")
+input=Comment("|'RPX`\".2~=")
+input=Integer(8721198368076908318)
+input=Operator("+")
+input=Identifier("FxLu418z")
+input=Identifier("ZF32MxMipv")
+input=StringLiteral("^` NkHlUlFx=AOU4?IQ&lt;MG&gt;&amp;")
+input=Integer(-889076573736682656)
+input=Integer(-2986137192613591912)
+input=Comment("&amp;o%7f!")
+input=Integer(-3522598608738996423)
+input=StringLiteral("3.")
+input=Operator("(")
+input=Identifier("GU0yq2f1")
+input=Integer(-8597246601965750987)
+input=StringLiteral("O()^.wu0,")
+input=Comment("`.P{%y[&amp;Q?}ZJ.X\"&amp;{-;=I@:")
+input=StringLiteral("s)[3-|O(9]SnYci5.C8mx")
+input=Operator("-")
+input=Identifier("b7i5a")
+input=Operator("-")
 input=Operator("*")
-input=Identifier("dBldMN5iR9a2b92J3cNPIZpk6Y89X58")
-input=Identifier("dQoW0JH")
-input=StringLiteral("qT`8")
-input=Comment("W2(=g{#)c\\Q&lt;")
-input=StringLiteral("`o#:q%{IV%")
-input=Integer(4925816633704472006)
-input=Integer(1531865855899887704)
-input=Comment("/ M`8L7(")
-input=Comment("L&lt;`c&lt;'\"*$o'2*\".&amp;")
-input=Comment(")f$..")
-input=StringLiteral("=3:DHY]$7Dom.&amp;,X&lt;")
-input=Operator("=")
-input=Integer(-5222751797855836337)
-input=Integer(-4971235317053478303)
-input=Integer(-2055382370000734644)
-input=StringLiteral("N6O~=xG=(f/8*#{")
-input=Identifier("C52dEBv6ps9Ek1L4wFtPzEc01Nyz")
-input=Integer(538104275917601376)
-input=Identifier("n5RGA2f1")
-input=Integer(9080618291194094410)
-input=Operator("-")
+input=StringLiteral("'~.?&amp;:A&amp;LDIY")
+input=Integer(530027568438137571)
+input=Operator("*")
+input=Integer(-539571650246737622)
 input=Operator(")")
-input=StringLiteral("&lt;'%.d2O&lt;")
-input=StringLiteral("8U@EIc.hRDU$@ w:TN``%DK//0")
-input=Integer(-8788049925437913286)
-input=Identifier("xFg")
-input=Integer(8768798502809596129)
+input=StringLiteral("$K=}H8:+E.-?:*Y/W?#i@47;''xJ(s")
+input=Identifier("T2SE6ZYW7jcrI9w")
+input=Identifier("dN434wi291C3BAgG5u1FL48ilspQQ")
+input=StringLiteral("U")
+input=Identifier("AZitUEsM5dQ")
+input=StringLiteral("V.$}S5o_&amp;EJ?l8k=a,=`C6U")
+input=Integer(3444590313854841941)
+input=Comment("N:^884`.n]/")
+input=Operator(")")
+input=Operator("*")
+input=Comment("=Mq&amp;.JiKfbv")
+input=Integer(5248454197555266476)
+input=Operator("*")
+input=StringLiteral("wXBJ$??F`8;")
+input=Operator("*")
+input=Operator("/")
+input=Comment("V)..b ?e4S m|BjP'{'mJt_*")
+input=Comment("\"=Ok80{_gkC*./FQ")
+input=Operator("/")
+input=Identifier("OA76KYSO20123rA8FX")
+input=StringLiteral(")?&amp;_4)`D&lt;%``#}}WVpGp1?&lt;A:a/")
+input=StringLiteral("e&amp;m&amp;l/j}5'`:a`&amp;g'g_")
+input=Identifier("Z6J74VoErMHVa")
+input=Operator("+")
+input=StringLiteral(".:&lt;3")
+input=StringLiteral("jwZ.I*#`pl=pfn:&amp;/ M i`0%")
+input=Comment("%o/5t/\\D'\"BQZ$")
+input=Identifier("CSdH9DE6j8a6yqbPRLjQ2F3SG5Ngh")
+input=Identifier("kZ4RSR8JEG1qfEJkWu5Z68vpOR8485")
+input=Identifier("ef5Ii87N")
+input=Identifier("Dgd1JVQZw0h84OejTs6913Y7NPDcmOBr1")
+input=Integer(5052381725560159029)
+input=Operator("-")
+input=Comment("KF&amp;W?==B]6M0D\\:D/&lt;3*bVHb2&amp;")
+input=Comment("%Wc\"U.`^:`j'r\\0'$Bp")
+input=Integer(8728647970656365122)
+input=Identifier("i13c7t1ZfwZKifS9")
+input=Integer(7788483113954712413)
+input=Operator("+")
+input=Identifier("aLNpuE4dQhg3lA")
+input=Integer(8643364959354408965)
+input=Identifier("ErWh3yH")
+input=Operator("-")
+input=Comment("")
+input=StringLiteral("A")
+input=Operator(")")
+input=Operator("*")
+input=StringLiteral("+?.)vr$?Rm")
+input=Integer(6891628142666425694)
+input=Integer(5662045473855946450)
+input=Identifier("n6xo8k")
+input=Comment("$!?-5_=%~?=3%.o/n(B,")
+input=Comment("")
+input=StringLiteral("Ua1N;@")
+input=Identifier("PCKqL6J9kLBysnr1mnUWs5t")
+input=Integer(-3132517799368950115)
+input=Identifier("WZl4PguXj")
+input=Comment("A=Ra=u`nE$\\?a::\\8dX:w{")
+input=Integer(-8989623220324046399)
+input=Comment("$=aa=#rWcu`\\z::\\o")
+input=Operator("*")
+input=Identifier("lEID5xAD96p")
+input=Identifier("J")
+input=Identifier("fuxB")
+input=Operator("/")
+input=StringLiteral("'b@o/]@`g`:mn")
+input=Integer(-6885946680256274421)
 input=Operator("=")
 input=Operator("/")
-input=Identifier("rv86AV26OakCW")
-input=Operator("-")
-input=Operator("+")
-input=Integer(-2411432845530227710)
-input=StringLiteral("z^BB&gt;q")
-input=Integer(-5376788035515449247)
-input=StringLiteral("`&amp;1f.u@`Db'l1 B:&amp;;^{*&lt;0'")
-input=Integer(2016781552435224938)
-input=Identifier("Qp73Zs17")
-input=Comment("Ie'&lt;\"{%:ZtsF/w")
-input=Identifier("YOunAF5VHo3ix8NuW0gxxovsx02wu97")
-input=Integer(9204764184025350563)
-input=StringLiteral("pPzHrvtN~Ds,$o&amp;|n%Yc:eK")
-input=StringLiteral("ldP!&amp;D#{#&lt;")
-input=Integer(-6761534133498306340)
-input=Identifier("UH2E6LSVjPOvhbiIAjS8")
-input=Integer(-2713298246756669955)
-input=Integer(-7747403621392227880)
-input=Identifier("xV3FmK7EvlCa5XET7fCb")
-input=Comment("hh{wd/&lt;(:`\"6")
-input=Integer(2974848336051553161)
-input=Identifier("Dba9byF0Djv3YkULnB")
-input=Identifier("bX")
-input=StringLiteral("/v{w{&amp;rG/o`")
-input=StringLiteral("%'=5DR:p")
-input=Comment("8~v(~+73B+:&amp;pdaM")
-input=Comment("C:}$ttTq?I*\"_0%~")
-input=Comment("$ob\\'/*E'q8")
-input=Operator("/")
-input=Operator("*")
-input=Integer(-3399396708864231496)
-input=StringLiteral("M*O0X%SM3hso%0V$,aR*`maHG^R*Y&gt;")
-input=StringLiteral("8z6")
-input=Identifier("yjUgeCDsWZSQS2UqcEVLuN027f32")
-input=Comment("_NK'm#L^d}76$g$Br\"O*&amp;|wtC")
-input=Comment("b'CH4\"Y!ba?r=H`kNDD")
-input=Identifier("aciwcHztwNQAlZwGTtA7VxIT62nLlK")
-input=Integer(-5250431776973139520)
-input=Comment("$\\9\"c/`$\\.ry&amp;R=\"I")
-input=Identifier("Gx9YC89o6lD")
-input=Comment("{/FI%\\V|u6/.Wn6BApI=6 .6")
-input=Integer(-6626224664176312258)
-input=Integer(-2735321672039604579)
-input=Operator("-")
-input=StringLiteral("TR&gt;Gc/&amp;9Nx:-A.a_A=5`/0E'}S")
-input=Integer(-4705176379270967830)
-input=Identifier("BLr6byW8M8")
-input=Comment("T?4\\r0lj.86&amp;l=p")
-input=Integer(217822531098856681)
-input=Operator("-")
-input=Comment("/{Ug6*+H")
-input=Identifier("EhB7Oqot2f3CzzVQl")
-input=Integer(-2036973806377080541)
-input=Identifier("niqIz7jqjZmTVPJq")
-input=Identifier("P2Y")
-input=StringLiteral("/O")
-input=StringLiteral("9D9&lt;%VlN~")
-input=StringLiteral("{(Y%&amp;[*&amp;&lt;uI?=J%g6:%9'%pC?6S")
-input=Comment("Z\"H\\$O\"z\"}(\\OzUS$?c@{P\\m:z#LX`S")
-input=Operator("/")
-input=StringLiteral("L/y=6")
-input=Operator("=")
-input=StringLiteral("}DB`jGW&lt;/d|")
-input=Integer(7349468667543365099)
-input=Integer(-8744087465796297818)
-input=Operator("*")
-input=Integer(-3479983177949939232)
-input=Integer(-6880937617795359628)
-input=Operator("+")
-input=Identifier("T43quiB6O2r57G3vH46SvNM12aFY5s3j")
-input=StringLiteral("u#MC.{hZi+$;'$*")
-input=StringLiteral(",-YQ&amp;_S=:?")
-input=Comment("\\11&amp;jy\\?'D\" `W@Z?}I_z")
-input=StringLiteral("8^.-E$Cdm)**[H&amp;::/`j_=K+o'X")
-input=Integer(1617291059126250280)
-input=Identifier("U2N63rP9B32w19")
-input=Comment(")\"?Fh.")
-input=StringLiteral("&lt;&gt;E:[*1W*&amp;MWN&gt;6$b`")
-input=Operator("+")
-input=Comment("g(&lt;Qm${8%I?\\~1\\]?M.+ t")
 input=Operator(")")
-input=Comment("kV?*0SD(U(")
-input=Comment("cOI'&amp;RAWYkF8:$P5@i&amp;`:.")
-input=Comment("*.N6O|A(-")
-input=Identifier("z597mk0wAfwnYd0nAGpEzA100s6j")
-input=StringLiteral("% =o`1:'6's&gt;?5X?`&amp;0&amp;o")
-input=Operator("=")
-input=StringLiteral("A&lt;&amp;,4+^&lt;,:'&lt;kIh?(:8,- :a:L")
-input=Integer(5322575424306334857)
+input=Identifier("BsdQvU5WIhl39gCovLCHYmr5DI3FPoLF")
+input=Integer(-5962466528305463429)
+input=Integer(-8778981401327056246)
+input=Identifier("lGT")
+input=Integer(399332701317822537)
+input=Operator("/")
+input=Comment("f.]$CdC2|$O")
+input=Comment("$u&amp;sf%=?R{@!L{r")
+input=Identifier("YP")
 input=Operator(")")
-input=Operator("=")
-input=Comment("9tpW&lt;o]\\\"*..")
-input=Integer(5617026675164347972)
-input=StringLiteral("R7PB%?{G&amp;a*'c-/m!8")
-input=Comment("Hka.I&amp;3$&gt;")
-input=Identifier("b8uxop5eg3Nm9bV")
-input=Comment("A")
-input=Identifier("Jc81QquO0KMQXZ05U3u8rro4FGfPWu5b")
-input=Integer(-5072971826186174376)
-input=Integer(489393578207094835)
+input=Comment(";Y]AY&amp;{%CpmX/fvr:\"p{'B/4.7ltq$J")
+input=Comment("d*/$")
+input=Identifier("vQLE8W1otklJng0Nop")
+input=Operator(")")
+input=Operator(")")
+input=Operator("-")
 input=Operator("+")
+input=Identifier("z50rHx32SMKW3O")
+input=Operator("+")
+input=Identifier("J25b2B3PS6bip9hXp9AAqe1W9MQ")
+input=Operator("-")
+input=Integer(4739977125399155143)
+input=Integer(4086557573296758845)
+input=Operator("(")
+input=Identifier("U4n91KCa5plJ6Y")
+input=StringLiteral("nOb}XQh*!*h")
+input=Operator("=")
+input=Comment("{")
+input=Integer(5515191531416865075)
+input=Integer(-7429267374178792577)
+input=Comment("|90$Q{5[.%")
+input=Comment("*h`%92{")
+input=Comment("y!u$aPM?T^kb:p=*ef")
+input=Integer(-7388358639164603017)
+input=Integer(209715621791931424)
+input=StringLiteral("B$,J/(P738xM/:u?")
+input=Operator("=")
+input=Operator("(")
+input=Comment("Q3LX1_9/L6\\.)S")
+input=StringLiteral(" 5[dyV=8R%Bn./[=+=|{?+uXKg")
+input=StringLiteral("C}f`8F*T1TidyRU:&gt;w{]*!wa*")
+input=StringLiteral("~e53.B?")
+input=Integer(-4758638068952538014)
+input=Comment("6?:`PM*")
+input=Comment("!`/~t}BG'%y&gt;]0K@H")
+input=Comment("&lt;3&lt;tr&lt;.E)\"$/'Q&lt;.{*1l4&amp;?6_~&gt;V")
+input=Operator("=")
+input=Comment("%J`?*")
+input=Comment("{)2?Pps\\3.N4uDh?\\?[sIP&lt;")
+input=Comment("B'B~'\"&lt;dX[$x&lt;(")
+input=Identifier("kzPZ")
+input=Integer(231677701904472300)
+input=Identifier("O")
+input=Comment("#\"RA\"AUk")
+input=Identifier("TyyoIrCrf745Nm866N5Wb8r")
+input=Operator("+")
+input=Comment("?'qV9k?9xr-*^2f&lt;\\e?HL&amp;Z")
+input=Integer(-8813230598809048901)
+input=Integer(8430396324711367388)
+input=Identifier("nOjUlSjsD")
+input=Integer(954300397972326966)
+input=Comment("\"&amp;\\SAE=T\\\\:/;&amp;d7%%}K?\"h*~F?%E")
+input=Operator("=")
+input=Comment("\\?&amp;TT:")
+input=StringLiteral("Foa$8@#:5/0*hP?on=")
+input=StringLiteral("")
+input=Operator("*")
+input=Integer(-5490796751414003351)
+input=Operator("*")
+input=Operator("*")
 
 
 successes:
@@ -8224,7 +8877,7 @@ successes:
     prop_parse_format_idempotent
     test_parse_number
 
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
 
 </pre>
 </div>
