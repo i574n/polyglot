@@ -381,8 +381,7 @@ alias_set'
 #!spiral
 
 inl get_account_info
-    // (state : rust.ref state)
-    (state : rust.ref (rust.mut' state))
+    (state : rust.ref state)
     (account_id : near.account_id)
     : optionm'.option' (sm'.std_string * (u64 * u32))
     =
@@ -392,14 +391,10 @@ inl get_account_info
     inl alias_map : rust.ref (near.lookup_map sm'.std_string (mapm.hash_map near.account_id (u64 * u32))) =
         !\($'$"&!state.4"')
 
-    !\\(account_id, $'"let result = !account_map.get(&$0).and_then(|alias| { //"') : ()
-    !\($'"    !alias_map //"') : ()
-    !\($'"      .get(alias) //"') : ()
-    !\($'"      .map(|accounts| { //"') : ()
-    !\($'"          let result = (alias.clone(), *accounts.get(&!account_id).unwrap()); //"') : ()
-    !\($'"          (result.0, result.1.0, result.1.1) //"') : ()
-    !\($'"      }) //"') : ()
-    !\($'"}); //"') : ()
+    (!\\(account_id, $'"true; let result = !account_map.get(&$0).and_then(|alias| { //"') : bool) |> ignore
+    (!\($'"true;    !alias_map.get(alias).map(|accounts| { //"') : bool) |> ignore
+    (!\($'"true;        let result = (alias.clone(), *accounts.get(&!account_id).unwrap()); //"') : bool) |> ignore
+    (!\($'"true;        (result.0, result.1.0, result.1.1)  }) }); //"') : bool) |> ignore
 
     inl result = !\($'"result"')
 
@@ -435,17 +430,12 @@ inl state_ref_mut =
         $'$"&mut ($0, !account_set, !alias_set, !account_map, !alias_map)"'
     )
 
-inl state_ref =
-    state_ref_mut
-    // !\\(
-    //     version,
-    //     $'$"&($0, !account_set, !alias_set, !account_map, !alias_map)"'
-    // )
-
+inl state_ref = !\($'$"!state_ref_mut"')
 near.predecessor_account_id ()
 |> get_account_info state_ref
 |> _assert_eq' (optionm'.none' ())
 
+inl state_ref = !\($'$"!state_ref_mut"')
 near.signer_account_id ()
 |> get_account_info state_ref
 |> _assert_eq' (optionm'.none' ())
@@ -454,6 +444,7 @@ near.signer_account_id ()
 |> sm'.to_std_string
 |> claim_alias state_ref_mut
 
+inl state_ref = !\($'$"!state_ref_mut"')
 near.predecessor_account_id ()
 |> get_account_info state_ref
 |> optionm'.get'
@@ -468,6 +459,7 @@ near.predecessor_account_id ()
     i
     |> _assert_eq 0
 
+inl state_ref = !\($'$"!state_ref_mut"')
 near.signer_account_id ()
 |> get_account_info state_ref
 |> optionm'.get'
@@ -578,22 +570,19 @@ inl main () =
 
     inl get_account_info () =
         !\($'"pub fn get_account_info( //"') : ()
-        // !\($'"  &self, //"') : ()
-        !\($'"  &mut self, //"') : ()
+        !\($'"  &self, //"') : ()
         !\($'"  account_id: near_sdk::AccountId, //"') : ()
         !\($'") -> Option<(String, u64, u32)> { //"') : ()
 
-        inl state = !\($'$"&mut self.0"')
+        inl state = !\($'$"&self.0"')
         inl account_id : near.account_id = !\($'$"account_id"')
 
         inl result = account_id |> get_account_info state
         $'let _result = !result in _result |> (fun x -> Fable.Core.RustInterop.emitRustExpr x "$0 } // 4") // 3' : ()
 
-        !\($'"} // 2"') : ()
-
         !\($'"} // 1"') : ()
 
-        2
+        1
 
     inl get_alias_map () =
         !\($'"pub fn get_alias_map( //"') : ()
