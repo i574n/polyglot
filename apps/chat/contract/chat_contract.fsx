@@ -3355,14 +3355,14 @@ and closure0 () () : unit =
     Fable.Core.RustInterop.emitRustExpr () v553 
     let v554 : string = "pub fn get_account_info( //"
     Fable.Core.RustInterop.emitRustExpr () v554 
-    let v555 : string = "  &self, //"
+    let v555 : string = "  &mut self, //"
     Fable.Core.RustInterop.emitRustExpr () v555 
     let v556 : string = "  account_id: near_sdk::AccountId, //"
     Fable.Core.RustInterop.emitRustExpr () v556 
     let v557 : string = ") -> Option<(String, u64, u32)> { //"
     Fable.Core.RustInterop.emitRustExpr () v557 
-    let v558 : string = $"&self.0"
-    let v559 : Ref<struct (uint32 * near_sdk_store_IterableSet<near_sdk_AccountId> * near_sdk_store_IterableSet<std_string_String> * near_sdk_store_LookupMap<near_sdk_AccountId, std_string_String> * near_sdk_store_LookupMap<std_string_String, std_collections_HashMap<near_sdk_AccountId, struct (uint64 * uint32)>>)> = Fable.Core.RustInterop.emitRustExpr () v558 
+    let v558 : string = $"&mut self.0"
+    let v559 : Ref<Mut<struct (uint32 * near_sdk_store_IterableSet<near_sdk_AccountId> * near_sdk_store_IterableSet<std_string_String> * near_sdk_store_LookupMap<near_sdk_AccountId, std_string_String> * near_sdk_store_LookupMap<std_string_String, std_collections_HashMap<near_sdk_AccountId, struct (uint64 * uint32)>>)>> = Fable.Core.RustInterop.emitRustExpr () v558 
     let v560 : string = $"account_id"
     let v561 : near_sdk_AccountId = Fable.Core.RustInterop.emitRustExpr () v560 
     let v562 : string = $"&v559.3"

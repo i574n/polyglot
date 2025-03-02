@@ -1697,12 +1697,12 @@ mod module_2e7a6383 {
             //;
             pub fn get_account_info(
                 //;
-                &self,                           //;
+                &mut self,                       //;
                 account_id: near_sdk::AccountId, //;
             ) -> Option<(String, u64, u32)> {
                 //;
                 {
-                    let v559: &(
+                    let v559: &mut (
                         u32,
                         near_sdk::store::IterableSet<near_sdk::AccountId>,
                         near_sdk::store::IterableSet<std::string::String>,
@@ -1711,7 +1711,7 @@ mod module_2e7a6383 {
                             std::string::String,
                             std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
                         >,
-                    ) = &self.0;
+                    ) = &mut self.0;
                     let v561: near_sdk::AccountId = account_id;
                     let v563: &near_sdk::store::LookupMap<
                         near_sdk::AccountId,

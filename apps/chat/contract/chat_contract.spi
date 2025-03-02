@@ -146,7 +146,8 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
 
 /// ### get_account_info
 inl get_account_info
-    (state : rust.ref state)
+    // (state : rust.ref state)
+    (state : rust.ref (rust.mut' state))
     (account_id : near.account_id)
     : optionm'.option' (sm'.std_string * (u64 * u32))
     =
@@ -266,11 +267,12 @@ inl main () =
 
     inl get_account_info () =
         !\($'"pub fn get_account_info( //"') : ()
-        !\($'"  &self, //"') : ()
+        // !\($'"  &self, //"') : ()
+        !\($'"  &mut self, //"') : ()
         !\($'"  account_id: near_sdk::AccountId, //"') : ()
         !\($'") -> Option<(String, u64, u32)> { //"') : ()
 
-        inl state = !\($'$"&self.0"')
+        inl state = !\($'$"&mut self.0"')
         inl account_id : near.account_id = !\($'$"account_id"')
 
         inl result = account_id |> get_account_info state
