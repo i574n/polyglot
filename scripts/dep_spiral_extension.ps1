@@ -52,7 +52,7 @@ if ($extensionsPath.Count -gt 0) {
     }
 
     { . $(Search-Command bun) --bun esbuild-base -- --minify } | Invoke-Block -Location $extensionSrcPath
-    { . $(Search-Command bunx) --bun @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
+    { . $(Search-Command bunx) --bun @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath -OnError Continue
 }
 
 foreach ($extensionsPath in $extensionsPath) {
@@ -66,7 +66,7 @@ foreach ($extensionsPath in $extensionsPath) {
     $extensionDestDir = $json.publisher + "." + $json.name + "-" + $version
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
 
-    if (Test-Path $extensionPath) {
+    if ((Test-Path $extensionPath) -and (Test-Path $vsixPath)) {
         Write-Output "Copying extension to $extensionPath"
 
         Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
