@@ -21,7 +21,7 @@ Write-Output "Tool path: $netVersion"
 
 Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net9.0/**" $netVersion -Recurse -Force
 
-Write-Output "polyglot/scripts/dep_dotnet-repl.ps1 / `$tools: $tools / `$netVersion: $netVersion / `$env:CI:$env:CI"
+Write-Output "polyglot/scripts/dep_dotnet-repl.ps1 / `$tools: $tools / `$netVersion: $netVersion / `$env:CI:'$env:CI'"
 
 if ($env:CI) {
     Remove-Item "../deps/dotnet-interactive" -Recurse -Force -ErrorAction Ignore

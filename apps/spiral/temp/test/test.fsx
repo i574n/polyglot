@@ -3,9 +3,9 @@ let rec closure1 () () : unit =
     let v1 : string = "test"
     v0 v1
 and closure0 () () : int32 =
-    let v0 : unit = ()
-    let v1 : (unit -> unit) = closure1()
-    let v2 : unit = (fun () -> v1 (); v0) ()
+    let v1 : unit = ()
+    let v2 : (unit -> unit) = closure1()
+    let v3 : unit = (fun () -> v2 (); v1) ()
     0
 let v0 : (unit -> int32) = closure0()
 ()

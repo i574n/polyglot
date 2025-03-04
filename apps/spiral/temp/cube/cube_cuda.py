@@ -128,29 +128,29 @@ def Closure3(env_v0 : f64, env_v1 : f64, env_v2 : f64, env_v3 : f64, env_v4 : f6
         v22 = []
         v22.insert(0, v21)
         del v21
-        v24 = v22 
+        v25 = v22 
         del v22
-        v24.insert(0, v19)
+        v25.insert(0, v19)
         del v19
-        v27 = v24 
-        del v24
-        v27.insert(0, v16)
+        v29 = v25 
+        del v25
+        v29.insert(0, v16)
         del v16
-        v30 = v27 
-        del v27
-        v30.insert(0, v14)
+        v33 = v29 
+        del v29
+        v33.insert(0, v14)
         del v14
-        v33 = v30 
-        del v30
-        v33.insert(0, v11)
-        del v11
-        v36 = v33 
+        v37 = v33 
         del v33
-        v36.insert(0, v9)
+        v37.insert(0, v11)
+        del v11
+        v41 = v37 
+        del v37
+        v41.insert(0, v9)
         del v9
-        v39 = v36 
-        del v36
-        return v39
+        v45 = v41 
+        del v41
+        return v45
     return inner
 def Closure2(env_v0 : f64, env_v1 : f64, env_v2 : f64, env_v3 : f64, env_v4 : f64):
     def inner(v5 : f64) -> Callable[[f64], list]:
@@ -162,12 +162,12 @@ def Closure4():
     def inner(v0 : US1) -> Tuple[i32, f64, char]:
         match v0:
             case US1_1(): # None
-                v7 = None
-                return v7
+                v8 = None
+                return v8
             case US1_0(v1, v2, v3): # Some
-                v5 = (v1, v2, v3) # some' 
+                v6 = (v1, v2, v3) # some' 
                 del v1, v2, v3
-                return v5
+                return v6
             case t:
                 raise Exception(f'Pattern matching miss. Got: {t}')
     return inner
@@ -194,20 +194,20 @@ def Closure0(env_v0 : f64, env_v1 : f64, env_v2 : f64):
         nonlocal env_v0, env_v1, env_v2
         v0 = env_v0; v1 = env_v1; v2 = env_v2
         v5 = -v3
-        v50 = Closure1(v5, v3)
+        v52 = Closure1(v5, v3)
         del v5
-        v51 = list(v50())
-        del v50
-        v53 = method6(v51)
-        del v51
-        v54 = method7(v0, v1, v2, v3, v4)
+        v53 = list(v52())
+        del v52
+        v55 = method6(v53)
+        del v53
+        v56 = method7(v0, v1, v2, v3, v4)
         del v0, v1, v2
-        v55 = method9()
-        v60 = Closure5(v53, v54, v55)
-        del v53, v54, v55
-        v61 = list(v60())
-        del v60
-        return v61
+        v57 = method9()
+        v64 = Closure5(v55, v56, v57)
+        del v55, v56, v57
+        v65 = list(v64())
+        del v64
+        return v65
     return inner
 class US2_0(NamedTuple): # (0, Some)
     v0 : f64
@@ -220,26 +220,26 @@ def Closure7(env_v0 : (cp if cuda else np).ndarray, env_v1 : i32):
     def inner(v2 : f64, v3 : char) -> None:
         nonlocal env_v0, env_v1
         v0 = env_v0; v1 = env_v1
-        v5 = v0[v1]
-        match v5:
-            case US2_0(v7, _): # Some
-                del v5
-                v9 = v7 >= v2
-                del v7
-                if v9:
-                    del v0, v1, v9
+        v6 = v0[v1]
+        match v6:
+            case US2_0(v8, _): # Some
+                del v6
+                v10 = v8 >= v2
+                del v8
+                if v10:
+                    del v0, v1, v10
                     return 
                 else:
-                    del v9
-                    v11 = US2_0(v2, v3)
-                    v0[v1] = v11 
-                    del v0, v1, v11
+                    del v10
+                    v12 = US2_0(v2, v3)
+                    v0[v1] = v12 
+                    del v0, v1, v12
                     return 
             case t:
-                del v5
-                v13 = US2_0(v2, v3)
-                v0[v1] = v13 
-                del v0, v1, v13
+                del v6
+                v14 = US2_0(v2, v3)
+                v0[v1] = v14 
+                del v0, v1, v14
                 return 
     return inner
 def Closure6(env_v0 : (cp if cuda else np).ndarray):
@@ -256,20 +256,20 @@ def Closure9(env_v0 : (cp if cuda else np).ndarray, env_v1 : io.StringIO, env_v2
         del v2
         v5 = v3 + v4
         del v4
-        v7 = v0[v5]
+        v8 = v0[v5]
         del v0, v5
-        match v7:
+        match v8:
             case US2_1(): # None
-                v12 = '.'
-            case US2_0(_, v10): # Some
-                v12 = v10
+                v13 = '.'
+            case US2_0(_, v11): # Some
+                v13 = v11
             case t:
                 raise Exception(f'Pattern matching miss. Got: {t}')
-        del v7
-        v15 = str(v12)
-        del v12
-        v19 = v1.write(v15)
-        del v1, v15, v19
+        del v8
+        v17 = str(v13)
+        del v13
+        v22 = v1.write(v17)
+        del v1, v17, v22
         return 
     return inner
 def Closure8(env_v0 : (cp if cuda else np).ndarray, env_v1 : io.StringIO):
@@ -280,45 +280,45 @@ def Closure8(env_v0 : (cp if cuda else np).ndarray, env_v1 : io.StringIO):
         del v0
         for col in range(160): v4(col)
         del v4
-        v9 = "\n"
-        v10 = v1.write(v9)
-        del v1, v9, v10
+        v11 = "\n"
+        v12 = v1.write(v11)
+        del v1, v11, v12
         return 
     return inner
 def method0() -> string:
     v0 = "VSCODE_PID"
     return v0
 def method1(v0 : string) -> string:
-    v101 = os.environ
-    v105 = v101.get(v0)
-    del v0, v101
-    v110 = v105 
-    del v105
-    v114 = None
-    v116 = v110 == v114 
-    del v114
-    if v116:
-        v118 = None
-        v122 = v118
+    v116 = os.environ
+    v121 = v116.get(v0)
+    del v0, v116
+    v127 = v121 
+    del v121
+    v132 = None
+    v135 = v127 == v132 
+    del v132
+    if v135:
+        v137 = None
+        v141 = v137
     else:
-        v119 = v110 
-        v120 = US0_0(v119)
-        del v119
-        v121 = v120 
-        del v120
-        v122 = v121
-    del v110, v116
-    v126 = US0_1()
-    v127 = v122 or v126 
-    del v122, v126
-    match v127:
+        v138 = v127 
+        v139 = US0_0(v138)
+        del v138
+        v140 = v139 
+        del v139
+        v141 = v140
+    del v127, v135
+    v146 = US0_1()
+    v147 = v141 or v146 
+    del v141, v146
+    match v147:
         case US0_1(): # None
-            del v127
-            v130 = ""
-            return v130
-        case US0_0(v129): # Some
-            del v127
-            return v129
+            del v147
+            v150 = ""
+            return v150
+        case US0_0(v149): # Some
+            del v147
+            return v149
         case t:
             raise Exception(f'Pattern matching miss. Got: {t}')
 def method4(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
@@ -395,45 +395,45 @@ def method8(v0 : f64, v1 : f64, v2 : f64, v3 : char, v4 : f64, v5 : f64, v6 : f6
     del v43
     v45 = 1.0 / v44
     del v44
-    v48 = 160 
-    v50 = v48 / 2.0
-    del v48
-    v51 = v50 + v7
-    del v7, v50
-    v52 = 40.0 * v45
-    v53 = v52 * v29
+    v49 = 160 
+    v51 = v49 / 2.0
+    del v49
+    v52 = v51 + v7
+    del v7, v51
+    v53 = 40.0 * v45
+    v54 = v53 * v29
     del v29
-    v54 = v53 * 2.0
-    del v53
-    v55 = v51 + v54
-    del v51, v54
-    v60 = i32(v55)
-    del v55
-    v65 = 44 
-    v67 = v65 / 2.0
-    del v65
-    v68 = v52 * v38
-    del v38, v52
-    v69 = v67 + v68
-    del v67, v68
-    v74 = i32(v69)
-    del v69
-    v77 = v74 * 160
-    del v74
-    v78 = v60 + v77
-    del v60, v77
-    v79 = v78 >= 0
-    if v79:
-        v80 = v78 < 7040
-        v81 = v80
+    v55 = v54 * 2.0
+    del v54
+    v56 = v52 + v55
+    del v52, v55
+    v67 = i32(v56)
+    del v56
+    v73 = 44 
+    v75 = v73 / 2.0
+    del v73
+    v76 = v53 * v38
+    del v38, v53
+    v77 = v75 + v76
+    del v75, v76
+    v88 = i32(v77)
+    del v77
+    v91 = v88 * 160
+    del v88
+    v92 = v67 + v91
+    del v67, v91
+    v93 = v92 >= 0
+    if v93:
+        v94 = v92 < 7040
+        v95 = v94
     else:
-        v81 = False
-    del v79
-    if v81:
-        del v81
-        return US1_0(v78, v45, v3)
+        v95 = False
+    del v93
+    if v95:
+        del v95
+        return US1_0(v92, v45, v3)
     else:
-        del v3, v45, v78, v81
+        del v3, v45, v92, v95
         return US1_1()
 def method7(v0 : f64, v1 : f64, v2 : f64, v3 : f64, v4 : f64) -> Callable[[f64], Callable[[f64], list]]:
     return Closure2(v0, v1, v2, v3, v4)
@@ -444,110 +444,110 @@ def method10() -> string:
     return v0
 def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     async def __new_async_unit__():
-        v2507, v2508, v2509 = method4(v2, v3, v4)
-        v2510 = []
-        v2510.insert(0, (5.0, 40.0))
-        v2512 = v2510 
-        del v2510
-        v2512.insert(0, (10.0, 10.0))
-        v2515 = v2512 
-        del v2512
-        v2515.insert(0, (20.0, -40.0))
-        v2518 = v2515 
-        del v2515
-        cubes = v2518 
-        del v2518
-        v2523 = Closure0(v2507, v2508, v2509)
-        get_cube_points = v2523 
-        del v2523
-        v2524 = [x for cube in cubes for x in get_cube_points(*cube)]
-        v2528 = US2_1()
-        v2529 = [v2528 for _ in range(160 * 44)]
-        del v2528
-        v2533 = Closure6(v2529)
-        for (idx, ooz, ch) in v2524: v2533(idx)(ooz, ch)
-        del v2524, v2533
-        v2534 = method10()
-        v2537 = CustomStringIO(v2534)
-        del v2534
-        v2540 = Closure8(v2529, v2537)
-        del v2529
-        for row in range(44): v2540(row)
-        del v2540
-        v2543 = str(v2537)
-        del v2537
-        v2545 = v0 < 0
-        if v2545:
+        v2881, v2882, v2883 = method4(v2, v3, v4)
+        v2884 = []
+        v2884.insert(0, (5.0, 40.0))
+        v2887 = v2884 
+        del v2884
+        v2887.insert(0, (10.0, 10.0))
+        v2891 = v2887 
+        del v2887
+        v2891.insert(0, (20.0, -40.0))
+        v2895 = v2891 
+        del v2891
+        cubes = v2895 
+        del v2895
+        v2901 = Closure0(v2881, v2882, v2883)
+        get_cube_points = v2901 
+        del v2901
+        v2902 = [x for cube in cubes for x in get_cube_points(*cube)]
+        v2907 = US2_1()
+        v2908 = [v2907 for _ in range(160 * 44)]
+        del v2907
+        v2912 = Closure6(v2908)
+        for (idx, ooz, ch) in v2902: v2912(idx)(ooz, ch)
+        del v2902, v2912
+        v2913 = method10()
+        v2917 = CustomStringIO(v2913)
+        del v2913
+        v2920 = Closure8(v2908, v2917)
+        del v2908
+        for row in range(44): v2920(row)
+        del v2920
+        v2924 = str(v2917)
+        del v2917
+        v2926 = v0 < 0
+        if v2926:
             sys.stdout.write("\033[1;1H")
         else:
             pass
-        del v2545
-        print(v2543)
-        del v2543
-        v2572 = asyncio.sleep(1 / 1000)
-        await v2572 
-        del v2572
-        v2574 = v0 > 0
-        if v2574:
-            v2575 = v1 >= v0
-            v2576 = v2575
+        del v2926
+        print(v2924)
+        del v2924
+        v2957 = asyncio.sleep(1 / 1000)
+        await v2957 
+        del v2957
+        v2959 = v0 > 0
+        if v2959:
+            v2960 = v1 >= v0
+            v2961 = v2960
         else:
-            v2576 = False
-        del v2574
-        if v2576:
+            v2961 = False
+        del v2959
+        if v2961:
             pass
         else:
-            v2577 = v2507 + 0.05
-            v2578 = v2508 + 0.05
-            v2579 = v2509 + 0.01
-            v2580 = v1 + 1
-            v2581 = method2(v0, v2580, v2577, v2578, v2579)
-            del v2577, v2578, v2579, v2580
-            await v2581()
-            del v2581
-        del v2507, v2508, v2509, v2576
+            v2962 = v2881 + 0.05
+            v2963 = v2882 + 0.05
+            v2964 = v2883 + 0.01
+            v2965 = v1 + 1
+            v2966 = method2(v0, v2965, v2962, v2963, v2964)
+            del v2962, v2963, v2964, v2965
+            await v2966()
+            del v2966
+        del v2881, v2882, v2883, v2961
         """ new_async_unit
     del v0, v1, v2, v3, v4
     new_async_unit """
-    v2582 = __new_async_unit__
-    return v2582
+    v2967 = __new_async_unit__
+    return v2967
 def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     return method3(v0, v1, v2, v3, v4)
 def main_body():
     v1 = (cp if cuda else np).array([],dtype=object)
     del v1
-    v58 = method0()
-    v59 = method1(v58)
-    del v58
-    v60 = len(v59)
-    del v59
-    v61 = 0 == v60
-    del v60
-    if v61:
-        v62 = "AUTOMATION"
-        v63 = method1(v62)
-        del v62
-        v64 = len(v63)
-        del v63
-        v65 = 0 == v64
-        del v64
-        v66 = v65
+    v67 = method0()
+    v68 = method1(v67)
+    del v67
+    v69 = len(v68)
+    del v68
+    v70 = 0 == v69
+    del v69
+    if v70:
+        v71 = "AUTOMATION"
+        v72 = method1(v71)
+        del v71
+        v73 = len(v72)
+        del v72
+        v74 = 0 == v73
+        del v73
+        v75 = v74
     else:
-        v66 = False
-    del v61
-    if v66:
-        v75 = -1
+        v75 = False
+    del v70
+    if v75:
+        v84 = -1
     else:
-        v75 = 50
-    del v66
-    v76 = 1
-    v77 = 0.0
-    v78 = 0.0
-    v79 = 0.0
-    v80 = method2(v75, v76, v77, v78, v79)
-    del v75, v76, v77, v78, v79
-    asyncio.run(v80())
-    del v80
+        v84 = 50
+    del v75
+    v85 = 1
+    v86 = 0.0
+    v87 = 0.0
+    v88 = 0.0
+    v89 = method2(v84, v85, v86, v87, v88)
+    del v84, v85, v86, v87, v88
+    asyncio.run(v89())
+    del v89
     return 
 
 def main():

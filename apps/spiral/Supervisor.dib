@@ -135,6 +135,7 @@ let getCompilerPort () =
 type Backend =
     | Fsharp
     | Cuda
+    | Gleam
 
 #!fsharp
 
@@ -354,6 +355,7 @@ let buildFile backend timeout port cancellationToken path =
             match backend with
             | Fsharp -> $"{fileName}.fsx"
             | Cuda -> $"{fileName}.py"
+            | Gleam -> $"{fileName}.gleam"
 
         // let outputContentSeq =
         //     stream
@@ -504,6 +506,7 @@ let buildFile backend timeout port cancellationToken path =
             match backend with
             | Fsharp -> "Fsharp"
             | Cuda -> "Python + Cuda"
+            | Gleam -> "Gleam"
         // let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
         
         // let backend = Supervisor.Fsharp
@@ -623,6 +626,12 @@ let persistCode (input: {| backend : Backend option; input: SpiralInput; package
     let hashHex = $"%A{input.backend}%A{input.input}" |> SpiralCrypto.hash_text
 
     let packageDir = packagesDir </> hashHex
+
+    let packageDir =
+        if input.backend = Some Gleam
+        then packageDir </> "src"
+        else packageDir
+
     packageDir |> System.IO.Directory.CreateDirectory |> ignore
 
     let moduleName = "main"
@@ -701,6 +710,7 @@ modules:
             match backend with
             | Fsharp -> $"{fileName}.fsx"
             | Cuda -> $"{fileName}.py"
+            | Gleam -> $"{fileName}.gleam"
         let outputPath = packageDir </> outputFileName
         if outputPath |> System.IO.File.Exists |> not
         then return spiralPath, None
@@ -754,9 +764,9 @@ inl main () =
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v0 : unit = ()
-    let v1 : (unit -> unit) = closure1()
-    let v2 : unit = (fun () -> v1 (); v0) ()
+    let v1 : unit = ()
+    let v2 : (unit -> unit) = closure1()
+    let v3 : unit = (fun () -> v2 (); v1) ()
     1
 let v0 : (unit -> int32) = closure0()
 ()
@@ -888,6 +898,37 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 ",
+        []
+    )
+)
+
+#!fsharp
+
+//// test
+
+"""
+inl init_series start end inc =
+    inl total : f64 = conv ((end - start) / inc) + 1
+    listm.init total (conv >> (*) inc >> (+) start) : list f64
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
+
+inl integral dt : integration =
+    fun f a b =>
+        init_series (a + dt / 2) (b - dt / 2) dt
+        |> listm.map (f >> (*) dt)
+        |> listm.fold (+) 0
+
+inl main () =
+    integral 0.1 (fun x => x ** 2) 0 1
+"""
+|> fun code -> Spi (code, None)
+|> buildCode Gleam [||] false 10000 None
+|> Async.runWithTimeout 11000
+|> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
+|> _assertEqual (
+    Some (
+        Some "pub fn main () { 0.3325000000000001\n }",
         []
     )
 )
@@ -1464,6 +1505,8 @@ let main args =
                         then Fsharp
                         elif outputPath |> SpiralSm.ends_with ".py"
                         then Cuda
+                        elif outputPath |> SpiralSm.ends_with ".gleam"
+                        then Gleam
                         else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
                     let isReal = inputPath |> SpiralSm.ends_with ".spir"
                     inputPath |> buildFile backend timeout (Some serverPort) None

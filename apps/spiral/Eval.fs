@@ -374,7 +374,7 @@ module Eval =
             then trace Info (fun () -> $"Eval.processSpiralOutput / props: {props |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / {fn ()}") _locals
             else fn () |> System.Console.WriteLine
 
-        if props.printCode && props.backend <> Supervisor.Cuda then
+        if props.printCode && props.backend <> Supervisor.Cuda && props.backend <> Supervisor.Gleam then
             let ext = props.outputPath |> System.IO.Path.GetExtension
             _trace (fun () -> if props.builderCommands.Length > 0 then $"{ext}:\n{props.code}\n" else props.code)
 
@@ -405,6 +405,9 @@ module Eval =
                         elif props.backend = Supervisor.Cuda
                             && builderCommand |> SpiralSm.starts_with "cuda"
                         then [| $"{path} {builderCommand} --py-path \"{props.outputPath}\"" |]
+                        elif props.backend = Supervisor.Gleam
+                            && builderCommand |> SpiralSm.starts_with "gleam"
+                        then [| $"{path} {builderCommand} --gleam-path \"{props.outputPath}\"" |]
                         else [||]
                     builderCommand, commands
                 )
@@ -622,6 +625,8 @@ module Eval =
                     |> Array.map (fun x ->
                         if x |> SpiralSm.starts_with "cuda"
                         then Supervisor.Cuda
+                        elif x |> SpiralSm.starts_with "gleam"
+                        then Supervisor.Gleam
                         else Supervisor.Fsharp
                     )
                     |> Array.distinct
