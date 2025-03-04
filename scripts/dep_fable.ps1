@@ -51,7 +51,7 @@ Copy-Item "$releasePath/$dotnetVersion/**" $libVersionPath -Recurse -Force
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/python/fable/build.ps1 } | Invoke-Block
 
-Write-Output "polyglot/scripts/dep_fable.ps1 / `$dotnetVersion: $dotnetVersion / `$env:CI:$env:CI"
+Write-Output "polyglot/scripts/dep_fable.ps1 / `$dotnetVersion: $dotnetVersion / `$env:CI:'$env:CI'"
 
 if ($env:CI) {
     Remove-Item "../deps/Fable" -Recurse -Force -ErrorAction Ignore

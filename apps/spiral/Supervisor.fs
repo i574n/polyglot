@@ -67,6 +67,7 @@ module Supervisor =
     type Backend =
         | Fsharp
         | Cuda
+        | Gleam
 
 
 
@@ -228,6 +229,7 @@ module Supervisor =
                 match backend with
                 | Fsharp -> $"{fileName}.fsx"
                 | Cuda -> $"{fileName}.py"
+                | Gleam -> $"{fileName}.gleam"
 
             // let outputContentSeq =
             //     stream
@@ -378,6 +380,7 @@ module Supervisor =
                 match backend with
                 | Fsharp -> "Fsharp"
                 | Cuda -> "Python + Cuda"
+                | Gleam -> "Gleam"
             // let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
 
             // let backend = Supervisor.Fsharp
@@ -487,6 +490,12 @@ module Supervisor =
         let hashHex = $"%A{input.backend}%A{input.input}" |> SpiralCrypto.hash_text
 
         let packageDir = packagesDir </> hashHex
+
+        let packageDir =
+            if input.backend = Some Gleam
+            then packageDir </> "src"
+            else packageDir
+
         packageDir |> System.IO.Directory.CreateDirectory |> ignore
 
         let moduleName = "main"
@@ -565,6 +574,7 @@ modules:
                 match backend with
                 | Fsharp -> $"{fileName}.fsx"
                 | Cuda -> $"{fileName}.py"
+                | Gleam -> $"{fileName}.gleam"
             let outputPath = packageDir </> outputFileName
             if outputPath |> System.IO.File.Exists |> not
             then return spiralPath, None
@@ -851,6 +861,8 @@ modules:
                             then Fsharp
                             elif outputPath |> SpiralSm.ends_with ".py"
                             then Cuda
+                            elif outputPath |> SpiralSm.ends_with ".gleam"
+                            then Gleam
                             else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
                         let isReal = inputPath |> SpiralSm.ends_with ".spir"
                         inputPath |> buildFile backend timeout (Some serverPort) None
