@@ -69,6 +69,7 @@ mod module_3e76c43 {
             US1_2(Cube::US0),
             US1_3(Cube::US0),
             US1_4(Cube::US0),
+            US1_5(Cube::US0),
         }
         impl core::fmt::Display for US1 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -130,19 +131,19 @@ mod module_3e76c43 {
             Func1::new(move |v: string| Cube::closure1((), v))
         }
         pub fn method1(v0_1: string) -> string {
-            let v2: string = Cube::method2(v0_1);
-            let v4: Result<std::string::String, std::env::VarError> = std::env::var(&*v2);
-            let v6: bool = true;
-            let _result_map_ = v4.map(|x| {
+            let v6: string = Cube::method2(v0_1);
+            let v8: Result<std::string::String, std::env::VarError> = std::env::var(&*v6);
+            let v10: bool = true;
+            let _result_map_ = v8.map(|x| {
                 //;
-                let v8: std::string::String = x;
-                let v10: string = fable_library_rust::String_::fromString(v8);
-                let v12: bool = true;
-                v10
+                let v12: std::string::String = x;
+                let v14: string = fable_library_rust::String_::fromString(v12);
+                let v16: bool = true;
+                v14
             });
-            let v14: Result<string, std::env::VarError> = _result_map_;
-            let v15: string = Cube::method3();
-            v14.unwrap_or(v15)
+            let v18: Result<string, std::env::VarError> = _result_map_;
+            let v19: string = Cube::method3();
+            v18.unwrap_or(v19)
         }
         pub fn method7(v0_1: f64, v1: f64, v2: f64) -> (f64, f64, f64) {
             (v0_1, v1, v2)
@@ -181,22 +182,22 @@ mod module_3e76c43 {
             let v27: f64 = (v0_1) * (v26);
             let v45: f64 =
                 1.0_f64 / (((((v15) * (v26)) - ((v9) * (v26))) + ((v0_1) * (v10))) + 100.0_f64);
-            let v52: f64 = 40.0_f64 * (v45);
-            let v78: i32 = (((((160_i32 as f64) / 2.0_f64) + (v7))
-                + (((v52) * ((v25) + ((v27) * (v12)))) * 2.0_f64))
+            let v53: f64 = 40.0_f64 * (v45);
+            let v92: i32 = (((((160_i32 as f64) / 2.0_f64) + (v7))
+                + (((v53) * ((v25) + ((v27) * (v12)))) * 2.0_f64))
                 as i32)
                 + (((((44_i32 as f64) / 2.0_f64)
-                    + ((v52)
+                    + ((v53)
                         * ((((((v19) * (v12)) + ((v23) * (v12))) - ((v11) * (v20)))
                             + ((v16) * (v20)))
                             - ((v27) * (v20))))) as i32)
                     * 160_i32);
-            if if (v78) >= 0_i32 {
-                (v78) < 7040_i32
+            if if (v92) >= 0_i32 {
+                (v92) < 7040_i32
             } else {
                 false
             } {
-                Cube::US3::US3_0(v78, v45, v3)
+                Cube::US3::US3_0(v92, v45, v3)
             } else {
                 Cube::US3::US3_1
             }
@@ -285,28 +286,28 @@ mod module_3e76c43 {
         ) -> LrcPtr<dyn IEnumerable_1<(i32, f64, char)>> {
             let v3: f64 = _arg.0.clone();
             let v5: f64 = -v3;
-            let v53: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
+            let v55: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
                 let v3 = v3.clone();
                 let v5 = v5.clone();
                 move || {
-                    let v9: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
+                    let v11: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
                         l0: MutCell::new(v5),
                     });
                     enumerateWhile(
                         Func0::new({
-                            let v9 = v9.clone();
-                            move || Cube::method9(v3, v9.clone())
+                            let v11 = v11.clone();
+                            move || Cube::method9(v3, v11.clone())
                         }),
                         delay(Func0::new({
-                            let v9 = v9.clone();
+                            let v11 = v11.clone();
                             move || {
                                 append(
-                                    singleton(v9.l0.get().clone()),
+                                    singleton(v11.l0.get().clone()),
                                     delay(Func0::new({
-                                        let v9 = v9.clone();
+                                        let v11 = v11.clone();
                                         move || {
-                                            let v13: f64 = (v9.l0.get().clone()) + 0.6_f64;
-                                            v9.l0.set(v13);
+                                            let v15: f64 = (v11.l0.get().clone()) + 0.6_f64;
+                                            v11.l0.set(v15);
                                             ();
                                             empty::<f64>()
                                         }
@@ -317,33 +318,33 @@ mod module_3e76c43 {
                     )
                 }
             })));
-            let v54 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
-            let v55 = Cube::method13();
+            let v56 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
+            let v57 = Cube::method13();
             delay(Func0::new({
-                let v53 = v53.clone();
-                let v54 = v54.clone();
                 let v55 = v55.clone();
+                let v56 = v56.clone();
+                let v57 = v57.clone();
                 move || {
                     collect(
                         Func1::new({
-                            let v53 = v53.clone();
-                            let v54 = v54.clone();
                             let v55 = v55.clone();
+                            let v56 = v56.clone();
+                            let v57 = v57.clone();
                             move |cube_x: f64| {
                                 collect(
                                     Func1::new({
                                         let cube_x = cube_x.clone();
-                                        let v54 = v54.clone();
-                                        let v55 = v55.clone();
+                                        let v56 = v56.clone();
+                                        let v57 = v57.clone();
                                         move |cube_y: f64| {
-                                            choose(v55.clone(), ofList(v54(cube_x)(cube_y)))
+                                            choose(v57.clone(), ofList(v56(cube_x)(cube_y)))
                                         }
                                     }),
-                                    v53.clone(),
+                                    v55.clone(),
                                 )
                             }
                         }),
-                        v53.clone(),
+                        v55.clone(),
                     )
                 }
             }))
@@ -363,9 +364,9 @@ mod module_3e76c43 {
         pub fn closure7(v0_1: Array<Cube::US4>, v1: i32, _arg: (f64, char)) {
             let v3: char = _arg.1.clone();
             let v2: f64 = _arg.0.clone();
-            let v4: Cube::US4 = v0_1[v1].clone();
-            if let Cube::US4::US4_0(v4_0_0, v4_0_1) = &v4 {
-                if (v4_0_0.clone()) >= (v2) {
+            let v5: Cube::US4 = v0_1[v1].clone();
+            if let Cube::US4::US4_0(v5_0_0, v5_0_1) = &v5 {
+                if (v5_0_0.clone()) >= (v2) {
                     ()
                 } else {
                     v0_1.get_mut()[v1 as usize] = Cube::US4::US4_0(v2, v3);
@@ -388,10 +389,10 @@ mod module_3e76c43 {
         }
         pub fn closure9(v0_1: Array<Cube::US4>, v1: LrcPtr<StringBuilder>, v2: i32, v3: i32) {
             let v5: i32 = (v3) + ((v2) * 160_i32);
-            let v6: Cube::US4 = v0_1[v5].clone();
-            let v18: LrcPtr<StringBuilder> = {
-                let value: string = ofChar(match &v6 {
-                    Cube::US4::US4_0(v6_0_0, v6_0_1) => match &v6 {
+            let v7: Cube::US4 = v0_1[v5].clone();
+            let v21: LrcPtr<StringBuilder> = {
+                let value: string = ofChar(match &v7 {
+                    Cube::US4::US4_0(v7_0_0, v7_0_1) => match &v7 {
                         Cube::US4::US4_0(_, x) => x.clone(),
                         _ => unreachable!(),
                     },
@@ -406,7 +407,7 @@ mod module_3e76c43 {
                 Cube::closure9(v0_1.clone(), v1.clone(), v2, col);
             }
             {
-                let v4: LrcPtr<StringBuilder> = v1.AppendLine();
+                let v5: LrcPtr<StringBuilder> = v1.AppendLine();
                 ()
             }
         }
@@ -420,18 +421,18 @@ mod module_3e76c43 {
             Cube::method6(v0_1, v1, v2, v3, v4)
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) {
-            let v56: bool = if 0_i32 == (length(Cube::method1(Cube::method0()))) {
+            let v65: bool = if 0_i32 == (length(Cube::method1(Cube::method0()))) {
                 0_i32 == (length(Cube::method1(string("AUTOMATION"))))
             } else {
                 false
             };
-            if v56 {
+            if v65 {
                 print!("\x1B[?25l");
                 ()
             }
             {
-                let v79: Arc<Async<()>> = Cube::method5(
-                    if v56 { -1_i32 } else { 50_i32 },
+                let v88: Arc<Async<()>> = Cube::method5(
+                    if v65 { -1_i32 } else { 50_i32 },
                     1_i32,
                     0.0_f64,
                     0.0_f64,

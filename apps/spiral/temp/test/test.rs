@@ -21,7 +21,7 @@ mod module_b448d9d1 {
             printfn!("{0}", string("test"));
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
-            let v2: () = {
+            let v3: () = {
                 Test::closure1((), ());
                 ()
             };
