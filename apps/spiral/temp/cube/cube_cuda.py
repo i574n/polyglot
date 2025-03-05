@@ -289,36 +289,36 @@ def method0() -> string:
     v0 = "VSCODE_PID"
     return v0
 def method1(v0 : string) -> string:
-    v116 = os.environ
-    v121 = v116.get(v0)
-    del v0, v116
-    v127 = v121 
-    del v121
-    v132 = None
-    v135 = v127 == v132 
-    del v132
-    if v135:
-        v137 = None
-        v141 = v137
+    v120 = os.environ
+    v125 = v120.get(v0)
+    del v0, v120
+    v131 = v125 
+    del v125
+    v137 = None
+    v140 = v131 == v137 
+    del v137
+    if v140:
+        v142 = None
+        v146 = v142
     else:
-        v138 = v127 
-        v139 = US0_0(v138)
-        del v138
-        v140 = v139 
-        del v139
-        v141 = v140
-    del v127, v135
-    v146 = US0_1()
-    v147 = v141 or v146 
-    del v141, v146
-    match v147:
+        v143 = v131 
+        v144 = US0_0(v143)
+        del v143
+        v145 = v144 
+        del v144
+        v146 = v145
+    del v131, v140
+    v152 = US0_1()
+    v153 = v146 or v152 
+    del v146, v152
+    match v153:
         case US0_1(): # None
-            del v147
-            v150 = ""
-            return v150
-        case US0_0(v149): # Some
-            del v147
-            return v149
+            del v153
+            v156 = ""
+            return v156
+        case US0_0(v155): # Some
+            del v153
+            return v155
         case t:
             raise Exception(f'Pattern matching miss. Got: {t}')
 def method4(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
