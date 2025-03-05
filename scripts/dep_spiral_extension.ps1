@@ -30,11 +30,10 @@ if ($IsWindows -and $env:scoop) {
     }
 }
 
+$spiralPath = "../deps/The-Spiral-Language"
+$extensionSrcPath = "$spiralPath/VS Code Plugin"
+
 if ($extensionsPath.Count -gt 0) {
-    $spiralPath = "../deps/The-Spiral-Language"
-
-    $extensionSrcPath = "$spiralPath/VS Code Plugin"
-
     $json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
     $vsixName = $json.name + "-" + $json.version + ".vsix"
     $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
@@ -90,4 +89,8 @@ foreach ($extensionsPath in $extensionsPath) {
 
         Remove-Item "$extensionPath/dist" -Recurse -Force
     }
+}
+
+if ($env:CI) {
+    Remove-Item $extensionSrcPath/node_modules -Recurse -Force -ErrorAction Ignore
 }
