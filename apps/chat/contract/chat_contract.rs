@@ -495,24 +495,24 @@ mod module_2e7a6383 {
             v4: LrcPtr<Chat_contract::Mut4>,
             v5: Option<i64>,
         ) -> string {
-            let v485: u64 = near_sdk::env::block_timestamp();
-            let v502: Chat_contract::US2 =
+            let v491: u64 = near_sdk::env::block_timestamp();
+            let v510: Chat_contract::US2 =
                 defaultValue(Chat_contract::US2::US2_1, map(Chat_contract::method8(), v5));
-            let v515: u64 = (match &v502 {
-                Chat_contract::US2::US2_0(v502_0_0) => {
-                    (v485)
-                        - (match &v502 {
+            let v523: u64 = (match &v510 {
+                Chat_contract::US2::US2_0(v510_0_0) => {
+                    (v491)
+                        - (match &v510 {
                             Chat_contract::US2::US2_0(x) => x.clone(),
                             _ => unreachable!(),
                         } as u64)
                 }
-                _ => v485,
+                _ => v491,
             }) / 1000000000_u64;
-            let v516: u64 = (v515) % 60_u64;
-            let v518: u64 = ((v515) / 60_u64) % 60_u64;
-            let v520: u64 = ((v515) / 3600_u64) % 24_u64;
-            let v522: std::string::String = format!("{:02}:{:02}:{:02}", v520, v518, v516);
-            fable_library_rust::String_::fromString(v522)
+            let v524: u64 = (v523) % 60_u64;
+            let v526: u64 = ((v523) / 60_u64) % 60_u64;
+            let v528: u64 = ((v523) / 3600_u64) % 24_u64;
+            let v530: std::string::String = format!("{:02}:{:02}:{:02}", v528, v526, v524);
+            fable_library_rust::String_::fromString(v530)
         }
         pub fn method13() -> string {
             string("")
@@ -1582,31 +1582,31 @@ mod module_2e7a6383 {
                     };
                     let v318: Option<&std::string::String> = v189.get(&v193.clone());
                     let v320: Option<std::string::String> = v318.cloned();
-                    let v337: Chat_contract::US6 = defaultValue(
+                    let v339: Chat_contract::US6 = defaultValue(
                         Chat_contract::US6::US6_1,
                         map(Chat_contract::method19(), v320.clone()),
                     );
-                    if let Chat_contract::US6::US6_0(v337_0_0) = &v337 {
-                        let v341: std::string::String = v337_0_0.clone();
-                        if referenceEquals(&v341, &v183) {
-                            let v348: () = {
-                                Chat_contract::closure12(v341, ());
+                    if let Chat_contract::US6::US6_0(v339_0_0) = &v339 {
+                        let v343: std::string::String = v339_0_0.clone();
+                        if referenceEquals(&v343, &v183) {
+                            let v350: () = {
+                                Chat_contract::closure12(v343, ());
                                 ()
                             };
                             ()
                         } else {
-                            let v401: () = {
+                            let v403: () = {
                                 Chat_contract::closure13(v320.clone(), ());
                                 ()
                             };
                             v191 //;
-                                .get_mut(&v341) //;
+                                .get_mut(&v343) //;
                                 .unwrap() //;
                                 .remove(&v193.clone()); //;
                             v189.insert(v193.clone().clone(), v183.clone().clone()); //;
                             {
-                                let v458: bool = v185.insert(v193.clone());
-                                let v460: bool = v187.insert(v183.clone());
+                                let v460: bool = v185.insert(v193.clone());
+                                let v462: bool = v187.insert(v183.clone());
                                 let new_alias_account_map = match v191.get(&v183.clone()) {
                                     //;
                                     None => {
@@ -1638,19 +1638,19 @@ mod module_2e7a6383 {
                             }
                         }
                     } else {
-                        let v484: () = {
+                        let v486: () = {
                             Chat_contract::closure13(v320, ());
                             ()
                         };
-                        if let Chat_contract::US6::US6_1 = &v337 {
+                        if let Chat_contract::US6::US6_1 = &v339 {
                             ()
                         } else {
                             panic!("{}", string("Match failure"),)
                         }
                         v189.insert(v193.clone().clone(), v183.clone().clone()); //;
                         {
-                            let v537: bool = v185.insert(v193.clone());
-                            let v539: bool = v187.insert(v183.clone());
+                            let v539: bool = v185.insert(v193.clone());
+                            let v541: bool = v187.insert(v183.clone());
                             let new_alias_account_map = match v191.get(&v183.clone()) {
                                 //;
                                 None => {
@@ -1679,7 +1679,7 @@ mod module_2e7a6383 {
                         }
                     }
                     {
-                        let v564: () = {
+                        let v566: () = {
                             Chat_contract::closure15(Chat_contract::method24(), ());
                             ()
                         };
@@ -1688,9 +1688,9 @@ mod module_2e7a6383 {
             } //;
         } /* c;
           {
-              let v615: bool =
-                  true; // ??? / i: 5uy / i': 1uy / acc: 6uy / n: 3uy;
               let v617: bool =
+                  true; // ??? / i: 5uy / i': 1uy / acc: 6uy / n: 3uy;
+              let v619: bool =
                   true; */
  // ???? / i: 5uy / i': 2uy / acc: 6uy / n: 3uy;
         #[near_sdk::near_bindgen] //;
@@ -1703,7 +1703,7 @@ mod module_2e7a6383 {
             ) -> Option<(String, u64, u32)> {
                 //;
                 {
-                    let v625: &(
+                    let v627: &(
                         u32,
                         near_sdk::store::IterableSet<near_sdk::AccountId>,
                         near_sdk::store::IterableSet<std::string::String>,
@@ -1713,45 +1713,45 @@ mod module_2e7a6383 {
                             std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
                         >,
                     ) = &self.0;
-                    let v627: near_sdk::AccountId = account_id;
-                    let v629: &near_sdk::store::LookupMap<
+                    let v629: near_sdk::AccountId = account_id;
+                    let v631: &near_sdk::store::LookupMap<
                         near_sdk::AccountId,
                         std::string::String,
-                    > = &v625.3;
-                    let v631: &near_sdk::store::LookupMap<
+                    > = &v627.3;
+                    let v633: &near_sdk::store::LookupMap<
                         std::string::String,
                         std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
-                    > = &v625.4;
-                    let v633: bool = true;
-                    let result = v629.get(&v627.clone()).and_then(|alias| {
+                    > = &v627.4;
+                    let v635: bool = true;
+                    let result = v631.get(&v629.clone()).and_then(|alias| {
                         //;
-                        let v635: bool = true;
-                        v631.get(alias).map(|accounts| {
+                        let v637: bool = true;
+                        v633.get(alias).map(|accounts| {
                             //;
-                            let v637: bool = true;
-                            let result = (alias.clone(), *accounts.get(&v627).unwrap()); //;
                             let v639: bool = true;
+                            let result = (alias.clone(), *accounts.get(&v629).unwrap()); //;
+                            let v641: bool = true;
                             (result.0, result.1 .0, result.1 .1)
                         })
                     }); //;
-                    let v641: Option<(std::string::String, u64, u32)> = result;
-                    let v644: () = {
-                        Chat_contract::closure16(v627, v641.clone(), ());
+                    let v643: Option<(std::string::String, u64, u32)> = result;
+                    let v646: () = {
+                        Chat_contract::closure16(v629, v643.clone(), ());
                         ()
                     };
-                    let v693: () = {
+                    let v695: () = {
                         Chat_contract::closure17((), ());
                         ()
                     };
-                    v641
+                    v643
                 } // 4;
             } // 1;
         } /* c;
           {
-              let v742:
+              let v744:
                       bool =
                   true; // ??? / i: 6uy / i': 1uy / acc: 9uy / n: 1uy;
-              let v744:
+              let v746:
                       bool =
                   true; */
  // ???? / i: 6uy / i': 2uy / acc: 9uy / n: 1uy;
@@ -1765,28 +1765,28 @@ mod module_2e7a6383 {
             ) -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> {
                 //;
                 {
-                    let v752: &near_sdk::store::LookupMap<
+                    let v754: &near_sdk::store::LookupMap<
                         std::string::String,
                         std::collections::HashMap<near_sdk::AccountId, (u64, u32)>,
                     > = &self.0 .4;
-                    let v754: std::string::String = alias;
-                    let v757: () = {
-                        Chat_contract::closure18(v754.clone(), ());
+                    let v756: std::string::String = alias;
+                    let v759: () = {
+                        Chat_contract::closure18(v756.clone(), ());
                         ()
                     };
-                    let v807: () = {
+                    let v809: () = {
                         Chat_contract::closure19(Chat_contract::method30(), ());
                         ()
                     };
-                    v752.get(&v754).cloned() //;
+                    v754.get(&v756).cloned() //;
                 } //;
             } //;
         } /* c;
           {
-              let v858:
+              let v860:
                       bool =
                   true; // ??? / i: 7uy / i': 1uy / acc: 10uy / n: 2uy;
-              let v860:
+              let v862:
                       bool =
                   true; */
  // ???? / i: 7uy / i': 2uy / acc: 10uy / n: 2uy;
@@ -1804,10 +1804,10 @@ mod module_2e7a6383 {
             } //;
         } /* c;
           {
-              let v872:
+              let v874:
                       bool =
                   true; // ??? / i: 8uy / i': 1uy / acc: 12uy / n: 1uy;
-              let v874:
+              let v876:
                       bool =
                   true; */
  // ???? / i: 8uy / i': 2uy / acc: 12uy / n: 1uy;
@@ -1816,46 +1816,46 @@ mod module_2e7a6383 {
             {
                 //;
                 {
-                    let v878: bool = true;
+                    let v880: bool = true;
                     {
                         (); // ?? / i': 1uy / n: 13uy;
-                        let v880: bool = true;
+                        let v882: bool = true;
                         {
                             (); // ?? / i': 2uy / n: 13uy;
-                            let v882: bool = true;
+                            let v884: bool = true;
                             {
                                 (); // ?? / i': 3uy / n: 13uy;
-                                let v884: bool = true;
+                                let v886: bool = true;
                                 {
                                     (); // ?? / i': 4uy / n: 13uy;
-                                    let v886: bool = true;
+                                    let v888: bool = true;
                                     {
                                         (); // ?? / i': 5uy / n: 13uy;
-                                        let v888: bool = true;
+                                        let v890: bool = true;
                                         {
                                             (); // ?? / i': 6uy / n: 13uy;
-                                            let v890: bool = true;
+                                            let v892: bool = true;
                                             {
                                                 (); // ?? / i': 7uy / n: 13uy;
-                                                let v892: bool = true;
+                                                let v894: bool = true;
                                                 {
                                                     (); // ?? / i': 8uy / n: 13uy;
-                                                    let v894: bool = true;
+                                                    let v896: bool = true;
                                                     {
                                                         (); // ?? / i': 9uy / n: 13uy;
-                                                        let v896: bool = true;
+                                                        let v898: bool = true;
                                                         {
                                                             (); // ?? / i': 10uy / n: 13uy;
-                                                            let v898: bool = true;
+                                                            let v900: bool = true;
                                                             {
                                                                 (); // ?? / i': 11uy / n: 13uy;
-                                                                let v900: bool = true;
+                                                                let v902: bool = true;
                                                                 {
                                                                     (); // ?? / i': 12uy / n: 13uy;
-                                                                    let v902: bool = true;
+                                                                    let v904: bool = true;
                                                                     {
                                                                         (); // ?? / i': 13uy / n: 13uy;
-                                                                        let v904: bool = true;
+                                                                        let v906: bool = true;
                                                                         {
                                                                             {
                                                                                 (); // ? / i': 14uy / n: 13uy;
