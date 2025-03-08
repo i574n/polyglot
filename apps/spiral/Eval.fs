@@ -709,6 +709,10 @@ module Eval =
                         | [], [] ->
                             Choice2Of2 (Exception $"Eval.evalAsync / eval=[] / code=[] / buildCodeResults: %A{buildCodeResults} / code: %A{code}"), errors
                         | [ eval ], [] ->
+                            let eval =
+                                if eval |> SpiralSm.contains "<script"
+                                then $"{eval}, \"text/html1\""
+                                else eval
                             let ch, errors2 = props.fsi_eval eval cancellationToken
                             let errors =
                                 errors2
@@ -723,6 +727,10 @@ module Eval =
                                 if props.printCode
                                 then $"\"\"\"{code}\n\n\"\"\""
                                 else $"\"\"\"{code}\n\"\"\""
+                            let code =
+                                if code |> SpiralSm.contains "<script"
+                                then $"{code}, \"text/html2\""
+                                else code
                             let ch, errors2 = props.fsi_eval code cancellationToken
                             let errors =
                                 errors2
@@ -738,6 +746,10 @@ module Eval =
                                     match acc with
                                     | Error ch -> Error ch, acc_errors
                                     | Ok acc ->
+                                        let eval =
+                                            if eval |> SpiralSm.contains "<script"
+                                            then $"{eval}, \"text/html3\""
+                                            else eval
                                         let ch, errors = props.fsi_eval eval cancellationToken
                                         let errors =
                                             errors
@@ -776,6 +788,10 @@ module Eval =
                                     if props.printCode
                                     then $"\"\"\"{code}\n\n\n\"\"\""
                                     else $"\"\"\"{code}\n\"\"\""
+                                let code =
+                                    if code |> SpiralSm.contains "<script"
+                                    then $"{code}, \"text/html4\""
+                                    else code
                                 let ch, errors2 = props.fsi_eval code cancellationToken
                                 let errors =
                                     errors2
@@ -856,6 +872,10 @@ module Eval =
 
         if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
+            let code =
+                if code |> SpiralSm.contains "<script"
+                then $"{code}, \"text/html5\""
+                else code
             let ch, errors = fsi_eval code cancellationToken
             trace Verbose (fun () -> $"Eval.eval / fsi_eval 1 / ch: %A{ch} / errors: %A{errors}") _locals
             match ch with

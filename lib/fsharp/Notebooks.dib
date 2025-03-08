@@ -32,3 +32,12 @@ type File_system_US0 = US0
 let trace_state_Trace = TraceState.trace_state
 type Trace_US0 = US0
 #!import ../../../polyglot/deps/spiral/lib/spiral/lib.fsx
+
+#!fsharp
+
+Formatter.Register<string * string> (
+    (fun (html, _mime) ->
+        html
+    ),
+    "text/html"
+)

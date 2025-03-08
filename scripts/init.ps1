@@ -35,16 +35,16 @@ if (!(Search-Command "rustup")) {
     }
 }
 
+rustup install nightly-2025-02-22
+rustup default nightly-2025-02-22
+rustup +nightly-2025-02-22 target add wasm32-unknown-unknown
+rustup +nightly-2025-02-22 component add clippy rust-src rustfmt
+
 rustup install nightly-2024-07-14
 rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
 rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-10-07
-
-rustup install nightly-2025-02-22
-rustup +nightly-2025-02-22 target add wasm32-unknown-unknown
-rustup +nightly-2025-02-22 component add clippy rust-src rustfmt
-rustup default nightly-2025-02-22
 
 if (!(Search-Command "nix")) {
     if (!$IsWindows) {
