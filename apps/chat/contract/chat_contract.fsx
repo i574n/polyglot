@@ -226,150 +226,225 @@ and method2 () : struct (US1 * US2) =
     
     
     
-    let v2 : bool = "Verbose" = v1
-    let v6 : US1 =
-        if v2 then
-            let v3 : US0 = US0_0
-            US1_0(v3)
+    
+    
+    
+    
+    
+    let v3 : string = "Critical"
+    let v4 : (unit -> string) = v3.ToLower
+    let v5 : string = v4 ()
+    let v9 : string = "Warning"
+    let v10 : (unit -> string) = v9.ToLower
+    let v11 : string = v10 ()
+    let v15 : string = "Info"
+    let v16 : (unit -> string) = v15.ToLower
+    let v17 : string = v16 ()
+    let v21 : string = "Debug"
+    let v22 : (unit -> string) = v21.ToLower
+    let v23 : string = v22 ()
+    let v27 : string = "Verbose"
+    let v28 : (unit -> string) = v27.ToLower
+    let v29 : string = v28 ()
+    let v32 : bool = "Verbose" = v1
+    let v36 : US1 =
+        if v32 then
+            let v33 : US0 = US0_0
+            US1_0(v33)
         else
             US1_1
-    let v47 : US1 =
-        match v6 with
+    let v122 : US1 =
+        match v36 with
         | US1_1 -> (* None *)
-            let v9 : bool = "Debug" = v1
-            let v13 : US1 =
-                if v9 then
-                    let v10 : US0 = US0_1
-                    US1_0(v10)
+            let v39 : bool = "Debug" = v1
+            let v43 : US1 =
+                if v39 then
+                    let v40 : US0 = US0_1
+                    US1_0(v40)
                 else
                     US1_1
-            match v13 with
+            match v43 with
             | US1_1 -> (* None *)
-                let v16 : bool = "Info" = v1
-                let v20 : US1 =
-                    if v16 then
-                        let v17 : US0 = US0_2
-                        US1_0(v17)
+                let v46 : bool = "Info" = v1
+                let v50 : US1 =
+                    if v46 then
+                        let v47 : US0 = US0_2
+                        US1_0(v47)
                     else
                         US1_1
-                match v20 with
+                match v50 with
                 | US1_1 -> (* None *)
-                    let v23 : bool = "Warning" = v1
-                    let v27 : US1 =
-                        if v23 then
-                            let v24 : US0 = US0_3
-                            US1_0(v24)
+                    let v53 : bool = "Warning" = v1
+                    let v57 : US1 =
+                        if v53 then
+                            let v54 : US0 = US0_3
+                            US1_0(v54)
                         else
                             US1_1
-                    match v27 with
+                    match v57 with
                     | US1_1 -> (* None *)
-                        let v30 : bool = "Critical" = v1
-                        let v34 : US1 =
-                            if v30 then
-                                let v31 : US0 = US0_4
-                                US1_0(v31)
+                        let v60 : bool = "Critical" = v1
+                        let v64 : US1 =
+                            if v60 then
+                                let v61 : US0 = US0_4
+                                US1_0(v61)
                             else
                                 US1_1
-                        match v34 with
+                        match v64 with
                         | US1_1 -> (* None *)
-                            US1_1
-                        | US1_0(v35) -> (* Some *)
-                            US1_0(v35)
-                    | US1_0(v28) -> (* Some *)
-                        US1_0(v28)
-                | US1_0(v21) -> (* Some *)
-                    US1_0(v21)
-            | US1_0(v14) -> (* Some *)
-                US1_0(v14)
-        | US1_0(v7) -> (* Some *)
-            US1_0(v7)
-    let v48 : string = "AUTOMATION"
-    let v49 : string = method3(v48)
-    let v52 : string = "True"
-    let v53 : bool = v49 <> v52 
-    let v120 : US2 =
-        if v53 then
+                            let v67 : bool = v29 = v1
+                            let v71 : US1 =
+                                if v67 then
+                                    let v68 : US0 = US0_0
+                                    US1_0(v68)
+                                else
+                                    US1_1
+                            match v71 with
+                            | US1_1 -> (* None *)
+                                let v74 : bool = v23 = v1
+                                let v78 : US1 =
+                                    if v74 then
+                                        let v75 : US0 = US0_1
+                                        US1_0(v75)
+                                    else
+                                        US1_1
+                                match v78 with
+                                | US1_1 -> (* None *)
+                                    let v81 : bool = v17 = v1
+                                    let v85 : US1 =
+                                        if v81 then
+                                            let v82 : US0 = US0_2
+                                            US1_0(v82)
+                                        else
+                                            US1_1
+                                    match v85 with
+                                    | US1_1 -> (* None *)
+                                        let v88 : bool = v11 = v1
+                                        let v92 : US1 =
+                                            if v88 then
+                                                let v89 : US0 = US0_3
+                                                US1_0(v89)
+                                            else
+                                                US1_1
+                                        match v92 with
+                                        | US1_1 -> (* None *)
+                                            let v95 : bool = v5 = v1
+                                            let v99 : US1 =
+                                                if v95 then
+                                                    let v96 : US0 = US0_4
+                                                    US1_0(v96)
+                                                else
+                                                    US1_1
+                                            match v99 with
+                                            | US1_1 -> (* None *)
+                                                US1_1
+                                            | US1_0(v100) -> (* Some *)
+                                                US1_0(v100)
+                                        | US1_0(v93) -> (* Some *)
+                                            US1_0(v93)
+                                    | US1_0(v86) -> (* Some *)
+                                        US1_0(v86)
+                                | US1_0(v79) -> (* Some *)
+                                    US1_0(v79)
+                            | US1_0(v72) -> (* Some *)
+                                US1_0(v72)
+                        | US1_0(v65) -> (* Some *)
+                            US1_0(v65)
+                    | US1_0(v58) -> (* Some *)
+                        US1_0(v58)
+                | US1_0(v51) -> (* Some *)
+                    US1_0(v51)
+            | US1_0(v44) -> (* Some *)
+                US1_0(v44)
+        | US1_0(v37) -> (* Some *)
+            US1_0(v37)
+    let v123 : string = "AUTOMATION"
+    let v124 : string = method3(v123)
+    let v127 : string = "True"
+    let v128 : bool = v124 <> v127 
+    let v195 : US2 =
+        if v128 then
             US2_1
         else
             (* run_target_args'
-            let v59 : unit = ()
+            let v134 : unit = ()
             run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v60 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v60 
+            let v135 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v135 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v61 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v61 
+            let v136 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v136 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v63 : System.DateTime = null |> unbox<System.DateTime>
-            let _run_target_args'_v59 = v63 
+            let v138 : System.DateTime = null |> unbox<System.DateTime>
+            let _run_target_args'_v134 = v138 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v66 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v66 
+            let v141 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v141 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v67 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v67 
+            let v142 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v142 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v68 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v68 
+            let v143 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v143 
             #endif
 #else
-            let v69 : System.DateTime = System.DateTime.Now
-            let _run_target_args'_v59 = v69 
+            let v144 : System.DateTime = System.DateTime.Now
+            let _run_target_args'_v134 = v144 
             #endif
-            let v70 : System.DateTime = _run_target_args'_v59 
+            let v145 : System.DateTime = _run_target_args'_v134 
             (* run_target_args'
-            let v78 : unit = ()
+            let v153 : unit = ()
             run_target_args' *)
             
 #if FABLE_COMPILER || WASM || CONTRACT
             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-            let v79 : (System.DateTime -> int64) = _.Ticks
-            let v80 : int64 = v79 v70
-            let _run_target_args'_v78 = v80 
+            let v154 : (System.DateTime -> int64) = _.Ticks
+            let v155 : int64 = v154 v145
+            let _run_target_args'_v153 = v155 
             #endif
 #if FABLE_COMPILER_RUST && WASM
-            let v81 : (System.DateTime -> int64) = _.Ticks
-            let v82 : int64 = v81 v70
-            let _run_target_args'_v78 = v82 
+            let v156 : (System.DateTime -> int64) = _.Ticks
+            let v157 : int64 = v156 v145
+            let _run_target_args'_v153 = v157 
             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-            let v84 : int64 = null |> unbox<int64>
-            let _run_target_args'_v78 = v84 
+            let v159 : int64 = null |> unbox<int64>
+            let _run_target_args'_v153 = v159 
             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-            let v87 : (System.DateTime -> int64) = _.Ticks
-            let v88 : int64 = v87 v70
-            let _run_target_args'_v78 = v88 
+            let v162 : (System.DateTime -> int64) = _.Ticks
+            let v163 : int64 = v162 v145
+            let _run_target_args'_v153 = v163 
             #endif
 #if FABLE_COMPILER_PYTHON
-            let v89 : (System.DateTime -> int64) = _.Ticks
-            let v90 : int64 = v89 v70
-            let _run_target_args'_v78 = v90 
+            let v164 : (System.DateTime -> int64) = _.Ticks
+            let v165 : int64 = v164 v145
+            let _run_target_args'_v153 = v165 
             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-            let v91 : (System.DateTime -> int64) = _.Ticks
-            let v92 : int64 = v91 v70
-            let _run_target_args'_v78 = v92 
+            let v166 : (System.DateTime -> int64) = _.Ticks
+            let v167 : int64 = v166 v145
+            let _run_target_args'_v153 = v167 
             #endif
 #else
-            let v93 : (System.DateTime -> int64) = _.Ticks
-            let v94 : int64 = v93 v70
-            let _run_target_args'_v78 = v94 
+            let v168 : (System.DateTime -> int64) = _.Ticks
+            let v169 : int64 = v168 v145
+            let _run_target_args'_v153 = v169 
             #endif
-            let v95 : int64 = _run_target_args'_v78 
-            let v116 : int64 = v95 |> int64 
-            US2_0(v116)
-    struct (v47, v120)
+            let v170 : int64 = _run_target_args'_v153 
+            let v191 : int64 = v170 |> int64 
+            US2_0(v191)
+    struct (v122, v195)
 and closure5 () (v0 : string) : unit =
     ()
 and method1 (v0 : US0) : struct (Mut0 * Mut1 * Mut2 * Mut3 * Mut4 * int64 option) =

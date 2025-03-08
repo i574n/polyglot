@@ -251,44 +251,49 @@ mod module_31a2fc18 {
         }
         pub fn method2() -> (Chat_contract::US1, Chat_contract::US2) {
             let v1: string = Chat_contract::method3(string("TRACE_LEVEL"));
-            let v6: Chat_contract::US1 = if string("Verbose") == (v1.clone()) {
+            let v5: string = toLower(string("Critical"));
+            let v11: string = toLower(string("Warning"));
+            let v17: string = toLower(string("Info"));
+            let v23: string = toLower(string("Debug"));
+            let v29: string = toLower(string("Verbose"));
+            let v36: Chat_contract::US1 = if string("Verbose") == (v1.clone()) {
                 Chat_contract::US1::US1_0(Chat_contract::US0::US0_0)
             } else {
                 Chat_contract::US1::US1_1
             };
             (
-                match &v6 {
-                    Chat_contract::US1::US1_0(v6_0_0) => Chat_contract::US1::US1_0(
-                        match &v6 {
+                match &v36 {
+                    Chat_contract::US1::US1_0(v36_0_0) => Chat_contract::US1::US1_0(
+                        match &v36 {
                             Chat_contract::US1::US1_0(x) => x.clone(),
                             _ => unreachable!(),
                         }
                         .clone(),
                     ),
                     _ => {
-                        let v13: Chat_contract::US1 = if string("Debug") == (v1.clone()) {
+                        let v43: Chat_contract::US1 = if string("Debug") == (v1.clone()) {
                             Chat_contract::US1::US1_0(Chat_contract::US0::US0_1)
                         } else {
                             Chat_contract::US1::US1_1
                         };
-                        match &v13 {
-                            Chat_contract::US1::US1_0(v13_0_0) => Chat_contract::US1::US1_0(
-                                match &v13 {
+                        match &v43 {
+                            Chat_contract::US1::US1_0(v43_0_0) => Chat_contract::US1::US1_0(
+                                match &v43 {
                                     Chat_contract::US1::US1_0(x) => x.clone(),
                                     _ => unreachable!(),
                                 }
                                 .clone(),
                             ),
                             _ => {
-                                let v20: Chat_contract::US1 = if string("Info") == (v1.clone()) {
+                                let v50: Chat_contract::US1 = if string("Info") == (v1.clone()) {
                                     Chat_contract::US1::US1_0(Chat_contract::US0::US0_2)
                                 } else {
                                     Chat_contract::US1::US1_1
                                 };
-                                match &v20 {
-                                    Chat_contract::US1::US1_0(v20_0_0) => {
+                                match &v50 {
+                                    Chat_contract::US1::US1_0(v50_0_0) => {
                                         Chat_contract::US1::US1_0(
-                                            match &v20 {
+                                            match &v50 {
                                                 Chat_contract::US1::US1_0(x) => x.clone(),
                                                 _ => unreachable!(),
                                             }
@@ -296,16 +301,16 @@ mod module_31a2fc18 {
                                         )
                                     }
                                     _ => {
-                                        let v27: Chat_contract::US1 =
+                                        let v57: Chat_contract::US1 =
                                             if string("Warning") == (v1.clone()) {
                                                 Chat_contract::US1::US1_0(Chat_contract::US0::US0_3)
                                             } else {
                                                 Chat_contract::US1::US1_1
                                             };
-                                        match &v27 {
-                                            Chat_contract::US1::US1_0(v27_0_0) => {
+                                        match &v57 {
+                                            Chat_contract::US1::US1_0(v57_0_0) => {
                                                 Chat_contract::US1::US1_0(
-                                                    match &v27 {
+                                                    match &v57 {
                                                         Chat_contract::US1::US1_0(x) => x.clone(),
                                                         _ => unreachable!(),
                                                     }
@@ -313,7 +318,7 @@ mod module_31a2fc18 {
                                                 )
                                             }
                                             _ => {
-                                                let v34: Chat_contract::US1 =
+                                                let v64: Chat_contract::US1 =
                                                     if string("Critical") == (v1.clone()) {
                                                         Chat_contract::US1::US1_0(
                                                             Chat_contract::US0::US0_4,
@@ -321,10 +326,10 @@ mod module_31a2fc18 {
                                                     } else {
                                                         Chat_contract::US1::US1_1
                                                     };
-                                                match &v34 {
-                                                    Chat_contract::US1::US1_0(v34_0_0) => {
+                                                match &v64 {
+                                                    Chat_contract::US1::US1_0(v64_0_0) => {
                                                         Chat_contract::US1::US1_0(
-                                                            match &v34 {
+                                                            match &v64 {
                                                                 Chat_contract::US1::US1_0(x) => {
                                                                     x.clone()
                                                                 }
@@ -333,7 +338,138 @@ mod module_31a2fc18 {
                                                             .clone(),
                                                         )
                                                     }
-                                                    _ => Chat_contract::US1::US1_1,
+                                                    _ => {
+                                                        let v71: Chat_contract::US1 =
+                                                            if (v29.clone()) == (v1.clone()) {
+                                                                Chat_contract::US1::US1_0(
+                                                                    Chat_contract::US0::US0_0,
+                                                                )
+                                                            } else {
+                                                                Chat_contract::US1::US1_1
+                                                            };
+                                                        match &v71 {
+                                                         Chat_contract::US1::US1_0(v71_0_0)
+                                                         =>
+                                                         Chat_contract::US1::US1_0(match &v71
+                                                                                       {
+                                                                                       Chat_contract::US1::US1_0(x)
+                                                                                       =>
+                                                                                       x.clone(),
+                                                                                       _
+                                                                                       =>
+                                                                                       unreachable!(),
+                                                                                   }.clone()),
+                                                         _ => {
+                                                             let v78:
+                                                                     Chat_contract::US1 =
+                                                                 if (v23.clone())
+                                                                        ==
+                                                                        (v1.clone())
+                                                                    {
+                                                                     Chat_contract::US1::US1_0(Chat_contract::US0::US0_1)
+                                                                 } else {
+                                                                     Chat_contract::US1::US1_1
+                                                                 };
+                                                             match &v78 {
+                                                                 Chat_contract::US1::US1_0(v78_0_0)
+                                                                 =>
+                                                                 Chat_contract::US1::US1_0(match &v78
+                                                                                               {
+                                                                                               Chat_contract::US1::US1_0(x)
+                                                                                               =>
+                                                                                               x.clone(),
+                                                                                               _
+                                                                                               =>
+                                                                                               unreachable!(),
+                                                                                           }.clone()),
+                                                                 _ => {
+                                                                     let v85:
+                                                                             Chat_contract::US1 =
+                                                                         if (v17.clone())
+                                                                                ==
+                                                                                (v1.clone())
+                                                                            {
+                                                                             Chat_contract::US1::US1_0(Chat_contract::US0::US0_2)
+                                                                         } else {
+                                                                             Chat_contract::US1::US1_1
+                                                                         };
+                                                                     match &v85
+                                                                         {
+                                                                         Chat_contract::US1::US1_0(v85_0_0)
+                                                                         =>
+                                                                         Chat_contract::US1::US1_0(match &v85
+                                                                                                       {
+                                                                                                       Chat_contract::US1::US1_0(x)
+                                                                                                       =>
+                                                                                                       x.clone(),
+                                                                                                       _
+                                                                                                       =>
+                                                                                                       unreachable!(),
+                                                                                                   }.clone()),
+                                                                         _ =>
+                                                                         {
+                                                                             let v92:
+                                                                                     Chat_contract::US1 =
+                                                                                 if (v11.clone())
+                                                                                        ==
+                                                                                        (v1.clone())
+                                                                                    {
+                                                                                     Chat_contract::US1::US1_0(Chat_contract::US0::US0_3)
+                                                                                 } else {
+                                                                                     Chat_contract::US1::US1_1
+                                                                                 };
+                                                                             match &v92
+                                                                                 {
+                                                                                 Chat_contract::US1::US1_0(v92_0_0)
+                                                                                 =>
+                                                                                 Chat_contract::US1::US1_0(match &v92
+                                                                                                               {
+                                                                                                               Chat_contract::US1::US1_0(x)
+                                                                                                               =>
+                                                                                                               x.clone(),
+                                                                                                               _
+                                                                                                               =>
+                                                                                                               unreachable!(),
+                                                                                                           }.clone()),
+                                                                                 _
+                                                                                 =>
+                                                                                 {
+                                                                                     let v99:
+                                                                                             Chat_contract::US1 =
+                                                                                         if (v5.clone())
+                                                                                                ==
+                                                                                                (v1.clone())
+                                                                                            {
+                                                                                             Chat_contract::US1::US1_0(Chat_contract::US0::US0_4)
+                                                                                         } else {
+                                                                                             Chat_contract::US1::US1_1
+                                                                                         };
+                                                                                     match &v99
+                                                                                         {
+                                                                                         Chat_contract::US1::US1_0(v99_0_0)
+                                                                                         =>
+                                                                                         Chat_contract::US1::US1_0(match &v99
+                                                                                                                       {
+                                                                                                                       Chat_contract::US1::US1_0(x)
+                                                                                                                       =>
+                                                                                                                       x.clone(),
+                                                                                                                       _
+                                                                                                                       =>
+                                                                                                                       unreachable!(),
+                                                                                                                   }.clone()),
+                                                                                         _
+                                                                                         =>
+                                                                                         Chat_contract::US1::US1_1,
+                                                                                     }
+                                                                                 }
+                                                                             }
+                                                                         }
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     }
+                                                    }
                                                 }
                                             }
                                         }
@@ -346,7 +482,7 @@ mod module_31a2fc18 {
                 if (Chat_contract::method3(string("AUTOMATION"))) != string("True") {
                     Chat_contract::US2::US2_1
                 } else {
-                    let v63: DateTime = unbox::<DateTime>(fable_library_rust::Native_::getZero());
+                    let v138: DateTime = unbox::<DateTime>(fable_library_rust::Native_::getZero());
                     Chat_contract::US2::US2_0(unbox::<i64>(fable_library_rust::Native_::getZero()))
                 },
             )
