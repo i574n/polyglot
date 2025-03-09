@@ -301,17 +301,17 @@ export function method13(): ((arg0: US3_$union) => Option<[int32, float64, strin
 export function closure2(v0_1: float64, v1: float64, v2: float64, _arg: [float64, float64]): Iterable<[int32, float64, string]> {
     const v3: float64 = _arg[0];
     const v5: float64 = -v3;
-    const v55: Iterable<float64> = method10(delay<float64>((): Iterable<float64> => {
-        const v11: Mut0 = new Mut0(v5);
-        return enumerateWhile<float64>((): boolean => method9(v3, v11), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v11.l0), delay<float64>((): Iterable<float64> => {
-            const v15: float64 = v11.l0 + 0.6;
-            v11.l0 = v15;
+    const v56: Iterable<float64> = method10(delay<float64>((): Iterable<float64> => {
+        const v12: Mut0 = new Mut0(v5);
+        return enumerateWhile<float64>((): boolean => method9(v3, v12), delay<float64>((): Iterable<float64> => append<float64>(singleton<float64>(v12.l0), delay<float64>((): Iterable<float64> => {
+            const v16: float64 = v12.l0 + 0.6;
+            v12.l0 = v16;
             return empty<float64>();
         }))));
     }));
-    const v56: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method11(v0_1, v1, v2, v3, _arg[1]);
-    const v57: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method13();
-    return delay<[int32, float64, string]>((): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_x: float64): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_y: float64): Iterable<[int32, float64, string]> => choose<US3_$union, [int32, float64, string]>(v57, v56(cube_x)(cube_y)), v55), v55));
+    const v57: ((arg0: float64) => ((arg0: float64) => FSharpList<US3_$union>)) = method11(v0_1, v1, v2, v3, _arg[1]);
+    const v58: ((arg0: US3_$union) => Option<[int32, float64, string]>) = method13();
+    return delay<[int32, float64, string]>((): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_x: float64): Iterable<[int32, float64, string]> => collect<float64, Iterable<[int32, float64, string]>, [int32, float64, string]>((cube_y: float64): Iterable<[int32, float64, string]> => choose<US3_$union, [int32, float64, string]>(v58, v57(cube_x)(cube_y)), v56), v56));
 }
 
 export function method8(v0_1: float64, v1: float64, v2: float64): ((arg0: [float64, float64]) => Iterable<[int32, float64, string]>) {
@@ -355,7 +355,7 @@ export function closure8(v0_1: US4_$union[], v1: any, v2: int32): void {
     for (let col = 0; col <= (160 - 1); col++) {
         closure9(v0_1, v1, v2, col);
     }
-    const v5: any = StringBuilder__AppendLine(v1);
+    const v11: any = StringBuilder__AppendLine(v1);
 }
 
 export function closure10(v0_1: string, unitVar: void): void {

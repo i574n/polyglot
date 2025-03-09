@@ -286,28 +286,28 @@ mod module_62c167ba {
         ) -> LrcPtr<dyn IEnumerable_1<(i32, f64, char)>> {
             let v3: f64 = _arg.0.clone();
             let v5: f64 = -v3;
-            let v55: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
+            let v56: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
                 let v3 = v3.clone();
                 let v5 = v5.clone();
                 move || {
-                    let v11: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
+                    let v12: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
                         l0: MutCell::new(v5),
                     });
                     enumerateWhile(
                         Func0::new({
-                            let v11 = v11.clone();
-                            move || Cube::method9(v3, v11.clone())
+                            let v12 = v12.clone();
+                            move || Cube::method9(v3, v12.clone())
                         }),
                         delay(Func0::new({
-                            let v11 = v11.clone();
+                            let v12 = v12.clone();
                             move || {
                                 append(
-                                    singleton(v11.l0.get().clone()),
+                                    singleton(v12.l0.get().clone()),
                                     delay(Func0::new({
-                                        let v11 = v11.clone();
+                                        let v12 = v12.clone();
                                         move || {
-                                            let v15: f64 = (v11.l0.get().clone()) + 0.6_f64;
-                                            v11.l0.set(v15);
+                                            let v16: f64 = (v12.l0.get().clone()) + 0.6_f64;
+                                            v12.l0.set(v16);
                                             ();
                                             empty::<f64>()
                                         }
@@ -318,33 +318,33 @@ mod module_62c167ba {
                     )
                 }
             })));
-            let v56 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
-            let v57 = Cube::method13();
+            let v57 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
+            let v58 = Cube::method13();
             delay(Func0::new({
-                let v55 = v55.clone();
                 let v56 = v56.clone();
                 let v57 = v57.clone();
+                let v58 = v58.clone();
                 move || {
                     collect(
                         Func1::new({
-                            let v55 = v55.clone();
                             let v56 = v56.clone();
                             let v57 = v57.clone();
+                            let v58 = v58.clone();
                             move |cube_x: f64| {
                                 collect(
                                     Func1::new({
                                         let cube_x = cube_x.clone();
-                                        let v56 = v56.clone();
                                         let v57 = v57.clone();
+                                        let v58 = v58.clone();
                                         move |cube_y: f64| {
-                                            choose(v57.clone(), ofList(v56(cube_x)(cube_y)))
+                                            choose(v58.clone(), ofList(v57(cube_x)(cube_y)))
                                         }
                                     }),
-                                    v55.clone(),
+                                    v56.clone(),
                                 )
                             }
                         }),
-                        v55.clone(),
+                        v56.clone(),
                     )
                 }
             }))
@@ -407,7 +407,7 @@ mod module_62c167ba {
                 Cube::closure9(v0_1.clone(), v1.clone(), v2, col);
             }
             {
-                let v5: LrcPtr<StringBuilder> = v1.AppendLine();
+                let v11: LrcPtr<StringBuilder> = v1.AppendLine();
                 ()
             }
         }

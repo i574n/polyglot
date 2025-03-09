@@ -268,16 +268,16 @@ and method13 () : (US3 -> struct (int32 * float * char) option) =
     closure5()
 and closure2 (v0 : float, v1 : float, v2 : float) struct (v3 : float, v4 : float) : struct (int32 * float * char) seq =
     let v5 : float =  -v3
-    let v8 : unit = ()
-    let _let'_v8 =
+    let v9 : unit = ()
+    let _let'_v9 =
         seq {
-            let v11 : Mut0 = {l0 = v5} : Mut0
-            while method9(v3, v11) do
-                let v13 : float = v11.l0
-                yield v13 
-                let v14 : float = v11.l0
-                let v15 : float = v14 + 0.6
-                v11.l0 <- v15
+            let v12 : Mut0 = {l0 = v5} : Mut0
+            while method9(v3, v12) do
+                let v14 : float = v12.l0
+                yield v14 
+                let v15 : float = v12.l0
+                let v16 : float = v15 + 0.6
+                v12.l0 <- v16
                 ()
             (* indent
             ()
@@ -286,16 +286,16 @@ and closure2 (v0 : float, v1 : float, v2 : float) struct (v3 : float, v4 : float
         (* indent
         ()
     indent *)
-    let v51 : float seq = _let'_v8 
-    let v55 : float seq = method10(v51)
-    let v56 : (float -> (float -> US3 list)) = method11(v0, v1, v2, v3, v4)
-    let v57 : (US3 -> struct (int32 * float * char) option) = method13()
-    let v60 : unit = ()
-    let _let'_v60 =
+    let v52 : float seq = _let'_v9 
+    let v56 : float seq = method10(v52)
+    let v57 : (float -> (float -> US3 list)) = method11(v0, v1, v2, v3, v4)
+    let v58 : (US3 -> struct (int32 * float * char) option) = method13()
+    let v62 : unit = ()
+    let _let'_v62 =
         seq {
-            for cube_x in v55 do
-            for cube_y in v55 do
-            let x = v56 cube_x cube_y |> Seq.choose v57 
+            for cube_x in v56 do
+            for cube_y in v56 do
+            let x = v57 cube_x cube_y |> Seq.choose v58 
             yield! x
             (* indent
             ()
@@ -304,8 +304,8 @@ and closure2 (v0 : float, v1 : float, v2 : float) struct (v3 : float, v4 : float
         (* indent
         ()
     indent *)
-    let v63 : struct (int32 * float * char) seq = _let'_v60 
-    v63
+    let v65 : struct (int32 * float * char) seq = _let'_v62 
+    v65
 and method8 (v0 : float, v1 : float, v2 : float) : (struct (float * float) -> struct (int32 * float * char) seq) =
     closure2(v0, v1, v2)
 and closure7 (v0 : (US4 []), v1 : int32) struct (v2 : float, v3 : char) : unit =
@@ -346,7 +346,7 @@ and closure9 (v0 : (US4 []), v1 : System.Text.StringBuilder, v2 : int32) (v3 : i
 and closure8 (v0 : (US4 []), v1 : System.Text.StringBuilder) (v2 : int32) : unit =
     let v3 : (int32 -> unit) = closure9(v0, v1, v2)
     for col in 0 .. (160 - 1) do v3 col
-    let v5 : System.Text.StringBuilder = v1.AppendLine ()
+    let v11 : System.Text.StringBuilder = v1.AppendLine ()
     ()
 and closure10 (v0 : string) () : unit =
     let v1 : (string -> unit) = System.Console.WriteLine
