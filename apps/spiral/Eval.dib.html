@@ -8710,6 +8710,10 @@ a.anchor-link {
                     <span class="o">|</span> <span class="p">[],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
                         <span class="n">Choice2Of2</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Eval.evalAsync / eval=[] / code=[] / buildCodeResults: %A</span><span class="si">{buildCodeResults}</span><span class="s2"> / code: %A</span><span class="si">{code}</span><span class="s2">"</span><span class="p">),</span> <span class="n">errors</span>
                     <span class="o">|</span> <span class="p">[</span> <span class="nb">eval</span> <span class="p">],</span> <span class="p">[]</span> <span class="o">-&gt;</span>
+                        <span class="n">let</span> <span class="nb">eval</span> <span class="o">=</span>
+                            <span class="k">if</span> <span class="nb">eval</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"&lt;script"</span>
+                            <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{eval}</span><span class="s2">, </span><span class="se">\"</span><span class="s2">text/html1</span><span class="se">\"</span><span class="s2">"</span>
+                            <span class="k">else</span> <span class="nb">eval</span>
                         <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
                         <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
                             <span class="n">errors2</span>
@@ -8724,6 +8728,10 @@ a.anchor-link {
                             <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
                             <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\"\"\"</span><span class="s2">"</span>
                             <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
+                        <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                            <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"&lt;script"</span>
+                            <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="s2">, </span><span class="se">\"</span><span class="s2">text/html2</span><span class="se">\"</span><span class="s2">"</span>
+                            <span class="k">else</span> <span class="n">code</span>
                         <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
                         <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
                             <span class="n">errors2</span>
@@ -8739,6 +8747,10 @@ a.anchor-link {
                                 <span class="k">match</span> <span class="n">acc</span> <span class="k">with</span>
                                 <span class="o">|</span> <span class="n">Error</span> <span class="n">ch</span> <span class="o">-&gt;</span> <span class="n">Error</span> <span class="n">ch</span><span class="p">,</span> <span class="n">acc_errors</span>
                                 <span class="o">|</span> <span class="n">Ok</span> <span class="n">acc</span> <span class="o">-&gt;</span>
+                                    <span class="n">let</span> <span class="nb">eval</span> <span class="o">=</span>
+                                        <span class="k">if</span> <span class="nb">eval</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"&lt;script"</span>
+                                        <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{eval}</span><span class="s2">, </span><span class="se">\"</span><span class="s2">text/html3</span><span class="se">\"</span><span class="s2">"</span>
+                                        <span class="k">else</span> <span class="nb">eval</span>
                                     <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="nb">eval</span> <span class="n">cancellationToken</span>
                                     <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
                                         <span class="n">errors</span>
@@ -8777,6 +8789,10 @@ a.anchor-link {
                                 <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
                                 <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\n\n\"\"\"</span><span class="s2">"</span>
                                 <span class="k">else</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="si">{code}</span><span class="se">\n\"\"\"</span><span class="s2">"</span>
+                            <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+                                <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"&lt;script"</span>
+                                <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="s2">, </span><span class="se">\"</span><span class="s2">text/html4</span><span class="se">\"</span><span class="s2">"</span>
+                                <span class="k">else</span> <span class="n">code</span>
                             <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors2</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
                             <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
                                 <span class="n">errors2</span>
@@ -8879,6 +8895,10 @@ a.anchor-link {
 
     <span class="k">if</span> <span class="n">lines</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"#r "</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">defaultArg</span> <span class="n">cancellationToken</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
+        <span class="n">let</span> <span class="n">code</span> <span class="o">=</span>
+            <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"&lt;script"</span>
+            <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="si">{code}</span><span class="s2">, </span><span class="se">\"</span><span class="s2">text/html5</span><span class="se">\"</span><span class="s2">"</span>
+            <span class="k">else</span> <span class="n">code</span>
         <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
         <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / fsi_eval 1 / ch: %A</span><span class="si">{ch}</span><span class="s2"> / errors: %A</span><span class="si">{errors}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
         <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
