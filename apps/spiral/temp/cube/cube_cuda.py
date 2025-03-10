@@ -194,20 +194,20 @@ def Closure0(env_v0 : f64, env_v1 : f64, env_v2 : f64):
         nonlocal env_v0, env_v1, env_v2
         v0 = env_v0; v1 = env_v1; v2 = env_v2
         v5 = -v3
-        v52 = Closure1(v5, v3)
+        v53 = Closure1(v5, v3)
         del v5
-        v53 = list(v52())
-        del v52
-        v55 = method6(v53)
+        v54 = list(v53())
         del v53
-        v56 = method7(v0, v1, v2, v3, v4)
+        v56 = method6(v54)
+        del v54
+        v57 = method7(v0, v1, v2, v3, v4)
         del v0, v1, v2
-        v57 = method9()
-        v64 = Closure5(v55, v56, v57)
-        del v55, v56, v57
-        v65 = list(v64())
-        del v64
-        return v65
+        v58 = method9()
+        v66 = Closure5(v56, v57, v58)
+        del v56, v57, v58
+        v67 = list(v66())
+        del v66
+        return v67
     return inner
 class US2_0(NamedTuple): # (0, Some)
     v0 : f64
@@ -280,9 +280,9 @@ def Closure8(env_v0 : (cp if cuda else np).ndarray, env_v1 : io.StringIO):
         del v0
         for col in range(160): v4(col)
         del v4
-        v11 = "\n"
-        v12 = v1.write(v11)
-        del v1, v11, v12
+        v19 = "\n"
+        v20 = v1.write(v19)
+        del v1, v19, v20
         return 
     return inner
 def method0() -> string:
