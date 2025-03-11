@@ -9,7 +9,7 @@ insert_final_newline = true
 max_line_length = 120
 indent_size = 4
 
-[*.{json,ts,yml}]
+[*.{json,ts,yml,html}]
 indent_size = 2
 
 [*.md]

@@ -1,7 +1,7 @@
 import { test, expect } from "./fixtures"
 
 test("popup localhost", async ({ page }) => {
-  await page.goto("http://localhost:3000/popup")
+  await page.goto("https://localhost:5000/popup")
   await expect(page.locator("body")).toHaveText(/Loading\.\.\..*?/)
 })
 
