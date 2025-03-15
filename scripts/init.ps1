@@ -62,6 +62,9 @@ if (!(Search-Command "gleam")) {
         Set-Location gleam
         make install
         $ResolvedScriptDir | Set-Location
+
+        { gleam --version } | Invoke-Block
+        { erl -version } | Invoke-Block
     }
 }
 
