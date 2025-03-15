@@ -1,7 +1,9 @@
 import { test, expect } from "./fixtures"
 
-test("popup localhost", async ({ page }) => {
-  await page.goto("https://localhost:5000/popup")
+test("popup localhost", async ({ browser }) => {
+  const context = await browser.newContext({ ignoreHTTPSErrors: true });
+  const page = await context.newPage();
+  await page.goto("https://localhost:5000/popup.html")
   await expect(page.locator("body")).toHaveText(/Loading\.\.\..*?/)
 })
 
