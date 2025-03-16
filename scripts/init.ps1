@@ -48,14 +48,16 @@ rustup install nightly-2024-10-07
 
 if (!(Search-Command "gleam")) {
     if (!$IsWindows) {
-        deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-25 contrib
-
         wget https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc
         sudo apt-key add GPG-KEY-pmanager.asc
 
         echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-25 contrib" | sudo tee -a /etc/apt/sources.list
         sudo apt update
-        sudo apt install -y esl-erlang
+
+        # iwr https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb -OutFile erlang-solutions_1.0_all.deb; sudo dpkg -i erlang-solutions_1.0_all.deb
+
+        # sudo apt install -y esl-erlang
+        sudo apt install -y erlang
 
         Set-Location /tmp
         git clone https://github.com/gleam-lang/gleam.git
