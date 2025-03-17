@@ -40,7 +40,7 @@ if (!(Search-Command "wasm-pack")) {
 #!pwsh
 
 if (!(Search-Command "trunk")) {
-    { cargo install trunk --version 0.21.8 } | Invoke-Block -OnError Continue
+    { cargo install trunk --version 0.21.9 } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
