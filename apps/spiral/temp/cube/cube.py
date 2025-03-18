@@ -165,9 +165,9 @@ def method1(v0_1: str) -> str:
     else: 
         v47 = value_4(_v41)
 
-    v68: US2 = default_arg(map(method4(), v47), US2(1))
-    if v68.tag == 0:
-        return v68.fields[0]
+    v74: US2 = default_arg(map(method4(), v47), US2(1))
+    if v74.tag == 0:
+        return v74.fields[0]
 
     else: 
         return ""
