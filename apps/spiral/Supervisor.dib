@@ -843,7 +843,7 @@ class static_array():
     def __getitem__(self, index):
         assert 0 <= index < len(self.ptr), ""The get index needs to be in range.""
         return self.ptr[index]
-
+    
     def __setitem__(self, index, value):
         assert 0 <= index < len(self.ptr), ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -856,7 +856,7 @@ class static_array_list(static_array):
     def __getitem__(self, index):
         assert 0 <= index < self.length, ""The get index needs to be in range.""
         return self.ptr[index]
-
+    
     def __setitem__(self, index, value):
         assert 0 <= index < self.length, ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -875,7 +875,7 @@ class static_array_list(static_array):
         assert 0 <= i <= len(self.ptr), ""The new length has to be in range.""
         self.length = i
 
-class dynamic_array(static_array):
+class dynamic_array(static_array): 
     pass
 
 class dynamic_array_list(static_array_list):
