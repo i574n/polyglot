@@ -162,8 +162,8 @@ def Closure4():
     def inner(v0 : US1) -> Tuple[i32, f64, char]:
         match v0:
             case US1_1(): # None
-                v8 = None
-                return v8
+                v10 = None
+                return v10
             case US1_0(v1, v2, v3): # Some
                 v6 = (v1, v2, v3) # some' 
                 del v1, v2, v3
@@ -289,36 +289,36 @@ def method0() -> string:
     v0 = "VSCODE_PID"
     return v0
 def method1(v0 : string) -> string:
-    v120 = os.environ
-    v125 = v120.get(v0)
-    del v0, v120
-    v131 = v125 
-    del v125
-    v137 = None
-    v140 = v131 == v137 
+    v132 = os.environ
+    v137 = v132.get(v0)
+    del v0, v132
+    v143 = v137 
     del v137
-    if v140:
-        v142 = None
-        v146 = v142
+    v151 = None
+    v155 = v143 == v151 
+    del v151
+    if v155:
+        v159 = None
+        v164 = v159
     else:
-        v143 = v131 
-        v144 = US0_0(v143)
-        del v143
-        v145 = v144 
-        del v144
-        v146 = v145
-    del v131, v140
-    v152 = US0_1()
-    v153 = v146 or v152 
-    del v146, v152
-    match v153:
+        v161 = v143 
+        v162 = US0_0(v161)
+        del v161
+        v163 = v162 
+        del v162
+        v164 = v163
+    del v143, v155
+    v170 = US0_1()
+    v171 = v164 or v170 
+    del v164, v170
+    match v171:
         case US0_1(): # None
-            del v153
-            v156 = ""
-            return v156
-        case US0_0(v155): # Some
-            del v153
-            return v155
+            del v171
+            v174 = ""
+            return v174
+        case US0_0(v173): # Some
+            del v171
+            return v173
         case t:
             raise Exception(f'Pattern matching miss. Got: {t}')
 def method4(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
