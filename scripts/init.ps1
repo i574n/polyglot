@@ -115,6 +115,8 @@ Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
+{ pwsh dep_paket.ps1 } | Invoke-Block -OnError Continue
+
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
 $gitPath = ResolveLink (GetFullPath "../..")
