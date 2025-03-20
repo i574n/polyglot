@@ -107,15 +107,15 @@ if ($init) {
     exit
 }
 
-dotnet tool restore
+{ dotnet tool restore } | Invoke-Block -OnError Continue
+
+{ pwsh dep_paket.ps1 } | Invoke-Block -OnError Continue
 
 { dotnet paket restore } | Invoke-Block
 
 Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
-
-{ pwsh dep_paket.ps1 } | Invoke-Block -OnError Continue
 
 { pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
