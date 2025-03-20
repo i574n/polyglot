@@ -19,7 +19,7 @@ Write-Output "Tool path: $netVersion"
 
 { dotnet build -c Release "../deps/dotnet-repl/src/dotnet-repl/dotnet-repl.csproj" } | Invoke-Block -EnvironmentVariables @{ "MSBUILDDISABLENODEREUSE" = "1" }
 
-Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net9.0/**" $netVersion -Recurse -Force
+Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net10.0/**" $netVersion -Recurse -Force
 
 Write-Output "polyglot/scripts/dep_dotnet-repl.ps1 / `$tools: $tools / `$netVersion: $netVersion / `$env:CI:'$env:CI'"
 
