@@ -1,7 +1,7 @@
 param(
     $ScriptDir = $PSScriptRoot
 )
-Set-Location $ScriptDir
+$ScriptDir | Set-Location
 $ErrorActionPreference = "Stop"
 . ./core.ps1
 
@@ -27,8 +27,19 @@ if ($IsWindows) {
 } else {
 
     if (!(Search-Command "mono")) {
-        sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-        sudo apt install -y mono-complete
+        $env:PREFIX="/usr/local"
+        $env:VERSION="6.14.0"
+        if (!(Test-Path mono-$env:VERSION)) {
+            sudo apt-get install git autoconf libtool automake build-essential gettext cmake python3 curl
+
+            wget https://dl.winehq.org/mono/sources/mono/mono-$($env:VERSION).tar.xz
+            tar xf mono-$env:VERSION.tar.xz
+        }
+        cd mono-$env:VERSION
+        ./configure --prefix=$env:PREFIX
+        make
+        make install
+        $ScriptDir | Set-Location
     }
 
     { pwsh -c "./build.sh MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
