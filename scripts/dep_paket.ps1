@@ -42,7 +42,7 @@ if ($IsWindows) {
         $ScriptDir | Set-Location
     }
 
-    { pwsh -c "./build.sh MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
+    { sudo pwsh -c "./build.sh MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
 }
 Copy-Item "$projectPath/bin/net9.0/paket$(_exe)" "$($tools.FullName)/paket$(_exe)" -Recurse -Force
 
