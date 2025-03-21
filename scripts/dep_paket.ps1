@@ -37,8 +37,8 @@ if ($IsWindows) {
         }
         cd mono-$env:VERSION
         ./configure --prefix=$env:PREFIX
-        make
-        make install
+        sudo make
+        sudo make install
         $ScriptDir | Set-Location
     }
 
