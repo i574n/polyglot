@@ -82,11 +82,6 @@ if (!(Search-Command "nix")) {
             $env:PATH = "~/.bun/bin:$env:PATH"
         }
 
-        # if (!(Search-Command "mono")) {
-        #     sudo apt-add-repository 'deb https://download.mono-project.com/repo/ubuntu stable-focal main'
-        #     sudo apt install -y mono-complete
-        # }
-
         if (!(Search-Command "pip")) {
             sudo apt install -y python3-pip
         }
