@@ -104,8 +104,6 @@ if ($init) {
 
 { dotnet tool restore } | Invoke-Block -OnError Continue
 
-{ pwsh dep_paket.ps1 } | Invoke-Block -OnError Continue
-
 { dotnet paket restore } | Invoke-Block
 
 Set-Location $ResolvedScriptDir

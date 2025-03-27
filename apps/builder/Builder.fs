@@ -76,7 +76,7 @@ module Builder =
         let fsprojPath = targetDir </> $"{name}.fsproj"
         let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
