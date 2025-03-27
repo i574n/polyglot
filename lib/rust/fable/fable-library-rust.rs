@@ -1,4 +1,3 @@
-#![cfg_attr(feature = "no_std", no_std,)]
 #![allow(dead_code,)]
 #![allow(non_camel_case_types,)]
 #![allow(non_snake_case,)]
@@ -10,6 +9,5 @@
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
 #![allow(unused_assignments,)]
-#![allow(unused_unsafe,)]
 mod module_63d44c74 { }
 pub use module_63d44c74::*;
