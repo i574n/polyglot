@@ -1,4 +1,4 @@
-cargo-features = ["profile-rustflags"]
+cargo-features = ["profile-rustflags", "edition2024"]
 
 [workspace]
 resolver = "2"
