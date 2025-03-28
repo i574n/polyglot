@@ -12,16 +12,16 @@
 mod module_b448d9d1 {
     pub mod Test {
         use super::*;
-        use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::string;
         pub fn closure1(unitVar: (), unitVar_1: ()) {
             printfn!("{0}", string("test"));
         }
         pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
-            let v3: () = {
+            let v5: () = {
                 Test::closure1((), ());
                 ()
             };

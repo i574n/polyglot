@@ -1,4 +1,4 @@
-cargo-features = ["profile-rustflags"]
+cargo-features = ["profile-rustflags", "edition2024"]
 
 [workspace]
 resolver = "2"
@@ -15,7 +15,7 @@ members = [
 
 [workspace.package]
 version = "0.0.1"
-edition = "2021"
+edition = "2024"
 license-file = "../LICENSE"
 repository = "https://github.com/i574n/polyglot"
 

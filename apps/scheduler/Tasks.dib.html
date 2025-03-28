@@ -8060,16 +8060,16 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-__assert / actual: 01 / expected: UH2_1(v0='01', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='02', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='03', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_0())))
+{ name = __assert; actual = 01; expected = UH2_1(v0='01', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='02', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_1(v0='03', v1=US1_0(v0=US0_0()), v2=UH1_0(), v3=UH2_0()))) }
 
 .rs output:
-__assert / actual: "01" / expected: "UH2_1("01", US1_0(US0_0), UH1_0, UH2_1("02", US1_0(US0_0), UH1_0, UH2_1("03", US1_0(US0_0), UH1_0, UH2_0)))"
+{ name = __assert; actual = 01; expected = UH2_1("01", US1_0(US0_0), UH1_0, UH2_1("02", US1_0(US0_0), UH1_0, UH2_1("03", US1_0(US0_0), UH1_0, UH2_0))) }
 
 .ts output:
-__assert / actual: 01 / expected: UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0)))
+{ name = __assert; actual = 01; expected = UH2_1 (01, US1_0 US0_0, UH1_0, UH2_1 (02, US1_0 US0_0, UH1_0, UH2_1 (03, US1_0 US0_0, UH1_0, UH2_0))) }
 
 .py output:
-__assert / actual: 01 / expected: UH2_1 ("01", US1_0 US0_0, UH1_0, UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0)))
+{ name = __assert; actual = 01; expected = UH2_1 ("01", US1_0 US0_0, UH1_0, UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0))) }
 
 </pre>
 </div>
@@ -8078,9 +8078,9 @@ __assert / actual: 01 / expected: UH2_1 ("01", US1_0 US0_0, UH1_0, UH2_1 ("02", 
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert / actual: "01" / expected: "UH2_1
+{ name = __assert; actual = 01; expected = UH2_1
   ("01", US1_0 US0_0, UH1_0,
-   UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0)))"
+   UH2_1 ("02", US1_0 US0_0, UH1_0, UH2_1 ("03", US1_0 US0_0, UH1_0, UH2_0))) }
 </pre>
 </div>
 </div>
@@ -8118,16 +8118,16 @@ __assert / actual: "01" / expected: "UH2_1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Cuda):
-__assert_eq / actual: 01 / expected: 01
+{ name = __assert_eq; actual = 01; expected = 01 }
 
 .rs output:
-__assert_eq / actual: "01" / expected: "01"
+{ name = __assert_eq; actual = "01"; expected = "01" }
 
 .ts output:
-__assert_eq / actual: 01 / expected: 01
+{ name = __assert_eq; actual = 01; expected = 01 }
 
 .py output:
-__assert_eq / actual: 01 / expected: 01
+{ name = __assert_eq; actual = 01; expected = 01 }
 
 </pre>
 </div>
@@ -8136,7 +8136,7 @@ __assert_eq / actual: 01 / expected: 01
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-__assert_eq / actual: "01" / expected: "01"
+{ name = __assert_eq; actual = "01"; expected = "01" }
 </pre>
 </div>
 </div>

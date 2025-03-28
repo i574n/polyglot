@@ -7612,9 +7612,18 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
+<pre>type Mut0 = {mutable l0 : string}
+let rec method1 (v0 : bool) : bool =
     v0
-and closure0 (v0 : string) () : unit =
+and method2 () : string =
+    let v0 : string = ""
+    v0
+and closure0 (v0 : Mut0, v1 : string) () : unit =
+    let v2 : string = v0.l0
+    let v4 : string = v2 + v1 
+    v0.l0 &lt;- v4
+    ()
+and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
 and method0 () : unit =
@@ -7684,19 +7693,82 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v121 : string = "__assert_eq'"
-    let v122 : string = $"{v121} / actual: %A{v91} / expected: %A{v110}"
-    let v125 : unit = ()
-    let v126 : (unit -&gt; unit) = closure0(v122)
-    let v127 : unit = (fun () -&gt; v126 (); v125) ()
-    let v129 : bool = v116 = false
-    if v129 then
-        failwith&lt;unit&gt; v122
+    let v117 : string = method2()
+    let v118 : Mut0 = {l0 = v117} : Mut0
+    let v121 : string = "{ "
+    let v122 : string = $"{v121}"
+    let v130 : unit = ()
+    let v131 : (unit -&gt; unit) = closure0(v118, v122)
+    let v132 : unit = (fun () -&gt; v131 (); v130) ()
+    let v140 : string = "name"
+    let v141 : string = $"{v140}"
+    let v149 : unit = ()
+    let v150 : (unit -&gt; unit) = closure0(v118, v141)
+    let v151 : unit = (fun () -&gt; v150 (); v149) ()
+    let v159 : string = " = "
+    let v160 : string = $"{v159}"
+    let v168 : unit = ()
+    let v169 : (unit -&gt; unit) = closure0(v118, v160)
+    let v170 : unit = (fun () -&gt; v169 (); v168) ()
+    let v178 : string = "__assert_eq'"
+    let v179 : string = $"{v178}"
+    let v187 : unit = ()
+    let v188 : (unit -&gt; unit) = closure0(v118, v179)
+    let v189 : unit = (fun () -&gt; v188 (); v187) ()
+    let v197 : string = "; "
+    let v198 : string = $"{v197}"
+    let v206 : unit = ()
+    let v207 : (unit -&gt; unit) = closure0(v118, v198)
+    let v208 : unit = (fun () -&gt; v207 (); v206) ()
+    let v216 : string = "actual"
+    let v217 : string = $"{v216}"
+    let v225 : unit = ()
+    let v226 : (unit -&gt; unit) = closure0(v118, v217)
+    let v227 : unit = (fun () -&gt; v226 (); v225) ()
+    let v234 : string = $"{v159}"
+    let v242 : unit = ()
+    let v243 : (unit -&gt; unit) = closure0(v118, v234)
+    let v244 : unit = (fun () -&gt; v243 (); v242) ()
+    let v251 : string = $"%A{v91}"
+    let v255 : string = $"{v251}"
+    let v263 : unit = ()
+    let v264 : (unit -&gt; unit) = closure0(v118, v255)
+    let v265 : unit = (fun () -&gt; v264 (); v263) ()
+    let v272 : string = $"{v197}"
+    let v280 : unit = ()
+    let v281 : (unit -&gt; unit) = closure0(v118, v272)
+    let v282 : unit = (fun () -&gt; v281 (); v280) ()
+    let v290 : string = "expected"
+    let v291 : string = $"{v290}"
+    let v299 : unit = ()
+    let v300 : (unit -&gt; unit) = closure0(v118, v291)
+    let v301 : unit = (fun () -&gt; v300 (); v299) ()
+    let v308 : string = $"{v159}"
+    let v316 : unit = ()
+    let v317 : (unit -&gt; unit) = closure0(v118, v308)
+    let v318 : unit = (fun () -&gt; v317 (); v316) ()
+    let v325 : string = $"%A{v110}"
+    let v329 : string = $"{v325}"
+    let v337 : unit = ()
+    let v338 : (unit -&gt; unit) = closure0(v118, v329)
+    let v339 : unit = (fun () -&gt; v338 (); v337) ()
+    let v347 : string = " }"
+    let v348 : string = $"{v347}"
+    let v356 : unit = ()
+    let v357 : (unit -&gt; unit) = closure0(v118, v348)
+    let v358 : unit = (fun () -&gt; v357 (); v356) ()
+    let v364 : string = v118.l0
+    let v366 : unit = ()
+    let v367 : (unit -&gt; unit) = closure1(v364)
+    let v368 : unit = (fun () -&gt; v367 (); v366) ()
+    let v370 : bool = v116 = false
+    if v370 then
+        failwith&lt;unit&gt; v364
 method0()
 
-__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+{ name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 </pre>
 </div>
 </div>
@@ -7752,9 +7824,18 @@ __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP";
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
+<pre>type Mut0 = {mutable l0 : string}
+let rec method1 (v0 : bool) : bool =
     v0
-and closure0 (v0 : string) () : unit =
+and method2 () : string =
+    let v0 : string = ""
+    v0
+and closure0 (v0 : Mut0, v1 : string) () : unit =
+    let v2 : string = v0.l0
+    let v4 : string = v2 + v1 
+    v0.l0 &lt;- v4
+    ()
+and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
 and method0 () : unit =
@@ -7824,19 +7905,82 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v121 : string = "__assert_eq'"
-    let v122 : string = $"{v121} / actual: %A{v91} / expected: %A{v110}"
-    let v125 : unit = ()
-    let v126 : (unit -&gt; unit) = closure0(v122)
-    let v127 : unit = (fun () -&gt; v126 (); v125) ()
-    let v129 : bool = v116 = false
-    if v129 then
-        failwith&lt;unit&gt; v122
+    let v117 : string = method2()
+    let v118 : Mut0 = {l0 = v117} : Mut0
+    let v121 : string = "{ "
+    let v122 : string = $"{v121}"
+    let v130 : unit = ()
+    let v131 : (unit -&gt; unit) = closure0(v118, v122)
+    let v132 : unit = (fun () -&gt; v131 (); v130) ()
+    let v140 : string = "name"
+    let v141 : string = $"{v140}"
+    let v149 : unit = ()
+    let v150 : (unit -&gt; unit) = closure0(v118, v141)
+    let v151 : unit = (fun () -&gt; v150 (); v149) ()
+    let v159 : string = " = "
+    let v160 : string = $"{v159}"
+    let v168 : unit = ()
+    let v169 : (unit -&gt; unit) = closure0(v118, v160)
+    let v170 : unit = (fun () -&gt; v169 (); v168) ()
+    let v178 : string = "__assert_eq'"
+    let v179 : string = $"{v178}"
+    let v187 : unit = ()
+    let v188 : (unit -&gt; unit) = closure0(v118, v179)
+    let v189 : unit = (fun () -&gt; v188 (); v187) ()
+    let v197 : string = "; "
+    let v198 : string = $"{v197}"
+    let v206 : unit = ()
+    let v207 : (unit -&gt; unit) = closure0(v118, v198)
+    let v208 : unit = (fun () -&gt; v207 (); v206) ()
+    let v216 : string = "actual"
+    let v217 : string = $"{v216}"
+    let v225 : unit = ()
+    let v226 : (unit -&gt; unit) = closure0(v118, v217)
+    let v227 : unit = (fun () -&gt; v226 (); v225) ()
+    let v234 : string = $"{v159}"
+    let v242 : unit = ()
+    let v243 : (unit -&gt; unit) = closure0(v118, v234)
+    let v244 : unit = (fun () -&gt; v243 (); v242) ()
+    let v251 : string = $"%A{v91}"
+    let v255 : string = $"{v251}"
+    let v263 : unit = ()
+    let v264 : (unit -&gt; unit) = closure0(v118, v255)
+    let v265 : unit = (fun () -&gt; v264 (); v263) ()
+    let v272 : string = $"{v197}"
+    let v280 : unit = ()
+    let v281 : (unit -&gt; unit) = closure0(v118, v272)
+    let v282 : unit = (fun () -&gt; v281 (); v280) ()
+    let v290 : string = "expected"
+    let v291 : string = $"{v290}"
+    let v299 : unit = ()
+    let v300 : (unit -&gt; unit) = closure0(v118, v291)
+    let v301 : unit = (fun () -&gt; v300 (); v299) ()
+    let v308 : string = $"{v159}"
+    let v316 : unit = ()
+    let v317 : (unit -&gt; unit) = closure0(v118, v308)
+    let v318 : unit = (fun () -&gt; v317 (); v316) ()
+    let v325 : string = $"%A{v110}"
+    let v329 : string = $"{v325}"
+    let v337 : unit = ()
+    let v338 : (unit -&gt; unit) = closure0(v118, v329)
+    let v339 : unit = (fun () -&gt; v338 (); v337) ()
+    let v347 : string = " }"
+    let v348 : string = $"{v347}"
+    let v356 : unit = ()
+    let v357 : (unit -&gt; unit) = closure0(v118, v348)
+    let v358 : unit = (fun () -&gt; v357 (); v356) ()
+    let v364 : string = v118.l0
+    let v366 : unit = ()
+    let v367 : (unit -&gt; unit) = closure1(v364)
+    let v368 : unit = (fun () -&gt; v367 (); v366) ()
+    let v370 : bool = v116 = false
+    if v370 then
+        failwith&lt;unit&gt; v364
 method0()
 
-__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+{ name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 </pre>
 </div>
 </div>
@@ -7897,9 +8041,18 @@ __assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP";
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
+<pre>type Mut0 = {mutable l0 : string}
+let rec method1 (v0 : bool) : bool =
     v0
-and closure0 (v0 : string) () : unit =
+and method2 () : string =
+    let v0 : string = ""
+    v0
+and closure0 (v0 : Mut0, v1 : string) () : unit =
+    let v2 : string = v0.l0
+    let v4 : string = v2 + v1 
+    v0.l0 &lt;- v4
+    ()
+and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
 and method0 () : unit =
@@ -7969,19 +8122,82 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v121 : string = "__assert_eq'"
-    let v122 : string = $"{v121} / actual: %A{v91} / expected: %A{v110}"
-    let v125 : unit = ()
-    let v126 : (unit -&gt; unit) = closure0(v122)
-    let v127 : unit = (fun () -&gt; v126 (); v125) ()
-    let v129 : bool = v116 = false
-    if v129 then
-        failwith&lt;unit&gt; v122
+    let v117 : string = method2()
+    let v118 : Mut0 = {l0 = v117} : Mut0
+    let v121 : string = "{ "
+    let v122 : string = $"{v121}"
+    let v130 : unit = ()
+    let v131 : (unit -&gt; unit) = closure0(v118, v122)
+    let v132 : unit = (fun () -&gt; v131 (); v130) ()
+    let v140 : string = "name"
+    let v141 : string = $"{v140}"
+    let v149 : unit = ()
+    let v150 : (unit -&gt; unit) = closure0(v118, v141)
+    let v151 : unit = (fun () -&gt; v150 (); v149) ()
+    let v159 : string = " = "
+    let v160 : string = $"{v159}"
+    let v168 : unit = ()
+    let v169 : (unit -&gt; unit) = closure0(v118, v160)
+    let v170 : unit = (fun () -&gt; v169 (); v168) ()
+    let v178 : string = "__assert_eq'"
+    let v179 : string = $"{v178}"
+    let v187 : unit = ()
+    let v188 : (unit -&gt; unit) = closure0(v118, v179)
+    let v189 : unit = (fun () -&gt; v188 (); v187) ()
+    let v197 : string = "; "
+    let v198 : string = $"{v197}"
+    let v206 : unit = ()
+    let v207 : (unit -&gt; unit) = closure0(v118, v198)
+    let v208 : unit = (fun () -&gt; v207 (); v206) ()
+    let v216 : string = "actual"
+    let v217 : string = $"{v216}"
+    let v225 : unit = ()
+    let v226 : (unit -&gt; unit) = closure0(v118, v217)
+    let v227 : unit = (fun () -&gt; v226 (); v225) ()
+    let v234 : string = $"{v159}"
+    let v242 : unit = ()
+    let v243 : (unit -&gt; unit) = closure0(v118, v234)
+    let v244 : unit = (fun () -&gt; v243 (); v242) ()
+    let v251 : string = $"%A{v91}"
+    let v255 : string = $"{v251}"
+    let v263 : unit = ()
+    let v264 : (unit -&gt; unit) = closure0(v118, v255)
+    let v265 : unit = (fun () -&gt; v264 (); v263) ()
+    let v272 : string = $"{v197}"
+    let v280 : unit = ()
+    let v281 : (unit -&gt; unit) = closure0(v118, v272)
+    let v282 : unit = (fun () -&gt; v281 (); v280) ()
+    let v290 : string = "expected"
+    let v291 : string = $"{v290}"
+    let v299 : unit = ()
+    let v300 : (unit -&gt; unit) = closure0(v118, v291)
+    let v301 : unit = (fun () -&gt; v300 (); v299) ()
+    let v308 : string = $"{v159}"
+    let v316 : unit = ()
+    let v317 : (unit -&gt; unit) = closure0(v118, v308)
+    let v318 : unit = (fun () -&gt; v317 (); v316) ()
+    let v325 : string = $"%A{v110}"
+    let v329 : string = $"{v325}"
+    let v337 : unit = ()
+    let v338 : (unit -&gt; unit) = closure0(v118, v329)
+    let v339 : unit = (fun () -&gt; v338 (); v337) ()
+    let v347 : string = " }"
+    let v348 : string = $"{v347}"
+    let v356 : unit = ()
+    let v357 : (unit -&gt; unit) = closure0(v118, v348)
+    let v358 : unit = (fun () -&gt; v357 (); v356) ()
+    let v364 : string = v118.l0
+    let v366 : unit = ()
+    let v367 : (unit -&gt; unit) = closure1(v364)
+    let v368 : unit = (fun () -&gt; v367 (); v366) ()
+    let v370 : bool = v116 = false
+    if v370 then
+        failwith&lt;unit&gt; v364
 method0()
 
-__assert_eq' / actual: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] / expected: [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]
+{ name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
+  "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 </pre>
 </div>
 </div>

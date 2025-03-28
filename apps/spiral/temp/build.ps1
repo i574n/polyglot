@@ -15,7 +15,7 @@ $ErrorActionPreference = "Stop"
 
 if ($IsLinux) {
     { sudo apt-get update } | Invoke-Block -Linux -Distro ubuntu
-    { sudo add-apt-repository ppa:savoury1/blender } | Invoke-Block -Linux -Distro ubuntu -OnError Continue
+    { sudo add-apt-repository ppa:thomas-schiex/blender } | Invoke-Block -Linux -Distro ubuntu -OnError Continue
     { sudo apt install -y blender } | Invoke-Block -Linux -Distro ubuntu -OnError Continue
 }
 
