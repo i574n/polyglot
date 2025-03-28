@@ -8630,9 +8630,9 @@ a.anchor-link {
 <span class="s2">    let v1 : string = "text"</span>
 <span class="s2">    v0 v1</span>
 <span class="s2">and closure0 () () : int32 =</span>
-<span class="s2">    let v1 : unit = ()</span>
-<span class="s2">    let v2 : (unit -&gt; unit) = closure1()</span>
-<span class="s2">    let v3 : unit = (fun () -&gt; v2 (); v1) ()</span>
+<span class="s2">    let v3 : unit = ()</span>
+<span class="s2">    let v4 : (unit -&gt; unit) = closure1()</span>
+<span class="s2">    let v5 : unit = (fun () -&gt; v4 (); v3) ()</span>
 <span class="s2">    1</span>
 <span class="s2">let v0 : (unit -&gt; int32) = closure0()</span>
 <span class="s2">()</span>
@@ -8652,90 +8652,98 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:00 <span class="ansi-black-intense-fg">v</span> #1 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"
-00:02:00 <span class="ansi-black-intense-fg">v</span> #2 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:00 <span class="ansi-black-intense-fg">v</span> #3 Supervisor.buildFile / before result: ()
-00:02:00 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:25 <span class="ansi-black-intense-fg">v</span> #1 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"
+00:02:25 <span class="ansi-black-intense-fg">v</span> #2 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:25 <span class="ansi-black-intense-fg">v</span> #3 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:00 <span class="ansi-black-intense-fg">v</span> #5 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:25 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.buildFile / before result: ()
+00:02:25 <span class="ansi-black-intense-fg">v</span> #7 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:00 <span class="ansi-black-intense-fg">v</span> #6 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:25 <span class="ansi-black-intense-fg">v</span> #8 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:00 <span class="ansi-black-intense-fg">v</span> #306 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:26 <span class="ansi-black-intense-fg">v</span> #224 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:00 <span class="ansi-black-intense-fg">v</span> #307 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:26 <span class="ansi-black-intense-fg">v</span> #225 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:01 <span class="ansi-black-intense-fg">v</span> #773 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:26 <span class="ansi-black-intense-fg">v</span> #747 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:01 <span class="ansi-black-intense-fg">v</span> #774 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:26 <span class="ansi-black-intense-fg">v</span> #748 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:01 <span class="ansi-black-intense-fg">v</span> #1015 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:27 <span class="ansi-black-intense-fg">v</span> #840 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:01 <span class="ansi-black-intense-fg">v</span> #1016 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:27 <span class="ansi-black-intense-fg">v</span> #841 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:02 <span class="ansi-black-intense-fg">v</span> #1159 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:27 <span class="ansi-black-intense-fg">v</span> #1106 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:02 <span class="ansi-black-intense-fg">v</span> #1160 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:27 <span class="ansi-black-intense-fg">v</span> #1108 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:02 <span class="ansi-black-intense-fg">v</span> #1328 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:28 <span class="ansi-black-intense-fg">v</span> #1187 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
-00:02:02 <span class="ansi-black-intense-fg">v</span> #1329 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:28 <span class="ansi-black-intense-fg">v</span> #1188 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1330 Supervisor.buildFile / buildFileResult: Some
+00:02:28 <span class="ansi-black-intense-fg">v</span> #1331 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:28 <span class="ansi-black-intense-fg">v</span> #1332 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1333 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi'
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1334 Supervisor.buildFile / takeWhileInclusive / outputContent:
+'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6\main.spi
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1335 Supervisor.buildFile / buildFileResult: Some
   "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v1 : unit = ()
-    let v2 : (unit -&gt; unit) = closure1()
-    let v3 : unit = (fun () -&gt; v2 (); v1) ()
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
 "
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1331 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1336 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
    "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v1 : unit = ()
-    let v2 : (unit -&gt; unit) = closure1()
-    let v3 : unit = (fun () -&gt; v2 (); v1) ()
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
 ",
  [], 0)
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1332 Supervisor.buildFile / ofSeqAsync / x: (Some
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1337 Supervisor.buildFile / ofSeqAsync / x: (Some
    "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v1 : unit = ()
-    let v2 : (unit -&gt; unit) = closure1()
-    let v3 : unit = (fun () -&gt; v2 (); v1) ()
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
 ",
  [], 0)
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1333 Supervisor.buildFile / result: [] / buildFileResult: Some
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1338 Supervisor.buildFile / result: [] / buildFileResult: Some
   "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v1 : unit = ()
-    let v2 : (unit -&gt; unit) = closure1()
-    let v3 : unit = (fun () -&gt; v2 (); v1) ()
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
 " / typeErrorCount: 0
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1334 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6 / targetDir: c:/home/git\polyglot\target
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1339 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6 / targetDir: c:/home/git\polyglot\target
 Some
   (Some
      "let rec closure1 () () : unit =
@@ -8743,9 +8751,9 @@ Some
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v1 : unit = ()
-    let v2 : (unit -&gt; unit) = closure1()
-    let v3 : unit = (fun () -&gt; v2 (); v1) ()
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
@@ -8805,24 +8813,24 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:03 <span class="ansi-black-intense-fg">v</span> #1337 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:29 <span class="ansi-black-intense-fg">v</span> #1342 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1338 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1343 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi'
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1339 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1340 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1344 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1345 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db\main.spi
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1341 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1342 Supervisor.buildFile / before result: ()
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1580 Supervisor.buildFile / buildFileResult: Some "0.3325000000000001
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1346 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:29 <span class="ansi-black-intense-fg">v</span> #1347 Supervisor.buildFile / before result: ()
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1583 Supervisor.buildFile / buildFileResult: Some "0.3325000000000001
 "
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1581 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.3325000000000001
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1584 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.3325000000000001
 ", [], 0)
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1582 Supervisor.buildFile / ofSeqAsync / x: (Some "0.3325000000000001
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1585 Supervisor.buildFile / ofSeqAsync / x: (Some "0.3325000000000001
 ", [], 0)
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1583 Supervisor.buildFile / result: [] / buildFileResult: Some "0.3325000000000001
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1586 Supervisor.buildFile / result: [] / buildFileResult: Some "0.3325000000000001
 " / typeErrorCount: 0
-00:02:03 <span class="ansi-black-intense-fg">v</span> #1584 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db / targetDir: c:/home/git\polyglot\target
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1587 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db / targetDir: c:/home/git\polyglot\target
 Some (Some "0.3325000000000001
 ", [])
 
@@ -8944,16 +8952,16 @@ Some (Some "0.3325000000000001
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:04 <span class="ansi-black-intense-fg">v</span> #1589 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:30 <span class="ansi-black-intense-fg">v</span> #1592 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1590 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1593 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi'
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1591 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1594 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8\main.spi
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1592 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1593 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1594 Supervisor.buildFile / before result: ()
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1832 Supervisor.buildFile / buildFileResult: Some
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1595 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8/main.spi"
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1596 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:30 <span class="ansi-black-intense-fg">v</span> #1597 Supervisor.buildFile / before result: ()
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1837 Supervisor.buildFile / buildFileResult: Some
   "kernel = r"""
 """
 class static_array():
@@ -9020,7 +9028,7 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 "
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1833 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1838 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
    "kernel = r"""
 """
 class static_array():
@@ -9088,7 +9096,7 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 ",
  [], 0)
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1834 Supervisor.buildFile / ofSeqAsync / x: (Some
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1839 Supervisor.buildFile / ofSeqAsync / x: (Some
    "kernel = r"""
 """
 class static_array():
@@ -9156,7 +9164,7 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 ",
  [], 0)
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1835 Supervisor.buildFile / result: [] / buildFileResult: Some
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1840 Supervisor.buildFile / result: [] / buildFileResult: Some
   "kernel = r"""
 """
 class static_array():
@@ -9223,7 +9231,7 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 " / typeErrorCount: 0
-00:02:04 <span class="ansi-black-intense-fg">v</span> #1836 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8 / targetDir: c:/home/git\polyglot\target
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1841 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\ca288d6928a8e761855210f25f97fdc056ee1f21be4a24b26e8533ec368831c8 / targetDir: c:/home/git\polyglot\target
 Some
   (Some
      "kernel = r"""
@@ -9347,24 +9355,24 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:05 <span class="ansi-black-intense-fg">v</span> #1841 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:31 <span class="ansi-black-intense-fg">v</span> #1848 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620\src\main.spi
-00:02:05 <span class="ansi-black-intense-fg">v</span> #1842 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1849 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620\src\main.spi'
-00:02:05 <span class="ansi-black-intense-fg">v</span> #1843 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1850 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620\src\main.spi
-00:02:05 <span class="ansi-black-intense-fg">v</span> #1844 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi"
-00:02:05 <span class="ansi-black-intense-fg">v</span> #1845 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:05 <span class="ansi-black-intense-fg">v</span> #1846 Supervisor.buildFile / before result: ()
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2088 Supervisor.buildFile / buildFileResult: Some "pub fn main () { 0.3325000000000001
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1851 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi"
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1852 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:31 <span class="ansi-black-intense-fg">v</span> #1853 Supervisor.buildFile / before result: ()
+00:02:31 <span class="ansi-black-intense-fg">v</span> #2092 Supervisor.buildFile / buildFileResult: Some "pub fn main () { 0.3325000000000001
  }"
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2089 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "pub fn main () { 0.3325000000000001
+00:02:31 <span class="ansi-black-intense-fg">v</span> #2093 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "pub fn main () { 0.3325000000000001
  }", [], 0)
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2090 Supervisor.buildFile / ofSeqAsync / x: (Some "pub fn main () { 0.3325000000000001
+00:02:31 <span class="ansi-black-intense-fg">v</span> #2094 Supervisor.buildFile / ofSeqAsync / x: (Some "pub fn main () { 0.3325000000000001
  }", [], 0)
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2091 Supervisor.buildFile / result: [] / buildFileResult: Some "pub fn main () { 0.3325000000000001
+00:02:31 <span class="ansi-black-intense-fg">v</span> #2095 Supervisor.buildFile / result: [] / buildFileResult: Some "pub fn main () { 0.3325000000000001
  }" / typeErrorCount: 0
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2092 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620\src / targetDir: c:/home/git\polyglot\target
+00:02:31 <span class="ansi-black-intense-fg">v</span> #2096 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620\src / targetDir: c:/home/git\polyglot\target
 Some (Some "pub fn main () { 0.3325000000000001
  }", [])
 
@@ -9424,24 +9432,24 @@ Some (Some "pub fn main () { 0.3325000000000001
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:05 <span class="ansi-black-intense-fg">v</span> #2100 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:32 <span class="ansi-black-intense-fg">v</span> #2105 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2101 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2106 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi'
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2102 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2107 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4\main.spi
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2103 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2104 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:05 <span class="ansi-black-intense-fg">v</span> #2105 Supervisor.buildFile / before result: ()
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2341 Supervisor.buildFile / buildFileResult: Some "0.33332500000000004
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2108 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2109 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2110 Supervisor.buildFile / before result: ()
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2349 Supervisor.buildFile / buildFileResult: Some "0.33332500000000004
 "
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2342 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.33332500000000004
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2350 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.33332500000000004
 ", [], 0)
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2343 Supervisor.buildFile / ofSeqAsync / x: (Some "0.33332500000000004
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2351 Supervisor.buildFile / ofSeqAsync / x: (Some "0.33332500000000004
 ", [], 0)
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2344 Supervisor.buildFile / result: [] / buildFileResult: Some "0.33332500000000004
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2352 Supervisor.buildFile / result: [] / buildFileResult: Some "0.33332500000000004
 " / typeErrorCount: 0
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2345 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4 / targetDir: c:/home/git\polyglot\target
+00:02:32 <span class="ansi-black-intense-fg">v</span> #2353 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4 / targetDir: c:/home/git\polyglot\target
 Some (Some "0.33332500000000004
 ", [])
 
@@ -9484,20 +9492,20 @@ Some (Some "0.33332500000000004
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:06 <span class="ansi-black-intense-fg">v</span> #2355 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:33 <span class="ansi-black-intense-fg">v</span> #2364 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2356 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2365 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi'
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2357 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2366 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2358 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2359 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2360 Supervisor.buildFile / before result: ()
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2602 Supervisor.buildFile / buildFileResult: None
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2603 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2612 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2367 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2368 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2369 Supervisor.buildFile / before result: ()
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2614 Supervisor.buildFile / buildFileResult: None
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2615 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2628 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot find `main` in file main., FatalError "Cannot find `main` in file main.")) / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi'
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2613 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2629 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "Cannot find `main` in file main.",
@@ -9506,18 +9514,18 @@ Some (Some "0.33332500000000004
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa\main.spi
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2617 Supervisor.buildFile / outputChild / x: Some
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2631 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
          [("Cannot find `main` in file main.",
            FatalError "Cannot find `main` in file main.")], 0)))
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2623 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2637 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("Cannot find `main` in file main.",
    FatalError "Cannot find `main` in file main.")], 0)
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2624 Supervisor.buildFile / result: [("Cannot find `main` in file main.",
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2638 Supervisor.buildFile / result: [("Cannot find `main` in file main.",
   FatalError "Cannot find `main` in file main.")] / buildFileResult: None / typeErrorCount: 0
-00:02:06 <span class="ansi-black-intense-fg">v</span> #2625 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa / targetDir: c:/home/git\polyglot\target
+00:02:33 <span class="ansi-black-intense-fg">v</span> #2639 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa / targetDir: c:/home/git\polyglot\target
 Some (None, ["Cannot find `main` in file main."])
 
 </pre>
@@ -9561,18 +9569,18 @@ Some (None, ["Cannot find `main` in file main."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:07 <span class="ansi-black-intense-fg">v</span> #2626 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:34 <span class="ansi-black-intense-fg">v</span> #2640 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2627 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2641 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi'
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2628 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2642 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2629 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2630 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2631 Supervisor.buildFile / before result: ()
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2867 Supervisor.buildFile / buildFileResult: None
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2868 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2869 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2643 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2644 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2645 Supervisor.buildFile / before result: ()
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2882 Supervisor.buildFile / buildFileResult: None
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2883 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2884 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((An attempt to divide by zero has been detected at compile time., TracedError
   { message = "An attempt to divide by zero has been detected at compile time."
     trace =
@@ -9584,7 +9592,7 @@ inl main () =
     1i32 / 0i32
     ^
 "] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi'
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2870 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2885 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "An attempt to divide by zero has been detected at compile time.",
@@ -9605,7 +9613,7 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2\main.spi
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2872 Supervisor.buildFile / outputChild / x: Some
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2887 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -9623,7 +9631,7 @@ inl main () =
     ^
 "] })],
          0)))
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2873 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2888 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("An attempt to divide by zero has been detected at compile time.",
    TracedError
      { message =
@@ -9638,7 +9646,7 @@ inl main () =
     ^
 "] })],
  0)
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2874 Supervisor.buildFile / result: [("An attempt to divide by zero has been detected at compile time.",
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2889 Supervisor.buildFile / result: [("An attempt to divide by zero has been detected at compile time.",
   TracedError
     { message =
        "An attempt to divide by zero has been detected at compile time."
@@ -9651,7 +9659,7 @@ inl main () =
     1i32 / 0i32
     ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2875 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2 / targetDir: c:/home/git\polyglot\target
+00:02:34 <span class="ansi-black-intense-fg">v</span> #2890 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2 / targetDir: c:/home/git\polyglot\target
 Some (None, ["An attempt to divide by zero has been detected at compile time."])
 
 </pre>
@@ -9701,18 +9709,18 @@ Some (None, ["An attempt to divide by zero has been detected at compile time."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:07 <span class="ansi-black-intense-fg">v</span> #2876 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:35 <span class="ansi-black-intense-fg">v</span> #2891 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2877 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:35 <span class="ansi-black-intense-fg">v</span> #2892 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2878 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:35 <span class="ansi-black-intense-fg">v</span> #2893 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2879 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2880 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:07 <span class="ansi-black-intense-fg">v</span> #2881 Supervisor.buildFile / before result: ()
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3116 Supervisor.buildFile / buildFileResult: None
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3117 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3118 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:35 <span class="ansi-black-intense-fg">v</span> #2894 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:02:35 <span class="ansi-black-intense-fg">v</span> #2895 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:35 <span class="ansi-black-intense-fg">v</span> #2896 Supervisor.buildFile / before result: ()
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3132 Supervisor.buildFile / buildFileResult: None
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3133 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3134 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
@@ -9728,7 +9736,7 @@ inl main () =
         unbox_real ()
         ^
 "] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3119 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3135 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "Cannot apply a forall with a term.",
@@ -9753,7 +9761,7 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3121 Supervisor.buildFile / outputChild / x: Some
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3137 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -9774,7 +9782,7 @@ inl main () =
         ^
 "] })],
          0)))
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3122 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3138 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("Cannot apply a forall with a term.",
    TracedError
      { message = "Cannot apply a forall with a term."
@@ -9792,7 +9800,7 @@ inl main () =
         ^
 "] })],
  0)
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3123 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3139 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
   TracedError
     { message = "Cannot apply a forall with a term."
       trace =
@@ -9808,7 +9816,7 @@ inl main () =
         unbox_real ()
         ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3124 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
+00:02:35 <span class="ansi-black-intense-fg">v</span> #3140 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
 Some (None, ["Cannot apply a forall with a term."])
 
 </pre>
@@ -9857,21 +9865,21 @@ Some (None, ["Cannot apply a forall with a term."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:08 <span class="ansi-black-intense-fg">v</span> #3125 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:36 <span class="ansi-black-intense-fg">v</span> #3141 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3126 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3142 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi'
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3127 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3143 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3128 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3129 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3130 Supervisor.buildFile / before result: ()
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3367 Supervisor.buildFile / buildFileResult: None
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3368 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3369 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3144 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3145 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3146 Supervisor.buildFile / before result: ()
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3383 Supervisor.buildFile / buildFileResult: None
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3384 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3385 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((The main function should not have a forall., TracedError { message = "The main function should not have a forall."
               trace = [] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi'
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3370 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3386 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "The main function should not have a forall.",
@@ -9883,21 +9891,21 @@ Some (None, ["Cannot apply a forall with a term."])
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f\main.spi
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3372 Supervisor.buildFile / outputChild / x: Some
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3388 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
          [("The main function should not have a forall.",
            TracedError { message = "The main function should not have a forall."
                          trace = [] })], 0)))
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3373 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3389 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("The main function should not have a forall.",
    TracedError { message = "The main function should not have a forall."
                  trace = [] })], 0)
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3374 Supervisor.buildFile / result: [("The main function should not have a forall.",
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3390 Supervisor.buildFile / result: [("The main function should not have a forall.",
   TracedError { message = "The main function should not have a forall."
                 trace = [] })] / buildFileResult: None / typeErrorCount: 0
-00:02:08 <span class="ansi-black-intense-fg">v</span> #3375 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f / targetDir: c:/home/git\polyglot\target
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3391 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f / targetDir: c:/home/git\polyglot\target
 Some (None, ["The main function should not have a forall."])
 
 </pre>
@@ -9947,18 +9955,18 @@ Some (None, ["The main function should not have a forall."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:09 <span class="ansi-black-intense-fg">v</span> #3376 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:36 <span class="ansi-black-intense-fg">v</span> #3392 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3377 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3393 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3378 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3394 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3379 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3380 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3381 Supervisor.buildFile / before result: ()
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3614 Supervisor.buildFile / buildFileResult: None
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3615 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3616 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3395 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3396 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:36 <span class="ansi-black-intense-fg">v</span> #3397 Supervisor.buildFile / before result: ()
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3629 Supervisor.buildFile / buildFileResult: None
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3630 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3631 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
@@ -9974,7 +9982,7 @@ inl main () =
         unbox_real ()
         ^
 "] })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi'
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3617 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3632 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "Cannot apply a forall with a term.",
@@ -9999,7 +10007,7 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3619 Supervisor.buildFile / outputChild / x: Some
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3634 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -10020,7 +10028,7 @@ inl main () =
         ^
 "] })],
          0)))
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3620 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3635 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("Cannot apply a forall with a term.",
    TracedError
      { message = "Cannot apply a forall with a term."
@@ -10038,7 +10046,7 @@ inl main () =
         ^
 "] })],
  0)
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3621 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3636 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
   TracedError
     { message = "Cannot apply a forall with a term."
       trace =
@@ -10054,7 +10062,7 @@ inl main () =
         unbox_real ()
         ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3622 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3637 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: c:/home/git\polyglot\target
 Some (None, ["Cannot apply a forall with a term."])
 
 </pre>
@@ -10103,16 +10111,16 @@ Some (None, ["Cannot apply a forall with a term."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:09 <span class="ansi-black-intense-fg">v</span> #3623 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:37 <span class="ansi-black-intense-fg">v</span> #3638 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3624 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3639 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi'
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3625 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3640 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3626 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3627 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3628 Supervisor.buildFile / before result: ()
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3709 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3641 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3642 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3643 Supervisor.buildFile / before result: ()
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3723 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Constraint satisfaction error.
 Got: string
@@ -10126,7 +10134,7 @@ Got: string
 Fails to satisfy: number")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi'
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3713 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3727 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "main.spi:
@@ -10157,7 +10165,7 @@ Fails to satisfy: number"
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0\main.spi
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3720 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3734 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
  Some
    ("main.spi:
 Constraint satisfaction error.
@@ -10173,8 +10181,8 @@ Got: string
 Fails to satisfy: number")]
         uri =
          "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" }))
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3722 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3728 Supervisor.buildFile / outputChild / x: Some
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3736 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3741 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -10193,8 +10201,8 @@ Fails to satisfy: number")]
                uri =
                 "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
          0)))
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3730 Supervisor.buildFile / outputChild |&gt; Async.map
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3733 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3743 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3746 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
  [("main.spi:
 Constraint satisfaction error.
 Got: string
@@ -10210,7 +10218,7 @@ Fails to satisfy: number")]
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
  0)
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3736 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3749 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("main.spi:
 Constraint satisfaction error.
 Got: string
@@ -10226,7 +10234,7 @@ Fails to satisfy: number")]
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
  0)
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3739 Supervisor.buildFile / result: [("main.spi:
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3752 Supervisor.buildFile / result: [("main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number",
@@ -10240,8 +10248,8 @@ Got: string
 Fails to satisfy: number")]
       uri =
        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3740 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0 / targetDir: c:/home/git\polyglot\target
-00:02:09 <span class="ansi-black-intense-fg">v</span> #3742 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3753 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0 / targetDir: c:/home/git\polyglot\target
+00:02:37 <span class="ansi-black-intense-fg">v</span> #3755 Supervisor.buildFile / outputChild |&gt; Async.map
 Some (None, ["main.spi:
 Constraint satisfaction error.
 Got: string
@@ -10292,16 +10300,16 @@ Fails to satisfy: number"])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:10 <span class="ansi-black-intense-fg">v</span> #3876 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:38 <span class="ansi-black-intense-fg">v</span> #3891 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3877 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3892 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi'
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3878 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3893 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3879 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3880 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3881 Supervisor.buildFile / before result: ()
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3924 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3894 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3895 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3896 Supervisor.buildFile / before result: ()
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3936 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Unbound variable: x.
 Unbound variable: y., TypeErrors
@@ -10314,7 +10322,7 @@ Unbound variable: y., TypeErrors
                         line = 1 }), "Unbound variable: y.")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi'
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3926 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3938 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "main.spi:
@@ -10355,7 +10363,7 @@ Unbound variable: y.",
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3931 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3942 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
  Some
    ("main.spi:
 Unbound variable: x.
@@ -10370,8 +10378,8 @@ Unbound variable: y.",
                             line = 1 }), "Unbound variable: y.")]
         uri =
          "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" }))
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3932 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3937 Supervisor.buildFile / outputChild / x: Some
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3943 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3947 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -10389,8 +10397,8 @@ Unbound variable: y.",
                uri =
                 "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
          0)))
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3938 Supervisor.buildFile / outputChild |&gt; Async.map
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3941 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3948 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3951 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
  [("main.spi:
 Unbound variable: x.
 Unbound variable: y.",
@@ -10405,7 +10413,7 @@ Unbound variable: y.",
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
  0)
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3944 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3954 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("main.spi:
 Unbound variable: x.
 Unbound variable: y.",
@@ -10420,7 +10428,7 @@ Unbound variable: y.",
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
  0)
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3947 Supervisor.buildFile / result: [("main.spi:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3957 Supervisor.buildFile / result: [("main.spi:
 Unbound variable: x.
 Unbound variable: y.",
   TypeErrors
@@ -10433,8 +10441,8 @@ Unbound variable: y.",
                           line = 1 }), "Unbound variable: y.")]
       uri =
        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3948 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1 / targetDir: c:/home/git\polyglot\target
-00:02:10 <span class="ansi-black-intense-fg">v</span> #3949 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3958 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1 / targetDir: c:/home/git\polyglot\target
+00:02:38 <span class="ansi-black-intense-fg">v</span> #3959 Supervisor.buildFile / outputChild |&gt; Async.map
 Some (None, ["main.spi:
 Unbound variable: x.
 Unbound variable: y."])
@@ -10485,16 +10493,16 @@ Unbound variable: y."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:02:10 <span class="ansi-black-intense-fg">v</span> #4130 Supervisor.buildFile / takeWhileInclusive / outputContent:
+<pre>00:02:38 <span class="ansi-black-intense-fg">v</span> #4144 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4131 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #4145 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi'
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4132 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #4146 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4133 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4134 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4135 Supervisor.buildFile / before result: ()
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4178 Supervisor.buildFile / AsyncSeq.scan / outputContent:
+00:02:38 <span class="ansi-black-intense-fg">v</span> #4147 Supervisor.buildFile / fullPathUri: "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
+00:02:38 <span class="ansi-black-intense-fg">v</span> #4148 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:02:38 <span class="ansi-black-intense-fg">v</span> #4149 Supervisor.buildFile / before result: ()
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4193 Supervisor.buildFile / AsyncSeq.scan / outputContent:
 ' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
@@ -10508,7 +10516,7 @@ Got:      'a
 Expected: () -&gt; 'a")]
     uri =
      "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })) / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi'
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4179 Supervisor.buildFile / takeWhileInclusive / outputContent:
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4195 Supervisor.buildFile / takeWhileInclusive / outputContent:
 '' / errors: [
   [
     "main.spi:
@@ -10539,7 +10547,7 @@ Expected: () -&gt; 'a"
     }
   ]
 ] / typeErrorCount: 0 / retry: 0 / path: c:/home/git\polyglot\target/spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7\main.spi
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4182 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4198 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
  Some
    ("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
@@ -10555,8 +10563,8 @@ Got:      'a
 Expected: () -&gt; 'a")]
         uri =
          "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" }))
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4183 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4187 Supervisor.buildFile / outputChild / x: Some
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4199 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4202 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -10575,8 +10583,8 @@ Expected: () -&gt; 'a")]
                uri =
                 "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
          0)))
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4188 Supervisor.buildFile / outputChild |&gt; Async.map
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4191 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4203 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4205 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
  [("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
@@ -10592,7 +10600,7 @@ Expected: () -&gt; 'a")]
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
  0)
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4193 Supervisor.buildFile / ofSeqAsync / x: (None,
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4208 Supervisor.buildFile / ofSeqAsync / x: (None,
  [("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
@@ -10608,7 +10616,7 @@ Expected: () -&gt; 'a")]
        uri =
         "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
  0)
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4196 Supervisor.buildFile / result: [("main.spi:
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4210 Supervisor.buildFile / result: [("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
 Expected: () -&gt; 'a",
@@ -10622,8 +10630,8 @@ Got:      'a
 Expected: () -&gt; 'a")]
       uri =
        "file:///c:/home/git/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4197 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7 / targetDir: c:/home/git\polyglot\target
-00:02:10 <span class="ansi-black-intense-fg">v</span> #4198 Supervisor.buildFile / outputChild |&gt; Async.map
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4211 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: c:\home\git\polyglot\target\spiral_Eval\packages\883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7 / targetDir: c:/home/git\polyglot\target
+00:02:39 <span class="ansi-black-intense-fg">v</span> #4212 Supervisor.buildFile / outputChild |&gt; Async.map
 Some
   (None,
    ["main.spi:
