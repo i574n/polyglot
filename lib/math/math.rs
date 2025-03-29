@@ -14,16 +14,16 @@ use fable_library_rust::String_::fromString;
 mod module_728458a3 {
     pub mod Math {
         use super::*;
-        use fable_library_rust::NativeArray_::get_Count;
-        use fable_library_rust::NativeArray_::new_array;
-        use fable_library_rust::NativeArray_::new_init;
-        use fable_library_rust::NativeArray_::Array;
-        use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::NativeArray_::get_Count;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::new_init;
         use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::map;
         use fable_library_rust::String_::append;
@@ -74,6 +74,15 @@ mod module_728458a3 {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
+        #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
+        pub struct Mut3 {
+            pub l0: MutCell<string>,
+        }
+        impl core::fmt::Display for Mut3 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
         #[derive(Clone, Debug, PartialEq, PartialOrd)]
         pub enum UH0 {
             UH0_0,
@@ -115,13 +124,11 @@ mod module_728458a3 {
                 let v8: i32 = ((v5.wrapping_neg()) + (v1_1)) - 1_i32;
                 let matchValue: string = v3.l1.get().clone();
                 let matchValue_1: string = v3.l2.get().clone();
-                let v12: string = append(
-                    (append((append((v0_1[v8].clone()), (matchValue_1))), (matchValue))),
-                    string(""),
-                );
-                let v13: i32 = (v5) + 1_i32;
-                v3.l0.set(v13);
-                v3.l1.set(v12);
+                let v17: string =
+                    append((append((v0_1[v8].clone()), (matchValue_1))), (matchValue));
+                let v20: i32 = (v5) + 1_i32;
+                v3.l0.set(v20);
+                v3.l1.set(v17);
                 v3.l2.set(string("\n"));
                 ()
             }
@@ -159,48 +166,64 @@ mod module_728458a3 {
             v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
-            let v13: string =
-                string("            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }");
-            let v14: string =
-                string("            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
-            let v36: string =
-                Math::method5(new_array(&[string("import sys"),
-                                          string("import traceback"),
-                                          string("import re"),
-                                          string("count = 0"),
-                                          string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
-                                          string("def trace_calls(frame, event, arg):"),
-                                          string("    global count"),
-                                          string("    count += 1"),
-                                          string("    if count < 200:"),
-                                          string("        try:"), v13, v14,
-                                          concat(new_array(&[string("            print(f\"{event}("),
-                                                             string("zeta_"),
-                                                             string(") / f_code.co_name: {frame.f_code.co_name} / f_locals: {args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: {frame.f_code.co_filename.split(\'site-packages\')[-1]} / f_back.f_lineno: { \'\' if frame.f_back is None else frame.f_back.f_lineno } / f_back.f_code.co_filename: { \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] } / arg: {re.sub(memory_address_pattern, \' at 0x<?>\', repr(arg))}\", flush=True)")])),
-                                          string("        except ValueError as e:"),
-                                          concat(new_array(&[string("            print(f\'"),
-                                                             string("zeta_"),
-                                                             string(" / e: {e}\', flush=True)")])),
-                                          string("        return trace_calls"),
-                                          string("import mpmath"),
-                                          string("def fn(log, s):"),
-                                          string("    global count"),
-                                          string("    if log:"),
-                                          concat(new_array(&[string("        print(f\'"),
-                                                             string("zeta_"),
-                                                             string(" / s: {s} / count: {count}\', flush=True)")])),
-                                          string("    s = complex(*s)"),
-                                          string("    try:"),
-                                          string("        if log: sys.settrace(trace_calls)"),
-                                          v1_1, string("        if log:"),
-                                          string("            sys.settrace(None)"),
-                                          concat(new_array(&[string("            print(f\'"),
-                                                             string("zeta_"),
-                                                             string(" / result: {s} / count: {count}\', flush=True)")])),
-                                          string("    except ValueError as e:"),
-                                          string("        if s.real == 1:"),
-                                          string("            s = complex(float(\'inf\'), 0)"),
-                                          string("    return (s.real, s.imag)")]));
+            let v13: string = string(
+                "            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }",
+            );
+            let v14: string = string(
+                "            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])",
+            );
+            let v36: string = Math::method5(new_array(&[
+                string("import sys"),
+                string("import traceback"),
+                string("import re"),
+                string("count = 0"),
+                string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
+                string("def trace_calls(frame, event, arg):"),
+                string("    global count"),
+                string("    count += 1"),
+                string("    if count < 200:"),
+                string("        try:"),
+                v13,
+                v14,
+                concat(new_array(&[
+                    string("            print(f\"{event}("),
+                    string("zeta_"),
+                    string(
+                        ") / f_code.co_name: {frame.f_code.co_name} / f_locals: {args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: {frame.f_code.co_filename.split(\'site-packages\')[-1]} / f_back.f_lineno: { \'\' if frame.f_back is None else frame.f_back.f_lineno } / f_back.f_code.co_filename: { \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] } / arg: {re.sub(memory_address_pattern, \' at 0x<?>\', repr(arg))}\", flush=True)",
+                    ),
+                ])),
+                string("        except ValueError as e:"),
+                concat(new_array(&[
+                    string("            print(f\'"),
+                    string("zeta_"),
+                    string(" / e: {e}\', flush=True)"),
+                ])),
+                string("        return trace_calls"),
+                string("import mpmath"),
+                string("def fn(log, s):"),
+                string("    global count"),
+                string("    if log:"),
+                concat(new_array(&[
+                    string("        print(f\'"),
+                    string("zeta_"),
+                    string(" / s: {s} / count: {count}\', flush=True)"),
+                ])),
+                string("    s = complex(*s)"),
+                string("    try:"),
+                string("        if log: sys.settrace(trace_calls)"),
+                v1_1,
+                string("        if log:"),
+                string("            sys.settrace(None)"),
+                concat(new_array(&[
+                    string("            print(f\'"),
+                    string("zeta_"),
+                    string(" / result: {s} / count: {count}\', flush=True)"),
+                ])),
+                string("    except ValueError as e:"),
+                string("        if s.real == 1:"),
+                string("            s = complex(float(\'inf\'), 0)"),
+                string("    return (s.real, s.imag)"),
+            ]));
             let v46: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v49: pyo3::Python = Math::method7(v0_1);
@@ -279,48 +302,64 @@ mod module_728458a3 {
             v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
-            let v13: string =
-                string("            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }");
-            let v14: string =
-                string("            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
-            let v36: string =
-                Math::method5(new_array(&[string("import sys"),
-                                          string("import traceback"),
-                                          string("import re"),
-                                          string("count = 0"),
-                                          string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
-                                          string("def trace_calls(frame, event, arg):"),
-                                          string("    global count"),
-                                          string("    count += 1"),
-                                          string("    if count < 200:"),
-                                          string("        try:"), v13, v14,
-                                          concat(new_array(&[string("            print(f\"{event}("),
-                                                             string("gamma_"),
-                                                             string(") / f_code.co_name: {frame.f_code.co_name} / f_locals: {args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: {frame.f_code.co_filename.split(\'site-packages\')[-1]} / f_back.f_lineno: { \'\' if frame.f_back is None else frame.f_back.f_lineno } / f_back.f_code.co_filename: { \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] } / arg: {re.sub(memory_address_pattern, \' at 0x<?>\', repr(arg))}\", flush=True)")])),
-                                          string("        except ValueError as e:"),
-                                          concat(new_array(&[string("            print(f\'"),
-                                                             string("gamma_"),
-                                                             string(" / e: {e}\', flush=True)")])),
-                                          string("        return trace_calls"),
-                                          string("import mpmath"),
-                                          string("def fn(log, s):"),
-                                          string("    global count"),
-                                          string("    if log:"),
-                                          concat(new_array(&[string("        print(f\'"),
-                                                             string("gamma_"),
-                                                             string(" / s: {s} / count: {count}\', flush=True)")])),
-                                          string("    s = complex(*s)"),
-                                          string("    try:"),
-                                          string("        if log: sys.settrace(trace_calls)"),
-                                          v1_1, string("        if log:"),
-                                          string("            sys.settrace(None)"),
-                                          concat(new_array(&[string("            print(f\'"),
-                                                             string("gamma_"),
-                                                             string(" / result: {s} / count: {count}\', flush=True)")])),
-                                          string("    except ValueError as e:"),
-                                          string("        if s.real == 1:"),
-                                          string("            s = complex(float(\'inf\'), 0)"),
-                                          string("    return (s.real, s.imag)")]));
+            let v13: string = string(
+                "            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }",
+            );
+            let v14: string = string(
+                "            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])",
+            );
+            let v36: string = Math::method5(new_array(&[
+                string("import sys"),
+                string("import traceback"),
+                string("import re"),
+                string("count = 0"),
+                string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
+                string("def trace_calls(frame, event, arg):"),
+                string("    global count"),
+                string("    count += 1"),
+                string("    if count < 200:"),
+                string("        try:"),
+                v13,
+                v14,
+                concat(new_array(&[
+                    string("            print(f\"{event}("),
+                    string("gamma_"),
+                    string(
+                        ") / f_code.co_name: {frame.f_code.co_name} / f_locals: {args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: {frame.f_code.co_filename.split(\'site-packages\')[-1]} / f_back.f_lineno: { \'\' if frame.f_back is None else frame.f_back.f_lineno } / f_back.f_code.co_filename: { \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] } / arg: {re.sub(memory_address_pattern, \' at 0x<?>\', repr(arg))}\", flush=True)",
+                    ),
+                ])),
+                string("        except ValueError as e:"),
+                concat(new_array(&[
+                    string("            print(f\'"),
+                    string("gamma_"),
+                    string(" / e: {e}\', flush=True)"),
+                ])),
+                string("        return trace_calls"),
+                string("import mpmath"),
+                string("def fn(log, s):"),
+                string("    global count"),
+                string("    if log:"),
+                concat(new_array(&[
+                    string("        print(f\'"),
+                    string("gamma_"),
+                    string(" / s: {s} / count: {count}\', flush=True)"),
+                ])),
+                string("    s = complex(*s)"),
+                string("    try:"),
+                string("        if log: sys.settrace(trace_calls)"),
+                v1_1,
+                string("        if log:"),
+                string("            sys.settrace(None)"),
+                concat(new_array(&[
+                    string("            print(f\'"),
+                    string("gamma_"),
+                    string(" / result: {s} / count: {count}\', flush=True)"),
+                ])),
+                string("    except ValueError as e:"),
+                string("        if s.real == 1:"),
+                string("            s = complex(float(\'inf\'), 0)"),
+                string("    return (s.real, s.imag)"),
+            ]));
             let v46: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v49: pyo3::Python = Math::method7(v0_1);
@@ -903,7 +942,15 @@ mod module_728458a3 {
         pub fn method18(v0_1: bool) -> bool {
             v0_1
         }
-        pub fn closure2(v0_1: string, unitVar: ()) {
+        pub fn method19() -> string {
+            string("")
+        }
+        pub fn closure2(v0_1: LrcPtr<Math::Mut3>, v1_1: string, unitVar: ()) {
+            let v4: string = append((v0_1.l0.get().clone()), (v1_1));
+            v0_1.l0.set(v4);
+            ()
+        }
+        pub fn closure3(v0_1: string, unitVar: ()) {
             printfn!("{0}", v0_1);
         }
         pub fn method1(v0_1: pyo3::Python) {
@@ -947,48 +994,148 @@ mod module_728458a3 {
                 let v69: f64 = v67.clone().im;
                 let v70: bool = (v69) == 0.0_f64;
                 let v72: bool = if v70 { true } else { Math::method18(v70) };
-                let v78: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_eq"),
-                    v69,
-                    0.0_f64
-                );
-                let v83: () = {
-                    Math::closure2(v78.clone(), ());
+                let v74: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v88: () = {
+                    Math::closure2(v74.clone(), string("{ "), ());
+                    ()
+                };
+                let v107: () = {
+                    Math::closure2(v74.clone(), string("name"), ());
+                    ()
+                };
+                let v126: () = {
+                    Math::closure2(v74.clone(), string(" = "), ());
+                    ()
+                };
+                let v145: () = {
+                    Math::closure2(v74.clone(), string("__assert_eq"), ());
+                    ()
+                };
+                let v164: () = {
+                    Math::closure2(v74.clone(), string("; "), ());
+                    ()
+                };
+                let v183: () = {
+                    Math::closure2(v74.clone(), string("actual"), ());
+                    ()
+                };
+                let v200: () = {
+                    Math::closure2(v74.clone(), string(" = "), ());
+                    ()
+                };
+                let v220: () = {
+                    Math::closure2(v74.clone(), sprintf!("{:+.6}", v69), ());
+                    ()
+                };
+                let v237: () = {
+                    Math::closure2(v74.clone(), string("; "), ());
+                    ()
+                };
+                let v256: () = {
+                    Math::closure2(v74.clone(), string("expected"), ());
+                    ()
+                };
+                let v273: () = {
+                    Math::closure2(v74.clone(), string(" = "), ());
+                    ()
+                };
+                let v293: () = {
+                    Math::closure2(v74.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                    ()
+                };
+                let v312: () = {
+                    Math::closure2(v74.clone(), string(" }"), ());
+                    ()
+                };
+                let v318: string = v74.l0.get().clone();
+                let v322: () = {
+                    Math::closure3(v318.clone(), ());
                     ()
                 };
                 if (v72) == false {
-                    panic!("{}", v78,);
+                    panic!("{}", v318,);
                 }
                 {
-                    let v88: f64 = (v67.re) - (patternInput.1.clone());
-                    let v89: f64 = -v88;
-                    let v91: f64 = if (v88) >= (v89) { v88 } else { v89 };
-                    let v92: bool = (v91) < 0.0001_f64;
-                    let v94: bool = if v92 { true } else { Math::method18(v92) };
-                    let v100: string = sprintf!(
-                        "{} / actual: {:?} / expected: {:?}",
-                        string("__assert_lt"),
-                        v91,
-                        0.0001_f64
-                    );
-                    let v105: () = {
-                        Math::closure2(v100.clone(), ());
+                    let v327: f64 = (v67.re) - (patternInput.1.clone());
+                    let v328: f64 = -v327;
+                    let v330: f64 = if (v327) >= (v328) { v327 } else { v328 };
+                    let v331: bool = (v330) < 0.0001_f64;
+                    let v333: bool = if v331 { true } else { Math::method18(v331) };
+                    let v335: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                        l0: MutCell::new(Math::method19()),
+                    });
+                    let v347: () = {
+                        Math::closure2(v335.clone(), string("{ "), ());
                         ()
                     };
-                    if (v94) == false {
-                        panic!("{}", v100,);
+                    let v364: () = {
+                        Math::closure2(v335.clone(), string("name"), ());
+                        ()
+                    };
+                    let v381: () = {
+                        Math::closure2(v335.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v400: () = {
+                        Math::closure2(v335.clone(), string("__assert_lt"), ());
+                        ()
+                    };
+                    let v417: () = {
+                        Math::closure2(v335.clone(), string("; "), ());
+                        ()
+                    };
+                    let v434: () = {
+                        Math::closure2(v335.clone(), string("actual"), ());
+                        ()
+                    };
+                    let v451: () = {
+                        Math::closure2(v335.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v471: () = {
+                        Math::closure2(v335.clone(), sprintf!("{:+.6}", v330), ());
+                        ()
+                    };
+                    let v488: () = {
+                        Math::closure2(v335.clone(), string("; "), ());
+                        ()
+                    };
+                    let v505: () = {
+                        Math::closure2(v335.clone(), string("expected"), ());
+                        ()
+                    };
+                    let v522: () = {
+                        Math::closure2(v335.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v542: () = {
+                        Math::closure2(v335.clone(), sprintf!("{:+.6}", 0.0001_f64), ());
+                        ()
+                    };
+                    let v559: () = {
+                        Math::closure2(v335.clone(), string(" }"), ());
+                        ()
+                    };
+                    let v565: string = v335.l0.get().clone();
+                    let v569: () = {
+                        Math::closure3(v565.clone(), ());
+                        ()
+                    };
+                    if (v333) == false {
+                        panic!("{}", v565,);
                     }
                     {
-                        let v108: i32 = (v9) + 1_i32;
-                        v7.l0.set(v108);
+                        let v572: i32 = (v9) + 1_i32;
+                        v7.l0.set(v572);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method19(v0_1: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
+        pub fn method20(v0_1: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
             v0_1
         }
         pub fn method0() {
@@ -997,7 +1144,7 @@ mod module_728458a3 {
                 //;
                 Math::method1(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1023,7 +1170,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method21(v0_1: pyo3::Python) {
+        pub fn method22(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, -2.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1049,47 +1196,147 @@ mod module_728458a3 {
             let v64: f64 = if (v61) >= (v62) { v61 } else { v62 };
             let v65: bool = (v64) < 0.001_f64;
             let v67: bool = if v65 { true } else { Math::method18(v65) };
-            let v73: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_lt"),
-                v64,
-                0.001_f64
-            );
-            let v78: () = {
-                Math::closure2(v73.clone(), ());
+            let v69: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                l0: MutCell::new(Math::method19()),
+            });
+            let v83: () = {
+                Math::closure2(v69.clone(), string("{ "), ());
+                ()
+            };
+            let v102: () = {
+                Math::closure2(v69.clone(), string("name"), ());
+                ()
+            };
+            let v121: () = {
+                Math::closure2(v69.clone(), string(" = "), ());
+                ()
+            };
+            let v140: () = {
+                Math::closure2(v69.clone(), string("__assert_lt"), ());
+                ()
+            };
+            let v159: () = {
+                Math::closure2(v69.clone(), string("; "), ());
+                ()
+            };
+            let v178: () = {
+                Math::closure2(v69.clone(), string("actual"), ());
+                ()
+            };
+            let v195: () = {
+                Math::closure2(v69.clone(), string(" = "), ());
+                ()
+            };
+            let v215: () = {
+                Math::closure2(v69.clone(), sprintf!("{:+.6}", v64), ());
+                ()
+            };
+            let v232: () = {
+                Math::closure2(v69.clone(), string("; "), ());
+                ()
+            };
+            let v251: () = {
+                Math::closure2(v69.clone(), string("expected"), ());
+                ()
+            };
+            let v268: () = {
+                Math::closure2(v69.clone(), string(" = "), ());
+                ()
+            };
+            let v288: () = {
+                Math::closure2(v69.clone(), sprintf!("{:+.6}", 0.001_f64), ());
+                ()
+            };
+            let v307: () = {
+                Math::closure2(v69.clone(), string(" }"), ());
+                ()
+            };
+            let v313: string = v69.l0.get().clone();
+            let v317: () = {
+                Math::closure3(v313.clone(), ());
                 ()
             };
             if (v67) == false {
-                panic!("{}", v73,);
+                panic!("{}", v313,);
             }
             {
-                let v83: f64 = (v58.im) - 0.275_f64;
-                let v84: f64 = -v83;
-                let v86: f64 = if (v83) >= (v84) { v83 } else { v84 };
-                let v87: bool = (v86) < 0.001_f64;
-                let v89: bool = if v87 { true } else { Math::method18(v87) };
-                let v93: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_lt"),
-                    v86,
-                    0.001_f64
-                );
-                let v98: () = {
-                    Math::closure2(v93.clone(), ());
+                let v322: f64 = (v58.im) - 0.275_f64;
+                let v323: f64 = -v322;
+                let v325: f64 = if (v322) >= (v323) { v322 } else { v323 };
+                let v326: bool = (v325) < 0.001_f64;
+                let v328: bool = if v326 { true } else { Math::method18(v326) };
+                let v330: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v342: () = {
+                    Math::closure2(v330.clone(), string("{ "), ());
                     ()
                 };
-                if (v89) == false {
-                    panic!("{}", v93,);
+                let v359: () = {
+                    Math::closure2(v330.clone(), string("name"), ());
+                    ()
+                };
+                let v376: () = {
+                    Math::closure2(v330.clone(), string(" = "), ());
+                    ()
+                };
+                let v393: () = {
+                    Math::closure2(v330.clone(), string("__assert_lt"), ());
+                    ()
+                };
+                let v410: () = {
+                    Math::closure2(v330.clone(), string("; "), ());
+                    ()
+                };
+                let v427: () = {
+                    Math::closure2(v330.clone(), string("actual"), ());
+                    ()
+                };
+                let v444: () = {
+                    Math::closure2(v330.clone(), string(" = "), ());
+                    ()
+                };
+                let v464: () = {
+                    Math::closure2(v330.clone(), sprintf!("{:+.6}", v325), ());
+                    ()
+                };
+                let v481: () = {
+                    Math::closure2(v330.clone(), string("; "), ());
+                    ()
+                };
+                let v498: () = {
+                    Math::closure2(v330.clone(), string("expected"), ());
+                    ()
+                };
+                let v515: () = {
+                    Math::closure2(v330.clone(), string(" = "), ());
+                    ()
+                };
+                let v535: () = {
+                    Math::closure2(v330.clone(), sprintf!("{:+.6}", 0.001_f64), ());
+                    ()
+                };
+                let v552: () = {
+                    Math::closure2(v330.clone(), string(" }"), ());
+                    ()
+                };
+                let v558: string = v330.l0.get().clone();
+                let v562: () = {
+                    Math::closure3(v558.clone(), ());
+                    ()
+                };
+                if (v328) == false {
+                    panic!("{}", v558,);
                 }
             }
         }
-        pub fn method20() {
+        pub fn method21() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method21(py);
+                Math::method22(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1115,7 +1362,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method24() -> LrcPtr<Math::UH0> {
+        pub fn method25() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(-2.0_f64,
                                          LrcPtr::new(Math::UH0::UH0_1(-4.0_f64,
                                                                       LrcPtr::new(Math::UH0::UH0_1(-6.0_f64,
@@ -1138,11 +1385,11 @@ mod module_728458a3 {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(-40.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method25(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+        pub fn method26(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
-            '_method25: loop {
-                break '_method25 (match v1_1.get().clone().as_ref() {
+            '_method26: loop {
+                break '_method26 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
@@ -1176,35 +1423,135 @@ mod module_728458a3 {
                         let v63: f64 = v61.clone().re;
                         let v64: bool = (v63) == 0.0_f64;
                         let v66: bool = if v64 { true } else { Math::method18(v64) };
-                        let v72: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("__assert_eq"),
-                            v63,
-                            0.0_f64
-                        );
-                        let v77: () = {
-                            Math::closure2(v72.clone(), ());
+                        let v68: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                            l0: MutCell::new(Math::method19()),
+                        });
+                        let v82: () = {
+                            Math::closure2(v68.clone(), string("{ "), ());
+                            ()
+                        };
+                        let v101: () = {
+                            Math::closure2(v68.clone(), string("name"), ());
+                            ()
+                        };
+                        let v120: () = {
+                            Math::closure2(v68.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v139: () = {
+                            Math::closure2(v68.clone(), string("__assert_eq"), ());
+                            ()
+                        };
+                        let v158: () = {
+                            Math::closure2(v68.clone(), string("; "), ());
+                            ()
+                        };
+                        let v177: () = {
+                            Math::closure2(v68.clone(), string("actual"), ());
+                            ()
+                        };
+                        let v194: () = {
+                            Math::closure2(v68.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v214: () = {
+                            Math::closure2(v68.clone(), sprintf!("{:+.6}", v63), ());
+                            ()
+                        };
+                        let v231: () = {
+                            Math::closure2(v68.clone(), string("; "), ());
+                            ()
+                        };
+                        let v250: () = {
+                            Math::closure2(v68.clone(), string("expected"), ());
+                            ()
+                        };
+                        let v267: () = {
+                            Math::closure2(v68.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v287: () = {
+                            Math::closure2(v68.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                            ()
+                        };
+                        let v306: () = {
+                            Math::closure2(v68.clone(), string(" }"), ());
+                            ()
+                        };
+                        let v312: string = v68.l0.get().clone();
+                        let v316: () = {
+                            Math::closure3(v312.clone(), ());
                             ()
                         };
                         if (v66) == false {
-                            panic!("{}", v72,);
+                            panic!("{}", v312,);
                         }
                         {
-                            let v81: f64 = v61.im;
-                            let v82: bool = (v81) == 0.0_f64;
-                            let v84: bool = if v82 { true } else { Math::method18(v82) };
-                            let v88: string = sprintf!(
-                                "{} / actual: {:?} / expected: {:?}",
-                                string("__assert_eq"),
-                                v81,
-                                0.0_f64
-                            );
-                            let v93: () = {
-                                Math::closure2(v88.clone(), ());
+                            let v320: f64 = v61.im;
+                            let v321: bool = (v320) == 0.0_f64;
+                            let v323: bool = if v321 { true } else { Math::method18(v321) };
+                            let v325: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                                l0: MutCell::new(Math::method19()),
+                            });
+                            let v337: () = {
+                                Math::closure2(v325.clone(), string("{ "), ());
                                 ()
                             };
-                            if (v84) == false {
-                                panic!("{}", v88,);
+                            let v354: () = {
+                                Math::closure2(v325.clone(), string("name"), ());
+                                ()
+                            };
+                            let v371: () = {
+                                Math::closure2(v325.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v388: () = {
+                                Math::closure2(v325.clone(), string("__assert_eq"), ());
+                                ()
+                            };
+                            let v405: () = {
+                                Math::closure2(v325.clone(), string("; "), ());
+                                ()
+                            };
+                            let v422: () = {
+                                Math::closure2(v325.clone(), string("actual"), ());
+                                ()
+                            };
+                            let v439: () = {
+                                Math::closure2(v325.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v459: () = {
+                                Math::closure2(v325.clone(), sprintf!("{:+.6}", v320), ());
+                                ()
+                            };
+                            let v476: () = {
+                                Math::closure2(v325.clone(), string("; "), ());
+                                ()
+                            };
+                            let v493: () = {
+                                Math::closure2(v325.clone(), string("expected"), ());
+                                ()
+                            };
+                            let v510: () = {
+                                Math::closure2(v325.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v530: () = {
+                                Math::closure2(v325.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                                ()
+                            };
+                            let v547: () = {
+                                Math::closure2(v325.clone(), string(" }"), ());
+                                ()
+                            };
+                            let v553: string = v325.l0.get().clone();
+                            let v557: () = {
+                                Math::closure3(v553.clone(), ());
+                                ()
+                            };
+                            if (v323) == false {
+                                panic!("{}", v553,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1216,23 +1563,23 @@ mod module_728458a3 {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method25;
+                                continue '_method26;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method23(v0_1: pyo3::Python) {
-            Math::method25(v0_1, Math::method24());
+        pub fn method24(v0_1: pyo3::Python) {
+            Math::method26(v0_1, Math::method25());
         }
-        pub fn method22() {
+        pub fn method23() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method23(py);
+                Math::method24(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1258,7 +1605,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method27(v0_1: pyo3::Python) {
+        pub fn method28(v0_1: pyo3::Python) {
             let v13: Array<num_complex::Complex<f64>> = new_array(&[
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 num_complex::Complex::new(0.5_f64, 21.02204_f64),
@@ -1298,54 +1645,154 @@ mod module_728458a3 {
                 let v79: f64 = if (v76) >= (v77) { v76 } else { v77 };
                 let v80: bool = (v79) < 0.0001_f64;
                 let v82: bool = if v80 { true } else { Math::method18(v80) };
-                let v88: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_lt"),
-                    v79,
-                    0.0001_f64
-                );
-                let v93: () = {
-                    Math::closure2(v88.clone(), ());
+                let v84: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v98: () = {
+                    Math::closure2(v84.clone(), string("{ "), ());
+                    ()
+                };
+                let v117: () = {
+                    Math::closure2(v84.clone(), string("name"), ());
+                    ()
+                };
+                let v136: () = {
+                    Math::closure2(v84.clone(), string(" = "), ());
+                    ()
+                };
+                let v155: () = {
+                    Math::closure2(v84.clone(), string("__assert_lt"), ());
+                    ()
+                };
+                let v174: () = {
+                    Math::closure2(v84.clone(), string("; "), ());
+                    ()
+                };
+                let v193: () = {
+                    Math::closure2(v84.clone(), string("actual"), ());
+                    ()
+                };
+                let v210: () = {
+                    Math::closure2(v84.clone(), string(" = "), ());
+                    ()
+                };
+                let v230: () = {
+                    Math::closure2(v84.clone(), sprintf!("{:+.6}", v79), ());
+                    ()
+                };
+                let v247: () = {
+                    Math::closure2(v84.clone(), string("; "), ());
+                    ()
+                };
+                let v266: () = {
+                    Math::closure2(v84.clone(), string("expected"), ());
+                    ()
+                };
+                let v283: () = {
+                    Math::closure2(v84.clone(), string(" = "), ());
+                    ()
+                };
+                let v303: () = {
+                    Math::closure2(v84.clone(), sprintf!("{:+.6}", 0.0001_f64), ());
+                    ()
+                };
+                let v322: () = {
+                    Math::closure2(v84.clone(), string(" }"), ());
+                    ()
+                };
+                let v328: string = v84.l0.get().clone();
+                let v332: () = {
+                    Math::closure3(v328.clone(), ());
                     ()
                 };
                 if (v82) == false {
-                    panic!("{}", v88,);
+                    panic!("{}", v328,);
                 }
                 {
-                    let v97: f64 = v74.im;
-                    let v98: f64 = -v97;
-                    let v100: f64 = if (v97) >= (v98) { v97 } else { v98 };
-                    let v101: bool = (v100) < 0.0001_f64;
-                    let v103: bool = if v101 { true } else { Math::method18(v101) };
-                    let v107: string = sprintf!(
-                        "{} / actual: {:?} / expected: {:?}",
-                        string("__assert_lt"),
-                        v100,
-                        0.0001_f64
-                    );
-                    let v112: () = {
-                        Math::closure2(v107.clone(), ());
+                    let v336: f64 = v74.im;
+                    let v337: f64 = -v336;
+                    let v339: f64 = if (v336) >= (v337) { v336 } else { v337 };
+                    let v340: bool = (v339) < 0.0001_f64;
+                    let v342: bool = if v340 { true } else { Math::method18(v340) };
+                    let v344: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                        l0: MutCell::new(Math::method19()),
+                    });
+                    let v356: () = {
+                        Math::closure2(v344.clone(), string("{ "), ());
                         ()
                     };
-                    if (v103) == false {
-                        panic!("{}", v107,);
+                    let v373: () = {
+                        Math::closure2(v344.clone(), string("name"), ());
+                        ()
+                    };
+                    let v390: () = {
+                        Math::closure2(v344.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v407: () = {
+                        Math::closure2(v344.clone(), string("__assert_lt"), ());
+                        ()
+                    };
+                    let v424: () = {
+                        Math::closure2(v344.clone(), string("; "), ());
+                        ()
+                    };
+                    let v441: () = {
+                        Math::closure2(v344.clone(), string("actual"), ());
+                        ()
+                    };
+                    let v458: () = {
+                        Math::closure2(v344.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v478: () = {
+                        Math::closure2(v344.clone(), sprintf!("{:+.6}", v339), ());
+                        ()
+                    };
+                    let v495: () = {
+                        Math::closure2(v344.clone(), string("; "), ());
+                        ()
+                    };
+                    let v512: () = {
+                        Math::closure2(v344.clone(), string("expected"), ());
+                        ()
+                    };
+                    let v529: () = {
+                        Math::closure2(v344.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v549: () = {
+                        Math::closure2(v344.clone(), sprintf!("{:+.6}", 0.0001_f64), ());
+                        ()
+                    };
+                    let v566: () = {
+                        Math::closure2(v344.clone(), string(" }"), ());
+                        ()
+                    };
+                    let v572: string = v344.l0.get().clone();
+                    let v576: () = {
+                        Math::closure3(v572.clone(), ());
+                        ()
+                    };
+                    if (v342) == false {
+                        panic!("{}", v572,);
                     }
                     {
-                        let v115: i32 = (v17) + 1_i32;
-                        v15.l0.set(v115);
+                        let v579: i32 = (v17) + 1_i32;
+                        v15.l0.set(v579);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method26() {
+        pub fn method27() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method27(py);
+                Math::method28(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1371,7 +1818,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method29(v0_1: pyo3::Python) {
+        pub fn method30(v0_1: pyo3::Python) {
             let v1_1: Array<f64> = new_array(&[
                 2.0_f64, 3.0_f64, 4.0_f64, 5.0_f64, 10.0_f64, 20.0_f64, 50.0_f64,
             ]);
@@ -1405,52 +1852,152 @@ mod module_728458a3 {
                 let v66: f64 = v64.clone().re;
                 let v67: bool = (v66) > 0.0_f64;
                 let v69: bool = if v67 { true } else { Math::method18(v67) };
-                let v75: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_gt"),
-                    v66,
-                    0.0_f64
-                );
-                let v80: () = {
-                    Math::closure2(v75.clone(), ());
+                let v71: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v85: () = {
+                    Math::closure2(v71.clone(), string("{ "), ());
+                    ()
+                };
+                let v104: () = {
+                    Math::closure2(v71.clone(), string("name"), ());
+                    ()
+                };
+                let v123: () = {
+                    Math::closure2(v71.clone(), string(" = "), ());
+                    ()
+                };
+                let v142: () = {
+                    Math::closure2(v71.clone(), string("__assert_gt"), ());
+                    ()
+                };
+                let v161: () = {
+                    Math::closure2(v71.clone(), string("; "), ());
+                    ()
+                };
+                let v180: () = {
+                    Math::closure2(v71.clone(), string("actual"), ());
+                    ()
+                };
+                let v197: () = {
+                    Math::closure2(v71.clone(), string(" = "), ());
+                    ()
+                };
+                let v217: () = {
+                    Math::closure2(v71.clone(), sprintf!("{:+.6}", v66), ());
+                    ()
+                };
+                let v234: () = {
+                    Math::closure2(v71.clone(), string("; "), ());
+                    ()
+                };
+                let v253: () = {
+                    Math::closure2(v71.clone(), string("expected"), ());
+                    ()
+                };
+                let v270: () = {
+                    Math::closure2(v71.clone(), string(" = "), ());
+                    ()
+                };
+                let v290: () = {
+                    Math::closure2(v71.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                    ()
+                };
+                let v309: () = {
+                    Math::closure2(v71.clone(), string(" }"), ());
+                    ()
+                };
+                let v315: string = v71.l0.get().clone();
+                let v319: () = {
+                    Math::closure3(v315.clone(), ());
                     ()
                 };
                 if (v69) == false {
-                    panic!("{}", v75,);
+                    panic!("{}", v315,);
                 }
                 {
-                    let v84: f64 = v64.im;
-                    let v85: bool = (v84) == 0.0_f64;
-                    let v87: bool = if v85 { true } else { Math::method18(v85) };
-                    let v93: string = sprintf!(
-                        "{} / actual: {:?} / expected: {:?}",
-                        string("__assert_eq"),
-                        v84,
-                        0.0_f64
-                    );
-                    let v98: () = {
-                        Math::closure2(v93.clone(), ());
+                    let v323: f64 = v64.im;
+                    let v324: bool = (v323) == 0.0_f64;
+                    let v326: bool = if v324 { true } else { Math::method18(v324) };
+                    let v328: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                        l0: MutCell::new(Math::method19()),
+                    });
+                    let v340: () = {
+                        Math::closure2(v328.clone(), string("{ "), ());
                         ()
                     };
-                    if (v87) == false {
-                        panic!("{}", v93,);
+                    let v357: () = {
+                        Math::closure2(v328.clone(), string("name"), ());
+                        ()
+                    };
+                    let v374: () = {
+                        Math::closure2(v328.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v393: () = {
+                        Math::closure2(v328.clone(), string("__assert_eq"), ());
+                        ()
+                    };
+                    let v410: () = {
+                        Math::closure2(v328.clone(), string("; "), ());
+                        ()
+                    };
+                    let v427: () = {
+                        Math::closure2(v328.clone(), string("actual"), ());
+                        ()
+                    };
+                    let v444: () = {
+                        Math::closure2(v328.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v464: () = {
+                        Math::closure2(v328.clone(), sprintf!("{:+.6}", v323), ());
+                        ()
+                    };
+                    let v481: () = {
+                        Math::closure2(v328.clone(), string("; "), ());
+                        ()
+                    };
+                    let v498: () = {
+                        Math::closure2(v328.clone(), string("expected"), ());
+                        ()
+                    };
+                    let v515: () = {
+                        Math::closure2(v328.clone(), string(" = "), ());
+                        ()
+                    };
+                    let v535: () = {
+                        Math::closure2(v328.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                        ()
+                    };
+                    let v552: () = {
+                        Math::closure2(v328.clone(), string(" }"), ());
+                        ()
+                    };
+                    let v558: string = v328.l0.get().clone();
+                    let v562: () = {
+                        Math::closure3(v558.clone(), ());
+                        ()
+                    };
+                    if (v326) == false {
+                        panic!("{}", v558,);
                     }
                     {
-                        let v101: i32 = (v5) + 1_i32;
-                        v3.l0.set(v101);
+                        let v565: i32 = (v5) + 1_i32;
+                        v3.l0.set(v565);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method28() {
+        pub fn method29() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method29(py);
+                Math::method30(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1476,7 +2023,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method31(v0_1: pyo3::Python) {
+        pub fn method32(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(1.0_f64, 0.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1500,45 +2047,145 @@ mod module_728458a3 {
             let v60: f64 = v58.clone().re;
             let v61: bool = (v60) == (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v69: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_eq"),
-                v60,
-                f64::INFINITY
-            );
-            let v74: () = {
-                Math::closure2(v69.clone(), ());
+            let v65: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                l0: MutCell::new(Math::method19()),
+            });
+            let v79: () = {
+                Math::closure2(v65.clone(), string("{ "), ());
+                ()
+            };
+            let v98: () = {
+                Math::closure2(v65.clone(), string("name"), ());
+                ()
+            };
+            let v117: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v136: () = {
+                Math::closure2(v65.clone(), string("__assert_eq"), ());
+                ()
+            };
+            let v155: () = {
+                Math::closure2(v65.clone(), string("; "), ());
+                ()
+            };
+            let v174: () = {
+                Math::closure2(v65.clone(), string("actual"), ());
+                ()
+            };
+            let v191: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v211: () = {
+                Math::closure2(v65.clone(), sprintf!("{:+.6}", v60), ());
+                ()
+            };
+            let v228: () = {
+                Math::closure2(v65.clone(), string("; "), ());
+                ()
+            };
+            let v247: () = {
+                Math::closure2(v65.clone(), string("expected"), ());
+                ()
+            };
+            let v264: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v284: () = {
+                Math::closure2(v65.clone(), sprintf!("{:+.6}", f64::INFINITY), ());
+                ()
+            };
+            let v303: () = {
+                Math::closure2(v65.clone(), string(" }"), ());
+                ()
+            };
+            let v309: string = v65.l0.get().clone();
+            let v313: () = {
+                Math::closure3(v309.clone(), ());
                 ()
             };
             if (v63) == false {
-                panic!("{}", v69,);
+                panic!("{}", v309,);
             }
             {
-                let v78: f64 = v58.im;
-                let v79: bool = (v78) == 0.0_f64;
-                let v81: bool = if v79 { true } else { Math::method18(v79) };
-                let v85: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_eq"),
-                    v78,
-                    0.0_f64
-                );
-                let v90: () = {
-                    Math::closure2(v85.clone(), ());
+                let v317: f64 = v58.im;
+                let v318: bool = (v317) == 0.0_f64;
+                let v320: bool = if v318 { true } else { Math::method18(v318) };
+                let v322: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v334: () = {
+                    Math::closure2(v322.clone(), string("{ "), ());
                     ()
                 };
-                if (v81) == false {
-                    panic!("{}", v85,);
+                let v351: () = {
+                    Math::closure2(v322.clone(), string("name"), ());
+                    ()
+                };
+                let v368: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v385: () = {
+                    Math::closure2(v322.clone(), string("__assert_eq"), ());
+                    ()
+                };
+                let v402: () = {
+                    Math::closure2(v322.clone(), string("; "), ());
+                    ()
+                };
+                let v419: () = {
+                    Math::closure2(v322.clone(), string("actual"), ());
+                    ()
+                };
+                let v436: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v456: () = {
+                    Math::closure2(v322.clone(), sprintf!("{:+.6}", v317), ());
+                    ()
+                };
+                let v473: () = {
+                    Math::closure2(v322.clone(), string("; "), ());
+                    ()
+                };
+                let v490: () = {
+                    Math::closure2(v322.clone(), string("expected"), ());
+                    ()
+                };
+                let v507: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v527: () = {
+                    Math::closure2(v322.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                    ()
+                };
+                let v544: () = {
+                    Math::closure2(v322.clone(), string(" }"), ());
+                    ()
+                };
+                let v550: string = v322.l0.get().clone();
+                let v554: () = {
+                    Math::closure3(v550.clone(), ());
+                    ()
+                };
+                if (v320) == false {
+                    panic!("{}", v550,);
                 }
             }
         }
-        pub fn method30() {
+        pub fn method31() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method31(py);
+                Math::method32(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1564,7 +2211,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method33(v0_1: pyo3::Python) {
+        pub fn method34(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, 10.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1612,46 +2259,146 @@ mod module_728458a3 {
             let v127: f64 = v123.clone().re;
             let v128: bool = (v125) == (v127);
             let v130: bool = if v128 { true } else { Math::method18(v128) };
-            let v136: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_eq"),
-                v125,
-                v127
-            );
-            let v141: () = {
-                Math::closure2(v136.clone(), ());
+            let v132: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                l0: MutCell::new(Math::method19()),
+            });
+            let v146: () = {
+                Math::closure2(v132.clone(), string("{ "), ());
+                ()
+            };
+            let v165: () = {
+                Math::closure2(v132.clone(), string("name"), ());
+                ()
+            };
+            let v184: () = {
+                Math::closure2(v132.clone(), string(" = "), ());
+                ()
+            };
+            let v203: () = {
+                Math::closure2(v132.clone(), string("__assert_eq"), ());
+                ()
+            };
+            let v222: () = {
+                Math::closure2(v132.clone(), string("; "), ());
+                ()
+            };
+            let v241: () = {
+                Math::closure2(v132.clone(), string("actual"), ());
+                ()
+            };
+            let v258: () = {
+                Math::closure2(v132.clone(), string(" = "), ());
+                ()
+            };
+            let v278: () = {
+                Math::closure2(v132.clone(), sprintf!("{:+.6}", v125), ());
+                ()
+            };
+            let v295: () = {
+                Math::closure2(v132.clone(), string("; "), ());
+                ()
+            };
+            let v314: () = {
+                Math::closure2(v132.clone(), string("expected"), ());
+                ()
+            };
+            let v331: () = {
+                Math::closure2(v132.clone(), string(" = "), ());
+                ()
+            };
+            let v351: () = {
+                Math::closure2(v132.clone(), sprintf!("{:+.6}", v127), ());
+                ()
+            };
+            let v370: () = {
+                Math::closure2(v132.clone(), string(" }"), ());
+                ()
+            };
+            let v376: string = v132.l0.get().clone();
+            let v380: () = {
+                Math::closure3(v376.clone(), ());
                 ()
             };
             if (v130) == false {
-                panic!("{}", v136,);
+                panic!("{}", v376,);
             }
             {
-                let v145: f64 = v58.im;
-                let v147: f64 = v123.im;
-                let v148: bool = (v145) == (v147);
-                let v150: bool = if v148 { true } else { Math::method18(v148) };
-                let v154: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_eq"),
-                    v145,
-                    v147
-                );
-                let v159: () = {
-                    Math::closure2(v154.clone(), ());
+                let v384: f64 = v58.im;
+                let v386: f64 = v123.im;
+                let v387: bool = (v384) == (v386);
+                let v389: bool = if v387 { true } else { Math::method18(v387) };
+                let v391: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v403: () = {
+                    Math::closure2(v391.clone(), string("{ "), ());
                     ()
                 };
-                if (v150) == false {
-                    panic!("{}", v154,);
+                let v420: () = {
+                    Math::closure2(v391.clone(), string("name"), ());
+                    ()
+                };
+                let v437: () = {
+                    Math::closure2(v391.clone(), string(" = "), ());
+                    ()
+                };
+                let v454: () = {
+                    Math::closure2(v391.clone(), string("__assert_eq"), ());
+                    ()
+                };
+                let v471: () = {
+                    Math::closure2(v391.clone(), string("; "), ());
+                    ()
+                };
+                let v488: () = {
+                    Math::closure2(v391.clone(), string("actual"), ());
+                    ()
+                };
+                let v505: () = {
+                    Math::closure2(v391.clone(), string(" = "), ());
+                    ()
+                };
+                let v525: () = {
+                    Math::closure2(v391.clone(), sprintf!("{:+.6}", v384), ());
+                    ()
+                };
+                let v542: () = {
+                    Math::closure2(v391.clone(), string("; "), ());
+                    ()
+                };
+                let v559: () = {
+                    Math::closure2(v391.clone(), string("expected"), ());
+                    ()
+                };
+                let v576: () = {
+                    Math::closure2(v391.clone(), string(" = "), ());
+                    ()
+                };
+                let v596: () = {
+                    Math::closure2(v391.clone(), sprintf!("{:+.6}", v386), ());
+                    ()
+                };
+                let v613: () = {
+                    Math::closure2(v391.clone(), string(" }"), ());
+                    ()
+                };
+                let v619: string = v391.l0.get().clone();
+                let v623: () = {
+                    Math::closure3(v619.clone(), ());
+                    ()
+                };
+                if (v389) == false {
+                    panic!("{}", v619,);
                 }
             }
         }
-        pub fn method32() {
+        pub fn method33() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method33(py);
+                Math::method34(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1677,7 +2424,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method35(v0_1: pyo3::Python) {
+        pub fn method36(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(0.01_f64, 0.01_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1701,45 +2448,145 @@ mod module_728458a3 {
             let v60: f64 = v58.clone().re;
             let v61: bool = (v60) < (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v69: string = sprintf!(
-                "{} / actual: {:?} / expected: {:?}",
-                string("__assert_lt"),
-                v60,
-                f64::INFINITY
-            );
-            let v74: () = {
-                Math::closure2(v69.clone(), ());
+            let v65: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                l0: MutCell::new(Math::method19()),
+            });
+            let v79: () = {
+                Math::closure2(v65.clone(), string("{ "), ());
+                ()
+            };
+            let v98: () = {
+                Math::closure2(v65.clone(), string("name"), ());
+                ()
+            };
+            let v117: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v136: () = {
+                Math::closure2(v65.clone(), string("__assert_lt"), ());
+                ()
+            };
+            let v155: () = {
+                Math::closure2(v65.clone(), string("; "), ());
+                ()
+            };
+            let v174: () = {
+                Math::closure2(v65.clone(), string("actual"), ());
+                ()
+            };
+            let v191: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v211: () = {
+                Math::closure2(v65.clone(), sprintf!("{:+.6}", v60), ());
+                ()
+            };
+            let v228: () = {
+                Math::closure2(v65.clone(), string("; "), ());
+                ()
+            };
+            let v247: () = {
+                Math::closure2(v65.clone(), string("expected"), ());
+                ()
+            };
+            let v264: () = {
+                Math::closure2(v65.clone(), string(" = "), ());
+                ()
+            };
+            let v284: () = {
+                Math::closure2(v65.clone(), sprintf!("{:+.6}", f64::INFINITY), ());
+                ()
+            };
+            let v303: () = {
+                Math::closure2(v65.clone(), string(" }"), ());
+                ()
+            };
+            let v309: string = v65.l0.get().clone();
+            let v313: () = {
+                Math::closure3(v309.clone(), ());
                 ()
             };
             if (v63) == false {
-                panic!("{}", v69,);
+                panic!("{}", v309,);
             }
             {
-                let v78: f64 = v58.im;
-                let v79: bool = (v78) < (f64::INFINITY);
-                let v81: bool = if v79 { true } else { Math::method18(v79) };
-                let v85: string = sprintf!(
-                    "{} / actual: {:?} / expected: {:?}",
-                    string("__assert_lt"),
-                    v78,
-                    f64::INFINITY
-                );
-                let v90: () = {
-                    Math::closure2(v85.clone(), ());
+                let v317: f64 = v58.im;
+                let v318: bool = (v317) < (f64::INFINITY);
+                let v320: bool = if v318 { true } else { Math::method18(v318) };
+                let v322: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                    l0: MutCell::new(Math::method19()),
+                });
+                let v334: () = {
+                    Math::closure2(v322.clone(), string("{ "), ());
                     ()
                 };
-                if (v81) == false {
-                    panic!("{}", v85,);
+                let v351: () = {
+                    Math::closure2(v322.clone(), string("name"), ());
+                    ()
+                };
+                let v368: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v385: () = {
+                    Math::closure2(v322.clone(), string("__assert_lt"), ());
+                    ()
+                };
+                let v402: () = {
+                    Math::closure2(v322.clone(), string("; "), ());
+                    ()
+                };
+                let v419: () = {
+                    Math::closure2(v322.clone(), string("actual"), ());
+                    ()
+                };
+                let v436: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v456: () = {
+                    Math::closure2(v322.clone(), sprintf!("{:+.6}", v317), ());
+                    ()
+                };
+                let v473: () = {
+                    Math::closure2(v322.clone(), string("; "), ());
+                    ()
+                };
+                let v490: () = {
+                    Math::closure2(v322.clone(), string("expected"), ());
+                    ()
+                };
+                let v507: () = {
+                    Math::closure2(v322.clone(), string(" = "), ());
+                    ()
+                };
+                let v527: () = {
+                    Math::closure2(v322.clone(), sprintf!("{:+.6}", f64::INFINITY), ());
+                    ()
+                };
+                let v544: () = {
+                    Math::closure2(v322.clone(), string(" }"), ());
+                    ()
+                };
+                let v550: string = v322.l0.get().clone();
+                let v554: () = {
+                    Math::closure3(v550.clone(), ());
+                    ()
+                };
+                if (v320) == false {
+                    panic!("{}", v550,);
                 }
             }
         }
-        pub fn method34() {
+        pub fn method35() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method35(py);
+                Math::method36(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1765,7 +2612,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method38() -> LrcPtr<Math::UH0> {
+        pub fn method39() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(
                 10.0_f64,
                 LrcPtr::new(Math::UH0::UH0_1(
@@ -1798,11 +2645,11 @@ mod module_728458a3 {
                 )),
             ))
         }
-        pub fn method39(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+        pub fn method40(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
-            '_method39: loop {
-                break '_method39 (match v1_1.get().clone().as_ref() {
+            '_method40: loop {
+                break '_method40 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
@@ -1836,35 +2683,135 @@ mod module_728458a3 {
                         let v63: f64 = v61.clone().re;
                         let v65: bool = (v63) != 0.0_f64;
                         let v69: bool = if v65 { true } else { Math::method18(v65) };
-                        let v75: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("__assert_ne"),
-                            v63,
-                            0.0_f64
-                        );
-                        let v80: () = {
-                            Math::closure2(v75.clone(), ());
+                        let v71: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                            l0: MutCell::new(Math::method19()),
+                        });
+                        let v85: () = {
+                            Math::closure2(v71.clone(), string("{ "), ());
+                            ()
+                        };
+                        let v104: () = {
+                            Math::closure2(v71.clone(), string("name"), ());
+                            ()
+                        };
+                        let v123: () = {
+                            Math::closure2(v71.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v142: () = {
+                            Math::closure2(v71.clone(), string("__assert_ne"), ());
+                            ()
+                        };
+                        let v161: () = {
+                            Math::closure2(v71.clone(), string("; "), ());
+                            ()
+                        };
+                        let v180: () = {
+                            Math::closure2(v71.clone(), string("actual"), ());
+                            ()
+                        };
+                        let v197: () = {
+                            Math::closure2(v71.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v217: () = {
+                            Math::closure2(v71.clone(), sprintf!("{:+.6}", v63), ());
+                            ()
+                        };
+                        let v234: () = {
+                            Math::closure2(v71.clone(), string("; "), ());
+                            ()
+                        };
+                        let v253: () = {
+                            Math::closure2(v71.clone(), string("expected"), ());
+                            ()
+                        };
+                        let v270: () = {
+                            Math::closure2(v71.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v290: () = {
+                            Math::closure2(v71.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                            ()
+                        };
+                        let v309: () = {
+                            Math::closure2(v71.clone(), string(" }"), ());
+                            ()
+                        };
+                        let v315: string = v71.l0.get().clone();
+                        let v319: () = {
+                            Math::closure3(v315.clone(), ());
                             ()
                         };
                         if (v69) == false {
-                            panic!("{}", v75,);
+                            panic!("{}", v315,);
                         }
                         {
-                            let v84: f64 = v61.im;
-                            let v86: bool = (v84) != 0.0_f64;
-                            let v90: bool = if v86 { true } else { Math::method18(v86) };
-                            let v94: string = sprintf!(
-                                "{} / actual: {:?} / expected: {:?}",
-                                string("__assert_ne"),
-                                v84,
-                                0.0_f64
-                            );
-                            let v99: () = {
-                                Math::closure2(v94.clone(), ());
+                            let v323: f64 = v61.im;
+                            let v325: bool = (v323) != 0.0_f64;
+                            let v329: bool = if v325 { true } else { Math::method18(v325) };
+                            let v331: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                                l0: MutCell::new(Math::method19()),
+                            });
+                            let v343: () = {
+                                Math::closure2(v331.clone(), string("{ "), ());
                                 ()
                             };
-                            if (v90) == false {
-                                panic!("{}", v94,);
+                            let v360: () = {
+                                Math::closure2(v331.clone(), string("name"), ());
+                                ()
+                            };
+                            let v377: () = {
+                                Math::closure2(v331.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v394: () = {
+                                Math::closure2(v331.clone(), string("__assert_ne"), ());
+                                ()
+                            };
+                            let v411: () = {
+                                Math::closure2(v331.clone(), string("; "), ());
+                                ()
+                            };
+                            let v428: () = {
+                                Math::closure2(v331.clone(), string("actual"), ());
+                                ()
+                            };
+                            let v445: () = {
+                                Math::closure2(v331.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v465: () = {
+                                Math::closure2(v331.clone(), sprintf!("{:+.6}", v323), ());
+                                ()
+                            };
+                            let v482: () = {
+                                Math::closure2(v331.clone(), string("; "), ());
+                                ()
+                            };
+                            let v499: () = {
+                                Math::closure2(v331.clone(), string("expected"), ());
+                                ()
+                            };
+                            let v516: () = {
+                                Math::closure2(v331.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v536: () = {
+                                Math::closure2(v331.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                                ()
+                            };
+                            let v553: () = {
+                                Math::closure2(v331.clone(), string(" }"), ());
+                                ()
+                            };
+                            let v559: string = v331.l0.get().clone();
+                            let v563: () = {
+                                Math::closure3(v559.clone(), ());
+                                ()
+                            };
+                            if (v329) == false {
+                                panic!("{}", v559,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1876,23 +2823,23 @@ mod module_728458a3 {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method39;
+                                continue '_method40;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method37(v0_1: pyo3::Python) {
-            Math::method39(v0_1, Math::method38());
+        pub fn method38(v0_1: pyo3::Python) {
+            Math::method40(v0_1, Math::method39());
         }
-        pub fn method36() {
+        pub fn method37() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method37(py);
+                Math::method38(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1918,7 +2865,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method42() -> LrcPtr<Math::UH1> {
+        pub fn method43() -> LrcPtr<Math::UH1> {
             LrcPtr::new(Math::UH1::UH1_1(
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 LrcPtr::new(Math::UH1::UH1_1(
@@ -1936,11 +2883,11 @@ mod module_728458a3 {
                 )),
             ))
         }
-        pub fn method43(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+        pub fn method44(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
-            '_method43: loop {
-                break '_method43 (match v1_1.get().clone().as_ref() {
+            '_method44: loop {
+                break '_method44 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
                     Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
                         let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
@@ -1972,35 +2919,135 @@ mod module_728458a3 {
                         let v61: f64 = v59.clone().re;
                         let v63: bool = (v61) != 0.0_f64;
                         let v67: bool = if v63 { true } else { Math::method18(v63) };
-                        let v73: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("__assert_ne"),
-                            v61,
-                            0.0_f64
-                        );
-                        let v78: () = {
-                            Math::closure2(v73.clone(), ());
+                        let v69: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                            l0: MutCell::new(Math::method19()),
+                        });
+                        let v83: () = {
+                            Math::closure2(v69.clone(), string("{ "), ());
+                            ()
+                        };
+                        let v102: () = {
+                            Math::closure2(v69.clone(), string("name"), ());
+                            ()
+                        };
+                        let v121: () = {
+                            Math::closure2(v69.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v140: () = {
+                            Math::closure2(v69.clone(), string("__assert_ne"), ());
+                            ()
+                        };
+                        let v159: () = {
+                            Math::closure2(v69.clone(), string("; "), ());
+                            ()
+                        };
+                        let v178: () = {
+                            Math::closure2(v69.clone(), string("actual"), ());
+                            ()
+                        };
+                        let v195: () = {
+                            Math::closure2(v69.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v215: () = {
+                            Math::closure2(v69.clone(), sprintf!("{:+.6}", v61), ());
+                            ()
+                        };
+                        let v232: () = {
+                            Math::closure2(v69.clone(), string("; "), ());
+                            ()
+                        };
+                        let v251: () = {
+                            Math::closure2(v69.clone(), string("expected"), ());
+                            ()
+                        };
+                        let v268: () = {
+                            Math::closure2(v69.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v288: () = {
+                            Math::closure2(v69.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                            ()
+                        };
+                        let v307: () = {
+                            Math::closure2(v69.clone(), string(" }"), ());
+                            ()
+                        };
+                        let v313: string = v69.l0.get().clone();
+                        let v317: () = {
+                            Math::closure3(v313.clone(), ());
                             ()
                         };
                         if (v67) == false {
-                            panic!("{}", v73,);
+                            panic!("{}", v313,);
                         }
                         {
-                            let v82: f64 = v59.im;
-                            let v84: bool = (v82) != 0.0_f64;
-                            let v88: bool = if v84 { true } else { Math::method18(v84) };
-                            let v92: string = sprintf!(
-                                "{} / actual: {:?} / expected: {:?}",
-                                string("__assert_ne"),
-                                v82,
-                                0.0_f64
-                            );
-                            let v97: () = {
-                                Math::closure2(v92.clone(), ());
+                            let v321: f64 = v59.im;
+                            let v323: bool = (v321) != 0.0_f64;
+                            let v327: bool = if v323 { true } else { Math::method18(v323) };
+                            let v329: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                                l0: MutCell::new(Math::method19()),
+                            });
+                            let v341: () = {
+                                Math::closure2(v329.clone(), string("{ "), ());
                                 ()
                             };
-                            if (v88) == false {
-                                panic!("{}", v92,);
+                            let v358: () = {
+                                Math::closure2(v329.clone(), string("name"), ());
+                                ()
+                            };
+                            let v375: () = {
+                                Math::closure2(v329.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v392: () = {
+                                Math::closure2(v329.clone(), string("__assert_ne"), ());
+                                ()
+                            };
+                            let v409: () = {
+                                Math::closure2(v329.clone(), string("; "), ());
+                                ()
+                            };
+                            let v426: () = {
+                                Math::closure2(v329.clone(), string("actual"), ());
+                                ()
+                            };
+                            let v443: () = {
+                                Math::closure2(v329.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v463: () = {
+                                Math::closure2(v329.clone(), sprintf!("{:+.6}", v321), ());
+                                ()
+                            };
+                            let v480: () = {
+                                Math::closure2(v329.clone(), string("; "), ());
+                                ()
+                            };
+                            let v497: () = {
+                                Math::closure2(v329.clone(), string("expected"), ());
+                                ()
+                            };
+                            let v514: () = {
+                                Math::closure2(v329.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v534: () = {
+                                Math::closure2(v329.clone(), sprintf!("{:+.6}", 0.0_f64), ());
+                                ()
+                            };
+                            let v551: () = {
+                                Math::closure2(v329.clone(), string(" }"), ());
+                                ()
+                            };
+                            let v557: string = v329.l0.get().clone();
+                            let v561: () = {
+                                Math::closure3(v557.clone(), ());
+                                ()
+                            };
+                            if (v327) == false {
+                                panic!("{}", v557,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2012,23 +3059,23 @@ mod module_728458a3 {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method43;
+                                continue '_method44;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method41(v0_1: pyo3::Python) {
-            Math::method43(v0_1, Math::method42());
+        pub fn method42(v0_1: pyo3::Python) {
+            Math::method44(v0_1, Math::method43());
         }
-        pub fn method40() {
+        pub fn method41() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method41(py);
+                Math::method42(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2054,7 +3101,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method46() -> LrcPtr<Math::UH1> {
+        pub fn method47() -> LrcPtr<Math::UH1> {
             LrcPtr::new(Math::UH1::UH1_1(
                 num_complex::Complex::new(3.0_f64, 4.0_f64),
                 LrcPtr::new(Math::UH1::UH1_1(
@@ -2069,11 +3116,11 @@ mod module_728458a3 {
                 )),
             ))
         }
-        pub fn method47(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+        pub fn method48(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
-            '_method47: loop {
-                break '_method47 (match v1_1.get().clone().as_ref() {
+            '_method48: loop {
+                break '_method48 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
                     Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
                         let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
@@ -2176,37 +3223,137 @@ mod module_728458a3 {
                         let v220: f64 = if (v217) >= (v218) { v217 } else { v218 };
                         let v221: bool = (v220) < 0.0001_f64;
                         let v223: bool = if v221 { true } else { Math::method18(v221) };
-                        let v229: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("__assert_lt"),
-                            v220,
-                            0.0001_f64
-                        );
-                        let v234: () = {
-                            Math::closure2(v229.clone(), ());
+                        let v225: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                            l0: MutCell::new(Math::method19()),
+                        });
+                        let v239: () = {
+                            Math::closure2(v225.clone(), string("{ "), ());
+                            ()
+                        };
+                        let v258: () = {
+                            Math::closure2(v225.clone(), string("name"), ());
+                            ()
+                        };
+                        let v277: () = {
+                            Math::closure2(v225.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v296: () = {
+                            Math::closure2(v225.clone(), string("__assert_lt"), ());
+                            ()
+                        };
+                        let v315: () = {
+                            Math::closure2(v225.clone(), string("; "), ());
+                            ()
+                        };
+                        let v334: () = {
+                            Math::closure2(v225.clone(), string("actual"), ());
+                            ()
+                        };
+                        let v351: () = {
+                            Math::closure2(v225.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v371: () = {
+                            Math::closure2(v225.clone(), sprintf!("{:+.6}", v220), ());
+                            ()
+                        };
+                        let v388: () = {
+                            Math::closure2(v225.clone(), string("; "), ());
+                            ()
+                        };
+                        let v407: () = {
+                            Math::closure2(v225.clone(), string("expected"), ());
+                            ()
+                        };
+                        let v424: () = {
+                            Math::closure2(v225.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v444: () = {
+                            Math::closure2(v225.clone(), sprintf!("{:+.6}", 0.0001_f64), ());
+                            ()
+                        };
+                        let v463: () = {
+                            Math::closure2(v225.clone(), string(" }"), ());
+                            ()
+                        };
+                        let v469: string = v225.l0.get().clone();
+                        let v473: () = {
+                            Math::closure3(v469.clone(), ());
                             ()
                         };
                         if (v223) == false {
-                            panic!("{}", v229,);
+                            panic!("{}", v469,);
                         }
                         {
-                            let v241: f64 = (v59.im) - (v212.im);
-                            let v242: f64 = -v241;
-                            let v244: f64 = if (v241) >= (v242) { v241 } else { v242 };
-                            let v245: bool = (v244) < 0.0001_f64;
-                            let v247: bool = if v245 { true } else { Math::method18(v245) };
-                            let v251: string = sprintf!(
-                                "{} / actual: {:?} / expected: {:?}",
-                                string("__assert_lt"),
-                                v244,
-                                0.0001_f64
-                            );
-                            let v256: () = {
-                                Math::closure2(v251.clone(), ());
+                            let v480: f64 = (v59.im) - (v212.im);
+                            let v481: f64 = -v480;
+                            let v483: f64 = if (v480) >= (v481) { v480 } else { v481 };
+                            let v484: bool = (v483) < 0.0001_f64;
+                            let v486: bool = if v484 { true } else { Math::method18(v484) };
+                            let v488: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                                l0: MutCell::new(Math::method19()),
+                            });
+                            let v500: () = {
+                                Math::closure2(v488.clone(), string("{ "), ());
                                 ()
                             };
-                            if (v247) == false {
-                                panic!("{}", v251,);
+                            let v517: () = {
+                                Math::closure2(v488.clone(), string("name"), ());
+                                ()
+                            };
+                            let v534: () = {
+                                Math::closure2(v488.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v551: () = {
+                                Math::closure2(v488.clone(), string("__assert_lt"), ());
+                                ()
+                            };
+                            let v568: () = {
+                                Math::closure2(v488.clone(), string("; "), ());
+                                ()
+                            };
+                            let v585: () = {
+                                Math::closure2(v488.clone(), string("actual"), ());
+                                ()
+                            };
+                            let v602: () = {
+                                Math::closure2(v488.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v622: () = {
+                                Math::closure2(v488.clone(), sprintf!("{:+.6}", v483), ());
+                                ()
+                            };
+                            let v639: () = {
+                                Math::closure2(v488.clone(), string("; "), ());
+                                ()
+                            };
+                            let v656: () = {
+                                Math::closure2(v488.clone(), string("expected"), ());
+                                ()
+                            };
+                            let v673: () = {
+                                Math::closure2(v488.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v693: () = {
+                                Math::closure2(v488.clone(), sprintf!("{:+.6}", 0.0001_f64), ());
+                                ()
+                            };
+                            let v710: () = {
+                                Math::closure2(v488.clone(), string(" }"), ());
+                                ()
+                            };
+                            let v716: string = v488.l0.get().clone();
+                            let v720: () = {
+                                Math::closure3(v716.clone(), ());
+                                ()
+                            };
+                            if (v486) == false {
+                                panic!("{}", v716,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2218,23 +3365,23 @@ mod module_728458a3 {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method47;
+                                continue '_method48;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method45(v0_1: pyo3::Python) {
-            Math::method47(v0_1, Math::method46());
+        pub fn method46(v0_1: pyo3::Python) {
+            Math::method48(v0_1, Math::method47());
         }
-        pub fn method44() {
+        pub fn method45() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method45(py);
+                Math::method46(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2260,7 +3407,7 @@ mod module_728458a3 {
                 ()
             }
         }
-        pub fn method50() -> LrcPtr<Math::UH0> {
+        pub fn method51() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(
                 2.0_f64,
                 LrcPtr::new(Math::UH0::UH0_1(
@@ -2284,7 +3431,7 @@ mod module_728458a3 {
                 )),
             ))
         }
-        pub fn method51() -> LrcPtr<Math::UH0> {
+        pub fn method52() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(2.0_f64,
                                          LrcPtr::new(Math::UH0::UH0_1(3.0_f64,
                                                                       LrcPtr::new(Math::UH0::UH0_1(5.0_f64,
@@ -2307,12 +3454,12 @@ mod module_728458a3 {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(71.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method53(v0_1: f64, v1_1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
+        pub fn method54(v0_1: f64, v1_1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
             let v0_1: MutCell<f64> = MutCell::new(v0_1);
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<f64> = MutCell::new(v2);
-            '_method53: loop {
-                break '_method53 (match v1_1.get().clone().as_ref() {
+            '_method54: loop {
+                break '_method54 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => v2.get().clone(),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: f64 = -v0_1.get().clone();
@@ -2333,18 +3480,18 @@ mod module_728458a3 {
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2.set(v2_temp);
-                            continue '_method53;
+                            continue '_method54;
                         }
                     }
                 });
             }
         }
-        pub fn method52(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
+        pub fn method53(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v2.clone());
-            '_method52: loop {
-                break '_method52 (match v2.get().clone().as_ref() {
+            '_method53: loop {
+                break '_method53 (match v2.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v2_1_0, v2_1_1) => {
                         let v3: f64 = match v2.get().clone().as_ref() {
@@ -2352,7 +3499,7 @@ mod module_728458a3 {
                             _ => unreachable!(),
                         };
                         let v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0_f64);
-                        let v8: f64 = Math::method53(v3, v1_1.get().clone(), 1.0_f64);
+                        let v8: f64 = Math::method54(v3, v1_1.get().clone(), 1.0_f64);
                         let v11: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
                                 v0_1.get().clone(),
@@ -2379,35 +3526,135 @@ mod module_728458a3 {
                         let v70: f64 = if (v67) >= (v68) { v67 } else { v68 };
                         let v71: bool = (v70) < 0.01_f64;
                         let v73: bool = if v71 { true } else { Math::method18(v71) };
-                        let v79: string = sprintf!(
-                            "{} / actual: {:?} / expected: {:?}",
-                            string("__assert_lt"),
-                            v70,
-                            0.01_f64
-                        );
-                        let v84: () = {
-                            Math::closure2(v79.clone(), ());
+                        let v75: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                            l0: MutCell::new(Math::method19()),
+                        });
+                        let v89: () = {
+                            Math::closure2(v75.clone(), string("{ "), ());
+                            ()
+                        };
+                        let v108: () = {
+                            Math::closure2(v75.clone(), string("name"), ());
+                            ()
+                        };
+                        let v127: () = {
+                            Math::closure2(v75.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v146: () = {
+                            Math::closure2(v75.clone(), string("__assert_lt"), ());
+                            ()
+                        };
+                        let v165: () = {
+                            Math::closure2(v75.clone(), string("; "), ());
+                            ()
+                        };
+                        let v184: () = {
+                            Math::closure2(v75.clone(), string("actual"), ());
+                            ()
+                        };
+                        let v201: () = {
+                            Math::closure2(v75.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v221: () = {
+                            Math::closure2(v75.clone(), sprintf!("{:+.6}", v70), ());
+                            ()
+                        };
+                        let v238: () = {
+                            Math::closure2(v75.clone(), string("; "), ());
+                            ()
+                        };
+                        let v257: () = {
+                            Math::closure2(v75.clone(), string("expected"), ());
+                            ()
+                        };
+                        let v274: () = {
+                            Math::closure2(v75.clone(), string(" = "), ());
+                            ()
+                        };
+                        let v294: () = {
+                            Math::closure2(v75.clone(), sprintf!("{:+.6}", 0.01_f64), ());
+                            ()
+                        };
+                        let v313: () = {
+                            Math::closure2(v75.clone(), string(" }"), ());
+                            ()
+                        };
+                        let v319: string = v75.l0.get().clone();
+                        let v323: () = {
+                            Math::closure3(v319.clone(), ());
                             ()
                         };
                         if (v73) == false {
-                            panic!("{}", v79,);
+                            panic!("{}", v319,);
                         }
                         {
-                            let v88: f64 = v64.im;
-                            let v89: bool = (v88) < 0.01_f64;
-                            let v91: bool = if v89 { true } else { Math::method18(v89) };
-                            let v95: string = sprintf!(
-                                "{} / actual: {:?} / expected: {:?}",
-                                string("__assert_lt"),
-                                v88,
-                                0.01_f64
-                            );
-                            let v100: () = {
-                                Math::closure2(v95.clone(), ());
+                            let v327: f64 = v64.im;
+                            let v328: bool = (v327) < 0.01_f64;
+                            let v330: bool = if v328 { true } else { Math::method18(v328) };
+                            let v332: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                                l0: MutCell::new(Math::method19()),
+                            });
+                            let v344: () = {
+                                Math::closure2(v332.clone(), string("{ "), ());
                                 ()
                             };
-                            if (v91) == false {
-                                panic!("{}", v95,);
+                            let v361: () = {
+                                Math::closure2(v332.clone(), string("name"), ());
+                                ()
+                            };
+                            let v378: () = {
+                                Math::closure2(v332.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v395: () = {
+                                Math::closure2(v332.clone(), string("__assert_lt"), ());
+                                ()
+                            };
+                            let v412: () = {
+                                Math::closure2(v332.clone(), string("; "), ());
+                                ()
+                            };
+                            let v429: () = {
+                                Math::closure2(v332.clone(), string("actual"), ());
+                                ()
+                            };
+                            let v446: () = {
+                                Math::closure2(v332.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v466: () = {
+                                Math::closure2(v332.clone(), sprintf!("{:+.6}", v327), ());
+                                ()
+                            };
+                            let v483: () = {
+                                Math::closure2(v332.clone(), string("; "), ());
+                                ()
+                            };
+                            let v500: () = {
+                                Math::closure2(v332.clone(), string("expected"), ());
+                                ()
+                            };
+                            let v517: () = {
+                                Math::closure2(v332.clone(), string(" = "), ());
+                                ()
+                            };
+                            let v537: () = {
+                                Math::closure2(v332.clone(), sprintf!("{:+.6}", 0.01_f64), ());
+                                ()
+                            };
+                            let v554: () = {
+                                Math::closure2(v332.clone(), string(" }"), ());
+                                ()
+                            };
+                            let v560: string = v332.l0.get().clone();
+                            let v564: () = {
+                                Math::closure3(v560.clone(), ());
+                                ()
+                            };
+                            if (v330) == false {
+                                panic!("{}", v560,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2420,24 +3667,24 @@ mod module_728458a3 {
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
                                 v2.set(v2_temp);
-                                continue '_method52;
+                                continue '_method53;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method49(v0_1: pyo3::Python) {
-            let v1_1: LrcPtr<Math::UH0> = Math::method50();
-            Math::method52(v0_1, Math::method51(), v1_1)
+        pub fn method50(v0_1: pyo3::Python) {
+            let v1_1: LrcPtr<Math::UH0> = Math::method51();
+            Math::method53(v0_1, Math::method52(), v1_1)
         }
-        pub fn method48() {
+        pub fn method49() {
             pyo3::prepare_freethreaded_python();
             let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method49(py);
+                Math::method50(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method19(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method20(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2467,124 +3714,124 @@ mod module_728458a3 {
             let v1_1: bool = true;
             () //;
         } /* /*;
-          {
-              let v4: string =
-                  string("*/ #[test] fn test_zeta_at_known_values_() { //");
-              let v5: bool =
-                  */
+        {
+        let v4: string =
+        string("*/ #[test] fn test_zeta_at_known_values_() { //");
+        let v5: bool =
+         */
         #[test]
         fn test_zeta_at_known_values_() {
             //;
             Math::method0();
         } /* /*;
-          {
-              let v8: string =
-                  string("*/ #[test] fn test_zeta_at_2_minus2() { //");
-              let v9: bool = */
+        {
+        let v8: string =
+        string("*/ #[test] fn test_zeta_at_2_minus2() { //");
+        let v9: bool = */
         #[test]
         fn test_zeta_at_2_minus2() {
             //;
-            Math::method20();
+            Math::method21();
         } /* /*;
-          {
-              let v12: string =
-                  string("*/ #[test] fn test_trivial_zero_at_negative_even___() { //");
-              let v13: bool =
-                  */
+        {
+        let v12: string =
+        string("*/ #[test] fn test_trivial_zero_at_negative_even___() { //");
+        let v13: bool =
+         */
         #[test]
         fn test_trivial_zero_at_negative_even___() {
             //;
-            Math::method22();
+            Math::method23();
         } /* /*;
-          {
-              let v16: string =
-                  string("*/ #[test] fn test_non_trivial_zero___() { //");
-              let v17: bool =
-                  */
+        {
+        let v16: string =
+        string("*/ #[test] fn test_non_trivial_zero___() { //");
+        let v17: bool =
+         */
         #[test]
         fn test_non_trivial_zero___() {
             //;
-            Math::method26();
+            Math::method27();
         } /* /*;
-          {
-              let v20: string =
-                  string("*/ #[test] fn test_real_part_greater_than_one___() { //");
-              let v21: bool =
-                  */
+        {
+        let v20: string =
+        string("*/ #[test] fn test_real_part_greater_than_one___() { //");
+        let v21: bool =
+         */
         #[test]
         fn test_real_part_greater_than_one___() {
             //;
-            Math::method28();
+            Math::method29();
         } /* /*;
-          {
-              let v24: string =
-                  string("*/ #[test] fn test_zeta_at_1___() { //");
-              let v25: bool =
-                  */
+        {
+        let v24: string =
+        string("*/ #[test] fn test_zeta_at_1___() { //");
+        let v25: bool =
+         */
         #[test]
         fn test_zeta_at_1___() {
             //;
-            Math::method30();
+            Math::method31();
         } /* /*;
-          {
-              let v28: string =
-                  string("*/ #[test] fn test_symmetry_across_real_axis___() { //");
-              let v29: bool =
-                  */
+        {
+        let v28: string =
+        string("*/ #[test] fn test_symmetry_across_real_axis___() { //");
+        let v29: bool =
+         */
         #[test]
         fn test_symmetry_across_real_axis___() {
             //;
-            Math::method32();
+            Math::method33();
         } /* /*;
-          {
-              let v32: string =
-                  string("*/ #[test] fn test_behavior_near_origin___() { //");
-              let v33: bool =
-                  */
+        {
+        let v32: string =
+        string("*/ #[test] fn test_behavior_near_origin___() { //");
+        let v33: bool =
+         */
         #[test]
         fn test_behavior_near_origin___() {
             //;
-            Math::method34();
+            Math::method35();
         } /* /*;
-          {
-              let v36: string =
-                  string("*/ #[test] fn test_imaginary_axis() { //");
-              let v37: bool =
-                  */
+        {
+        let v36: string =
+        string("*/ #[test] fn test_imaginary_axis() { //");
+        let v37: bool =
+         */
         #[test]
         fn test_imaginary_axis() {
             //;
-            Math::method36();
+            Math::method37();
         } /* /*;
-          {
-              let v40: string =
-                  string("*/ #[test] fn test_critical_strip() { //");
-              let v41: bool =
-                  */
+        {
+        let v40: string =
+        string("*/ #[test] fn test_critical_strip() { //");
+        let v41: bool =
+         */
         #[test]
         fn test_critical_strip() {
             //;
-            Math::method40();
+            Math::method41();
         } /* /*;
-          {
-              let v44: string =
-                  string("*/ #[test] fn test_reflection_formula_for_specific_value() { //");
-              let v45: bool =
-                  */
+        {
+        let v44: string =
+        string("*/ #[test] fn test_reflection_formula_for_specific_value() { //");
+        let v45: bool =
+         */
         #[test]
         fn test_reflection_formula_for_specific_value() {
             //;
-            Math::method44();
+            Math::method45();
         } /* /*;
-          {
-              let v48: string =
-                  string("*/ #[test] fn test_euler_product_formula() { //");
-              let v49: bool =
-                  */
+        {
+        let v48: string =
+        string("*/ #[test] fn test_euler_product_formula() { //");
+        let v49: bool =
+         */
         #[test]
         fn test_euler_product_formula() {
             //;
-            Math::method48();
+            Math::method49();
             {
                 //;
                 {
@@ -2623,9 +3870,9 @@ mod module_728458a3 {
                 }
             }
         }
-        pub fn closure3(unitVar: (), v0_1: Array<string>) -> i32 {
-            let v4: () = {
-                Math::closure2(sprintf!("value: {}", 1_i32), ());
+        pub fn closure4(unitVar: (), v0_1: Array<string>) -> i32 {
+            let v5: () = {
+                Math::closure3(sprintf!("value: {}", 1_i32), ());
                 ()
             };
             0_i32
@@ -2640,7 +3887,7 @@ mod module_728458a3 {
         }
         pub fn v1() -> Func1<Array<string>, i32> {
             static v1: OnceInit<Func1<Array<string>, i32>> = OnceInit::new();
-            v1.get_or_init(|| Func1::new(move |v: Array<string>| Math::closure3((), v)))
+            v1.get_or_init(|| Func1::new(move |v: Array<string>| Math::closure4((), v)))
                 .clone()
         }
         pub fn main(args: Array<string>) -> i32 {

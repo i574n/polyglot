@@ -194,20 +194,20 @@ def Closure0(env_v0 : f64, env_v1 : f64, env_v2 : f64):
         nonlocal env_v0, env_v1, env_v2
         v0 = env_v0; v1 = env_v1; v2 = env_v2
         v5 = -v3
-        v53 = Closure1(v5, v3)
+        v148 = Closure1(v5, v3)
         del v5
-        v54 = list(v53())
-        del v53
-        v56 = method6(v54)
-        del v54
-        v57 = method7(v0, v1, v2, v3, v4)
+        v149 = list(v148())
+        del v148
+        v151 = method6(v149)
+        del v149
+        v152 = method7(v0, v1, v2, v3, v4)
         del v0, v1, v2
-        v58 = method9()
-        v66 = Closure5(v56, v57, v58)
-        del v56, v57, v58
-        v67 = list(v66())
-        del v66
-        return v67
+        v153 = method9()
+        v161 = Closure5(v151, v152, v153)
+        del v151, v152, v153
+        v162 = list(v161())
+        del v161
+        return v162
     return inner
 class US2_0(NamedTuple): # (0, Some)
     v0 : f64
@@ -289,36 +289,36 @@ def method0() -> string:
     v0 = "VSCODE_PID"
     return v0
 def method1(v0 : string) -> string:
-    v132 = os.environ
-    v137 = v132.get(v0)
-    del v0, v132
-    v143 = v137 
-    del v137
-    v151 = None
-    v155 = v143 == v151 
-    del v151
-    if v155:
-        v159 = None
-        v164 = v159
+    v129 = os.environ
+    v134 = v129.get(v0)
+    del v0, v129
+    v140 = v134 
+    del v134
+    v148 = None
+    v152 = v140 == v148 
+    del v148
+    if v152:
+        v156 = None
+        v161 = v156
     else:
-        v161 = v143 
-        v162 = US0_0(v161)
-        del v161
-        v163 = v162 
-        del v162
-        v164 = v163
-    del v143, v155
-    v170 = US0_1()
-    v171 = v164 or v170 
-    del v164, v170
-    match v171:
+        v158 = v140 
+        v159 = US0_0(v158)
+        del v158
+        v160 = v159 
+        del v159
+        v161 = v160
+    del v140, v152
+    v167 = US0_1()
+    v168 = v161 or v167 
+    del v161, v167
+    match v168:
         case US0_1(): # None
-            del v171
-            v174 = ""
-            return v174
-        case US0_0(v173): # Some
-            del v171
-            return v173
+            del v168
+            v171 = ""
+            return v171
+        case US0_0(v170): # Some
+            del v168
+            return v170
         case t:
             raise Exception(f'Pattern matching miss. Got: {t}')
 def method4(v0 : f64, v1 : f64, v2 : f64) -> Tuple[f64, f64, f64]:
@@ -444,73 +444,73 @@ def method10() -> string:
     return v0
 def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     async def __new_async_unit__():
-        v2881, v2882, v2883 = method4(v2, v3, v4)
-        v2884 = []
-        v2884.insert(0, (5.0, 40.0))
-        v2887 = v2884 
-        del v2884
-        v2887.insert(0, (10.0, 10.0))
-        v2891 = v2887 
-        del v2887
-        v2891.insert(0, (20.0, -40.0))
-        v2895 = v2891 
-        del v2891
-        cubes = v2895 
-        del v2895
-        v2901 = Closure0(v2881, v2882, v2883)
-        get_cube_points = v2901 
-        del v2901
-        v2902 = [x for cube in cubes for x in get_cube_points(*cube)]
-        v2907 = US2_1()
-        v2908 = [v2907 for _ in range(160 * 44)]
-        del v2907
-        v2912 = Closure6(v2908)
-        for (idx, ooz, ch) in v2902: v2912(idx)(ooz, ch)
-        del v2902, v2912
-        v2913 = method10()
-        v2917 = CustomStringIO(v2913)
-        del v2913
-        v2920 = Closure8(v2908, v2917)
-        del v2908
-        for row in range(44): v2920(row)
-        del v2920
-        v2924 = str(v2917)
-        del v2917
-        v2926 = v0 < 0
-        if v2926:
+        v9613, v9614, v9615 = method4(v2, v3, v4)
+        v9616 = []
+        v9616.insert(0, (5.0, 40.0))
+        v9619 = v9616 
+        del v9616
+        v9619.insert(0, (10.0, 10.0))
+        v9623 = v9619 
+        del v9619
+        v9623.insert(0, (20.0, -40.0))
+        v9627 = v9623 
+        del v9623
+        cubes = v9627 
+        del v9627
+        v9633 = Closure0(v9613, v9614, v9615)
+        get_cube_points = v9633 
+        del v9633
+        v9634 = [x for cube in cubes for x in get_cube_points(*cube)]
+        v9639 = US2_1()
+        v9640 = [v9639 for _ in range(160 * 44)]
+        del v9639
+        v9644 = Closure6(v9640)
+        for (idx, ooz, ch) in v9634: v9644(idx)(ooz, ch)
+        del v9634, v9644
+        v9645 = method10()
+        v9649 = CustomStringIO(v9645)
+        del v9645
+        v9652 = Closure8(v9640, v9649)
+        del v9640
+        for row in range(44): v9652(row)
+        del v9652
+        v9656 = str(v9649)
+        del v9649
+        v9658 = v0 < 0
+        if v9658:
             sys.stdout.write("\033[1;1H")
         else:
             pass
-        del v2926
-        print(v2924)
-        del v2924
-        v2957 = asyncio.sleep(1 / 1000)
-        await v2957 
-        del v2957
-        v2959 = v0 > 0
-        if v2959:
-            v2960 = v1 >= v0
-            v2961 = v2960
+        del v9658
+        print(v9656)
+        del v9656
+        v9690 = asyncio.sleep(1 / 1000)
+        await v9690 
+        del v9690
+        v9692 = v0 > 0
+        if v9692:
+            v9693 = v1 >= v0
+            v9694 = v9693
         else:
-            v2961 = False
-        del v2959
-        if v2961:
+            v9694 = False
+        del v9692
+        if v9694:
             pass
         else:
-            v2962 = v2881 + 0.05
-            v2963 = v2882 + 0.05
-            v2964 = v2883 + 0.01
-            v2965 = v1 + 1
-            v2966 = method2(v0, v2965, v2962, v2963, v2964)
-            del v2962, v2963, v2964, v2965
-            await v2966()
-            del v2966
-        del v2881, v2882, v2883, v2961
+            v9695 = v9613 + 0.05
+            v9696 = v9614 + 0.05
+            v9697 = v9615 + 0.01
+            v9698 = v1 + 1
+            v9699 = method2(v0, v9698, v9695, v9696, v9697)
+            del v9695, v9696, v9697, v9698
+            await v9699()
+            del v9699
+        del v9613, v9614, v9615, v9694
         """ new_async_unit
     del v0, v1, v2, v3, v4
     new_async_unit """
-    v2967 = __new_async_unit__
-    return v2967
+    v9700 = __new_async_unit__
+    return v9700
 def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     return method3(v0, v1, v2, v3, v4)
 def main_body():

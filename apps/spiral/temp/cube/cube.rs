@@ -15,12 +15,8 @@ mod module_3e76c43 {
     pub mod Cube {
         use super::*;
         use fable_library_rust::Async_::Async;
-        use fable_library_rust::List_::ofArray;
         use fable_library_rust::List_::List;
-        use fable_library_rust::NativeArray_::new_array;
-        use fable_library_rust::NativeArray_::new_empty;
-        use fable_library_rust::NativeArray_::Array;
-        use fable_library_rust::Native_::getNull;
+        use fable_library_rust::List_::ofArray;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Arc;
         use fable_library_rust::Native_::Func0;
@@ -28,6 +24,10 @@ mod module_3e76c43 {
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::Native_::getNull;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::Seq_::append;
         use fable_library_rust::Seq_::choose;
         use fable_library_rust::Seq_::collect;
@@ -131,19 +131,19 @@ mod module_3e76c43 {
             Func1::new(move |v: string| Cube::closure1((), v))
         }
         pub fn method1(v0_1: string) -> string {
-            let v6: string = Cube::method2(v0_1);
-            let v8: Result<std::string::String, std::env::VarError> = std::env::var(&*v6);
-            let v10: bool = true;
-            let _result_map_ = v8.map(|x| {
+            let v3: string = Cube::method2(v0_1);
+            let v5: Result<std::string::String, std::env::VarError> = std::env::var(&*v3);
+            let v7: bool = true;
+            let _result_map_ = v5.map(|x| {
                 //;
-                let v12: std::string::String = x;
-                let v14: string = fable_library_rust::String_::fromString(v12);
-                let v16: bool = true;
-                v14
+                let v9: std::string::String = x;
+                let v11: string = fable_library_rust::String_::fromString(v9);
+                let v13: bool = true;
+                v11
             });
-            let v18: Result<string, std::env::VarError> = _result_map_;
-            let v19: string = Cube::method3();
-            v18.unwrap_or(v19)
+            let v15: Result<string, std::env::VarError> = _result_map_;
+            let v16: string = Cube::method3();
+            v15.unwrap_or(v16)
         }
         pub fn method7(v0_1: f64, v1: f64, v2: f64) -> (f64, f64, f64) {
             (v0_1, v1, v2)
@@ -286,28 +286,28 @@ mod module_3e76c43 {
         ) -> LrcPtr<dyn IEnumerable_1<(i32, f64, char)>> {
             let v3: f64 = _arg.0.clone();
             let v5: f64 = -v3;
-            let v56: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
+            let v151: LrcPtr<dyn IEnumerable_1<f64>> = Cube::method10(delay(Func0::new({
                 let v3 = v3.clone();
                 let v5 = v5.clone();
                 move || {
-                    let v12: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
+                    let v77: LrcPtr<Cube::Mut0> = LrcPtr::new(Cube::Mut0 {
                         l0: MutCell::new(v5),
                     });
                     enumerateWhile(
                         Func0::new({
-                            let v12 = v12.clone();
-                            move || Cube::method9(v3, v12.clone())
+                            let v77 = v77.clone();
+                            move || Cube::method9(v3, v77.clone())
                         }),
                         delay(Func0::new({
-                            let v12 = v12.clone();
+                            let v77 = v77.clone();
                             move || {
                                 append(
-                                    singleton(v12.l0.get().clone()),
+                                    singleton(v77.l0.get().clone()),
                                     delay(Func0::new({
-                                        let v12 = v12.clone();
+                                        let v77 = v77.clone();
                                         move || {
-                                            let v16: f64 = (v12.l0.get().clone()) + 0.6_f64;
-                                            v12.l0.set(v16);
+                                            let v81: f64 = (v77.l0.get().clone()) + 0.6_f64;
+                                            v77.l0.set(v81);
                                             ();
                                             empty::<f64>()
                                         }
@@ -318,33 +318,33 @@ mod module_3e76c43 {
                     )
                 }
             })));
-            let v57 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
-            let v58 = Cube::method13();
+            let v152 = Cube::method11(v0_1, v1, v2, v3, _arg.1.clone());
+            let v153 = Cube::method13();
             delay(Func0::new({
-                let v56 = v56.clone();
-                let v57 = v57.clone();
-                let v58 = v58.clone();
+                let v151 = v151.clone();
+                let v152 = v152.clone();
+                let v153 = v153.clone();
                 move || {
                     collect(
                         Func1::new({
-                            let v56 = v56.clone();
-                            let v57 = v57.clone();
-                            let v58 = v58.clone();
+                            let v151 = v151.clone();
+                            let v152 = v152.clone();
+                            let v153 = v153.clone();
                             move |cube_x: f64| {
                                 collect(
                                     Func1::new({
                                         let cube_x = cube_x.clone();
-                                        let v57 = v57.clone();
-                                        let v58 = v58.clone();
+                                        let v152 = v152.clone();
+                                        let v153 = v153.clone();
                                         move |cube_y: f64| {
-                                            choose(v58.clone(), ofList(v57(cube_x)(cube_y)))
+                                            choose(v153.clone(), ofList(v152(cube_x)(cube_y)))
                                         }
                                     }),
-                                    v56.clone(),
+                                    v151.clone(),
                                 )
                             }
                         }),
-                        v56.clone(),
+                        v151.clone(),
                     )
                 }
             }))
