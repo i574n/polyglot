@@ -16,7 +16,7 @@ inl app () =
 
     emit_expr
         ()
-        ($"\"#[rocket::get(\\\"/<uri..>\\\")]\"" /+
+        ($"\"\#[rocket::get(\\\"/<uri..>\\\")]\"" /+
         $"\" async fn proxy(\"" /+
         $"\"   uri: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,\"" /+
         $"\"   client: &rocket::State<reqwest::Client>\"" /+
@@ -58,7 +58,7 @@ inl app () =
 
     emit_expr
         ()
-        ($"\"#[rocket::get(\\\"/file/<file..>\\\")]\"" /+
+        ($"\"\#[rocket::get(\\\"/file/<file..>\\\")]\"" /+
         $"\" async fn file(\"" /+
         $"\"   file: std::path::PathBuf,\"" /+
         $"\"   client: &rocket::State<reqwest::Client>\"" /+
@@ -70,7 +70,7 @@ inl app () =
 
     emit_expr
         ()
-        ($"\"#[rocket::launch]\"" /+
+        ($"\"\#[rocket::launch]\"" /+
         $"\" fn rocket() -> _ {\"" /+
         $"\"    rocket::build()\"" /+
         $"\"      .manage(reqwest::Client::new())\"" /+

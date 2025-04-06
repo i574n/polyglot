@@ -219,7 +219,7 @@ inl as_str (s : string) : ref' str =
 
 inl raw_string_literal (s : string) : ref' str =
     // emit_expr () $"$\"r#\\\"{!s}\\\"#\""
-    emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
+    emit_expr () $"\"r\#\\\"\" + !s + \"\\\"\#\""
 
 inl (~#) (s : string) : ref' str =
     raw_string_literal s
@@ -691,7 +691,7 @@ inl new_log
                     inl locals = locals |> to_string'
                     console_log' (a ;[
                         !!(ext_locals /+ " %c" /+ args /+ " %c" /+ locals)
-                        !!($"$\"color: #{!color};\"" : string)
+                        !!($"$\"color: \#{!color};\"" : string)
                         !!"color: #385779;"
                     ])
                 | _ =>

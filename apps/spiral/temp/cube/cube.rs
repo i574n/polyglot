@@ -70,6 +70,7 @@ mod module_3e76c43 {
             US1_3(Cube::US0),
             US1_4(Cube::US0),
             US1_5(Cube::US0),
+            US1_6(Cube::US0),
         }
         impl core::fmt::Display for US1 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -431,7 +432,7 @@ mod module_3e76c43 {
                 ()
             }
             {
-                let v88: Arc<Async<()>> = Cube::method5(
+                let v96: Arc<Async<()>> = Cube::method5(
                     if v65 { -1_i32 } else { 50_i32 },
                     1_i32,
                     0.0_f64,

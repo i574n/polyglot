@@ -1,4 +1,224 @@
-kernel = r"""
+kernels_aux = r"""
+// The types of these two will be replaced during compilation by the Spiral code generator. 
+// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
+// The two statements need to begin at the start of a line.
+using default_int = int;
+using default_uint = unsigned int;
+
+#ifndef __NVRTC__
+// NVRTC has these includes by default so they need to be left out if it is used as the compiler.
+#include <new>
+#include <assert.h>
+#include <stdio.h>
+#endif
+
+// For error checking on the host.
+#define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+template <typename T> inline __device__ void destroy(T& obj) { obj.~T(); }
+inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
+    if (error != cudaSuccess) {
+        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
+        if (abort) exit(error);
+    }
+}
+
+template <typename el>
+struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
+{
+    el* base;
+
+    __device__ sptr() : base(nullptr) {}
+    __device__ sptr(el* ptr) : base(ptr) { this->base->refc++; }
+
+    __device__ ~sptr()
+    {
+        if (this->base != nullptr && --this->base->refc == 0)
+        {
+            delete this->base;
+            this->base = nullptr;
+        }
+    }
+
+    __device__ sptr(sptr& x)
+    {
+        this->base = x.base;
+        this->base->refc++;
+    }
+
+    __device__ sptr(sptr&& x)
+    {
+        this->base = x.base;
+        x.base = nullptr;
+    }
+
+    __device__ sptr& operator=(sptr& x)
+    {
+        if (this->base != x.base)
+        {
+            delete this->base;
+            this->base = x.base;
+            this->base->refc++;
+        }
+        return *this;
+    }
+
+    __device__ sptr& operator=(sptr&& x)
+    {
+        if (this->base != x.base)
+        {
+            delete this->base;
+            this->base = x.base;
+            x.base = nullptr;
+        }
+        return *this;
+    }
+};
+
+template <typename el>
+struct csptr : public sptr<el>
+{ // Shared pointer for closures specifically.
+    using sptr<el>::sptr;
+    template <typename... Args>
+    __device__ auto operator()(Args... args) -> decltype(this->base->operator()(args...))
+    {
+        return this->base->operator()(args...);
+    }
+};
+
+template <typename el, default_int max_length>
+struct static_array
+{
+    el ptr[max_length];
+    __device__ el& operator[](default_int i) {
+        assert("The index has to be in range." && 0 <= i && i < max_length);
+        return this->ptr[i];
+    }
+};
+
+template <typename el, default_int max_length>
+struct static_array_list
+{
+    default_int length{ 0 };
+    el ptr[max_length];
+
+    __device__ el& operator[](default_int i) {
+        assert("The index has to be in range." && 0 <= i && i < this->length);
+        return this->ptr[i];
+    }
+    __device__ void push(el& x) {
+        ptr[this->length++] = x;
+        assert("The array after pushing should not be greater than max length." && this->length <= max_length);
+    }
+    __device__ void push(el&& x) {
+        ptr[this->length++] = std::move(x);
+        assert("The array after pushing should not be greater than max length." && this->length <= max_length);
+    }
+    __device__ el pop() {
+        assert("The array before popping should be greater than 0." && 0 < this->length);
+        auto x = ptr[--this->length];
+        ptr[this->length].~el();
+        new (&ptr[this->length]) el();
+        return x;
+    }
+    // Should be used only during initialization.
+    __device__ void unsafe_set_length(default_int i) {
+        assert("The new length should be in range." && 0 <= i && i <= max_length);
+        this->length = i;
+    }
+};
+
+template <typename el, default_int max_length>
+struct dynamic_array_base
+{
+    int refc{ 0 };
+    el* ptr;
+
+    __device__ dynamic_array_base() : ptr(new el[max_length]) {}
+    __device__ ~dynamic_array_base() { delete[] this->ptr; }
+
+    __device__ el& operator[](default_int i) {
+        assert("The index has to be in range." && 0 <= i && i < this->length);
+        return this->ptr[i];
+    }
+};
+
+template <typename el, default_int max_length>
+struct dynamic_array
+{
+    sptr<dynamic_array_base<el, max_length>> ptr;
+
+    __device__ dynamic_array() = default;
+    __device__ dynamic_array(bool t) : ptr(new dynamic_array_base<el, max_length>()) {}
+    __device__ el& operator[](default_int i) {
+        return this->ptr.base->operator[](i);
+    }
+};
+
+template <typename el, default_int max_length>
+struct dynamic_array_list_base
+{
+    int refc{ 0 };
+    default_int length{ 0 };
+    el* ptr;
+
+    __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
+    __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this->unsafe_set_length(l); }
+    __device__ ~dynamic_array_list_base() { delete[] this->ptr; }
+
+    __device__ el& operator[](default_int i) {
+        assert("The index has to be in range." && 0 <= i && i < this->length);
+        return this->ptr[i];
+    }
+    __device__ void push(el& x) {
+        ptr[this->length++] = x;
+        assert("The array after pushing should not be greater than max length." && this->length <= max_length);
+    }
+    __device__ void push(el&& x) {
+        ptr[this->length++] = std::move(x);
+        assert("The array after pushing should not be greater than max length." && this->length <= max_length);
+    }
+    __device__ el pop() {
+        assert("The array before popping should be greater than 0." && 0 < this->length);
+        auto x = ptr[--this->length];
+        ptr[this->length].~el();
+        new (&ptr[this->length]) el();
+        return x;
+    }
+    // Should be used only during initialization.
+    __device__ void unsafe_set_length(default_int i) {
+        assert("The new length should be in range." && 0 <= i && i <= max_length);
+        this->length = i;
+    }
+};
+
+template <typename el, default_int max_length>
+struct dynamic_array_list
+{
+    sptr<dynamic_array_list_base<el, max_length>> ptr;
+
+    __device__ dynamic_array_list() = default;
+    __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base<el, max_length>(l)) {}
+
+    __device__ el& operator[](default_int i) {
+        return this->ptr.base->operator[](i);
+    }
+    __device__ void push(el& x) {
+        this->ptr.base->push(x);
+    }
+    __device__ void push(el&& x) {
+        this->ptr.base->push(std::move(x));
+    }
+    __device__ el pop() {
+        return this->ptr.base->pop();
+    }
+    // Should be used only during initialization.
+    __device__ void unsafe_set_length(default_int i) {
+        this->ptr.base->unsafe_set_length(i);
+    }
+    __device__ default_int length_() {
+        return this->ptr.base->length;
+    }
+};
 """
 class static_array():
     def __init__(self, length):
@@ -47,6 +267,11 @@ class dynamic_array(static_array):
 class dynamic_array_list(static_array_list):
     def length_(self): return self.length
 
+
+kernels_main = r"""
+"""
+from cube_auto import *
+kernels = kernels_aux + kernels_main
 import cupy as cp
 import numpy as np
 from dataclasses import dataclass
@@ -55,7 +280,6 @@ i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 =
 cuda = False
 
 import os
-import asyncio
 import math
 import io
 class CustomStringIO(io.StringIO):
@@ -65,6 +289,10 @@ class CustomStringIO(io.StringIO):
     def __str__(self): return self.getvalue()
     def __repr__(self): return self.getvalue()
 import sys
+import asyncio
+
+# fwd_dcls
+# types
 class US0_0(NamedTuple): # (0, Some)
     v0 : string
     tag = 0
@@ -280,11 +508,12 @@ def Closure8(env_v0 : (cp if cuda else np).ndarray, env_v1 : io.StringIO):
         del v0
         for col in range(160): v4(col)
         del v4
-        v19 = "\n"
-        v20 = v1.write(v19)
-        del v1, v19, v20
+        v17 = "\n"
+        v18 = v1.write(v17)
+        del v1, v17, v18
         return 
     return inner
+# functions
 def method0() -> string:
     v0 = "VSCODE_PID"
     return v0
@@ -444,75 +673,76 @@ def method10() -> string:
     return v0
 def method3(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     async def __new_async_unit__():
-        v9613, v9614, v9615 = method4(v2, v3, v4)
-        v9616 = []
-        v9616.insert(0, (5.0, 40.0))
-        v9619 = v9616 
-        del v9616
-        v9619.insert(0, (10.0, 10.0))
-        v9623 = v9619 
-        del v9619
-        v9623.insert(0, (20.0, -40.0))
-        v9627 = v9623 
-        del v9623
-        cubes = v9627 
-        del v9627
-        v9633 = Closure0(v9613, v9614, v9615)
-        get_cube_points = v9633 
-        del v9633
-        v9634 = [x for cube in cubes for x in get_cube_points(*cube)]
-        v9639 = US2_1()
-        v9640 = [v9639 for _ in range(160 * 44)]
-        del v9639
-        v9644 = Closure6(v9640)
-        for (idx, ooz, ch) in v9634: v9644(idx)(ooz, ch)
-        del v9634, v9644
-        v9645 = method10()
-        v9649 = CustomStringIO(v9645)
-        del v9645
-        v9652 = Closure8(v9640, v9649)
-        del v9640
-        for row in range(44): v9652(row)
-        del v9652
-        v9656 = str(v9649)
-        del v9649
-        v9658 = v0 < 0
-        if v9658:
+        v9943, v9944, v9945 = method4(v2, v3, v4)
+        v9946 = []
+        v9946.insert(0, (5.0, 40.0))
+        v9949 = v9946 
+        del v9946
+        v9949.insert(0, (10.0, 10.0))
+        v9953 = v9949 
+        del v9949
+        v9953.insert(0, (20.0, -40.0))
+        v9957 = v9953 
+        del v9953
+        cubes = v9957 
+        del v9957
+        v9963 = Closure0(v9943, v9944, v9945)
+        get_cube_points = v9963 
+        del v9963
+        v9964 = [x for cube in cubes for x in get_cube_points(*cube)]
+        v9969 = US2_1()
+        v9970 = [v9969 for _ in range(160 * 44)]
+        del v9969
+        v9974 = Closure6(v9970)
+        for (idx, ooz, ch) in v9964: v9974(idx)(ooz, ch)
+        del v9964, v9974
+        v9975 = method10()
+        v9979 = CustomStringIO(v9975)
+        del v9975
+        v9982 = Closure8(v9970, v9979)
+        del v9970
+        for row in range(44): v9982(row)
+        del v9982
+        v9986 = str(v9979)
+        del v9979
+        v9988 = v0 < 0
+        if v9988:
             sys.stdout.write("\033[1;1H")
         else:
             pass
-        del v9658
-        print(v9656)
-        del v9656
-        v9690 = asyncio.sleep(1 / 1000)
-        await v9690 
-        del v9690
-        v9692 = v0 > 0
-        if v9692:
-            v9693 = v1 >= v0
-            v9694 = v9693
+        del v9988
+        print(v9986)
+        del v9986
+        v10020 = asyncio.sleep(1 / 1000)
+        await v10020 
+        del v10020
+        v10025 = v0 > 0
+        if v10025:
+            v10026 = v1 >= v0
+            v10027 = v10026
         else:
-            v9694 = False
-        del v9692
-        if v9694:
+            v10027 = False
+        del v10025
+        if v10027:
             pass
         else:
-            v9695 = v9613 + 0.05
-            v9696 = v9614 + 0.05
-            v9697 = v9615 + 0.01
-            v9698 = v1 + 1
-            v9699 = method2(v0, v9698, v9695, v9696, v9697)
-            del v9695, v9696, v9697, v9698
-            await v9699()
-            del v9699
-        del v9613, v9614, v9615, v9694
+            v10028 = v9943 + 0.05
+            v10029 = v9944 + 0.05
+            v10030 = v9945 + 0.01
+            v10031 = v1 + 1
+            v10032 = method2(v0, v10031, v10028, v10029, v10030)
+            del v10028, v10029, v10030, v10031
+            await v10032()
+            del v10032
+        del v9943, v9944, v9945, v10027
         """ new_async_unit
     del v0, v1, v2, v3, v4
     new_async_unit """
-    v9700 = __new_async_unit__
-    return v9700
+    v10033 = __new_async_unit__
+    return v10033
 def method2(v0 : i32, v1 : i32, v2 : f64, v3 : f64, v4 : f64) -> any:
     return method3(v0, v1, v2, v3, v4)
+# main_defs
 def main_body():
     v1 = (cp if cuda else np).array([],dtype=object)
     del v1
@@ -536,18 +766,18 @@ def main_body():
         v75 = False
     del v70
     if v75:
-        v84 = -1
+        v92 = -1
     else:
-        v84 = 50
+        v92 = 50
     del v75
-    v85 = 1
-    v86 = 0.0
-    v87 = 0.0
-    v88 = 0.0
-    v89 = method2(v84, v85, v86, v87, v88)
-    del v84, v85, v86, v87, v88
-    asyncio.run(v89())
-    del v89
+    v93 = 1
+    v94 = 0.0
+    v95 = 0.0
+    v96 = 0.0
+    v97 = method2(v92, v93, v94, v95, v96)
+    del v92, v93, v94, v95, v96
+    asyncio.run(v97())
+    del v97
     return 
 
 def main():

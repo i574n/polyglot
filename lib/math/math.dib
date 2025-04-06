@@ -207,7 +207,13 @@ inl conj forall t. (c : complex t) : complex t =
 #!spiral
 
 inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    inl rec zeta count gamma s =
+    // inl rec zeta count gamma s =
+    inl rec zeta forall t {number}.
+        (count : t)
+        (gamma : complex f64 -> complex f64)
+        (s : complex f64)
+        : complex f64
+        =
         if log then
             !\\((count, s), $'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", $0, $1)"')
         if re s > 1 then
@@ -238,7 +244,11 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
 
 nominal bound t =
     `(
-        global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>]\n#endif\ntype pyo3_Bound<'T> = class end"
+        backend_switch `(()) `({}) {
+            Fsharp = (fun () =>
+                global "#if FABLE_COMPILER\n[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>]\n#endif\ntype pyo3_Bound<'T> = class end"
+                        ) : () -> ()
+        }
         $'' : $'pyo3_Bound<`t>'
     )
 

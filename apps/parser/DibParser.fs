@@ -144,99 +144,109 @@ module DibParser =
         |> snd
         |> SpiralSm.concat "\n"
 
+    /// ## indentBlock
+    let inline indentBlock (block : Block) =
+        { block with
+            content =
+                block.content
+                |> SpiralSm.split "\n"
+                |> Array.fold
+                    (fun (lines, isMultiline) line ->
+                        let trimmedLine = line |> SpiralSm.trim
+                        if trimmedLine = ""
+                        then "" :: lines, isMultiline
+                        else
+                            let inline singleQuoteLine () =
+                                trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
+                                && trimmedLine |> SpiralSm.contains @"'""'" |> not
+                                && trimmedLine |> SpiralSm.ends_with "{" |> not
+                                && trimmedLine |> SpiralSm.ends_with "{|" |> not
+                                && trimmedLine |> SpiralSm.starts_with "}" |> not
+                                && trimmedLine |> SpiralSm.starts_with "|}" |> not
+
+                            match isMultiline, trimmedLine |> SpiralSm.split_string [| $"{q}{q}{q}" |] with
+                            | false, [| _; _ |] ->
+                                $"    {line}" :: lines, true
+
+                            | true, [| _; _ |] ->
+                                line :: lines, false
+
+                            | false, _ when singleQuoteLine () ->
+                                $"    {line}" :: lines, true
+
+                            | false, _ when line |> SpiralSm.starts_with "#" && block.magic = Fsharp ->
+                                line :: lines, false
+
+                            | false, _ ->
+                                $"    {line}" :: lines, false
+
+                            | true, _ when singleQuoteLine () && line |> SpiralSm.starts_with "    " ->
+                                $"    {line}" :: lines, false
+
+                            | true, _ when singleQuoteLine () ->
+                                line :: lines, false
+
+                            | true, _ ->
+                                line :: lines, true
+                    )
+                    ([], false)
+                |> fst
+                |> List.rev
+                |> SpiralSm.concat "\n"
+        }
+
     /// ## parse
     let inline parse output input =
         match run blocks input with
         | Success (blocks, _, _) ->
-            let blocks =
-                blocks
-                |> List.filter (fun block ->
-                    block.magic |> kernelOutputs |> List.contains output || block.magic = Markdown
-                )
+            blocks
+            |> List.filter (fun block ->
+                block.magic |> kernelOutputs |> List.contains output || block.magic = Markdown
+            )
+            |> List.map Some
+            |> fun x -> x @ [ None ]
+            |> List.pairwise
+            |> List.choose (function
+                | Some { magic = Markdown } as block, Some { magic = Markdown } -> block
+                | Some { magic = Markdown } as block, Some { magic = magic }
+                    when magic |> kernelOutputs |> List.contains output -> block
+                | Some { magic = Markdown } as block, _ when output = Md -> block
+                | Some { magic = Markdown }, _ -> None
+                | Some block, _ -> Some block
+                | _ -> None
+            )
+            |> List.fold
+                (fun (acc, indent) -> function
+                    | { magic = Markdown; content = content }
+                        when output = Fs
+                        && content |> SpiralSm.starts_with "# "
+                        && content |> SpiralSm.ends_with ")"
+                        ->
+                        let moduleName, namespaceName =
+                            System.Text.RegularExpressions.Regex.Match (content, @"# (.*) \((.*)\)$")
+                            |> fun m -> m.Groups.[1].Value, m.Groups.[2].Value
 
-            match blocks with
-            | { magic = Markdown; content = content } :: _
-                when output = Fs
-                && content |> SpiralSm.starts_with "# "
-                && content |> SpiralSm.ends_with ")"
-                ->
-                let inline indentBlock (block : Block) =
-                    { block with
-                        content =
-                            block.content
-                            |> SpiralSm.split "\n"
-                            |> Array.fold
-                                (fun (lines, isMultiline) line ->
-                                    let trimmedLine = line |> SpiralSm.trim
-                                    if trimmedLine = ""
-                                    then "" :: lines, isMultiline
-                                    else
-                                        let inline singleQuoteLine () =
-                                            trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
-                                            && trimmedLine |> SpiralSm.contains @"'""'" |> not
-                                            && trimmedLine |> SpiralSm.ends_with "{" |> not
-                                            && trimmedLine |> SpiralSm.ends_with "{|" |> not
-                                            && trimmedLine |> SpiralSm.starts_with "}" |> not
-                                            && trimmedLine |> SpiralSm.starts_with "|}" |> not
-
-                                        match isMultiline, trimmedLine |> SpiralSm.split_string [| $"{q}{q}{q}" |] with
-                                        | false, [| _; _ |] ->
-                                            $"    {line}" :: lines, true
-
-                                        | true, [| _; _ |] ->
-                                            line :: lines, false
-
-                                        | false, _ when singleQuoteLine () ->
-                                            $"    {line}" :: lines, true
-
-                                        | false, _ when line |> SpiralSm.starts_with "#" && block.magic = Fsharp ->
-                                            line :: lines, false
-
-                                        | false, _ ->
-                                            $"    {line}" :: lines, false
-
-                                        | true, _ when singleQuoteLine () && line |> SpiralSm.starts_with "    " ->
-                                            $"    {line}" :: lines, false
-
-                                        | true, _ when singleQuoteLine () ->
-                                            line :: lines, false
-
-                                        | true, _ ->
-                                            line :: lines, true
-                                )
-                                ([], false)
-                            |> fst
-                            |> List.rev
-                            |> SpiralSm.concat "\n"
-                    }
-
-                let moduleName, namespaceName =
-                    System.Text.RegularExpressions.Regex.Match (content, @"# (.*) \((.*)\)$")
-                    |> fun m -> m.Groups.[1].Value, m.Groups.[2].Value
-
-                let moduleBlock =
-                    {
-                        magic = Fsharp
-                        content =
-                            $"#if !INTERACTIVE
+                        let moduleBlock =
+                            {
+                                magic = Fsharp
+                                content =
+                                    $"#if !INTERACTIVE
 namespace {namespaceName}
 #endif
 
 module {moduleName} ="
-                    }
+                            }
 
-                blocks
-                |> List.indexed
-                |> List.fold
-                    (fun blocks (index, block) ->
-                        match index with
-                        | 0 -> blocks
-                        | 1 -> indentBlock block :: moduleBlock :: blocks
-                        | _ -> indentBlock block :: blocks
-                    )
-                    []
-                |> List.rev
-            | _ -> blocks
+                        moduleBlock :: acc, (indent + 1)
+                    | { magic = magic ; content = content } as block
+                        when indent > 0
+                        ->
+                        indentBlock block :: acc, indent
+                    | block -> block :: acc, indent
+                )
+                ([], 0)
+            |> fst
+            |> List.rev
             |> Result.Ok
         | Failure (errorMsg, _, _) -> Result.Error errorMsg
 

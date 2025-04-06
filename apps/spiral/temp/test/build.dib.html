@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7717,7 +7718,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; ── [ 1.33s - stdout ] ──────────────────────────────────────────────────────────
+&gt; ── [ 1.69s - stdout ] ──────────────────────────────────────────────────────────
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -7913,7 +7914,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; ── [ 383.14ms - stdout ] ───────────────────────────────────────────────────────
+&gt; ── [ 512.75ms - stdout ] ───────────────────────────────────────────────────────
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -8114,7 +8115,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; ── [ 368.96ms - stdout ] ───────────────────────────────────────────────────────
+&gt; ── [ 489.08ms - stdout ] ───────────────────────────────────────────────────────
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -8519,20 +8520,20 @@ a.anchor-link {
 &gt;     |&gt; ignore
 &gt; 
 &gt;     print_static "&lt;/test&gt;"
-00:00:13 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 40093 }
-00:00:13 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
-00:00:14 <span class="ansi-black-intense-fg">v</span> #6 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbformat\__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
-00:00:14 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
-00:00:15 <span class="ansi-black-intense-fg">v</span> #8 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbconvert\filters\highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
-00:00:15 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
-00:00:15 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 341058 bytes to c:\home\git\polyglot\apps\spiral\temp\test\test.dib.html
-00:00:15 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 872 }
-00:00:15 <span class="ansi-blue-intense-fg">d</span> #12 spiral.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 872 }
-00:00:15 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
-00:00:15 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
-00:00:15 <span class="ansi-blue-intense-fg">d</span> #15 spiral.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:15 <span class="ansi-blue-intense-fg">d</span> #16 spiral.run / dib / { exit_code = 0; result_length = 41024 }
+00:00:16 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 40093 }
+00:00:16 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:18 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook c:/home/git/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
+00:00:18 <span class="ansi-black-intense-fg">v</span> #6 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbformat\__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:18 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
+00:00:19 <span class="ansi-black-intense-fg">v</span> #8 ! C:\Users\i574n\scoop\apps\python312\current\Lib\site-packages\nbconvert\filters\highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:19 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
+00:00:19 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 341096 bytes to c:\home\git\polyglot\apps\spiral\temp\test\test.dib.html
+00:00:19 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 872 }
+00:00:19 <span class="ansi-blue-intense-fg">d</span> #12 spiral.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 872 }
+00:00:19 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = 'c:/home/git/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None } }
+00:00:20 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:20 <span class="ansi-blue-intense-fg">d</span> #15 spiral.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
+00:00:20 <span class="ansi-blue-intense-fg">d</span> #16 spiral.run / dib / { exit_code = 0; result_length = 41024 }
 </pre>
 </div>
 </div>
@@ -8661,15 +8662,16 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Fable 5.0.0-alpha.9: F# to Rust compiler (status: alpha)
 
-Thanks to the contributor! @kirill-gerasimenko
+Thanks to the contributor! @0x53A
 Stand with Ukraine! https://standwithukraine.com.ua/
 
 Parsing test.fsproj...
-Project and references (1 source files) parsed in 2889ms
+Retrieving project options from cache, in case of issues run `dotnet fable clean` or try `--noCache` option.
+Project and references (1 source files) parsed in 188ms
 
 Started Fable compilation...
 
-Fable compilation finished in 1369ms
+Fable compilation finished in 1885ms
 
 .\test.fsx(11,0): (11,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </pre>
@@ -8773,27 +8775,25 @@ Fable compilation finished in 1369ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\workspace\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\lib\math\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\chat\contract\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\plot\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\examples\rust\exercism\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\extension\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\cube\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\test\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\plot\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\chat\contract\tests\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\lib\math\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\examples\rust\exercism\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\cube\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\extension\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 7.18s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 11.19s</span>
 </pre>
 </div>
 </div>
@@ -8831,27 +8831,24 @@ Fable compilation finished in 1369ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\lib\math\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\cube\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\examples\rust\exercism\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\chat\contract\tests\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\plot\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\lib\math\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
+<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\chat\contract\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
+<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\extension\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\test\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
 <span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\spiral\temp\cube\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\workspace\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\examples\rust\exercism\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: C:\home\git\polyglot\apps\chat\contract\Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest</span>
-<span class="ansi-red-intense-fg ansi-bold">  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (C:\home\git\polyglot\lib\rust\fable\fable_modules\fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (C:\home\git\polyglot\apps\spiral\temp\test)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 19.41s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 20.18s</span>
 <span class="ansi-red-intense-fg ansi-bold">     Running unittests main.rs (C:\home\git\polyglot\workspace\target\release\deps\spiral_temp_test-6f297c6a0c232188.exe)</span>
 
 running 3 tests
@@ -8862,262 +8859,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=Comment("")
-input=Integer(-5491099299679688102)
-input=Integer(8379110228097664985)
-input=StringLiteral(")[3$9S:(&amp;77h{i$x")
-input=Integer(-1634081358060128388)
-input=Comment("\"vjw/:Gd([")
-input=Integer(1181536584025437262)
-input=Comment("?c:.&amp;dqU&lt;'%X!")
+input=Operator("(")
+input=StringLiteral("4?/")
+input=StringLiteral("^]r$U9a7sFD)")
+input=Operator("/")
+input=StringLiteral("U:%W'?=&amp;~&amp;{|@G")
+input=Integer(-1883545646283572620)
+input=Integer(4310434560779428505)
+input=StringLiteral("FaK")
+input=StringLiteral("#W4le`*5p`'C+/Be`U&lt;:*3E=&amp;")
+input=Comment("8%_'b`7!;I%!r&gt;$ZsOo+--")
+input=Comment("bI2\\GJ6ycB&lt;R'6,")
+input=Operator("=")
+input=Identifier("ZGJ83pp32868IN3U7ywSNi71XajlhF9")
+input=Identifier("HwZOAr1u09bmMny6r0XQgjua5N53E6")
+input=Identifier("KWSSsp5NdsLFgB")
 input=Operator("-")
-input=Comment("?c,|Q9aOI@T%Dj`%{!zRQ0SsO8J{I|")
-input=StringLiteral("{%(Tg@.17Fy")
-input=Identifier("UwEp9Et1Qa")
-input=Identifier("zeWY2fIzAglMUOU")
-input=Comment("/A%I\"0lIa02/fq%I)")
-input=StringLiteral("Y/P&lt;$Em.{-HRDZ){MZ&lt;&lt;*S;2")
-input=Comment("`0:br{nY.iD/\"S\\p\"u~%z")
-input=StringLiteral("km._%wW5")
-input=Operator("=")
-input=StringLiteral("{V?B/Ly3l*:N")
-input=Integer(-1787606027335244208)
-input=Comment("?;7X}/T.P*a%A\\(p*.U")
-input=Identifier("wTFtH0ii02AH4w89eQO")
-input=Operator("*")
-input=Identifier("ECFat7r3YxBjCCFm3E4M")
-input=Comment("+|{&amp;?a&amp;xNt.$2gu/3#V't")
-input=Operator("(")
-input=StringLiteral("P&gt;_=/V0`kl{!$nr/&lt;(YzO&amp;)y")
+input=Identifier("CxPZwKu66AgEG8Y9brKy3Xv")
 input=Operator("+")
-input=Integer(-6753590660525902183)
-input=Identifier("r8pCylV6Wy0Q9")
-input=Identifier("FF64J6vtc3GrQ")
-input=Integer(-6751423457116678474)
-input=Comment(":u")
+input=Identifier("H3RoK6MEoRgSJson9s44ysRxiubdKX2")
+input=Integer(8343140219508113388)
+input=StringLiteral("*9|[C'v!n? `9=*O")
+input=Operator("+")
+input=Operator("+")
+input=Integer(-3693054204525786654)
+input=Comment("|*\\O59),/F[$BK{^")
+input=Integer(4397792164154114627)
+input=StringLiteral("`QZ9Q.7PGS? a{.&lt;1EOB")
+input=Comment("(v:'@`:Lwg?")
+input=Comment("]tx&amp;#{6`b`*hFQ2*\"{0?&lt;7:L/I?L{+'~")
+input=Identifier("qoSDNK5Nal")
+input=Comment("@q'e%\"4Y'??aYZ0\"d%^V/CMxxHvVW%")
+input=Integer(-7658885443294856942)
+input=StringLiteral("'0AP&amp;KtG%~'~+VO'lP/%y`'tzB&lt;")
+input=StringLiteral("=J|Cb57/N$*4W]Bb00/")
+input=Integer(-1167492599465959388)
+input=Comment("]&lt;wA!I")
+input=Integer(-3926123062770843426)
+input=StringLiteral("&amp;io&lt;`OJ%#zg/~%I`:Y~%m&lt;-'ry")
+input=Comment("9.~&amp;..DPJmRmhtR:`m)%\"L0n")
+input=Comment("&amp;-6&amp;`Uu8x7=|%:Z}R#2=Z")
+input=Operator("(")
+input=Identifier("giL6aQA")
+input=Integer(-5380030798123289354)
+input=Integer(4014729992805621717)
+input=Identifier("q84s9w21tT1scorQb0YIs6YKM")
+input=Identifier("oW6O6AyI4dRhcx2S7He9x19RzOhU6q0Y")
+input=StringLiteral("1diDvm&lt;Y!uW")
+input=Operator("+")
+input=Operator("/")
 input=Operator(")")
 input=Operator("+")
-input=StringLiteral("dx$X`pM`")
-input=Integer(383881523891696030)
-input=Integer(-8476708027339182419)
-input=Identifier("FcWbjW3u")
-input=Comment(".!5BC^2(*evx\"$/&amp;}~k?9=")
-input=Comment("YE$O&amp;!i%[{(-.$Q")
+input=Identifier("c76W7EbMx69TIq5zlc858")
+input=StringLiteral("{g`*?(:rs|$R*TI:$?$O9U/kA4")
+input=Integer(-8466653842405272855)
+input=Operator("*")
 input=Operator("=")
-input=Comment("+5*GK{%Bb$'t?{2:fLJ")
+input=Identifier("g9")
+input=Operator("/")
 input=Operator("-")
-input=Comment("\"A%5!&lt;|\\:6'VFv&lt;\\{`?}|&lt;5z`%")
-input=StringLiteral("7Jz&amp;{t.9Z?=ULi@Nw|%tX")
+input=StringLiteral("'ZL'M%5z-")
+input=Identifier("L82oFkTUhzg5ZfH99eX8oGs4")
+input=Integer(3094524744220478560)
+input=Identifier("h2xqLACXajJtpi3")
 input=Operator("/")
-input=Integer(1083988699152007875)
-input=Operator(")")
-input=StringLiteral("&lt;=i%UN{s2{=O")
-input=Integer(-8574312478227516106)
-input=Comment("{XB'H-*%")
-input=Operator("=")
-input=Comment("&gt;$={")
-input=Identifier("tvA6FNx4N9IG")
-input=Integer(-4315502924142066427)
-input=Operator("+")
-input=StringLiteral("/%=/Q&lt;t=Wrh{&lt;H4")
-input=Identifier("dgUqp0nM8LZ")
-input=Identifier("jonBMD0QKwzoMkVkotW2")
-input=Operator("*")
-input=Integer(6390662807139021902)
-input=Identifier("Bjwfl9NNcjPrzn")
-input=Integer(3696858319521255057)
-input=Operator("/")
-input=StringLiteral("TcdjP3%T'11{9&amp;{NDSs'&amp;R}mFHl)")
-input=Integer(-6497922322790885730)
-input=StringLiteral("EX")
-input=Identifier("FR4SwO16b9e7QT0XSW6jp2DTwdPzyri")
-input=Identifier("RmUTOc000CCQc2qKd3E")
-input=Integer(-7855364211559823524)
-input=Identifier("ws2uWv09NRPQM8KTqGMpAydDmN")
-input=Operator("=")
-input=Integer(-6662301018828546960)
-input=Identifier("q03H8prP17X10ItgMzKcQBYx9f")
-input=Integer(-4558059088402672219)
-input=Comment("/$3/=%%j$V/gOuu`\"")
-input=Comment("P~[4l\\5.{$)dkZ;ay$$%,o=. NZm$&amp;'e")
-input=StringLiteral("wo=Qn8v")
-input=Comment("/+?Dy'Fw")
-input=Integer(-1205046852755692529)
-input=Comment("C{Pp1c`eL&gt;R:Vs&lt;TbXQ+\"]fFN")
-input=Operator("*")
-input=StringLiteral("~e!}Nga*v&lt;{")
-input=StringLiteral("I8_;.5?/&lt;J%|El}K^VLg*`Z")
-input=Identifier("ahf87tpH7FkuPpsfU2W")
-input=StringLiteral("X!x&gt;=10=s3")
-input=Operator("+")
-input=Comment("o#Qf")
+input=Integer(-8372033863228459438)
+input=Comment("&lt;V&amp;{2~'x%@``2a%`&lt;`'K$K/&amp;=&amp;yhD")
 input=Operator("-")
-input=Comment("5AA")
-input=StringLiteral("*P{")
-input=Identifier("dc7")
-input=Operator("(")
-input=Integer(2808843462451926414)
-input=Comment(")?%~B\\`$&lt;{{\\1sj'=")
-input=StringLiteral("Y`|Kh-")
-input=StringLiteral("CdpfCC'Y**pSCi]Mq/@")
-input=Comment("\"c$")
-input=StringLiteral("2G{$'!&amp;=%VI&lt;@o4{d`&lt;MRL?RL$~")
-input=StringLiteral("v")
-input=Operator(")")
-input=StringLiteral("v}o(*HJ#F")
-input=Integer(5794123135866554476)
-input=Comment("{!y/8{htB5J8$2")
-input=Identifier("MMSC3zsOE26U55n")
-input=Integer(8564946316397897036)
-input=StringLiteral("n9$u[lcS&lt;")
-input=Operator("(")
-input=Comment("3TG&lt;l%\"{wq=X9}Q?{LKGQ5/'@G?")
-input=Identifier("DS")
-input=Comment("!C/P^TK.Z}$gGq{`$a6&gt;Q[%.*Pc[J]7:")
-input=Identifier("m5Km07xtqhVUJn6N")
-input=Comment("fBb\"CVf,\"")
-input=Operator("(")
-input=Operator("+")
-input=Identifier("wkMbJerYohNtg")
-input=StringLiteral("Z_O/5:y*6A#*:")
-input=StringLiteral("'.d?BO41UF{+&lt;;@&amp;`")
-input=Identifier("aFso34JldzD716RbUy0t1")
-input=Comment("r.hSC-y/&lt;1l{qV`'8`4Z+cDB $'?M%A")
-input=Identifier("GciS")
+input=Identifier("G4FmUplh2XOe")
+input=Integer(2365442588585145268)
 input=Operator("=")
-input=Identifier("TBYfbZn8xpQyd0vEawGOYI657F37rN2C")
-input=Identifier("Od4YAms87R")
-input=Comment("52&gt;c$9.*8:&amp;J{hpNz\"%\\a*q]%wO/?1s\\")
-input=Identifier("DB7rk7LyOss9vPV3ddJhR8Ej")
-input=Integer(7085578393077824465)
 input=Operator("*")
-input=Integer(4479787872611549978)
-input=Integer(-5624142405154604949)
-input=StringLiteral("=l#%E?s3:Ib'h fJ&lt;W}'(6/tI*")
-input=Operator("(")
+input=Comment("_*?P2~Zg$z&lt;\\!0%")
+input=StringLiteral("c'Y")
+input=Identifier("X8Di")
+input=Comment("'?R5^Y\":IOi\"e1hFbBXYsX)\\?.;W'9T")
 input=Operator("*")
+input=StringLiteral("l7_`[K&amp;E|Q&lt;T=rb")
+input=Comment("qlp:=x*./=")
+input=Integer(7628644743835029207)
+input=Operator("*")
+input=StringLiteral("/U*3W''*s/)T")
+input=Comment(".:&amp;%3@]K&lt;*n77/F`*SZ{?{_hIL@h&amp;&amp;*")
+input=Operator("=")
+input=StringLiteral("Fx'v;hC$?S6/Cpb7eD%&lt;d'&lt;ikp$FM=9u")
+input=Comment("\\`?&lt;A&amp;&lt;u3:&gt;V&lt;@?.cY\\&amp;&amp;UckN")
+input=Identifier("qwtn892RcoPw60v")
+input=Identifier("aUzGFW7wiMgzAN0pH5QZ5nevC2GH")
+input=Identifier("KmlU15d")
+input=Integer(-7442708055565000989)
+input=StringLiteral("sm)JQH::$:kOL0~iSAU")
+input=Integer(-3599376968194360874)
+input=Comment("gP/{S&lt;o$*h ^\"+($oA*z?%")
 input=Operator("-")
-input=Identifier("z34F3doRL2na1Z5X64ZtPCiuf2Bdr7uC2")
-input=Identifier("B6I8f2MIddu5or59Ba7")
-input=Comment("T&lt;WL~rQCsZ2AeXn\\KX@?{5&lt;\"NOv")
-input=Operator("=")
-input=StringLiteral("qNOKh:,")
-input=Identifier("cs9JRk2njlKqVeBA44")
-input=Operator(")")
-input=Integer(-1045108911930306925)
-input=Identifier("b")
-input=Identifier("b7eIjnkNRgP8pExqE23e6E92QJ1pbbCj")
-input=Identifier("yZ")
-input=Identifier("zBuG1iPaA2KaALS5Qm2De")
-input=Integer(-1151736706829803094)
-input=Identifier("mnTBKb0lm8")
-input=Operator("+")
-input=Integer(3480085098081516547)
-input=Integer(710456899134220329)
-input=Operator("*")
-input=Identifier("J963PkInvd0mUc2YVM")
-input=Operator("=")
-input=Operator("+")
-input=Operator("*")
-input=Integer(8285586589749137320)
-input=Operator("+")
-input=Integer(9146946205557788321)
-input=Operator("/")
-input=Integer(7585435845461657286)
-input=Integer(-4718176019574950998)
-input=Integer(1035305392867467074)
-input=Integer(1272212486747247190)
-input=Identifier("Ch0dTxK934vHU3jK18cRaFVH3DiK")
-input=StringLiteral(";/ /j%AKO8Z]j8'AVHcj|L")
+input=Integer(1651261318368234125)
+input=Integer(-3412074983297846725)
+input=Integer(-1987971373567755033)
+input=StringLiteral("rJ7t&amp;sY$:ToiEj;x3zQ%:8+~")
+input=Comment("yNq$*Vw']XMy':YHx?%iI4NH")
+input=StringLiteral("3m|*.ZdssSn[/-r9?8,s:MH*$zi_J")
+input=StringLiteral("q??R}{D$A`.{1*${D*73=F&amp;&lt;'S0C](/")
+input=Comment("a\"A:1acKZ/qD$P*'~a7*v:7")
+input=Identifier("pu0CHDhb3vq2GgLN1QILXt09CiirF4fJ")
+input=StringLiteral("zP0OfYC,M?*%/:0LJOTR?.n")
+input=Comment("R{.^")
+input=Integer(-5066647514646197555)
+input=Operator("(")
+input=StringLiteral("Ge9{")
+input=Comment(")5Qs\\ ?{A?$QHx")
+input=StringLiteral(")}Veb")
+input=Comment("\".|`^")
+input=Comment("P?TyO:x_gA\"")
+input=StringLiteral(";.&lt;)V:-&lt;7';bf%=7/")
+input=Identifier("SmN95qx1b6hbPDuig38bFV")
 input=Operator("-")
+input=Comment("i/jH!L\\ 4$AK'q:wU97K*e6SE\"Q{u")
+input=Integer(-8494981245035030023)
+input=Identifier("Y77X336F2pCs6HebbO8OWJp7YCrZWx7dT")
+input=Comment("PxNNH$V6sP42fnhdb&amp;?:B@$CE'&amp;`=")
+input=StringLiteral("[.@?`o`z&lt;({&lt;/)g:Q%{(E/=")
+input=Identifier("z0Y2eJFeHbQV")
+input=Integer(8877724581803370680)
+input=Identifier("OWP0e4OH")
 input=Operator("=")
-input=StringLiteral("d5&amp; ] !U")
-input=StringLiteral("!$^i-V*Xb~:l[)")
-input=Integer(-1338139748078479980)
-input=StringLiteral("e%v*t`'/0&amp;G.-xGEBY] ")
-input=StringLiteral("fXy'e")
-input=Comment("iE%??:ZA.HJo3;4XZjH\"3$K$6.m")
-input=Integer(-6660815258355396822)
-input=Operator("(")
-input=Identifier("M3")
-input=Integer(-8022430024529498327)
-input=StringLiteral("=")
-input=Identifier("NiF3KIB18hpumyLY2K")
-input=Comment("\\kg.:yI?Mb-4{$$i&amp;")
-input=Comment("]J.T:U=3Ob%`3o&gt;\"_vY?D5!&amp;=&gt;")
-input=Identifier("GA1")
-input=StringLiteral("&amp;M*U.k2'2F%3IvWb&amp;aV%.H^l?f%a")
-input=Integer(12253634085365172)
-input=Identifier("O5P8rpkW")
-input=StringLiteral("&amp;N{=&amp;L/o;")
-input=StringLiteral("$[")
-input=Operator("/")
-input=Identifier("fJ1")
-input=Integer(-5484693271654579105)
-input=Comment("YC.QG&lt;O&amp;[h`&amp;pH'qk@.).?{S)%\\GAg0j")
-input=Comment("A40A1_lQ=95w/")
-input=Identifier("Bg6rVkdfKcF9ML7DC")
-input=Identifier("QyVR30RRSCy1P48pCFvMZywTf4GAQ")
-input=Comment("vr%V2&lt;lul$Y&lt;r%&amp;&lt;*W\\{}'?rc")
-input=Comment("&amp;C@qg:h=):yb'j;;{88/B.,'3_|4{E")
-input=StringLiteral("d~i1*KZh@|~1,$/05;(%vq")
-input=Identifier("KT96M6G")
-input=Integer(-8387014486006015761)
-input=Identifier("YGj4sEXwSoXfi1")
-input=Comment("U_4i:~Us8n$d&lt;")
-input=Comment("R%(&amp;:z*-/E7X.]4&amp;2{W")
-input=Operator(")")
-input=StringLiteral("H`st|-S%G&lt;d'o&lt;`]x{'?jb%&amp;6%aJ.")
-input=Identifier("xY340AlU44qhH8spKqVepn")
-input=Operator("+")
-input=Comment("&lt;Cscm^")
-input=Comment("x8\"$'^%=&amp;o$4.T%bgaPUy9`-{G&lt;47`")
-input=StringLiteral("l+S{{e0#5q3h$,o$fL$9Gm")
-input=Comment("")
-input=Identifier("QGLuYuUZHg91iwogKHaxNDf")
-input=StringLiteral("/ Mxl`&lt;4oVq.A&lt;e+pEkZ0v:4+L0")
-input=Identifier("eDLkOl9h9a5pDEJ4JZttZgL8k0Q2F")
-input=Integer(5739147397538091196)
-input=Operator("+")
-input=Operator("(")
-input=Operator("/")
-input=StringLiteral("-&amp;Pj/'")
-input=Operator("+")
-input=StringLiteral("n'vJ6?:u=G-(e&lt;[hkR!-_#3:?4^^")
-input=Comment("4'+@/9f9&lt;)4^&lt;&amp;&amp;~=c:p{*{ac0!9ne")
-input=Operator("/")
-input=Identifier("eM7Z25")
-input=Operator("=")
-input=Integer(-7982922571252409179)
-input=StringLiteral("B_kL{[a`6eM^@:[SE[IX=")
-input=Operator(")")
-input=Operator(")")
-input=StringLiteral("R")
-input=Identifier("I")
-input=Integer(-965005534850667641)
-input=StringLiteral(",i'l);KS^p^'")
-input=Identifier("cg1V7hKJ")
-input=Operator("(")
-input=Comment("z#\\=lNL$&amp;$okwY")
-input=StringLiteral("&lt;&gt;M0s`8d4@=*$}$x?T/w+l&lt;]--$&lt;")
-input=Operator("/")
-input=Comment("M\"&gt;z&amp;M:4I^:Pu")
-input=Operator("+")
-input=Comment("pNSO45&amp;)0tO\\e`^ ]{4EU&gt;6E&lt;%$%*")
-input=Integer(-1695621145093210279)
-input=Operator("+")
-input=Integer(7883738429121975897)
-input=StringLiteral("ZX.($]'?]l?D")
-input=StringLiteral("ty]^9&amp;/%vGEY/OOV$^cK#}")
-input=Comment("~&amp;$8\"2~'&lt;[:Y9.o\\L*5r\"S}{")
-input=Operator(")")
-input=StringLiteral(":M?Jn")
-input=Comment("Q?9.")
-input=Integer(7162419005757960625)
-input=Comment("]4{\"B'NS4\\Z:Q$*.*#\\{'[S@jYO+v*6r")
+input=StringLiteral("G^`XAy")
+input=Integer(6962714811778435988)
+input=Comment("+pY`u@il(oVpYM.")
 input=Operator("-")
-input=StringLiteral("1W(/&lt;yja*")
+input=Operator("-")
+input=StringLiteral("s:~'c9s1C%%}?h+x")
+input=Identifier("MEld8Fm5F1xSmnED")
+input=Integer(-4441342602653884546)
+input=Comment("Ru%vHML&lt;QN*")
+input=StringLiteral("*$0i%=$I&lt;L|:yi:{&lt;&amp;S+9&amp;oU{{:.8z")
 input=Operator("+")
+input=StringLiteral("=-ob")
+input=Comment("/-0p/D9D.qwQ/}`z")
+input=Comment("XBK&lt;.$*\\1O'{Y(")
+input=Operator(")")
+input=Comment("`?H{")
+input=StringLiteral("r=x^*%@/|`rJ5C;5O*X},v.L.t&lt;L*")
+input=Comment("bo'f$*`F%ab&lt;sl?TMYC&amp;3l%x.E4l")
+input=Operator("/")
+input=Integer(-2028749725247175035)
+input=Operator(")")
+input=StringLiteral("=YOf*i{/l1N^[&gt;")
+input=StringLiteral("($Ll,~3:D_&gt;3[I/l?SpwPyQL4xV=j")
+input=Integer(3474295700028464747)
+input=Identifier("B")
+input=StringLiteral("{t`:'DKb%qk'7*(0b'M{?*'{*I")
+input=Integer(-2313039390481613552)
+input=StringLiteral("I.+{E&gt;f")
+input=Operator(")")
+input=Operator("=")
+input=Identifier("T9tAAH")
+input=StringLiteral("%.d?3&amp;%:|M~9'")
+input=Identifier("iB84R80k1pWrlD4Wahskae7TK237rDZY2")
+input=Integer(-7400200576140331860)
+input=StringLiteral("$=Ufq&lt;v7/d*E//8:-y.Fi$")
+input=StringLiteral(":UfP/0@")
+input=Identifier("WlSl6wMENUB2dj2W4rO8QW")
+input=Integer(8578131166696543107)
+input=Integer(2786491085969376328)
+input=Identifier("SZ9Ig3o8E4Okv4Bvfd3z")
+input=StringLiteral("op`y&amp;s'{R|&amp;&amp;=3tRVujr{1ks&amp;%LZg%")
+input=Identifier("wh2MiJQ5G9W0yYoYGNKH3mI07N8SuPghl")
+input=Identifier("AuVC1yT6oQrKVheNnRimwi79")
+input=Operator("+")
+input=StringLiteral("iAU/J**0X*=3XB@{4P&lt;%v!=2`$")
+input=Comment("*'bHe?{?%HQ]7*&amp;&gt;iM;L:")
+input=Operator("*")
+input=Comment("e?\"'h=U")
+input=Operator("=")
+input=Integer(1238086451281956690)
+input=Identifier("U4ZTwfba9focFdiTal")
+input=Comment("\\.`b;V/P\"$T-lVU?/,\"O4/~9")
+input=Identifier("fIRJh3wWoUy79T9KFq57I2w")
+input=Comment("''")
+input=Operator("+")
+input=Operator(")")
+input=Comment("7:077")
+input=StringLiteral(".zO}-gC:w].FHaY$otQ=+N:.")
+input=Comment(", %O:}'I'?%7\\O\\/87/")
+input=StringLiteral("'(/&amp;=ZR`SbTj&lt;=&lt;{&amp;tr(&amp;*7=LdK8")
+input=Identifier("fZ88Zi9A6uDUu")
+input=Integer(-2909582324897775768)
+input=StringLiteral("0%d&amp;[wB]:])Z*`n.dX$A(i`:(gr.n2")
+input=Identifier("Vssp1i1ukEDsxkc0pB2eqBdb2ibj2")
+input=Integer(5879307106493055121)
+input=StringLiteral("JX4g8?tGRFK_v)*CZ")
+input=Integer(7386994026450589599)
+input=Identifier("Rmc2VwY4whb0XJo7b2DnvhP6giPmvq")
+input=Identifier("AFKXE3gOT1")
+input=Integer(-9192333762671217746)
+input=Operator("-")
+input=Identifier("aLN2GraE80geGtN67zAARe")
+input=Operator(")")
+input=Comment("N2b,4\\r?6/'9")
+input=Integer(8037728019937126228)
+input=Integer(2712971821137299469)
+input=StringLiteral("=%Lga+.=w[14=[`dW4`ejg&amp;Fz?NP&gt;i")
+input=Identifier("k5vUXjZ75URin1tQmVuQqhZS5M2m")
+input=Comment("HI&lt;8hJmV@gk.'%=F'*")
+input=Comment("=UxH`\"$3-$_,G`j!VitSa=")
+input=Operator("-")
+input=Integer(-2769582237685426252)
+input=Identifier("E1aqZP6f5jqyXB1pWD1C33R9")
+input=Integer(6646366927849743056)
+input=Comment(":D6':X\"gADF")
+input=Comment(":\\Z%Z6(*/`_E\\:$")
+input=Comment("sY%bF$BqgDHrWXZC\"_V-?= 9i&amp;\\{MV&lt;")
+input=StringLiteral("M")
+input=Comment("mc{$MF4{cs&amp;Q/~[/J`&lt;*i1-&lt;:\\")
+input=Comment("1(dWuh\".c7T}f=&amp;&amp;$/H{")
+input=Comment("w$NlNm$0gIpM?$v|..")
+input=Operator("(")
+input=Operator("/")
+input=Operator(")")
+input=Identifier("uIWS2hFLATTm9sLyZHFgo2cHJXK2O")
+input=Integer(3616106664873220296)
+input=Operator("-")
+input=StringLiteral("R]&amp;f`[gib/$.1Dzzmx9")
+input=StringLiteral("a'&amp;3l*_`i&amp;8$[VK4g$!]!?2")
+input=Identifier("EdARdlOWiaf4urgDPh7L5f2duUbg40Swk")
+input=Identifier("l9P1JtqyME")
+input=Operator(")")
+input=Identifier("R6voUve6")
+input=StringLiteral("&lt; }X?{x==xm")
+input=Operator(")")
+input=Integer(3230937091424288563)
+input=Integer(505662745594522411)
+input=Identifier("BONv4iJPe1C3")
+input=Operator("*")
+input=Integer(-6618870787051381551)
+input=Operator("/")
+input=Operator("/")
+input=Comment("5;=qL&amp; DXC{v*D?Z'+jsh!B\\G:\\")
+input=Integer(3345561064435753608)
+input=StringLiteral("ab~qZR.&lt;dfeHkn")
+input=Operator("*")
+input=Operator("*")
+input=Comment("~")
+input=Identifier("aFPut06zK9R")
+input=StringLiteral("6=$@=*:{hF~D/=$W7;")
+input=Comment("(4Bj09_jt")
+input=StringLiteral("j, +|!M,`T84%5[.$I")
+input=Operator("-")
+input=StringLiteral("zV%U{9.cE?xLCL0TP")
+input=Operator(")")
+input=Operator("+")
+input=Identifier("JQqp3")
+input=Comment(":vI*P&lt;?\\T7%o?]&gt;Wpt`TEF`Ns:")
+input=Identifier("thO74979xgPF48")
+input=Operator("/")
+input=Comment("%?x{Xw\"Y:")
+input=Operator("*")
+input=Comment("j`E447?F*w[45HLV$dp')[T&gt;?^y")
 
 
 successes:

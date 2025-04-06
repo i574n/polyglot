@@ -7327,6 +7327,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -8394,7 +8395,7 @@ a.anchor-link {
                 <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">ch</span>
                 <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">get_background_char</span> <span class="p">()</span>
             <span class="n">sb</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.builder_append (ch |&gt; sm'</span><span class="o">.</span><span class="n">obj_to_string</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-        
+
         <span class="n">backend_switch</span> <span class="p">{</span>
             <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
                 <span class="err">$</span><span class="s1">'for col in 0 .. (!width - 1) do !fn2 col'</span> <span class="p">:</span> <span class="p">()</span>
@@ -8402,7 +8403,7 @@ a.anchor-link {
                 <span class="err">$</span><span class="s1">'for col in range(!width): !fn2(col)'</span> <span class="p">:</span> <span class="p">()</span>
         <span class="p">}</span>
         <span class="n">sb</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.builder_append_line |&gt; ignore</span>
-    
+
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'for row in 0 .. (!height - 1) do !fn1 row'</span> <span class="p">:</span> <span class="p">()</span>
@@ -8446,7 +8447,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>"
-.py output (Cuda):
+.py output (Python):
 ................................................................................................................................................................
 ................................................................................................................................................................
 ................................................................................................................................................................
@@ -8863,11 +8864,11 @@ a.anchor-link {
     <span class="n">backend_switch</span> <span class="p">{</span>
         <span class="n">Fsharp</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'let main_ = !main '</span>
-            <span class="err">$</span><span class="s1">'#if \!FABLE_COMPILER_RUST'</span>
+            <span class="err">$</span><span class="s1">'\#if \!FABLE_COMPILER_RUST'</span>
             <span class="err">$</span><span class="s1">'main_ [||]'</span> <span class="p">:</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s1">'#else'</span>
+            <span class="err">$</span><span class="s1">'\#else'</span>
             <span class="err">$</span><span class="s1">'let main args = main_ [||]; 0'</span> <span class="p">:</span> <span class="p">()</span>
-            <span class="err">$</span><span class="s1">'#endif'</span> <span class="p">:</span> <span class="p">()</span>
+            <span class="err">$</span><span class="s1">'\#endif'</span> <span class="p">:</span> <span class="p">()</span>
         <span class="n">Python</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="n">main</span> <span class="p">;[]</span>
     <span class="p">}</span>
