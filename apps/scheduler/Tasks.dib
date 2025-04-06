@@ -37,60 +37,9 @@ union manual_scheduling =
 #!spiral
 
 union recurrency_offset =
-    | Days : i32
-    | Weeks : i32
-    | Months : i32
-
-#!markdown
-
-## day_of_week
-
-#!spiral
-
-union day_of_week =
-    | Sunday
-    | Monday
-    | Tuesday
-    | Wednesday
-    | Thursday
-    | Friday
-    | Saturday
-
-#!markdown
-
-## month
-
-#!spiral
-
-union month =
-    | January
-    | February
-    | March
-    | April
-    | May
-    | June
-    | July
-    | August
-    | September
-    | October
-    | November
-    | December
-
-#!markdown
-
-## day
-
-#!spiral
-
-nominal day = i32
-
-#!markdown
-
-## year
-
-#!spiral
-
-nominal year = i32
+    | Days : int
+    | Weeks : int
+    | Months : int
 
 #!markdown
 
@@ -99,9 +48,9 @@ nominal year = i32
 #!spiral
 
 union fixed_recurrency =
-    | Weekly : day_of_week
-    | Monthly : day
-    | Yearly : day * month
+    | Weekly : date_time.day_of_week
+    | Monthly : date_time.day
+    | Yearly : date_time.day * date_time.month
 
 #!markdown
 
@@ -143,9 +92,9 @@ type task =
 
 type date =
     {
-        year : year
-        month : month
-        day : day
+        year : date_time.year
+        month : date_time.month
+        day : date_time.day
     }
 
 #!markdown

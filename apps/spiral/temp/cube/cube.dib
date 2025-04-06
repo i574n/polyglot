@@ -404,7 +404,7 @@ inl generate_frame rot =
                 | Some (_, ch) => ch
                 | None => get_background_char ()
             sb |> sm'.builder_append (ch |> sm'.obj_to_string) |> ignore
-        
+
         backend_switch {
             Fsharp = fun () =>
                 $'for col in 0 .. (!width - 1) do !fn2 col' : ()
@@ -412,7 +412,7 @@ inl generate_frame rot =
                 $'for col in range(!width): !fn2(col)' : ()
         }
         sb |> sm'.builder_append_line |> ignore
-    
+
     backend_switch {
         Fsharp = fun () =>
             $'for row in 0 .. (!height - 1) do !fn1 row' : ()
@@ -541,11 +541,11 @@ inl main () =
     backend_switch {
         Fsharp = fun () =>
             $'let main_ = !main '
-            $'#if \!FABLE_COMPILER_RUST'
+            $'\#if \!FABLE_COMPILER_RUST'
             $'main_ [||]' : ()
-            $'#else'
+            $'\#else'
             $'let main args = main_ [||]; 0' : ()
-            $'#endif' : ()
+            $'\#endif' : ()
         Python = fun () =>
             main ;[]
     }

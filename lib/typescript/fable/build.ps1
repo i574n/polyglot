@@ -10,6 +10,7 @@ $ErrorActionPreference = "Stop"
 if (!$fast) {
     { dotnet fable --optimize --lang ts --extension .ts --noCache } | Invoke-Block
     { dotnet fable ../../../deps/Fable/src/fable-library-ts/Fable.Library.TypeScript.fsproj --lang ts --extension .ts --noCache } | Invoke-Block -OnError Continue
+    Remove-Item ../../../deps/Fable/src/fable-library-ts/fable_modules -Recurse -Force -ErrorAction Ignore
 }
 
 $paths = @(

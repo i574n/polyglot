@@ -48,7 +48,7 @@ class US0(Union):
 US0_reflection = _expr282
 
 def _expr283() -> TypeInfo:
-    return union_type("Cube.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())], [("f5_0", US0_reflection())]])
+    return union_type("Cube.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())], [("f5_0", US0_reflection())], [("f6_0", US0_reflection())]])
 
 
 class US1(Union):
@@ -60,7 +60,7 @@ class US1(Union):
 
     @staticmethod
     def cases() -> list[str]:
-        return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5"]
+        return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5", "US1_6"]
 
 
 US1_reflection = _expr283
@@ -339,23 +339,23 @@ def closure10(v0_1: str, unit_var: None) -> None:
 def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
     def _arrow311(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Async[None]:
         pattern_input: tuple[float, float, float] = method7(v2, v3, v4)
-        v3433: float = pattern_input[2]
-        v3432: float = pattern_input[1]
-        v3431: float = pattern_input[0]
-        v3450: IEnumerable_1[tuple[int, float, str]] = collect(method8(v3431, v3432, v3433), to_enumerable([(20.0, -40.0), (10.0, 10.0), (5.0, 40.0)]))
-        v3456: Array[US4] = fill([0] * (160 * 44), 0, 160 * 44, US4(1))
+        v3633: float = pattern_input[2]
+        v3632: float = pattern_input[1]
+        v3631: float = pattern_input[0]
+        v3650: IEnumerable_1[tuple[int, float, str]] = collect(method8(v3631, v3632, v3633), to_enumerable([(20.0, -40.0), (10.0, 10.0), (5.0, 40.0)]))
+        v3656: Array[US4] = fill([0] * (160 * 44), 0, 160 * 44, US4(1))
         def action(_arg: tuple[int, float, str]) -> None:
-            closure6(v3456, _arg[0])((_arg[1], _arg[2]))
+            closure6(v3656, _arg[0])((_arg[1], _arg[2]))
 
-        iterate(action, v3450)
-        v3465: Any = StringBuilder__ctor_Z721C83C5(method14())
+        iterate(action, v3650)
+        v3666: Any = StringBuilder__ctor_Z721C83C5(method14())
         def _arrow301(_arg_1: int) -> Async[None]:
-            closure8(v3456, v3465, _arg_1)
+            closure8(v3656, v3666, _arg_1)
             return singleton_1.Zero()
 
         def _arrow310(__unit: None=None) -> Async[None]:
-            v3471: str = to_string(v3465)
-            v3474: bool = v0_1 < 0
+            v3673: str = to_string(v3666)
+            v3676: bool = v0_1 < 0
             def _expr303():
                 sys.stdout.write("\033[1;1H")
                 def _expr302():
@@ -364,30 +364,30 @@ def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
                 return _expr302()
 
             def _arrow309(__unit: None=None) -> Async[None]:
-                v3484: None
-                closure10(v3471, None)
-                v3484 = None
-                v3500: Async[None] = sleep(1)
+                v3686: None
+                closure10(v3673, None)
+                v3686 = None
+                v3702: Async[None] = sleep(1)
                 def _arrow308(__unit: None=None) -> Async[None]:
-                    v3510: bool = (v1 >= v0_1) if (v0_1 > 0) else False
+                    v3715: bool = (v1 >= v0_1) if (v0_1 > 0) else False
                     def _expr304():
                         return singleton_1.Zero()
 
                     def _arrow306(__unit: None=None) -> Async[None]:
-                        v3515: Async[None] = method5(v0_1, v1 + 1, v3431 + 0.05, v3432 + 0.05, v3433 + 0.01)
+                        v3720: Async[None] = method5(v0_1, v1 + 1, v3631 + 0.05, v3632 + 0.05, v3633 + 0.01)
                         def _arrow305(__unit: None=None) -> Async[None]:
                             return singleton_1.Zero()
 
-                        return singleton_1.Combine(singleton_1.ReturnFrom(v3515), singleton_1.Delay(_arrow305))
+                        return singleton_1.Combine(singleton_1.ReturnFrom(v3720), singleton_1.Delay(_arrow305))
 
                     def _arrow307(__unit: None=None) -> Async[None]:
                         return singleton_1.Zero()
 
-                    return singleton_1.Combine(_expr304() if v3510 else _arrow306(), singleton_1.Delay(_arrow307))
+                    return singleton_1.Combine(_expr304() if v3715 else _arrow306(), singleton_1.Delay(_arrow307))
 
-                return singleton_1.Bind(v3500, _arrow308)
+                return singleton_1.Bind(v3702, _arrow308)
 
-            return singleton_1.Combine(_expr303() if v3474 else singleton_1.Zero(), singleton_1.Delay(_arrow309))
+            return singleton_1.Combine(_expr303() if v3676 else singleton_1.Zero(), singleton_1.Delay(_arrow309))
 
         return singleton_1.Combine(singleton_1.For(range_big_int(0, 1, 44 - 1), _arrow301), singleton_1.Delay(_arrow310))
 

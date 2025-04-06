@@ -1,3 +1,5 @@
+#nowarn 0686
+
 #if !INTERACTIVE
 namespace Polyglot
 #endif
@@ -65,9 +67,10 @@ module Supervisor =
 
     /// ### Backend
     type Backend =
-        | Fsharp
-        | Cuda
         | Gleam
+        | Fsharp
+        | Python
+        | Cpp
 
 
 
@@ -227,9 +230,10 @@ module Supervisor =
 
             let outputFileName =
                 match backend with
-                | Fsharp -> $"{fileName}.fsx"
-                | Cuda -> $"{fileName}.py"
                 | Gleam -> $"{fileName}.gleam"
+                | Fsharp -> $"{fileName}.fsx"
+                | Python -> $"{fileName}.py"
+                | Cpp -> $"{fileName}.cpp"
 
             // let outputContentSeq =
             //     stream
@@ -378,9 +382,10 @@ module Supervisor =
 
             let backendId =
                 match backend with
-                | Fsharp -> "Fsharp"
-                | Cuda -> "Python + Cuda"
                 | Gleam -> "Gleam"
+                | Fsharp -> "Fsharp"
+                | Python -> "Python + Cuda"
+                | Cpp -> "Cpp + Cuda"
             // let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
 
             // let backend = Supervisor.Fsharp
@@ -572,9 +577,10 @@ modules:
                     | Spi _ -> moduleName
                     | Spir _ -> $"{moduleName}_real"
                 match backend with
-                | Fsharp -> $"{fileName}.fsx"
-                | Cuda -> $"{fileName}.py"
                 | Gleam -> $"{fileName}.gleam"
+                | Fsharp -> $"{fileName}.fsx"
+                | Python -> $"{fileName}.py"
+                | Cpp -> $"{fileName}.cpp"
             let outputPath = packageDir </> outputFileName
             if outputPath |> System.IO.File.Exists |> not
             then return spiralPath, None
@@ -857,12 +863,14 @@ modules:
                 |> List.map (fun (inputPath, outputPath) -> async {
                     let! _outputPath, outputCode, errors =
                         let backend =
-                            if outputPath |> SpiralSm.ends_with ".fsx"
+                            if outputPath |> SpiralSm.ends_with ".gleam"
+                            then Gleam
+                            elif outputPath |> SpiralSm.ends_with ".fsx"
                             then Fsharp
                             elif outputPath |> SpiralSm.ends_with ".py"
-                            then Cuda
-                            elif outputPath |> SpiralSm.ends_with ".gleam"
-                            then Gleam
+                            then Python
+                            elif outputPath |> SpiralSm.ends_with ".cpp"
+                            then Cpp
                             else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
                         let isReal = inputPath |> SpiralSm.ends_with ".spir"
                         inputPath |> buildFile backend timeout (Some serverPort) None

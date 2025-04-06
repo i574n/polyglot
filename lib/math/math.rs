@@ -228,64 +228,64 @@ mod module_b7a9935b {
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v49: pyo3::Python = Math::method7(v0_1);
             let v56: &str = &*v36;
-            let v89: std::string::String = String::from(v56);
-            let v117: std::ffi::CString = std::ffi::CString::new(v89).unwrap();
-            let v125: &str = &*string("");
-            let v158: std::string::String = String::from(v125);
-            let v186: std::ffi::CString = std::ffi::CString::new(v158).unwrap();
-            let v188: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                pyo3::types::PyModule::from_code(v49, &v117, &v186, &v186);
-            let v190: bool = true;
-            let _result_map_error__ = v188.map_err(|x| {
+            let v92: std::string::String = String::from(v56);
+            let v123: std::ffi::CString = std::ffi::CString::new(v92).unwrap();
+            let v131: &str = &*string("");
+            let v167: std::string::String = String::from(v131);
+            let v198: std::ffi::CString = std::ffi::CString::new(v167).unwrap();
+            let v200: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                pyo3::types::PyModule::from_code(v49, &v123, &v198, &v198);
+            let v202: bool = true;
+            let _result_map_error__ = v200.map_err(|x| {
                 //;
-                let v192: pyo3::PyErr = x;
-                let v199: std::string::String = format!("{}", v192);
-                let v227: bool = true;
-                v199
+                let v204: pyo3::PyErr = x;
+                let v211: std::string::String = format!("{}", v204);
+                let v242: bool = true;
+                v211
             });
-            let v229: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
+            let v244: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
                 _result_map_error__;
-            let v233: pyo3::Bound<pyo3::types::PyModule> = v229.unwrap();
-            let v245: string = Math::method8();
-            let v252: &str = &*v245;
-            let v279: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v233);
-            let v281: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v279.getattr(v252);
-            let v283: bool = true;
-            let _result_map_error__ = v281.map_err(|x| {
+            let v248: pyo3::Bound<pyo3::types::PyModule> = v244.unwrap();
+            let v260: string = Math::method8();
+            let v267: &str = &*v260;
+            let v297: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v248);
+            let v299: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v297.getattr(v267);
+            let v301: bool = true;
+            let _result_map_error__ = v299.map_err(|x| {
                 //;
-                let v285: pyo3::PyErr = x;
-                let v292: std::string::String = format!("{}", v285);
-                let v320: bool = true;
-                v292
+                let v303: pyo3::PyErr = x;
+                let v310: std::string::String = format!("{}", v303);
+                let v341: bool = true;
+                v310
             });
-            let v322: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v326: pyo3::Bound<pyo3::PyAny> = v322.unwrap();
-            let v338: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+            let v343: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v347: pyo3::Bound<pyo3::PyAny> = v343.unwrap();
+            let v359: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 Math::method10(v46.0.clone(), v46.1.clone());
-            let v339: pyo3::Bound<pyo3::PyAny> = Math::method11(v326);
-            let v341: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                pyo3::prelude::PyAnyMethods::call(&v339, ((*v338).0, *(*v338).1), None);
-            let v343: bool = true;
-            let _result_map_error__ = v341.map_err(|x| {
+            let v360: pyo3::Bound<pyo3::PyAny> = Math::method11(v347);
+            let v362: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                pyo3::prelude::PyAnyMethods::call(&v360, ((*v359).0, *(*v359).1), None);
+            let v364: bool = true;
+            let _result_map_error__ = v362.map_err(|x| {
                 //;
-                let v345: pyo3::PyErr = x;
-                let v352: std::string::String = format!("{}", v345);
-                let v380: bool = true;
-                v352
+                let v366: pyo3::PyErr = x;
+                let v373: std::string::String = format!("{}", v366);
+                let v404: bool = true;
+                v373
             });
-            let v382: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v385: pyo3::Bound<pyo3::PyAny> = Math::method12(v382?);
-            let v387: Result<(f64, f64), pyo3::PyErr> = v385.extract();
-            let v389: bool = true;
-            let _result_map_error__ = v387.map_err(|x| {
+            let v406: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v409: pyo3::Bound<pyo3::PyAny> = Math::method12(v406?);
+            let v411: Result<(f64, f64), pyo3::PyErr> = v409.extract();
+            let v413: bool = true;
+            let _result_map_error__ = v411.map_err(|x| {
                 //;
-                let v391: pyo3::PyErr = x;
-                let v398: std::string::String = format!("{}", v391);
-                let v426: bool = true;
-                v398
+                let v415: pyo3::PyErr = x;
+                let v422: std::string::String = format!("{}", v415);
+                let v453: bool = true;
+                v422
             });
-            let v428: Result<(f64, f64), std::string::String> = _result_map_error__;
-            let patternInput: (f64, f64) = v428?;
+            let v455: Result<(f64, f64), std::string::String> = _result_map_error__;
+            let patternInput: (f64, f64) = v455?;
             Ok::<num_complex::Complex<f64>, std::string::String>(num_complex::Complex::new(
                 patternInput.0.clone(),
                 patternInput.1.clone(),
@@ -364,64 +364,64 @@ mod module_b7a9935b {
                 LrcPtr::new((false, LrcPtr::new((v2.clone().re, v2.im))));
             let v49: pyo3::Python = Math::method7(v0_1);
             let v56: &str = &*v36;
-            let v89: std::string::String = String::from(v56);
-            let v117: std::ffi::CString = std::ffi::CString::new(v89).unwrap();
-            let v125: &str = &*string("");
-            let v158: std::string::String = String::from(v125);
-            let v186: std::ffi::CString = std::ffi::CString::new(v158).unwrap();
-            let v188: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                pyo3::types::PyModule::from_code(v49, &v117, &v186, &v186);
-            let v190: bool = true;
-            let _result_map_error__ = v188.map_err(|x| {
+            let v92: std::string::String = String::from(v56);
+            let v123: std::ffi::CString = std::ffi::CString::new(v92).unwrap();
+            let v131: &str = &*string("");
+            let v167: std::string::String = String::from(v131);
+            let v198: std::ffi::CString = std::ffi::CString::new(v167).unwrap();
+            let v200: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                pyo3::types::PyModule::from_code(v49, &v123, &v198, &v198);
+            let v202: bool = true;
+            let _result_map_error__ = v200.map_err(|x| {
                 //;
-                let v192: pyo3::PyErr = x;
-                let v199: std::string::String = format!("{}", v192);
-                let v227: bool = true;
-                v199
+                let v204: pyo3::PyErr = x;
+                let v211: std::string::String = format!("{}", v204);
+                let v242: bool = true;
+                v211
             });
-            let v229: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
+            let v244: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> =
                 _result_map_error__;
-            let v233: pyo3::Bound<pyo3::types::PyModule> = v229.unwrap();
-            let v245: string = Math::method8();
-            let v252: &str = &*v245;
-            let v279: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v233);
-            let v281: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v279.getattr(v252);
-            let v283: bool = true;
-            let _result_map_error__ = v281.map_err(|x| {
+            let v248: pyo3::Bound<pyo3::types::PyModule> = v244.unwrap();
+            let v260: string = Math::method8();
+            let v267: &str = &*v260;
+            let v297: pyo3::Bound<pyo3::types::PyModule> = Math::method9(v248);
+            let v299: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v297.getattr(v267);
+            let v301: bool = true;
+            let _result_map_error__ = v299.map_err(|x| {
                 //;
-                let v285: pyo3::PyErr = x;
-                let v292: std::string::String = format!("{}", v285);
-                let v320: bool = true;
-                v292
+                let v303: pyo3::PyErr = x;
+                let v310: std::string::String = format!("{}", v303);
+                let v341: bool = true;
+                v310
             });
-            let v322: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v326: pyo3::Bound<pyo3::PyAny> = v322.unwrap();
-            let v338: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+            let v343: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v347: pyo3::Bound<pyo3::PyAny> = v343.unwrap();
+            let v359: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
                 Math::method10(v46.0.clone(), v46.1.clone());
-            let v339: pyo3::Bound<pyo3::PyAny> = Math::method11(v326);
-            let v341: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                pyo3::prelude::PyAnyMethods::call(&v339, ((*v338).0, *(*v338).1), None);
-            let v343: bool = true;
-            let _result_map_error__ = v341.map_err(|x| {
+            let v360: pyo3::Bound<pyo3::PyAny> = Math::method11(v347);
+            let v362: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                pyo3::prelude::PyAnyMethods::call(&v360, ((*v359).0, *(*v359).1), None);
+            let v364: bool = true;
+            let _result_map_error__ = v362.map_err(|x| {
                 //;
-                let v345: pyo3::PyErr = x;
-                let v352: std::string::String = format!("{}", v345);
-                let v380: bool = true;
-                v352
+                let v366: pyo3::PyErr = x;
+                let v373: std::string::String = format!("{}", v366);
+                let v404: bool = true;
+                v373
             });
-            let v382: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-            let v385: pyo3::Bound<pyo3::PyAny> = Math::method12(v382?);
-            let v387: Result<(f64, f64), pyo3::PyErr> = v385.extract();
-            let v389: bool = true;
-            let _result_map_error__ = v387.map_err(|x| {
+            let v406: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+            let v409: pyo3::Bound<pyo3::PyAny> = Math::method12(v406?);
+            let v411: Result<(f64, f64), pyo3::PyErr> = v409.extract();
+            let v413: bool = true;
+            let _result_map_error__ = v411.map_err(|x| {
                 //;
-                let v391: pyo3::PyErr = x;
-                let v398: std::string::String = format!("{}", v391);
-                let v426: bool = true;
-                v398
+                let v415: pyo3::PyErr = x;
+                let v422: std::string::String = format!("{}", v415);
+                let v453: bool = true;
+                v422
             });
-            let v428: Result<(f64, f64), std::string::String> = _result_map_error__;
-            let patternInput: (f64, f64) = v428?;
+            let v455: Result<(f64, f64), std::string::String> = _result_map_error__;
+            let patternInput: (f64, f64) = v455?;
             Ok::<num_complex::Complex<f64>, std::string::String>(num_complex::Complex::new(
                 patternInput.0.clone(),
                 patternInput.1.clone(),
@@ -1149,7 +1149,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -1159,14 +1159,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -1341,7 +1341,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -1351,14 +1351,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -1584,7 +1584,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -1594,14 +1594,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -1797,7 +1797,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -1807,14 +1807,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -2002,7 +2002,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -2012,14 +2012,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -2190,7 +2190,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -2200,14 +2200,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -2403,7 +2403,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -2413,14 +2413,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -2591,7 +2591,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -2601,14 +2601,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -2844,7 +2844,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -2854,14 +2854,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -3080,7 +3080,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -3090,14 +3090,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -3386,7 +3386,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -3396,14 +3396,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }
@@ -3689,7 +3689,7 @@ mod module_b7a9935b {
                     let v14: string = string("{");
                     let v19: bool = true;
                     let _fix_closure_v16 = v8;
-                    let v26: string = append(
+                    let v25: string = append(
                         (append(
                             (append(
                                 (append(string("true; _fix_closure_v16 "), (v12))),
@@ -3699,14 +3699,14 @@ mod module_b7a9935b {
                         )),
                         string(" // rust.fix_closure\'"),
                     );
-                    let v27: bool = true;
+                    let v26: bool = true;
                     _fix_closure_v16
                 }
             });
             {
                 // rust.fix_closure';
-                let v29: Result<(), pyo3::PyErr> = __run_test;
-                v29.unwrap();
+                let v28: Result<(), pyo3::PyErr> = __run_test;
+                v28.unwrap();
                 ()
             }
         }

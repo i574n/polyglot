@@ -198,7 +198,7 @@ inl claim_alias (state : rust.ref (rust.mut' state)) (alias : sm'.std_string) : 
     then near.panic_str "chat_contract.claim_alias / invalid alias" . true
     else false
     |> ignore
-    
+
     inl account_alias =
         account_map
         |> near.lookup_get signer_account_id
@@ -485,9 +485,9 @@ near.signer_account_id ()
 inl main () =
     !\($'"} //"') : ()
 
-    !\($'"#[near_sdk::near_bindgen] //"') : ()
+    !\($'"\#[near_sdk::near_bindgen] //"') : ()
 
-    !\($'"#[derive( //"') : ()
+    !\($'"\#[derive( //"') : ()
     !\($'"  near_sdk::PanicOnDefault, //"') : ()
     !\($'"  borsh::BorshDeserialize, //"') : ()
     !\($'"  borsh::BorshSerialize, //"') : ()
@@ -500,7 +500,7 @@ inl main () =
     !\($'"*/ )"') : ()
 
     inl new_ () =
-        !\($'"#[init] //"') : ()
+        !\($'"\#[init] //"') : ()
         !\($'"pub fn new() -> Self { // 1"') : ()
 
         (!\($'"true; /*"') : bool) |> ignore
@@ -539,10 +539,10 @@ inl main () =
         2
 
     inl generate_cid_borsh () =
-        !\($'"#[result_serializer(borsh)] //"') : ()
+        !\($'"\#[result_serializer(borsh)] //"') : ()
         !\($'"pub fn generate_cid_borsh( //"') : ()
         !\($'"  &self, //"') : ()
-        !\($'"  #[serializer(borsh)] content: Vec<u8>, //"') : ()
+        !\($'"  \#[serializer(borsh)] content: Vec<u8>, //"') : ()
         !\($'") -> String { //"') : ()
         !\($'"  self.generate_cid(content) //"') : ()
         !\($'"} //"') : ()
@@ -553,10 +553,10 @@ inl main () =
         !\($'"  &mut self, //"') : ()
         !\($'"  alias: String, //"') : ()
         !\($'") { //"') : ()
-        
+
         inl state = !\($'$"&mut self.0"')
         inl alias = !\($'$"alias"')
-        
+
         inl result = claim_alias state alias
         trace Debug (fun () => "") (join id)
 
@@ -609,10 +609,10 @@ inl main () =
         2
 
     inl get_alias_map_borsh () =
-        !\($'"#[result_serializer(borsh)] //"') : ()
+        !\($'"\#[result_serializer(borsh)] //"') : ()
         !\($'"pub fn get_alias_map_borsh( //"') : ()
         !\($'"  &self, //"') : ()
-        !\($'"  #[serializer(borsh)] alias: String, //"') : ()
+        !\($'"  \#[serializer(borsh)] alias: String, //"') : ()
         !\($'") -> Option<std::collections::HashMap<near_sdk::AccountId, (u64, u32)>> { //"') : ()
         !\($'"  self.get_alias_map(alias) //"') : ()
         !\($'"} //"') : ()
@@ -630,15 +630,17 @@ inl main () =
             get_alias_map_borsh
         ]
 
-    inl rec loop acc fns i =
+    // inl rec loop acc fns i =
+    inl rec loop forall i {number} j {number}. (acc : i) (fns : list (() -> i)) (i : j) : i =
         match fns with
         | [] => acc
         | x :: xs =>
-            !\($'"#[near_sdk::near_bindgen] //"') : ()
+            !\($'"\#[near_sdk::near_bindgen] //"') : ()
             !\($'"impl State { //"') : ()
             inl n = x ()
             !\($'"} /* c"') : ()
-            inl rec loop' i' =
+            // inl rec loop' i' =
+            inl rec loop' forall t {number}. (i' : t) : () =
                 if i' <> 1 // <= n
                 then (!\($'"true; */ // ???? / i: !i / i\': !i' / acc: !acc / n: !n"') : bool) |> ignore
                 else

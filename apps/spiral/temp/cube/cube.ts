@@ -58,6 +58,7 @@ export type US1_$union =
     | US1<3>
     | US1<4>
     | US1<5>
+    | US1<6>
 
 export type US1_$cases = {
     0: ["US1_0", [US0_$union]],
@@ -65,7 +66,8 @@ export type US1_$cases = {
     2: ["US1_2", [US0_$union]],
     3: ["US1_3", [US0_$union]],
     4: ["US1_4", [US0_$union]],
-    5: ["US1_5", [US0_$union]]
+    5: ["US1_5", [US0_$union]],
+    6: ["US1_6", [US0_$union]]
 }
 
 export function US1_US1_0(f0_0: US0_$union) {
@@ -92,17 +94,21 @@ export function US1_US1_5(f5_0: US0_$union) {
     return new US1<5>(5, [f5_0]);
 }
 
+export function US1_US1_6(f6_0: US0_$union) {
+    return new US1<6>(6, [f6_0]);
+}
+
 export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag][0]> {
     constructor(readonly tag: Tag, readonly fields: US1_$cases[Tag][1]) {
         super();
     }
     cases() {
-        return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5"];
+        return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5", "US1_6"];
     }
 }
 
 export function US1_$reflection(): TypeInfo {
-    return union_type("Cube.US1", [], US1, () => [[["f0_0", US0_$reflection()]], [["f1_0", US0_$reflection()]], [["f2_0", US0_$reflection()]], [["f3_0", US0_$reflection()]], [["f4_0", US0_$reflection()]], [["f5_0", US0_$reflection()]]]);
+    return union_type("Cube.US1", [], US1, () => [[["f0_0", US0_$reflection()]], [["f1_0", US0_$reflection()]], [["f2_0", US0_$reflection()]], [["f3_0", US0_$reflection()]], [["f4_0", US0_$reflection()]], [["f5_0", US0_$reflection()]], [["f6_0", US0_$reflection()]]]);
 }
 
 export type US2_$union = 
@@ -365,30 +371,30 @@ export function closure10(v0_1: string, unitVar: void): void {
 export function method6(v0_1: int32, v1: int32, v2: float64, v3: float64, v4: float64): Async<void> {
     return singleton_1.Delay<void>((): Async<void> => {
         const patternInput: [float64, float64, float64] = method7(v2, v3, v4);
-        const v1133: float64 = patternInput[2];
-        const v1132: float64 = patternInput[1];
-        const v1131: float64 = patternInput[0];
-        const v1150: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method8(v1131, v1132, v1133), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
-        const v1156: US4_$union[] = fill(new Array(160 * 44), 0, 160 * 44, US4_US4_1());
+        const v1198: float64 = patternInput[2];
+        const v1197: float64 = patternInput[1];
+        const v1196: float64 = patternInput[0];
+        const v1215: Iterable<[int32, float64, string]> = collect<[float64, float64], Iterable<[int32, float64, string]>, [int32, float64, string]>(method8(v1196, v1197, v1198), [[20, -40] as [float64, float64], [10, 10] as [float64, float64], [5, 40] as [float64, float64]]);
+        const v1221: US4_$union[] = fill(new Array(160 * 44), 0, 160 * 44, US4_US4_1());
         iterate<[int32, float64, string]>((_arg: [int32, float64, string]): void => {
-            closure6(v1156, _arg[0])([_arg[1], _arg[2]] as [float64, string]);
-        }, v1150);
-        const v1165: any = StringBuilder_$ctor_Z721C83C5(method14());
+            closure6(v1221, _arg[0])([_arg[1], _arg[2]] as [float64, string]);
+        }, v1215);
+        const v1231: any = StringBuilder_$ctor_Z721C83C5(method14());
         return singleton_1.Combine<void>(singleton_1.For<int32>(rangeDouble(0, 1, 44 - 1), (_arg_1: int32): Async<void> => {
-            closure8(v1156, v1165, _arg_1);
+            closure8(v1221, v1231, _arg_1);
             return singleton_1.Zero();
         }), singleton_1.Delay<void>((): Async<void> => {
-            const v1171: string = toString(v1165);
-            const v1174: boolean = v0_1 < 0;
-            return singleton_1.Combine<void>(v1174 ? ((process.stdout.write('\u001B[1;1H'), singleton_1.Zero())) : singleton_1.Zero(), singleton_1.Delay<void>((): Async<void> => {
-                let v1184: any;
-                closure10(v1171, undefined);
-                v1184 = undefined;
-                const v1198: Async<void> = sleep(1);
-                return singleton_1.Bind<void, void>(v1198, (): Async<void> => {
-                    let v1215: Async<void>;
-                    const v1210: boolean = (v0_1 > 0) && (v1 >= v0_1);
-                    return singleton_1.Combine<void>(v1210 ? (singleton_1.Zero()) : ((v1215 = method5(v0_1, v1 + 1, v1131 + 0.05, v1132 + 0.05, v1133 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v1215), singleton_1.Delay<void>((): Async<void> => {
+            const v1238: string = toString(v1231);
+            const v1241: boolean = v0_1 < 0;
+            return singleton_1.Combine<void>(v1241 ? ((process.stdout.write('\u001B[1;1H'), singleton_1.Zero())) : singleton_1.Zero(), singleton_1.Delay<void>((): Async<void> => {
+                let v1251: any;
+                closure10(v1238, undefined);
+                v1251 = undefined;
+                const v1265: Async<void> = sleep(1);
+                return singleton_1.Bind<void, void>(v1265, (): Async<void> => {
+                    let v1285: Async<void>;
+                    const v1280: boolean = (v0_1 > 0) && (v1 >= v0_1);
+                    return singleton_1.Combine<void>(v1280 ? (singleton_1.Zero()) : ((v1285 = method5(v0_1, v1 + 1, v1196 + 0.05, v1197 + 0.05, v1198 + 0.01), singleton_1.Combine<void>(singleton_1.ReturnFrom<void>(v1285), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
                     })))), singleton_1.Delay<void>((): Async<void> => {
                         return singleton_1.Zero();
@@ -416,7 +422,7 @@ export function closure0(unitVar: void, v0_1: string[]): void {
     if (v65) {
         process.stdout.write('\u001B[?25l');
     }
-    const v124: Async<Async<void>> = startChild<void>(method5(v65 ? -1 : 50, 1, 0, 0, 0));
+    const v132: Async<Async<void>> = startChild<void>(method5(v65 ? -1 : 50, 1, 0, 0, 0));
 }
 
 export const v0 = (v: string[]): void => {
