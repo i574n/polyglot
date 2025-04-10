@@ -7615,7 +7615,7 @@ a.anchor-link {
 <pre>type Mut0 = {mutable l0 : string}
 let rec method1 (v0 : bool) : bool =
     v0
-and method2 () : string =
+and method3 () : string =
     let v0 : string = ""
     v0
 and closure0 (v0 : Mut0, v1 : string) () : unit =
@@ -7623,6 +7623,72 @@ and closure0 (v0 : Mut0, v1 : string) () : unit =
     let v4 : string = v2 + v1 
     v0.l0 &lt;- v4
     ()
+and method2 (v0 : string, v1 : (string []), v2 : (string [])) : string =
+    let v3 : string = method3()
+    let v4 : Mut0 = {l0 = v3} : Mut0
+    let v7 : string = "{ "
+    let v8 : string = $"{v7}"
+    let v16 : unit = ()
+    let v17 : (unit -&gt; unit) = closure0(v4, v8)
+    let v18 : unit = (fun () -&gt; v17 (); v16) ()
+    let v26 : string = "name"
+    let v27 : string = $"{v26}"
+    let v35 : unit = ()
+    let v36 : (unit -&gt; unit) = closure0(v4, v27)
+    let v37 : unit = (fun () -&gt; v36 (); v35) ()
+    let v45 : string = " = "
+    let v46 : string = $"{v45}"
+    let v54 : unit = ()
+    let v55 : (unit -&gt; unit) = closure0(v4, v46)
+    let v56 : unit = (fun () -&gt; v55 (); v54) ()
+    let v63 : string = $"{v0}"
+    let v71 : unit = ()
+    let v72 : (unit -&gt; unit) = closure0(v4, v63)
+    let v73 : unit = (fun () -&gt; v72 (); v71) ()
+    let v81 : string = "; "
+    let v82 : string = $"{v81}"
+    let v90 : unit = ()
+    let v91 : (unit -&gt; unit) = closure0(v4, v82)
+    let v92 : unit = (fun () -&gt; v91 (); v90) ()
+    let v100 : string = "actual"
+    let v101 : string = $"{v100}"
+    let v109 : unit = ()
+    let v110 : (unit -&gt; unit) = closure0(v4, v101)
+    let v111 : unit = (fun () -&gt; v110 (); v109) ()
+    let v118 : string = $"{v45}"
+    let v126 : unit = ()
+    let v127 : (unit -&gt; unit) = closure0(v4, v118)
+    let v128 : unit = (fun () -&gt; v127 (); v126) ()
+    let v135 : string = $"%A{v1}"
+    let v139 : string = $"{v135}"
+    let v147 : unit = ()
+    let v148 : (unit -&gt; unit) = closure0(v4, v139)
+    let v149 : unit = (fun () -&gt; v148 (); v147) ()
+    let v156 : string = $"{v81}"
+    let v164 : unit = ()
+    let v165 : (unit -&gt; unit) = closure0(v4, v156)
+    let v166 : unit = (fun () -&gt; v165 (); v164) ()
+    let v174 : string = "expected"
+    let v175 : string = $"{v174}"
+    let v183 : unit = ()
+    let v184 : (unit -&gt; unit) = closure0(v4, v175)
+    let v185 : unit = (fun () -&gt; v184 (); v183) ()
+    let v192 : string = $"{v45}"
+    let v200 : unit = ()
+    let v201 : (unit -&gt; unit) = closure0(v4, v192)
+    let v202 : unit = (fun () -&gt; v201 (); v200) ()
+    let v209 : string = $"%A{v2}"
+    let v213 : string = $"{v209}"
+    let v221 : unit = ()
+    let v222 : (unit -&gt; unit) = closure0(v4, v213)
+    let v223 : unit = (fun () -&gt; v222 (); v221) ()
+    let v231 : string = " }"
+    let v232 : string = $"{v231}"
+    let v240 : unit = ()
+    let v241 : (unit -&gt; unit) = closure0(v4, v232)
+    let v242 : unit = (fun () -&gt; v241 (); v240) ()
+    let v248 : string = v4.l0
+    v248
 and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
@@ -7693,77 +7759,14 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v117 : string = method2()
-    let v118 : Mut0 = {l0 = v117} : Mut0
-    let v121 : string = "{ "
-    let v122 : string = $"{v121}"
-    let v130 : unit = ()
-    let v131 : (unit -&gt; unit) = closure0(v118, v122)
-    let v132 : unit = (fun () -&gt; v131 (); v130) ()
-    let v140 : string = "name"
-    let v141 : string = $"{v140}"
-    let v149 : unit = ()
-    let v150 : (unit -&gt; unit) = closure0(v118, v141)
-    let v151 : unit = (fun () -&gt; v150 (); v149) ()
-    let v159 : string = " = "
-    let v160 : string = $"{v159}"
-    let v168 : unit = ()
-    let v169 : (unit -&gt; unit) = closure0(v118, v160)
-    let v170 : unit = (fun () -&gt; v169 (); v168) ()
-    let v178 : string = "__assert_eq'"
-    let v179 : string = $"{v178}"
-    let v187 : unit = ()
-    let v188 : (unit -&gt; unit) = closure0(v118, v179)
-    let v189 : unit = (fun () -&gt; v188 (); v187) ()
-    let v197 : string = "; "
-    let v198 : string = $"{v197}"
-    let v206 : unit = ()
-    let v207 : (unit -&gt; unit) = closure0(v118, v198)
-    let v208 : unit = (fun () -&gt; v207 (); v206) ()
-    let v216 : string = "actual"
-    let v217 : string = $"{v216}"
-    let v225 : unit = ()
-    let v226 : (unit -&gt; unit) = closure0(v118, v217)
-    let v227 : unit = (fun () -&gt; v226 (); v225) ()
-    let v234 : string = $"{v159}"
-    let v242 : unit = ()
-    let v243 : (unit -&gt; unit) = closure0(v118, v234)
-    let v244 : unit = (fun () -&gt; v243 (); v242) ()
-    let v251 : string = $"%A{v91}"
-    let v255 : string = $"{v251}"
-    let v263 : unit = ()
-    let v264 : (unit -&gt; unit) = closure0(v118, v255)
-    let v265 : unit = (fun () -&gt; v264 (); v263) ()
-    let v272 : string = $"{v197}"
-    let v280 : unit = ()
-    let v281 : (unit -&gt; unit) = closure0(v118, v272)
-    let v282 : unit = (fun () -&gt; v281 (); v280) ()
-    let v290 : string = "expected"
-    let v291 : string = $"{v290}"
-    let v299 : unit = ()
-    let v300 : (unit -&gt; unit) = closure0(v118, v291)
-    let v301 : unit = (fun () -&gt; v300 (); v299) ()
-    let v308 : string = $"{v159}"
-    let v316 : unit = ()
-    let v317 : (unit -&gt; unit) = closure0(v118, v308)
-    let v318 : unit = (fun () -&gt; v317 (); v316) ()
-    let v325 : string = $"%A{v110}"
-    let v329 : string = $"{v325}"
-    let v337 : unit = ()
-    let v338 : (unit -&gt; unit) = closure0(v118, v329)
-    let v339 : unit = (fun () -&gt; v338 (); v337) ()
-    let v347 : string = " }"
-    let v348 : string = $"{v347}"
-    let v356 : unit = ()
-    let v357 : (unit -&gt; unit) = closure0(v118, v348)
-    let v358 : unit = (fun () -&gt; v357 (); v356) ()
-    let v364 : string = v118.l0
-    let v366 : unit = ()
-    let v367 : (unit -&gt; unit) = closure1(v364)
-    let v368 : unit = (fun () -&gt; v367 (); v366) ()
-    let v370 : bool = v116 = false
-    if v370 then
-        failwith&lt;unit&gt; v364
+    let v117 : string = "__assert_eq'"
+    let v118 : string = method2(v117, v91, v110)
+    let v120 : unit = ()
+    let v121 : (unit -&gt; unit) = closure1(v118)
+    let v122 : unit = (fun () -&gt; v121 (); v120) ()
+    let v124 : bool = v116 = false
+    if v124 then
+        failwith&lt;unit&gt; v118
 method0()
 
 { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
@@ -7827,7 +7830,7 @@ method0()
 <pre>type Mut0 = {mutable l0 : string}
 let rec method1 (v0 : bool) : bool =
     v0
-and method2 () : string =
+and method3 () : string =
     let v0 : string = ""
     v0
 and closure0 (v0 : Mut0, v1 : string) () : unit =
@@ -7835,6 +7838,72 @@ and closure0 (v0 : Mut0, v1 : string) () : unit =
     let v4 : string = v2 + v1 
     v0.l0 &lt;- v4
     ()
+and method2 (v0 : string, v1 : (string []), v2 : (string [])) : string =
+    let v3 : string = method3()
+    let v4 : Mut0 = {l0 = v3} : Mut0
+    let v7 : string = "{ "
+    let v8 : string = $"{v7}"
+    let v16 : unit = ()
+    let v17 : (unit -&gt; unit) = closure0(v4, v8)
+    let v18 : unit = (fun () -&gt; v17 (); v16) ()
+    let v26 : string = "name"
+    let v27 : string = $"{v26}"
+    let v35 : unit = ()
+    let v36 : (unit -&gt; unit) = closure0(v4, v27)
+    let v37 : unit = (fun () -&gt; v36 (); v35) ()
+    let v45 : string = " = "
+    let v46 : string = $"{v45}"
+    let v54 : unit = ()
+    let v55 : (unit -&gt; unit) = closure0(v4, v46)
+    let v56 : unit = (fun () -&gt; v55 (); v54) ()
+    let v63 : string = $"{v0}"
+    let v71 : unit = ()
+    let v72 : (unit -&gt; unit) = closure0(v4, v63)
+    let v73 : unit = (fun () -&gt; v72 (); v71) ()
+    let v81 : string = "; "
+    let v82 : string = $"{v81}"
+    let v90 : unit = ()
+    let v91 : (unit -&gt; unit) = closure0(v4, v82)
+    let v92 : unit = (fun () -&gt; v91 (); v90) ()
+    let v100 : string = "actual"
+    let v101 : string = $"{v100}"
+    let v109 : unit = ()
+    let v110 : (unit -&gt; unit) = closure0(v4, v101)
+    let v111 : unit = (fun () -&gt; v110 (); v109) ()
+    let v118 : string = $"{v45}"
+    let v126 : unit = ()
+    let v127 : (unit -&gt; unit) = closure0(v4, v118)
+    let v128 : unit = (fun () -&gt; v127 (); v126) ()
+    let v135 : string = $"%A{v1}"
+    let v139 : string = $"{v135}"
+    let v147 : unit = ()
+    let v148 : (unit -&gt; unit) = closure0(v4, v139)
+    let v149 : unit = (fun () -&gt; v148 (); v147) ()
+    let v156 : string = $"{v81}"
+    let v164 : unit = ()
+    let v165 : (unit -&gt; unit) = closure0(v4, v156)
+    let v166 : unit = (fun () -&gt; v165 (); v164) ()
+    let v174 : string = "expected"
+    let v175 : string = $"{v174}"
+    let v183 : unit = ()
+    let v184 : (unit -&gt; unit) = closure0(v4, v175)
+    let v185 : unit = (fun () -&gt; v184 (); v183) ()
+    let v192 : string = $"{v45}"
+    let v200 : unit = ()
+    let v201 : (unit -&gt; unit) = closure0(v4, v192)
+    let v202 : unit = (fun () -&gt; v201 (); v200) ()
+    let v209 : string = $"%A{v2}"
+    let v213 : string = $"{v209}"
+    let v221 : unit = ()
+    let v222 : (unit -&gt; unit) = closure0(v4, v213)
+    let v223 : unit = (fun () -&gt; v222 (); v221) ()
+    let v231 : string = " }"
+    let v232 : string = $"{v231}"
+    let v240 : unit = ()
+    let v241 : (unit -&gt; unit) = closure0(v4, v232)
+    let v242 : unit = (fun () -&gt; v241 (); v240) ()
+    let v248 : string = v4.l0
+    v248
 and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
@@ -7905,77 +7974,14 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v117 : string = method2()
-    let v118 : Mut0 = {l0 = v117} : Mut0
-    let v121 : string = "{ "
-    let v122 : string = $"{v121}"
-    let v130 : unit = ()
-    let v131 : (unit -&gt; unit) = closure0(v118, v122)
-    let v132 : unit = (fun () -&gt; v131 (); v130) ()
-    let v140 : string = "name"
-    let v141 : string = $"{v140}"
-    let v149 : unit = ()
-    let v150 : (unit -&gt; unit) = closure0(v118, v141)
-    let v151 : unit = (fun () -&gt; v150 (); v149) ()
-    let v159 : string = " = "
-    let v160 : string = $"{v159}"
-    let v168 : unit = ()
-    let v169 : (unit -&gt; unit) = closure0(v118, v160)
-    let v170 : unit = (fun () -&gt; v169 (); v168) ()
-    let v178 : string = "__assert_eq'"
-    let v179 : string = $"{v178}"
-    let v187 : unit = ()
-    let v188 : (unit -&gt; unit) = closure0(v118, v179)
-    let v189 : unit = (fun () -&gt; v188 (); v187) ()
-    let v197 : string = "; "
-    let v198 : string = $"{v197}"
-    let v206 : unit = ()
-    let v207 : (unit -&gt; unit) = closure0(v118, v198)
-    let v208 : unit = (fun () -&gt; v207 (); v206) ()
-    let v216 : string = "actual"
-    let v217 : string = $"{v216}"
-    let v225 : unit = ()
-    let v226 : (unit -&gt; unit) = closure0(v118, v217)
-    let v227 : unit = (fun () -&gt; v226 (); v225) ()
-    let v234 : string = $"{v159}"
-    let v242 : unit = ()
-    let v243 : (unit -&gt; unit) = closure0(v118, v234)
-    let v244 : unit = (fun () -&gt; v243 (); v242) ()
-    let v251 : string = $"%A{v91}"
-    let v255 : string = $"{v251}"
-    let v263 : unit = ()
-    let v264 : (unit -&gt; unit) = closure0(v118, v255)
-    let v265 : unit = (fun () -&gt; v264 (); v263) ()
-    let v272 : string = $"{v197}"
-    let v280 : unit = ()
-    let v281 : (unit -&gt; unit) = closure0(v118, v272)
-    let v282 : unit = (fun () -&gt; v281 (); v280) ()
-    let v290 : string = "expected"
-    let v291 : string = $"{v290}"
-    let v299 : unit = ()
-    let v300 : (unit -&gt; unit) = closure0(v118, v291)
-    let v301 : unit = (fun () -&gt; v300 (); v299) ()
-    let v308 : string = $"{v159}"
-    let v316 : unit = ()
-    let v317 : (unit -&gt; unit) = closure0(v118, v308)
-    let v318 : unit = (fun () -&gt; v317 (); v316) ()
-    let v325 : string = $"%A{v110}"
-    let v329 : string = $"{v325}"
-    let v337 : unit = ()
-    let v338 : (unit -&gt; unit) = closure0(v118, v329)
-    let v339 : unit = (fun () -&gt; v338 (); v337) ()
-    let v347 : string = " }"
-    let v348 : string = $"{v347}"
-    let v356 : unit = ()
-    let v357 : (unit -&gt; unit) = closure0(v118, v348)
-    let v358 : unit = (fun () -&gt; v357 (); v356) ()
-    let v364 : string = v118.l0
-    let v366 : unit = ()
-    let v367 : (unit -&gt; unit) = closure1(v364)
-    let v368 : unit = (fun () -&gt; v367 (); v366) ()
-    let v370 : bool = v116 = false
-    if v370 then
-        failwith&lt;unit&gt; v364
+    let v117 : string = "__assert_eq'"
+    let v118 : string = method2(v117, v91, v110)
+    let v120 : unit = ()
+    let v121 : (unit -&gt; unit) = closure1(v118)
+    let v122 : unit = (fun () -&gt; v121 (); v120) ()
+    let v124 : bool = v116 = false
+    if v124 then
+        failwith&lt;unit&gt; v118
 method0()
 
 { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
@@ -8044,7 +8050,7 @@ method0()
 <pre>type Mut0 = {mutable l0 : string}
 let rec method1 (v0 : bool) : bool =
     v0
-and method2 () : string =
+and method3 () : string =
     let v0 : string = ""
     v0
 and closure0 (v0 : Mut0, v1 : string) () : unit =
@@ -8052,6 +8058,72 @@ and closure0 (v0 : Mut0, v1 : string) () : unit =
     let v4 : string = v2 + v1 
     v0.l0 &lt;- v4
     ()
+and method2 (v0 : string, v1 : (string []), v2 : (string [])) : string =
+    let v3 : string = method3()
+    let v4 : Mut0 = {l0 = v3} : Mut0
+    let v7 : string = "{ "
+    let v8 : string = $"{v7}"
+    let v16 : unit = ()
+    let v17 : (unit -&gt; unit) = closure0(v4, v8)
+    let v18 : unit = (fun () -&gt; v17 (); v16) ()
+    let v26 : string = "name"
+    let v27 : string = $"{v26}"
+    let v35 : unit = ()
+    let v36 : (unit -&gt; unit) = closure0(v4, v27)
+    let v37 : unit = (fun () -&gt; v36 (); v35) ()
+    let v45 : string = " = "
+    let v46 : string = $"{v45}"
+    let v54 : unit = ()
+    let v55 : (unit -&gt; unit) = closure0(v4, v46)
+    let v56 : unit = (fun () -&gt; v55 (); v54) ()
+    let v63 : string = $"{v0}"
+    let v71 : unit = ()
+    let v72 : (unit -&gt; unit) = closure0(v4, v63)
+    let v73 : unit = (fun () -&gt; v72 (); v71) ()
+    let v81 : string = "; "
+    let v82 : string = $"{v81}"
+    let v90 : unit = ()
+    let v91 : (unit -&gt; unit) = closure0(v4, v82)
+    let v92 : unit = (fun () -&gt; v91 (); v90) ()
+    let v100 : string = "actual"
+    let v101 : string = $"{v100}"
+    let v109 : unit = ()
+    let v110 : (unit -&gt; unit) = closure0(v4, v101)
+    let v111 : unit = (fun () -&gt; v110 (); v109) ()
+    let v118 : string = $"{v45}"
+    let v126 : unit = ()
+    let v127 : (unit -&gt; unit) = closure0(v4, v118)
+    let v128 : unit = (fun () -&gt; v127 (); v126) ()
+    let v135 : string = $"%A{v1}"
+    let v139 : string = $"{v135}"
+    let v147 : unit = ()
+    let v148 : (unit -&gt; unit) = closure0(v4, v139)
+    let v149 : unit = (fun () -&gt; v148 (); v147) ()
+    let v156 : string = $"{v81}"
+    let v164 : unit = ()
+    let v165 : (unit -&gt; unit) = closure0(v4, v156)
+    let v166 : unit = (fun () -&gt; v165 (); v164) ()
+    let v174 : string = "expected"
+    let v175 : string = $"{v174}"
+    let v183 : unit = ()
+    let v184 : (unit -&gt; unit) = closure0(v4, v175)
+    let v185 : unit = (fun () -&gt; v184 (); v183) ()
+    let v192 : string = $"{v45}"
+    let v200 : unit = ()
+    let v201 : (unit -&gt; unit) = closure0(v4, v192)
+    let v202 : unit = (fun () -&gt; v201 (); v200) ()
+    let v209 : string = $"%A{v2}"
+    let v213 : string = $"{v209}"
+    let v221 : unit = ()
+    let v222 : (unit -&gt; unit) = closure0(v4, v213)
+    let v223 : unit = (fun () -&gt; v222 (); v221) ()
+    let v231 : string = " }"
+    let v232 : string = $"{v231}"
+    let v240 : unit = ()
+    let v241 : (unit -&gt; unit) = closure0(v4, v232)
+    let v242 : unit = (fun () -&gt; v241 (); v240) ()
+    let v248 : string = v4.l0
+    v248
 and closure1 (v0 : string) () : unit =
     let v1 : (string -&gt; unit) = System.Console.WriteLine
     v1 v0
@@ -8122,77 +8194,14 @@ and method0 () : unit =
             true
         else
             method1(v112)
-    let v117 : string = method2()
-    let v118 : Mut0 = {l0 = v117} : Mut0
-    let v121 : string = "{ "
-    let v122 : string = $"{v121}"
-    let v130 : unit = ()
-    let v131 : (unit -&gt; unit) = closure0(v118, v122)
-    let v132 : unit = (fun () -&gt; v131 (); v130) ()
-    let v140 : string = "name"
-    let v141 : string = $"{v140}"
-    let v149 : unit = ()
-    let v150 : (unit -&gt; unit) = closure0(v118, v141)
-    let v151 : unit = (fun () -&gt; v150 (); v149) ()
-    let v159 : string = " = "
-    let v160 : string = $"{v159}"
-    let v168 : unit = ()
-    let v169 : (unit -&gt; unit) = closure0(v118, v160)
-    let v170 : unit = (fun () -&gt; v169 (); v168) ()
-    let v178 : string = "__assert_eq'"
-    let v179 : string = $"{v178}"
-    let v187 : unit = ()
-    let v188 : (unit -&gt; unit) = closure0(v118, v179)
-    let v189 : unit = (fun () -&gt; v188 (); v187) ()
-    let v197 : string = "; "
-    let v198 : string = $"{v197}"
-    let v206 : unit = ()
-    let v207 : (unit -&gt; unit) = closure0(v118, v198)
-    let v208 : unit = (fun () -&gt; v207 (); v206) ()
-    let v216 : string = "actual"
-    let v217 : string = $"{v216}"
-    let v225 : unit = ()
-    let v226 : (unit -&gt; unit) = closure0(v118, v217)
-    let v227 : unit = (fun () -&gt; v226 (); v225) ()
-    let v234 : string = $"{v159}"
-    let v242 : unit = ()
-    let v243 : (unit -&gt; unit) = closure0(v118, v234)
-    let v244 : unit = (fun () -&gt; v243 (); v242) ()
-    let v251 : string = $"%A{v91}"
-    let v255 : string = $"{v251}"
-    let v263 : unit = ()
-    let v264 : (unit -&gt; unit) = closure0(v118, v255)
-    let v265 : unit = (fun () -&gt; v264 (); v263) ()
-    let v272 : string = $"{v197}"
-    let v280 : unit = ()
-    let v281 : (unit -&gt; unit) = closure0(v118, v272)
-    let v282 : unit = (fun () -&gt; v281 (); v280) ()
-    let v290 : string = "expected"
-    let v291 : string = $"{v290}"
-    let v299 : unit = ()
-    let v300 : (unit -&gt; unit) = closure0(v118, v291)
-    let v301 : unit = (fun () -&gt; v300 (); v299) ()
-    let v308 : string = $"{v159}"
-    let v316 : unit = ()
-    let v317 : (unit -&gt; unit) = closure0(v118, v308)
-    let v318 : unit = (fun () -&gt; v317 (); v316) ()
-    let v325 : string = $"%A{v110}"
-    let v329 : string = $"{v325}"
-    let v337 : unit = ()
-    let v338 : (unit -&gt; unit) = closure0(v118, v329)
-    let v339 : unit = (fun () -&gt; v338 (); v337) ()
-    let v347 : string = " }"
-    let v348 : string = $"{v347}"
-    let v356 : unit = ()
-    let v357 : (unit -&gt; unit) = closure0(v118, v348)
-    let v358 : unit = (fun () -&gt; v357 (); v356) ()
-    let v364 : string = v118.l0
-    let v366 : unit = ()
-    let v367 : (unit -&gt; unit) = closure1(v364)
-    let v368 : unit = (fun () -&gt; v367 (); v366) ()
-    let v370 : bool = v116 = false
-    if v370 then
-        failwith&lt;unit&gt; v364
+    let v117 : string = "__assert_eq'"
+    let v118 : string = method2(v117, v91, v110)
+    let v120 : unit = ()
+    let v121 : (unit -&gt; unit) = closure1(v118)
+    let v122 : unit = (fun () -&gt; v121 (); v120) ()
+    let v124 : bool = v116 = false
+    if v124 then
+        failwith&lt;unit&gt; v118
 method0()
 
 { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
