@@ -93,14 +93,14 @@ let rec generateHtml fsNode =
         ]
     | Folder (folderName, relativePath, children) ->
         let size =
-            let rec loop children =
+            let rec 루프 children =
                 children
                 |> List.sumBy (function
                     | File (_, _, size) -> size
                     | Folder (_, _, children)
-                    | Root children -> loop children
+                    | Root children -> 루프 children
                 )
-            loop children
+            루프 children
         Elem.details [
             Attr.open' "true"
         ] [
@@ -190,7 +190,7 @@ details > div {
 """
 
 let struct (tempFolder, disposable) = expected |> SpiralCrypto.hash_text |> SpiralFileSystem.create_temp_dir'
-let rec loop d n = async {
+let rec 루프 d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore
         do!
@@ -198,9 +198,9 @@ let rec loop d n = async {
             |> string
             |> String.replicate (n + 1)
             |> SpiralFileSystem.write_all_text_async (tempFolder </> d </> $"file.txt")
-        do! loop $"{d}/{n}" (n - 1)
+        do! 루프 $"{d}/{n}" (n - 1)
 }
-loop "_.root" 3
+루프 "_.root" 3
 |> Async.RunSynchronously
 
 let html =

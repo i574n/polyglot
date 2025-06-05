@@ -199,7 +199,7 @@ module Eval =
                                 let codePath = tokensDir </> codePath
                                 let tokensPath = tokensDir </> hashHex </> "tokens.json"
                                 // do! Async.Sleep 30
-                                let rec loop retry = async {
+                                let rec 루프 retry = async {
                                     let! tokens = codePath |> Supervisor.getFileTokenRange None None
                                     if retry = 3 || tokens <> Some [||]
                                     then return tokens, retry
@@ -208,9 +208,9 @@ module Eval =
                                             (fun () -> $"Eval.startTokenRangeWatcher / iterAsyncParallel")
                                             (fun () -> $"retry: {retry} / tokens: %A{tokens}")
                                         do! Async.Sleep 30
-                                        return! loop (retry + 1)
+                                        return! 루프 (retry + 1)
                                 }
-                                let! tokens, retries = loop 1
+                                let! tokens, retries = 루프 1
                                 match tokens with
                                 | Some tokens ->
                                     do!
