@@ -8419,11 +8419,11 @@ Test case 11. Average Time: 1474L</p>
         <span class="nb">input</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="nb">set</span> <span class="n">tail</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">loop</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span><span class="p">)</span> <span class="o">@</span> <span class="p">[</span> <span class="n">head</span> <span class="p">]</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">루프</span> <span class="nb">set</span> <span class="n">tail</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">루프</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span><span class="p">)</span> <span class="o">@</span> <span class="p">[</span> <span class="n">head</span> <span class="p">]</span>
                 <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-            <span class="n">loop</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
+            <span class="n">루프</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">toArray</span>
         <span class="o">|&gt;</span> <span class="n">String</span>
@@ -8433,11 +8433,11 @@ Test case 11. Average Time: 1474L</p>
         <span class="nb">input</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="nb">set</span> <span class="n">tail</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span><span class="o">|</span> <span class="n">head</span> <span class="o">|</span><span class="p">]</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">루프</span> <span class="nb">set</span> <span class="n">tail</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="n">루프</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span><span class="o">|</span> <span class="n">head</span> <span class="o">|</span><span class="p">]</span>
                 <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
-            <span class="n">loop</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
+            <span class="n">루프</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
         <span class="o">|&gt;</span> <span class="n">String</span>
 
     <span class="s2">"J"</span><span class="p">,</span>
@@ -8445,11 +8445,11 @@ Test case 11. Average Time: 1474L</p>
         <span class="nb">input</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="nb">set</span> <span class="n">tail</span>
-                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="n">head</span> <span class="p">::</span> <span class="n">loop</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="nb">set</span> <span class="o">=</span> <span class="n">function</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="n">when</span> <span class="n">Set</span><span class="o">.</span><span class="n">contains</span> <span class="n">head</span> <span class="nb">set</span> <span class="o">-&gt;</span> <span class="n">루프</span> <span class="nb">set</span> <span class="n">tail</span>
+                <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span> <span class="n">head</span> <span class="p">::</span> <span class="n">루프</span> <span class="p">(</span><span class="nb">set</span><span class="o">.</span><span class="n">Add</span> <span class="n">head</span><span class="p">)</span> <span class="n">tail</span>
                 <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-            <span class="n">loop</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
+            <span class="n">루프</span> <span class="n">Set</span><span class="o">.</span><span class="n">empty</span> <span class="nb">list</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">toArray</span>
         <span class="o">|&gt;</span> <span class="n">String</span>
 
@@ -8486,76 +8486,76 @@ Test case 11. Average Time: 1474L</p>
 Test: uniqueLettersTests
 
 Solution: abc  
-Test case 1. A. Time: 3L  
-Test case 2. B. Time: 5L  
+Test case 1. A. Time: 2L  
+Test case 2. B. Time: 3L  
 Test case 3. C. Time: 3L  
 Test case 4. D. Time: 1L  
 Test case 5. E. Time: 1L  
 Test case 6. F. Time: 1L  
 Test case 7. G. Time: 2L  
-Test case 8. H. Time: 2L  
+Test case 8. H. Time: 1L  
 Test case 9. I. Time: 1L  
 Test case 10. J. Time: 1L  
 Test case 11. K. Time: 1L  
 
 Solution: accabb  
-Test case 1. A. Time: 0L  
+Test case 1. A. Time: 1L  
 Test case 2. B. Time: 1L  
-Test case 3. C. Time: 4L  
-Test case 4. D. Time: 0L  
+Test case 3. C. Time: 1L  
+Test case 4. D. Time: 1L  
 Test case 5. E. Time: 1L  
 Test case 6. F. Time: 0L  
-Test case 7. G. Time: 1L  
+Test case 7. G. Time: 0L  
 Test case 8. H. Time: 0L  
 Test case 9. I. Time: 0L  
-Test case 10. J. Time: 1L  
-Test case 11. K. Time: 1L  
+Test case 10. J. Time: 0L  
+Test case 11. K. Time: 0L  
 
 Solution: pprrqqpp  
-Test case 1. A. Time: 1L  
+Test case 1. A. Time: 0L  
 Test case 2. B. Time: 1L  
 Test case 3. C. Time: 1L  
 Test case 4. D. Time: 0L  
 Test case 5. E. Time: 0L  
-Test case 6. F. Time: 1L  
+Test case 6. F. Time: 0L  
 Test case 7. G. Time: 1L  
-Test case 8. H. Time: 1L  
+Test case 8. H. Time: 0L  
 Test case 9. I. Time: 0L  
-Test case 10. J. Time: 1L  
+Test case 10. J. Time: 0L  
 Test case 11. K. Time: 1L  
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb  
-Test case 1. A. Time: 6L  
-Test case 2. B. Time: 7L  
-Test case 3. C. Time: 8L  
-Test case 4. D. Time: 6L  
-Test case 5. E. Time: 7L  
-Test case 6. F. Time: 5L  
-Test case 7. G. Time: 10L  
+Test case 1. A. Time: 4L  
+Test case 2. B. Time: 5L  
+Test case 3. C. Time: 6L  
+Test case 4. D. Time: 4L  
+Test case 5. E. Time: 4L  
+Test case 6. F. Time: 4L  
+Test case 7. G. Time: 4L  
 Test case 8. H. Time: 4L  
 Test case 9. I. Time: 4L  
-Test case 10. J. Time: 5L  
-Test case 11. K. Time: 4L  
+Test case 10. J. Time: 4L  
+Test case 11. K. Time: 3L  
 
-Input                                                                          	| Expected	| Result	| Best  
----                                                                            	| ---     	| ---   	| ---   
-abc                                                                            	| abc     	| abc   	| (4, 1)
-accabb                                                                         	| acb     	| acb   	| (1, 0)
-pprrqqpp                                                                       	| prq     	| prq   	| (4, 0)
-aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (8, 4)
+Input                                                                          	| Expected	| Result	| Best   
+---                                                                            	| ---     	| ---   	| ---    
+abc                                                                            	| abc     	| abc   	| (4, 1) 
+accabb                                                                         	| acb     	| acb   	| (6, 0) 
+pprrqqpp                                                                       	| prq     	| prq   	| (1, 0) 
+aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 3)
 
 Average Ranking  
+Test case 1. Average Time: 1L  
 Test case 4. Average Time: 1L  
+Test case 5. Average Time: 1L  
 Test case 6. Average Time: 1L  
+Test case 7. Average Time: 1L  
 Test case 8. Average Time: 1L  
 Test case 9. Average Time: 1L  
+Test case 10. Average Time: 1L  
 Test case 11. Average Time: 1L  
-Test case 1. Average Time: 2L  
-Test case 5. Average Time: 2L  
-Test case 10. Average Time: 2L  
-Test case 2. Average Time: 3L  
-Test case 7. Average Time: 3L  
-Test case 3. Average Time: 4L  
+Test case 2. Average Time: 2L  
+Test case 3. Average Time: 2L  
 </pre>
 </div>
 </div>
@@ -8799,13 +8799,13 @@ Test case 8. Average Time: 1551L</p>
         <span class="nb">input</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span><span class="p">:</span> <span class="n">char</span> <span class="nb">list</span> <span class="nb">list</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="p">(</span><span class="n">acc</span><span class="p">:</span> <span class="n">char</span> <span class="nb">list</span> <span class="nb">list</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">acc</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">Length</span> <span class="o">-&gt;</span> <span class="n">acc</span>
                 <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span>
                     <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">@</span> <span class="p">[</span> <span class="n">head</span> <span class="p">]</span>
-                    <span class="n">loop</span> <span class="p">(</span><span class="n">item</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="n">item</span>
+                    <span class="n">루프</span> <span class="p">(</span><span class="n">item</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="n">item</span>
                 <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-            <span class="n">loop</span> <span class="p">[]</span> <span class="nb">list</span>
+            <span class="n">루프</span> <span class="p">[]</span> <span class="nb">list</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">List</span><span class="o">.</span><span class="n">toArray</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
@@ -8815,12 +8815,12 @@ Test case 8. Average Time: 1551L</p>
         <span class="nb">input</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">last</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="p">(</span><span class="n">last</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
                 <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">-&gt;</span>
                     <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">head</span>
-                    <span class="n">item</span> <span class="p">::</span> <span class="n">loop</span> <span class="n">item</span> <span class="n">tail</span>
+                    <span class="n">item</span> <span class="p">::</span> <span class="n">루프</span> <span class="n">item</span> <span class="n">tail</span>
                 <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-            <span class="n">loop</span> <span class="nb">input</span> <span class="nb">list</span>
+            <span class="n">루프</span> <span class="nb">input</span> <span class="nb">list</span>
         <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
 
     <span class="s2">"F"</span><span class="p">,</span>
@@ -8879,24 +8879,24 @@ Test case 8. Average Time: 1551L</p>
 Test: rotateStringsTests
 
 Solution: abc  
-Test case 1. A. Time: 2L  
+Test case 1. A. Time: 3L  
 Test case 2. B. Time: 2L  
-Test case 3. C. Time: 1L  
-Test case 4. CA. Time: 3L  
+Test case 3. C. Time: 2L  
+Test case 4. CA. Time: 4L  
 Test case 5. CB. Time: 2L  
 Test case 6. D. Time: 2L  
-Test case 7. E. Time: 2L  
+Test case 7. E. Time: 1L  
 Test case 8. F. Time: 1L  
 Test case 9. FA. Time: 1L  
 Test case 10. FB. Time: 6L  
-Test case 11. FC. Time: 6L  
+Test case 11. FC. Time: 3L  
 
 Solution: abcde  
 Test case 1. A. Time: 1L  
-Test case 2. B. Time: 0L  
-Test case 3. C. Time: 0L  
+Test case 2. B. Time: 1L  
+Test case 3. C. Time: 1L  
 Test case 4. CA. Time: 1L  
-Test case 5. CB. Time: 1L  
+Test case 5. CB. Time: 0L  
 Test case 6. D. Time: 1L  
 Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
@@ -8909,9 +8909,9 @@ Test case 1. A. Time: 1L
 Test case 2. B. Time: 1L  
 Test case 3. C. Time: 0L  
 Test case 4. CA. Time: 1L  
-Test case 5. CB. Time: 1L  
-Test case 6. D. Time: 4L  
-Test case 7. E. Time: 1L  
+Test case 5. CB. Time: 2L  
+Test case 6. D. Time: 3L  
+Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
 Test case 9. FA. Time: 0L  
 Test case 10. FB. Time: 1L  
@@ -8921,8 +8921,8 @@ Solution: abab
 Test case 1. A. Time: 0L  
 Test case 2. B. Time: 0L  
 Test case 3. C. Time: 0L  
-Test case 4. CA. Time: 1L  
-Test case 5. CB. Time: 1L  
+Test case 4. CA. Time: 0L  
+Test case 5. CB. Time: 0L  
 Test case 6. D. Time: 1L  
 Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
@@ -8934,14 +8934,14 @@ Solution: aa
 Test case 1. A. Time: 0L  
 Test case 2. B. Time: 0L  
 Test case 3. C. Time: 0L  
-Test case 4. CA. Time: 1L  
-Test case 5. CB. Time: 1L  
+Test case 4. CA. Time: 0L  
+Test case 5. CB. Time: 0L  
 Test case 6. D. Time: 0L  
 Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
 Test case 9. FA. Time: 0L  
-Test case 10. FB. Time: 1L  
-Test case 11. FC. Time: 2L  
+Test case 10. FB. Time: 0L  
+Test case 11. FC. Time: 1L  
 
 Solution: z  
 Test case 1. A. Time: 0L  
@@ -8953,13 +8953,13 @@ Test case 6. D. Time: 0L
 Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
 Test case 9. FA. Time: 0L  
-Test case 10. FB. Time: 1L  
+Test case 10. FB. Time: 0L  
 Test case 11. FC. Time: 1L  
 
 Input    	| Expected                                                                                 	| Result                                                                                   	| Best  
 ---      	| ---                                                                                      	| ---                                                                                      	| ---   
-abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (3, 1)
-abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (2, 0)
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (7, 1)
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (5, 0)
 abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (3, 0)
 abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (1, 0)
 aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (1, 0)
@@ -8969,14 +8969,14 @@ Average Ranking
 Test case 1. Average Time: 0L  
 Test case 2. Average Time: 0L  
 Test case 3. Average Time: 0L  
+Test case 5. Average Time: 0L  
 Test case 7. Average Time: 0L  
 Test case 8. Average Time: 0L  
 Test case 9. Average Time: 0L  
 Test case 4. Average Time: 1L  
-Test case 5. Average Time: 1L  
 Test case 6. Average Time: 1L  
 Test case 10. Average Time: 1L  
-Test case 11. Average Time: 2L  
+Test case 11. Average Time: 1L  
 </pre>
 </div>
 </div>
@@ -9112,13 +9112,13 @@ Test case 11. Average Time: 2L
         <span class="o">//</span>     <span class="nb">input</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">=&gt;</span>
-        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="nb">list</span> <span class="n">char</span><span class="p">))</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="nb">list</span> <span class="n">char</span><span class="p">))</span> <span class="o">=</span> <span class="n">function</span>
         <span class="o">//</span>             <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">acc</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">Length</span> <span class="o">=&gt;</span> <span class="n">acc</span>
         <span class="o">//</span>             <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">=&gt;</span>
         <span class="o">//</span>                 <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">++</span> <span class="p">[</span> <span class="n">head</span> <span class="p">]</span>
-        <span class="o">//</span>                 <span class="n">loop</span> <span class="p">(</span><span class="n">item</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="n">item</span>
+        <span class="o">//</span>                 <span class="n">루프</span> <span class="p">(</span><span class="n">item</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="n">item</span>
         <span class="o">//</span>             <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">[]</span>
-        <span class="o">//</span>         <span class="n">loop</span> <span class="p">[]</span> <span class="nb">list</span>
+        <span class="o">//</span>         <span class="n">루프</span> <span class="p">[]</span> <span class="nb">list</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">List</span><span class="o">.</span><span class="n">toArray</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="p">)</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
@@ -9128,12 +9128,12 @@ Test case 11. Average Time: 2L
         <span class="o">//</span>     <span class="nb">input</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">=&gt;</span>
-        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">last</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="p">(</span><span class="n">last</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
         <span class="o">//</span>             <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">=&gt;</span>
         <span class="o">//</span>                 <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">head</span>
-        <span class="o">//</span>                 <span class="n">item</span> <span class="p">::</span> <span class="n">loop</span> <span class="n">item</span> <span class="n">tail</span>
+        <span class="o">//</span>                 <span class="n">item</span> <span class="p">::</span> <span class="n">루프</span> <span class="n">item</span> <span class="n">tail</span>
         <span class="o">//</span>             <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">[]</span>
-        <span class="o">//</span>         <span class="n">loop</span> <span class="nb">input</span> <span class="nb">list</span>
+        <span class="o">//</span>         <span class="n">루프</span> <span class="nb">input</span> <span class="nb">list</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
 
         <span class="s2">"F"</span><span class="p">,</span>
@@ -9228,41 +9228,41 @@ Test case 11. Average Time: 2L
 ```
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 benchmark.run_all / { test_name = rotate_strings_tests; count = 2000000 }
 
-00:00:00 <span class="ansi-black-intense-fg">v</span> #2 benchmark.run / { input_str = "abc" }
-00:00:00 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = F; time = 477 }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 658 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #2 benchmark.run / { input_str = abc }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = F; time = 378 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 604 }
 
-00:00:01 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / { input_str = "abcde" }
-00:00:02 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / solutions.map / { i = 1; test_name = F; time = 567 }
-00:00:03 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 989 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / { input_str = abcde }
+00:00:02 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / solutions.map / { i = 1; test_name = F; time = 479 }
+00:00:03 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 842 }
 
-00:00:03 <span class="ansi-black-intense-fg">v</span> #8 benchmark.run / { input_str = "abcdefghi" }
-00:00:04 <span class="ansi-black-intense-fg">v</span> #9 benchmark.run / solutions.map / { i = 1; test_name = F; time = 979 }
-00:00:06 <span class="ansi-black-intense-fg">v</span> #10 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 1605 }
+00:00:03 <span class="ansi-black-intense-fg">v</span> #8 benchmark.run / { input_str = abcdefghi }
+00:00:04 <span class="ansi-black-intense-fg">v</span> #9 benchmark.run / solutions.map / { i = 1; test_name = F; time = 815 }
+00:00:05 <span class="ansi-black-intense-fg">v</span> #10 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 1318 }
 
-00:00:06 <span class="ansi-black-intense-fg">v</span> #11 benchmark.run / { input_str = "abab" }
-00:00:07 <span class="ansi-black-intense-fg">v</span> #12 benchmark.run / solutions.map / { i = 1; test_name = F; time = 550 }
-00:00:08 <span class="ansi-black-intense-fg">v</span> #13 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 849 }
+00:00:05 <span class="ansi-black-intense-fg">v</span> #11 benchmark.run / { input_str = abab }
+00:00:06 <span class="ansi-black-intense-fg">v</span> #12 benchmark.run / solutions.map / { i = 1; test_name = F; time = 485 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #13 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 784 }
 
-00:00:08 <span class="ansi-black-intense-fg">v</span> #14 benchmark.run / { input_str = "aa" }
-00:00:09 <span class="ansi-black-intense-fg">v</span> #15 benchmark.run / solutions.map / { i = 1; test_name = F; time = 334 }
-00:00:10 <span class="ansi-black-intense-fg">v</span> #16 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 480 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #14 benchmark.run / { input_str = aa }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #15 benchmark.run / solutions.map / { i = 1; test_name = F; time = 292 }
+00:00:08 <span class="ansi-black-intense-fg">v</span> #16 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 405 }
 
-00:00:10 <span class="ansi-black-intense-fg">v</span> #17 benchmark.run / { input_str = "z" }
-00:00:10 <span class="ansi-black-intense-fg">v</span> #18 benchmark.run / solutions.map / { i = 1; test_name = F; time = 160 }
-00:00:10 <span class="ansi-black-intense-fg">v</span> #19 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 189 }
+00:00:08 <span class="ansi-black-intense-fg">v</span> #17 benchmark.run / { input_str = z }
+00:00:08 <span class="ansi-black-intense-fg">v</span> #18 benchmark.run / solutions.map / { i = 1; test_name = F; time = 131 }
+00:00:09 <span class="ansi-black-intense-fg">v</span> #19 benchmark.run / solutions.map / { i = 2; test_name = FA; time = 161 }
 ```
-input      	| expected                                                                                   	| result                                                                                     	| best  
----        	| ---                                                                                        	| ---                                                                                        	| ---   
-"abc"      	| "bca cab abc"                                                                              	| "bca cab abc"                                                                              	| 1, 477
-"abcde"    	| "bcdea cdeab deabc eabcd abcde"                                                            	| "bcdea cdeab deabc eabcd abcde"                                                            	| 1, 567
-"abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 979
-"abab"     	| "baba abab baba abab"                                                                      	| "baba abab baba abab"                                                                      	| 1, 550
-"aa"       	| "aa aa"                                                                                    	| "aa aa"                                                                                    	| 1, 334
-"z"        	| "z"                                                                                        	| "z"                                                                                        	| 1, 160
+input    	| expected                                                                                 	| result                                                                                   	| best  
+---      	| ---                                                                                      	| ---                                                                                      	| ---   
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| 1, 378
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| 1, 479
+abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| 1, 815
+abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| 1, 485
+aa       	| aa aa                                                                                    	| aa aa                                                                                    	| 1, 292
+z        	| z                                                                                        	| z                                                                                        	| 1, 131
 ```
-00:00:10 <span class="ansi-black-intense-fg">v</span> #20 benchmark.sort_result_list / averages.iter / { i = 1; avg = 511 }
-00:00:10 <span class="ansi-black-intense-fg">v</span> #21 benchmark.sort_result_list / averages.iter / { i = 2; avg = 795 }
+00:00:09 <span class="ansi-black-intense-fg">v</span> #20 benchmark.sort_result_list / averages.iter / { i = 1; avg = 430 }
+00:00:09 <span class="ansi-black-intense-fg">v</span> #21 benchmark.sort_result_list / averages.iter / { i = 2; avg = 685 }
 ```
 </pre>
 </div>
@@ -9407,15 +9407,15 @@ struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630</p>
             <span class="k">if</span> <span class="n">item</span> <span class="o">=</span> <span class="n">target</span>
             <span class="n">then</span> <span class="n">Some</span> <span class="n">mid</span>
             <span class="k">elif</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">target</span>
-            <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
-            <span class="k">else</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">mid</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
+            <span class="n">then</span> <span class="n">루프</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
+            <span class="k">else</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">mid</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">var_is</span> <span class="n">right</span> <span class="o">|&gt;</span> <span class="ow">not</span>
         <span class="n">then</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
         <span class="k">else</span>
             <span class="n">inl</span> <span class="n">left</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">left</span>
             <span class="n">join</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
-    <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span>
+    <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span>
 
 <span class="n">inl</span> <span class="n">binary_search_closed_1</span> <span class="n">arr</span> <span class="n">target</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
@@ -9427,15 +9427,15 @@ struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630</p>
             <span class="k">if</span> <span class="n">item</span> <span class="o">=</span> <span class="n">target</span>
             <span class="n">then</span> <span class="n">Some</span> <span class="n">mid</span>
             <span class="k">elif</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">target</span>
-            <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
-            <span class="k">else</span> <span class="n">loop</span> <span class="n">left</span> <span class="p">(</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
+            <span class="n">then</span> <span class="n">루프</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
+            <span class="k">else</span> <span class="n">루프</span> <span class="n">left</span> <span class="p">(</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">var_is</span> <span class="n">right</span> <span class="o">|&gt;</span> <span class="ow">not</span>
         <span class="n">then</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
         <span class="k">else</span>
             <span class="n">inl</span> <span class="n">left</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">left</span>
             <span class="n">join</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
-    <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span>
+    <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span>
 
 <span class="n">inl</span> <span class="n">binary_search_semi_open_2</span> <span class="n">arr</span> <span class="n">target</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
@@ -9447,10 +9447,10 @@ struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630</p>
             <span class="k">if</span> <span class="n">item</span> <span class="o">=</span> <span class="n">target</span>
             <span class="n">then</span> <span class="n">Some</span> <span class="n">mid</span>
             <span class="k">elif</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">target</span>
-            <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
-            <span class="k">else</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">mid</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
-    <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span>
+            <span class="n">then</span> <span class="n">루프</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
+            <span class="k">else</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">mid</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
+    <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span>
 
 <span class="n">inl</span> <span class="n">binary_search_closed_2</span> <span class="n">arr</span> <span class="n">target</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span>
@@ -9462,10 +9462,10 @@ struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630</p>
             <span class="k">if</span> <span class="n">item</span> <span class="o">=</span> <span class="n">target</span>
             <span class="n">then</span> <span class="n">Some</span> <span class="n">mid</span>
             <span class="k">elif</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">target</span>
-            <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
-            <span class="k">else</span> <span class="n">loop</span> <span class="n">left</span> <span class="p">(</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
-    <span class="n">loop</span> <span class="n">left</span> <span class="n">right</span>
+            <span class="n">then</span> <span class="n">루프</span> <span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">right</span>
+            <span class="k">else</span> <span class="n">루프</span> <span class="n">left</span> <span class="p">(</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span> <span class="o">=</span> <span class="n">body</span> <span class="n">left</span> <span class="n">right</span>
+    <span class="n">루프</span> <span class="n">left</span> <span class="n">right</span>
 
 <span class="n">inl</span> <span class="n">get_solutions</span> <span class="p">()</span> <span class="o">=</span>
     <span class="p">[</span>
@@ -9536,82 +9536,82 @@ struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630</p>
 00:00:00 <span class="ansi-black-intense-fg">v</span> #1 benchmark.run_all / { test_name = binary_search_tests; count = 10000000 }
 
 00:00:00 <span class="ansi-black-intense-fg">v</span> #2 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7) }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 743 }
-00:00:01 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 676 }
-00:00:02 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 681 }
-00:00:03 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 724 }
+00:00:00 <span class="ansi-black-intense-fg">v</span> #3 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 551 }
+00:00:01 <span class="ansi-black-intense-fg">v</span> #4 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 494 }
+00:00:02 <span class="ansi-black-intense-fg">v</span> #5 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 543 }
+00:00:02 <span class="ansi-black-intense-fg">v</span> #6 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 572 }
 
-00:00:03 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7) }
-00:00:04 <span class="ansi-black-intense-fg">v</span> #8 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 754 }
-00:00:05 <span class="ansi-black-intense-fg">v</span> #9 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 748 }
-00:00:06 <span class="ansi-black-intense-fg">v</span> #10 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 746 }
-00:00:07 <span class="ansi-black-intense-fg">v</span> #11 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 759 }
+00:00:02 <span class="ansi-black-intense-fg">v</span> #7 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7) }
+00:00:03 <span class="ansi-black-intense-fg">v</span> #8 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 621 }
+00:00:04 <span class="ansi-black-intense-fg">v</span> #9 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 608 }
+00:00:04 <span class="ansi-black-intense-fg">v</span> #10 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 471 }
+00:00:05 <span class="ansi-black-intense-fg">v</span> #11 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 437 }
 
-00:00:07 <span class="ansi-black-intense-fg">v</span> #12 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7) }
-00:00:08 <span class="ansi-black-intense-fg">v</span> #13 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 728 }
-00:00:08 <span class="ansi-black-intense-fg">v</span> #14 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 760 }
-00:00:09 <span class="ansi-black-intense-fg">v</span> #15 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 727 }
-00:00:10 <span class="ansi-black-intense-fg">v</span> #16 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 749 }
+00:00:05 <span class="ansi-black-intense-fg">v</span> #12 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7) }
+00:00:06 <span class="ansi-black-intense-fg">v</span> #13 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 444 }
+00:00:06 <span class="ansi-black-intense-fg">v</span> #14 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 448 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #15 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 465 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #16 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 487 }
 
-00:00:10 <span class="ansi-black-intense-fg">v</span> #17 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7) }
-00:00:11 <span class="ansi-black-intense-fg">v</span> #18 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 768 }
-00:00:12 <span class="ansi-black-intense-fg">v</span> #19 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 748 }
-00:00:13 <span class="ansi-black-intense-fg">v</span> #20 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 736 }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #21 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 754 }
+00:00:07 <span class="ansi-black-intense-fg">v</span> #17 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7) }
+00:00:08 <span class="ansi-black-intense-fg">v</span> #18 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 509 }
+00:00:09 <span class="ansi-black-intense-fg">v</span> #19 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 479 }
+00:00:09 <span class="ansi-black-intense-fg">v</span> #20 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 502 }
+00:00:10 <span class="ansi-black-intense-fg">v</span> #21 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 452 }
 
-00:00:14 <span class="ansi-black-intense-fg">v</span> #22 benchmark.run / { input_str = struct ([|1; 2; 3; 4...00; ...|], 60, 1000) }
-00:00:15 <span class="ansi-black-intense-fg">v</span> #23 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 869 }
-00:00:16 <span class="ansi-black-intense-fg">v</span> #24 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 917 }
-00:00:17 <span class="ansi-black-intense-fg">v</span> #25 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 892 }
-00:00:18 <span class="ansi-black-intense-fg">v</span> #26 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 919 }
+00:00:10 <span class="ansi-black-intense-fg">v</span> #22 benchmark.run / { input_str = struct ([|1; 2; 3; 4...00; ...|], 60, 1000) }
+00:00:11 <span class="ansi-black-intense-fg">v</span> #23 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 450 }
+00:00:11 <span class="ansi-black-intense-fg">v</span> #24 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 490 }
+00:00:12 <span class="ansi-black-intense-fg">v</span> #25 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 461 }
+00:00:12 <span class="ansi-black-intense-fg">v</span> #26 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 480 }
 
-00:00:18 <span class="ansi-black-intense-fg">v</span> #27 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7) }
-00:00:19 <span class="ansi-black-intense-fg">v</span> #28 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 671 }
-00:00:20 <span class="ansi-black-intense-fg">v</span> #29 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 655 }
-00:00:21 <span class="ansi-black-intense-fg">v</span> #30 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 656 }
-00:00:22 <span class="ansi-black-intense-fg">v</span> #31 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 687 }
+00:00:12 <span class="ansi-black-intense-fg">v</span> #27 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7) }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #28 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 424 }
+00:00:14 <span class="ansi-black-intense-fg">v</span> #29 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 424 }
+00:00:14 <span class="ansi-black-intense-fg">v</span> #30 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 431 }
+00:00:15 <span class="ansi-black-intense-fg">v</span> #31 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 418 }
 
-00:00:22 <span class="ansi-black-intense-fg">v</span> #32 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7) }
-00:00:22 <span class="ansi-black-intense-fg">v</span> #33 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 765 }
-00:00:23 <span class="ansi-black-intense-fg">v</span> #34 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 737 }
-00:00:24 <span class="ansi-black-intense-fg">v</span> #35 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 706 }
-00:00:25 <span class="ansi-black-intense-fg">v</span> #36 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 740 }
+00:00:15 <span class="ansi-black-intense-fg">v</span> #32 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7) }
+00:00:15 <span class="ansi-black-intense-fg">v</span> #33 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 450 }
+00:00:16 <span class="ansi-black-intense-fg">v</span> #34 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 436 }
+00:00:16 <span class="ansi-black-intense-fg">v</span> #35 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 455 }
+00:00:17 <span class="ansi-black-intense-fg">v</span> #36 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 433 }
 
-00:00:25 <span class="ansi-black-intense-fg">v</span> #37 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7) }
-00:00:26 <span class="ansi-black-intense-fg">v</span> #38 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 765 }
-00:00:27 <span class="ansi-black-intense-fg">v</span> #39 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 576 }
-00:00:27 <span class="ansi-black-intense-fg">v</span> #40 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 578 }
-00:00:28 <span class="ansi-black-intense-fg">v</span> #41 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 564 }
+00:00:17 <span class="ansi-black-intense-fg">v</span> #37 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7) }
+00:00:18 <span class="ansi-black-intense-fg">v</span> #38 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 449 }
+00:00:18 <span class="ansi-black-intense-fg">v</span> #39 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 455 }
+00:00:19 <span class="ansi-black-intense-fg">v</span> #40 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 424 }
+00:00:19 <span class="ansi-black-intense-fg">v</span> #41 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 442 }
 
-00:00:28 <span class="ansi-black-intense-fg">v</span> #42 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7) }
-00:00:29 <span class="ansi-black-intense-fg">v</span> #43 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 582 }
-00:00:30 <span class="ansi-black-intense-fg">v</span> #44 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 582 }
-00:00:30 <span class="ansi-black-intense-fg">v</span> #45 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 588 }
-00:00:31 <span class="ansi-black-intense-fg">v</span> #46 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 569 }
+00:00:19 <span class="ansi-black-intense-fg">v</span> #42 benchmark.run / { input_str = struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7) }
+00:00:20 <span class="ansi-black-intense-fg">v</span> #43 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 462 }
+00:00:20 <span class="ansi-black-intense-fg">v</span> #44 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 456 }
+00:00:21 <span class="ansi-black-intense-fg">v</span> #45 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 448 }
+00:00:22 <span class="ansi-black-intense-fg">v</span> #46 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 446 }
 
-00:00:31 <span class="ansi-black-intense-fg">v</span> #47 benchmark.run / { input_str = struct ([|1; 2; 3; 4...100; ...|], 60, 100) }
-00:00:32 <span class="ansi-black-intense-fg">v</span> #48 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 591 }
-00:00:33 <span class="ansi-black-intense-fg">v</span> #49 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 608 }
-00:00:33 <span class="ansi-black-intense-fg">v</span> #50 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 600 }
-00:00:34 <span class="ansi-black-intense-fg">v</span> #51 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 560 }
+00:00:22 <span class="ansi-black-intense-fg">v</span> #47 benchmark.run / { input_str = struct ([|1; 2; 3; 4...100; ...|], 60, 100) }
+00:00:22 <span class="ansi-black-intense-fg">v</span> #48 benchmark.run / solutions.map / { i = 1; test_name = semi_open_1; time = 538 }
+00:00:23 <span class="ansi-black-intense-fg">v</span> #49 benchmark.run / solutions.map / { i = 2; test_name = closed_1; time = 513 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #50 benchmark.run / solutions.map / { i = 3; test_name = semi_open_2; time = 539 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #51 benchmark.run / solutions.map / { i = 4; test_name = closed_2; time = 475 }
 ```
 input                                    	| expected	| result  	| best  
 ---                                      	| ---     	| ---     	| ---   
-struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US6_0 3 	| US6_0 3 	| 2, 676
-struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US6_0 0 	| US6_0 0 	| 3, 746
-struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US6_0 6 	| US6_0 6 	| 3, 727
-struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US6_1   	| US6_1   	| 3, 736
-struct ([1; 2; 3; 4...00; ...], 60, 1000)	| US6_0 59	| US6_0 59	| 1, 869
-struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US6_0 3 	| US6_0 3 	| 2, 655
-struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US6_0 0 	| US6_0 0 	| 3, 706
-struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US6_0 6 	| US6_0 6 	| 4, 564
-struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US6_1   	| US6_1   	| 4, 569
-struct ([1; 2; 3; 4...100; ...], 60, 100)	| US6_0 59	| US6_0 59	| 4, 560
+struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US7_0 3 	| US7_0 3 	| 2, 494
+struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US7_0 0 	| US7_0 0 	| 4, 437
+struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US7_0 6 	| US7_0 6 	| 1, 444
+struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US7_1   	| US7_1   	| 4, 452
+struct ([1; 2; 3; 4...00; ...], 60, 1000)	| US7_0 59	| US7_0 59	| 1, 450
+struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US7_0 3 	| US7_0 3 	| 4, 418
+struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US7_0 0 	| US7_0 0 	| 4, 433
+struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US7_0 6 	| US7_0 6 	| 3, 424
+struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US7_1   	| US7_1   	| 4, 446
+struct ([1; 2; 3; 4...100; ...], 60, 100)	| US7_0 59	| US7_0 59	| 4, 475
 ```
-00:00:34 <span class="ansi-black-intense-fg">v</span> #52 benchmark.sort_result_list / averages.iter / { i = 3; avg = 691 }
-00:00:34 <span class="ansi-black-intense-fg">v</span> #53 benchmark.sort_result_list / averages.iter / { i = 2; avg = 700 }
-00:00:34 <span class="ansi-black-intense-fg">v</span> #54 benchmark.sort_result_list / averages.iter / { i = 4; avg = 702 }
-00:00:34 <span class="ansi-black-intense-fg">v</span> #55 benchmark.sort_result_list / averages.iter / { i = 1; avg = 723 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #52 benchmark.sort_result_list / averages.iter / { i = 4; avg = 464 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #53 benchmark.sort_result_list / averages.iter / { i = 3; avg = 473 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #54 benchmark.sort_result_list / averages.iter / { i = 2; avg = 480 }
+00:00:24 <span class="ansi-black-intense-fg">v</span> #55 benchmark.sort_result_list / averages.iter / { i = 1; avg = 489 }
 ```
 </pre>
 </div>
@@ -9743,7 +9743,7 @@ Test case 1. Average Time: 706L</p>
 Test: returnLettersWithOddCountTests
 
 Solution: 1  
-Test case 1. A. Time: 0L  
+Test case 1. A. Time: 2L  
 
 Solution: 2  
 Test case 1. A. Time: 0L  
@@ -9759,7 +9759,7 @@ Test case 1. A. Time: 0L
 
 Input	| Expected  	| Result    	| Best  
 ---  	| ---       	| ---       	| ---   
-1    	| a         	| a         	| (1, 0)
+1    	| a         	| a         	| (1, 2)
 2    	| ba        	| ba        	| (1, 0)
 3    	| aaa       	| aaa       	| (1, 0)
 9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 0)
@@ -9898,7 +9898,7 @@ Test case 1. Average Time: 165L</p>
 Test: hasAnyPairCloseToEachotherTests
 
 Solution: 0  
-Test case 1. A. Time: 2L  
+Test case 1. A. Time: 1L  
 
 Solution: 1,2  
 Test case 1. A. Time: 0L  
@@ -9914,7 +9914,7 @@ Test case 1. A. Time: 0L
 
 Input	| Expected	| Result	| Best  
 ---  	| ---     	| ---   	| ---   
-0    	| False   	| False 	| (1, 2)
+0    	| False   	| False 	| (1, 1)
 1,2  	| True    	| True  	| (1, 0)
 3,5  	| False   	| False 	| (1, 0)
 3,4,6	| True    	| True  	| (1, 0)

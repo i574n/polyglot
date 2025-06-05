@@ -516,11 +516,11 @@ let solutions = [
         input
         |> Seq.toList
         |> fun list ->
-            let rec loop set = function
-                | head :: tail when Set.contains head set -> loop set tail
-                | head :: tail -> (loop (set.Add head) tail) @ [ head ]
+            let rec 루프 set = function
+                | head :: tail when Set.contains head set -> 루프 set tail
+                | head :: tail -> (루프 (set.Add head) tail) @ [ head ]
                 | [] -> []
-            loop Set.empty list
+            루프 Set.empty list
             |> List.rev
         |> List.toArray
         |> String
@@ -530,11 +530,11 @@ let solutions = [
         input
         |> Seq.toList
         |> fun list ->
-            let rec loop set = function
-                | head :: tail when Set.contains head set -> loop set tail
-                | head :: tail -> loop (set.Add head) tail |> Array.append [| head |]
+            let rec 루프 set = function
+                | head :: tail when Set.contains head set -> 루프 set tail
+                | head :: tail -> 루프 (set.Add head) tail |> Array.append [| head |]
                 | [] -> [||]
-            loop Set.empty list
+            루프 Set.empty list
         |> String
 
     "J",
@@ -542,11 +542,11 @@ let solutions = [
         input
         |> Seq.toList
         |> fun list ->
-            let rec loop set = function
-                | head :: tail when Set.contains head set -> loop set tail
-                | head :: tail -> head :: loop (set.Add head) tail
+            let rec 루프 set = function
+                | head :: tail when Set.contains head set -> 루프 set tail
+                | head :: tail -> head :: 루프 (set.Add head) tail
                 | [] -> []
-            loop Set.empty list
+            루프 Set.empty list
         |> List.toArray
         |> String
 
@@ -755,13 +755,13 @@ let solutions = [
         input
         |> Seq.toList
         |> fun list ->
-            let rec loop (acc: char list list) = function
+            let rec 루프 (acc: char list list) = function
                 | _ when acc.Length = list.Length -> acc
                 | head :: tail ->
                     let item = tail @ [ head ]
-                    loop (item :: acc) item
+                    루프 (item :: acc) item
                 | [] -> []
-            loop [] list
+            루프 [] list
         |> List.rev
         |> List.map (List.toArray >> String)
         |> SpiralSm.concat " "
@@ -771,12 +771,12 @@ let solutions = [
         input
         |> Seq.toList
         |> fun list ->
-            let rec loop (last: string) = function
+            let rec 루프 (last: string) = function
                 | head :: tail ->
                     let item = last.[1 .. input.Length - 1] + string head
-                    item :: loop item tail
+                    item :: 루프 item tail
                 | [] -> []
-            loop input list
+            루프 input list
         |> SpiralSm.concat " "
 
     "F",
@@ -931,13 +931,13 @@ inl get_solutions () =
         //     input
         //     |> Seq.toList
         //     |> fun list =>
-        //         let rec loop (acc : list (list char)) = function
+        //         let rec 루프 (acc : list (list char)) = function
         //             | _ when acc.Length = list.Length => acc
         //             | head :: tail =>
         //                 let item = tail ++ [ head ]
-        //                 loop (item :: acc) item
+        //                 루프 (item :: acc) item
         //             | [] => []
-        //         loop [] list
+        //         루프 [] list
         //     |> List.rev
         //     |> List.map (List.toArray >> String)
         //     |> SpiralSm.concat " "
@@ -947,12 +947,12 @@ inl get_solutions () =
         //     input
         //     |> Seq.toList
         //     |> fun list =>
-        //         let rec loop (last : string) = function
+        //         let rec 루프 (last : string) = function
         //             | head :: tail =>
         //                 let item = last.[1 .. input.Length - 1] + string head
-        //                 item :: loop item tail
+        //                 item :: 루프 item tail
         //             | [] => []
-        //         loop input list
+        //         루프 input list
         //     |> SpiralSm.concat " "
 
         "F",
@@ -1142,15 +1142,15 @@ inl binary_search_semi_open_1 arr target left right =
             if item = target
             then Some mid
             elif item < target
-            then loop (mid + 1) right
-            else loop left mid
-    and inl loop left right =
+            then 루프 (mid + 1) right
+            else 루프 left mid
+    and inl 루프 left right =
         if var_is right |> not
         then body left right
         else
             inl left = dyn left
             join body left right
-    loop left right
+    루프 left right
 
 inl binary_search_closed_1 arr target left right =
     inl rec body left right =
@@ -1162,15 +1162,15 @@ inl binary_search_closed_1 arr target left right =
             if item = target
             then Some mid
             elif item < target
-            then loop (mid + 1) right
-            else loop left (mid - 1)
-    and inl loop left right =
+            then 루프 (mid + 1) right
+            else 루프 left (mid - 1)
+    and inl 루프 left right =
         if var_is right |> not
         then body left right
         else
             inl left = dyn left
             join body left right
-    loop left right
+    루프 left right
 
 inl binary_search_semi_open_2 arr target left right =
     let rec body left right =
@@ -1182,10 +1182,10 @@ inl binary_search_semi_open_2 arr target left right =
             if item = target
             then Some mid
             elif item < target
-            then loop (mid + 1) right
-            else loop left mid
-    and inl loop left right = body left right
-    loop left right
+            then 루프 (mid + 1) right
+            else 루프 left mid
+    and inl 루프 left right = body left right
+    루프 left right
 
 inl binary_search_closed_2 arr target left right =
     let rec body left right =
@@ -1197,10 +1197,10 @@ inl binary_search_closed_2 arr target left right =
             if item = target
             then Some mid
             elif item < target
-            then loop (mid + 1) right
-            else loop left (mid - 1)
-    and inl loop left right = body left right
-    loop left right
+            then 루프 (mid + 1) right
+            else 루프 left (mid - 1)
+    and inl 루프 left right = body left right
+    루프 left right
 
 inl get_solutions () =
     [

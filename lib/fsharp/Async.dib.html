@@ -8387,7 +8387,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">retryAsync</span> <span class="n">retries</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="n">lastError</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="n">retry</span> <span class="n">lastError</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="k">try</span>
             <span class="k">return</span><span class="err">!</span>
                 <span class="k">if</span> <span class="n">retry</span> <span class="o">&lt;=</span> <span class="n">retries</span>
@@ -8396,9 +8396,9 @@ a.anchor-link {
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Async.retryAsync / retry: </span><span class="si">{retry}</span><span class="s2">/</span><span class="si">{retries}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">30</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span><span class="p">)</span>
+            <span class="k">return</span><span class="err">!</span> <span class="n">루프</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">1</span> <span class="s2">"Async.retryAsync / invalid retries / retries: </span><span class="si">{retries}</span><span class="s2">"</span>
+    <span class="n">루프</span> <span class="mi">1</span> <span class="s2">"Async.retryAsync / invalid retries / retries: </span><span class="si">{retries}</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
@@ -8504,15 +8504,15 @@ Ok 2
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">fold</span> <span class="n">folder</span> <span class="n">state</span> <span class="n">array</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">i</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="n">acc</span> <span class="n">i</span> <span class="o">=</span>
         <span class="k">async</span> <span class="p">{</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">length</span> <span class="n">array</span> <span class="n">then</span>
                 <span class="n">let</span><span class="err">!</span> <span class="n">newAcc</span> <span class="o">=</span> <span class="n">folder</span> <span class="n">acc</span> <span class="n">array</span><span class="o">.</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="n">newAcc</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">return</span><span class="err">!</span> <span class="n">루프</span> <span class="n">newAcc</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">else</span>
                 <span class="k">return</span> <span class="n">acc</span>
         <span class="p">}</span>
-    <span class="n">loop</span> <span class="n">state</span> <span class="mi">0</span>
+    <span class="n">루프</span> <span class="n">state</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>

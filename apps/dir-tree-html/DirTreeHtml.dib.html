@@ -7679,14 +7679,14 @@ a.anchor-link {
         <span class="p">]</span>
     <span class="o">|</span> <span class="n">Folder</span> <span class="p">(</span><span class="n">folderName</span><span class="p">,</span> <span class="n">relativePath</span><span class="p">,</span> <span class="n">children</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">size</span> <span class="o">=</span>
-            <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">children</span> <span class="o">=</span>
+            <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="n">children</span> <span class="o">=</span>
                 <span class="n">children</span>
                 <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">sumBy</span> <span class="p">(</span><span class="n">function</span>
                     <span class="o">|</span> <span class="n">File</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">size</span>
                     <span class="o">|</span> <span class="n">Folder</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">children</span><span class="p">)</span>
-                    <span class="o">|</span> <span class="n">Root</span> <span class="n">children</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="n">children</span>
+                    <span class="o">|</span> <span class="n">Root</span> <span class="n">children</span> <span class="o">-&gt;</span> <span class="n">루프</span> <span class="n">children</span>
                 <span class="p">)</span>
-            <span class="n">loop</span> <span class="n">children</span>
+            <span class="n">루프</span> <span class="n">children</span>
         <span class="n">Elem</span><span class="o">.</span><span class="n">details</span> <span class="p">[</span>
             <span class="n">Attr</span><span class="o">.</span><span class="n">open</span><span class="s1">' "true"</span>
         <span class="p">]</span> <span class="p">[</span>
@@ -7786,7 +7786,7 @@ a.anchor-link {
 <span class="s2">"""</span>
 
 <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempFolder</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">SpiralCrypto</span><span class="o">.</span><span class="n">hash_text</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_dir</span><span class="s1">'</span>
-<span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">d</span> <span class="n">n</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+<span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="n">d</span> <span class="n">n</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="n">then</span>
         <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="n">d</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="n">do</span><span class="err">!</span>
@@ -7794,9 +7794,9 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">string</span>
             <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="n">d</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file.txt"</span><span class="p">)</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">loop</span> <span class="err">$</span><span class="s2">"</span><span class="si">{d}</span><span class="s2">/</span><span class="si">{n}</span><span class="s2">"</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">루프</span> <span class="err">$</span><span class="s2">"</span><span class="si">{d}</span><span class="s2">/</span><span class="si">{n}</span><span class="s2">"</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
-<span class="n">loop</span> <span class="s2">"_.root"</span> <span class="mi">3</span>
+<span class="n">루프</span> <span class="s2">"_.root"</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
 
 <span class="n">let</span> <span class="n">html</span> <span class="o">=</span>

@@ -63,14 +63,14 @@ module DirTreeHtml =
             ]
         | Folder (folderName, relativePath, children) ->
             let size =
-                let rec loop children =
+                let rec 루프 children =
                     children
                     |> List.sumBy (function
                         | File (_, _, size) -> size
                         | Folder (_, _, children)
-                        | Root children -> loop children
+                        | Root children -> 루프 children
                     )
-                loop children
+                루프 children
             Elem.details [
                 Attr.open' "true"
             ] [

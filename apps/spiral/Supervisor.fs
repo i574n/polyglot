@@ -140,7 +140,7 @@ module Supervisor =
                                     inbox.Post (port, false)
 
                                 if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                                    let rec loop retry = async {
+                                    let rec 루프 retry = async {
                                         do!
                                             SpiralNetworking.wait_for_port_access (Some 100) true host availablePort
                                             |> Async.runWithTimeoutAsync 500
@@ -154,12 +154,12 @@ module Supervisor =
 
                                             match pingResult with
                                             | Some _ -> inbox.Post (availablePort, true)
-                                            | None -> do! loop (retry + 1)
+                                            | None -> do! 루프 (retry + 1)
                                         with ex ->
                                             trace Verbose (fun () -> $"Supervisor.awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") _locals
-                                            do! loop (retry + 1)
+                                            do! 루프 (retry + 1)
                                     }
-                                    do! loop 1
+                                    do! 루프 1
                             })
                             l6 = Some workspaceRoot
                         }
@@ -216,7 +216,7 @@ module Supervisor =
 
     /// ### buildFile
     let buildFile backend timeout port cancellationToken path =
-        let rec loop retry = async {
+        let rec 루프 retry = async {
             let fullPath = path |> System.IO.Path.GetFullPath |> SpiralFileSystem.normalize_path
             let fileDir = fullPath |> System.IO.Path.GetDirectoryName
             let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
@@ -461,7 +461,7 @@ module Supervisor =
             match buildFileResult with
             // | None when typeErrorCount > 0 && retry = 0 ->
             //     trace Verbose (fun () -> $"Supervisor.buildFile / result: {result} / retry: {retry} / typeErrorCount: {typeErrorCount} / fileDir: {fileDir} / targetDir: {targetDir}") _locals
-            //     return! loop (retry + 1)
+            //     return! 루프 (retry + 1)
             | _ ->
                 let targetDir = workspaceRoot </> "target"
                 trace Verbose (fun () -> $"Supervisor.buildFile / retry: {retry} / typeErrorCount: {typeErrorCount} / fileDir: {fileDir} / targetDir: {targetDir}") _locals
@@ -479,7 +479,7 @@ module Supervisor =
                 let outputPath = fileDir </> outputFileName
                 return outputPath, buildFileResult, result
         }
-        loop 0
+        루프 0
 
     /// ### SpiralInput
     type SpiralInput =

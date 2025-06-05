@@ -171,7 +171,7 @@ module Async =
 
     /// ## retryAsync
     let inline retryAsync retries fn =
-        let rec loop retry lastError = async {
+        let rec 루프 retry lastError = async {
             try
                 return!
                     if retry <= retries
@@ -180,18 +180,18 @@ module Async =
             with ex ->
                 trace Debug (fun () -> $"Async.retryAsync / retry: {retry}/{retries} / ex: {ex |> SpiralSm.format_exception}") _locals
                 do! Async.Sleep 30
-                return! loop (retry + 1) (ex |> SpiralSm.format_exception)
+                return! 루프 (retry + 1) (ex |> SpiralSm.format_exception)
         }
-        loop 1 "Async.retryAsync / invalid retries / retries: {retries}"
+        루프 1 "Async.retryAsync / invalid retries / retries: {retries}"
 
     /// ## fold
     let fold folder state array =
-        let rec loop acc i =
+        let rec 루프 acc i =
             async {
                 if i < Array.length array then
                     let! newAcc = folder acc array.[i]
-                    return! loop newAcc (i + 1)
+                    return! 루프 newAcc (i + 1)
                 else
                     return acc
             }
-        loop state 0
+        루프 state 0
