@@ -48,6 +48,7 @@ $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
 Copy-Item "$releasePath/$dotnetVersion/**" $libVersionPath -Recurse -Force
 
+{ pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/typescript/fable/build.ps1 } | Invoke-Block
 { pwsh ../lib/python/fable/build.ps1 } | Invoke-Block
 
