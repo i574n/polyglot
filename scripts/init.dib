@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"name":"pwsh"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
 
 #!pwsh
 
