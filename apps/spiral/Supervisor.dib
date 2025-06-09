@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
 
 #!fsharp
 
@@ -206,15 +206,23 @@ type Backend =
 #r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.3/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Routing.dll"
 #endif
 
-#!fsharp
+#!pwsh
 
-#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging/9.0.0/lib/net9.0/Microsoft.Extensions.Logging.dll"
-#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.0/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
-#r @"../../../../../../../.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+ls ~/.nuget/packages/microsoft.extensions.logging
 
 #!fsharp
 
-#r @"../../../../../../../.nuget/packages/system.management/9.0.0/lib/netstandard2.0/System.Management.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging/9.0.5/lib/net9.0/Microsoft.Extensions.Logging.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.5/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+
+#!pwsh
+
+ls ~/.nuget/packages/system.management
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/system.management/9.0.4/lib/netstandard2.0/System.Management.dll"
 
 #!fsharp
 
