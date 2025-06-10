@@ -37,7 +37,7 @@ Write-Output "Tool path: $netVersion"
 # { pwsh ../deps/dotnet-interactive/eng/build.ps1 -build -restore } | Invoke-Block
 
 if (!$fast) {
-    # { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block -OnError Continue
+    { pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block -OnError Continue
 
     { . $(Search-Command bun) install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
     { . $(Search-Command bun) install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser

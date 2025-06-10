@@ -16,6 +16,7 @@ tmp/
 paket-files/
 .paket/
 .history/
+vscode-common-tests
 
 apps/LICENSE
 
