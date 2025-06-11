@@ -13,8 +13,6 @@
     "dockerfile": "Dockerfile"
   },
   "features": {
-    "moby": false,
-    "docker-in-docker": "latest"
   },
   "hostRequirements": {
     "cpus": 4,
