@@ -16,7 +16,6 @@ pub mod Polyglot {
             static q: OnceInit<string> = OnceInit::new();
             q.get_or_init(|| string("\"")).clone()
         }
-        ///
         /// ## TraceLevel
         #[derive(Clone, Debug, Hash, PartialEq, PartialOrd)]
         pub enum TraceLevel {
@@ -31,7 +30,6 @@ pub mod Polyglot {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        ///
         /// ## trace
         pub fn to_trace_level(_arg: LrcPtr<Polyglot::Common::TraceLevel>) -> US0 {
             match _arg.as_ref() {

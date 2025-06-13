@@ -9,7 +9,7 @@
 #![allow(unused_parens)]
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
-mod module_2e7a6383 {
+mod module_31a2fc18 {
     pub mod Chat_contract {
         use super::*;
         type DateTime = ();
@@ -2834,46 +2834,46 @@ mod module_2e7a6383 {
         on_startup!(());
     }
 }
-pub use module_2e7a6383::*;
+pub use module_31a2fc18::*;
 #[path = "../../../deps/spiral/lib/spiral/async__contract.rs"]
-mod module_763b9e6c;
-pub use module_763b9e6c::*;
+mod module_2335f2f5;
+pub use module_2335f2f5::*;
 #[path = "../../../deps/spiral/lib/spiral/common_contract.rs"]
-mod module_18f1c018;
-pub use module_18f1c018::*;
+mod module_652e6d81;
+pub use module_652e6d81::*;
 #[path = "../../../deps/spiral/lib/spiral/crypto_contract.rs"]
-mod module_c0301e36;
-pub use module_c0301e36::*;
+mod module_dd5f95ef;
+pub use module_dd5f95ef::*;
 #[path = "../../../deps/spiral/lib/spiral/date_time_contract.rs"]
-mod module_e5abed0b;
-pub use module_e5abed0b::*;
+mod module_ca5e6cb2;
+pub use module_ca5e6cb2::*;
 #[path = "../../../deps/spiral/lib/spiral/file_system_contract.rs"]
-mod module_336d1dc9;
-pub use module_336d1dc9::*;
+mod module_5ab1faf0;
+pub use module_5ab1faf0::*;
 #[path = "../../../deps/spiral/lib/spiral/lib_contract.rs"]
-mod module_12dde172;
-pub use module_12dde172::*;
+mod module_b386774b;
+pub use module_b386774b::*;
 #[path = "../../../deps/spiral/lib/spiral/networking_contract.rs"]
-mod module_7e35832b;
-pub use module_7e35832b::*;
+mod module_ce497f72;
+pub use module_ce497f72::*;
 #[path = "../../../deps/spiral/lib/spiral/platform_contract.rs"]
-mod module_afd02cca;
-pub use module_afd02cca::*;
+mod module_9a61edd3;
+pub use module_9a61edd3::*;
 #[path = "../../../deps/spiral/lib/spiral/runtime_contract.rs"]
-mod module_a3c64389;
-pub use module_a3c64389::*;
+mod module_502d7e30;
+pub use module_502d7e30::*;
 #[path = "../../../deps/spiral/lib/spiral/sm_contract.rs"]
-mod module_8f227ecb;
-pub use module_8f227ecb::*;
+mod module_34f67952;
+pub use module_34f67952::*;
 #[path = "../../../deps/spiral/lib/spiral/threading_contract.rs"]
-mod module_e08c16fb;
-pub use module_e08c16fb::*;
+mod module_11c0c5c2;
+pub use module_11c0c5c2::*;
 #[path = "../../../deps/spiral/lib/spiral/trace_contract.rs"]
-mod module_702ddcb4;
-pub use module_702ddcb4::*;
+mod module_28ecba0d;
+pub use module_28ecba0d::*;
 #[path = "../../../lib/fsharp/Common_contract.rs"]
-mod module_eb7e4788;
-pub use module_eb7e4788::*;
+mod module_ad43931;
+pub use module_ad43931::*;
 pub mod Polyglot {
-    pub use crate::module_eb7e4788::Polyglot::*;
+    pub use crate::module_ad43931::Polyglot::*;
 }
