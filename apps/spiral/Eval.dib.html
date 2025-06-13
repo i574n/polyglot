@@ -8868,6 +8868,7 @@ C:\Users\i574n\.nuget\packages\microsoft.extensions.logging\9.0.5
                 <span class="k">if</span> <span class="n">retry</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span>
                     <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"Expected one of: inl, let, union, nominal, prototype, type, instance, and, open"</span><span class="p">)</span>
                     <span class="o">||</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"Unexpected end of block past this token."</span><span class="p">)</span>
+                    <span class="o">||</span> <span class="p">(</span><span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="s2">"Unbound variable:"</span><span class="p">)</span>
                 <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">evalAsync</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">props</span>
                 <span class="k">else</span>
                     <span class="k">return</span>

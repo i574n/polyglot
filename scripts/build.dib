@@ -53,7 +53,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/chat/build.ps1 } | Invoke-Block
+{ pwsh ../apps/chat/build.ps1 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
