@@ -13,7 +13,6 @@
     "dockerfile": "Dockerfile"
   },
   "features": {
-    "docker-in-docker": "latest"
   },
   "hostRequirements": {
     "cpus": 4,
@@ -36,5 +35,5 @@
     "--env-file",
     "${localWorkspaceFolder}/.devcontainer/.env"
   ],
-  "postCreateCommand": "pwd && rustc --version && echo postCreateCommand",
+  "postCreateCommand": "pwd && rustc --version && echo postCreateCommand"
 }

@@ -32,15 +32,17 @@ module Builder =
 
         let outputDir = outputDir |> Option.defaultValue "dist"
 
-        return!
+        let! exitCodes =
             runtimes
             |> List.map (fun runtime -> async {
-                let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
+                let command = $@"dotnet publish ""{fullPath}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
+                let dir = $"{fileDir}/{runtime}"
+                dir |> System.IO.Directory.CreateDirectory |> ignore
                 let! exitCode, _result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
                             l0 = command
-                            l6 = Some fileDir
+                            l6 = Some dir
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async
@@ -48,6 +50,11 @@ module Builder =
             })
             |> Async.Sequential
             |> Async.map Array.sum
+
+        if "CI" |> System.Environment.GetEnvironmentVariable |> System.String.IsNullOrEmpty |> not then
+            do! fileDir |> SpiralFileSystem.delete_directory_async |> Async.Ignore
+
+        return exitCodes
     }
 
     /// ## persistCodeProject
@@ -134,10 +141,9 @@ module Builder =
         let! fsprojPath = code |> persistCodeProject packages modules name None
         let! exitCode = fsprojPath |> buildProject runtime outputDir
         if exitCode <> 0 then
-            let! fsprojText = fsprojPath |> SpiralFileSystem.read_all_text_async
             trace Critical
                 (fun () -> "buildCode")
-                (fun () -> $"code: {code |> SpiralSm.ellipsis_end 400} / fsprojText: {fsprojText} / {_locals ()}")
+                (fun () -> $"code: {code |> SpiralSm.ellipsis_end 400} / {_locals ()}")
         return exitCode
     }
 

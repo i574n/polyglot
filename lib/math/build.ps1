@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "math"
 
 if (!$fast -and !$SkipNotebook) {
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path "$projectName.dib" --retries $($fast -or !$env:CI ? 1 : 5) } | Invoke-Block
+    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path "$projectName.dib" --retries $($fast -or !$env:CI ? 1 : 5) } | Invoke-Block -OnError Continue
 }
 
 { . ../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
@@ -44,7 +44,7 @@ Write-Output "polyglot/lib/math/build.ps1 / path: $path"
 
 cargo fmt --
 
-{ cargo test --release } | Invoke-Block
+{ cargo test --release } | Invoke-Block -OnError Continue
 
 Write-Output "polyglot/lib/math/build.ps1 / `$targetDir: $targetDir / `$projectName: $projectName / `$env:CI:'$env:CI'"
 

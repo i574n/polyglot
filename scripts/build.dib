@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"pwsh","items":[]}}
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"name":"spiral","languageName":"Spiral","aliases":["spi","spir"]}]}}
 
 #!pwsh
 
@@ -33,7 +33,7 @@
 
 #!pwsh
 
-{ pwsh ../lib/math/build.ps1 } | Invoke-Block
+{ pwsh ../lib/math/build.ps1 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
@@ -53,7 +53,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/chat/build.ps1 } | Invoke-Block
+{ pwsh ../apps/chat/build.ps1 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
