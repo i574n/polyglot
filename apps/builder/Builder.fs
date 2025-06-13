@@ -36,13 +36,11 @@ module Builder =
             runtimes
             |> List.map (fun runtime -> async {
                 let command = $@"dotnet publish ""{fullPath}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
-                let dir = $"{fileDir}/{runtime}"
-                dir |> System.IO.Directory.CreateDirectory |> ignore
                 let! exitCode, _result =
                     SpiralRuntime.execution_options (fun x ->
                         { x with
                             l0 = command
-                            l6 = Some dir
+                            l6 = Some fileDir
                         }
                     )
                     |> SpiralRuntime.execute_with_options_async
@@ -52,7 +50,8 @@ module Builder =
             |> Async.map Array.sum
 
         if "CI" |> System.Environment.GetEnvironmentVariable |> System.String.IsNullOrEmpty |> not then
-            do! fileDir |> SpiralFileSystem.delete_directory_async |> Async.Ignore
+            do! fileDir </> "bin" |> SpiralFileSystem.delete_directory_async |> Async.Ignore
+            do! fileDir </> "obj" |> SpiralFileSystem.delete_directory_async |> Async.Ignore
 
         return exitCodes
     }
