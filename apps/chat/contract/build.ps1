@@ -18,7 +18,7 @@ if (!$fast -and !$SkipNotebook) {
 
 { . ../../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
 
-{ . ../../../apps/spiral/dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" --timeout 180000 } | Invoke-Block
+{ . ../../../apps/spiral/dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" --timeout 300000 } | Invoke-Block
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
 $builderArgs = @("$projectName.fsx", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")

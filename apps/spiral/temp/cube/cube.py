@@ -29,7 +29,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr292() -> TypeInfo:
+def _expr285() -> TypeInfo:
     return union_type("Cube.US0", [], US0, lambda: [[], [], []])
 
 
@@ -45,9 +45,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2"]
 
 
-US0_reflection = _expr292
+US0_reflection = _expr285
 
-def _expr293() -> TypeInfo:
+def _expr288() -> TypeInfo:
     return union_type("Cube.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())], [("f5_0", US0_reflection())], [("f6_0", US0_reflection())]])
 
 
@@ -63,9 +63,9 @@ class US1(Union):
         return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5", "US1_6"]
 
 
-US1_reflection = _expr293
+US1_reflection = _expr288
 
-def _expr294() -> TypeInfo:
+def _expr291() -> TypeInfo:
     return union_type("Cube.US2", [], US2, lambda: [[("f0_0", string_type)], []])
 
 
@@ -81,9 +81,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr294
+US2_reflection = _expr291
 
-def _expr295() -> TypeInfo:
+def _expr292() -> TypeInfo:
     return record_type("Cube.Mut0", [], Mut0, lambda: [("l0", float64_type)])
 
 
@@ -91,9 +91,9 @@ def _expr295() -> TypeInfo:
 class Mut0(Record):
     l0: float
 
-Mut0_reflection = _expr295
+Mut0_reflection = _expr292
 
-def _expr296() -> TypeInfo:
+def _expr294() -> TypeInfo:
     return union_type("Cube.US3", [], US3, lambda: [[("f0_0", int32_type), ("f0_1", float64_type), ("f0_2", char_type)], []])
 
 
@@ -109,9 +109,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr296
+US3_reflection = _expr294
 
-def _expr297() -> TypeInfo:
+def _expr295() -> TypeInfo:
     return union_type("Cube.US4", [], US4, lambda: [[("f0_0", float64_type), ("f0_1", char_type)], []])
 
 
@@ -127,7 +127,7 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr297
+US4_reflection = _expr295
 
 def method0(__unit: None=None) -> str:
     return "VSCODE_PID"
@@ -146,10 +146,10 @@ def closure1(unit_var: None, v0_1: str) -> US2:
 
 
 def method4(__unit: None=None) -> Callable[[str], US2]:
-    def _arrow298(v: str) -> US2:
+    def _arrow296(v: str) -> US2:
         return closure1(None, v)
 
-    return _arrow298
+    return _arrow296
 
 
 def method1(v0_1: str) -> str:

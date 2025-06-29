@@ -7831,7 +7831,7 @@ a.anchor-link {
 
 <span class="s2">"1 + 1 |&gt; ignore"</span>
 <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test1"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">180000</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300000</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7845,28 +7845,28 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:04 <span class="ansi-blue-intense-fg">d</span> #1 persistCodeProject / packages: [] / modules: [] / name: test1 / hash:  / code.Length: 15
-00:00:04 <span class="ansi-blue-intense-fg">d</span> #2 buildProject / fullPath: c:\home\git\polyglot\target\Builder\test1\test1.fsproj
-00:00:07 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+<pre>00:00:02 <span class="ansi-blue-intense-fg">d</span> #1 persistCodeProject / packages: [] / modules: [] / name: test1 / hash:  / code.Length: 15
+00:00:02 <span class="ansi-blue-intense-fg">d</span> #2 buildProject / fullPath: c:\home\git\polyglot\target\Builder\test1\test1.fsproj
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #1 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
   "publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
-00:00:08 <span class="ansi-black-intense-fg">v</span> #2 &gt;   Determining projects to restore...
-00:00:08 <span class="ansi-black-intense-fg">v</span> #3 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
-00:00:09 <span class="ansi-black-intense-fg">v</span> #4 &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:09 <span class="ansi-black-intense-fg">v</span> #5 &gt;   Total time taken: 0 milliseconds
-00:00:09 <span class="ansi-black-intense-fg">v</span> #6 &gt;   Restored c:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 414 ms).
-00:00:11 <span class="ansi-black-intense-fg">v</span> #7 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\linux-x64\test1.dll
-00:00:13 <span class="ansi-black-intense-fg">v</span> #8 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\dist\
-00:00:13 <span class="ansi-blue-intense-fg">d</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 429; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
-00:00:13 <span class="ansi-blue-intense-fg">d</span> #10 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+00:00:06 <span class="ansi-black-intense-fg">v</span> #2 &gt;   Determining projects to restore...
+00:00:06 <span class="ansi-black-intense-fg">v</span> #3 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:06 <span class="ansi-black-intense-fg">v</span> #4 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:06 <span class="ansi-black-intense-fg">v</span> #5 &gt;   Total time taken: 0 milliseconds
+00:00:08 <span class="ansi-black-intense-fg">v</span> #6 &gt;   Restored c:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 2.11 sec).
+00:00:10 <span class="ansi-black-intense-fg">v</span> #7 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\linux-x64\test1.dll
+00:00:11 <span class="ansi-black-intense-fg">v</span> #8 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\dist\
+00:00:11 <span class="ansi-blue-intense-fg">d</span> #9 runtime.execute_with_options_async / { exit_code = 0; output_length = 431; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
+00:00:11 <span class="ansi-blue-intense-fg">d</span> #10 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
   "publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
-00:00:14 <span class="ansi-black-intense-fg">v</span> #11 &gt;   Determining projects to restore...
-00:00:14 <span class="ansi-black-intense-fg">v</span> #12 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
-00:00:14 <span class="ansi-black-intense-fg">v</span> #13 &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:14 <span class="ansi-black-intense-fg">v</span> #14 &gt;   Total time taken: 0 milliseconds
-00:00:15 <span class="ansi-black-intense-fg">v</span> #15 &gt;   Restored c:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 339 ms).
-00:00:16 <span class="ansi-black-intense-fg">v</span> #16 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\win-x64\test1.dll
-00:00:18 <span class="ansi-black-intense-fg">v</span> #17 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\dist\
-00:00:18 <span class="ansi-blue-intense-fg">d</span> #18 runtime.execute_with_options_async / { exit_code = 0; output_length = 427; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
+00:00:12 <span class="ansi-black-intense-fg">v</span> #11 &gt;   Determining projects to restore...
+00:00:12 <span class="ansi-black-intense-fg">v</span> #12 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:12 <span class="ansi-black-intense-fg">v</span> #13 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:12 <span class="ansi-black-intense-fg">v</span> #14 &gt;   Total time taken: 0 milliseconds
+00:00:13 <span class="ansi-black-intense-fg">v</span> #15 &gt;   Restored c:\home\git\polyglot\target\Builder\test1\test1.fsproj (in 296 ms).
+00:00:14 <span class="ansi-black-intense-fg">v</span> #16 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\bin\Release\net9.0\win-x64\test1.dll
+00:00:16 <span class="ansi-black-intense-fg">v</span> #17 &gt;   test1 -&gt; c:\home\git\polyglot\target\Builder\test1\dist\
+00:00:16 <span class="ansi-blue-intense-fg">d</span> #18 runtime.execute_with_options_async / { exit_code = 0; output_length = 427; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test1"; stderr = true } }
 Some 0
 
 </pre>
@@ -7886,7 +7886,7 @@ Some 0
 
 <span class="s2">"1 + a |&gt; ignore"</span>
 <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test2"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">180000</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300000</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7900,27 +7900,27 @@ Some 0
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 <span class="ansi-blue-intense-fg">d</span> #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
-00:00:15 <span class="ansi-blue-intense-fg">d</span> #4 buildProject / fullPath: c:\home\git\polyglot\target\Builder\test2\test2.fsproj
-00:00:18 <span class="ansi-blue-intense-fg">d</span> #19 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+<pre>00:00:13 <span class="ansi-blue-intense-fg">d</span> #3 persistCodeProject / packages: [] / modules: [] / name: test2 / hash:  / code.Length: 15
+00:00:13 <span class="ansi-blue-intense-fg">d</span> #4 buildProject / fullPath: c:\home\git\polyglot\target\Builder\test2\test2.fsproj
+00:00:16 <span class="ansi-blue-intense-fg">d</span> #19 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
   "publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
-00:00:19 <span class="ansi-black-intense-fg">v</span> #20 &gt;   Determining projects to restore...
-00:00:19 <span class="ansi-black-intense-fg">v</span> #21 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
-00:00:19 <span class="ansi-black-intense-fg">v</span> #22 &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:19 <span class="ansi-black-intense-fg">v</span> #23 &gt;   Total time taken: 0 milliseconds
-00:00:20 <span class="ansi-black-intense-fg">v</span> #24 &gt;   Restored c:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 327 ms).
-00:00:22 <span class="ansi-black-intense-fg">v</span> #25 &gt; c:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:22 <span class="ansi-blue-intense-fg">d</span> #26 runtime.execute_with_options_async / { exit_code = 1; output_length = 451; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
-00:00:23 <span class="ansi-blue-intense-fg">d</span> #27 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+00:00:17 <span class="ansi-black-intense-fg">v</span> #20 &gt;   Determining projects to restore...
+00:00:17 <span class="ansi-black-intense-fg">v</span> #21 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:17 <span class="ansi-black-intense-fg">v</span> #22 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:17 <span class="ansi-black-intense-fg">v</span> #23 &gt;   Total time taken: 0 milliseconds
+00:00:18 <span class="ansi-black-intense-fg">v</span> #24 &gt;   Restored c:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 290 ms).
+00:00:20 <span class="ansi-black-intense-fg">v</span> #25 &gt; c:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\Builder\test2\test2.fsproj]
+00:00:20 <span class="ansi-blue-intense-fg">d</span> #26 runtime.execute_with_options_async / { exit_code = 1; output_length = 451; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
+00:00:20 <span class="ansi-blue-intense-fg">d</span> #27 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
   "publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
-00:00:23 <span class="ansi-black-intense-fg">v</span> #28 &gt;   Determining projects to restore...
-00:00:24 <span class="ansi-black-intense-fg">v</span> #29 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
-00:00:24 <span class="ansi-black-intense-fg">v</span> #30 &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:24 <span class="ansi-black-intense-fg">v</span> #31 &gt;   Total time taken: 0 milliseconds
-00:00:25 <span class="ansi-black-intense-fg">v</span> #32 &gt;   Restored c:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 391 ms).
-00:00:27 <span class="ansi-black-intense-fg">v</span> #33 &gt; c:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\Builder\test2\test2.fsproj]
-00:00:28 <span class="ansi-blue-intense-fg">d</span> #34 runtime.execute_with_options_async / { exit_code = 1; output_length = 451; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
-00:00:24 <span class="ansi-red-intense-fg">c</span> #5 buildCode / code: 1 + a |&gt; ignore
+00:00:21 <span class="ansi-black-intense-fg">v</span> #28 &gt;   Determining projects to restore...
+00:00:21 <span class="ansi-black-intense-fg">v</span> #29 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:21 <span class="ansi-black-intense-fg">v</span> #30 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:21 <span class="ansi-black-intense-fg">v</span> #31 &gt;   Total time taken: 0 milliseconds
+00:00:22 <span class="ansi-black-intense-fg">v</span> #32 &gt;   Restored c:\home\git\polyglot\target\Builder\test2\test2.fsproj (in 320 ms).
+00:00:24 <span class="ansi-black-intense-fg">v</span> #33 &gt; c:\home\git\polyglot\target\Builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [c:\home\git\polyglot\target\Builder\test2\test2.fsproj]
+00:00:24 <span class="ansi-blue-intense-fg">d</span> #34 runtime.execute_with_options_async / { exit_code = 1; output_length = 451; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\test2"; stderr = true } }
+00:00:21 <span class="ansi-red-intense-fg">c</span> #5 buildCode / code: 1 + a |&gt; ignore
 Some 2
 
 </pre>
@@ -8240,18 +8240,28 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:26 <span class="ansi-blue-intense-fg">d</span> #6 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.Reactive.Linq] / modules: [deps/spiral/lib/spiral/common.fsx; deps/spiral/lib/spiral/sm.fsx; deps/spiral/lib/spiral/crypto.fsx; ... ] / name: Builder / hash:  / code.Length: 8673
-00:00:26 <span class="ansi-blue-intense-fg">d</span> #7 buildProject / fullPath: c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj
-00:00:29 <span class="ansi-blue-intense-fg">d</span> #35 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+<pre>00:00:23 <span class="ansi-blue-intense-fg">d</span> #6 persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.Reactive.Linq] / modules: [deps/spiral/lib/spiral/common.fsx; deps/spiral/lib/spiral/sm.fsx; deps/spiral/lib/spiral/crypto.fsx; ... ] / name: Builder / hash:  / code.Length: 8673
+00:00:23 <span class="ansi-blue-intense-fg">d</span> #7 buildProject / fullPath: c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj
+00:00:25 <span class="ansi-blue-intense-fg">d</span> #35 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
+  "publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\Builder"; stderr = true } }
+00:00:26 <span class="ansi-black-intense-fg">v</span> #36 &gt;   Determining projects to restore...
+00:00:26 <span class="ansi-black-intense-fg">v</span> #37 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:26 <span class="ansi-black-intense-fg">v</span> #38 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:26 <span class="ansi-black-intense-fg">v</span> #39 &gt;   Total time taken: 0 milliseconds
+00:00:27 <span class="ansi-black-intense-fg">v</span> #40 &gt;   Restored c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 312 ms).
+00:00:40 <span class="ansi-black-intense-fg">v</span> #41 &gt;   Builder -&gt; c:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
+00:00:42 <span class="ansi-black-intense-fg">v</span> #42 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:42 <span class="ansi-blue-intense-fg">d</span> #43 runtime.execute_with_options_async / { exit_code = 0; output_length = 433; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\Builder"; stderr = true } }
+00:00:42 <span class="ansi-blue-intense-fg">d</span> #44 runtime.execute_with_options_async / { file_name = dotnet; arguments = US5_0
   "publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64"; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\Builder"; stderr = true } }
-00:00:30 <span class="ansi-black-intense-fg">v</span> #36 &gt;   Determining projects to restore...
-00:00:30 <span class="ansi-black-intense-fg">v</span> #37 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
-00:00:31 <span class="ansi-black-intense-fg">v</span> #38 &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:31 <span class="ansi-black-intense-fg">v</span> #39 &gt;   Total time taken: 0 milliseconds
-00:00:31 <span class="ansi-black-intense-fg">v</span> #40 &gt;   All projects are up-to-date for restore.
-00:00:48 <span class="ansi-black-intense-fg">v</span> #41 &gt;   Builder -&gt; c:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
-00:00:49 <span class="ansi-black-intense-fg">v</span> #42 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:49 <span class="ansi-blue-intense-fg">d</span> #43 runtime.execute_with_options_async / { exit_code = 0; output_length = 391; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\Builder"; stderr = true } }
+00:00:43 <span class="ansi-black-intense-fg">v</span> #45 &gt;   Determining projects to restore...
+00:00:43 <span class="ansi-black-intense-fg">v</span> #46 &gt;   Paket version 9.0.2+d62083715d89e1fe48337ae2246558ea67c58342
+00:00:43 <span class="ansi-black-intense-fg">v</span> #47 &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:43 <span class="ansi-black-intense-fg">v</span> #48 &gt;   Total time taken: 0 milliseconds
+00:00:44 <span class="ansi-black-intense-fg">v</span> #49 &gt;   Restored c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj (in 418 ms).
+00:00:58 <span class="ansi-black-intense-fg">v</span> #50 &gt;   Builder -&gt; c:\home\git\polyglot\target\Builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
+00:00:59 <span class="ansi-black-intense-fg">v</span> #51 &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:59 <span class="ansi-blue-intense-fg">d</span> #52 runtime.execute_with_options_async / { exit_code = 0; output_length = 431; options = { command = dotnet publish "c:\home\git\polyglot\target\Builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64; cancellation_token = None; environment_variables = [||]; on_line = None; stdin = None; trace = true; working_directory = Some "c:\home\git\polyglot\target\Builder\Builder"; stderr = true } }
 </pre>
 </div>
 </div>

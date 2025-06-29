@@ -8704,7 +8704,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="main_loop">main_loop<a class="anchor-link" href="#main_loop">¶</a></h3>
+<h3 id="main_%EB%A3%A8%ED%94%84">main_루프<a class="anchor-link" href="#main_%EB%A3%A8%ED%94%84">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8737,7 +8737,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">main_loop</span> <span class="nb">max</span> <span class="n">i</span> <span class="n">rot</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">main_루프</span> <span class="nb">max</span> <span class="n">i</span> <span class="n">rot</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">rot</span> <span class="o">=</span> <span class="n">join</span> <span class="n">rot</span>
         <span class="n">inl</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">rot</span> <span class="o">|&gt;</span> <span class="n">generate_frame</span>
@@ -8764,7 +8764,7 @@ a.anchor-link {
         <span class="n">then</span> <span class="p">()</span>
         <span class="k">else</span>
             <span class="p">{</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">c</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="p">}</span>
-            <span class="o">|&gt;</span> <span class="n">main_loop</span> <span class="nb">max</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">main_루프</span> <span class="nb">max</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">return_await</span><span class="s1">'</span>
     <span class="o">|&gt;</span> <span class="k">async</span><span class="o">.</span><span class="n">new_async_unit</span>
 </pre></div>
@@ -8844,7 +8844,7 @@ a.anchor-link {
                 <span class="n">python</span><span class="o">.</span><span class="n">import_all</span> <span class="s2">"sys"</span>
                 <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'$"sys.stdout.write(</span><span class="se">\\\"\\\\</span><span class="s1">033[?25l</span><span class="se">\\\"</span><span class="s1">)"'</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">()</span>
-    <span class="n">main_loop</span> <span class="p">(</span><span class="k">if</span> <span class="n">console</span> <span class="n">then</span> <span class="o">-</span><span class="mi">1</span><span class="n">i32</span> <span class="k">else</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span> <span class="p">{</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="p">}</span>
+    <span class="n">main_루프</span> <span class="p">(</span><span class="k">if</span> <span class="n">console</span> <span class="n">then</span> <span class="o">-</span><span class="mi">1</span><span class="n">i32</span> <span class="k">else</span> <span class="mi">50</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span> <span class="p">{</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="p">}</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
         <span class="n">run_target_args</span><span class="s1">' x function</span>
         <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span>
