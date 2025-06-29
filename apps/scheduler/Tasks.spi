@@ -1,4 +1,5 @@
 /// ## Tasks (Polyglot)
+open sm'_operators
 
 /// ## task_name
 nominal task_name = string

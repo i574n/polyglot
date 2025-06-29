@@ -607,70 +607,7 @@ modules:
     /// ## getFileTokenRange
     let getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
-        let! code = fullPath |> SpiralFileSystem.read_all_text_async
-        let lines = code |> SpiralSm.split "\n"
-
-        let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
-        use _ = disposable
-
-        let port = port |> Option.defaultWith getCompilerPort
-        // let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
-        // use _ = disposable
-
-        let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-
-        // let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
-        // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
-        let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
-        let! _fileOpenResult =
-            server2.job_null (server2.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
-            |> Async.AwaitTask
-
-        // do! Async.Sleep 60
-
-        let fileTokenRangeArgs =
-            {|
-                uri = fullPathUri
-                range =
-                    {|
-                        line = 0
-                        character = 0
-                    |},
-                    {|
-                        line = lines.Length - 1
-                        character = lines.[lines.Length - 1].Length
-                    |}
-            |}
-        // let! fileTokenRangeResult =
-        //     fileTokenRangeObj
-        //     |> sendObj serverPort
-        //     |> Async.withCancellationToken ct
-
-        // let fileTokenRangeArgs = {| uri = fullPathUri; backend = backendId |}
-        let! fileTokenRangeResult =
-            server2.job_val (fun res -> server2.supervisor *<+ SupervisorReq.FileTokenRange(fileTokenRangeArgs,res))
-            |> Async.AwaitTask
-
-        let fileDir = fullPath |> System.IO.Path.GetDirectoryName
-        if fileDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
-            let fileDirUri = fileDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
-            // let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
-            // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
-            let fileDeleteArgs = {| uris = [| fileDirUri |] |}
-            let! _fileDeleteResult =
-                server2.job_null (server2.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
-                |> Async.AwaitTask
-            ()
-
-        return fileTokenRangeResult |> FSharp.Json.Json.deserialize<int array> |> Some
-    }
-
-    /// ## getCodeTokenRange
-    let getCodeTokenRange cancellationToken code = async {
-        let! mainPath, _ =
-            persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
-
-        let codeDir = mainPath |> System.IO.Path.GetDirectoryName
+        let codeDir = fullPath |> System.IO.Path.GetDirectoryName
         let tokensPath = codeDir </> "tokens.json"
         let! tokens = async {
             if tokensPath |> System.IO.File.Exists |> not
@@ -683,10 +620,73 @@ modules:
                     then text |> FSharp.Json.Json.deserialize<int array> |> Some
                     else None
         }
+
         match tokens with
         | Some tokens ->
             return tokens |> Some
-        | None -> return! mainPath |> getFileTokenRange None cancellationToken
+        | None ->
+            let! code = fullPath |> SpiralFileSystem.read_all_text_async
+            let lines = code |> SpiralSm.split "\n"
+
+            let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
+            use _ = disposable
+
+            let port = port |> Option.defaultWith getCompilerPort
+            // let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
+            // use _ = disposable
+
+            let fullPathUri = fullPath |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+
+            // let fileOpenObj = {| FileOpen = {| uri = fullPathUri; spiText = code |} |}
+            // let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+            let fileOpenArgs = {| uri = fullPathUri; spiText = code |}
+            let! _fileOpenResult =
+                server2.job_null (server2.supervisor *<+ SupervisorReq.FileOpen fileOpenArgs)
+                |> Async.AwaitTask
+
+            // do! Async.Sleep 60
+
+            let fileTokenRangeArgs =
+                {|
+                    uri = fullPathUri
+                    range =
+                        {|
+                            line = 0
+                            character = 0
+                        |},
+                        {|
+                            line = lines.Length - 1
+                            character = lines.[lines.Length - 1].Length
+                        |}
+                |}
+            // let! fileTokenRangeResult =
+            //     fileTokenRangeObj
+            //     |> sendObj serverPort
+            //     |> Async.withCancellationToken ct
+
+            // let fileTokenRangeArgs = {| uri = fullPathUri; backend = backendId |}
+            let! fileTokenRangeResult =
+                server2.job_val (fun res -> server2.supervisor *<+ SupervisorReq.FileTokenRange(fileTokenRangeArgs,res))
+                |> Async.AwaitTask
+
+            if codeDir |> SpiralSm.starts_with (workspaceRoot </> "target") then
+                let fileDirUri = codeDir |> SpiralFileSystem.normalize_path |> SpiralFileSystem.new_file_uri
+                // let fileDeleteObj = {| FileDelete = {| uris = [| fileDirUri |] |} |}
+                // let! _fileDeleteResult = fileDeleteObj |> sendObj serverPort
+                let fileDeleteArgs = {| uris = [| fileDirUri |] |}
+                let! _fileDeleteResult =
+                    server2.job_null (server2.supervisor *<+ SupervisorReq.FileDelete fileDeleteArgs)
+                    |> Async.AwaitTask
+                ()
+
+            return fileTokenRangeResult |> FSharp.Json.Json.deserialize<int array> |> Some
+    }
+
+    /// ## getCodeTokenRange
+    let getCodeTokenRange cancellationToken code = async {
+        let! mainPath, _ =
+            persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
+        return! mainPath |> getFileTokenRange None cancellationToken
     }
 
     /// ## getFileHoverAt

@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
 
 #!markdown
 
@@ -11,6 +11,10 @@
 //// test
 
 open testing
+
+#!spiral
+
+open sm'_operators
 
 #!markdown
 
@@ -169,6 +173,7 @@ inl get_tasks () : list task_template =
 #!spiral
 
 //// test
+///! gleam
 ///! fsharp
 ///! cuda
 ///! rust
@@ -182,6 +187,7 @@ get_tasks ()
 #!spiral
 
 //// test
+///! gleam
 ///! fsharp
 ///! cuda
 ///! rust
@@ -196,11 +202,6 @@ get_tasks ()
 #!spiral
 
 //// test
-///! fsharp
-////! cuda
-////! typescript
-////! python
-///// print_code
 
 inl print padding cols =
     ({ lines = []; last_lines = []; max_acc = 0i32 }, cols)
@@ -229,9 +230,9 @@ inl print padding cols =
                         then line
                         else
                             inl padding = " " |> sm'.replicate padding
-                            $'$"{!line}{!padding}"'
+                            line ++# padding
                     inl line = line |> sm'.pad_right (max + padding) ' '
-                    $'$"{!last_line}{!line}"' :: lines
+                    last_line ++# line :: lines
                 i = i + 1
             }
         {
@@ -260,7 +261,17 @@ inl cols () =
         [ "a"; "b"; "c"; "d"; "e" ]
     ]
 
-inl main () =
-    cols ()
-    |> print 1i32
-    |> console.write_line
+#!spiral
+
+//// test
+///! gleam
+///! fsharp
+///! cuda
+///! rust
+///! typescript
+///! python
+///// print_code
+
+cols ()
+|> print 1i32
+|> console.write_line
