@@ -275,3 +275,62 @@ inl cols () =
 cols ()
 |> print 1i32
 |> console.write_line
+
+#!spiral
+
+//// test
+
+"       "
+++# "|" ++# " 2000               "
+++# "|"
+|> console.write_line
+
+"       "
+++# "|" ++# " february  "
+++# "|" ++# " march  "
+++# "|"
+|> console.write_line
+
+"       "
+++# "|" ++# "sa"
+++# "|" ++# "su"
+++# "|" ++# "mo"
+++# "|" ++# "tu"
+++# "|" ++# "we"
+++# "|" ++# "th"
+++# "|" ++# "fr"
+++# "|"
+|> console.write_line
+
+"       "
+++# "|" ++# "26"
+++# "|" ++# "27"
+++# "|" ++# "28"
+++# "|" ++# "29"
+++# "|" ++# "01"
+++# "|" ++# "02"
+++# "|" ++# "03"
+++# "|"
+|> console.write_line
+
+"Task 1 "
+++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_black () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_black () ++# "??" ++# console.color_reset ()
+++# "|"
+|> console.write_line
+
+"Task 2 "
+++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()
+++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
+++# "|"
+|> console.write_line
