@@ -532,7 +532,7 @@ inl main (_args : array_base string) =
         | Python _ => fun x =>
             x
             |> async.start_immediate
-            threading.sleep' 2000
+            threading.sleep 2000
         | _ => fun x =>
             x
             |> async.run_synchronously
