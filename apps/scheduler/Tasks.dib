@@ -18,6 +18,14 @@ open sm'_operators
 
 #!markdown
 
+## task_id
+
+#!spiral
+
+nominal task_id = string
+
+#!markdown
+
 ## task_name
 
 #!spiral
@@ -84,6 +92,7 @@ union scheduling =
 
 type task =
     {
+        id : task_id
         name : task_name
         scheduling : scheduling
     }
@@ -112,61 +121,46 @@ union status =
 
 #!markdown
 
-## event
+### action
 
 #!spiral
 
-type event =
-    {
-        date : date
-        status : status
-    }
+union action =
+    | SetDate : date
+    | AddTask : task
+    | SetScheduling : task * scheduling
+    | AddStatus : task * date * status
 
 #!markdown
 
-## task_template
-
-#!spiral
-
-type task_template =
-    {
-        task : task
-        events : list event
-    }
-
-#!markdown
-
-## get_tasks (test)
+## get_actions (test)
 
 #!spiral
 
 //// test
 
-inl get_tasks () : list task_template =
+inl get_actions () : list action =
+    open date_time
     [
-        {
-            task =
-                {
-                    name = task_name "01"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
+        SetDate {
+            year = year 2000
+            month = February
+            day = day 29
         }
-        {
-            task =
-                {
-                    name = task_name "02"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
+        AddTask {
+            id = task_id "1"
+            name = task_name "1"
+            scheduling = Manual WithSuggestion
         }
-        {
-            task =
-                {
-                    name = task_name "03"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
+        AddTask {
+            id = task_id "02"
+            name = task_name "02"
+            scheduling = Manual WithSuggestion
+        }
+        AddTask {
+            id = task_id "003"
+            name = task_name "003"
+            scheduling = Manual WithSuggestion
         }
     ]
 
@@ -180,9 +174,9 @@ inl get_tasks () : list task_template =
 ///! typescript
 ///! python
 
-get_tasks ()
+get_actions ()
 |> sm'.format_debug
-|> _assert sm'.contains "01"
+|> _assert sm'.contains "003"
 
 #!spiral
 
@@ -194,10 +188,12 @@ get_tasks ()
 ///! typescript
 ///! python
 
-get_tasks ()
-|> listm'.try_item 0i32
-|> fun (Some task) => task.task.name
-|> _assert_eq (task_name "01")
+get_actions ()
+|> listm'.try_item 3i32
+|> fun (Some action) =>
+    match action with
+    | AddTask { name } => name
+|> _assert_eq (task_name "003")
 
 #!spiral
 
@@ -248,10 +244,13 @@ inl print padding cols =
 inl col () =
     [ "Task" ]
     ++ (
-        get_tasks ()
-        |> listm.map fun task =>
-            inl (task_name name) = task.task.name
-            name
+        get_actions ()
+        |> listm.map fun action =>
+            match action with
+            | AddTask { name } =>
+                inl (task_name name) = name
+                name
+            | _ => ""
     )
 
 inl cols () =
@@ -280,18 +279,32 @@ cols ()
 
 //// test
 
-"       "
+inl task_name_width =
+    (0, get_actions ())
+    ||> listm.fold fun acc action =>
+        match action with
+        | AddTask { name } =>
+            inl (task_name name) = name
+            inl l = name |> sm'.length
+            if l > acc
+            then l
+            else acc
+        | _ => acc
+    |> (+) 1
+
+
+("" |> sm'.pad_right task_name_width ' ')
 ++# "|" ++# " 2000               "
 ++# "|"
 |> console.write_line
 
-"       "
+("" |> sm'.pad_right task_name_width ' ')
 ++# "|" ++# " february  "
 ++# "|" ++# " march  "
 ++# "|"
 |> console.write_line
 
-"       "
+("" |> sm'.pad_right task_name_width ' ')
 ++# "|" ++# "sa"
 ++# "|" ++# "su"
 ++# "|" ++# "mo"
@@ -302,7 +315,7 @@ cols ()
 ++# "|"
 |> console.write_line
 
-"       "
+("" |> sm'.pad_right task_name_width ' ')
 ++# "|" ++# "26"
 ++# "|" ++# "27"
 ++# "|" ++# "28"
@@ -313,24 +326,23 @@ cols ()
 ++# "|"
 |> console.write_line
 
-"Task 1 "
-++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_black () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_black () ++# "??" ++# console.color_reset ()
-++# "|"
-|> console.write_line
-
-"Task 2 "
-++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()
-++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
-++# "|"
-|> console.write_line
+inl lines =
+    ("", get_actions ())
+    ||> listm.fold fun acc action =>
+        match action with
+        | AddTask { name } =>
+            inl (task_name name) = name
+            if acc = ""
+            then acc
+            else acc ++# "\n"
+            ++# (name |> sm'.pad_right task_name_width ' ')
+            ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()
+            ++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
+            ++# "|"
+        | _ => ""
+lines |> console.write_line

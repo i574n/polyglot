@@ -1,6 +1,9 @@
 /// ## Tasks (Polyglot)
 open sm'_operators
 
+/// ## task_id
+nominal task_id = string
+
 /// ## task_name
 nominal task_name = string
 
@@ -34,6 +37,7 @@ union scheduling =
 /// ## task
 type task =
     {
+        id : task_id
         name : task_name
         scheduling : scheduling
     }
@@ -50,16 +54,9 @@ type date =
 union status =
     | Postponed : option ()
 
-/// ## event
-type event =
-    {
-        date : date
-        status : status
-    }
-
-/// ## task_template
-type task_template =
-    {
-        task : task
-        events : list event
-    }
+/// ### action
+union action =
+    | SetDate : date
+    | AddTask : task
+    | SetScheduling : task * scheduling
+    | AddStatus : task * date * status
