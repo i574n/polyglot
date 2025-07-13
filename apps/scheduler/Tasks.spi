@@ -12,11 +12,20 @@ union manual_scheduling =
     | WithSuggestion
     | WithoutSuggestion
 
+/// ## day_offset
+nominal day_offset = int
+
+/// ## week_offset
+nominal week_offset = int
+
+/// ## month_offset
+nominal month_offset = int
+
 /// ## recurrency_offset
 union recurrency_offset =
-    | Days : int
-    | Weeks : int
-    | Months : int
+    | Days : day_offset
+    | Weeks : week_offset
+    | Months : month_offset
 
 /// ## fixed_recurrency
 union fixed_recurrency =

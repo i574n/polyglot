@@ -7650,7 +7650,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="recurrency_offset">recurrency_offset<a class="anchor-link" href="#recurrency_offset">¶</a></h2>
+<h2 id="day_offset">day_offset<a class="anchor-link" href="#day_offset">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7662,10 +7662,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">recurrency_offset</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Days</span> <span class="p">:</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="n">Weeks</span> <span class="p">:</span> <span class="nb">int</span>
-    <span class="o">|</span> <span class="n">Months</span> <span class="p">:</span> <span class="nb">int</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">day_offset</span> <span class="o">=</span> <span class="nb">int</span>
 </pre></div>
 </div>
 </div>
@@ -7678,11 +7675,89 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fixed_recurrency">fixed_recurrency<a class="anchor-link" href="#fixed_recurrency">¶</a></h2>
+<h2 id="week_offset">week_offset<a class="anchor-link" href="#week_offset">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">week_offset</span> <span class="o">=</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="month_offset">month_offset<a class="anchor-link" href="#month_offset">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">month_offset</span> <span class="o">=</span> <span class="nb">int</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="recurrency_offset">recurrency_offset<a class="anchor-link" href="#recurrency_offset">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">recurrency_offset</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Days</span> <span class="p">:</span> <span class="n">day_offset</span>
+    <span class="o">|</span> <span class="n">Weeks</span> <span class="p">:</span> <span class="n">week_offset</span>
+    <span class="o">|</span> <span class="n">Months</span> <span class="p">:</span> <span class="n">month_offset</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="fixed_recurrency">fixed_recurrency<a class="anchor-link" href="#fixed_recurrency">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7700,7 +7775,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7710,7 +7785,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7727,7 +7802,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7737,7 +7812,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7754,7 +7829,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7764,7 +7839,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7784,7 +7859,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7794,7 +7869,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7814,7 +7889,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7824,7 +7899,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7840,7 +7915,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7850,7 +7925,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7869,7 +7944,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7879,7 +7954,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7908,8 +7983,8 @@ a.anchor-link {
             <span class="n">scheduling</span> <span class="o">=</span> <span class="n">Manual</span> <span class="n">WithSuggestion</span>
         <span class="p">}</span>
         <span class="n">AddTask</span> <span class="p">{</span>
-            <span class="nb">id</span> <span class="o">=</span> <span class="n">task_id</span> <span class="s2">"003"</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">task_name</span> <span class="s2">"003"</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="n">task_id</span> <span class="s2">"00003"</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">task_name</span> <span class="s2">"00003"</span>
             <span class="n">scheduling</span> <span class="o">=</span> <span class="n">Manual</span> <span class="n">WithSuggestion</span>
         <span class="p">}</span>
     <span class="p">]</span>
@@ -7918,7 +7993,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7936,7 +8011,7 @@ a.anchor-link {
 
 <span class="n">get_actions</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
-<span class="o">|&gt;</span> <span class="n">_assert</span> <span class="n">sm</span><span class="s1">'.contains "003"</span>
+<span class="o">|&gt;</span> <span class="n">_assert</span> <span class="n">sm</span><span class="s1">'.contains "00003"</span>
 </pre></div>
 </div>
 </div>
@@ -7950,19 +8025,19 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Python):
-{ name = __assert; actual = 003; expected = UH1_1(v0=US1_0(v0=2000, v1=US0_1(), v2=29), v1=UH1_1(v0=US1_1(v0='1', v1='1', v2=US2_0(v0=US3_0())), v1=UH1_1(v0=US1_1(v0='02', v1='02', v2=US2_0(v0=US3_0())), v1=UH1_1(v0=US1_1(v0='003', v1='003', v2=US2_0(v0=US3_0())), v1=UH1_0())))) }
+{ name = __assert; actual = 00003; expected = UH1_1(v0=US1_0(v0=2000, v1=US0_1(), v2=29), v1=UH1_1(v0=US1_1(v0='1', v1='1', v2=US2_0(v0=US3_0())), v1=UH1_1(v0=US1_1(v0='02', v1='02', v2=US2_0(v0=US3_0())), v1=UH1_1(v0=US1_1(v0='00003', v1='00003', v2=US2_0(v0=US3_0())), v1=UH1_0())))) }
 
 .rs output:
-{ name = __assert; actual = 003; expected = UH1_1(US1_0(2000, US0_1, 29), UH1_1(US1_1("1", "1", US2_0(US3_0)), UH1_1(US1_1("02", "02", US2_0(US3_0)), UH1_1(US1_1("003", "003", US2_0(US3_0)), UH1_0)))) }
+{ name = __assert; actual = 00003; expected = UH1_1(US1_0(2000, US0_1, 29), UH1_1(US1_1("1", "1", US2_0(US3_0)), UH1_1(US1_1("02", "02", US2_0(US3_0)), UH1_1(US1_1("00003", "00003", US2_0(US3_0)), UH1_0)))) }
 
 .ts output:
-{ name = __assert; actual = 003; expected = UH1_1 (US1_0 (2000, US0_1, 29), UH1_1 (US1_1 (1, 1, US2_0 US3_0), UH1_1 (US1_1 (02, 02, US2_0 US3_0), UH1_1 (US1_1 (003, 003, US2_0 US3_0), UH1_0)))) }
+{ name = __assert; actual = 00003; expected = UH1_1 (US1_0 (2000, US0_1, 29), UH1_1 (US1_1 (1, 1, US2_0 US3_0), UH1_1 (US1_1 (02, 02, US2_0 US3_0), UH1_1 (US1_1 (00003, 00003, US2_0 US3_0), UH1_0)))) }
 
 .py output:
-{ name = __assert; actual = 003; expected = UH1_1 (US1_0 (2000, US0_1, 29), UH1_1 (US1_1 ("1", "1", US2_0 US3_0), UH1_1 (US1_1 ("02", "02", US2_0 US3_0), UH1_1 (US1_1 ("003", "003", US2_0 US3_0), UH1_0)))) }
+{ name = __assert; actual = 00003; expected = UH1_1 (US1_0 (2000, US0_1, 29), UH1_1 (US1_1 ("1", "1", US2_0 US3_0), UH1_1 (US1_1 ("02", "02", US2_0 US3_0), UH1_1 (US1_1 ("00003", "00003", US2_0 US3_0), UH1_0)))) }
 
 .gleam output (Gleam):
-{ name = __assert; actual = 003; expected = Uh1i1(Us1i0(2000, Us0i1, 29), Uh1i1(Us1i1("1", "1", Us2i0(Us3i0)), Uh1i1(Us1i1("02", "02", Us2i0(Us3i0)), Uh1i1(Us1i1("003", "003", Us2i0(Us3i0)), Uh1i0)))) }
+{ name = __assert; actual = 00003; expected = Uh1i1(Us1i0(2000, Us0i1, 29), Uh1i1(Us1i1("1", "1", Us2i0(Us3i0)), Uh1i1(Us1i1("02", "02", Us2i0(Us3i0)), Uh1i1(Us1i1("00003", "00003", Us2i0(Us3i0)), Uh1i0)))) }
 
 </pre>
 </div>
@@ -7971,19 +8046,19 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-{ name = __assert; actual = 003; expected = UH1_1
+{ name = __assert; actual = 00003; expected = UH1_1
   (US1_0 (2000, US0_1, 29),
    UH1_1
      (US1_1 ("1", "1", US2_0 US3_0),
       UH1_1
         (US1_1 ("02", "02", US2_0 US3_0),
-         UH1_1 (US1_1 ("003", "003", US2_0 US3_0), UH1_0)))) }
+         UH1_1 (US1_1 ("00003", "00003", US2_0 US3_0), UH1_0)))) }
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8001,10 +8076,9 @@ a.anchor-link {
 
 <span class="n">get_actions</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_item 3i32</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">Some</span> <span class="n">action</span><span class="p">)</span> <span class="o">=&gt;</span>
-    <span class="k">match</span> <span class="n">action</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">AddTask</span> <span class="p">{</span> <span class="n">name</span> <span class="p">}</span> <span class="o">=&gt;</span> <span class="n">name</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">task_name</span> <span class="s2">"003"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">function</span>
+    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">AddTask</span> <span class="p">{</span> <span class="n">name</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="n">name</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">task_name</span> <span class="s2">"00003"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8018,19 +8092,19 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.py output (Python):
-{ name = __assert_eq; actual = 003; expected = 003 }
+{ name = __assert_eq; actual = 00003; expected = 00003 }
 
 .rs output:
-{ name = __assert_eq; actual = "003"; expected = "003" }
+{ name = __assert_eq; actual = "00003"; expected = "00003" }
 
 .ts output:
-{ name = __assert_eq; actual = 003; expected = 003 }
+{ name = __assert_eq; actual = 00003; expected = 00003 }
 
 .py output:
-{ name = __assert_eq; actual = 003; expected = 003 }
+{ name = __assert_eq; actual = 00003; expected = 00003 }
 
 .gleam output (Gleam):
-{ name = __assert_eq; actual = "003"; expected = "003" }
+{ name = __assert_eq; actual = "00003"; expected = "00003" }
 
 </pre>
 </div>
@@ -8039,13 +8113,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-{ name = __assert_eq; actual = "003"; expected = "003" }
+{ name = __assert_eq; actual = "00003"; expected = "00003" }
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8101,8 +8175,7 @@ a.anchor-link {
     <span class="p">[</span> <span class="s2">"Task"</span> <span class="p">]</span>
     <span class="o">++</span> <span class="p">(</span>
         <span class="n">get_actions</span> <span class="p">()</span>
-        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">action</span> <span class="o">=&gt;</span>
-            <span class="k">match</span> <span class="n">action</span> <span class="k">with</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">AddTask</span> <span class="p">{</span> <span class="n">name</span> <span class="p">}</span> <span class="o">=&gt;</span>
                 <span class="n">inl</span> <span class="p">(</span><span class="n">task_name</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="n">name</span>
                 <span class="n">name</span>
@@ -8120,7 +8193,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8154,43 +8227,43 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .py output (Python):
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 
 
 .rs output:
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 
 
 .ts output:
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 
 
 .py output:
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 
 
 .gleam output (Gleam):
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 
 
 </pre>
@@ -8200,17 +8273,17 @@ Task Task a
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.fsx output:
-Task Task a 
-          b 
-1    1    c 
-02   02   d 
-003  003  e 
+Task  Task  a 
+            b 
+1     1     c 
+02    02    d 
+00003 00003 e 
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8222,8 +8295,7 @@ Task Task a
 
 <span class="n">inl</span> <span class="n">task_name_width</span> <span class="o">=</span>
     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">get_actions</span> <span class="p">())</span>
-    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="n">action</span> <span class="o">=&gt;</span>
-        <span class="k">match</span> <span class="n">action</span> <span class="k">with</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="o">=&gt;</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">AddTask</span> <span class="p">{</span> <span class="n">name</span> <span class="p">}</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="p">(</span><span class="n">task_name</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="n">name</span>
             <span class="n">inl</span> <span class="n">l</span> <span class="o">=</span> <span class="n">name</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.length</span>
@@ -8234,43 +8306,39 @@ Task Task a
     <span class="o">|&gt;</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">1</span>
 
 
-<span class="p">(</span><span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right task_name_width '</span> <span class="s1">')</span>
-<span class="o">++</span><span class="c1"># "|" ++# " 2000               "</span>
-<span class="o">++</span><span class="c1"># "|"</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+<span class="n">inl</span> <span class="n">lines</span> <span class="o">=</span>
+    <span class="p">(</span><span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right task_name_width '</span> <span class="s1">')</span>
+    <span class="o">++</span><span class="c1"># "|" ++# " 2000               "</span>
+    <span class="o">++</span><span class="c1"># "|\n"</span>
 
-<span class="p">(</span><span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right task_name_width '</span> <span class="s1">')</span>
-<span class="o">++</span><span class="c1"># "|" ++# " february  "</span>
-<span class="o">++</span><span class="c1"># "|" ++# " march  "</span>
-<span class="o">++</span><span class="c1"># "|"</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+    <span class="o">++</span><span class="c1"># ("" |&gt; sm'.pad_right task_name_width ' ')</span>
+    <span class="o">++</span><span class="c1"># "|" ++# " february  "</span>
+    <span class="o">++</span><span class="c1"># "|" ++# " march  "</span>
+    <span class="o">++</span><span class="c1"># "|\n"</span>
 
-<span class="p">(</span><span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right task_name_width '</span> <span class="s1">')</span>
-<span class="o">++</span><span class="c1"># "|" ++# "sa"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "su"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "mo"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "tu"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "we"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "th"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "fr"</span>
-<span class="o">++</span><span class="c1"># "|"</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+    <span class="o">++</span><span class="c1"># ("" |&gt; sm'.pad_right task_name_width ' ')</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "sa"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "su"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "mo"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "tu"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "we"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "th"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "fr"</span>
+    <span class="o">++</span><span class="c1"># "|\n"</span>
 
-<span class="p">(</span><span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.pad_right task_name_width '</span> <span class="s1">')</span>
-<span class="o">++</span><span class="c1"># "|" ++# "26"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "27"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "28"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "29"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "01"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "02"</span>
-<span class="o">++</span><span class="c1"># "|" ++# "03"</span>
-<span class="o">++</span><span class="c1"># "|"</span>
-<span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+    <span class="o">++</span><span class="c1"># ("" |&gt; sm'.pad_right task_name_width ' ')</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "26"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "27"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "28"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "29"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "01"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "02"</span>
+    <span class="o">++</span><span class="c1"># "|" ++# "03"</span>
+    <span class="o">++</span><span class="c1"># "|"</span>
 
 <span class="n">inl</span> <span class="n">lines</span> <span class="o">=</span>
-    <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="n">get_actions</span> <span class="p">())</span>
-    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="n">action</span> <span class="o">=&gt;</span>
-        <span class="k">match</span> <span class="n">action</span> <span class="k">with</span>
+    <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">get_actions</span> <span class="p">())</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="o">=&gt;</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">AddTask</span> <span class="p">{</span> <span class="n">name</span> <span class="p">}</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="p">(</span><span class="n">task_name</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="n">name</span>
             <span class="k">if</span> <span class="n">acc</span> <span class="o">=</span> <span class="s2">""</span>
@@ -8285,8 +8353,8 @@ Task Task a
             <span class="o">++</span><span class="c1"># "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()</span>
             <span class="o">++</span><span class="c1"># "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()</span>
             <span class="o">++</span><span class="c1"># "|"</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="s2">""</span>
-<span class="n">lines</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+<span class="n">lines</span>
 </pre></div>
 </div>
 </div>
@@ -8299,14 +8367,13 @@ Task Task a
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>    | 2000               |
-    | february  | march  |
-    |sa|su|mo|tu|we|th|fr|
-    |26|27|28|29|01|02|03|
-1   |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|
-02  |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|
-003 |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|
-</pre>
+<pre>      | 2000               |
+      | february  | march  |
+      |sa|su|mo|tu|we|th|fr|
+      |26|27|28|29|01|02|03|
+1     |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|
+02    |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|
+00003 |<span class="ansi-white-intense-fg">??</span>|<span class="ansi-white-intense-fg">??</span>|<span class="ansi-green-intense-fg">??</span>|<span class="ansi-yellow-intense-fg">??</span>|<span class="ansi-red-intense-fg">??</span>|<span class="ansi-magenta-intense-fg">??</span>|<span class="ansi-cyan-intense-fg">??</span>|</pre>
 </div>
 </div>
 </div>
