@@ -950,63 +950,47 @@ mod module_728458a3 {
             v0_1.l0.set(v4);
             ()
         }
-        pub fn method19(v0_1: string, v1_1: f64, v2: f64) -> string {
-            let v4: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+        pub fn method19(v0_1: string, v1_1: f64) -> string {
+            let v3: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
                 l0: MutCell::new(Math::method20()),
             });
-            let v18: () = {
-                Math::closure2(v4.clone(), string("{ "), ());
+            let v17: () = {
+                Math::closure2(v3.clone(), string("{ "), ());
                 ()
             };
-            let v37: () = {
-                Math::closure2(v4.clone(), string("name"), ());
+            let v36: () = {
+                Math::closure2(v3.clone(), string("name"), ());
                 ()
             };
-            let v56: () = {
-                Math::closure2(v4.clone(), string(" = "), ());
+            let v55: () = {
+                Math::closure2(v3.clone(), string(" = "), ());
                 ()
             };
-            let v73: () = {
-                Math::closure2(v4.clone(), v0_1, ());
+            let v72: () = {
+                Math::closure2(v3.clone(), v0_1, ());
                 ()
             };
-            let v92: () = {
-                Math::closure2(v4.clone(), string("; "), ());
+            let v91: () = {
+                Math::closure2(v3.clone(), string("; "), ());
                 ()
             };
-            let v111: () = {
-                Math::closure2(v4.clone(), string("actual"), ());
+            let v110: () = {
+                Math::closure2(v3.clone(), string("expected"), ());
                 ()
             };
-            let v128: () = {
-                Math::closure2(v4.clone(), string(" = "), ());
+            let v127: () = {
+                Math::closure2(v3.clone(), string(" = "), ());
                 ()
             };
-            let v148: () = {
-                Math::closure2(v4.clone(), sprintf!("{:+.6}", v1_1), ());
+            let v147: () = {
+                Math::closure2(v3.clone(), sprintf!("{:+.6}", v1_1), ());
                 ()
             };
-            let v165: () = {
-                Math::closure2(v4.clone(), string("; "), ());
+            let v166: () = {
+                Math::closure2(v3.clone(), string(" }"), ());
                 ()
             };
-            let v184: () = {
-                Math::closure2(v4.clone(), string("expected"), ());
-                ()
-            };
-            let v201: () = {
-                Math::closure2(v4.clone(), string(" = "), ());
-                ()
-            };
-            let v221: () = {
-                Math::closure2(v4.clone(), sprintf!("{:+.6}", v2), ());
-                ()
-            };
-            let v240: () = {
-                Math::closure2(v4.clone(), string(" }"), ());
-                ()
-            };
-            v4.l0.get().clone()
+            v3.l0.get().clone()
         }
         pub fn closure3(v0_1: string, unitVar: ()) {
             printfn!("{0}", v0_1);
@@ -1049,10 +1033,9 @@ mod module_728458a3 {
                     .clone(),
                     _ => v64.clone(),
                 };
-                let v69: f64 = v67.clone().im;
-                let v70: bool = (v69) == 0.0_f64;
+                let v70: bool = (v67.clone().im) == 0.0_f64;
                 let v72: bool = if v70 { true } else { Math::method18(v70) };
-                let v75: string = Math::method19(string("__assert_eq"), v69, 0.0_f64);
+                let v75: string = Math::method19(string("__assert_eq"), 0.0_f64);
                 let v79: () = {
                     Math::closure3(v75.clone(), ());
                     ()
@@ -1063,10 +1046,9 @@ mod module_728458a3 {
                 {
                     let v84: f64 = (v67.re) - (patternInput.1.clone());
                     let v85: f64 = -v84;
-                    let v87: f64 = if (v84) >= (v85) { v84 } else { v85 };
-                    let v88: bool = (v87) < 0.0001_f64;
+                    let v88: bool = (if (v84) >= (v85) { v84 } else { v85 }) < 0.0001_f64;
                     let v90: bool = if v88 { true } else { Math::method18(v88) };
-                    let v93: string = Math::method19(string("__assert_lt"), v87, 0.0001_f64);
+                    let v93: string = Math::method19(string("__assert_lt"), 0.0001_f64);
                     let v97: () = {
                         Math::closure3(v93.clone(), ());
                         ()
@@ -1141,10 +1123,9 @@ mod module_728458a3 {
             };
             let v61: f64 = (v58.clone().re) - 0.8673_f64;
             let v62: f64 = -v61;
-            let v64: f64 = if (v61) >= (v62) { v61 } else { v62 };
-            let v65: bool = (v64) < 0.001_f64;
+            let v65: bool = (if (v61) >= (v62) { v61 } else { v62 }) < 0.001_f64;
             let v67: bool = if v65 { true } else { Math::method18(v65) };
-            let v70: string = Math::method19(string("__assert_lt"), v64, 0.001_f64);
+            let v70: string = Math::method19(string("__assert_lt"), 0.001_f64);
             let v74: () = {
                 Math::closure3(v70.clone(), ());
                 ()
@@ -1155,10 +1136,9 @@ mod module_728458a3 {
             {
                 let v79: f64 = (v58.im) - 0.275_f64;
                 let v80: f64 = -v79;
-                let v82: f64 = if (v79) >= (v80) { v79 } else { v80 };
-                let v83: bool = (v82) < 0.001_f64;
+                let v83: bool = (if (v79) >= (v80) { v79 } else { v80 }) < 0.001_f64;
                 let v85: bool = if v83 { true } else { Math::method18(v83) };
-                let v87: string = Math::method19(string("__assert_lt"), v82, 0.001_f64);
+                let v87: string = Math::method19(string("__assert_lt"), 0.001_f64);
                 let v91: () = {
                     Math::closure3(v87.clone(), ());
                     ()
@@ -1258,10 +1238,9 @@ mod module_728458a3 {
                             .clone(),
                             _ => v58.clone(),
                         };
-                        let v63: f64 = v61.clone().re;
-                        let v64: bool = (v63) == 0.0_f64;
+                        let v64: bool = (v61.clone().re) == 0.0_f64;
                         let v66: bool = if v64 { true } else { Math::method18(v64) };
-                        let v69: string = Math::method19(string("__assert_eq"), v63, 0.0_f64);
+                        let v69: string = Math::method19(string("__assert_eq"), 0.0_f64);
                         let v73: () = {
                             Math::closure3(v69.clone(), ());
                             ()
@@ -1270,10 +1249,9 @@ mod module_728458a3 {
                             panic!("{}", v69,);
                         }
                         {
-                            let v77: f64 = v61.im;
-                            let v78: bool = (v77) == 0.0_f64;
+                            let v78: bool = (v61.im) == 0.0_f64;
                             let v80: bool = if v78 { true } else { Math::method18(v78) };
-                            let v82: string = Math::method19(string("__assert_eq"), v77, 0.0_f64);
+                            let v82: string = Math::method19(string("__assert_eq"), 0.0_f64);
                             let v86: () = {
                                 Math::closure3(v82.clone(), ());
                                 ()
@@ -1370,10 +1348,9 @@ mod module_728458a3 {
                 };
                 let v76: f64 = v74.clone().re;
                 let v77: f64 = -v76;
-                let v79: f64 = if (v76) >= (v77) { v76 } else { v77 };
-                let v80: bool = (v79) < 0.0001_f64;
+                let v80: bool = (if (v76) >= (v77) { v76 } else { v77 }) < 0.0001_f64;
                 let v82: bool = if v80 { true } else { Math::method18(v80) };
-                let v85: string = Math::method19(string("__assert_lt"), v79, 0.0001_f64);
+                let v85: string = Math::method19(string("__assert_lt"), 0.0001_f64);
                 let v89: () = {
                     Math::closure3(v85.clone(), ());
                     ()
@@ -1384,10 +1361,9 @@ mod module_728458a3 {
                 {
                     let v93: f64 = v74.im;
                     let v94: f64 = -v93;
-                    let v96: f64 = if (v93) >= (v94) { v93 } else { v94 };
-                    let v97: bool = (v96) < 0.0001_f64;
+                    let v97: bool = (if (v93) >= (v94) { v93 } else { v94 }) < 0.0001_f64;
                     let v99: bool = if v97 { true } else { Math::method18(v97) };
-                    let v101: string = Math::method19(string("__assert_lt"), v96, 0.0001_f64);
+                    let v101: string = Math::method19(string("__assert_lt"), 0.0001_f64);
                     let v105: () = {
                         Math::closure3(v101.clone(), ());
                         ()
@@ -1467,10 +1443,9 @@ mod module_728458a3 {
                     .clone(),
                     _ => v61.clone(),
                 };
-                let v66: f64 = v64.clone().re;
-                let v67: bool = (v66) > 0.0_f64;
+                let v67: bool = (v64.clone().re) > 0.0_f64;
                 let v69: bool = if v67 { true } else { Math::method18(v67) };
-                let v72: string = Math::method19(string("__assert_gt"), v66, 0.0_f64);
+                let v72: string = Math::method19(string("__assert_gt"), 0.0_f64);
                 let v76: () = {
                     Math::closure3(v72.clone(), ());
                     ()
@@ -1479,10 +1454,9 @@ mod module_728458a3 {
                     panic!("{}", v72,);
                 }
                 {
-                    let v80: f64 = v64.im;
-                    let v81: bool = (v80) == 0.0_f64;
+                    let v81: bool = (v64.im) == 0.0_f64;
                     let v83: bool = if v81 { true } else { Math::method18(v81) };
-                    let v86: string = Math::method19(string("__assert_eq"), v80, 0.0_f64);
+                    let v86: string = Math::method19(string("__assert_eq"), 0.0_f64);
                     let v90: () = {
                         Math::closure3(v86.clone(), ());
                         ()
@@ -1552,10 +1526,9 @@ mod module_728458a3 {
                 .clone(),
                 _ => v55.clone(),
             };
-            let v60: f64 = v58.clone().re;
-            let v61: bool = (v60) == (f64::INFINITY);
+            let v61: bool = (v58.clone().re) == (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v66: string = Math::method19(string("__assert_eq"), v60, f64::INFINITY);
+            let v66: string = Math::method19(string("__assert_eq"), f64::INFINITY);
             let v70: () = {
                 Math::closure3(v66.clone(), ());
                 ()
@@ -1564,10 +1537,9 @@ mod module_728458a3 {
                 panic!("{}", v66,);
             }
             {
-                let v74: f64 = v58.im;
-                let v75: bool = (v74) == 0.0_f64;
+                let v75: bool = (v58.im) == 0.0_f64;
                 let v77: bool = if v75 { true } else { Math::method18(v75) };
-                let v79: string = Math::method19(string("__assert_eq"), v74, 0.0_f64);
+                let v79: string = Math::method19(string("__assert_eq"), 0.0_f64);
                 let v83: () = {
                     Math::closure3(v79.clone(), ());
                     ()
@@ -1657,7 +1629,7 @@ mod module_728458a3 {
             let v127: f64 = v123.clone().re;
             let v128: bool = (v125) == (v127);
             let v130: bool = if v128 { true } else { Math::method18(v128) };
-            let v132: string = Math::method19(string("__assert_eq"), v125, v127);
+            let v132: string = Math::method19(string("__assert_eq"), v127);
             let v136: () = {
                 Math::closure3(v132.clone(), ());
                 ()
@@ -1670,7 +1642,7 @@ mod module_728458a3 {
                 let v142: f64 = v123.im;
                 let v143: bool = (v140) == (v142);
                 let v145: bool = if v143 { true } else { Math::method18(v143) };
-                let v146: string = Math::method19(string("__assert_eq"), v140, v142);
+                let v146: string = Math::method19(string("__assert_eq"), v142);
                 let v150: () = {
                     Math::closure3(v146.clone(), ());
                     ()
@@ -1733,10 +1705,9 @@ mod module_728458a3 {
                 .clone(),
                 _ => v55.clone(),
             };
-            let v60: f64 = v58.clone().re;
-            let v61: bool = (v60) < (f64::INFINITY);
+            let v61: bool = (v58.clone().re) < (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v66: string = Math::method19(string("__assert_lt"), v60, f64::INFINITY);
+            let v66: string = Math::method19(string("__assert_lt"), f64::INFINITY);
             let v70: () = {
                 Math::closure3(v66.clone(), ());
                 ()
@@ -1745,10 +1716,9 @@ mod module_728458a3 {
                 panic!("{}", v66,);
             }
             {
-                let v74: f64 = v58.im;
-                let v75: bool = (v74) < (f64::INFINITY);
+                let v75: bool = (v58.im) < (f64::INFINITY);
                 let v77: bool = if v75 { true } else { Math::method18(v75) };
-                let v79: string = Math::method19(string("__assert_lt"), v74, f64::INFINITY);
+                let v79: string = Math::method19(string("__assert_lt"), f64::INFINITY);
                 let v83: () = {
                     Math::closure3(v79.clone(), ());
                     ()
@@ -1858,10 +1828,9 @@ mod module_728458a3 {
                             .clone(),
                             _ => v58.clone(),
                         };
-                        let v63: f64 = v61.clone().re;
-                        let v65: bool = (v63) != 0.0_f64;
+                        let v65: bool = (v61.clone().re) != 0.0_f64;
                         let v69: bool = if v65 { true } else { Math::method18(v65) };
-                        let v72: string = Math::method19(string("__assert_ne"), v63, 0.0_f64);
+                        let v72: string = Math::method19(string("__assert_ne"), 0.0_f64);
                         let v76: () = {
                             Math::closure3(v72.clone(), ());
                             ()
@@ -1870,10 +1839,9 @@ mod module_728458a3 {
                             panic!("{}", v72,);
                         }
                         {
-                            let v80: f64 = v61.im;
-                            let v82: bool = (v80) != 0.0_f64;
+                            let v82: bool = (v61.im) != 0.0_f64;
                             let v86: bool = if v82 { true } else { Math::method18(v82) };
-                            let v88: string = Math::method19(string("__assert_ne"), v80, 0.0_f64);
+                            let v88: string = Math::method19(string("__assert_ne"), 0.0_f64);
                             let v92: () = {
                                 Math::closure3(v88.clone(), ());
                                 ()
@@ -1984,10 +1952,9 @@ mod module_728458a3 {
                             .clone(),
                             _ => v56.clone(),
                         };
-                        let v61: f64 = v59.clone().re;
-                        let v63: bool = (v61) != 0.0_f64;
+                        let v63: bool = (v59.clone().re) != 0.0_f64;
                         let v67: bool = if v63 { true } else { Math::method18(v63) };
-                        let v70: string = Math::method19(string("__assert_ne"), v61, 0.0_f64);
+                        let v70: string = Math::method19(string("__assert_ne"), 0.0_f64);
                         let v74: () = {
                             Math::closure3(v70.clone(), ());
                             ()
@@ -1996,10 +1963,9 @@ mod module_728458a3 {
                             panic!("{}", v70,);
                         }
                         {
-                            let v78: f64 = v59.im;
-                            let v80: bool = (v78) != 0.0_f64;
+                            let v80: bool = (v59.im) != 0.0_f64;
                             let v84: bool = if v80 { true } else { Math::method18(v80) };
-                            let v86: string = Math::method19(string("__assert_ne"), v78, 0.0_f64);
+                            let v86: string = Math::method19(string("__assert_ne"), 0.0_f64);
                             let v90: () = {
                                 Math::closure3(v86.clone(), ());
                                 ()
@@ -2178,10 +2144,9 @@ mod module_728458a3 {
                         let v212: num_complex::Complex<f64> = v146 * v210;
                         let v217: f64 = (v59.clone().re) - (v212.clone().re);
                         let v218: f64 = -v217;
-                        let v220: f64 = if (v217) >= (v218) { v217 } else { v218 };
-                        let v221: bool = (v220) < 0.0001_f64;
+                        let v221: bool = (if (v217) >= (v218) { v217 } else { v218 }) < 0.0001_f64;
                         let v223: bool = if v221 { true } else { Math::method18(v221) };
-                        let v226: string = Math::method19(string("__assert_lt"), v220, 0.0001_f64);
+                        let v226: string = Math::method19(string("__assert_lt"), 0.0001_f64);
                         let v230: () = {
                             Math::closure3(v226.clone(), ());
                             ()
@@ -2192,11 +2157,10 @@ mod module_728458a3 {
                         {
                             let v237: f64 = (v59.im) - (v212.im);
                             let v238: f64 = -v237;
-                            let v240: f64 = if (v237) >= (v238) { v237 } else { v238 };
-                            let v241: bool = (v240) < 0.0001_f64;
+                            let v241: bool =
+                                (if (v237) >= (v238) { v237 } else { v238 }) < 0.0001_f64;
                             let v243: bool = if v241 { true } else { Math::method18(v241) };
-                            let v245: string =
-                                Math::method19(string("__assert_lt"), v240, 0.0001_f64);
+                            let v245: string = Math::method19(string("__assert_lt"), 0.0001_f64);
                             let v249: () = {
                                 Math::closure3(v245.clone(), ());
                                 ()
@@ -2372,10 +2336,9 @@ mod module_728458a3 {
                         };
                         let v67: f64 = (v64.clone().re) - (v8);
                         let v68: f64 = -v67;
-                        let v70: f64 = if (v67) >= (v68) { v67 } else { v68 };
-                        let v71: bool = (v70) < 0.01_f64;
+                        let v71: bool = (if (v67) >= (v68) { v67 } else { v68 }) < 0.01_f64;
                         let v73: bool = if v71 { true } else { Math::method18(v71) };
-                        let v76: string = Math::method19(string("__assert_lt"), v70, 0.01_f64);
+                        let v76: string = Math::method19(string("__assert_lt"), 0.01_f64);
                         let v80: () = {
                             Math::closure3(v76.clone(), ());
                             ()
@@ -2384,10 +2347,9 @@ mod module_728458a3 {
                             panic!("{}", v76,);
                         }
                         {
-                            let v84: f64 = v64.im;
-                            let v85: bool = (v84) < 0.01_f64;
+                            let v85: bool = (v64.im) < 0.01_f64;
                             let v87: bool = if v85 { true } else { Math::method18(v85) };
-                            let v89: string = Math::method19(string("__assert_lt"), v84, 0.01_f64);
+                            let v89: string = Math::method19(string("__assert_lt"), 0.01_f64);
                             let v93: () = {
                                 Math::closure3(v89.clone(), ());
                                 ()
