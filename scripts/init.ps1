@@ -61,7 +61,7 @@ if (!(Search-Command "nix")) {
             sudo apt install -y python3-pip
         }
     } else {
-        if (!(Test-Path "~/.bun/bin/bun")) {
+        if (!(Test-Path "~/.bun/bin/bun.exe")) {
             { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
         }
     }
