@@ -28,7 +28,7 @@ if (!(Search-Command "cargo-outdated")) {
 #!pwsh
 
 if (!(Search-Command "sccache")) {
-    { cargo install sccache } | Invoke-Block -OnError Continue
+    { cargo install sccache --locked } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
