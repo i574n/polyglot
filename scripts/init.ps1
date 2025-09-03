@@ -27,7 +27,8 @@ if (!(Search-Command "rustup")) {
         $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
         Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath -ErrorAction Stop
         Start-Process -FilePath $rustupExePath -Wait
-    } else {
+    }
+    else {
         $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
         Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath -ErrorAction Stop
         /bin/sh $rustupScriptPath -y
@@ -60,14 +61,19 @@ if (!(Search-Command "nix")) {
         if (!(Search-Command "pip")) {
             sudo apt install -y python3-pip
         }
-    } else {
+    }
+    else {
         if (!(Test-Path "~/.bun/bin/bun.exe")) {
             { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
         }
+
+        { sh init.sh } | Invoke-Block -Linux -OnError Continue
+        { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
     { pip install -r ../requirements.txt } | Invoke-Block
-} else {
+}
+else {
     mkdir -p ~/.bun/bin
     ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
     ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
