@@ -1,3 +1,3 @@
 apt update
-apt install snapd
-sudo snap install powershell --classic
+apt install -y snapd unzip
+snap install powershell --classic

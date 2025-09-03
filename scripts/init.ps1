@@ -13,6 +13,9 @@ $ResolvedScriptDir | Set-Location
 Write-Output "polyglot/scripts/init.ps1 / ScriptDir: $ScriptDir / ResolvedScriptDir: $ResolvedScriptDir"
 
 function Search-DotnetSdk($version) {
+    if (!(Search-Command "dotnet")) {
+        return $false
+    }
     $sdks = & dotnet --list-sdks
     foreach ($sdk in $sdks) {
         if ($sdk.StartsWith($version)) {
@@ -67,11 +70,16 @@ if (!(Search-Command "nix")) {
             { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
         }
 
-        { sh init.sh } | Invoke-Block -Linux -OnError Continue
+        $distributions = wsl --list --quiet
+        if (-not ($distributions -like "Ubuntu")) {
+            wsl --install Ubuntu --no-launch
+        }
+
+        { sudo sh init.sh } | Invoke-Block -Linux -OnError Continue
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
-    { pip install -r ../requirements.txt } | Invoke-Block
+    { pip install -r ../requirements.txt } | Invoke-Block -OnError Continue
 }
 else {
     mkdir -p ~/.bun/bin
