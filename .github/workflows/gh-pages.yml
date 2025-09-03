@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04, windows-2025]
     steps:
       - uses: actions/checkout@v4
 
@@ -52,8 +52,6 @@ jobs:
           packages: blender
 
       - run: pwsh scripts/workflow.ps1
-        env:
-            NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -64,7 +62,7 @@ jobs:
   push:
     needs: build
     timeout-minutes: 180
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
     steps:
