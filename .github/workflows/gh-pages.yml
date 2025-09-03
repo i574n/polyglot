@@ -21,7 +21,7 @@ jobs:
           components: 'clippy,rust-src,rustfmt'
           targets: 'wasm32-unknown-unknown'
 
-      - uses: i574n/setup-beam-win25@v2
+      - uses: i574n/setup-beam-win25@v3
         with:
           otp-version: '27'
           gleam-version: '1.11.0'
