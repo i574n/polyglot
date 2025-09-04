@@ -25,4 +25,5 @@ nuget Microsoft.Extensions.Features == 7.0.0
 nuget System.Reactive.Linq ~> 6.0.0 prerelease
 nuget FSharpx.Collections ~> 3.1.0
 nuget Hopac ~> 0.5.1
-nuget Microsoft.AspNetCore.App.Ref ~> 9.0.3
+nuget Microsoft.AspNetCore.App.Runtime.win-x64 == 9.0.3
+nuget Microsoft.AspNetCore.App.Runtime.linux-x64 == 9.0.3
