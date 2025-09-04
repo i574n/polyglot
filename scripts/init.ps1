@@ -70,6 +70,8 @@ if (!(Search-Command "nix")) {
             { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
         }
 
+        { choco install rsync -y } | Invoke-Block -OnError Continue
+
         $distributions = wsl --list --quiet
         if (-not ($distributions -like "Ubuntu")) {
             wsl --install Ubuntu --no-launch
