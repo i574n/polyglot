@@ -29,7 +29,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr257() -> TypeInfo:
+def _expr258() -> TypeInfo:
     return union_type("Cube.US0", [], US0, lambda: [[], [], []])
 
 
@@ -45,7 +45,7 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2"]
 
 
-US0_reflection = _expr257
+US0_reflection = _expr258
 
 def _expr259() -> TypeInfo:
     return union_type("Cube.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())], [("f5_0", US0_reflection())], [("f6_0", US0_reflection())]])
