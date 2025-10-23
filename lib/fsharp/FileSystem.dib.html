@@ -7955,26 +7955,26 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:06 <span class="ansi-blue-intense-fg">d</span> #1 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:06 <span class="ansi-blue-intense-fg">d</span> #2 FileSystem.testEventsRaw / eventsLog: 
-0 / 638656528326479507 / Created ("file1.txt", Some "a1")
-1 / 638656528326479508 / Changed ("file1.txt", Some "a1")
-24097 / 638656528326503605 / Changed ("file1.txt", Some "a1")
-1567 / 638656528326505172 / Created ("file2.txt", Some "a2")
-1 / 638656528326505173 / Changed ("file2.txt", Some "a2")
-42 / 638656528326505215 / Changed ("file2.txt", Some "a2")
-2456165 / 638656528328961380 / Changed ("file1.txt", Some "b1")
-3647 / 638656528328965027 / Changed ("file1.txt", Some "b1")
-19622 / 638656528328984649 / Changed ("file2.txt", Some "b2")
-2717 / 638656528328987366 / Changed ("file2.txt", Some "b2")
-2632686 / 638656528331620052 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-15425 / 638656528331635477 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2530228 / 638656528334165705 / Changed ("file_1.txt", Some "c1")
-1533 / 638656528334167238 / Changed ("file_1.txt", Some "c1")
-7402 / 638656528334174640 / Changed ("file_2.txt", Some "c2")
-950 / 638656528334175590 / Changed ("file_2.txt", Some "c2")
-2613763 / 638656528336789353 / Deleted "file_1.txt"
-1491 / 638656528336790844 / Deleted "file_2.txt"
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #1 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:05 <span class="ansi-blue-intense-fg">d</span> #2 FileSystem.testEventsRaw / eventsLog: 
+0 / 638966254092000644 / Created ("file1.txt", Some "a1")
+1 / 638966254092000645 / Changed ("file1.txt", Some "a1")
+19431 / 638966254092020076 / Changed ("file1.txt", Some "a1")
+1138 / 638966254092021214 / Created ("file2.txt", Some "a2")
+1 / 638966254092021215 / Changed ("file2.txt", Some "a2")
+32 / 638966254092021247 / Changed ("file2.txt", Some "a2")
+2520493 / 638966254094541740 / Changed ("file1.txt", Some "b1")
+4288 / 638966254094546028 / Changed ("file1.txt", Some "b1")
+13547 / 638966254094559575 / Changed ("file2.txt", Some "b2")
+2306 / 638966254094561881 / Changed ("file2.txt", Some "b2")
+2724327 / 638966254097286208 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+10147 / 638966254097296355 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2711755 / 638966254100008110 / Changed ("file_1.txt", Some "c1")
+1225 / 638966254100009335 / Changed ("file_1.txt", Some "c1")
+6056 / 638966254100015391 / Changed ("file_2.txt", Some "c2")
+847 / 638966254100016238 / Changed ("file_2.txt", Some "c2")
+2631294 / 638966254102647532 / Deleted "file_1.txt"
+2238 / 638966254102649770 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "a1"); Changed ("file1.txt", Some "a1"); Created ("file2.txt", Some "a2");
  Changed ("file2.txt", Some "a2"); Changed ("file1.txt", Some "b1"); Changed ("file2.txt", Some "b2");
  Renamed ("file1.txt", ("file_1.txt", Some "b1")); Renamed ("file2.txt", ("file_2.txt", Some "b2"));
@@ -8092,47 +8092,80 @@ Some ()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Some ()
+<pre>00:00:08 <span class="ansi-black-intense-fg">v</span> #1 file_system.read_all_text_async / { retry = 0; path = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt; ex = System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt' because it is being used by another process.)
+ ---&gt; System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.AsyncWindowsFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.File.AsyncStreamReader(String path, Encoding encoding)
+   at System.IO.File.InternalReadAllTextAsync(String path, Encoding encoding, CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- }
+00:00:08 <span class="ansi-black-intense-fg">v</span> #1 file_system.read_all_text_async / { retry = 0; path = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt; ex = System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt' because it is being used by another process.)
+ ---&gt; System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file2.txt' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.AsyncWindowsFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.File.AsyncStreamReader(String path, Encoding encoding)
+   at System.IO.File.InternalReadAllTextAsync(String path, Encoding encoding, CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- }
+00:00:10 <span class="ansi-black-intense-fg">v</span> #2 file_system.read_all_text_async / { retry = 0; path = C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file1.txt; ex = System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file1.txt' because it is being used by another process.)
+ ---&gt; System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!create_temp_path_\dotnet-repl\2997b210-7eb0-805c-e191-16df38d0cf7d\file1.txt' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.AsyncWindowsFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.File.AsyncStreamReader(String path, Encoding encoding)
+   at System.IO.File.InternalReadAllTextAsync(String path, Encoding encoding, CancellationToken cancellationToken)
+   --- End of inner exception stack trace --- }
+Some ()
 
-00:00:16 <span class="ansi-blue-intense-fg">d</span> #3 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:16 <span class="ansi-blue-intense-fg">d</span> #4 FileSystem.testEventsRaw / eventsLog: 
-0 / 638656528366692868 / Created
+00:00:15 <span class="ansi-blue-intense-fg">d</span> #3 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:15 <span class="ansi-blue-intense-fg">d</span> #4 FileSystem.testEventsRaw / eventsLog: 
+0 / 638966254130869600 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638656528366692869 / Changed
+1 / 638966254130869601 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-63481 / 638656528366756350 / Changed
+57638 / 638966254130927239 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111a")
-35606 / 638656528366791956 / Created
+11137 / 638966254130938376 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638656528366791957 / Changed
+1 / 638966254130938377 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-58772 / 638656528366850729 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222a")
-15204774 / 638656528382055503 / Changed
+130192 / 638966254131068569 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222a")
+15140185 / 638966254146208754 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-187425 / 638656528382242928 / Changed
+189618 / 638966254146398372 / Changed
   ("file1.tx...11111111111111111111111111111111111111111111111b")
-57904 / 638656528382300832 / Changed
+51584 / 638966254146449956 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-104322 / 638656528382405154 / Changed
+115021 / 638966254146564977 / Changed
   ("file2.tx...22222222222222222222222222222222222222222222222b")
-15087946 / 638656528397493100 / Renamed
+15103644 / 638966254161668621 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-3131 / 638656528397496231 / Renamed
+3960 / 638966254161672581 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15111091 / 638656528412607322 / Changed
+15125309 / 638966254176797890 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-84514 / 638656528412691836 / Changed
+88649 / 638966254176886539 / Changed
   ("file_1.tx...11111111111111111111111111111111111111111111111c")
-44914 / 638656528412736750 / Changed
+30642 / 638966254176917181 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-117834 / 638656528412854584 / Changed
-  ("file_2.t...22222222222222222222222222222222222222222222222c")
-15028619 / 638656528427883203 / Deleted "file_1.txt"
-6215 / 638656528427889418 / Deleted "file_2.txt"
+53872 / 638966254176971053 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+15119920 / 638966254192090973 / Deleted "file_1.txt"
+2996 / 638966254192093969 / Deleted "file_2.txt"
 [Created ("file1.txt", Some "1a"); Changed ("file1.txt", Some "1a"); Created ("file2.txt", Some "2a");
  Changed ("file2.txt", Some "2a"); Changed ("file1.txt", Some "1b"); Changed ("file2.txt", Some "2b");
  Renamed ("file1.txt", ("file_1.txt", Some "1b")); Renamed ("file2.txt", ("file_2.txt", Some "2b"));
@@ -8327,7 +8360,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:19 <span class="ansi-blue-intense-fg">d</span> #5 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:18 <span class="ansi-blue-intense-fg">d</span> #5 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted"); ("file3.txt", "Created"); ("file3.txt", "Changed");
  ("file3.txt", "Deleted")]
@@ -8415,7 +8448,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:21 <span class="ansi-blue-intense-fg">d</span> #6 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:20 <span class="ansi-blue-intense-fg">d</span> #6 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file1.txt", "Deleted"); ("file2.txt", "Created");
  ("file2.txt", "Changed"); ("file2.txt", "Deleted")]
 
@@ -8507,7 +8540,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:23 <span class="ansi-blue-intense-fg">d</span> #7 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:22 <span class="ansi-blue-intense-fg">d</span> #7 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
 
@@ -8607,7 +8640,7 @@ Some ()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Some ()
 
-00:00:26 <span class="ansi-blue-intense-fg">d</span> #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:25 <span class="ansi-blue-intense-fg">d</span> #8 FileSystem.watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 [("file1.txt", "Created"); ("file1.txt", "Changed"); ("file2.txt", "Created"); ("file2.txt", "Changed");
  ("file_1.txt", "Changed"); ("file_1.txt", "Renamed"); ("file_1.txt", "Deleted"); ("file_2.txt", "Changed");
  ("file_2.txt", "Renamed"); ("file_2.txt", "Deleted")]
