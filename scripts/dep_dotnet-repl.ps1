@@ -12,13 +12,6 @@ git clone --recurse-submodules https://github.com/i574n/dotnet-repl.git
 Set-Location dotnet-repl
 { git pull } | Invoke-Block -OnError Continue
 
-Set-Location (New-Item deps -ItemType Directory -Force)
-git clone --recurse-submodules https://github.com/dotnet/command-line-api.git
-Set-Location command-line-api
-git reset --hard HEAD
-{ git pull } | Invoke-Block -OnError Continue
-git checkout 060374e56c1b2e741b6525ca8417006efb54fbd7
-
 Set-Location $ScriptDir/../deps
 
 $path = "$HOME/.nuget/packages/dotnet-repl"
