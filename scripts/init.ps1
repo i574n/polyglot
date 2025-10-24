@@ -143,8 +143,8 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
 if (!$fast) {
-    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block -OnError Continue
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block -OnError Continue
+    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
 }
 
 Invoke-Dib init.dib
