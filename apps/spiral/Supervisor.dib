@@ -851,8 +851,8 @@ inl main () =
 |> _assertEqual (
     Some (
         Some @"kernels_aux = r""""""
-// The types of these two will be replaced during compilation by the Spiral code generator.
-// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is.
+// The types of these two will be replaced during compilation by the Spiral code generator. 
+// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
 // The two statements need to begin at the start of a line.
 using default_int = int;
 using default_uint = unsigned int;
@@ -1081,7 +1081,7 @@ class static_array():
     def __getitem__(self, index):
         assert 0 <= index < len(self.ptr), ""The get index needs to be in range.""
         return self.ptr[index]
-
+    
     def __setitem__(self, index, value):
         assert 0 <= index < len(self.ptr), ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -1094,7 +1094,7 @@ class static_array_list(static_array):
     def __getitem__(self, index):
         assert 0 <= index < self.length, ""The get index needs to be in range.""
         return self.ptr[index]
-
+    
     def __setitem__(self, index, value):
         assert 0 <= index < self.length, ""The set index needs to be in range.""
         self.ptr[index] = value
@@ -1113,7 +1113,7 @@ class static_array_list(static_array):
         assert 0 <= i <= len(self.ptr), ""The new length has to be in range.""
         self.length = i
 
-class dynamic_array(static_array):
+class dynamic_array(static_array): 
     pass
 
 class dynamic_array_list(static_array_list):
@@ -1176,8 +1176,8 @@ inl main () =
 |> Option.map (fun (_, (_, outputContent), errors) -> outputContent, errors |> List.map fst)
 |> _assertEqual (
     Some (
-        Some @"// The types of these two will be replaced during compilation by the Spiral code generator.
-// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is.
+        Some @"// The types of these two will be replaced during compilation by the Spiral code generator. 
+// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
 // The two statements need to begin at the start of a line.
 using default_int = int;
 using default_uint = unsigned int;
