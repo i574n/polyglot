@@ -1069,8 +1069,8 @@ mod module_728458a3 {
             v0_1
         }
         pub fn method0() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method1(py);
                 {
@@ -1149,8 +1149,8 @@ mod module_728458a3 {
             }
         }
         pub fn method22() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method23(py);
                 {
@@ -1280,8 +1280,8 @@ mod module_728458a3 {
             Math::method27(v0_1, Math::method26());
         }
         pub fn method24() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method25(py);
                 {
@@ -1381,8 +1381,8 @@ mod module_728458a3 {
             ()
         }
         pub fn method28() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method29(py);
                 {
@@ -1474,8 +1474,8 @@ mod module_728458a3 {
             ()
         }
         pub fn method30() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method31(py);
                 {
@@ -1550,8 +1550,8 @@ mod module_728458a3 {
             }
         }
         pub fn method32() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method33(py);
                 {
@@ -1653,8 +1653,8 @@ mod module_728458a3 {
             }
         }
         pub fn method34() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method35(py);
                 {
@@ -1729,8 +1729,8 @@ mod module_728458a3 {
             }
         }
         pub fn method36() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method37(py);
                 {
@@ -1870,8 +1870,8 @@ mod module_728458a3 {
             Math::method41(v0_1, Math::method40());
         }
         pub fn method38() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method39(py);
                 {
@@ -1994,8 +1994,8 @@ mod module_728458a3 {
             Math::method45(v0_1, Math::method44());
         }
         pub fn method42() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method43(py);
                 {
@@ -2189,8 +2189,8 @@ mod module_728458a3 {
             Math::method49(v0_1, Math::method48());
         }
         pub fn method46() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method47(py);
                 {
@@ -2380,8 +2380,8 @@ mod module_728458a3 {
             Math::method54(v0_1, Math::method53(), v1_1)
         }
         pub fn method50() {
-            pyo3::prepare_freethreaded_python();
-            let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
+            pyo3::Python::initialize();
+            let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
                 Math::method51(py);
                 {
