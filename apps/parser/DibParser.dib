@@ -102,7 +102,7 @@ let magicMarker : Parser<string, unit> = pstring "#!"
         $"Error in Ln: 1 Col: 1{nl}##!magic{nl}^{nl}Expecting: '#!'{nl}",
         ParserError (
             Position ("", 0, 1, 1),
-            (),
+            null,
             ErrorMessageList (ExpectedString "#!")
         ),
         ()
@@ -145,7 +145,7 @@ a"
         $"Error in Ln: 1 Col: 1{nl} #!magic{nl}^{nl}Expecting: '#!'{nl}",
         ParserError (
             Position ("", 0, 1, 1),
-            (),
+            null,
             ErrorMessageList (ExpectedString "#!")
         ),
         ()

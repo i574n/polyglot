@@ -44,14 +44,38 @@ union manual_scheduling =
 
 #!markdown
 
+## day_offset
+
+#!spiral
+
+nominal day_offset = int
+
+#!markdown
+
+## week_offset
+
+#!spiral
+
+nominal week_offset = int
+
+#!markdown
+
+## month_offset
+
+#!spiral
+
+nominal month_offset = int
+
+#!markdown
+
 ## recurrency_offset
 
 #!spiral
 
 union recurrency_offset =
-    | Days : int
-    | Weeks : int
-    | Months : int
+    | Days : day_offset
+    | Weeks : week_offset
+    | Months : month_offset
 
 #!markdown
 
@@ -158,8 +182,8 @@ inl get_actions () : list action =
             scheduling = Manual WithSuggestion
         }
         AddTask {
-            id = task_id "003"
-            name = task_name "003"
+            id = task_id "00003"
+            name = task_name "00003"
             scheduling = Manual WithSuggestion
         }
     ]
@@ -176,7 +200,7 @@ inl get_actions () : list action =
 
 get_actions ()
 |> sm'.format_debug
-|> _assert sm'.contains "003"
+|> _assert sm'.contains "00003"
 
 #!spiral
 
@@ -190,10 +214,9 @@ get_actions ()
 
 get_actions ()
 |> listm'.try_item 3i32
-|> fun (Some action) =>
-    match action with
-    | AddTask { name } => name
-|> _assert_eq (task_name "003")
+|> function
+    | Some (AddTask { name }) => name
+|> _assert_eq (task_name "00003")
 
 #!spiral
 
@@ -245,8 +268,7 @@ inl col () =
     [ "Task" ]
     ++ (
         get_actions ()
-        |> listm.map fun action =>
-            match action with
+        |> listm.map function
             | AddTask { name } =>
                 inl (task_name name) = name
                 name
@@ -281,8 +303,7 @@ cols ()
 
 inl task_name_width =
     (0, get_actions ())
-    ||> listm.fold fun acc action =>
-        match action with
+    ||> listm.fold fun acc => function
         | AddTask { name } =>
             inl (task_name name) = name
             inl l = name |> sm'.length
@@ -293,43 +314,39 @@ inl task_name_width =
     |> (+) 1
 
 
-("" |> sm'.pad_right task_name_width ' ')
-++# "|" ++# " 2000               "
-++# "|"
-|> console.write_line
+inl lines =
+    ("" |> sm'.pad_right task_name_width ' ')
+    ++# "|" ++# " 2000               "
+    ++# "|\n"
 
-("" |> sm'.pad_right task_name_width ' ')
-++# "|" ++# " february  "
-++# "|" ++# " march  "
-++# "|"
-|> console.write_line
+    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# "|" ++# " february  "
+    ++# "|" ++# " march  "
+    ++# "|\n"
 
-("" |> sm'.pad_right task_name_width ' ')
-++# "|" ++# "sa"
-++# "|" ++# "su"
-++# "|" ++# "mo"
-++# "|" ++# "tu"
-++# "|" ++# "we"
-++# "|" ++# "th"
-++# "|" ++# "fr"
-++# "|"
-|> console.write_line
+    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# "|" ++# "sa"
+    ++# "|" ++# "su"
+    ++# "|" ++# "mo"
+    ++# "|" ++# "tu"
+    ++# "|" ++# "we"
+    ++# "|" ++# "th"
+    ++# "|" ++# "fr"
+    ++# "|\n"
 
-("" |> sm'.pad_right task_name_width ' ')
-++# "|" ++# "26"
-++# "|" ++# "27"
-++# "|" ++# "28"
-++# "|" ++# "29"
-++# "|" ++# "01"
-++# "|" ++# "02"
-++# "|" ++# "03"
-++# "|"
-|> console.write_line
+    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# "|" ++# "26"
+    ++# "|" ++# "27"
+    ++# "|" ++# "28"
+    ++# "|" ++# "29"
+    ++# "|" ++# "01"
+    ++# "|" ++# "02"
+    ++# "|" ++# "03"
+    ++# "|"
 
 inl lines =
-    ("", get_actions ())
-    ||> listm.fold fun acc action =>
-        match action with
+    (lines, get_actions ())
+    ||> listm.fold fun acc => function
         | AddTask { name } =>
             inl (task_name name) = name
             if acc = ""
@@ -344,5 +361,5 @@ inl lines =
             ++# "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()
             ++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
             ++# "|"
-        | _ => ""
-lines |> console.write_line
+        | _ => acc
+lines

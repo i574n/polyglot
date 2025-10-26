@@ -60,6 +60,7 @@ function Invoke-Block {
     }
 
     $result = $null
+    $output = $null
 
     $retry = 1
     while ($retry -le $Retries) {
@@ -87,7 +88,7 @@ function Invoke-Block {
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
             # / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json)
-            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            $msg = "`n# Invoke-Block / `$retry: $retry/$Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n / `$result:`n'$result'`n / `$output:`n'$output'`n"
 
             Write-Host $msg
             if ($OnError -eq "Stop") {

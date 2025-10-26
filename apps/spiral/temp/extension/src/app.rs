@@ -3,36 +3,37 @@ use std::collections::HashMap;
 use crate::state::{State, *};
 
 use leptos::{logging::log, *};
-use leptos_meta::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::*;
+use leptos_router::location::*;
+use leptos_router::hooks::*;
 
 #[component]
-pub fn App(window: &'static web_sys::Window) -> impl IntoView {
-    provide_meta_context();
-
+pub fn App() -> impl IntoView {
     provide_context(GlobalState {
-        messages: create_rw_signal(Messages {
-            outer: create_rw_signal(vec![]),
-            inner: create_rw_signal(vec![]),
+        messages: RwSignal::new(Messages {
+            outer: RwSignal::new(vec![]),
+            inner: RwSignal::new(vec![]),
         }),
-        state: create_rw_signal(State {
-            dark_mode: create_rw_signal(true),
-            account_id: create_rw_signal("".to_string()),
-            network_id: create_rw_signal("".to_string()),
-            s1: create_rw_signal("".to_string()),
-            s2: create_rw_signal("".to_string()),
+        state: RwSignal::new(State {
+            dark_mode: RwSignal::new(true),
+            account_id: RwSignal::new("".to_string()),
+            network_id: RwSignal::new("".to_string()),
+            s1: RwSignal::new("".to_string()),
+            s2: RwSignal::new("".to_string()),
         }),
-        loading: create_rw_signal(HashMap::new()),
+        loading: RwSignal::new(HashMap::new()),
     });
 
     view! {
         <Router>
-            <Home window />
+            <Home />
         </Router>
     }
 }
 
-pub fn use_location_host(window: &'static web_sys::Window) -> (String, String, String) {
+pub fn use_location_host() -> (String, String, String) {
+    let window = web_sys::window().unwrap();
     let location = window.location();
     let protocol = location.protocol().unwrap();
     let host = location.host().unwrap();
@@ -45,14 +46,16 @@ pub fn use_location_host(window: &'static web_sys::Window) -> (String, String, S
 }
 
 #[component]
-fn Home(window: &'static web_sys::Window) -> impl IntoView {
+fn Home() -> impl IntoView {
     log!("Home ()");
 
-    let (_protocol, host, _port) = use_location_host(window);
+    let window = web_sys::window().unwrap();
+
+    let (_protocol, host, _port) = use_location_host();
 
     let _cancel = match host.as_str() {
         "libgen.is" => Some(crate::js::use_interval(
-            window,
+            &window,
             |document| {
                 let _state = crate::timer::update(&document);
             },
@@ -64,21 +67,20 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
 
     let global_state1 = use_context::<GlobalState>();
     let global_state2 = use_context::<GlobalState>();
-    let global_state_resource = create_local_resource(
-        move || global_state1.clone(),
-        |global_state| async move {
-            log!("Home () / global_state_resource create_local_resource");
-            global_state
-        },
-    );
+    // let global_state_resource = LocalResource::new(
+    //     async || {
+    //         log!("Home () / global_state_resource create_local_resource");
+    //         std::sync::Arc::new(std::sync::Mutex::new(global_state1.clone()))
+    //     },
+    // );
 
-    let global_state_json = create_memo(move |_| {
-        let json = global_state_resource.with(|global_state| match global_state {
-            Some(Some(global_state)) => serde_json::to_string_pretty(global_state).unwrap(),
+    let global_state_json = Memo::new(move |_| {
+        let json = match &global_state1 {
+            Some(global_state) => serde_json::to_string_pretty(&global_state).unwrap(),
             _ => "".to_string(),
-        });
+        };
         log!(
-            "Home () / global_state_json create_memo / json: {:#?}",
+            "Home () / global_state_json Memo::new / json: {:#?}",
             json
         );
 
@@ -89,27 +91,28 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
         let pathname = location.pathname.get();
         let search = location.search.get();
         let hash = location.hash.get();
-        let url = Url {
-            origin: "".to_string(),
-            search_params: ParamsMap::default(),
-            pathname,
-            search,
-            hash,
-        };
+        // let url = Url {
+        //     origin: "".to_string(),
+        //     search_params: ParamsMap::default(),
+        //     path: pathname,
+        //     search,
+        //     hash,
+        // };
+        let url = RequestUrl::parse(&RequestUrl::new(&format!("{}{}{}", pathname, search, hash))).unwrap();
         let url = url_fn(url);
         format!(
             "{}{}{}{}",
-            url.pathname,
-            if url.search == "" { "" } else { "?" },
-            url.search,
-            url.hash
+            url.path(),
+            if url.search() == "" { "" } else { "?" },
+            url.search(),
+            url.hash()
         )
     }
 
-    let router1 = use_router();
-    let router2 = use_router();
-    let router3 = use_router();
-    let route_data: Option<String> = use_route_data();
+    // let router1 = use_location();
+    // let router2 = use_location();
+    // let router3 = use_location();
+    // let route_data: Option<String> = use_route_data();
 
     let query_map = use_query_map();
     let params_map = use_params_map();
@@ -129,50 +132,50 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
         );
     });
 
-    let (location_text, set_location_text) = create_signal("".to_string());
+    let (location_text, set_location_text) = signal("".to_string());
     let set_location_text_2 = set_location_text.clone();
 
-    create_effect(move |_| {
+    Effect::new(move |_| {
         let new_location_text = format_location(&location2, |url| url);
         log!("Home () / new_location_text: {:#?}", new_location_text);
         set_location_text_2.set(new_location_text);
     });
 
-    create_effect(move |_| {
-        log!(
-            "Home () / router1.pathname() effect: {:#?}",
-            router1.pathname().get()
-        )
-    });
-    create_effect(move |_| {
-        log!(
-            "Home () / router2.possible_branches()** effect: {:#?}",
-            router2.possible_branches()
-        )
-    });
-    create_effect(move |_| log!("Home () / route_data** effect: {:#?}", route_data));
-    create_effect(move |_| log!("Home () / query_map.get() effect: {:#?}", query_map.get()));
-    create_effect(move |_| {
+    // Effect::new(move |_| {
+    //     log!(
+    //         "Home () / router1.pathname() effect: {:#?}",
+    //         router1.pathname().get()
+    //     )
+    // });
+    // Effect::new(move |_| {
+    //     log!(
+    //         "Home () / router2.possible_branches()** effect: {:#?}",
+    //         router2.possible_branches()
+    //     )
+    // });
+    // Effect::new(move |_| log!("Home () / route_data** effect: {:#?}", route_data));
+    Effect::new(move |_| log!("Home () / query_map.get() effect: {:#?}", query_map.get()));
+    Effect::new(move |_| {
         log!(
             "Home () / params_map.get()** effect: {:#?}",
             params_map.get()
         )
     });
-    create_effect(move |_| {
+    Effect::new(move |_| {
         log!(
             "Home () / location1.search.get() effect: {:#?}",
             location1.search.get()
         )
     });
-    create_effect(move |_| log!("Home () / router3 effect: {:#?}", router3.base().path()));
+    // Effect::new(move |_| log!("Home () / router3 effect: {:#?}", router3.base().path()));
 
-    create_effect(move |_| {
+    Effect::new(move |_| {
         let hash = location3.hash.get();
         let hash = hash.strip_prefix('#').unwrap_or("");
         log!("Home () / location3.hash.get(): {:#?}", hash);
 
         {
-            let hash_url = leptos_router::Url::try_from(hash);
+            let hash_url = <BrowserUrl as LocationProvider>::parse(hash);
             log!("Home () / hash_url: {:#?}", hash_url);
         }
 
@@ -183,22 +186,24 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
         log!("Home () / hash json: {:#?}", json);
     });
 
-    let (location_href, set_location_href) = create_signal("".to_string());
+    let (location_href, set_location_href) = signal("".to_string());
 
-    create_effect(move |_| {
+    let window = web_sys::window().unwrap();
+
+    Effect::new(move |_| {
         let new_location_href = window.location().href().ok().unwrap_or("".to_string());
         set_location_href.set(new_location_href.clone());
 
         crate::timer::set_albums().unwrap();
 
         log!(
-            "Home () / create_effect all url changes / location4.state.get(): {:#?} / new_location_href: {:#?}",
+            "Home () / Effect::new all url changes / location4.state.get(): {:#?} / new_location_href: {:#?}",
             location4.state.get(),
             new_location_href
         );
     });
 
-    create_effect(move |_| {
+    Effect::new(move |_| {
         log!(
             "Home () / location_href.get() effect: {:#?}",
             location_href.get()

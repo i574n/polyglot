@@ -13,6 +13,9 @@ $ResolvedScriptDir | Set-Location
 Write-Output "polyglot/scripts/init.ps1 / ScriptDir: $ScriptDir / ResolvedScriptDir: $ResolvedScriptDir"
 
 function Search-DotnetSdk($version) {
+    if (!(Search-Command "dotnet")) {
+        return $false
+    }
     $sdks = & dotnet --list-sdks
     foreach ($sdk in $sdks) {
         if ($sdk.StartsWith($version)) {
@@ -27,7 +30,8 @@ if (!(Search-Command "rustup")) {
         $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
         Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath -ErrorAction Stop
         Start-Process -FilePath $rustupExePath -Wait
-    } else {
+    }
+    else {
         $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
         Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath -ErrorAction Stop
         /bin/sh $rustupScriptPath -y
@@ -35,10 +39,10 @@ if (!(Search-Command "rustup")) {
     }
 }
 
-rustup install nightly-2025-02-22
-rustup default nightly-2025-02-22
-rustup +nightly-2025-02-22 target add wasm32-unknown-unknown
-rustup +nightly-2025-02-22 component add clippy rust-src rustfmt
+rustup install nightly-2025-05-09
+rustup default nightly-2025-05-09
+rustup +nightly-2025-05-09 target add wasm32-unknown-unknown
+rustup +nightly-2025-05-09 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-07-14
 rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
@@ -60,14 +64,26 @@ if (!(Search-Command "nix")) {
         if (!(Search-Command "pip")) {
             sudo apt install -y python3-pip
         }
-    } else {
-        if (!(Test-Path "~/.bun/bin/bun")) {
+    }
+    else {
+        if (!(Test-Path "~/.bun/bin/bun.exe")) {
             { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
         }
+
+        { choco install rsync -y } | Invoke-Block -OnError Continue
+
+        $distributions = wsl --list --quiet
+        if (-not ($distributions -like "Ubuntu")) {
+            wsl --install Ubuntu --no-launch
+        }
+
+        { sudo sh init.sh } | Invoke-Block -Linux -OnError Continue
+        { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
-    { pip install -r ../requirements.txt } | Invoke-Block
-} else {
+    { pip install -r ../requirements.txt } | Invoke-Block -OnError Continue
+}
+else {
     mkdir -p ~/.bun/bin
     ln -s /run/current-system/sw/bin/bun ~/.bun/bin/bun
     ln -s /run/current-system/sw/bin/bunx ~/.bun/bin/bunx
@@ -127,8 +143,8 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
 if (!$fast) {
-    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block -OnError Continue
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block -OnError Continue
+    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
+    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
 }
 
 Invoke-Dib init.dib

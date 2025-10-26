@@ -209,11 +209,13 @@ type Backend =
 #!pwsh
 
 ls ~/.nuget/packages/microsoft.extensions.logging
+echo "`n"
+ls ~/.nuget/packages/microsoft.extensions.logging.abstractions
 
 #!fsharp
 
 #r @"../../../../../../../.nuget/packages/microsoft.extensions.logging/9.0.5/lib/net9.0/Microsoft.Extensions.Logging.dll"
-#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.5/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.10/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
 #r @"../../../../../../../.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
 
 #!pwsh

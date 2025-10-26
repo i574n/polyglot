@@ -93,8 +93,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .filter_map(|file| {
             let file = file.ok()?;
             let path = file.path();
-            let hash_hex = path.file_stem()?.to_str()?;
-            let svg_path = line_plots_svg_dir.join(format!("{}.svg", hash_hex));
+            let hash = path.file_stem()?.to_str()?;
+            let svg_path = line_plots_svg_dir.join(format!("{}.svg", hash));
             if !svg_path.exists() {
                 Some((std::fs::read_to_string(path).ok()?, svg_path))
             } else {

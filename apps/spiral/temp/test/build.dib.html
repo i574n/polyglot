@@ -7718,7 +7718,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; <span class="ansi-green-fg">── [ 1.16s - stdout ] ──────────────────────────────────────────────────────────</span>
+&gt; <span class="ansi-green-fg">── [ 1.21s - stdout ] ──────────────────────────────────────────────────────────</span>
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -7730,73 +7730,54 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = v2 + v1 
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0.l0 &lt;- v4
 &gt; <span style="color: rgb(38,140,38)">│</span>     ()
-&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string []), v2 : (string []))
-&gt; : string =
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = method3()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : Mut0 = {l0 = v3} : Mut0
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "{ "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v7}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : (unit -&gt; unit) = closure0(v4, v8)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : unit = (fun () -&gt; v17 (); v16) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = "name"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v27 : string = $"{v26}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : (unit -&gt; unit) = closure0(v4, v27)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : unit = (fun () -&gt; v36 (); v35) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = " = "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : (unit -&gt; unit) = closure0(v4, v46)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v56 : unit = (fun () -&gt; v55 (); v54) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v63 : string = $"{v0}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : (unit -&gt; unit) = closure0(v4, v63)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : unit = (fun () -&gt; v72 (); v71) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "; "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : (unit -&gt; unit) = closure0(v4, v82)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : unit = (fun () -&gt; v91 (); v90) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = "actual"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v101 : string = $"{v100}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : (unit -&gt; unit) = closure0(v4, v101)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v111 : unit = (fun () -&gt; v110 (); v109) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v118 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : (unit -&gt; unit) = closure0(v4, v118)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v128 : unit = (fun () -&gt; v127 (); v126) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v136 : string = $"%A{v1}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v140 : string = $"{v136}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : (unit -&gt; unit) = closure0(v4, v140)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v150 : unit = (fun () -&gt; v149 (); v148) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v165 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : (unit -&gt; unit) = closure0(v4, v157)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : unit = (fun () -&gt; v166 (); v165) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v175 : string = "expected"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v176 : string = $"{v175}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v184 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v185 : (unit -&gt; unit) = closure0(v4, v176)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v186 : unit = (fun () -&gt; v185 (); v184) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v193 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v201 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v202 : (unit -&gt; unit) = closure0(v4, v193)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v203 : unit = (fun () -&gt; v202 (); v201) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v211 : string = $"%A{v2}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v215 : string = $"{v211}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v223 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v224 : (unit -&gt; unit) = closure0(v4, v215)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v225 : unit = (fun () -&gt; v224 (); v223) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v233 : string = " }"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v234 : string = $"{v233}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v242 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v243 : (unit -&gt; unit) = closure0(v4, v234)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v244 : unit = (fun () -&gt; v243 (); v242) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v250 : string = v4.l0
-&gt; <span style="color: rgb(38,140,38)">│</span>     v250
+&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string [])) : string =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = method3()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : Mut0 = {l0 = v2} : Mut0
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = "{ "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = $"{v6}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : (unit -&gt; unit) = closure0(v3, v7)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : unit = (fun () -&gt; v16 (); v15) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string = "name"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = $"{v25}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : (unit -&gt; unit) = closure0(v3, v26)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : unit = (fun () -&gt; v35 (); v34) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v44 : string = " = "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v53 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : (unit -&gt; unit) = closure0(v3, v45)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : unit = (fun () -&gt; v54 (); v53) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v62 : string = $"{v0}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : (unit -&gt; unit) = closure0(v3, v62)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : unit = (fun () -&gt; v71 (); v70) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "; "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = $"{v80}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : (unit -&gt; unit) = closure0(v3, v81)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : unit = (fun () -&gt; v90 (); v89) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "expected"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v108 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : (unit -&gt; unit) = closure0(v3, v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : unit = (fun () -&gt; v109 (); v108) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v117 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : (unit -&gt; unit) = closure0(v3, v117)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : unit = (fun () -&gt; v126 (); v125) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v135 : string = $"%A{v1}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v139 : string = $"{v135}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v147 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : (unit -&gt; unit) = closure0(v3, v139)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : unit = (fun () -&gt; v148 (); v147) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = " }"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v158 : string = $"{v157}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : (unit -&gt; unit) = closure0(v3, v158)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v168 : unit = (fun () -&gt; v167 (); v166) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v174 : string = v3.l0
+&gt; <span style="color: rgb(38,140,38)">│</span>     v174
 &gt; <span style="color: rgb(38,140,38)">│</span> and closure1 (v0 : string) () : unit =
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
 &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
@@ -7869,7 +7850,7 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         else
 &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v115)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v120 : string = "__assert_eq'"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v94, v113)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v113)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v123 : unit = ()
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v124 : (unit -&gt; unit) = closure1(v121)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = (fun () -&gt; v124 (); v123) ()
@@ -7878,11 +7859,8 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v121
 &gt; <span style="color: rgb(38,140,38)">│</span> method0()
 &gt; <span style="color: rgb(38,140,38)">│</span> 
-&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; 
+&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; expected = [|"ISTJ"; "ISFJ"; "INFJ"; 
 &gt; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected 
-&gt; = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; 
-&gt; "ESFP";
 &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 &gt; <span style="color: rgb(38,140,38)">│</span> 
 &gt; 
@@ -7918,7 +7896,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; <span class="ansi-green-fg">── [ 361.97ms - stdout ] ───────────────────────────────────────────────────────</span>
+&gt; <span class="ansi-green-fg">── [ 350.22ms - stdout ] ───────────────────────────────────────────────────────</span>
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -7930,73 +7908,54 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = v2 + v1 
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0.l0 &lt;- v4
 &gt; <span style="color: rgb(38,140,38)">│</span>     ()
-&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string []), v2 : (string []))
-&gt; : string =
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = method3()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : Mut0 = {l0 = v3} : Mut0
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "{ "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v7}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : (unit -&gt; unit) = closure0(v4, v8)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : unit = (fun () -&gt; v17 (); v16) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = "name"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v27 : string = $"{v26}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : (unit -&gt; unit) = closure0(v4, v27)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : unit = (fun () -&gt; v36 (); v35) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = " = "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : (unit -&gt; unit) = closure0(v4, v46)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v56 : unit = (fun () -&gt; v55 (); v54) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v63 : string = $"{v0}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : (unit -&gt; unit) = closure0(v4, v63)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : unit = (fun () -&gt; v72 (); v71) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "; "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : (unit -&gt; unit) = closure0(v4, v82)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : unit = (fun () -&gt; v91 (); v90) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = "actual"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v101 : string = $"{v100}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : (unit -&gt; unit) = closure0(v4, v101)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v111 : unit = (fun () -&gt; v110 (); v109) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v118 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : (unit -&gt; unit) = closure0(v4, v118)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v128 : unit = (fun () -&gt; v127 (); v126) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v136 : string = $"%A{v1}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v140 : string = $"{v136}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : (unit -&gt; unit) = closure0(v4, v140)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v150 : unit = (fun () -&gt; v149 (); v148) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v165 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : (unit -&gt; unit) = closure0(v4, v157)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : unit = (fun () -&gt; v166 (); v165) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v175 : string = "expected"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v176 : string = $"{v175}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v184 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v185 : (unit -&gt; unit) = closure0(v4, v176)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v186 : unit = (fun () -&gt; v185 (); v184) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v193 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v201 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v202 : (unit -&gt; unit) = closure0(v4, v193)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v203 : unit = (fun () -&gt; v202 (); v201) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v211 : string = $"%A{v2}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v215 : string = $"{v211}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v223 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v224 : (unit -&gt; unit) = closure0(v4, v215)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v225 : unit = (fun () -&gt; v224 (); v223) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v233 : string = " }"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v234 : string = $"{v233}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v242 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v243 : (unit -&gt; unit) = closure0(v4, v234)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v244 : unit = (fun () -&gt; v243 (); v242) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v250 : string = v4.l0
-&gt; <span style="color: rgb(38,140,38)">│</span>     v250
+&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string [])) : string =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = method3()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : Mut0 = {l0 = v2} : Mut0
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = "{ "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = $"{v6}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : (unit -&gt; unit) = closure0(v3, v7)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : unit = (fun () -&gt; v16 (); v15) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string = "name"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = $"{v25}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : (unit -&gt; unit) = closure0(v3, v26)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : unit = (fun () -&gt; v35 (); v34) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v44 : string = " = "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v53 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : (unit -&gt; unit) = closure0(v3, v45)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : unit = (fun () -&gt; v54 (); v53) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v62 : string = $"{v0}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : (unit -&gt; unit) = closure0(v3, v62)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : unit = (fun () -&gt; v71 (); v70) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "; "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = $"{v80}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : (unit -&gt; unit) = closure0(v3, v81)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : unit = (fun () -&gt; v90 (); v89) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "expected"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v108 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : (unit -&gt; unit) = closure0(v3, v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : unit = (fun () -&gt; v109 (); v108) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v117 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : (unit -&gt; unit) = closure0(v3, v117)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : unit = (fun () -&gt; v126 (); v125) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v135 : string = $"%A{v1}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v139 : string = $"{v135}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v147 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : (unit -&gt; unit) = closure0(v3, v139)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : unit = (fun () -&gt; v148 (); v147) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = " }"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v158 : string = $"{v157}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : (unit -&gt; unit) = closure0(v3, v158)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v168 : unit = (fun () -&gt; v167 (); v166) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v174 : string = v3.l0
+&gt; <span style="color: rgb(38,140,38)">│</span>     v174
 &gt; <span style="color: rgb(38,140,38)">│</span> and closure1 (v0 : string) () : unit =
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
 &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
@@ -8069,7 +8028,7 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         else
 &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v115)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v120 : string = "__assert_eq'"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v94, v113)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v113)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v123 : unit = ()
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v124 : (unit -&gt; unit) = closure1(v121)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = (fun () -&gt; v124 (); v123) ()
@@ -8078,11 +8037,8 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v121
 &gt; <span style="color: rgb(38,140,38)">│</span> method0()
 &gt; <span style="color: rgb(38,140,38)">│</span> 
-&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; 
+&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; expected = [|"ISTJ"; "ISFJ"; "INFJ"; 
 &gt; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected 
-&gt; = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; 
-&gt; "ESFP";
 &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 &gt; <span style="color: rgb(38,140,38)">│</span> 
 &gt; 
@@ -8123,7 +8079,7 @@ a.anchor-link {
 &gt;     "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"
 &gt; ]]
 &gt; 
-&gt; <span class="ansi-green-fg">── [ 385.35ms - stdout ] ───────────────────────────────────────────────────────</span>
+&gt; <span class="ansi-green-fg">── [ 422.35ms - stdout ] ───────────────────────────────────────────────────────</span>
 &gt; <span style="color: rgb(38,140,38)">│</span> type Mut0 = {mutable l0 : string}
 &gt; <span style="color: rgb(38,140,38)">│</span> let rec method1 (v0 : bool) : bool =
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0
@@ -8135,73 +8091,54 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : string = v2 + v1 
 &gt; <span style="color: rgb(38,140,38)">│</span>     v0.l0 &lt;- v4
 &gt; <span style="color: rgb(38,140,38)">│</span>     ()
-&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string []), v2 : (string []))
-&gt; : string =
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : string = method3()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v4 : Mut0 = {l0 = v3} : Mut0
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = "{ "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v8 : string = $"{v7}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : (unit -&gt; unit) = closure0(v4, v8)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v18 : unit = (fun () -&gt; v17 (); v16) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = "name"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v27 : string = $"{v26}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : (unit -&gt; unit) = closure0(v4, v27)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v37 : unit = (fun () -&gt; v36 (); v35) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = " = "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v46 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : (unit -&gt; unit) = closure0(v4, v46)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v56 : unit = (fun () -&gt; v55 (); v54) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v63 : string = $"{v0}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : (unit -&gt; unit) = closure0(v4, v63)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v73 : unit = (fun () -&gt; v72 (); v71) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = "; "
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v82 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : (unit -&gt; unit) = closure0(v4, v82)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v92 : unit = (fun () -&gt; v91 (); v90) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = "actual"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v101 : string = $"{v100}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : (unit -&gt; unit) = closure0(v4, v101)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v111 : unit = (fun () -&gt; v110 (); v109) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v118 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : (unit -&gt; unit) = closure0(v4, v118)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v128 : unit = (fun () -&gt; v127 (); v126) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v136 : string = $"%A{v1}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v140 : string = $"{v136}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : (unit -&gt; unit) = closure0(v4, v140)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v150 : unit = (fun () -&gt; v149 (); v148) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = $"{v81}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v165 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : (unit -&gt; unit) = closure0(v4, v157)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : unit = (fun () -&gt; v166 (); v165) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v175 : string = "expected"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v176 : string = $"{v175}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v184 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v185 : (unit -&gt; unit) = closure0(v4, v176)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v186 : unit = (fun () -&gt; v185 (); v184) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v193 : string = $"{v45}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v201 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v202 : (unit -&gt; unit) = closure0(v4, v193)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v203 : unit = (fun () -&gt; v202 (); v201) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v211 : string = $"%A{v2}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v215 : string = $"{v211}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v223 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v224 : (unit -&gt; unit) = closure0(v4, v215)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v225 : unit = (fun () -&gt; v224 (); v223) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v233 : string = " }"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v234 : string = $"{v233}"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v242 : unit = ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v243 : (unit -&gt; unit) = closure0(v4, v234)
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v244 : unit = (fun () -&gt; v243 (); v242) ()
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v250 : string = v4.l0
-&gt; <span style="color: rgb(38,140,38)">│</span>     v250
+&gt; <span style="color: rgb(38,140,38)">│</span> and method2 (v0 : string, v1 : (string [])) : string =
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v2 : string = method3()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v3 : Mut0 = {l0 = v2} : Mut0
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v6 : string = "{ "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v7 : string = $"{v6}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v15 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v16 : (unit -&gt; unit) = closure0(v3, v7)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v17 : unit = (fun () -&gt; v16 (); v15) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v25 : string = "name"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v26 : string = $"{v25}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v34 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v35 : (unit -&gt; unit) = closure0(v3, v26)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v36 : unit = (fun () -&gt; v35 (); v34) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v44 : string = " = "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v45 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v53 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v54 : (unit -&gt; unit) = closure0(v3, v45)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v55 : unit = (fun () -&gt; v54 (); v53) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v62 : string = $"{v0}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v70 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v71 : (unit -&gt; unit) = closure0(v3, v62)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v72 : unit = (fun () -&gt; v71 (); v70) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v80 : string = "; "
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v81 : string = $"{v80}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v89 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v90 : (unit -&gt; unit) = closure0(v3, v81)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v91 : unit = (fun () -&gt; v90 (); v89) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v99 : string = "expected"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v100 : string = $"{v99}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v108 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v109 : (unit -&gt; unit) = closure0(v3, v100)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v110 : unit = (fun () -&gt; v109 (); v108) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v117 : string = $"{v44}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v126 : (unit -&gt; unit) = closure0(v3, v117)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v127 : unit = (fun () -&gt; v126 (); v125) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v135 : string = $"%A{v1}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v139 : string = $"{v135}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v147 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v148 : (unit -&gt; unit) = closure0(v3, v139)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v149 : unit = (fun () -&gt; v148 (); v147) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v157 : string = " }"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v158 : string = $"{v157}"
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v166 : unit = ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v167 : (unit -&gt; unit) = closure0(v3, v158)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v168 : unit = (fun () -&gt; v167 (); v166) ()
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v174 : string = v3.l0
+&gt; <span style="color: rgb(38,140,38)">│</span>     v174
 &gt; <span style="color: rgb(38,140,38)">│</span> and closure1 (v0 : string) () : unit =
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v1 : (string -&gt; unit) = System.Console.WriteLine
 &gt; <span style="color: rgb(38,140,38)">│</span>     v1 v0
@@ -8274,7 +8211,7 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         else
 &gt; <span style="color: rgb(38,140,38)">│</span>             method1(v115)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v120 : string = "__assert_eq'"
-&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v94, v113)
+&gt; <span style="color: rgb(38,140,38)">│</span>     let v121 : string = method2(v120, v113)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v123 : unit = ()
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v124 : (unit -&gt; unit) = closure1(v121)
 &gt; <span style="color: rgb(38,140,38)">│</span>     let v125 : unit = (fun () -&gt; v124 (); v123) ()
@@ -8283,11 +8220,8 @@ a.anchor-link {
 &gt; <span style="color: rgb(38,140,38)">│</span>         failwith&lt;unit&gt; v121
 &gt; <span style="color: rgb(38,140,38)">│</span> method0()
 &gt; <span style="color: rgb(38,140,38)">│</span> 
-&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; actual = [|"ISTJ"; "ISFJ"; "INFJ"; 
+&gt; <span style="color: rgb(38,140,38)">│</span> { name = __assert_eq'; expected = [|"ISTJ"; "ISFJ"; "INFJ"; 
 &gt; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; "ESFP";
-&gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|]; expected 
-&gt; = [|"ISTJ"; "ISFJ"; "INFJ"; "INTJ"; "ISTP"; "ISFP"; "INFP"; "INTP"; "ESTP"; 
-&gt; "ESFP";
 &gt; <span style="color: rgb(38,140,38)">│</span>   "ENFP"; "ENTP"; "ESTJ"; "ESFJ"; "ENFJ"; "ENTJ"|] }
 &gt; <span style="color: rgb(38,140,38)">│</span> 
 &gt; 
@@ -8532,20 +8466,20 @@ a.anchor-link {
 &gt;     |&gt; ignore
 &gt; 
 &gt;     print_static "&lt;/test&gt;"
-00:00:11 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 40633 }
+00:00:11 <span class="ansi-black-intense-fg">v</span> #3 runtime.execute_with_options / result / { file_name = dotnet; exit_code = 0; std_trace_length = 36684 }
 00:00:11 <span class="ansi-blue-intense-fg">d</span> #4 runtime.execute_with_options / { file_name = jupyter; arguments = ["nbconvert", "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb", "--to", "html", "--HTMLExporter.theme=dark"]; options = { command = jupyter nbconvert "/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb" --to html --HTMLExporter.theme=dark; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None; stderr = true } }
 00:00:12 <span class="ansi-black-intense-fg">v</span> #5 ! [NbConvertApp] Converting notebook /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.ipynb to html
-00:00:12 <span class="ansi-black-intense-fg">v</span> #6 ! /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:12 <span class="ansi-black-intense-fg">v</span> #6 ! /opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
 00:00:12 <span class="ansi-black-intense-fg">v</span> #7 !   validate(nb)
-00:00:12 <span class="ansi-black-intense-fg">v</span> #8 ! /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:12 <span class="ansi-black-intense-fg">v</span> #8 ! /opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
 00:00:12 <span class="ansi-black-intense-fg">v</span> #9 !   return _pygments_highlight(
-00:00:13 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 341234 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
-00:00:13 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 916 }
-00:00:13 <span class="ansi-blue-intense-fg">d</span> #12 spiral.run / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 916 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #10 ! [NbConvertApp] Writing 338531 bytes to /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html
+00:00:13 <span class="ansi-black-intense-fg">v</span> #11 runtime.execute_with_options / result / { file_name = jupyter; exit_code = 0; std_trace_length = 916 }
+00:00:13 <span class="ansi-blue-intense-fg">d</span> #12 spiral.process_dib / dib / jupyter nbconvert / { exit_code = 0; jupyter_result_length = 916 }
 00:00:13 <span class="ansi-blue-intense-fg">d</span> #13 runtime.execute_with_options / { file_name = pwsh; arguments = ["-c", "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\\\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"]; options = { command = pwsh -c "$counter = 1; $path = '/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.dib.html'; (Get-Content $path -Raw) -replace '(id=\"cell-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } | Set-Content $path"; cancellation_token = None; environment_variables = Array(MutCell([])); on_line = None; stdin = None; trace = true; working_directory = None; stderr = true } }
-00:00:13 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { exit_code = 0; std_trace_length = 0 }
+00:00:13 <span class="ansi-black-intense-fg">v</span> #14 runtime.execute_with_options / result / { file_name = pwsh; exit_code = 0; std_trace_length = 0 }
 00:00:13 <span class="ansi-blue-intense-fg">d</span> #15 spiral.run / dib / html cell ids / { exit_code = 0; pwsh_replace_html_result_length = 0 }
-00:00:13 <span class="ansi-blue-intense-fg">d</span> #16 spiral.run / dib / { exit_code = 0; result_length = 41608 }
+00:00:13 <span class="ansi-blue-intense-fg">d</span> #16 spiral.process_dib / dib / { exit_code = 0; result_length = 37659 }
 </pre>
 </div>
 </div>
@@ -8674,15 +8608,15 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-white-fg">Fable 5.0.0-alpha.9: F# to Rust compiler (status: alpha)
 </span><span class="ansi-white-fg">
-Thanks to the contributor! @xtuc
+Thanks to the contributor! @vbfox
 </span><span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua/
 
 </span><span class="ansi-white-fg">Parsing test.fsproj...
-</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 2353ms
+</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 2334ms
 
 </span><span class="ansi-white-fg">Started Fable compilation...
 </span><span class="ansi-white-fg">
-Fable compilation finished in 1103ms
+Fable compilation finished in 1119ms
 
 </span><span class="ansi-yellow-fg">./test.fsx(11,0): (11,2) warning FABLE: For Rust, support for F# static and module do bindings is disabled by default. It can be enabled with the 'static_do_bindings' feature. Use at your own risk!
 </span></pre>
@@ -8788,50 +8722,44 @@ Fable compilation finished in 1103ms
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/extension/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/cube/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/tests/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/plot/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/tests/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/examples/rust/exercism/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/extension/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/cube/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/lib/math/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> syn v2.0.90
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> byteorder v1.5.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> getrandom v0.2.15
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.6.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> getrandom v0.3.4
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.20.2
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> libm v0.2.11
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.42
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.21.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.21
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> syn v2.0.108
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.9.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.23.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.8.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.9.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.8.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.4.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.9.2
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.6
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.8.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> zerocopy-derive v0.7.35
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.14.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> zerocopy v0.7.35
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror-impl v1.0.69
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.20
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.69
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror-impl v1.0.65
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.65
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 10.16s
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 8.20s
 </pre>
 </div>
 </div>
@@ -8869,51 +8797,52 @@ Fable compilation finished in 1103ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/lib/math/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/plot/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/tests/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/examples/rust/exercism/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
-  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/extension/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+<pre><span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 <span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/cube/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bitflags v2.6.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> zerocopy v0.7.35
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.4.14
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/examples/rust/exercism/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/tests/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/lib/math/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/chat/contract/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/plot/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-yellow-intense-fg ansi-bold">warning</span><span class="ansi-bold">:</span> /home/runner/work/polyglot/polyglot/apps/spiral/temp/extension/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
+  See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> getrandom v0.3.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bitflags v2.10.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> linux-raw-sys v0.11.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fastrand v2.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.20.2
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_core v0.9.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> once_cell v1.21.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.21
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> wait-timeout v0.2.1
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> quick-error v1.2.3
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.8.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v1.1.2
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fnv v1.0.7
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-vec v0.6.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rustix v0.38.42
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.8.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> num-traits v0.2.19
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> ppv-lite86 v0.2.20
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> bit-set v0.5.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.3.1
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.8.5
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> lazy_static v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_chacha v0.9.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand v0.9.2
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rand_xorshift v0.4.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> minimal-lexical v0.2.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> lazy_static v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> unarray v0.1.4
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> memchr v2.7.6
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/lib/rust/fable/fable_modules/fable-library-rust)
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.65
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> nom v7.1.3
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> thiserror v1.0.69
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.14.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.0
-<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.5.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> tempfile v3.23.0
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> rusty-fork v0.3.1
+<span class="ansi-green-intense-fg ansi-bold">   Compiling</span> proptest v1.8.0
 <span class="ansi-green-intense-fg ansi-bold">   Compiling</span> spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)
-<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 14.70s
-<span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests main.rs (/home/runner/work/polyglot/polyglot/workspace/target/release/deps/spiral_temp_test-be45c853cf37e114)
+<span class="ansi-green-intense-fg ansi-bold">    Finished</span> `release` profile [optimized] target(s) in 14.46s
+<span class="ansi-green-intense-fg ansi-bold">     Running</span> unittests main.rs (/home/runner/work/polyglot/polyglot/workspace/target/release/deps/spiral_temp_test-c0ed6e30c45c40aa)
 
 running 3 tests
 test test_parse_number ... ok
@@ -8923,262 +8852,262 @@ test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ..
 successes:
 
 ---- prop_parse_format_idempotent stdout ----
-input=StringLiteral("{^q{;A*oIN:tM/}Kf-")
-input=Integer(-783498312442272161)
-input=Operator("/")
-input=Integer(6656901008445763153)
-input=Integer(-3006170582180803873)
-input=Identifier("s1")
-input=StringLiteral("lUY:OB.Mo=/IMZ$Tq./{&lt;F.PJ39=")
-input=Comment("4R|vM%;@0,")
-input=Comment("$$X$6V%%-N*")
-input=Identifier("w1Kdc6tx8GlWIg471yiNetTkcRU4Xeu")
-input=StringLiteral(".:&gt;qO&lt;/?^lWD.bjX")
-input=Integer(-3801654648727455996)
-input=Comment("%E+t`$=URB,?J.:[fM?Q/:*d,/$&amp;R[.Q")
+input=StringLiteral("%?/'.n?=?yj&lt;e{")
+input=Integer(-4450574352435487281)
+input=StringLiteral("]{c.'*r8")
+input=Operator("=")
+input=Identifier("LfmONU")
+input=Operator("=")
+input=Integer(1518876146233167392)
+input=Identifier("Nyfe358928G40MtFHaK")
+input=Operator("=")
+input=Operator("=")
+input=StringLiteral("Ke/")
+input=Identifier("S46G")
+input=Identifier("pTt7Eew9VLKl5q0jH2qNY6C")
+input=Comment("Z8")
 input=Operator(")")
-input=Identifier("w35wtHVx66wN03bFtDjG")
-input=Identifier("w0y3WVTZDdlV6txeykFEMLzMFK7p59")
-input=StringLiteral("`,f=KL5o&amp;;O&gt;H*kF/WG.'8e',ZL+='")
-input=Integer(1484173259892452089)
-input=Comment("}_*&lt;\\0~N|sR_E8@@r`A;! \"Q9?Y`")
-input=Identifier("n99J4ps9c")
-input=Identifier("n281uDCG3e8v0nt121Nn8QXTkRR")
-input=StringLiteral(")p%`N?&amp;&lt;{,")
 input=Operator("-")
-input=Integer(-264600127641722069)
-input=StringLiteral("rh")
-input=StringLiteral("?Z'.v*Y/EcuU")
-input=Identifier("mLzuHWgqt8bM21F")
-input=Integer(-1953786740257329514)
-input=Comment("JW{i%w#pQlb'MM ")
-input=Comment("%%j#Dh$L7'=;wYC0^\"=%JF&lt;{&amp;ec@.`")
-input=StringLiteral("HCB8x_/B{[")
-input=Operator("(")
-input=Identifier("OnfnZVp5KNK3b4ROh4")
-input=Identifier("Odn3x0ZVaPBrKs5RY1T1C")
-input=Comment("Fq{z?&amp;")
-input=Operator("(")
-input=Comment("=q:(")
-input=StringLiteral("s&lt;*^yX&amp;OmF$vS$7h.&gt;")
-input=Comment("n&lt;`q*IZ&lt;n/h/N\"bq?d?Ju{6'")
-input=Comment("\"=B^B+p`V2*`zYt`\\,\\+l?*E4W2b&amp;h.Y")
-input=Integer(-9026580337223446830)
-input=Identifier("D")
-input=Operator("-")
-input=Identifier("eP0A")
-input=Identifier("AJap8twD74mw")
-input=Operator("=")
-input=StringLiteral("'/I%nB:&lt;, S{eIkM0%%3%/$")
-input=Integer(-7206074084960861920)
-input=StringLiteral("PRoy/.@0-&lt;C/a")
-input=Identifier("MISQmnjJ2xHmz29lOEAa6A4FvueCS1")
-input=Comment("k.]]48sH\\X$ix")
-input=Comment("R_&lt;9@v:wPV$ Kfw[z%F8/jni&gt;GW7")
-input=Comment(":Sj.JrED,G | /`q7mP2BEM&amp;?")
-input=Identifier("Hj7JTB18kEN1SKNVM1gAw3QKlPzxnk9pL")
-input=StringLiteral("_IAT&amp;Wdadch{IorGCO'r&lt;Es")
-input=Identifier("lvMqPiac9R9m2EB3")
-input=Identifier("Xr36Yh3p9r1K")
-input=StringLiteral("O]HJD^sjH!")
-input=Comment("'pzPA")
-input=Integer(-7802712747953158856)
-input=Comment("y05\"@)1,K|f")
-input=Comment("%:&lt;/kF0")
-input=Comment("Xe{ku")
-input=Identifier("i78mZ3Ac1BZPZ7Sl6SMB70IcuWLfBaF")
-input=Identifier("l6N95ZdWE7LsVQ6dQMCHEqqCI")
-input=Comment("-b&amp;)e[r `]&gt;m`")
-input=Identifier("OQuLY")
-input=StringLiteral("{")
-input=Operator("(")
-input=Integer(5548233779901595419)
-input=StringLiteral("j6Nw{i^bw+%,2:")
-input=Identifier("Q8vw")
-input=Integer(8845627017356029180)
-input=Integer(-937404015976027772)
-input=StringLiteral("g$Q0qZ:&lt;Q.}$'M:`|*9H`aA]_VG/l/s")
-input=Identifier("NyaP1tnigOklcC5Es")
-input=Comment("$&amp;[#\"i{2Q ")
-input=Identifier("OtM3DaDvN5N6iy2Zrts3kz66Lxi3")
-input=Comment("d+rzK")
-input=Identifier("BPm5zwbrpJ5vINEXWExHq7PabPSPn")
-input=Integer(-7401299599497781158)
-input=Operator("=")
-input=StringLiteral(";:R[&lt;%`~)^Em&amp;J|E`N`//&amp;*W/s$")
-input=Comment("xo&lt;'{\"")
-input=Integer(-417535586042745459)
-input=Integer(3774457177682950076)
+input=Identifier("J3OCFDsk3d2CFkiKIEW7H")
+input=Identifier("j5ixc2GW7T1Mo")
+input=Operator(")")
+input=StringLiteral("cEe&amp;:rS-W:B;*rvsvph%%6??")
+input=StringLiteral("m")
+input=StringLiteral(".g+=T*U[Lt+jF5kaX&amp;yJ7V}??Z ")
+input=Integer(-5616572980878121246)
 input=Comment("")
-input=Operator("/")
-input=StringLiteral("}{`&amp;,o/(h.tX")
-input=Identifier("J1j")
-input=StringLiteral(";)")
-input=StringLiteral("}i&lt;@K&lt;=4cs':BQBv")
-input=Identifier("T2RN")
-input=Integer(-8026950628763238246)
-input=Comment("")
-input=Integer(1839320284795969634)
-input=Identifier("e82RemqgZXrMfkp3a7Lfx8tDeOgqzi3As")
-input=StringLiteral(":_'1yP!~$&amp;$&gt;`*2")
-input=Comment("`rtxt")
-input=Comment("{Pi")
-input=StringLiteral("APB`C#=0x.wdw{p")
-input=Integer(-3538823895023690303)
-input=Comment("y:13d`EZ&amp;M&lt;{?~'F&amp;?/t:\"%{=5-y\"&lt;")
-input=StringLiteral("[OW?x Z5`Wq=%H={JN}=&amp;1D`3]F")
-input=Operator("*")
-input=StringLiteral("`]7{=&amp;oe;sNn%}5:0.,hy:G=&gt;5.YL")
-input=StringLiteral("]9/?c}`=)#ue")
-input=Comment("X$?0=")
-input=Comment("v-&lt;S&lt;\"\\YT")
-input=Identifier("z28Z1fPq4K4H4V")
+input=StringLiteral("*E:]^{m6&gt;I?G{$n]H&gt;r")
+input=Identifier("te2tko8Ts03Kri4o")
 input=Operator("-")
+input=Operator("(")
+input=Operator("+")
+input=Comment("S'LXQy&amp;_?M@{U%/i'n*{{Nx;\\'")
+input=StringLiteral("$@$dL8{sL@:X4Q$*&lt; *%4i")
+input=Comment("oB\"QA*s'({-S^j%3)R$%E")
+input=Integer(-2901636884587954630)
+input=StringLiteral("j.|&amp;)*fSuSk&lt;:!!r&lt;I^")
+input=Integer(-3025402382947409750)
+input=Integer(-3421440564407857677)
+input=Integer(-3249928768566256390)
+input=Identifier("ALMb6ZpmoCgTqVl17USiKyRi729C")
+input=StringLiteral("n6RCB|")
+input=Comment("`:' &amp;Kuu|'l%3V:p/=W9")
+input=Operator("-")
+input=StringLiteral("d{u8$fN_*&amp;Kc7`7cn|&lt;-$+*.=r")
+input=StringLiteral("&lt;&lt;+t MCG.&gt; ZF|?N'&lt;VAE/KiM*n:E:")
+input=Identifier("c3tt2MZtt0S")
+input=Identifier("SxaeQtidbcvDTp4p2UT")
+input=Integer(-1981830728115663975)
 input=StringLiteral("")
-input=StringLiteral("{A(k'kL?/q|T:4")
-input=Comment("=-1d);9U_I 6`.%=F:)h@g=M&lt;B")
+input=Comment("/&lt;?M\"D\\`:#Mb&amp;\"")
+input=Identifier("iXrjZB61nVNiA04b1mHA3KG17sSqzcMQ")
+input=Comment("?9&lt;0Tw\\?.bXb\\bT@'\":qvQu=b.")
+input=Comment(":EMjcUbcwu.\\$.Y")
+input=Comment("X4!3C'&amp;$G\\ /3L")
+input=Identifier("wYmFKY1fGJ6Gdv84")
+input=Integer(-100331915378531215)
+input=Operator("+")
+input=Comment("O~(6S{n\\?~$q!i@g\\\"1Zm6:\"(eY~L3S")
+input=Integer(-2949226305201146318)
+input=Identifier("sKHv6zxtz")
+input=Operator("(")
+input=StringLiteral("%%$.n$'I.a(GI7i")
+input=Integer(-6903787188964302656)
+input=Identifier("HQtg")
+input=Operator("+")
+input=StringLiteral("B%-pL=g=*&lt;S`&lt;8&gt;C~*ABK")
 input=Operator(")")
-input=Operator("(")
-input=StringLiteral("92wWZ1pj{i{W0{&amp;$")
-input=Comment("?&lt;Po5{\"z&lt;T&lt;'Ew`@pm\\iA0|?d\\K")
-input=Comment("J\\*^=LIT(tI\"bW~mM:")
-input=Integer(-6944100891339678850)
+input=Integer(2490838543006159108)
 input=Operator(")")
-input=StringLiteral("&lt;v2-$?e{&amp;~S/0[_$:+Q")
-input=Identifier("Ol")
+input=StringLiteral("Y+/EX{Dzj~yz=Bcf")
+input=Integer(1875847702935537045)
+input=Integer(-1603743299110566462)
+input=Comment("`M'Qs")
+input=StringLiteral("_QifsMJP.i&amp;=c?.s:G")
+input=Integer(3522560559460991629)
+input=Integer(-3998010175126686061)
 input=Operator("(")
-input=Comment("@RQ\"`zV=")
-input=StringLiteral("x.')K{=%e*U^g:")
-input=Operator("/")
-input=StringLiteral("'5TN")
-input=Identifier("ie0pYO1vW7h645kNbIfPDmsXyzvu7U9D")
-input=Operator("-")
-input=Operator("=")
-input=Operator("+")
-input=Identifier("G25X5j40r2eCKLg4yEPMxsaHl18x4bzdb")
-input=Identifier("E1yBAZUBLCSxrTwTBHGm5cWav719")
-input=Integer(7842392086551509438)
-input=StringLiteral("")
-input=Identifier("ahmsxPQ4Ds0DbLfDENoyXmLK59")
-input=StringLiteral("nhfY")
-input=Identifier("XhrKe")
-input=Comment("$hPZ'';2Ysgnv")
-input=Operator("+")
-input=Identifier("A9o7")
-input=StringLiteral("&amp;U*Fh.")
-input=Integer(5555137377653682191)
-input=StringLiteral("n$=G)$f%M/~?Rd")
-input=Operator("=")
-input=Integer(403936982257904102)
-input=Identifier("iisazcZhB5R29fU1UK2ZTE4rpRM2sf")
-input=StringLiteral("|Ss&amp;j-8GpyGvF1V7`@FyN^{KY[")
-input=StringLiteral("O|%/')4os&gt;f@?`.=J'2d-'%0TE.?")
-input=Operator("/")
-input=Identifier("Om8TQ6jYhBS0u5")
-input=Comment("O?pI?vN&lt;Rk{/{'z$D%T.3w?2=")
-input=StringLiteral("@$ZT=YR9")
-input=Operator("+")
-input=Operator("(")
-input=Operator("+")
-input=Operator(")")
-input=Integer(-9017859850632012847)
-input=Operator("=")
-input=Comment("0tz %w$~=O}/q`Q-]TVe")
-input=Operator("+")
-input=Operator("(")
-input=StringLiteral("|J.s?%?`BJBl&gt;ihX=cj(U76%")
-input=StringLiteral("z?prTEL_5v'{I`U")
-input=Identifier("nA80EL51lqW5k4aW")
-input=Identifier("IFS17s9jI")
-input=Integer(1036055419133102259)
-input=StringLiteral("C&amp;6q^~{Sty@U/Cd=o9fSm|")
-input=Comment("ALl&amp;")
-input=Operator("-")
-input=Integer(-7089178766501993029)
-input=Operator("*")
-input=StringLiteral("r{&amp;gwPC6")
-input=StringLiteral("PM@CCu0R=Xd0iy*:f]h3WK*J")
-input=Identifier("C20GGldV9RSL3MopeJf7VCz56")
-input=Operator("(")
-input=Operator("(")
-input=Operator("*")
-input=Identifier("vJFqj2BDyWGqyF0Xm")
-input=Operator("(")
-input=Integer(-3133798926969914182)
-input=Comment("P\\tJqG:yaN]0`")
-input=StringLiteral("/n")
-input=Integer(-4943033530227650789)
-input=StringLiteral("&lt;% xc$&lt;$E$,Ax$~rqs;q")
+input=Comment("sC]i$")
+input=Comment("I/Wd({.f`@}1'$u'o.xAq%2b\"_u8/Wi@")
+input=Comment(".O??C/t?a&lt;")
+input=Identifier("qTZ0dX4ulCMBvX0l3HwYu3MCbFz1p")
+input=StringLiteral("FW_k{CE+'K@/x:%kT&lt;*UFe]^%~")
+input=Identifier("XPE3uQhSBORa6G9P14LyX73Nh5p70998")
+input=Comment("\\/qD5D\\&gt;X@iTH/A?:+`")
 input=Comment("")
-input=Operator("*")
-input=Identifier("U")
-input=StringLiteral("$61(%.8%lH8@].*t&lt;")
-input=Operator("=")
-input=StringLiteral("/")
-input=StringLiteral("=/2|ul[%z'oS9ovx`:&amp;,2l$")
-input=Operator("=")
-input=StringLiteral("&amp;nV= I{L`r.yvC*Z('=")
-input=Operator("=")
-input=Integer(6858368592611446591)
-input=Operator(")")
-input=Integer(-7476157701708945265)
-input=Operator(")")
-input=Comment("aA.} :,D\\I")
-input=Identifier("l19Uui8x4vNS0")
-input=Integer(-5685433002927856652)
-input=StringLiteral("e!722Ik&lt;_hW2lo(M`e!h7!,?;m| .")
-input=Comment("e@")
-input=Comment("|HS?'?P =&amp;`M\\)b&amp;9h?}:`\\!\\=Y0{&lt;\\")
-input=Comment("K]`N&amp;F_9DA%QA~\\")
-input=Comment("P]fIoo")
-input=Operator("(")
-input=Identifier("M3wPiWicIJ4N6Pa")
-input=Integer(2849056086393693560)
-input=Identifier("Opjc9JfUfM44")
-input=Operator("+")
-input=StringLiteral("o13LHD&gt; v(/Eb8rq=H$&amp;!&amp;:D")
-input=Identifier("pSCO4rUSzaBnEvhJf8lA0CF")
-input=Comment("oMOt`\"7@.m\\*.U`]\\u*@=")
-input=Operator("(")
-input=StringLiteral("%P")
-input=Integer(-7565699573165095762)
-input=StringLiteral("'U+%,9/XT%")
-input=Operator("=")
 input=Operator("-")
-input=Identifier("dNV5P4586l1dH697")
+input=Integer(-5517532847932326413)
+input=Integer(2523017397808953588)
+input=Identifier("MIneg0N662X7m")
+input=Integer(-2118587809872427671)
+input=Comment("[];Hu3%@'kHB/DGkQ&amp;{9}8r\"~|")
+input=Integer(-7617106704112774403)
+input=Integer(-2265373646236590326)
+input=Comment(",'m&lt;&amp;Q&lt;*9")
 input=Operator("*")
+input=Identifier("C3W")
+input=Integer(-3298472058867953838)
+input=Operator("*")
+input=Integer(-1293987200689342074)
+input=StringLiteral("Qd}3%&amp;2`&amp;:/j-',{{xn6:Q5`Mzd&amp;TO")
+input=Integer(7221834387458851972)
+input=Comment("|Oj4")
 input=Operator("/")
-input=Integer(8210267912921340675)
-input=Comment("!:\"qU\\'HqD\\-0{^?\"")
-input=Identifier("W9")
-input=Comment("=d$&amp;9$")
-input=Identifier("l7ixH5p2DkZmytO76cVo9LY")
-input=StringLiteral("0A=F]Rz'K' :+h%c,? vHBI?")
-input=Identifier("LN7v9A300L91gYPBG2QB08sujiWDB")
-input=Identifier("Y")
-input=Comment("1#\"91;&amp;%R&amp;+vI*&lt;H.{1N#/{/NI\"\"..%:")
+input=Operator("+")
+input=Operator(")")
+input=Comment("\"s[")
+input=Operator("/")
+input=Comment("s&amp;?t=VKTAu*^4/FhL")
+input=Integer(-8579489758311844373)
+input=Identifier("z9pvTXu9Dv5ch")
+input=StringLiteral("BA&amp;Ax=]-p1sp-8'*`.+9Z'G-a$`")
+input=Integer(2055100363859479977)
+input=Identifier("tk5LuJ")
+input=Comment("SYCt$#~y\\EP4*")
+input=StringLiteral("**-gjXlT%^$d`/|j$?$({t@$'Eu*L ")
+input=Integer(5306328190937900143)
+input=Integer(5920216368113224991)
+input=Integer(8149285219162858976)
+input=Operator("+")
+input=Comment("|`bJa`Z&lt;'{`?*%N")
+input=Comment("/\\qvU]o_{~'P~u&lt;Dqc*HlI")
+input=Identifier("TzetkQuP7Onf77KXf5MeXT")
+input=StringLiteral("5O(N%=+2lipEq$=&amp;::-~/*A?&amp;=%JL")
+input=Identifier("z8250KQ99ReQ7h1Cidhg11kNnh43")
+input=StringLiteral("Q%/F'2&lt;*EQo&amp;+=Rg*8:L&lt;hHp?=Kd{U")
+input=Comment("Pp9:VQ~JV{%`f:G7V4#K%:")
+input=Integer(-7113367030095504046)
+input=Operator(")")
+input=StringLiteral("S$&amp;1Cnpw=d+M^&amp;U.}9i&lt;$Q`&lt;&lt;j(kg[")
+input=Comment("1).kT1*`}fl(q@")
+input=StringLiteral("s4&lt;$`dl%&amp;Uj6&lt;(N&lt;'K.xo")
+input=Operator("*")
+input=Integer(5498481751266573008)
+input=Comment("*=aN.]UNxi:[yx:&lt;`&lt;xRMBea&amp;&gt;")
+input=Integer(-8473847694068286904)
+input=Integer(-5486921408959559098)
+input=Identifier("K")
 input=Operator("-")
-input=StringLiteral("s-' Wg`VN!&lt;")
-input=StringLiteral("?%R .(&lt;&gt;Ge")
-input=Operator("(")
-input=Identifier("MKv0AgbCIvYXj8i8zrmlzFz6Q7Ya")
-input=Identifier("MWwoO3z28Xnst5q4czANosDDZBfZSC9z")
-input=Comment("&amp;/CaOWA%n[$2]6=v/R==^;4h?=Y5=`")
+input=Comment("U&gt;B.#?Z*\"'%L\"WeXHsw")
+input=Comment("?`\"H?}")
+input=Comment("r'L?\\/&amp;c$/?{NVr")
 input=Operator("*")
-input=Comment("%l&gt;7a[{O*")
-input=Identifier("DJLtsJXZ806T11nRfyUCj")
-input=Integer(-5551813085294007871)
-input=Identifier("l8cx")
-input=Comment("7`~(c{uo+9:\"")
-input=Integer(6019813581810744448)
-input=Integer(-7448440149538356722)
-input=Integer(-5847805533978286491)
-input=Identifier("PZTIvWIn4N8rN0uA1uITqyjEJiC1g")
-input=Integer(8856444247118404768)
+input=Comment("q,}=Y.3\"\"1:=;DVc!N NO'?FLKR")
+input=Identifier("a1qwsVxz15")
 input=Operator("(")
+input=Comment("ge,S&amp;eC:kS")
+input=Operator("/")
 input=Operator("*")
-input=Integer(3327878944632248319)
-input=Comment("pYF_{=")
+input=Identifier("M7h8JejgOuX25aNT")
+input=Identifier("BE636tBrhlUnvlJJ77Ly9sO")
+input=StringLiteral("M$Y?'`{%fI*/")
+input=Identifier("HG7")
+input=Comment("-Kw&gt;u$Q??={m[K~h^-n")
+input=StringLiteral("qwv0`H-=Ue2(';o='t")
+input=Operator("/")
+input=Comment(".s\"0=vpS&lt;shC\"~*\"v)AI./?!gYmeT6t?")
+input=Identifier("Ld")
+input=Operator("=")
+input=Identifier("coBhaDfVtcS49")
+input=Identifier("PapwV2Hm774jhj0zA1JlO")
+input=StringLiteral("w3CAo&lt;]d%:?%0xMn`vqU4B.${lk")
+input=Comment("\\`1E@.k/jf:1HMb%i\\5@'e&lt;\\5\\!PJ")
+input=StringLiteral(";A_4n{B.")
+input=StringLiteral("el VyT/q)?v&gt;)*=!9K")
+input=Identifier("iTrl986AHCWM40HYU8A0LPNMCT")
+input=Operator("/")
+input=Comment("~:Q\\IwHk")
+input=Integer(-5133402268158871941)
+input=Operator("+")
+input=Comment("^~[k")
+input=Identifier("skr96HlBBikv5R44")
+input=Integer(-7545293769891170712)
+input=Identifier("SleJii8r9c6hMI7PmcL9qB2G545fn")
+input=Operator("*")
+input=Comment("TS]}at")
+input=Integer(4846837078334160647)
+input=Comment("%aZ=\\)(\"\"+&amp;$`*a")
+input=Integer(3123028443917511737)
+input=Integer(-4051287768562620134)
+input=Identifier("sJ3LztppC3KdeQV6ge8sM8UND8sg1JOU7")
+input=Identifier("u60OQsQ0BBxiMBGqER2")
+input=Identifier("pb")
+input=Operator("/")
+input=Identifier("HKJ71")
+input=Integer(-6007631867493135269)
+input=Operator("+")
+input=Integer(-4592039535604766607)
+input=StringLiteral("'325)=?_U{Az,*^KK")
+input=Identifier("x7J0cH7Vd8YMu2gAtKEb")
+input=Integer(-1642065478154043779)
+input=Identifier("POcD25eu2POfQaWjsVpzo4ld50wI9")
+input=Identifier("QBF5S5T7tepGol3qx0Gx234MymDkJ90")
+input=Integer(6812231034349577032)
+input=Operator("/")
+input=Comment("2}'_h`h(dQU&gt;iuhX_[jb&lt;hFhd~")
+input=Operator(")")
+input=Integer(5551775609796868052)
+input=Integer(-8608711472644436277)
+input=Comment("CTA}\"./")
+input=Operator(")")
+input=Operator("/")
+input=Integer(-6488337018834183965)
+input=Identifier("LFfnMk6v53nVy87I28OxDrP7zQE9")
+input=Comment(")dx`.,Gmu&lt;?h$")
+input=Identifier("IHSYGdvb8D91t98Or6ArKSmQ0quE935")
+input=Comment("9bLyq^]'Y&lt;h0Xa).[FE")
+input=Identifier("lE2461vVE5C")
+input=Operator("=")
+input=Comment("H|e/}3J1O-&lt;6M|@-.q}'")
+input=StringLiteral("#}]d/EX&lt;Hc;Q{LkX$Z2N45sdsh-a")
+input=Operator("/")
+input=Identifier("t5dSwXvhlbnrT7eSTY")
+input=Identifier("wUFKA5RhGmcAtbj28")
+input=Operator("/")
+input=Operator("+")
+input=Operator("(")
+input=Operator("=")
+input=Comment("?*\\Y8?X&amp;T")
+input=StringLiteral("vndYL~kvr&amp;?.K.4/d&gt;__l(&amp;srS")
+input=Integer(-8159693859743028912)
+input=Integer(168071780197792743)
+input=Operator(")")
+input=Identifier("AT6DI2SlZA71n9w7dB2KK3wT02AYKNB")
+input=Comment("|X%l4B9J")
+input=Comment("Y{^[k&amp;*/&gt;\"!21|M*tMAnDut")
+input=Comment("&amp;r\\vh&amp;%'jm")
+input=StringLiteral("2)^1}SY.D?S*O9f*=)@d8KZLt~&lt;_CT")
+input=Comment("=")
+input=Integer(-7969997298450398251)
+input=Operator("=")
+input=Operator("=")
+input=Operator(")")
+input=Operator("*")
+input=StringLiteral("D S&lt;lj6?.P.#V")
+input=Identifier("IS68d45eCo")
+input=Integer(6059729944675055276)
+input=Integer(4537161324730900547)
+input=Operator("*")
+input=Integer(2590220852328528367)
+input=Operator("*")
+input=Integer(6210451053617035822)
+input=Comment("%y$+o\"\\NNm)ynA)n\\\"*u,U\"%k7x$")
+input=StringLiteral("Jd%")
+input=Identifier("a689j8")
+input=StringLiteral("E_r2gml'L!jvtDSt")
+input=Operator("-")
+input=Integer(5071348942025629700)
+input=Identifier("mOvtBc4Df1QKNROG914")
+input=Comment("3&lt;&gt;~&gt;+x%n\"%{Iz0#%3_'YgF'")
+input=Comment("~,&amp;@}|&lt;y")
+input=Identifier("UJ2qGCnnJb9T84X2WRpFc")
+input=Comment("FdrBv:?~.O")
+input=Identifier("Sw8GCBRMYa5uc6qvR0pic0")
+input=StringLiteral("-X")
+input=StringLiteral("ilt|::Na7TDM&lt;&amp;:o0#;QW+$=ONTc`Cy")
+input=Comment("O")
+input=Integer(-5783583902130502093)
+input=Comment("?9q!Bhj}!*?{)c/`76&amp;3")
 
 
 successes:

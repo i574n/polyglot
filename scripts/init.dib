@@ -28,7 +28,7 @@ if (!(Search-Command "cargo-outdated")) {
 #!pwsh
 
 if (!(Search-Command "sccache")) {
-    { cargo install sccache } | Invoke-Block -OnError Continue
+    { cargo install sccache --locked } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
@@ -40,7 +40,7 @@ if (!(Search-Command "wasm-pack")) {
 #!pwsh
 
 if (!(Search-Command "trunk")) {
-    { cargo install trunk --version 0.21.12 } | Invoke-Block -OnError Continue
+    { cargo install trunk --version 0.21.14 } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
