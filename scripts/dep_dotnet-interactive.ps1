@@ -8,8 +8,12 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
+$url = git ls-remote --get-url
+$owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
+Write-Output "dep_dotnet-interactive.ps1 / url: $url / owner: $owner"
+
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
-git clone --recurse-submodules https://github.com/i574n/dotnet-interactive.git
+git clone --recurse-submodules https://github.com/$owner/dotnet-interactive.git
 { git pull } | Invoke-Block -Location dotnet-interactive -OnError Continue
 
 Set-Location $ScriptDir

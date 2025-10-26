@@ -22,7 +22,11 @@
 #!pwsh
 
 if (!(Search-Command "cargo-outdated")) {
-    { cargo install --git https://github.com/i574n/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+    $url = git ls-remote --get-url
+    $owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
+    Write-Output "scripts/init.dib / url: $url / owner: $owner"
+
+    { cargo install --git https://github.com/$owner/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
