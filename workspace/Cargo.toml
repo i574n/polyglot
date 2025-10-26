@@ -17,7 +17,7 @@ members = [
 version = "0.0.1"
 edition = "2024"
 license-file = "../LICENSE"
-repository = "https://github.com/i574n/polyglot"
+repository = "https://github.com/fc1943s/polyglot"
 
 [workspace.dependencies]
 fable_library_rust = { path = "../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = [] }

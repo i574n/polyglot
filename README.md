@@ -1,6 +1,6 @@
 # polyglot
 
-<https://i574n.github.io/polyglot>
+<https://fc1943s.github.io/polyglot>
 
 <https://polyglot.pages.dev>
 
@@ -51,7 +51,7 @@
 Clone the repository:
 
 ```powershell
-git clone https://github.com/i574n/polyglot.git
+git clone https://github.com/fc1943s/polyglot.git
 ```
 
 Navigate to the directory, initialize dependencies and build the project:
@@ -74,7 +74,7 @@ Documentation
 <td>
 
 - Repository file tree (HTML)  
-<https://i574n.github.io/polyglot>
+<https://fc1943s.github.io/polyglot>
 
 </td>
 </tr>
@@ -88,13 +88,13 @@ Build
 <td>
 
 - Initialization output (PowerShell)  
-<https://i574n.github.io/polyglot/scripts/init.dib.html>
+<https://fc1943s.github.io/polyglot/scripts/init.dib.html>
 
 - Full build output (PowerShell)  
-<https://i574n.github.io/polyglot/scripts/build.dib.html>
+<https://fc1943s.github.io/polyglot/scripts/build.dib.html>
 
 - Spiral supervisor notebook (F#)  
-<https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
+<https://fc1943s.github.io/polyglot/apps/spiral/Supervisor.dib.html>
 
 </td>
 </tr>
@@ -108,19 +108,19 @@ Samples
 <td>
 
 - Performance tests  
-<https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
+<https://fc1943s.github.io/polyglot/apps/perf/Perf.dib.html>
 
 - Multiplatform rotating ASCII cube (F#, Rust, TypeScript, Python)  
-<https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.dib.html>
+<https://fc1943s.github.io/polyglot/apps/spiral/temp/cube/cube.dib.html>
 
 - Chat smart contract notebook (Rust, NEAR Protocol)  
-<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.dib.html>
+<https://fc1943s.github.io/polyglot/apps/chat/contract/chat_contract.dib.html>
 
 - Domain Modeling Sample: Scheduling with recurrency  
-<https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
+<https://fc1943s.github.io/polyglot/apps/scheduler/Tasks.dib.html>
 
 - Computational Mathematics: Unit testing with Spiral, Rust and Python  
-<https://i574n.github.io/polyglot/lib/math/math.dib.html>
+<https://fc1943s.github.io/polyglot/lib/math/math.dib.html>
 
 </td>
 </tr>
@@ -306,8 +306,8 @@ This document provides a bird’s-eye view of the Polyglot repository, encapsula
 
 ## Contributing
 
-Contributions are welcome! Please see the [CONTRIBUTING.md](https://github.com/i574n/.github/blob/main/CONTRIBUTING.md) for guidelines.
+Contributions are welcome! Please see the [CONTRIBUTING.md](https://github.com/fc1943s/.github/blob/main/CONTRIBUTING.md) for guidelines.
 
 ## License
 
-This project is licensed under the AGPLv3 License. See the [LICENSE](https://github.com/i574n/polyglot/blob/main/LICENSE) file for details.
+This project is licensed under the AGPLv3 License. See the [LICENSE](https://github.com/fc1943s/polyglot/blob/main/LICENSE) file for details.

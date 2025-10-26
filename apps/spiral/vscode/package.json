@@ -7,12 +7,12 @@
     "vscode": "^1.96.0"
   },
   "bugs": {
-    "url": "https://github.com/i574n/polyglot/issues"
+    "url": "https://github.com/fc1943s/polyglot/issues"
   },
   "repository": {
-    "url": "https://github.com/i574n/polyglot"
+    "url": "https://github.com/fc1943s/polyglot"
   },
-  "publisher": "i574n",
+  "publisher": "fc1943s",
   "categories": [
     "Notebooks",
     "Programming Languages",
