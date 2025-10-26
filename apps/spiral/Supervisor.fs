@@ -939,7 +939,16 @@ modules:
                         )
                         |> SpiralRuntime.execute_with_options_async
 
-                    trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode} / command: {command}") _locals
+                    trace
+                        Debug
+                        (fun () ->
+                            $"Supervisor.main / executeCommand / exitCode: {exitCode} / command: {command}"
+                            + " / result"
+                            + if exitCode = 0 then ".Length" else ""
+                            + ": "
+                            + if exitCode = 0 then result |> String.length |> string else result
+                        )
+                        _locals
 
                     if isExitOnError && exitCode <> 0
                     then SpiralRuntime.current_process_kill ()
