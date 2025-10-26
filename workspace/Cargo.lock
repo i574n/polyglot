@@ -578,9 +578,9 @@ checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "base64ct"
-version = "1.8.0"
+version = "1.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "55248b47b0caf0546f7988906588779981c43bb1bc9d0c44087278f80cdb44ba"
+checksum = "89e25b6adfb930f02d1981565a6e5d9c547ac15a96606256d3b59040e5cd4ca3"
 
 [[package]]
 name = "binary-install"
@@ -981,15 +981,18 @@ checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 name = "chat_contract"
 version = "0.0.1"
 dependencies = [
+ "base64ct",
  "block-buffer 0.11.0-rc.1",
  "borsh",
  "const-oid",
  "crypto-common 0.2.0-rc.1",
  "fable_library_rust",
+ "home",
  "inline_colorization",
  "multibase",
  "near-sdk",
  "sha2 0.11.0-pre.4",
+ "tracing-indicatif",
  "unsigned-varint",
 ]
 
@@ -2496,11 +2499,11 @@ dependencies = [
 
 [[package]]
 name = "home"
-version = "0.5.12"
+version = "0.5.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc627f471c528ff0c4a49e1d5e60450c8f6461dd6d10ba9dcd3a61d3dff7728d"
+checksum = "589533453244b0995c858700322199b2becb13b627df2851f64a2775d024abcf"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -7331,9 +7334,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-indicatif"
-version = "0.3.13"
+version = "0.3.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04d4e11e0e27acef25a47f27e9435355fecdc488867fa2bc90e75b0700d2823d"
+checksum = "0646f9d8b1ad0805047cd8737026ab3b9d20d3cfe2db446e4d4b642f0e1df4c8"
 dependencies = [
  "indicatif 0.18.1",
  "tracing",

@@ -50,6 +50,10 @@ rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-10-07
 
+if ($env:CI) {
+    rustup uninstall stable
+}
+
 if (!(Search-Command "nix")) {
     if (!$IsWindows) {
         if (!(Search-DotnetSdk "9")) {
