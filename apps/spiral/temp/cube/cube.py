@@ -29,7 +29,7 @@ class IOsEnviron(Protocol):
         ...
 
 
-def _expr255() -> TypeInfo:
+def _expr256() -> TypeInfo:
     return union_type("Cube.US0", [], US0, lambda: [[], [], []])
 
 
@@ -45,9 +45,9 @@ class US0(Union):
         return ["US0_0", "US0_1", "US0_2"]
 
 
-US0_reflection = _expr255
+US0_reflection = _expr256
 
-def _expr256() -> TypeInfo:
+def _expr257() -> TypeInfo:
     return union_type("Cube.US1", [], US1, lambda: [[("f0_0", US0_reflection())], [("f1_0", US0_reflection())], [("f2_0", US0_reflection())], [("f3_0", US0_reflection())], [("f4_0", US0_reflection())], [("f5_0", US0_reflection())], [("f6_0", US0_reflection())]])
 
 
@@ -63,9 +63,9 @@ class US1(Union):
         return ["US1_0", "US1_1", "US1_2", "US1_3", "US1_4", "US1_5", "US1_6"]
 
 
-US1_reflection = _expr256
+US1_reflection = _expr257
 
-def _expr257() -> TypeInfo:
+def _expr258() -> TypeInfo:
     return union_type("Cube.US2", [], US2, lambda: [[("f0_0", string_type)], []])
 
 
@@ -81,9 +81,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr257
+US2_reflection = _expr258
 
-def _expr258() -> TypeInfo:
+def _expr259() -> TypeInfo:
     return record_type("Cube.Mut0", [], Mut0, lambda: [("l0", float64_type)])
 
 
@@ -91,9 +91,9 @@ def _expr258() -> TypeInfo:
 class Mut0(Record):
     l0: float
 
-Mut0_reflection = _expr258
+Mut0_reflection = _expr259
 
-def _expr259() -> TypeInfo:
+def _expr260() -> TypeInfo:
     return union_type("Cube.US3", [], US3, lambda: [[("f0_0", int32_type), ("f0_1", float64_type), ("f0_2", char_type)], []])
 
 
@@ -109,7 +109,7 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr259
+US3_reflection = _expr260
 
 def _expr261() -> TypeInfo:
     return union_type("Cube.US4", [], US4, lambda: [[("f0_0", float64_type), ("f0_1", char_type)], []])
@@ -223,17 +223,17 @@ def closure4(v0_1: float, v1: float, v2: float, v3: float, v4: float, v5: float,
 
 
 def closure3(v0_1: float, v1: float, v2: float, v3: float, v4: float, v5: float) -> Callable[[float], FSharpList[US3]]:
-    def _arrow263(v: float, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> FSharpList[US3]:
+    def _arrow264(v: float, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4, v5: Any=v5) -> FSharpList[US3]:
         return closure4(v0_1, v1, v2, v3, v4, v5, v)
 
-    return _arrow263
+    return _arrow264
 
 
 def method11(v0_1: float, v1: float, v2: float, v3: float, v4: float) -> Callable[[float, float], FSharpList[US3]]:
-    def _arrow264(v: float, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Callable[[float], FSharpList[US3]]:
+    def _arrow265(v: float, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Callable[[float], FSharpList[US3]]:
         return closure3(v0_1, v1, v2, v3, v4, v)
 
-    return _arrow264
+    return _arrow265
 
 
 def closure5(unit_var: None, v0_1: US3) -> tuple[int, float, str] | None:
@@ -273,23 +273,23 @@ def closure2(v0_1: float, v1: float, v2: float, _arg: tuple[float, float]) -> IE
     v151: IEnumerable_1[float] = method10(delay(_arrow270))
     v152: Callable[[float, float], FSharpList[US3]] = method11(v0_1, v1, v2, v3, _arg[1])
     v153: Callable[[US3], tuple[int, float, str] | None] = method13()
-    def _arrow273(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, _arg: Any=_arg) -> IEnumerable_1[tuple[int, float, str]]:
-        def _arrow272(cube_x: float) -> IEnumerable_1[tuple[int, float, str]]:
-            def _arrow271(cube_y: float) -> IEnumerable_1[tuple[int, float, str]]:
+    def _arrow274(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, _arg: Any=_arg) -> IEnumerable_1[tuple[int, float, str]]:
+        def _arrow273(cube_x: float) -> IEnumerable_1[tuple[int, float, str]]:
+            def _arrow272(cube_y: float) -> IEnumerable_1[tuple[int, float, str]]:
                 return choose(v153, v152(cube_x)(cube_y))
 
-            return collect(_arrow271, v151)
+            return collect(_arrow272, v151)
 
-        return collect(_arrow272, v151)
+        return collect(_arrow273, v151)
 
-    return delay(_arrow273)
+    return delay(_arrow274)
 
 
 def method8(v0_1: float, v1: float, v2: float) -> Callable[[tuple[float, float]], IEnumerable_1[tuple[int, float, str]]]:
-    def _arrow274(_arg10: tuple[float, float], v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> IEnumerable_1[tuple[int, float, str]]:
+    def _arrow275(_arg10: tuple[float, float], v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> IEnumerable_1[tuple[int, float, str]]:
         return closure2(v0_1, v1, v2, _arg10)
 
-    return _arrow274
+    return _arrow275
 
 
 def closure7(v0_1: Array[US4], v1: int, _arg: tuple[float, str]) -> None:
@@ -310,10 +310,10 @@ def closure7(v0_1: Array[US4], v1: int, _arg: tuple[float, str]) -> None:
 
 
 def closure6(v0_1: Array[US4], v1: int) -> Callable[[tuple[float, str]], None]:
-    def _arrow275(_arg10: tuple[float, str], v0_1: Any=v0_1, v1: Any=v1) -> None:
+    def _arrow276(_arg10: tuple[float, str], v0_1: Any=v0_1, v1: Any=v1) -> None:
         closure7(v0_1, v1, _arg10)
 
-    return _arrow275
+    return _arrow276
 
 
 def method14(__unit: None=None) -> str:
@@ -337,7 +337,7 @@ def closure10(v0_1: str, unit_var: None) -> None:
 
 
 def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
-    def _arrow286(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Async[None]:
+    def _arrow287(__unit: None=None, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3, v4: Any=v4) -> Async[None]:
         pattern_input: tuple[float, float, float] = method7(v2, v3, v4)
         v3633: float = pattern_input[2]
         v3632: float = pattern_input[1]
@@ -349,49 +349,49 @@ def method6(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
 
         iterate(action, v3650)
         v3666: Any = StringBuilder__ctor_Z721C83C5(method14())
-        def _arrow276(_arg_1: int) -> Async[None]:
+        def _arrow277(_arg_1: int) -> Async[None]:
             closure8(v3656, v3666, _arg_1)
             return singleton_1.Zero()
 
-        def _arrow285(__unit: None=None) -> Async[None]:
+        def _arrow286(__unit: None=None) -> Async[None]:
             v3673: str = to_string(v3666)
             v3676: bool = v0_1 < 0
-            def _expr278():
+            def _expr279():
                 sys.stdout.write("\033[1;1H")
-                def _expr277():
+                def _expr278():
                     return singleton_1.Zero()
 
-                return _expr277()
+                return _expr278()
 
-            def _arrow284(__unit: None=None) -> Async[None]:
+            def _arrow285(__unit: None=None) -> Async[None]:
                 v3686: None
                 closure10(v3673, None)
                 v3686 = None
                 v3702: Async[None] = sleep(1)
-                def _arrow283(__unit: None=None) -> Async[None]:
+                def _arrow284(__unit: None=None) -> Async[None]:
                     v3715: bool = (v1 >= v0_1) if (v0_1 > 0) else False
-                    def _expr279():
+                    def _expr280():
                         return singleton_1.Zero()
-
-                    def _arrow281(__unit: None=None) -> Async[None]:
-                        v3720: Async[None] = method5(v0_1, v1 + 1, v3631 + 0.05, v3632 + 0.05, v3633 + 0.01)
-                        def _arrow280(__unit: None=None) -> Async[None]:
-                            return singleton_1.Zero()
-
-                        return singleton_1.Combine(singleton_1.ReturnFrom(v3720), singleton_1.Delay(_arrow280))
 
                     def _arrow282(__unit: None=None) -> Async[None]:
+                        v3720: Async[None] = method5(v0_1, v1 + 1, v3631 + 0.05, v3632 + 0.05, v3633 + 0.01)
+                        def _arrow281(__unit: None=None) -> Async[None]:
+                            return singleton_1.Zero()
+
+                        return singleton_1.Combine(singleton_1.ReturnFrom(v3720), singleton_1.Delay(_arrow281))
+
+                    def _arrow283(__unit: None=None) -> Async[None]:
                         return singleton_1.Zero()
 
-                    return singleton_1.Combine(_expr279() if v3715 else _arrow281(), singleton_1.Delay(_arrow282))
+                    return singleton_1.Combine(_expr280() if v3715 else _arrow282(), singleton_1.Delay(_arrow283))
 
-                return singleton_1.Bind(v3702, _arrow283)
+                return singleton_1.Bind(v3702, _arrow284)
 
-            return singleton_1.Combine(_expr278() if v3676 else singleton_1.Zero(), singleton_1.Delay(_arrow284))
+            return singleton_1.Combine(_expr279() if v3676 else singleton_1.Zero(), singleton_1.Delay(_arrow285))
 
-        return singleton_1.Combine(singleton_1.For(range_big_int(0, 1, 44 - 1), _arrow276), singleton_1.Delay(_arrow285))
+        return singleton_1.Combine(singleton_1.For(range_big_int(0, 1, 44 - 1), _arrow277), singleton_1.Delay(_arrow286))
 
-    return singleton_1.Delay(_arrow286)
+    return singleton_1.Delay(_arrow287)
 
 
 def method5(v0_1: int, v1: int, v2: float, v3: float, v4: float) -> Async[None]:
