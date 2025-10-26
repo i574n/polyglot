@@ -2,6 +2,7 @@ use leptos::{logging::log, *};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use wasm_bindgen::prelude::*;
+use leptos::prelude::*;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum OuterMessage {
@@ -120,19 +121,19 @@ pub async fn set_inner_messages_state(messages_json: String) -> Result<JsValue, 
     )))
 }
 
-fn _use_set_inner_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
-    create_action(|json: &String| {
-        let json = json.to_owned();
-        async move { set_inner_messages_async(&json).await }
-    })
-}
+// fn _use_set_inner_messages_async() -> leptos::prelude::Action<String, Result<JsValue, JsValue>> {
+//     Action::new(|json: &String| {
+//         let json = json.to_owned();
+//         async move { set_inner_messages_async(&json).await }
+//     })
+// }
 
-fn _use_set_outer_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
-    create_action(|json: &String| {
-        let json = json.to_owned();
-        async move { set_outer_messages_async(&json).await }
-    })
-}
+// fn _use_set_outer_messages_async() -> leptos::prelude::Action<String, Result<JsValue, JsValue>> {
+//     Action::new(|json: &String| {
+//         let json = json.to_owned();
+//         async move { set_outer_messages_async(&json).await }
+//     })
+// }
 
 pub fn use_set_inner_messages() -> impl Fn(String) -> Result<JsValue, JsValue> {
     |json| set_inner_messages(&json)
@@ -154,7 +155,7 @@ pub fn MessagesProcessor() -> impl IntoView {
     let set_inner_messages = use_set_inner_messages();
 
     let global_state = use_context::<GlobalState>();
-    create_effect(move |_| {
+    Effect::new(move |_| {
         log!("MessagesProcessor () / create_effect");
         let global_state = global_state.clone().unwrap();
         let messages = global_state.messages.get();
