@@ -3,13 +3,7 @@ cargo-features = ["profile-rustflags"]
 [workspace]
 resolver = "2"
 members = [
-    "../apps/chat/contract",
-    "../apps/chat/contract/tests",
     "../apps/plot",
-    "../apps/spiral/temp/extension",
-    "../apps/spiral/temp/test",
-    "../apps/spiral/temp/cube",
-    "../examples/rust/exercism",
     "../lib/math"
 ]
 
