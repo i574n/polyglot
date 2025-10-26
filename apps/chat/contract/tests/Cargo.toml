@@ -13,5 +13,5 @@ serde_json = { workspace = true }
 tokio = { version = "1.40", features = ["full"] }
 anyhow = "1.0"
 near-sdk = "=5.11.0"
-near-workspaces = { version = "=0.11.1", features = ["experimental", "unstable"] }
-near-sandbox-utils = { version = ">=0.11,<1", features = ["global_install"] }
+near-workspaces = { version = ">=0.21.0", features = ["experimental", "unstable"] }
+# near-sandbox-utils = { version = ">=0.11,<1", features = ["global_install"] }
