@@ -41,31 +41,7 @@
 
 #!pwsh
 
-{ pwsh ../apps/perf/build.ps1 } | Invoke-Block
-
-#!pwsh
-
 { pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/scheduler/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/chat/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/spiral/temp/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/spiral/vscode/build.ps1 } | Invoke-Block
-
-#!pwsh
-
-{ pwsh ../apps/ipfs/build.ps1 } | Invoke-Block
 
 #!pwsh
 
