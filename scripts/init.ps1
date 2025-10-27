@@ -10,20 +10,8 @@ $ErrorActionPreference = "Stop"
 $ResolvedScriptDir = ResolveLink $ScriptDir
 $ResolvedScriptDir | Set-Location
 
-Write-Output "polyglot/scripts/init.ps1 / ScriptDir: $ScriptDir / ResolvedScriptDir: $ResolvedScriptDir"
 
-function Search-DotnetSdk($version) {
-    if (!(Search-Command "dotnet")) {
-        return $false
-    }
-    $sdks = & dotnet --list-sdks
-    foreach ($sdk in $sdks) {
-        if ($sdk.StartsWith($version)) {
-            return $true
-        }
-    }
-    return $false
-}
+Write-Output "polyglot/scripts/init.ps1 / ScriptDir: $ScriptDir / ResolvedScriptDir: $ResolvedScriptDir"
 
 if (!(Search-Command "rustup")) {
     if ($IsWindows) {
@@ -49,6 +37,10 @@ rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
 rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-10-07
+
+if ($env:CI) {
+    rustup uninstall stable
+}
 
 if (!(Search-Command "nix")) {
     if (!$IsWindows) {
@@ -76,8 +68,11 @@ if (!(Search-Command "nix")) {
         if (-not ($distributions -like "Ubuntu")) {
             wsl --install Ubuntu --no-launch
         }
+    }
 
-        { sudo sh init.sh } | Invoke-Block -Linux -OnError Continue
+    { sudo sh init.sh } | Invoke-Block -Linux -OnError Continue
+
+    if ($IsWindows) {
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
@@ -131,8 +126,13 @@ $gitPath = ResolveLink (GetFullPath "../..")
 
 Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPath: $gitPath"
 
+
+$url = git ls-remote --get-url
+$owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
+Write-Output "init.ps1 / url: $url / owner: $owner"
+
 Set-Location (New-Item $gitPath -ItemType Directory -Force)
-git clone --recurse-submodules https://github.com/i574n/spiral.git
+git clone --recurse-submodules https://github.com/$owner/spiral.git
 { git pull } | Invoke-Block -Location spiral -OnError Continue
 Set-Location $ResolvedScriptDir
 

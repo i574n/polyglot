@@ -17,7 +17,7 @@ sha2 = { workspace = true }
 num-complex = ">=0.4,<1"
 statrs = ">=0.17,<1"
 float-cmp = ">=0.9,<1"
-pyo3 = ">=0.22,<1"
+pyo3 = "=0.26.0"
 
 [[bin]]
 name = "math"

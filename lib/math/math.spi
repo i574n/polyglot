@@ -287,9 +287,9 @@ inl run_test log (fn : (complex f64 -> complex f64) * (complex f64 -> complex f6
         |> resultm.box
 
     join
-        !\($'"pyo3::prepare_freethreaded_python()"') : ()
+        !\($'"pyo3::Python::initialize()"') : ()
 
-        !\($'"let __run_test = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
+        !\($'"let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"')
 
         let x' = fn_ (!\($'"py"') : python)
         inl x' = join x'

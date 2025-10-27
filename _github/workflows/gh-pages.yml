@@ -47,11 +47,6 @@ jobs:
           virtualenvs-in-project: true
           installer-parallel: true
 
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        if: contains(matrix.os, 'ubuntu')
-        with:
-          packages: blender
-
       - run: pwsh scripts/workflow.ps1
 
       - uses: actions/upload-artifact@v4

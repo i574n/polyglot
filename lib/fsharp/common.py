@@ -1,10 +1,10 @@
 from __future__ import annotations
+from fable_modules.fable_library.reflection import (TypeInfo, union_type)
+from fable_modules.fable_library.types import (Array, Union)
 from collections.abc import Callable
 from typing import Any
 from .....deps.spiral.lib.spiral.lib import SpiralTrace_trace
 from .....deps.spiral.lib.spiral.trace import US0
-from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.types import (Array, Union)
 
 nl: str = "\n"
 
