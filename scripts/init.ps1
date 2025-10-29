@@ -95,7 +95,9 @@ if (!(Search-Command "gleam")) {
         { sudo apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
         { apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
 
-        echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-25 contrib" | sudo tee -a /etc/apt/sources.list
+        { echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-26 contrib" | sudo tee -a /etc/apt/sources.list } | Invoke-Block -OnError Continue
+        { echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-26 contrib" | tee -a /etc/apt/sources.list } | Invoke-Block -OnError Continue
+
         { sudo apt update } | Invoke-Block -OnError Continue
         { apt update } | Invoke-Block -OnError Continue
 
