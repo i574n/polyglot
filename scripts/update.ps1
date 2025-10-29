@@ -33,12 +33,8 @@ if (!$fast) {
 
 { cargo update } | Invoke-Block
 
-UpdateToml "../apps/chat/contract/Cargo.toml"
-UpdateToml "../apps/chat/contract/tests/Cargo.toml"
 UpdateToml "../apps/plot/Cargo.toml"
 
 if (!$fast) {
-    UpdateJson "../apps/spiral/temp/extension"
-    UpdateJson "../apps/ipfs"
     UpdateJson ".."
 }

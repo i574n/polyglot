@@ -71,6 +71,7 @@ if (!(Search-Command "nix")) {
     }
 
     { sudo sh init.sh } | Invoke-Block -Linux -OnError Continue
+    { sh init.sh } | Invoke-Block -Linux -OnError Continue
 
     if ($IsWindows) {
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
@@ -91,15 +92,18 @@ if ($init) {
 if (!(Search-Command "gleam")) {
     if (!$IsWindows) {
         wget https://binaries2.erlang-solutions.com/GPG-KEY-pmanager.asc
-        sudo apt-key add GPG-KEY-pmanager.asc
+        { sudo apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
+        { apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
 
         echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-25 contrib" | sudo tee -a /etc/apt/sources.list
-        sudo apt update
+        { sudo apt update } | Invoke-Block -OnError Continue
+        { apt update } | Invoke-Block -OnError Continue
 
         # iwr https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb -OutFile erlang-solutions_1.0_all.deb; sudo dpkg -i erlang-solutions_1.0_all.deb
 
         # sudo apt install -y esl-erlang
-        sudo apt install -y erlang
+        { sudo apt install -y erlang } | Invoke-Block -OnError Continue
+        { apt install -y erlang } | Invoke-Block -OnError Continue
 
         Set-Location /tmp
         git clone https://github.com/gleam-lang/gleam.git

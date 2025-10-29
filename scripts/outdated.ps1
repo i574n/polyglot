@@ -36,12 +36,7 @@ if (!$SkipPaket) {
 
 CheckToml "../workspace/Cargo.toml" `-w
 
-CheckToml "../apps/chat/contract/Cargo.toml"
-CheckToml "../apps/chat/contract/tests/Cargo.toml"
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson ".."
-CheckJson "../apps/ipfs"
-CheckJson "../apps/spiral/temp/extension"
-CheckJson "../apps/spiral/vscode"
 CheckJson "../deps/The-Spiral-Language/VS Code Plugin"

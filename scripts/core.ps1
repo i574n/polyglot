@@ -125,6 +125,10 @@ function Invoke-Block {
         }
     }
 
+    if ($env:CI -and $IsLinux) {
+        df -h
+    }
+
     if ($Return) {
         return $result
     }
