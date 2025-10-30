@@ -24,9 +24,10 @@
 if (!(Search-Command "cargo-outdated")) {
     $url = git ls-remote --get-url
     $owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
-    Write-Output "scripts/init.dib / url: $url / owner: $owner"
+    $domain = ($url -split '/' | Select-Object -Last 3 | Select-Object -First 1) ?? $env:GITHUB_SERVER_URL -replace 'https?://', ''
+    Write-Output "polyglot/scripts/init.dib / url: $url / owner: $owner / domain: $domain"
 
-    { cargo install --git https://github.com/$owner/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+    { cargo install --git https://$domain/$owner/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
