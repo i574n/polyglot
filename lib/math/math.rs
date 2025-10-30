@@ -950,7 +950,33 @@ mod module_b7a9935b {
             v0_1.l0.set(v4);
             ()
         }
-        pub fn method19(v0_1: string, v1_1: f64) -> string {
+        pub fn method19(v0_1: f64) -> string {
+            let v2: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
+                l0: MutCell::new(Math::method20()),
+            });
+            let v16: () = {
+                Math::closure2(v2.clone(), string("{ "), ());
+                ()
+            };
+            let v35: () = {
+                Math::closure2(v2.clone(), string("expected"), ());
+                ()
+            };
+            let v54: () = {
+                Math::closure2(v2.clone(), string(" = "), ());
+                ()
+            };
+            let v74: () = {
+                Math::closure2(v2.clone(), sprintf!("{:+.6}", v0_1), ());
+                ()
+            };
+            let v93: () = {
+                Math::closure2(v2.clone(), string(" }"), ());
+                ()
+            };
+            v2.l0.get().clone()
+        }
+        pub fn method21(v0_1: f64, v1_1: f64) -> string {
             let v3: LrcPtr<Math::Mut3> = LrcPtr::new(Math::Mut3 {
                 l0: MutCell::new(Math::method20()),
             });
@@ -959,34 +985,34 @@ mod module_b7a9935b {
                 ()
             };
             let v36: () = {
-                Math::closure2(v3.clone(), string("name"), ());
+                Math::closure2(v3.clone(), string("actual"), ());
                 ()
             };
             let v55: () = {
                 Math::closure2(v3.clone(), string(" = "), ());
                 ()
             };
-            let v72: () = {
-                Math::closure2(v3.clone(), v0_1, ());
+            let v75: () = {
+                Math::closure2(v3.clone(), sprintf!("{:+.6}", v0_1), ());
                 ()
             };
-            let v91: () = {
+            let v94: () = {
                 Math::closure2(v3.clone(), string("; "), ());
                 ()
             };
-            let v110: () = {
+            let v113: () = {
                 Math::closure2(v3.clone(), string("expected"), ());
                 ()
             };
-            let v127: () = {
+            let v130: () = {
                 Math::closure2(v3.clone(), string(" = "), ());
                 ()
             };
-            let v147: () = {
+            let v150: () = {
                 Math::closure2(v3.clone(), sprintf!("{:+.6}", v1_1), ());
                 ()
             };
-            let v166: () = {
+            let v169: () = {
                 Math::closure2(v3.clone(), string(" }"), ());
                 ()
             };
@@ -1033,39 +1059,65 @@ mod module_b7a9935b {
                     .clone(),
                     _ => v64.clone(),
                 };
-                let v70: bool = (v67.clone().im) == 0.0_f64;
+                let v69: f64 = v67.clone().im;
+                let v70: bool = (v69) == 0.0_f64;
                 let v72: bool = if v70 { true } else { Math::method18(v70) };
-                let v75: string = Math::method19(string("__assert_eq"), 0.0_f64);
-                let v79: () = {
-                    Math::closure3(v75.clone(), ());
+                let v77: string = if v70 {
+                    Math::method19(0.0_f64)
+                } else {
+                    Math::method21(v69, 0.0_f64)
+                };
+                let v92: string = append(
+                    string("__assert_eq "),
+                    (if v70 {
+                        Math::method19(0.0_f64)
+                    } else {
+                        Math::method21(v69, 0.0_f64)
+                    }),
+                );
+                let v98: () = {
+                    Math::closure3(v92.clone(), ());
                     ()
                 };
                 if (v72) == false {
-                    panic!("{}", v75,);
+                    panic!("{}", v92,);
                 }
                 {
-                    let v84: f64 = (v67.re) - (patternInput.1.clone());
-                    let v85: f64 = -v84;
-                    let v88: bool = (if (v84) >= (v85) { v84 } else { v85 }) < 0.0001_f64;
-                    let v90: bool = if v88 { true } else { Math::method18(v88) };
-                    let v93: string = Math::method19(string("__assert_lt"), 0.0001_f64);
-                    let v97: () = {
-                        Math::closure3(v93.clone(), ());
+                    let v103: f64 = (v67.re) - (patternInput.1.clone());
+                    let v104: f64 = -v103;
+                    let v106: f64 = if (v103) >= (v104) { v103 } else { v104 };
+                    let v107: bool = (v106) < 0.0001_f64;
+                    let v109: bool = if v107 { true } else { Math::method18(v107) };
+                    let v114: string = if v107 {
+                        Math::method19(0.0001_f64)
+                    } else {
+                        Math::method21(v106, 0.0001_f64)
+                    };
+                    let v127: string = append(
+                        string("__assert_lt "),
+                        (if v107 {
+                            Math::method19(0.0001_f64)
+                        } else {
+                            Math::method21(v106, 0.0001_f64)
+                        }),
+                    );
+                    let v133: () = {
+                        Math::closure3(v127.clone(), ());
                         ()
                     };
-                    if (v90) == false {
-                        panic!("{}", v93,);
+                    if (v109) == false {
+                        panic!("{}", v127,);
                     }
                     {
-                        let v100: i32 = (v9) + 1_i32;
-                        v7.l0.set(v100);
+                        let v136: i32 = (v9) + 1_i32;
+                        v7.l0.set(v136);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method21(v0_1: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
+        pub fn method22(v0_1: Result<(), pyo3::PyErr>) -> Result<(), pyo3::PyErr> {
             v0_1
         }
         pub fn method0() {
@@ -1074,7 +1126,7 @@ mod module_b7a9935b {
                 //;
                 Math::method1(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1100,7 +1152,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method23(v0_1: pyo3::Python) {
+        pub fn method24(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, -2.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1123,38 +1175,64 @@ mod module_b7a9935b {
             };
             let v61: f64 = (v58.clone().re) - 0.8673_f64;
             let v62: f64 = -v61;
-            let v65: bool = (if (v61) >= (v62) { v61 } else { v62 }) < 0.001_f64;
+            let v64: f64 = if (v61) >= (v62) { v61 } else { v62 };
+            let v65: bool = (v64) < 0.001_f64;
             let v67: bool = if v65 { true } else { Math::method18(v65) };
-            let v70: string = Math::method19(string("__assert_lt"), 0.001_f64);
-            let v74: () = {
-                Math::closure3(v70.clone(), ());
+            let v72: string = if v65 {
+                Math::method19(0.001_f64)
+            } else {
+                Math::method21(v64, 0.001_f64)
+            };
+            let v87: string = append(
+                string("__assert_lt "),
+                (if v65 {
+                    Math::method19(0.001_f64)
+                } else {
+                    Math::method21(v64, 0.001_f64)
+                }),
+            );
+            let v93: () = {
+                Math::closure3(v87.clone(), ());
                 ()
             };
             if (v67) == false {
-                panic!("{}", v70,);
+                panic!("{}", v87,);
             }
             {
-                let v79: f64 = (v58.im) - 0.275_f64;
-                let v80: f64 = -v79;
-                let v83: bool = (if (v79) >= (v80) { v79 } else { v80 }) < 0.001_f64;
-                let v85: bool = if v83 { true } else { Math::method18(v83) };
-                let v87: string = Math::method19(string("__assert_lt"), 0.001_f64);
-                let v91: () = {
-                    Math::closure3(v87.clone(), ());
+                let v98: f64 = (v58.im) - 0.275_f64;
+                let v99: f64 = -v98;
+                let v101: f64 = if (v98) >= (v99) { v98 } else { v99 };
+                let v102: bool = (v101) < 0.001_f64;
+                let v104: bool = if v102 { true } else { Math::method18(v102) };
+                let v109: string = if v102 {
+                    Math::method19(0.001_f64)
+                } else {
+                    Math::method21(v101, 0.001_f64)
+                };
+                let v120: string = append(
+                    string("__assert_lt "),
+                    (if v102 {
+                        Math::method19(0.001_f64)
+                    } else {
+                        Math::method21(v101, 0.001_f64)
+                    }),
+                );
+                let v126: () = {
+                    Math::closure3(v120.clone(), ());
                     ()
                 };
-                if (v85) == false {
-                    panic!("{}", v87,);
+                if (v104) == false {
+                    panic!("{}", v120,);
                 }
             }
         }
-        pub fn method22() {
+        pub fn method23() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method23(py);
+                Math::method24(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1180,7 +1258,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method26() -> LrcPtr<Math::UH0> {
+        pub fn method27() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(-2.0_f64,
                                          LrcPtr::new(Math::UH0::UH0_1(-4.0_f64,
                                                                       LrcPtr::new(Math::UH0::UH0_1(-6.0_f64,
@@ -1203,11 +1281,11 @@ mod module_b7a9935b {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(-40.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method27(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+        pub fn method28(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
-            '_method27: loop {
-                break '_method27 (match v1_1.get().clone().as_ref() {
+            '_method28: loop {
+                break '_method28 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
@@ -1238,26 +1316,52 @@ mod module_b7a9935b {
                             .clone(),
                             _ => v58.clone(),
                         };
-                        let v64: bool = (v61.clone().re) == 0.0_f64;
+                        let v63: f64 = v61.clone().re;
+                        let v64: bool = (v63) == 0.0_f64;
                         let v66: bool = if v64 { true } else { Math::method18(v64) };
-                        let v69: string = Math::method19(string("__assert_eq"), 0.0_f64);
-                        let v73: () = {
-                            Math::closure3(v69.clone(), ());
+                        let v71: string = if v64 {
+                            Math::method19(0.0_f64)
+                        } else {
+                            Math::method21(v63, 0.0_f64)
+                        };
+                        let v86: string = append(
+                            string("__assert_eq "),
+                            (if v64 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v63, 0.0_f64)
+                            }),
+                        );
+                        let v92: () = {
+                            Math::closure3(v86.clone(), ());
                             ()
                         };
                         if (v66) == false {
-                            panic!("{}", v69,);
+                            panic!("{}", v86,);
                         }
                         {
-                            let v78: bool = (v61.im) == 0.0_f64;
-                            let v80: bool = if v78 { true } else { Math::method18(v78) };
-                            let v82: string = Math::method19(string("__assert_eq"), 0.0_f64);
-                            let v86: () = {
-                                Math::closure3(v82.clone(), ());
+                            let v96: f64 = v61.im;
+                            let v97: bool = (v96) == 0.0_f64;
+                            let v99: bool = if v97 { true } else { Math::method18(v97) };
+                            let v104: string = if v97 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v96, 0.0_f64)
+                            };
+                            let v115: string = append(
+                                string("__assert_eq "),
+                                (if v97 {
+                                    Math::method19(0.0_f64)
+                                } else {
+                                    Math::method21(v96, 0.0_f64)
+                                }),
+                            );
+                            let v121: () = {
+                                Math::closure3(v115.clone(), ());
                                 ()
                             };
-                            if (v80) == false {
-                                panic!("{}", v82,);
+                            if (v99) == false {
+                                panic!("{}", v115,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1269,23 +1373,23 @@ mod module_b7a9935b {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method27;
+                                continue '_method28;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method25(v0_1: pyo3::Python) {
-            Math::method27(v0_1, Math::method26());
+        pub fn method26(v0_1: pyo3::Python) {
+            Math::method28(v0_1, Math::method27());
         }
-        pub fn method24() {
+        pub fn method25() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method25(py);
+                Math::method26(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1311,7 +1415,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method29(v0_1: pyo3::Python) {
+        pub fn method30(v0_1: pyo3::Python) {
             let v13: Array<num_complex::Complex<f64>> = new_array(&[
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 num_complex::Complex::new(0.5_f64, 21.02204_f64),
@@ -1348,45 +1452,71 @@ mod module_b7a9935b {
                 };
                 let v76: f64 = v74.clone().re;
                 let v77: f64 = -v76;
-                let v80: bool = (if (v76) >= (v77) { v76 } else { v77 }) < 0.0001_f64;
+                let v79: f64 = if (v76) >= (v77) { v76 } else { v77 };
+                let v80: bool = (v79) < 0.0001_f64;
                 let v82: bool = if v80 { true } else { Math::method18(v80) };
-                let v85: string = Math::method19(string("__assert_lt"), 0.0001_f64);
-                let v89: () = {
-                    Math::closure3(v85.clone(), ());
+                let v87: string = if v80 {
+                    Math::method19(0.0001_f64)
+                } else {
+                    Math::method21(v79, 0.0001_f64)
+                };
+                let v102: string = append(
+                    string("__assert_lt "),
+                    (if v80 {
+                        Math::method19(0.0001_f64)
+                    } else {
+                        Math::method21(v79, 0.0001_f64)
+                    }),
+                );
+                let v108: () = {
+                    Math::closure3(v102.clone(), ());
                     ()
                 };
                 if (v82) == false {
-                    panic!("{}", v85,);
+                    panic!("{}", v102,);
                 }
                 {
-                    let v93: f64 = v74.im;
-                    let v94: f64 = -v93;
-                    let v97: bool = (if (v93) >= (v94) { v93 } else { v94 }) < 0.0001_f64;
-                    let v99: bool = if v97 { true } else { Math::method18(v97) };
-                    let v101: string = Math::method19(string("__assert_lt"), 0.0001_f64);
-                    let v105: () = {
-                        Math::closure3(v101.clone(), ());
+                    let v112: f64 = v74.im;
+                    let v113: f64 = -v112;
+                    let v115: f64 = if (v112) >= (v113) { v112 } else { v113 };
+                    let v116: bool = (v115) < 0.0001_f64;
+                    let v118: bool = if v116 { true } else { Math::method18(v116) };
+                    let v123: string = if v116 {
+                        Math::method19(0.0001_f64)
+                    } else {
+                        Math::method21(v115, 0.0001_f64)
+                    };
+                    let v134: string = append(
+                        string("__assert_lt "),
+                        (if v116 {
+                            Math::method19(0.0001_f64)
+                        } else {
+                            Math::method21(v115, 0.0001_f64)
+                        }),
+                    );
+                    let v140: () = {
+                        Math::closure3(v134.clone(), ());
                         ()
                     };
-                    if (v99) == false {
-                        panic!("{}", v101,);
+                    if (v118) == false {
+                        panic!("{}", v134,);
                     }
                     {
-                        let v108: i32 = (v17) + 1_i32;
-                        v15.l0.set(v108);
+                        let v143: i32 = (v17) + 1_i32;
+                        v15.l0.set(v143);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method28() {
+        pub fn method29() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method29(py);
+                Math::method30(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1412,7 +1542,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method31(v0_1: pyo3::Python) {
+        pub fn method32(v0_1: pyo3::Python) {
             let v1_1: Array<f64> = new_array(&[
                 2.0_f64, 3.0_f64, 4.0_f64, 5.0_f64, 10.0_f64, 20.0_f64, 50.0_f64,
             ]);
@@ -1443,43 +1573,69 @@ mod module_b7a9935b {
                     .clone(),
                     _ => v61.clone(),
                 };
-                let v67: bool = (v64.clone().re) > 0.0_f64;
+                let v66: f64 = v64.clone().re;
+                let v67: bool = (v66) > 0.0_f64;
                 let v69: bool = if v67 { true } else { Math::method18(v67) };
-                let v72: string = Math::method19(string("__assert_gt"), 0.0_f64);
-                let v76: () = {
-                    Math::closure3(v72.clone(), ());
+                let v74: string = if v67 {
+                    Math::method19(0.0_f64)
+                } else {
+                    Math::method21(v66, 0.0_f64)
+                };
+                let v89: string = append(
+                    string("__assert_gt "),
+                    (if v67 {
+                        Math::method19(0.0_f64)
+                    } else {
+                        Math::method21(v66, 0.0_f64)
+                    }),
+                );
+                let v95: () = {
+                    Math::closure3(v89.clone(), ());
                     ()
                 };
                 if (v69) == false {
-                    panic!("{}", v72,);
+                    panic!("{}", v89,);
                 }
                 {
-                    let v81: bool = (v64.im) == 0.0_f64;
-                    let v83: bool = if v81 { true } else { Math::method18(v81) };
-                    let v86: string = Math::method19(string("__assert_eq"), 0.0_f64);
-                    let v90: () = {
-                        Math::closure3(v86.clone(), ());
+                    let v99: f64 = v64.im;
+                    let v100: bool = (v99) == 0.0_f64;
+                    let v102: bool = if v100 { true } else { Math::method18(v100) };
+                    let v107: string = if v100 {
+                        Math::method19(0.0_f64)
+                    } else {
+                        Math::method21(v99, 0.0_f64)
+                    };
+                    let v120: string = append(
+                        string("__assert_eq "),
+                        (if v100 {
+                            Math::method19(0.0_f64)
+                        } else {
+                            Math::method21(v99, 0.0_f64)
+                        }),
+                    );
+                    let v126: () = {
+                        Math::closure3(v120.clone(), ());
                         ()
                     };
-                    if (v83) == false {
-                        panic!("{}", v86,);
+                    if (v102) == false {
+                        panic!("{}", v120,);
                     }
                     {
-                        let v93: i32 = (v5) + 1_i32;
-                        v3.l0.set(v93);
+                        let v129: i32 = (v5) + 1_i32;
+                        v3.l0.set(v129);
                         ()
                     }
                 }
             }
             ()
         }
-        pub fn method30() {
+        pub fn method31() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method31(py);
+                Math::method32(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1505,7 +1661,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method33(v0_1: pyo3::Python) {
+        pub fn method34(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(1.0_f64, 0.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1526,36 +1682,62 @@ mod module_b7a9935b {
                 .clone(),
                 _ => v55.clone(),
             };
-            let v61: bool = (v58.clone().re) == (f64::INFINITY);
+            let v60: f64 = v58.clone().re;
+            let v61: bool = (v60) == (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v66: string = Math::method19(string("__assert_eq"), f64::INFINITY);
-            let v70: () = {
-                Math::closure3(v66.clone(), ());
+            let v68: string = if v61 {
+                Math::method19(f64::INFINITY)
+            } else {
+                Math::method21(v60, f64::INFINITY)
+            };
+            let v83: string = append(
+                string("__assert_eq "),
+                (if v61 {
+                    Math::method19(f64::INFINITY)
+                } else {
+                    Math::method21(v60, f64::INFINITY)
+                }),
+            );
+            let v89: () = {
+                Math::closure3(v83.clone(), ());
                 ()
             };
             if (v63) == false {
-                panic!("{}", v66,);
+                panic!("{}", v83,);
             }
             {
-                let v75: bool = (v58.im) == 0.0_f64;
-                let v77: bool = if v75 { true } else { Math::method18(v75) };
-                let v79: string = Math::method19(string("__assert_eq"), 0.0_f64);
-                let v83: () = {
-                    Math::closure3(v79.clone(), ());
+                let v93: f64 = v58.im;
+                let v94: bool = (v93) == 0.0_f64;
+                let v96: bool = if v94 { true } else { Math::method18(v94) };
+                let v101: string = if v94 {
+                    Math::method19(0.0_f64)
+                } else {
+                    Math::method21(v93, 0.0_f64)
+                };
+                let v112: string = append(
+                    string("__assert_eq "),
+                    (if v94 {
+                        Math::method19(0.0_f64)
+                    } else {
+                        Math::method21(v93, 0.0_f64)
+                    }),
+                );
+                let v118: () = {
+                    Math::closure3(v112.clone(), ());
                     ()
                 };
-                if (v77) == false {
-                    panic!("{}", v79,);
+                if (v96) == false {
+                    panic!("{}", v112,);
                 }
             }
         }
-        pub fn method32() {
+        pub fn method33() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method33(py);
+                Math::method34(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1581,7 +1763,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method35(v0_1: pyo3::Python) {
+        pub fn method36(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(2.0_f64, 10.0_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1629,36 +1811,60 @@ mod module_b7a9935b {
             let v127: f64 = v123.clone().re;
             let v128: bool = (v125) == (v127);
             let v130: bool = if v128 { true } else { Math::method18(v128) };
-            let v132: string = Math::method19(string("__assert_eq"), v127);
-            let v136: () = {
-                Math::closure3(v132.clone(), ());
+            let v133: string = if v128 {
+                Math::method19(v127)
+            } else {
+                Math::method21(v125, v127)
+            };
+            let v146: string = append(
+                string("__assert_eq "),
+                (if v128 {
+                    Math::method19(v127)
+                } else {
+                    Math::method21(v125, v127)
+                }),
+            );
+            let v152: () = {
+                Math::closure3(v146.clone(), ());
                 ()
             };
             if (v130) == false {
-                panic!("{}", v132,);
+                panic!("{}", v146,);
             }
             {
-                let v140: f64 = v58.im;
-                let v142: f64 = v123.im;
-                let v143: bool = (v140) == (v142);
-                let v145: bool = if v143 { true } else { Math::method18(v143) };
-                let v146: string = Math::method19(string("__assert_eq"), v142);
-                let v150: () = {
-                    Math::closure3(v146.clone(), ());
+                let v156: f64 = v58.im;
+                let v158: f64 = v123.im;
+                let v159: bool = (v156) == (v158);
+                let v161: bool = if v159 { true } else { Math::method18(v159) };
+                let v164: string = if v159 {
+                    Math::method19(v158)
+                } else {
+                    Math::method21(v156, v158)
+                };
+                let v173: string = append(
+                    string("__assert_eq "),
+                    (if v159 {
+                        Math::method19(v158)
+                    } else {
+                        Math::method21(v156, v158)
+                    }),
+                );
+                let v179: () = {
+                    Math::closure3(v173.clone(), ());
                     ()
                 };
-                if (v145) == false {
-                    panic!("{}", v146,);
+                if (v161) == false {
+                    panic!("{}", v173,);
                 }
             }
         }
-        pub fn method34() {
+        pub fn method35() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method35(py);
+                Math::method36(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1684,7 +1890,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method37(v0_1: pyo3::Python) {
+        pub fn method38(v0_1: pyo3::Python) {
             let v2: num_complex::Complex<f64> = num_complex::Complex::new(0.01_f64, 0.01_f64);
             let v5: Result<num_complex::Complex<f64>, std::string::String> = Math::method4(
                 v0_1.clone(),
@@ -1705,36 +1911,62 @@ mod module_b7a9935b {
                 .clone(),
                 _ => v55.clone(),
             };
-            let v61: bool = (v58.clone().re) < (f64::INFINITY);
+            let v60: f64 = v58.clone().re;
+            let v61: bool = (v60) < (f64::INFINITY);
             let v63: bool = if v61 { true } else { Math::method18(v61) };
-            let v66: string = Math::method19(string("__assert_lt"), f64::INFINITY);
-            let v70: () = {
-                Math::closure3(v66.clone(), ());
+            let v68: string = if v61 {
+                Math::method19(f64::INFINITY)
+            } else {
+                Math::method21(v60, f64::INFINITY)
+            };
+            let v83: string = append(
+                string("__assert_lt "),
+                (if v61 {
+                    Math::method19(f64::INFINITY)
+                } else {
+                    Math::method21(v60, f64::INFINITY)
+                }),
+            );
+            let v89: () = {
+                Math::closure3(v83.clone(), ());
                 ()
             };
             if (v63) == false {
-                panic!("{}", v66,);
+                panic!("{}", v83,);
             }
             {
-                let v75: bool = (v58.im) < (f64::INFINITY);
-                let v77: bool = if v75 { true } else { Math::method18(v75) };
-                let v79: string = Math::method19(string("__assert_lt"), f64::INFINITY);
-                let v83: () = {
-                    Math::closure3(v79.clone(), ());
+                let v93: f64 = v58.im;
+                let v94: bool = (v93) < (f64::INFINITY);
+                let v96: bool = if v94 { true } else { Math::method18(v94) };
+                let v101: string = if v94 {
+                    Math::method19(f64::INFINITY)
+                } else {
+                    Math::method21(v93, f64::INFINITY)
+                };
+                let v112: string = append(
+                    string("__assert_lt "),
+                    (if v94 {
+                        Math::method19(f64::INFINITY)
+                    } else {
+                        Math::method21(v93, f64::INFINITY)
+                    }),
+                );
+                let v118: () = {
+                    Math::closure3(v112.clone(), ());
                     ()
                 };
-                if (v77) == false {
-                    panic!("{}", v79,);
+                if (v96) == false {
+                    panic!("{}", v112,);
                 }
             }
         }
-        pub fn method36() {
+        pub fn method37() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method37(py);
+                Math::method38(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1760,7 +1992,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method40() -> LrcPtr<Math::UH0> {
+        pub fn method41() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(
                 10.0_f64,
                 LrcPtr::new(Math::UH0::UH0_1(
@@ -1793,11 +2025,11 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method41(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
+        pub fn method42(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
-            '_method41: loop {
-                break '_method41 (match v1_1.get().clone().as_ref() {
+            '_method42: loop {
+                break '_method42 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: num_complex::Complex<f64> = num_complex::Complex::new(
@@ -1828,26 +2060,52 @@ mod module_b7a9935b {
                             .clone(),
                             _ => v58.clone(),
                         };
-                        let v65: bool = (v61.clone().re) != 0.0_f64;
+                        let v63: f64 = v61.clone().re;
+                        let v65: bool = (v63) != 0.0_f64;
                         let v69: bool = if v65 { true } else { Math::method18(v65) };
-                        let v72: string = Math::method19(string("__assert_ne"), 0.0_f64);
-                        let v76: () = {
-                            Math::closure3(v72.clone(), ());
+                        let v74: string = if v65 {
+                            Math::method19(0.0_f64)
+                        } else {
+                            Math::method21(v63, 0.0_f64)
+                        };
+                        let v89: string = append(
+                            string("__assert_ne "),
+                            (if v65 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v63, 0.0_f64)
+                            }),
+                        );
+                        let v95: () = {
+                            Math::closure3(v89.clone(), ());
                             ()
                         };
                         if (v69) == false {
-                            panic!("{}", v72,);
+                            panic!("{}", v89,);
                         }
                         {
-                            let v82: bool = (v61.im) != 0.0_f64;
-                            let v86: bool = if v82 { true } else { Math::method18(v82) };
-                            let v88: string = Math::method19(string("__assert_ne"), 0.0_f64);
-                            let v92: () = {
-                                Math::closure3(v88.clone(), ());
+                            let v99: f64 = v61.im;
+                            let v101: bool = (v99) != 0.0_f64;
+                            let v105: bool = if v101 { true } else { Math::method18(v101) };
+                            let v110: string = if v101 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v99, 0.0_f64)
+                            };
+                            let v121: string = append(
+                                string("__assert_ne "),
+                                (if v101 {
+                                    Math::method19(0.0_f64)
+                                } else {
+                                    Math::method21(v99, 0.0_f64)
+                                }),
+                            );
+                            let v127: () = {
+                                Math::closure3(v121.clone(), ());
                                 ()
                             };
-                            if (v86) == false {
-                                panic!("{}", v88,);
+                            if (v105) == false {
+                                panic!("{}", v121,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1859,23 +2117,23 @@ mod module_b7a9935b {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method41;
+                                continue '_method42;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method39(v0_1: pyo3::Python) {
-            Math::method41(v0_1, Math::method40());
+        pub fn method40(v0_1: pyo3::Python) {
+            Math::method42(v0_1, Math::method41());
         }
-        pub fn method38() {
+        pub fn method39() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method39(py);
+                Math::method40(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -1901,7 +2159,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method44() -> LrcPtr<Math::UH1> {
+        pub fn method45() -> LrcPtr<Math::UH1> {
             LrcPtr::new(Math::UH1::UH1_1(
                 num_complex::Complex::new(0.5_f64, 14.134725_f64),
                 LrcPtr::new(Math::UH1::UH1_1(
@@ -1919,11 +2177,11 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method45(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+        pub fn method46(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
-            '_method45: loop {
-                break '_method45 (match v1_1.get().clone().as_ref() {
+            '_method46: loop {
+                break '_method46 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
                     Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
                         let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
@@ -1952,26 +2210,52 @@ mod module_b7a9935b {
                             .clone(),
                             _ => v56.clone(),
                         };
-                        let v63: bool = (v59.clone().re) != 0.0_f64;
+                        let v61: f64 = v59.clone().re;
+                        let v63: bool = (v61) != 0.0_f64;
                         let v67: bool = if v63 { true } else { Math::method18(v63) };
-                        let v70: string = Math::method19(string("__assert_ne"), 0.0_f64);
-                        let v74: () = {
-                            Math::closure3(v70.clone(), ());
+                        let v72: string = if v63 {
+                            Math::method19(0.0_f64)
+                        } else {
+                            Math::method21(v61, 0.0_f64)
+                        };
+                        let v87: string = append(
+                            string("__assert_ne "),
+                            (if v63 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v61, 0.0_f64)
+                            }),
+                        );
+                        let v93: () = {
+                            Math::closure3(v87.clone(), ());
                             ()
                         };
                         if (v67) == false {
-                            panic!("{}", v70,);
+                            panic!("{}", v87,);
                         }
                         {
-                            let v80: bool = (v59.im) != 0.0_f64;
-                            let v84: bool = if v80 { true } else { Math::method18(v80) };
-                            let v86: string = Math::method19(string("__assert_ne"), 0.0_f64);
-                            let v90: () = {
-                                Math::closure3(v86.clone(), ());
+                            let v97: f64 = v59.im;
+                            let v99: bool = (v97) != 0.0_f64;
+                            let v103: bool = if v99 { true } else { Math::method18(v99) };
+                            let v108: string = if v99 {
+                                Math::method19(0.0_f64)
+                            } else {
+                                Math::method21(v97, 0.0_f64)
+                            };
+                            let v119: string = append(
+                                string("__assert_ne "),
+                                (if v99 {
+                                    Math::method19(0.0_f64)
+                                } else {
+                                    Math::method21(v97, 0.0_f64)
+                                }),
+                            );
+                            let v125: () = {
+                                Math::closure3(v119.clone(), ());
                                 ()
                             };
-                            if (v84) == false {
-                                panic!("{}", v86,);
+                            if (v103) == false {
+                                panic!("{}", v119,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -1983,23 +2267,23 @@ mod module_b7a9935b {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method45;
+                                continue '_method46;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method43(v0_1: pyo3::Python) {
-            Math::method45(v0_1, Math::method44());
+        pub fn method44(v0_1: pyo3::Python) {
+            Math::method46(v0_1, Math::method45());
         }
-        pub fn method42() {
+        pub fn method43() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method43(py);
+                Math::method44(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2025,7 +2309,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method48() -> LrcPtr<Math::UH1> {
+        pub fn method49() -> LrcPtr<Math::UH1> {
             LrcPtr::new(Math::UH1::UH1_1(
                 num_complex::Complex::new(3.0_f64, 4.0_f64),
                 LrcPtr::new(Math::UH1::UH1_1(
@@ -2040,11 +2324,11 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method49(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
+        pub fn method50(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH1>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH1>> = MutCell::new(v1_1.clone());
-            '_method49: loop {
-                break '_method49 (match v1_1.get().clone().as_ref() {
+            '_method50: loop {
+                break '_method50 (match v1_1.get().clone().as_ref() {
                     Math::UH1::UH1_0 => (),
                     Math::UH1::UH1_1(v1_1_1_0, v1_1_1_1) => {
                         let v2: num_complex::Complex<f64> = match v1_1.get().clone().as_ref() {
@@ -2144,29 +2428,54 @@ mod module_b7a9935b {
                         let v212: num_complex::Complex<f64> = v146 * v210;
                         let v217: f64 = (v59.clone().re) - (v212.clone().re);
                         let v218: f64 = -v217;
-                        let v221: bool = (if (v217) >= (v218) { v217 } else { v218 }) < 0.0001_f64;
+                        let v220: f64 = if (v217) >= (v218) { v217 } else { v218 };
+                        let v221: bool = (v220) < 0.0001_f64;
                         let v223: bool = if v221 { true } else { Math::method18(v221) };
-                        let v226: string = Math::method19(string("__assert_lt"), 0.0001_f64);
-                        let v230: () = {
-                            Math::closure3(v226.clone(), ());
+                        let v228: string = if v221 {
+                            Math::method19(0.0001_f64)
+                        } else {
+                            Math::method21(v220, 0.0001_f64)
+                        };
+                        let v243: string = append(
+                            string("__assert_lt "),
+                            (if v221 {
+                                Math::method19(0.0001_f64)
+                            } else {
+                                Math::method21(v220, 0.0001_f64)
+                            }),
+                        );
+                        let v249: () = {
+                            Math::closure3(v243.clone(), ());
                             ()
                         };
                         if (v223) == false {
-                            panic!("{}", v226,);
+                            panic!("{}", v243,);
                         }
                         {
-                            let v237: f64 = (v59.im) - (v212.im);
-                            let v238: f64 = -v237;
-                            let v241: bool =
-                                (if (v237) >= (v238) { v237 } else { v238 }) < 0.0001_f64;
-                            let v243: bool = if v241 { true } else { Math::method18(v241) };
-                            let v245: string = Math::method19(string("__assert_lt"), 0.0001_f64);
-                            let v249: () = {
-                                Math::closure3(v245.clone(), ());
+                            let v256: f64 = (v59.im) - (v212.im);
+                            let v257: f64 = -v256;
+                            let v259: f64 = if (v256) >= (v257) { v256 } else { v257 };
+                            let v260: bool = (v259) < 0.0001_f64;
+                            let v262: bool = if v260 { true } else { Math::method18(v260) };
+                            let v267: string = if v260 {
+                                Math::method19(0.0001_f64)
+                            } else {
+                                Math::method21(v259, 0.0001_f64)
+                            };
+                            let v278: string = append(
+                                string("__assert_lt "),
+                                (if v260 {
+                                    Math::method19(0.0001_f64)
+                                } else {
+                                    Math::method21(v259, 0.0001_f64)
+                                }),
+                            );
+                            let v284: () = {
+                                Math::closure3(v278.clone(), ());
                                 ()
                             };
-                            if (v243) == false {
-                                panic!("{}", v245,);
+                            if (v262) == false {
+                                panic!("{}", v278,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2178,23 +2487,23 @@ mod module_b7a9935b {
                                     .clone();
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
-                                continue '_method49;
+                                continue '_method50;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method47(v0_1: pyo3::Python) {
-            Math::method49(v0_1, Math::method48());
+        pub fn method48(v0_1: pyo3::Python) {
+            Math::method50(v0_1, Math::method49());
         }
-        pub fn method46() {
+        pub fn method47() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method47(py);
+                Math::method48(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2220,7 +2529,7 @@ mod module_b7a9935b {
                 ()
             }
         }
-        pub fn method52() -> LrcPtr<Math::UH0> {
+        pub fn method53() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(
                 2.0_f64,
                 LrcPtr::new(Math::UH0::UH0_1(
@@ -2244,7 +2553,7 @@ mod module_b7a9935b {
                 )),
             ))
         }
-        pub fn method53() -> LrcPtr<Math::UH0> {
+        pub fn method54() -> LrcPtr<Math::UH0> {
             LrcPtr::new(Math::UH0::UH0_1(2.0_f64,
                                          LrcPtr::new(Math::UH0::UH0_1(3.0_f64,
                                                                       LrcPtr::new(Math::UH0::UH0_1(5.0_f64,
@@ -2267,12 +2576,12 @@ mod module_b7a9935b {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(71.0_f64,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
-        pub fn method55(v0_1: f64, v1_1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
+        pub fn method56(v0_1: f64, v1_1: LrcPtr<Math::UH0>, v2: f64) -> f64 {
             let v0_1: MutCell<f64> = MutCell::new(v0_1);
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<f64> = MutCell::new(v2);
-            '_method55: loop {
-                break '_method55 (match v1_1.get().clone().as_ref() {
+            '_method56: loop {
+                break '_method56 (match v1_1.get().clone().as_ref() {
                     Math::UH0::UH0_0 => v2.get().clone(),
                     Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
                         let v5: f64 = -v0_1.get().clone();
@@ -2293,18 +2602,18 @@ mod module_b7a9935b {
                             v0_1.set(v0_1_temp);
                             v1_1.set(v1_1_temp);
                             v2.set(v2_temp);
-                            continue '_method55;
+                            continue '_method56;
                         }
                     }
                 });
             }
         }
-        pub fn method54(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
+        pub fn method55(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>, v2: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             let v2: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v2.clone());
-            '_method54: loop {
-                break '_method54 (match v2.get().clone().as_ref() {
+            '_method55: loop {
+                break '_method55 (match v2.get().clone().as_ref() {
                     Math::UH0::UH0_0 => (),
                     Math::UH0::UH0_1(v2_1_0, v2_1_1) => {
                         let v3: f64 = match v2.get().clone().as_ref() {
@@ -2312,7 +2621,7 @@ mod module_b7a9935b {
                             _ => unreachable!(),
                         };
                         let v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0_f64);
-                        let v8: f64 = Math::method55(v3, v1_1.get().clone(), 1.0_f64);
+                        let v8: f64 = Math::method56(v3, v1_1.get().clone(), 1.0_f64);
                         let v11: Result<num_complex::Complex<f64>, std::string::String> =
                             Math::method4(
                                 v0_1.get().clone(),
@@ -2336,26 +2645,52 @@ mod module_b7a9935b {
                         };
                         let v67: f64 = (v64.clone().re) - (v8);
                         let v68: f64 = -v67;
-                        let v71: bool = (if (v67) >= (v68) { v67 } else { v68 }) < 0.01_f64;
+                        let v70: f64 = if (v67) >= (v68) { v67 } else { v68 };
+                        let v71: bool = (v70) < 0.01_f64;
                         let v73: bool = if v71 { true } else { Math::method18(v71) };
-                        let v76: string = Math::method19(string("__assert_lt"), 0.01_f64);
-                        let v80: () = {
-                            Math::closure3(v76.clone(), ());
+                        let v78: string = if v71 {
+                            Math::method19(0.01_f64)
+                        } else {
+                            Math::method21(v70, 0.01_f64)
+                        };
+                        let v93: string = append(
+                            string("__assert_lt "),
+                            (if v71 {
+                                Math::method19(0.01_f64)
+                            } else {
+                                Math::method21(v70, 0.01_f64)
+                            }),
+                        );
+                        let v99: () = {
+                            Math::closure3(v93.clone(), ());
                             ()
                         };
                         if (v73) == false {
-                            panic!("{}", v76,);
+                            panic!("{}", v93,);
                         }
                         {
-                            let v85: bool = (v64.im) < 0.01_f64;
-                            let v87: bool = if v85 { true } else { Math::method18(v85) };
-                            let v89: string = Math::method19(string("__assert_lt"), 0.01_f64);
-                            let v93: () = {
-                                Math::closure3(v89.clone(), ());
+                            let v103: f64 = v64.im;
+                            let v104: bool = (v103) < 0.01_f64;
+                            let v106: bool = if v104 { true } else { Math::method18(v104) };
+                            let v111: string = if v104 {
+                                Math::method19(0.01_f64)
+                            } else {
+                                Math::method21(v103, 0.01_f64)
+                            };
+                            let v122: string = append(
+                                string("__assert_lt "),
+                                (if v104 {
+                                    Math::method19(0.01_f64)
+                                } else {
+                                    Math::method21(v103, 0.01_f64)
+                                }),
+                            );
+                            let v128: () = {
+                                Math::closure3(v122.clone(), ());
                                 ()
                             };
-                            if (v87) == false {
-                                panic!("{}", v89,);
+                            if (v106) == false {
+                                panic!("{}", v122,);
                             }
                             {
                                 let v0_1_temp: pyo3::Python = v0_1.get().clone();
@@ -2368,24 +2703,24 @@ mod module_b7a9935b {
                                 v0_1.set(v0_1_temp);
                                 v1_1.set(v1_1_temp);
                                 v2.set(v2_temp);
-                                continue '_method54;
+                                continue '_method55;
                             }
                         }
                     }
                 });
             }
         }
-        pub fn method51(v0_1: pyo3::Python) {
-            let v1_1: LrcPtr<Math::UH0> = Math::method52();
-            Math::method54(v0_1, Math::method53(), v1_1)
+        pub fn method52(v0_1: pyo3::Python) {
+            let v1_1: LrcPtr<Math::UH0> = Math::method53();
+            Math::method55(v0_1, Math::method54(), v1_1)
         }
-        pub fn method50() {
+        pub fn method51() {
             pyo3::Python::initialize();
             let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method51(py);
+                Math::method52(py);
                 {
-                    let v8: Result<(), pyo3::PyErr> = Math::method21(Ok::<(), pyo3::PyErr>(()));
+                    let v8: Result<(), pyo3::PyErr> = Math::method22(Ok::<(), pyo3::PyErr>(()));
                     let v12: string = string("}}");
                     let v14: string = string("{");
                     let v19: bool = true;
@@ -2432,7 +2767,7 @@ mod module_b7a9935b {
         #[test]
         fn test_zeta_at_2_minus2() {
             //;
-            Math::method22();
+            Math::method23();
         } /* /*;
         {
         let v12: string =
@@ -2442,7 +2777,7 @@ mod module_b7a9935b {
         #[test]
         fn test_trivial_zero_at_negative_even___() {
             //;
-            Math::method24();
+            Math::method25();
         } /* /*;
         {
         let v16: string =
@@ -2452,7 +2787,7 @@ mod module_b7a9935b {
         #[test]
         fn test_non_trivial_zero___() {
             //;
-            Math::method28();
+            Math::method29();
         } /* /*;
         {
         let v20: string =
@@ -2462,7 +2797,7 @@ mod module_b7a9935b {
         #[test]
         fn test_real_part_greater_than_one___() {
             //;
-            Math::method30();
+            Math::method31();
         } /* /*;
         {
         let v24: string =
@@ -2472,7 +2807,7 @@ mod module_b7a9935b {
         #[test]
         fn test_zeta_at_1___() {
             //;
-            Math::method32();
+            Math::method33();
         } /* /*;
         {
         let v28: string =
@@ -2482,7 +2817,7 @@ mod module_b7a9935b {
         #[test]
         fn test_symmetry_across_real_axis___() {
             //;
-            Math::method34();
+            Math::method35();
         } /* /*;
         {
         let v32: string =
@@ -2492,7 +2827,7 @@ mod module_b7a9935b {
         #[test]
         fn test_behavior_near_origin___() {
             //;
-            Math::method36();
+            Math::method37();
         } /* /*;
         {
         let v36: string =
@@ -2502,7 +2837,7 @@ mod module_b7a9935b {
         #[test]
         fn test_imaginary_axis() {
             //;
-            Math::method38();
+            Math::method39();
         } /* /*;
         {
         let v40: string =
@@ -2512,7 +2847,7 @@ mod module_b7a9935b {
         #[test]
         fn test_critical_strip() {
             //;
-            Math::method42();
+            Math::method43();
         } /* /*;
         {
         let v44: string =
@@ -2522,7 +2857,7 @@ mod module_b7a9935b {
         #[test]
         fn test_reflection_formula_for_specific_value() {
             //;
-            Math::method46();
+            Math::method47();
         } /* /*;
         {
         let v48: string =
@@ -2532,7 +2867,7 @@ mod module_b7a9935b {
         #[test]
         fn test_euler_product_formula() {
             //;
-            Math::method50();
+            Math::method51();
             {
                 //;
                 {

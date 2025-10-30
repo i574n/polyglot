@@ -95,7 +95,9 @@ if (!(Search-Command "gleam")) {
         { sudo apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
         { apt-key add GPG-KEY-pmanager.asc } | Invoke-Block -OnError Continue
 
-        echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-25 contrib" | sudo tee -a /etc/apt/sources.list
+        { echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-26 contrib" | sudo tee -a /etc/apt/sources.list } | Invoke-Block -OnError Continue
+        { echo "deb http://binaries2.erlang-solutions.com/ubuntu/ jammy-esl-erlang-26 contrib" | tee -a /etc/apt/sources.list } | Invoke-Block -OnError Continue
+
         { sudo apt update } | Invoke-Block -OnError Continue
         { apt update } | Invoke-Block -OnError Continue
 
@@ -133,10 +135,11 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 $url = git ls-remote --get-url
 $owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
-Write-Output "init.ps1 / url: $url / owner: $owner"
+$domain = ($url -split '/' | Select-Object -Last 3 | Select-Object -First 1) ?? $env:GITHUB_SERVER_URL -replace 'https?://', ''
+Write-Output "init.ps1 / url: $url / owner: $owner / domain: $domain"
 
 Set-Location (New-Item $gitPath -ItemType Directory -Force)
-git clone --recurse-submodules https://github.com/$owner/spiral.git
+git clone --recurse-submodules https://$domain/$owner/spiral.git
 { git pull } | Invoke-Block -Location spiral -OnError Continue
 Set-Location $ResolvedScriptDir
 

@@ -1887,7 +1887,36 @@ and closure2 (v0 : Mut3, v1 : string) () : unit =
     let v4 : string = v2 + v1 
     v0.l0 <- v4
     ()
-and method19 (v0 : string, v1 : float) : string =
+and method19 (v0 : float) : string =
+    let v1 : string = method20()
+    let v2 : Mut3 = {l0 = v1} : Mut3
+    let v5 : string = "{ "
+    let v6 : string = $"{v5}"
+    let v14 : unit = ()
+    let v15 : (unit -> unit) = closure2(v2, v6)
+    let v16 : unit = (fun () -> v15 (); v14) ()
+    let v24 : string = "expected"
+    let v25 : string = $"{v24}"
+    let v33 : unit = ()
+    let v34 : (unit -> unit) = closure2(v2, v25)
+    let v35 : unit = (fun () -> v34 (); v33) ()
+    let v43 : string = " = "
+    let v44 : string = $"{v43}"
+    let v52 : unit = ()
+    let v53 : (unit -> unit) = closure2(v2, v44)
+    let v54 : unit = (fun () -> v53 (); v52) ()
+    let v64 : string = $"%+.6f{v0}"
+    let v72 : unit = ()
+    let v73 : (unit -> unit) = closure2(v2, v64)
+    let v74 : unit = (fun () -> v73 (); v72) ()
+    let v82 : string = " }"
+    let v83 : string = $"{v82}"
+    let v91 : unit = ()
+    let v92 : (unit -> unit) = closure2(v2, v83)
+    let v93 : unit = (fun () -> v92 (); v91) ()
+    let v99 : string = v2.l0
+    v99
+and method21 (v0 : float, v1 : float) : string =
     let v2 : string = method20()
     let v3 : Mut3 = {l0 = v2} : Mut3
     let v6 : string = "{ "
@@ -1895,7 +1924,7 @@ and method19 (v0 : string, v1 : float) : string =
     let v15 : unit = ()
     let v16 : (unit -> unit) = closure2(v3, v7)
     let v17 : unit = (fun () -> v16 (); v15) ()
-    let v25 : string = "name"
+    let v25 : string = "actual"
     let v26 : string = $"{v25}"
     let v34 : unit = ()
     let v35 : (unit -> unit) = closure2(v3, v26)
@@ -1905,35 +1934,35 @@ and method19 (v0 : string, v1 : float) : string =
     let v53 : unit = ()
     let v54 : (unit -> unit) = closure2(v3, v45)
     let v55 : unit = (fun () -> v54 (); v53) ()
-    let v62 : string = $"{v0}"
-    let v70 : unit = ()
-    let v71 : (unit -> unit) = closure2(v3, v62)
-    let v72 : unit = (fun () -> v71 (); v70) ()
-    let v80 : string = "; "
-    let v81 : string = $"{v80}"
-    let v89 : unit = ()
-    let v90 : (unit -> unit) = closure2(v3, v81)
-    let v91 : unit = (fun () -> v90 (); v89) ()
-    let v99 : string = "expected"
-    let v100 : string = $"{v99}"
-    let v108 : unit = ()
-    let v109 : (unit -> unit) = closure2(v3, v100)
-    let v110 : unit = (fun () -> v109 (); v108) ()
-    let v117 : string = $"{v44}"
-    let v125 : unit = ()
-    let v126 : (unit -> unit) = closure2(v3, v117)
-    let v127 : unit = (fun () -> v126 (); v125) ()
-    let v137 : string = $"%+.6f{v1}"
-    let v145 : unit = ()
-    let v146 : (unit -> unit) = closure2(v3, v137)
-    let v147 : unit = (fun () -> v146 (); v145) ()
-    let v155 : string = " }"
-    let v156 : string = $"{v155}"
-    let v164 : unit = ()
-    let v165 : (unit -> unit) = closure2(v3, v156)
-    let v166 : unit = (fun () -> v165 (); v164) ()
-    let v172 : string = v3.l0
-    v172
+    let v65 : string = $"%+.6f{v0}"
+    let v73 : unit = ()
+    let v74 : (unit -> unit) = closure2(v3, v65)
+    let v75 : unit = (fun () -> v74 (); v73) ()
+    let v83 : string = "; "
+    let v84 : string = $"{v83}"
+    let v92 : unit = ()
+    let v93 : (unit -> unit) = closure2(v3, v84)
+    let v94 : unit = (fun () -> v93 (); v92) ()
+    let v102 : string = "expected"
+    let v103 : string = $"{v102}"
+    let v111 : unit = ()
+    let v112 : (unit -> unit) = closure2(v3, v103)
+    let v113 : unit = (fun () -> v112 (); v111) ()
+    let v120 : string = $"{v44}"
+    let v128 : unit = ()
+    let v129 : (unit -> unit) = closure2(v3, v120)
+    let v130 : unit = (fun () -> v129 (); v128) ()
+    let v140 : string = $"%+.6f{v1}"
+    let v148 : unit = ()
+    let v149 : (unit -> unit) = closure2(v3, v140)
+    let v150 : unit = (fun () -> v149 (); v148) ()
+    let v158 : string = " }"
+    let v159 : string = $"{v158}"
+    let v167 : unit = ()
+    let v168 : (unit -> unit) = closure2(v3, v159)
+    let v169 : unit = (fun () -> v168 (); v167) ()
+    let v175 : string = v3.l0
+    v175
 and closure3 (v0 : string) () : unit =
     let v1 : (string -> unit) = System.Console.WriteLine
     v1 v0
@@ -2014,45 +2043,74 @@ and method1 (v0 : pyo3_Python) : unit =
                 true
             else
                 method18(v70)
-        let v73 : string = "__assert_eq"
-        let v74 : float = 0.0
-        let v75 : string = method19(v73, v74)
-        let v77 : unit = ()
-        let v78 : (unit -> unit) = closure3(v75)
-        let v79 : unit = (fun () -> v78 (); v77) ()
-        let v81 : bool = v72 = false
-        if v81 then
-            failwith<unit> v75
-        let v82 : string = "$0.re"
-        let v83 : float = Fable.Core.RustInterop.emitRustExpr v67 v82 
-        let v84 : float = v83 - v11
-        let v85 : float =  -v84
-        let v86 : bool = v84 >= v85
-        let v87 : float =
-            if v86 then
-                v84
+        let v77 : string =
+            if v70 then
+                let v73 : float = 0.0
+                method19(v73)
             else
-                v85
-        let v88 : bool = v87 < 0.0001
-        let v90 : bool =
-            if v88 then
+                let v75 : float = 0.0
+                method21(v69, v75)
+        let v81 : string = "__assert_eq"
+        let v82 : string = " "
+        let v83 : string = v81 + v82 
+        let v90 : string =
+            if v70 then
+                let v86 : float = 0.0
+                method19(v86)
+            else
+                let v88 : float = 0.0
+                method21(v69, v88)
+        let v92 : string = v83 + v90 
+        let v96 : unit = ()
+        let v97 : (unit -> unit) = closure3(v92)
+        let v98 : unit = (fun () -> v97 (); v96) ()
+        let v100 : bool = v72 = false
+        if v100 then
+            failwith<unit> v92
+        let v101 : string = "$0.re"
+        let v102 : float = Fable.Core.RustInterop.emitRustExpr v67 v101 
+        let v103 : float = v102 - v11
+        let v104 : float =  -v103
+        let v105 : bool = v103 >= v104
+        let v106 : float =
+            if v105 then
+                v103
+            else
+                v104
+        let v107 : bool = v106 < 0.0001
+        let v109 : bool =
+            if v107 then
                 true
             else
-                method18(v88)
-        let v91 : string = "__assert_lt"
-        let v92 : float = 0.0001
-        let v93 : string = method19(v91, v92)
-        let v95 : unit = ()
-        let v96 : (unit -> unit) = closure3(v93)
-        let v97 : unit = (fun () -> v96 (); v95) ()
-        let v99 : bool = v90 = false
-        if v99 then
-            failwith<unit> v93
-        let v100 : int32 = v9 + 1
-        v7.l0 <- v100
+                method18(v107)
+        let v114 : string =
+            if v107 then
+                let v110 : float = 0.0001
+                method19(v110)
+            else
+                let v112 : float = 0.0001
+                method21(v106, v112)
+        let v117 : string = "__assert_lt"
+        let v118 : string = v117 + v82 
+        let v125 : string =
+            if v107 then
+                let v121 : float = 0.0001
+                method19(v121)
+            else
+                let v123 : float = 0.0001
+                method21(v106, v123)
+        let v127 : string = v118 + v125 
+        let v131 : unit = ()
+        let v132 : (unit -> unit) = closure3(v127)
+        let v133 : unit = (fun () -> v132 (); v131) ()
+        let v135 : bool = v109 = false
+        if v135 then
+            failwith<unit> v127
+        let v136 : int32 = v9 + 1
+        v7.l0 <- v136
         ()
     ()
-and method21 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
+and method22 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
     v0
 and method0 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
@@ -2063,7 +2121,7 @@ and method0 () : unit =
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
     method1(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -2143,7 +2201,7 @@ and method0 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method23 (v0 : pyo3_Python) : unit =
+and method24 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, -2.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -2220,49 +2278,78 @@ and method23 (v0 : pyo3_Python) : unit =
             true
         else
             method18(v65)
-    let v68 : string = "__assert_lt"
-    let v69 : float = 0.001
-    let v70 : string = method19(v68, v69)
-    let v72 : unit = ()
-    let v73 : (unit -> unit) = closure3(v70)
-    let v74 : unit = (fun () -> v73 (); v72) ()
-    let v76 : bool = v67 = false
-    if v76 then
-        failwith<unit> v70
-    let v77 : string = "$0.im"
-    let v78 : float = Fable.Core.RustInterop.emitRustExpr v58 v77 
-    let v79 : float = v78 - 0.275
-    let v80 : float =  -v79
-    let v81 : bool = v79 >= v80
-    let v82 : float =
-        if v81 then
-            v79
+    let v72 : string =
+        if v65 then
+            let v68 : float = 0.001
+            method19(v68)
         else
-            v80
-    let v83 : bool = v82 < 0.001
-    let v85 : bool =
-        if v83 then
+            let v70 : float = 0.001
+            method21(v64, v70)
+    let v76 : string = "__assert_lt"
+    let v77 : string = " "
+    let v78 : string = v76 + v77 
+    let v85 : string =
+        if v65 then
+            let v81 : float = 0.001
+            method19(v81)
+        else
+            let v83 : float = 0.001
+            method21(v64, v83)
+    let v87 : string = v78 + v85 
+    let v91 : unit = ()
+    let v92 : (unit -> unit) = closure3(v87)
+    let v93 : unit = (fun () -> v92 (); v91) ()
+    let v95 : bool = v67 = false
+    if v95 then
+        failwith<unit> v87
+    let v96 : string = "$0.im"
+    let v97 : float = Fable.Core.RustInterop.emitRustExpr v58 v96 
+    let v98 : float = v97 - 0.275
+    let v99 : float =  -v98
+    let v100 : bool = v98 >= v99
+    let v101 : float =
+        if v100 then
+            v98
+        else
+            v99
+    let v102 : bool = v101 < 0.001
+    let v104 : bool =
+        if v102 then
             true
         else
-            method18(v83)
-    let v86 : float = 0.001
-    let v87 : string = method19(v68, v86)
-    let v89 : unit = ()
-    let v90 : (unit -> unit) = closure3(v87)
-    let v91 : unit = (fun () -> v90 (); v89) ()
-    let v93 : bool = v85 = false
-    if v93 then
-        failwith<unit> v87
-and method22 () : unit =
+            method18(v102)
+    let v109 : string =
+        if v102 then
+            let v105 : float = 0.001
+            method19(v105)
+        else
+            let v107 : float = 0.001
+            method21(v101, v107)
+    let v111 : string = v76 + v77 
+    let v118 : string =
+        if v102 then
+            let v114 : float = 0.001
+            method19(v114)
+        else
+            let v116 : float = 0.001
+            method21(v101, v116)
+    let v120 : string = v111 + v118 
+    let v124 : unit = ()
+    let v125 : (unit -> unit) = closure3(v120)
+    let v126 : unit = (fun () -> v125 (); v124) ()
+    let v128 : bool = v104 = false
+    if v128 then
+        failwith<unit> v120
+and method23 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method23(v3)
+    method24(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -2342,7 +2429,7 @@ and method22 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method26 () : UH0 =
+and method27 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(-40.0, v0)
     let v2 : UH0 = UH0_1(-38.0, v1)
@@ -2364,7 +2451,7 @@ and method26 () : UH0 =
     let v18 : UH0 = UH0_1(-6.0, v17)
     let v19 : UH0 = UH0_1(-4.0, v18)
     UH0_1(-2.0, v19)
-and method27 (v0 : pyo3_Python, v1 : UH0) : unit =
+and method28 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
     | UH0_1(v2, v3) -> (* Cons *)
         let v4 : string = "num_complex::Complex::new($0, $1)"
@@ -2435,47 +2522,76 @@ and method27 (v0 : pyo3_Python, v1 : UH0) : unit =
                 true
             else
                 method18(v64)
-        let v67 : string = "__assert_eq"
-        let v68 : float = 0.0
-        let v69 : string = method19(v67, v68)
-        let v71 : unit = ()
-        let v72 : (unit -> unit) = closure3(v69)
-        let v73 : unit = (fun () -> v72 (); v71) ()
-        let v75 : bool = v66 = false
-        if v75 then
-            failwith<unit> v69
-        let v76 : string = "$0.im"
-        let v77 : float = Fable.Core.RustInterop.emitRustExpr v61 v76 
-        let v78 : bool = v77 = 0.0
-        let v80 : bool =
-            if v78 then
+        let v71 : string =
+            if v64 then
+                let v67 : float = 0.0
+                method19(v67)
+            else
+                let v69 : float = 0.0
+                method21(v63, v69)
+        let v75 : string = "__assert_eq"
+        let v76 : string = " "
+        let v77 : string = v75 + v76 
+        let v84 : string =
+            if v64 then
+                let v80 : float = 0.0
+                method19(v80)
+            else
+                let v82 : float = 0.0
+                method21(v63, v82)
+        let v86 : string = v77 + v84 
+        let v90 : unit = ()
+        let v91 : (unit -> unit) = closure3(v86)
+        let v92 : unit = (fun () -> v91 (); v90) ()
+        let v94 : bool = v66 = false
+        if v94 then
+            failwith<unit> v86
+        let v95 : string = "$0.im"
+        let v96 : float = Fable.Core.RustInterop.emitRustExpr v61 v95 
+        let v97 : bool = v96 = 0.0
+        let v99 : bool =
+            if v97 then
                 true
             else
-                method18(v78)
-        let v81 : float = 0.0
-        let v82 : string = method19(v67, v81)
-        let v84 : unit = ()
-        let v85 : (unit -> unit) = closure3(v82)
-        let v86 : unit = (fun () -> v85 (); v84) ()
-        let v88 : bool = v80 = false
-        if v88 then
-            failwith<unit> v82
-        method27(v0, v3)
+                method18(v97)
+        let v104 : string =
+            if v97 then
+                let v100 : float = 0.0
+                method19(v100)
+            else
+                let v102 : float = 0.0
+                method21(v96, v102)
+        let v106 : string = v75 + v76 
+        let v113 : string =
+            if v97 then
+                let v109 : float = 0.0
+                method19(v109)
+            else
+                let v111 : float = 0.0
+                method21(v96, v111)
+        let v115 : string = v106 + v113 
+        let v119 : unit = ()
+        let v120 : (unit -> unit) = closure3(v115)
+        let v121 : unit = (fun () -> v120 (); v119) ()
+        let v123 : bool = v99 = false
+        if v123 then
+            failwith<unit> v115
+        method28(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
-and method25 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method26()
-    method27(v0, v1)
-and method24 () : unit =
+and method26 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method27()
+    method28(v0, v1)
+and method25 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method25(v3)
+    method26(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -2555,7 +2671,7 @@ and method24 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method29 (v0 : pyo3_Python) : unit =
+and method30 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v1 
     let v3 : string = "num_complex::Complex::new($0, $1)"
@@ -2647,52 +2763,81 @@ and method29 (v0 : pyo3_Python) : unit =
                 true
             else
                 method18(v80)
-        let v83 : string = "__assert_lt"
-        let v84 : float = 0.0001
-        let v85 : string = method19(v83, v84)
-        let v87 : unit = ()
-        let v88 : (unit -> unit) = closure3(v85)
-        let v89 : unit = (fun () -> v88 (); v87) ()
-        let v91 : bool = v82 = false
-        if v91 then
-            failwith<unit> v85
-        let v92 : string = "$0.im"
-        let v93 : float = Fable.Core.RustInterop.emitRustExpr v74 v92 
-        let v94 : float =  -v93
-        let v95 : bool = v93 >= v94
-        let v96 : float =
-            if v95 then
-                v93
+        let v87 : string =
+            if v80 then
+                let v83 : float = 0.0001
+                method19(v83)
             else
-                v94
-        let v97 : bool = v96 < 0.0001
-        let v99 : bool =
-            if v97 then
+                let v85 : float = 0.0001
+                method21(v79, v85)
+        let v91 : string = "__assert_lt"
+        let v92 : string = " "
+        let v93 : string = v91 + v92 
+        let v100 : string =
+            if v80 then
+                let v96 : float = 0.0001
+                method19(v96)
+            else
+                let v98 : float = 0.0001
+                method21(v79, v98)
+        let v102 : string = v93 + v100 
+        let v106 : unit = ()
+        let v107 : (unit -> unit) = closure3(v102)
+        let v108 : unit = (fun () -> v107 (); v106) ()
+        let v110 : bool = v82 = false
+        if v110 then
+            failwith<unit> v102
+        let v111 : string = "$0.im"
+        let v112 : float = Fable.Core.RustInterop.emitRustExpr v74 v111 
+        let v113 : float =  -v112
+        let v114 : bool = v112 >= v113
+        let v115 : float =
+            if v114 then
+                v112
+            else
+                v113
+        let v116 : bool = v115 < 0.0001
+        let v118 : bool =
+            if v116 then
                 true
             else
-                method18(v97)
-        let v100 : float = 0.0001
-        let v101 : string = method19(v83, v100)
-        let v103 : unit = ()
-        let v104 : (unit -> unit) = closure3(v101)
-        let v105 : unit = (fun () -> v104 (); v103) ()
-        let v107 : bool = v99 = false
-        if v107 then
-            failwith<unit> v101
-        let v108 : int32 = v17 + 1
-        v15.l0 <- v108
+                method18(v116)
+        let v123 : string =
+            if v116 then
+                let v119 : float = 0.0001
+                method19(v119)
+            else
+                let v121 : float = 0.0001
+                method21(v115, v121)
+        let v125 : string = v91 + v92 
+        let v132 : string =
+            if v116 then
+                let v128 : float = 0.0001
+                method19(v128)
+            else
+                let v130 : float = 0.0001
+                method21(v115, v130)
+        let v134 : string = v125 + v132 
+        let v138 : unit = ()
+        let v139 : (unit -> unit) = closure3(v134)
+        let v140 : unit = (fun () -> v139 (); v138) ()
+        let v142 : bool = v118 = false
+        if v142 then
+            failwith<unit> v134
+        let v143 : int32 = v17 + 1
+        v15.l0 <- v143
         ()
     ()
-and method28 () : unit =
+and method29 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method29(v3)
+    method30(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -2772,7 +2917,7 @@ and method28 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method31 (v0 : pyo3_Python) : unit =
+and method32 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
     let v2 : int32 = v1.Length
     let v3 : Mut0 = {l0 = 0} : Mut0
@@ -2847,46 +2992,75 @@ and method31 (v0 : pyo3_Python) : unit =
                 true
             else
                 method18(v67)
-        let v70 : string = "__assert_gt"
-        let v71 : float = 0.0
-        let v72 : string = method19(v70, v71)
-        let v74 : unit = ()
-        let v75 : (unit -> unit) = closure3(v72)
-        let v76 : unit = (fun () -> v75 (); v74) ()
-        let v78 : bool = v69 = false
-        if v78 then
-            failwith<unit> v72
-        let v79 : string = "$0.im"
-        let v80 : float = Fable.Core.RustInterop.emitRustExpr v64 v79 
-        let v81 : bool = v80 = 0.0
-        let v83 : bool =
-            if v81 then
+        let v74 : string =
+            if v67 then
+                let v70 : float = 0.0
+                method19(v70)
+            else
+                let v72 : float = 0.0
+                method21(v66, v72)
+        let v78 : string = "__assert_gt"
+        let v79 : string = " "
+        let v80 : string = v78 + v79 
+        let v87 : string =
+            if v67 then
+                let v83 : float = 0.0
+                method19(v83)
+            else
+                let v85 : float = 0.0
+                method21(v66, v85)
+        let v89 : string = v80 + v87 
+        let v93 : unit = ()
+        let v94 : (unit -> unit) = closure3(v89)
+        let v95 : unit = (fun () -> v94 (); v93) ()
+        let v97 : bool = v69 = false
+        if v97 then
+            failwith<unit> v89
+        let v98 : string = "$0.im"
+        let v99 : float = Fable.Core.RustInterop.emitRustExpr v64 v98 
+        let v100 : bool = v99 = 0.0
+        let v102 : bool =
+            if v100 then
                 true
             else
-                method18(v81)
-        let v84 : string = "__assert_eq"
-        let v85 : float = 0.0
-        let v86 : string = method19(v84, v85)
-        let v88 : unit = ()
-        let v89 : (unit -> unit) = closure3(v86)
-        let v90 : unit = (fun () -> v89 (); v88) ()
-        let v92 : bool = v83 = false
-        if v92 then
-            failwith<unit> v86
-        let v93 : int32 = v5 + 1
-        v3.l0 <- v93
+                method18(v100)
+        let v107 : string =
+            if v100 then
+                let v103 : float = 0.0
+                method19(v103)
+            else
+                let v105 : float = 0.0
+                method21(v99, v105)
+        let v110 : string = "__assert_eq"
+        let v111 : string = v110 + v79 
+        let v118 : string =
+            if v100 then
+                let v114 : float = 0.0
+                method19(v114)
+            else
+                let v116 : float = 0.0
+                method21(v99, v116)
+        let v120 : string = v111 + v118 
+        let v124 : unit = ()
+        let v125 : (unit -> unit) = closure3(v120)
+        let v126 : unit = (fun () -> v125 (); v124) ()
+        let v128 : bool = v102 = false
+        if v128 then
+            failwith<unit> v120
+        let v129 : int32 = v5 + 1
+        v3.l0 <- v129
         ()
     ()
-and method30 () : unit =
+and method31 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method31(v3)
+    method32(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -2966,7 +3140,7 @@ and method30 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method33 (v0 : pyo3_Python) : unit =
+and method34 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3035,41 +3209,70 @@ and method33 (v0 : pyo3_Python) : unit =
             true
         else
             method18(v61)
-    let v64 : string = "__assert_eq"
-    let v65 : float = infinity
-    let v66 : string = method19(v64, v65)
-    let v68 : unit = ()
-    let v69 : (unit -> unit) = closure3(v66)
-    let v70 : unit = (fun () -> v69 (); v68) ()
-    let v72 : bool = v63 = false
-    if v72 then
-        failwith<unit> v66
-    let v73 : string = "$0.im"
-    let v74 : float = Fable.Core.RustInterop.emitRustExpr v58 v73 
-    let v75 : bool = v74 = 0.0
-    let v77 : bool =
-        if v75 then
+    let v68 : string =
+        if v61 then
+            let v64 : float = infinity
+            method19(v64)
+        else
+            let v66 : float = infinity
+            method21(v60, v66)
+    let v72 : string = "__assert_eq"
+    let v73 : string = " "
+    let v74 : string = v72 + v73 
+    let v81 : string =
+        if v61 then
+            let v77 : float = infinity
+            method19(v77)
+        else
+            let v79 : float = infinity
+            method21(v60, v79)
+    let v83 : string = v74 + v81 
+    let v87 : unit = ()
+    let v88 : (unit -> unit) = closure3(v83)
+    let v89 : unit = (fun () -> v88 (); v87) ()
+    let v91 : bool = v63 = false
+    if v91 then
+        failwith<unit> v83
+    let v92 : string = "$0.im"
+    let v93 : float = Fable.Core.RustInterop.emitRustExpr v58 v92 
+    let v94 : bool = v93 = 0.0
+    let v96 : bool =
+        if v94 then
             true
         else
-            method18(v75)
-    let v78 : float = 0.0
-    let v79 : string = method19(v64, v78)
-    let v81 : unit = ()
-    let v82 : (unit -> unit) = closure3(v79)
-    let v83 : unit = (fun () -> v82 (); v81) ()
-    let v85 : bool = v77 = false
-    if v85 then
-        failwith<unit> v79
-and method32 () : unit =
+            method18(v94)
+    let v101 : string =
+        if v94 then
+            let v97 : float = 0.0
+            method19(v97)
+        else
+            let v99 : float = 0.0
+            method21(v93, v99)
+    let v103 : string = v72 + v73 
+    let v110 : string =
+        if v94 then
+            let v106 : float = 0.0
+            method19(v106)
+        else
+            let v108 : float = 0.0
+            method21(v93, v108)
+    let v112 : string = v103 + v110 
+    let v116 : unit = ()
+    let v117 : (unit -> unit) = closure3(v112)
+    let v118 : unit = (fun () -> v117 (); v116) ()
+    let v120 : bool = v96 = false
+    if v120 then
+        failwith<unit> v112
+and method33 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method33(v3)
+    method34(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -3149,7 +3352,7 @@ and method32 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method35 (v0 : pyo3_Python) : unit =
+and method36 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 10.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3287,41 +3490,64 @@ and method35 (v0 : pyo3_Python) : unit =
             true
         else
             method18(v128)
-    let v131 : string = "__assert_eq"
-    let v132 : string = method19(v131, v127)
-    let v134 : unit = ()
-    let v135 : (unit -> unit) = closure3(v132)
-    let v136 : unit = (fun () -> v135 (); v134) ()
-    let v138 : bool = v130 = false
-    if v138 then
-        failwith<unit> v132
-    let v139 : string = "$0.im"
-    let v140 : float = Fable.Core.RustInterop.emitRustExpr v58 v139 
-    let v141 : string = "$0.im"
-    let v142 : float = Fable.Core.RustInterop.emitRustExpr v123 v141 
-    let v143 : bool = v140 = v142
-    let v145 : bool =
-        if v143 then
+    let v133 : string =
+        if v128 then
+            method19(v127)
+        else
+            method21(v125, v127)
+    let v137 : string = "__assert_eq"
+    let v138 : string = " "
+    let v139 : string = v137 + v138 
+    let v144 : string =
+        if v128 then
+            method19(v127)
+        else
+            method21(v125, v127)
+    let v146 : string = v139 + v144 
+    let v150 : unit = ()
+    let v151 : (unit -> unit) = closure3(v146)
+    let v152 : unit = (fun () -> v151 (); v150) ()
+    let v154 : bool = v130 = false
+    if v154 then
+        failwith<unit> v146
+    let v155 : string = "$0.im"
+    let v156 : float = Fable.Core.RustInterop.emitRustExpr v58 v155 
+    let v157 : string = "$0.im"
+    let v158 : float = Fable.Core.RustInterop.emitRustExpr v123 v157 
+    let v159 : bool = v156 = v158
+    let v161 : bool =
+        if v159 then
             true
         else
-            method18(v143)
-    let v146 : string = method19(v131, v142)
-    let v148 : unit = ()
-    let v149 : (unit -> unit) = closure3(v146)
-    let v150 : unit = (fun () -> v149 (); v148) ()
-    let v152 : bool = v145 = false
-    if v152 then
-        failwith<unit> v146
-and method34 () : unit =
+            method18(v159)
+    let v164 : string =
+        if v159 then
+            method19(v158)
+        else
+            method21(v156, v158)
+    let v166 : string = v137 + v138 
+    let v171 : string =
+        if v159 then
+            method19(v158)
+        else
+            method21(v156, v158)
+    let v173 : string = v166 + v171 
+    let v177 : unit = ()
+    let v178 : (unit -> unit) = closure3(v173)
+    let v179 : unit = (fun () -> v178 (); v177) ()
+    let v181 : bool = v161 = false
+    if v181 then
+        failwith<unit> v173
+and method35 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method35(v3)
+    method36(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -3401,7 +3627,7 @@ and method34 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method37 (v0 : pyo3_Python) : unit =
+and method38 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.01, 0.01) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3470,41 +3696,70 @@ and method37 (v0 : pyo3_Python) : unit =
             true
         else
             method18(v61)
-    let v64 : string = "__assert_lt"
-    let v65 : float = infinity
-    let v66 : string = method19(v64, v65)
-    let v68 : unit = ()
-    let v69 : (unit -> unit) = closure3(v66)
-    let v70 : unit = (fun () -> v69 (); v68) ()
-    let v72 : bool = v63 = false
-    if v72 then
-        failwith<unit> v66
-    let v73 : string = "$0.im"
-    let v74 : float = Fable.Core.RustInterop.emitRustExpr v58 v73 
-    let v75 : bool = v74 < infinity
-    let v77 : bool =
-        if v75 then
+    let v68 : string =
+        if v61 then
+            let v64 : float = infinity
+            method19(v64)
+        else
+            let v66 : float = infinity
+            method21(v60, v66)
+    let v72 : string = "__assert_lt"
+    let v73 : string = " "
+    let v74 : string = v72 + v73 
+    let v81 : string =
+        if v61 then
+            let v77 : float = infinity
+            method19(v77)
+        else
+            let v79 : float = infinity
+            method21(v60, v79)
+    let v83 : string = v74 + v81 
+    let v87 : unit = ()
+    let v88 : (unit -> unit) = closure3(v83)
+    let v89 : unit = (fun () -> v88 (); v87) ()
+    let v91 : bool = v63 = false
+    if v91 then
+        failwith<unit> v83
+    let v92 : string = "$0.im"
+    let v93 : float = Fable.Core.RustInterop.emitRustExpr v58 v92 
+    let v94 : bool = v93 < infinity
+    let v96 : bool =
+        if v94 then
             true
         else
-            method18(v75)
-    let v78 : float = infinity
-    let v79 : string = method19(v64, v78)
-    let v81 : unit = ()
-    let v82 : (unit -> unit) = closure3(v79)
-    let v83 : unit = (fun () -> v82 (); v81) ()
-    let v85 : bool = v77 = false
-    if v85 then
-        failwith<unit> v79
-and method36 () : unit =
+            method18(v94)
+    let v101 : string =
+        if v94 then
+            let v97 : float = infinity
+            method19(v97)
+        else
+            let v99 : float = infinity
+            method21(v93, v99)
+    let v103 : string = v72 + v73 
+    let v110 : string =
+        if v94 then
+            let v106 : float = infinity
+            method19(v106)
+        else
+            let v108 : float = infinity
+            method21(v93, v108)
+    let v112 : string = v103 + v110 
+    let v116 : unit = ()
+    let v117 : (unit -> unit) = closure3(v112)
+    let v118 : unit = (fun () -> v117 (); v116) ()
+    let v120 : bool = v96 = false
+    if v120 then
+        failwith<unit> v112
+and method37 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method37(v3)
+    method38(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -3584,7 +3839,7 @@ and method36 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method40 () : UH0 =
+and method41 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(100.0, v0)
     let v2 : UH0 = UH0_1(90.0, v1)
@@ -3596,7 +3851,7 @@ and method40 () : UH0 =
     let v8 : UH0 = UH0_1(30.0, v7)
     let v9 : UH0 = UH0_1(20.0, v8)
     UH0_1(10.0, v9)
-and method41 (v0 : pyo3_Python, v1 : UH0) : unit =
+and method42 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
     | UH0_1(v2, v3) -> (* Cons *)
         let v4 : string = "num_complex::Complex::new($0, $1)"
@@ -3667,47 +3922,76 @@ and method41 (v0 : pyo3_Python, v1 : UH0) : unit =
                 true
             else
                 method18(v65)
-        let v70 : string = "__assert_ne"
-        let v71 : float = 0.0
-        let v72 : string = method19(v70, v71)
-        let v74 : unit = ()
-        let v75 : (unit -> unit) = closure3(v72)
-        let v76 : unit = (fun () -> v75 (); v74) ()
-        let v78 : bool = v69 = false
-        if v78 then
-            failwith<unit> v72
-        let v79 : string = "$0.im"
-        let v80 : float = Fable.Core.RustInterop.emitRustExpr v61 v79 
-        let v82 : bool = v80 <> 0.0 
-        let v86 : bool =
-            if v82 then
+        let v74 : string =
+            if v65 then
+                let v70 : float = 0.0
+                method19(v70)
+            else
+                let v72 : float = 0.0
+                method21(v63, v72)
+        let v78 : string = "__assert_ne"
+        let v79 : string = " "
+        let v80 : string = v78 + v79 
+        let v87 : string =
+            if v65 then
+                let v83 : float = 0.0
+                method19(v83)
+            else
+                let v85 : float = 0.0
+                method21(v63, v85)
+        let v89 : string = v80 + v87 
+        let v93 : unit = ()
+        let v94 : (unit -> unit) = closure3(v89)
+        let v95 : unit = (fun () -> v94 (); v93) ()
+        let v97 : bool = v69 = false
+        if v97 then
+            failwith<unit> v89
+        let v98 : string = "$0.im"
+        let v99 : float = Fable.Core.RustInterop.emitRustExpr v61 v98 
+        let v101 : bool = v99 <> 0.0 
+        let v105 : bool =
+            if v101 then
                 true
             else
-                method18(v82)
-        let v87 : float = 0.0
-        let v88 : string = method19(v70, v87)
-        let v90 : unit = ()
-        let v91 : (unit -> unit) = closure3(v88)
-        let v92 : unit = (fun () -> v91 (); v90) ()
-        let v94 : bool = v86 = false
-        if v94 then
-            failwith<unit> v88
-        method41(v0, v3)
+                method18(v101)
+        let v110 : string =
+            if v101 then
+                let v106 : float = 0.0
+                method19(v106)
+            else
+                let v108 : float = 0.0
+                method21(v99, v108)
+        let v112 : string = v78 + v79 
+        let v119 : string =
+            if v101 then
+                let v115 : float = 0.0
+                method19(v115)
+            else
+                let v117 : float = 0.0
+                method21(v99, v117)
+        let v121 : string = v112 + v119 
+        let v125 : unit = ()
+        let v126 : (unit -> unit) = closure3(v121)
+        let v127 : unit = (fun () -> v126 (); v125) ()
+        let v129 : bool = v105 = false
+        if v129 then
+            failwith<unit> v121
+        method42(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
-and method39 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method40()
-    method41(v0, v1)
-and method38 () : unit =
+and method40 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method41()
+    method42(v0, v1)
+and method39 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method39(v3)
+    method40(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -3787,7 +4071,7 @@ and method38 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method44 () : UH1 =
+and method45 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
     let v1 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v0 
     let v2 : string = "num_complex::Complex::new($0, $1)"
@@ -3804,7 +4088,7 @@ and method44 () : UH1 =
     let v13 : UH1 = UH1_1(v5, v12)
     let v14 : UH1 = UH1_1(v3, v13)
     UH1_1(v1, v14)
-and method45 (v0 : pyo3_Python, v1 : UH1) : unit =
+and method46 (v0 : pyo3_Python, v1 : UH1) : unit =
     match v1 with
     | UH1_1(v2, v3) -> (* Cons *)
         let v4 : string = $"        s = mpmath.zeta(s)"
@@ -3873,47 +4157,76 @@ and method45 (v0 : pyo3_Python, v1 : UH1) : unit =
                 true
             else
                 method18(v63)
-        let v68 : string = "__assert_ne"
-        let v69 : float = 0.0
-        let v70 : string = method19(v68, v69)
-        let v72 : unit = ()
-        let v73 : (unit -> unit) = closure3(v70)
-        let v74 : unit = (fun () -> v73 (); v72) ()
-        let v76 : bool = v67 = false
-        if v76 then
-            failwith<unit> v70
-        let v77 : string = "$0.im"
-        let v78 : float = Fable.Core.RustInterop.emitRustExpr v59 v77 
-        let v80 : bool = v78 <> 0.0 
-        let v84 : bool =
-            if v80 then
+        let v72 : string =
+            if v63 then
+                let v68 : float = 0.0
+                method19(v68)
+            else
+                let v70 : float = 0.0
+                method21(v61, v70)
+        let v76 : string = "__assert_ne"
+        let v77 : string = " "
+        let v78 : string = v76 + v77 
+        let v85 : string =
+            if v63 then
+                let v81 : float = 0.0
+                method19(v81)
+            else
+                let v83 : float = 0.0
+                method21(v61, v83)
+        let v87 : string = v78 + v85 
+        let v91 : unit = ()
+        let v92 : (unit -> unit) = closure3(v87)
+        let v93 : unit = (fun () -> v92 (); v91) ()
+        let v95 : bool = v67 = false
+        if v95 then
+            failwith<unit> v87
+        let v96 : string = "$0.im"
+        let v97 : float = Fable.Core.RustInterop.emitRustExpr v59 v96 
+        let v99 : bool = v97 <> 0.0 
+        let v103 : bool =
+            if v99 then
                 true
             else
-                method18(v80)
-        let v85 : float = 0.0
-        let v86 : string = method19(v68, v85)
-        let v88 : unit = ()
-        let v89 : (unit -> unit) = closure3(v86)
-        let v90 : unit = (fun () -> v89 (); v88) ()
-        let v92 : bool = v84 = false
-        if v92 then
-            failwith<unit> v86
-        method45(v0, v3)
+                method18(v99)
+        let v108 : string =
+            if v99 then
+                let v104 : float = 0.0
+                method19(v104)
+            else
+                let v106 : float = 0.0
+                method21(v97, v106)
+        let v110 : string = v76 + v77 
+        let v117 : string =
+            if v99 then
+                let v113 : float = 0.0
+                method19(v113)
+            else
+                let v115 : float = 0.0
+                method21(v97, v115)
+        let v119 : string = v110 + v117 
+        let v123 : unit = ()
+        let v124 : (unit -> unit) = closure3(v119)
+        let v125 : unit = (fun () -> v124 (); v123) ()
+        let v127 : bool = v103 = false
+        if v127 then
+            failwith<unit> v119
+        method46(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
-and method43 (v0 : pyo3_Python) : unit =
-    let v1 : UH1 = method44()
-    method45(v0, v1)
-and method42 () : unit =
+and method44 (v0 : pyo3_Python) : unit =
+    let v1 : UH1 = method45()
+    method46(v0, v1)
+and method43 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method43(v3)
+    method44(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -3993,7 +4306,7 @@ and method42 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method48 () : UH1 =
+and method49 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
     let v1 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.0, 4.0) v0 
     let v2 : string = "num_complex::Complex::new($0, $1)"
@@ -4007,7 +4320,7 @@ and method48 () : UH1 =
     let v10 : UH1 = UH1_1(v5, v9)
     let v11 : UH1 = UH1_1(v3, v10)
     UH1_1(v1, v11)
-and method49 (v0 : pyo3_Python, v1 : UH1) : unit =
+and method50 (v0 : pyo3_Python, v1 : UH1) : unit =
     match v1 with
     | UH1_1(v2, v3) -> (* Cons *)
         let v4 : string = $"        s = mpmath.zeta(s)"
@@ -4243,57 +4556,86 @@ and method49 (v0 : pyo3_Python, v1 : UH1) : unit =
                 true
             else
                 method18(v221)
-        let v224 : string = "__assert_lt"
-        let v225 : float = 0.0001
-        let v226 : string = method19(v224, v225)
-        let v228 : unit = ()
-        let v229 : (unit -> unit) = closure3(v226)
-        let v230 : unit = (fun () -> v229 (); v228) ()
-        let v232 : bool = v223 = false
-        if v232 then
-            failwith<unit> v226
-        let v233 : string = "$0.im"
-        let v234 : float = Fable.Core.RustInterop.emitRustExpr v59 v233 
-        let v235 : string = "$0.im"
-        let v236 : float = Fable.Core.RustInterop.emitRustExpr v212 v235 
-        let v237 : float = v234 - v236
-        let v238 : float =  -v237
-        let v239 : bool = v237 >= v238
-        let v240 : float =
-            if v239 then
-                v237
+        let v228 : string =
+            if v221 then
+                let v224 : float = 0.0001
+                method19(v224)
             else
-                v238
-        let v241 : bool = v240 < 0.0001
-        let v243 : bool =
-            if v241 then
+                let v226 : float = 0.0001
+                method21(v220, v226)
+        let v232 : string = "__assert_lt"
+        let v233 : string = " "
+        let v234 : string = v232 + v233 
+        let v241 : string =
+            if v221 then
+                let v237 : float = 0.0001
+                method19(v237)
+            else
+                let v239 : float = 0.0001
+                method21(v220, v239)
+        let v243 : string = v234 + v241 
+        let v247 : unit = ()
+        let v248 : (unit -> unit) = closure3(v243)
+        let v249 : unit = (fun () -> v248 (); v247) ()
+        let v251 : bool = v223 = false
+        if v251 then
+            failwith<unit> v243
+        let v252 : string = "$0.im"
+        let v253 : float = Fable.Core.RustInterop.emitRustExpr v59 v252 
+        let v254 : string = "$0.im"
+        let v255 : float = Fable.Core.RustInterop.emitRustExpr v212 v254 
+        let v256 : float = v253 - v255
+        let v257 : float =  -v256
+        let v258 : bool = v256 >= v257
+        let v259 : float =
+            if v258 then
+                v256
+            else
+                v257
+        let v260 : bool = v259 < 0.0001
+        let v262 : bool =
+            if v260 then
                 true
             else
-                method18(v241)
-        let v244 : float = 0.0001
-        let v245 : string = method19(v224, v244)
-        let v247 : unit = ()
-        let v248 : (unit -> unit) = closure3(v245)
-        let v249 : unit = (fun () -> v248 (); v247) ()
-        let v251 : bool = v243 = false
-        if v251 then
-            failwith<unit> v245
-        method49(v0, v3)
+                method18(v260)
+        let v267 : string =
+            if v260 then
+                let v263 : float = 0.0001
+                method19(v263)
+            else
+                let v265 : float = 0.0001
+                method21(v259, v265)
+        let v269 : string = v232 + v233 
+        let v276 : string =
+            if v260 then
+                let v272 : float = 0.0001
+                method19(v272)
+            else
+                let v274 : float = 0.0001
+                method21(v259, v274)
+        let v278 : string = v269 + v276 
+        let v282 : unit = ()
+        let v283 : (unit -> unit) = closure3(v278)
+        let v284 : unit = (fun () -> v283 (); v282) ()
+        let v286 : bool = v262 = false
+        if v286 then
+            failwith<unit> v278
+        method50(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
-and method47 (v0 : pyo3_Python) : unit =
-    let v1 : UH1 = method48()
-    method49(v0, v1)
-and method46 () : unit =
+and method48 (v0 : pyo3_Python) : unit =
+    let v1 : UH1 = method49()
+    method50(v0, v1)
+and method47 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method47(v3)
+    method48(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -4373,7 +4715,7 @@ and method46 () : unit =
     #endif
     // run_target_args' is_unit
     ()
-and method52 () : UH0 =
+and method53 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(5.0, v0)
     let v2 : UH0 = UH0_1(4.5, v1)
@@ -4382,7 +4724,7 @@ and method52 () : UH0 =
     let v5 : UH0 = UH0_1(3.0, v4)
     let v6 : UH0 = UH0_1(2.5, v5)
     UH0_1(2.0, v6)
-and method53 () : UH0 =
+and method54 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(71.0, v0)
     let v2 : UH0 = UH0_1(67.0, v1)
@@ -4404,23 +4746,23 @@ and method53 () : UH0 =
     let v18 : UH0 = UH0_1(5.0, v17)
     let v19 : UH0 = UH0_1(3.0, v18)
     UH0_1(2.0, v19)
-and method55 (v0 : float, v1 : UH0, v2 : float) : float =
+and method56 (v0 : float, v1 : UH0, v2 : float) : float =
     match v1 with
     | UH0_1(v3, v4) -> (* Cons *)
         let v5 : float =  -v0
         let v6 : float = v3 ** v5
         let v7 : float = 1.0 - v6
         let v8 : float = v2 / v7
-        method55(v0, v4, v8)
+        method56(v0, v4, v8)
     | UH0_0 -> (* Nil *)
         v2
-and method54 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
+and method55 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
     match v2 with
     | UH0_1(v3, v4) -> (* Cons *)
         let v5 : string = "num_complex::Complex::new($0, $1)"
         let v6 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v3, 0.0) v5 
         let v7 : float = 1.0
-        let v8 : float = method55(v3, v1, v7)
+        let v8 : float = method56(v3, v1, v7)
         let v9 : string = $"        s = mpmath.zeta(s)"
         let v10 : num_complex_Complex<float> = method3(v6)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
@@ -4495,48 +4837,77 @@ and method54 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
                 true
             else
                 method18(v71)
-        let v74 : string = "__assert_lt"
-        let v75 : float = 0.01
-        let v76 : string = method19(v74, v75)
-        let v78 : unit = ()
-        let v79 : (unit -> unit) = closure3(v76)
-        let v80 : unit = (fun () -> v79 (); v78) ()
-        let v82 : bool = v73 = false
-        if v82 then
-            failwith<unit> v76
-        let v83 : string = "$0.im"
-        let v84 : float = Fable.Core.RustInterop.emitRustExpr v64 v83 
-        let v85 : bool = v84 < 0.01
-        let v87 : bool =
-            if v85 then
+        let v78 : string =
+            if v71 then
+                let v74 : float = 0.01
+                method19(v74)
+            else
+                let v76 : float = 0.01
+                method21(v70, v76)
+        let v82 : string = "__assert_lt"
+        let v83 : string = " "
+        let v84 : string = v82 + v83 
+        let v91 : string =
+            if v71 then
+                let v87 : float = 0.01
+                method19(v87)
+            else
+                let v89 : float = 0.01
+                method21(v70, v89)
+        let v93 : string = v84 + v91 
+        let v97 : unit = ()
+        let v98 : (unit -> unit) = closure3(v93)
+        let v99 : unit = (fun () -> v98 (); v97) ()
+        let v101 : bool = v73 = false
+        if v101 then
+            failwith<unit> v93
+        let v102 : string = "$0.im"
+        let v103 : float = Fable.Core.RustInterop.emitRustExpr v64 v102 
+        let v104 : bool = v103 < 0.01
+        let v106 : bool =
+            if v104 then
                 true
             else
-                method18(v85)
-        let v88 : float = 0.01
-        let v89 : string = method19(v74, v88)
-        let v91 : unit = ()
-        let v92 : (unit -> unit) = closure3(v89)
-        let v93 : unit = (fun () -> v92 (); v91) ()
-        let v95 : bool = v87 = false
-        if v95 then
-            failwith<unit> v89
-        method54(v0, v1, v4)
+                method18(v104)
+        let v111 : string =
+            if v104 then
+                let v107 : float = 0.01
+                method19(v107)
+            else
+                let v109 : float = 0.01
+                method21(v103, v109)
+        let v113 : string = v82 + v83 
+        let v120 : string =
+            if v104 then
+                let v116 : float = 0.01
+                method19(v116)
+            else
+                let v118 : float = 0.01
+                method21(v103, v118)
+        let v122 : string = v113 + v120 
+        let v126 : unit = ()
+        let v127 : (unit -> unit) = closure3(v122)
+        let v128 : unit = (fun () -> v127 (); v126) ()
+        let v130 : bool = v106 = false
+        if v130 then
+            failwith<unit> v122
+        method55(v0, v1, v4)
     | UH0_0 -> (* Nil *)
         ()
-and method51 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method52()
-    let v2 : UH0 = method53()
-    method54(v0, v2, v1)
-and method50 () : unit =
+and method52 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method53()
+    let v2 : UH0 = method54()
+    method55(v0, v2, v1)
+and method51 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method51(v3)
+    method52(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method21(v5)
+    let v8 : Result<unit, pyo3_PyErr> = method22(v5)
     let v9 : string = ""
     let v10 : string = "}"
     let v11 : string = v9 + v10 
@@ -4630,67 +5001,67 @@ and closure0 () () : unit =
     let v7 : string = "test_zeta_at_2_minus2"
     let v8 : string = $"*/ #[test] fn " + v7 + "() { //"
     let v9 : bool = Fable.Core.RustInterop.emitRustExpr () v8 
-    method22()
+    method23()
     let v10 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v10 
     let v11 : string = "test_trivial_zero_at_negative_even___"
     let v12 : string = $"*/ #[test] fn " + v11 + "() { //"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    method24()
+    method25()
     let v14 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v14 
     let v15 : string = "test_non_trivial_zero___"
     let v16 : string = $"*/ #[test] fn " + v15 + "() { //"
     let v17 : bool = Fable.Core.RustInterop.emitRustExpr () v16 
-    method28()
+    method29()
     let v18 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v18 
     let v19 : string = "test_real_part_greater_than_one___"
     let v20 : string = $"*/ #[test] fn " + v19 + "() { //"
     let v21 : bool = Fable.Core.RustInterop.emitRustExpr () v20 
-    method30()
+    method31()
     let v22 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v22 
     let v23 : string = "test_zeta_at_1___"
     let v24 : string = $"*/ #[test] fn " + v23 + "() { //"
     let v25 : bool = Fable.Core.RustInterop.emitRustExpr () v24 
-    method32()
+    method33()
     let v26 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v26 
     let v27 : string = "test_symmetry_across_real_axis___"
     let v28 : string = $"*/ #[test] fn " + v27 + "() { //"
     let v29 : bool = Fable.Core.RustInterop.emitRustExpr () v28 
-    method34()
+    method35()
     let v30 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v30 
     let v31 : string = "test_behavior_near_origin___"
     let v32 : string = $"*/ #[test] fn " + v31 + "() { //"
     let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
-    method36()
+    method37()
     let v34 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v34 
     let v35 : string = "test_imaginary_axis"
     let v36 : string = $"*/ #[test] fn " + v35 + "() { //"
     let v37 : bool = Fable.Core.RustInterop.emitRustExpr () v36 
-    method38()
+    method39()
     let v38 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v38 
     let v39 : string = "test_critical_strip"
     let v40 : string = $"*/ #[test] fn " + v39 + "() { //"
     let v41 : bool = Fable.Core.RustInterop.emitRustExpr () v40 
-    method42()
+    method43()
     let v42 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v42 
     let v43 : string = "test_reflection_formula_for_specific_value"
     let v44 : string = $"*/ #[test] fn " + v43 + "() { //"
     let v45 : bool = Fable.Core.RustInterop.emitRustExpr () v44 
-    method46()
+    method47()
     let v46 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v46 
     let v47 : string = "test_euler_product_formula"
     let v48 : string = $"*/ #[test] fn " + v47 + "() { //"
     let v49 : bool = Fable.Core.RustInterop.emitRustExpr () v48 
-    method50()
+    method51()
     let v50 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v50 
     let v51 : string = "{ //"

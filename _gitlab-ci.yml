@@ -1,0 +1,132 @@
+# .gitlab-ci.yml
+# Converts your GH Actions workflow to GitLab CI with:
+# - Build on Ubuntu 24.04 and Windows 2025 (two jobs)
+# - Uses PowerShell (pwsh) to run your script on both
+# - Stores Linux build artifact from dist/ for 30 days
+# - Deploys to GitLab Pages (serves files from public/)
+# NOTE: Make sure you have Linux and Windows runners with matching tags.
+
+workflow:
+  rules:
+    # Pushes to main
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    # Merge Requests targeting main
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
+
+stages:
+  - build
+  - deploy
+
+variables:
+  DOTNET_VERSION: "9.0.202"
+  NODE_VERSION: "21"
+  PYTHON_VERSION: "3.12.10"
+  GLEAM_VERSION: "1.11.0"
+  OTP_VERSION: "27"
+  REBAR3_VERSION: "3.24.0"
+
+# --- Linux build (Ubuntu 24.04) ---
+build:linux:
+  stage: build
+  image: ubuntu:24.04
+  tags: ["gitlab-org-docker"]     # <-- adjust to your Linux runner tag(s)
+  timeout: 420m
+  before_script:
+    - set -euxo pipefail
+    - apt-get update
+    - apt-get install -y curl git unzip ca-certificates gnupg software-properties-common wget build-essential pkg-config libssl-dev
+    # Rust + components + wasm target
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - source "$HOME/.cargo/env"
+    - rustup component add clippy rust-src rustfmt
+    - rustup target add wasm32-unknown-unknown
+    # .NET SDK
+    - wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+    - chmod +x dotnet-install.sh
+    - ./dotnet-install.sh --version "$DOTNET_VERSION"
+    - export DOTNET_ROOT="$HOME/.dotnet"
+    - export PATH="$DOTNET_ROOT:$PATH"
+    # Node.js 21.x
+    - curl -fsSL https://deb.nodesource.com/setup_"$NODE_VERSION".x | bash -
+    - apt-get install -y nodejs
+    - node -v
+    # Python 3.12.10 (exact version via pyenv)
+    - apt-get install -y make libbz2-dev libreadline-dev libsqlite3-dev zlib1g-dev libffi-dev liblzma-dev tk-dev
+    - curl https://pyenv.run | bash
+    - export PYENV_ROOT="$HOME/.pyenv"
+    - export PATH="$PYENV_ROOT/bin:$PATH"
+    - eval "$(pyenv init -)"
+    - pyenv install -s "$PYTHON_VERSION"
+    - pyenv global "$PYTHON_VERSION"
+    - python --version
+    # PowerShell 7 (pwsh)
+    - wget -q https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb
+    - dpkg -i packages-microsoft-prod.deb
+    - apt-get update && apt-get install -y powershell
+  script:
+    - pwsh scripts/workflow.ps1
+  artifacts:
+    expire_in: 30 days
+    paths:
+      - dist/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
+
+# --- Windows build (Windows 2025) ---
+build:windows:
+  stage: build
+  tags: ["saas-windows-medium-amd64"]   # <-- adjust to your Windows runner tag(s)
+  timeout: 420m
+  before_script:
+    - '$ErrorActionPreference = "Stop"'
+    # Chocolatey (if not present)
+    - 'choco --version || (Set-ExecutionPolicy Bypass -Scope Process -Force; [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iex ((New-Object Net.WebClient).DownloadString("https://community.chocolatey.org/install.ps1")))'
+    # Rust + components + wasm target
+    - '$env:RUSTUP_INIT_SKIP_PATH_CHECK=1'
+    - 'Invoke-WebRequest https://win.rustup.rs/x86_64 -OutFile rustup-init.exe'
+    - './rustup-init.exe -y'
+    - '$env:PATH = "$env:USERPROFILE\.cargo\bin;$env:PATH"'
+    - 'rustup component add clippy rust-src rustfmt'
+    - 'rustup target add wasm32-unknown-unknown'
+    # Erlang/OTP, Gleam, Rebar3 (versions pinned when available)
+    - 'choco install -y erlang --version=$env:OTP_VERSION --allow-downgrade --ignore-checksums || choco install -y erlang'
+    - 'choco install -y gleam --version=$env:GLEAM_VERSION || choco install -y gleam'
+    - 'choco install -y rebar3 --version=$env:REBAR3_VERSION || choco install -y rebar3'
+    # .NET SDK
+    - 'Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile dotnet-install.ps1'
+    - './dotnet-install.ps1 -Version $env:DOTNET_VERSION'
+    - '$env:DOTNET_ROOT = "$env:USERPROFILE\.dotnet"'
+    - '$env:PATH = "$env:DOTNET_ROOT;$env:PATH"'
+    # Node.js 21 (fallback to latest if exact not available)
+    - 'choco install -y nodejs --version=$env:NODE_VERSION || choco install -y nodejs'
+    - 'node -v'
+    # Python 3.12.10 (fallback to latest 3.12 if exact not available)
+    - 'choco install -y python --version=$env:PYTHON_VERSION || choco install -y python'
+    - 'python --version'
+  script:
+    - pwsh scripts/workflow.ps1
+  # Mirror GHA behavior: only Linux uploads artifacts
+  artifacts:
+    when: on_failure
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
+
+# --- Deploy to GitLab Pages (publishes artifact from Linux job) ---
+pages:
+  stage: deploy
+  image: alpine:3.20
+  needs: ["build:linux"]
+  script:
+    - set -eux
+    - test -d dist
+    - mkdir -p public
+    - cp -r dist/* public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  rules:
+    # Only publish pages on pushes to main (not for MRs)
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
