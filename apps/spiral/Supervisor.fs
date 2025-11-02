@@ -216,6 +216,11 @@ module Supervisor =
 
     /// ### buildFile
     let buildFile backend timeout port cancellationToken path =
+#if INTERACTIVE
+        let errorWait = 3
+#else
+        let errorWait = 1
+#endif
         let rec 루프 retry = async {
             let fullPath = path |> System.IO.Path.GetFullPath |> SpiralFileSystem.normalize_path
             let fileDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -296,7 +301,7 @@ module Supervisor =
                 FSharp.Control.AsyncSeq.unfoldAsync
                     (fun () -> async {
                         let! msg = compilerEvent.Publish |> Async.AwaitEvent
-                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq unfoldAsync / msg: %A{msg}") _locals
+                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq unfoldAsync / retry: {retry} / msg: %A{msg}") _locals
                         return Some (msg, ())
                     })
                     ()
@@ -307,7 +312,7 @@ module Supervisor =
                 FSharp.Control.AsyncSeq.unfoldAsync
                     (fun () -> async {
                         let! msg = compilerEvent2.Publish |> Async.AwaitEvent
-                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: %A{msg}") _locals
+                        trace Verbose (fun () -> $"Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: {retry} / msg: %A{msg}") _locals
                         return Some (msg, ())
                     })
                     ()
@@ -321,7 +326,7 @@ module Supervisor =
                 ((None, [], 0), outputSeq)
                 ||> FSharp.Control.AsyncSeq.scan (
                     fun (outputContentResult, errors, typeErrorCount) (outputContent, error) ->
-                        trace Verbose (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)} / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / path: {path}'") _locals
+                        trace Verbose (fun () -> $"Supervisor.buildFile / AsyncSeq.scan / errors: {errors |> serializeObj} / outputContentResult: {outputContentResult} / typeErrorCount: {typeErrorCount} / retry: {retry} / error: {error} / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)} / path: {path}'") _locals
                         match outputContent, error with
                         | Some outputContent, None -> Some outputContent, errors, typeErrorCount
                         | None, Some (
@@ -337,19 +342,14 @@ module Supervisor =
                 |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (outputContent, errors, typeErrorCount) ->
                     trace
                         Verbose
-                        (fun () -> $"Supervisor.buildFile / takeWhileInclusive / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)}' / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / retry: {retry} / path: {path}")
+                        (fun () -> $"Supervisor.buildFile / takeWhileInclusive / retry: {retry} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount} / outputContent:\n'{outputContent |> Option.map (SpiralSm.ellipsis_end 1500)}' / path: {path}")
                         _locals
-        #if INTERACTIVE
-                    let errorWait = 1
-        #else
-                    let errorWait = 1
-        #endif
                     match outputContent, errors with
-                    | None, [] when typeErrorCount > errorWait -> false
                     | _, [ message, TypeErrors errors ] ->
                         compilerEvent.Trigger (None, Some (message, TypeErrors errors))
                         trace Verbose (fun () -> $"Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger") _locals
                         false
+                    | None, [] when typeErrorCount > errorWait -> false
                     | None, [] -> true
                     | _ -> false
                 )
@@ -402,7 +402,7 @@ module Supervisor =
                     if buildFileResult = "" || buildFileResult = null
                     then None
                     else buildFileResult |> SpiralSm.replace "\r\n" "\n" |> Some
-                trace Verbose (fun () -> $"Supervisor.buildFile / buildFileResult: %A{buildFileResult}") (fun () -> "")
+                trace Verbose (fun () -> $"Supervisor.buildFile") (fun () -> "buildFileResult: %A{buildFileResult}")
                 if buildFileResult.IsSome then
                     compilerEvent2.Trigger (buildFileResult, [], 0)
                 return buildFileResult, [], 0
@@ -417,13 +417,13 @@ module Supervisor =
                         let x =
                             match errors with
                             | [ message, TypeErrors errors ] ->
-                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map") _locals
+                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map 1") (fun () -> "errors: %A{errors} / typeErrorCount: %A{typeErrorCount}")
                                 compilerEvent2.Trigger (None, [ message, TypeErrors errors ], 0)
-                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map") _locals
+                                trace Verbose (fun () -> $"Supervisor.buildFile / outputChild |> Async.map 2") (fun () -> "errors: %A{errors} / typeErrorCount: %A{typeErrorCount}")
                             | _ -> ()
                         outputCode, errors |> List.distinct |> List.rev, typeErrorCount
                     | Some (Error ex) ->
-                        trace Critical (fun () -> $"Supervisor.buildFile / error: {ex |> SpiralSm.format_exception} / retry: {retry}") _locals
+                        trace Critical (fun () -> $"Supervisor.buildFile / retry: {retry} / error: {ex |> SpiralSm.format_exception}") _locals
                         None, [], 0
                     | _ -> None, [], 0
                 )
@@ -450,6 +450,7 @@ module Supervisor =
                     match x with
                     | Some _, _, _ as x -> [| x |]
                     | _, _ :: _, _ as x -> [| x |]
+                    | _, _, typeErrorCount when typeErrorCount > errorWait -> [| x |]
                     | _ -> [||]
                     |> FSharp.Control.AsyncSeq.ofSeq
                 )
