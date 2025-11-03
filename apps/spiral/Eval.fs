@@ -124,6 +124,8 @@ module Eval =
     /// ### workspaceRoot
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
+    let automation = spiral_compiler.assemblyName = "dotnet-repl"
+
     /// ### targetDir
     let targetDir = workspaceRoot </> "target/spiral_Eval"
     [ targetDir ]
@@ -138,8 +140,16 @@ module Eval =
     /// ## allCodeReal
     let mutable allCodeReal = ""
 
-    /// ## traceToggle
-    let mutable traceToggle = false
+    /// ## Toggle
+    type Toggle =
+        | Trace
+        | Tests
+
+    /// ## toggle
+    let mutable toggle =
+        [
+        ]
+        |> Map.ofList
 
     /// ## startTokenRangeWatcher
     let inline startTokenRangeWatcher () =
@@ -427,7 +437,7 @@ module Eval =
                                     l0 = command
                                     l1 = props.cancellationToken
                                     l2 = [|
-                                        "AUTOMATION", spiral_compiler.assemblyName = "dotnet-repl" |> string
+                                        "AUTOMATION", automation |> string
                                         "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                     |]
                                     l6 = workspaceRootExternal
@@ -608,6 +618,8 @@ module Eval =
             rawCellCode: _
             lines: _
             isReal: _
+            isTest: _
+            isTestForce: _
             builderCommands: _ array
             isCache: _
             timeout: _
@@ -815,9 +827,10 @@ module Eval =
                                 ch, errors'
                     match ch with
                     | Choice1Of2 v ->
-                        if props.isReal
-                        then allCodeReal <- newAllCode
-                        else allCode <- newAllCode
+                        if (props.isTest |> not) || props.isTestForce then
+                            if props.isReal
+                            then allCodeReal <- newAllCode
+                            else allCode <- newAllCode
                         return Ok(v), errors'
                     | Choice2Of2 ex ->
                         let ex = ex |> SpiralSm.format_exception
@@ -889,8 +902,10 @@ module Eval =
             code |> SpiralSm.replace "\r\n" "\n"
 
         let lines = rawCellCode |> SpiralSm.split "\n"
-
-        if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
+        if
+            lines
+            |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"")
+        then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let code =
                 if code |> SpiralSm.contains "<script"
@@ -933,9 +948,8 @@ module Eval =
                 lines
                 |> Array.tryPick (fun line ->
                     let text = $"//// {command}"
-                    match line.[0..text.Length-1], line.[text.Length..] with
-                    | head, "" when head = text ->
-                        Some true
+                    match line.[0..text.Length - 1], line.[text.Length..] with
+                    | head, "" when head = text -> Some true
                     | head, _ when head = text ->
                         line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
                     | _ -> None
@@ -944,17 +958,29 @@ module Eval =
 
             let printCode = "print_code" |> boolArg false
             let isTraceToggle = "trace_toggle" |> boolArg false
+            let isTestsToggle = "tests_toggle" |> boolArg false
             let isTrace = "trace" |> boolArg false
+            let isTest = "test" |> boolArg false
+            let isTestForce = "test_force" |> boolArg false
             let isCache = "cache" |> boolArg false
             let isReal = "real" |> boolArg false
             let timeout_continue = "timeout_continue" |> boolArg false
 
+            let getToggle key toggle =
+                toggle |> Map.tryFind key |> Option.defaultValue false
+
+            let applyToggle key toggle =
+                toggle |> Map.add key (toggle |> getToggle key |> not)
+
             if isTraceToggle
-            then traceToggle <- not traceToggle
+            then toggle <- toggle |> applyToggle Trace
+
+            if isTestsToggle
+            then toggle <- toggle |> applyToggle Tests
 
             let oldLevel = get_trace_level ()
             let traceLevel =
-                if isTrace || traceToggle
+                if isTrace || toggle |> getToggle Trace
                 then Verbose
                 else Info
             traceLevel
@@ -964,11 +990,18 @@ module Eval =
                 oldLevel |> set_trace_level
             ))
 
+            let rawCellCode, lines, builderCommands =
+                if (automation |> not) && (isTestForce |> not) && isTest && toggle |> getToggle Tests |> not
+                then "()", [| "()" |], [||]
+                else rawCellCode, lines, builderCommands
+
             evalAsync 1 [||]
                 {|
                     rawCellCode = rawCellCode
                     lines = lines
                     isReal = isReal
+                    isTest = isTest
+                    isTestForce = isTestForce
                     builderCommands = builderCommands
                     isCache = isCache
                     timeout = timeout
@@ -988,7 +1021,6 @@ module Eval =
             )
             |> Option.defaultWith (fun () -> (
                 let lines = lines |> SpiralSm.concat (string '\n') |> SpiralSm.ellipsis_end 1500
-                in
                 Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / timeout_continue: {timeout_continue} / lines: {lines}"),
                 [|
                     (

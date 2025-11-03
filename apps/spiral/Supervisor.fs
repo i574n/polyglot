@@ -446,7 +446,7 @@ module Supervisor =
                 resultSeq
                 // |> FSharp.Control.AsyncSeq.collect (Array.singleton >> FSharp.Control.AsyncSeq.ofSeq)
                 |> FSharp.Control.AsyncSeq.collect (fun x ->
-                    trace Verbose (fun () -> $"Supervisor.buildFile / ofSeqAsync / x: %A{x}") _locals
+                    trace Verbose (fun () -> $"Supervisor.buildFile / ofSeqAsync / x: %A{x |> serializeObj |> SpiralSm.ellipsis_end 1500}") _locals
                     match x with
                     | Some _, _, _ as x -> [| x |]
                     | _, _ :: _, _ as x -> [| x |]
