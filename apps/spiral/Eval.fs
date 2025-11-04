@@ -124,6 +124,8 @@ module Eval =
     /// ### workspaceRoot
     let workspaceRoot = SpiralFileSystem.get_workspace_root ()
 
+    let automation = spiral_compiler.assemblyName = "dotnet-repl"
+
     /// ### targetDir
     let targetDir = workspaceRoot </> "target/spiral_Eval"
     [ targetDir ]
@@ -138,8 +140,16 @@ module Eval =
     /// ## allCodeReal
     let mutable allCodeReal = ""
 
-    /// ## traceToggle
-    let mutable traceToggle = false
+    /// ## Toggle
+    type Toggle =
+        | Trace
+        | Tests
+
+    /// ## toggle
+    let mutable toggle : Map<Toggle, bool> =
+        [
+        ]
+        |> Map.ofList
 
     /// ## startTokenRangeWatcher
     let inline startTokenRangeWatcher () =
@@ -427,7 +437,7 @@ module Eval =
                                     l0 = command
                                     l1 = props.cancellationToken
                                     l2 = [|
-                                        "AUTOMATION", spiral_compiler.assemblyName = "dotnet-repl" |> string
+                                        "AUTOMATION", automation |> string
                                         "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                     |]
                                     l6 = workspaceRootExternal
@@ -603,10 +613,13 @@ module Eval =
     /// ## evalAsync
     let rec evalAsync
         retry
+        state
         (props : {|
             rawCellCode: _
             lines: _
             isReal: _
+            isTest: _
+            isTestForce: _
             builderCommands: _ array
             isCache: _
             timeout: _
@@ -616,6 +629,7 @@ module Eval =
             fsi_eval: _
         |})
         = async {
+        let maxRetries = 3
         try
             let cellCode, lastTopLevelIndex = prepareSpiral props.rawCellCode props.lines
             let newAllCode =
@@ -640,8 +654,8 @@ module Eval =
                     |> Array.distinct
 
             trace Verbose
-                (fun () -> $"Eval.eval")
-                (fun () -> $"lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{props.builderCommands} / buildBackends: %A{buildBackends} / isReal: {props.isReal} / {_locals ()}")
+                (fun () -> $"Eval.evalAsync")
+                (fun () -> $"retry: {retry} / state: %A{state} / lastTopLevelIndex: {lastTopLevelIndex} / builderCommands: %A{props.builderCommands} / buildBackends: %A{buildBackends} / isReal: {props.isReal} / {_locals ()}")
 
             let! buildCodeResults =
                 buildBackends
@@ -664,6 +678,9 @@ module Eval =
                 let! result, errors =
                     ((Ok [], [||]), buildCodeResults)
                     ||> Async.fold (fun acc buildCodeResult -> async {
+                        trace Verbose
+                            (fun () -> $"Eval.evalAsync / buildCodeResults fold")
+                            (fun () -> $"retry: {retry} / state: %A{state} / {_locals ()}")
                         match buildCodeResult with
                         | backend, (_, (outputPath, Some code), spiralErrors) ->
                             let spiralErrors =
@@ -687,7 +704,7 @@ module Eval =
                                 return Ok (acc_code @ code), acc_errors |> Array.append errors
                             | (Error ex, errors), _ | _, (Error ex, errors) ->
                                 return
-                                    Error (Exception $"Eval.evalAsync / processSpiralOutput / Exception / buildCodeResult: %A{buildCodeResult |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / ex: {ex |> SpiralSm.format_exception}"),
+                                    Error (Exception $"Eval.evalAsync / processSpiralOutput / Exception / retry: {retry} / state: %A{state} / errors: %A{errors} / buildCodeResult: %A{buildCodeResult |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / ex: {ex |> SpiralSm.format_exception}"),
                                     errors |> Array.append errors
                         | _, (_, _, errors) when errors |> List.isEmpty |> not ->
                             return errors.[0] |> fst |> Exception |> Error,
@@ -709,26 +726,26 @@ module Eval =
                     let eval = eval |> List.choose id
 
                     trace Debug
-                        (fun () -> $"Eval.eval")
-                        (fun () -> $"eval: {eval |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / code: {code |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / {_locals ()}")
+                        (fun () -> $"Eval.evalAsync")
+                        (fun () -> $"eval: {eval |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / code: {code |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400} / retry: {retry} / {_locals ()}")
 
-                    let ch, errors =
+                    let ch, errors' =
                         match eval, code with
                         | [], [] ->
-                            Choice2Of2 (Exception $"Eval.evalAsync / eval=[] / code=[] / buildCodeResults: %A{buildCodeResults} / code: %A{code}"), errors
+                            Choice2Of2 (Exception $"Eval.evalAsync / eval=[] / code=[] / buildCodeResults: %A{buildCodeResults} / retry: {retry} / code: %A{code} / errors: %A{errors} / state: %A{state}"), errors
                         | [ eval ], [] ->
                             let eval =
                                 if eval |> SpiralSm.contains "<script"
                                 then $"{eval}, \"text/html1\""
                                 else eval
                             let ch, errors2 = props.fsi_eval eval cancellationToken
-                            let errors =
+                            let errors' =
                                 errors2
                                 // |> Array.map (fun (e1, e2, e3, _) ->
                                 //     (e1, e2, e3, ("", (0, 0), (0, 0)))
                                 // )
                                 |> Array.append errors
-                            ch, errors
+                            ch, errors'
                         | [], _ ->
                             let code = code |> List.rev |> String.concat "\n\n"
                             let code =
@@ -740,15 +757,15 @@ module Eval =
                                 then $"{code}, \"text/html2\""
                                 else code
                             let ch, errors2 = props.fsi_eval code cancellationToken
-                            let errors =
+                            let errors' =
                                 errors2
                                 // |> Array.map (fun (e1, e2, e3, _) ->
                                 //     (e1, e2, e3, ("", (0, 0), (0, 0)))
                                 // )
                                 |> Array.append errors
-                            ch, errors
+                            ch, errors'
                         | _ ->
-                            let code, errors =
+                            let code, errors' =
                                 ((Ok (code |> List.rev), [||]), eval)
                                 ||> List.fold (fun (acc, acc_errors) eval ->
                                     match acc with
@@ -758,9 +775,9 @@ module Eval =
                                             if eval |> SpiralSm.contains "<script"
                                             then $"{eval}, \"text/html3\""
                                             else eval
-                                        let ch, errors = props.fsi_eval eval cancellationToken
-                                        let errors =
-                                            errors
+                                        let ch, errors' = props.fsi_eval eval cancellationToken
+                                        let errors'' =
+                                            errors'
                                             // |> Array.map (fun (e1, e2, e3, _) ->
                                             //     (e1, e2, e3, ("", (0, 0), (0, 0)))
                                             // )
@@ -772,13 +789,13 @@ module Eval =
                                                 |> tryGetPropertyValue "ReflectionValue"
                                                 |> Option.map (fun x -> $"%A{x}")
                                                 |> Option.defaultValue ""
-                                            Ok (v :: acc), errors
+                                            Ok (v :: acc), errors''
                                         | Choice2Of2 ex ->
-                                            trace Critical (fun () -> $"Eval.evalAsync / fsi_eval fold Choice error / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}") _locals
-                                            Error ch, errors
+                                            trace Critical (fun () -> $"Eval.evalAsync / fsi_eval fold Choice error / buildCodeResults: %A{buildCodeResults} / retry: {retry} / ex: {ex |> SpiralSm.format_exception}") _locals
+                                            Error ch, errors''
                                 )
                             match code with
-                            | Error ch -> ch, errors
+                            | Error ch -> ch, errors'
                             | Ok code ->
                                 let code =
                                     code
@@ -801,62 +818,69 @@ module Eval =
                                     then $"{code}, \"text/html4\""
                                     else code
                                 let ch, errors2 = props.fsi_eval code cancellationToken
-                                let errors =
+                                let errors' =
                                     errors2
                                     // |> Array.map (fun (e1, e2, e3, _) ->
                                     //     (e1, e2, e3, ("", (0, 0), (0, 0)))
                                     // )
                                     |> Array.append errors
-                                ch, errors
+                                ch, errors'
                     match ch with
                     | Choice1Of2 v ->
-                        if props.isReal
-                        then allCodeReal <- newAllCode
-                        else allCode <- newAllCode
-                        return Ok(v), errors
+                        if (props.isTest |> not) || props.isTestForce then
+                            if props.isReal
+                            then allCodeReal <- newAllCode
+                            else allCode <- newAllCode
+                        return Ok(v), errors'
                     | Choice2Of2 ex ->
-                        return
-                            Error (Exception $"Eval.evalAsync / -2 / Exception / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400}"),
-                            errors
-                | Ok code, errors ->
+                        let ex = ex |> SpiralSm.format_exception
+                        if retry <= maxRetries
+                        then return! evalAsync (retry + 1) errors' props
+                        else
+                            return
+                                Error (Exception $"Eval.evalAsync / -2 / Exception / retry: {retry} / ex: {ex} / errors: %A{errors} / errors': %A{errors'} / state: %A{state} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 400}"),
+                                errors'
+
+                | Ok code, errors' ->
                     return
-                        Error (Exception "Eval.evalAsync / errors / buildCodeResults: %A{buildCodeResults} / code: %A{code}"),
-                        errors
-                | Error ex, errors ->
+                        Error (Exception $"Eval.evalAsync / errors / retry: {retry} / errors: %A{errors} / errors': %A{errors'} / state: %A{state} / buildCodeResults: %A{buildCodeResults} / code: %A{code}"),
+                        errors'
+                | Error ex, errors' ->
                     let ex = ex |> SpiralSm.format_exception
-                    if retry <= 3 &&
-                        (ex |> SpiralSm.contains "Expected one of: inl, let, union, nominal, prototype, type, instance, and, open")
-                        || (ex |> SpiralSm.contains "Unexpected end of block past this token.")
-                        || (ex |> SpiralSm.contains "Unbound variable:")
-                    then return! evalAsync (retry + 1) props
+                    trace Verbose (fun () -> $"Eval.evalAsync / before evalAsync / retry: {retry} / buildCodeResults: %A{buildCodeResults} / ex: {ex} / errors: %A{errors} / errors': %A{errors'} / state: %A{state}") _locals
+                    if retry <= maxRetries &&
+                        ((ex |> SpiralSm.contains "Expected one of: inl, let, union, nominal, prototype, type, instance, and, open")
+                            || (ex |> SpiralSm.contains "Unexpected end of block past this token.")
+                            || (ex |> SpiralSm.contains "Unbound variable:"))
+                    then return! evalAsync (retry + 1) errors' props
                     else
                         return
-                            Error (Exception $"Eval.evalAsync / -1 / Exception / ex: {ex} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 1500}"),
-                            errors
+                            Error (Exception $"Eval.evalAsync / -1 / Exception / retry: {retry} / ex: {ex} / errors: %A{errors} / errors': %A{errors'} / state: %A{state} / buildCodeResults: {buildCodeResults |> FSharp.Json.Json.serialize |> SpiralSm.ellipsis_end 1500}"),
+                            errors'
             | Some (Error ex) ->
-                trace Critical (fun () -> $"Eval.evalAsync / buildCodeResults Error / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}") _locals
+                trace Critical (fun () -> $"Eval.evalAsync / buildCodeResults Error / retry: {retry} / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}") _locals
                 return
-                    Error (Exception $"Eval.evalAsync / buildCodeResults Error / Exception / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}"),
+                    Error (Exception $"Eval.evalAsync / buildCodeResults Error / Exception / retry: {retry} / buildCodeResults: %A{buildCodeResults} / ex: {ex |> SpiralSm.format_exception}"),
                     [|
                         (
-                            TraceLevel.Critical, $"Eval.evalAsync / buildCodeResults Error / errors[0] / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: %A{buildCodeResults}", 0, ("", (0, 0), (0, 0))
+                            TraceLevel.Critical, $"Eval.evalAsync / buildCodeResults Error / errors[0] / retry: {retry} / ex: {ex |> SpiralSm.format_exception} / buildCodeResults: %A{buildCodeResults}", 0, ("", (0, 0), (0, 0))
                         )
                     |]
             | _ ->
                 return
-                    Error (Exception $"Eval.evalAsync / buildCodeResults / Exception / buildCodeResults: %A{buildCodeResults}"),
+                    Error (Exception $"Eval.evalAsync / buildCodeResults / Exception / retry: {retry} / buildCodeResults: %A{buildCodeResults}"),
                     [|
                         (
-                            TraceLevel.Critical, $"Eval.evalAsync / buildCodeResults / errors[0] / buildCodeResults: %A{buildCodeResults}", 0, ("", (0, 0), (0, 0))
+                            TraceLevel.Critical, $"Eval.evalAsync / buildCodeResults / errors[0] / retry: {retry} / buildCodeResults: %A{buildCodeResults}", 0, ("", (0, 0), (0, 0))
                         )
                     |]
         with ex ->
-            trace Critical (fun () -> $"Eval.evalAsync / try 1 ex / ex: {ex |> SpiralSm.format_exception} / lines: %A{props.lines}") _locals
+            trace Critical (fun () -> $"Eval.evalAsync / try 1 ex / ex: {ex |> SpiralSm.format_exception} / retry: {retry} / lines: %A{props.lines}") _locals
             return
-                Error (Exception $"Eval.evalAsync / try 1 ex / Exception / ex: {ex |> SpiralSm.format_exception} / lines: %A{props.lines}"),
+                Error (Exception $"Eval.evalAsync / try 1 ex / Exception / retry: {retry} / ex: {ex |> SpiralSm.format_exception} / lines: %A{props.lines}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Eval.evalAsync / try 1 ex / errors[0] / ex: {ex |> SpiralSm.format_exception} / lines: %A{props.lines}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Eval.evalAsync / try 1 ex / errors[0] / retry: {retry} / ex: {ex |> SpiralSm.format_exception} / lines: %A{props.lines}", 0, ("", (0, 0), (0, 0))
                     )
                 |]
     }
@@ -878,8 +902,10 @@ module Eval =
             code |> SpiralSm.replace "\r\n" "\n"
 
         let lines = rawCellCode |> SpiralSm.split "\n"
-
-        if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
+        if
+            lines
+            |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"")
+        then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let code =
                 if code |> SpiralSm.contains "<script"
@@ -922,9 +948,8 @@ module Eval =
                 lines
                 |> Array.tryPick (fun line ->
                     let text = $"//// {command}"
-                    match line.[0..text.Length-1], line.[text.Length..] with
-                    | head, "" when head = text ->
-                        Some true
+                    match line.[0..text.Length - 1], line.[text.Length..] with
+                    | head, "" when head = text -> Some true
                     | head, _ when head = text ->
                         line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
                     | _ -> None
@@ -933,17 +958,29 @@ module Eval =
 
             let printCode = "print_code" |> boolArg false
             let isTraceToggle = "trace_toggle" |> boolArg false
+            let isTestsToggle = "tests_toggle" |> boolArg false
             let isTrace = "trace" |> boolArg false
+            let isTest = "test" |> boolArg false
+            let isTestForce = "test_force" |> boolArg false
             let isCache = "cache" |> boolArg false
             let isReal = "real" |> boolArg false
             let timeout_continue = "timeout_continue" |> boolArg false
 
+            let getToggle key toggle =
+                toggle |> Map.tryFind key |> Option.defaultValue false
+
+            let applyToggle key toggle =
+                toggle |> Map.add key (toggle |> getToggle key |> not)
+
             if isTraceToggle
-            then traceToggle <- not traceToggle
+            then toggle <- toggle |> applyToggle Trace
+
+            if isTestsToggle
+            then toggle <- toggle |> applyToggle Tests
 
             let oldLevel = get_trace_level ()
             let traceLevel =
-                if isTrace || traceToggle
+                if isTrace || toggle |> getToggle Trace
                 then Verbose
                 else Info
             traceLevel
@@ -953,11 +990,18 @@ module Eval =
                 oldLevel |> set_trace_level
             ))
 
-            evalAsync 1
+            let rawCellCode, lines, builderCommands =
+                if (automation |> not) && (isTestForce |> not) && isTest && toggle |> getToggle Tests |> not
+                then "()", [| "()" |], [||]
+                else rawCellCode, lines, builderCommands
+
+            evalAsync 1 [||]
                 {|
                     rawCellCode = rawCellCode
                     lines = lines
                     isReal = isReal
+                    isTest = isTest
+                    isTestForce = isTestForce
                     builderCommands = builderCommands
                     isCache = isCache
                     timeout = timeout
@@ -971,13 +1015,12 @@ module Eval =
                 match x with
                 | Some ((Ok x), a) -> Some ((Ok x), a)
                 | Some ((Error x), a) ->
-                    trace Info (fun () -> $"Eval.eval / error / exception: {x.GetType().FullName} / a: %A{a} / x: %A{x}") (fun () -> "")
+                    trace Info (fun () -> $"Eval.eval / error / a: %A{a} / x: %A{x} / exception.GetType(): {x.GetType().FullName}") (fun () -> "")
                     Some ((Error x), a)
                 | _ -> None
             )
             |> Option.defaultWith (fun () -> (
                 let lines = lines |> SpiralSm.concat (string '\n') |> SpiralSm.ellipsis_end 1500
-                in
                 Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / timeout_continue: {timeout_continue} / lines: {lines}"),
                 [|
                     (

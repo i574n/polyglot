@@ -8231,6 +8231,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">buildFile</span> <span class="n">backend</span> <span class="n">timeout</span> <span class="n">port</span> <span class="n">cancellationToken</span> <span class="n">path</span> <span class="o">=</span>
+<span class="c1">#if INTERACTIVE</span>
+    <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1">#else</span>
+    <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">#endif</span>
     <span class="n">let</span> <span class="n">rec</span> <span class="n">루프</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">normalize_path</span>
         <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
@@ -8311,7 +8316,7 @@ a.anchor-link {
             <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
                 <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                     <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">compilerEvent</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq unfoldAsync / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq unfoldAsync / retry: </span><span class="si">{retry}</span><span class="s2"> / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">())</span>
                 <span class="p">})</span>
                 <span class="p">()</span>
@@ -8322,7 +8327,7 @@ a.anchor-link {
             <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
                 <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                     <span class="n">let</span><span class="err">!</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Publish</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitEvent</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: </span><span class="si">{retry}</span><span class="s2"> / msg: %A</span><span class="si">{msg}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">())</span>
                 <span class="p">})</span>
                 <span class="p">()</span>
@@ -8336,7 +8341,7 @@ a.anchor-link {
             <span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">),</span> <span class="n">outputSeq</span><span class="p">)</span>
             <span class="o">||&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">scan</span> <span class="p">(</span>
                 <span class="n">fun</span> <span class="p">(</span><span class="n">outputContentResult</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)</span> <span class="p">(</span><span class="n">outputContent</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / AsyncSeq.scan / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)} / errors: {errors |&gt; serializeObj} / outputContentResult: </span><span class="si">{outputContentResult}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / error: </span><span class="si">{error}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2">'"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / AsyncSeq.scan / errors: {errors |&gt; serializeObj} / outputContentResult: </span><span class="si">{outputContentResult}</span><span class="s2"> / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / error: </span><span class="si">{error}</span><span class="s2"> / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)} / path: </span><span class="si">{path}</span><span class="s2">'"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="k">match</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">error</span> <span class="k">with</span>
                     <span class="o">|</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span>
                     <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="p">(</span>
@@ -8352,19 +8357,14 @@ a.anchor-link {
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">takeWhileInclusive</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">trace</span>
                     <span class="n">Verbose</span>
-                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)}' / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / retry: </span><span class="si">{retry}</span><span class="s2"> / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2"> / outputContent:</span><span class="se">\n</span><span class="s2">'{outputContent |&gt; Option.map (SpiralSm.ellipsis_end 1500)}' / path: </span><span class="si">{path}</span><span class="s2">"</span><span class="p">)</span>
                     <span class="n">_locals</span>
-    <span class="c1">#if INTERACTIVE</span>
-                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1">#else</span>
-                <span class="n">let</span> <span class="n">errorWait</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1">#endif</span>
                 <span class="k">match</span> <span class="n">outputContent</span><span class="p">,</span> <span class="n">errors</span> <span class="k">with</span>
-                <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="n">errorWait</span> <span class="o">-&gt;</span> <span class="n">false</span>
                 <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">]</span> <span class="o">-&gt;</span>
                     <span class="n">compilerEvent</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span><span class="p">))</span>
                     <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="n">false</span>
+                <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="n">errorWait</span> <span class="o">-&gt;</span> <span class="n">false</span>
                 <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="n">true</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
             <span class="p">)</span>
@@ -8417,7 +8417,7 @@ a.anchor-link {
                 <span class="k">if</span> <span class="n">buildFileResult</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">||</span> <span class="n">buildFileResult</span> <span class="o">=</span> <span class="n">null</span>
                 <span class="n">then</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="n">buildFileResult</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Some</span>
-            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / buildFileResult: %A</span><span class="si">{buildFileResult}</span><span class="s2">"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">""</span><span class="p">)</span>
+            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildFileResult: %A</span><span class="si">{buildFileResult}</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">buildFileResult</span><span class="o">.</span><span class="n">IsSome</span> <span class="n">then</span>
                 <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="n">buildFileResult</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">buildFileResult</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
@@ -8432,13 +8432,13 @@ a.anchor-link {
                     <span class="n">let</span> <span class="n">x</span> <span class="o">=</span>
                         <span class="k">match</span> <span class="n">errors</span> <span class="k">with</span>
                         <span class="o">|</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">]</span> <span class="o">-&gt;</span>
-                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map"</span><span class="p">)</span> <span class="n">_locals</span>
+                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map 1"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"errors: %A</span><span class="si">{errors}</span><span class="s2"> / typeErrorCount: %A</span><span class="si">{typeErrorCount}</span><span class="s2">"</span><span class="p">)</span>
                             <span class="n">compilerEvent2</span><span class="o">.</span><span class="n">Trigger</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[</span> <span class="n">message</span><span class="p">,</span> <span class="n">TypeErrors</span> <span class="n">errors</span> <span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map"</span><span class="p">)</span> <span class="n">_locals</span>
+                            <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / outputChild |&gt; Async.map 2"</span><span class="p">)</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"errors: %A</span><span class="si">{errors}</span><span class="s2"> / typeErrorCount: %A</span><span class="si">{typeErrorCount}</span><span class="s2">"</span><span class="p">)</span>
                         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
                     <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span><span class="p">,</span> <span class="n">typeErrorCount</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
-                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / error: {ex |&gt; SpiralSm.format_exception} / retry: </span><span class="si">{retry}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / retry: </span><span class="si">{retry}</span><span class="s2"> / error: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">_locals</span>
                     <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span>
             <span class="p">)</span>
@@ -8461,10 +8461,11 @@ a.anchor-link {
             <span class="n">resultSeq</span>
             <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">Array</span><span class="o">.</span><span class="n">singleton</span> <span class="o">&gt;&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeq</span><span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">collect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / ofSeqAsync / x: %A</span><span class="si">{x}</span><span class="s2">"</span><span class="p">)</span> <span class="n">_locals</span>
+                <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Supervisor.buildFile / ofSeqAsync / x: %A{x |&gt; serializeObj |&gt; SpiralSm.ellipsis_end 1500}"</span><span class="p">)</span> <span class="n">_locals</span>
                 <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">as</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="n">x</span> <span class="o">|</span><span class="p">]</span>
                 <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="p">::</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="k">as</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="n">x</span> <span class="o">|</span><span class="p">]</span>
+                <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">typeErrorCount</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="n">errorWait</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="n">x</span> <span class="o">|</span><span class="p">]</span>
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
                 <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">ofSeq</span>
             <span class="p">)</span>
@@ -8745,45 +8746,47 @@ a.anchor-link {
 <pre>00:00:56 <span class="ansi-black-intense-fg">v</span> #1 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi"
 00:00:56 <span class="ansi-black-intense-fg">v</span> #2 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
 00:00:56 <span class="ansi-black-intense-fg">v</span> #3 Supervisor.buildFile / before result: ()
-00:00:56 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:56 <span class="ansi-black-intense-fg">v</span> #7 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
-00:00:56 <span class="ansi-black-intense-fg">v</span> #8 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:56 <span class="ansi-black-intense-fg">v</span> #541 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
-00:00:56 <span class="ansi-black-intense-fg">v</span> #542 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:57 <span class="ansi-black-intense-fg">v</span> #988 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
-00:00:57 <span class="ansi-black-intense-fg">v</span> #989 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:57 <span class="ansi-black-intense-fg">v</span> #1144 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
-00:00:57 <span class="ansi-black-intense-fg">v</span> #1145 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1317 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1318 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1319 Supervisor.buildFile / buildFileResult: Some
+00:00:56 <span class="ansi-black-intense-fg">v</span> #4 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:56 <span class="ansi-black-intense-fg">v</span> #7 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
+00:00:56 <span class="ansi-black-intense-fg">v</span> #8 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:57 <span class="ansi-black-intense-fg">v</span> #529 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
+00:00:57 <span class="ansi-black-intense-fg">v</span> #530 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:57 <span class="ansi-black-intense-fg">v</span> #887 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
+00:00:57 <span class="ansi-black-intense-fg">v</span> #888 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:58 <span class="ansi-black-intense-fg">v</span> #1115 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
+00:00:58 <span class="ansi-black-intense-fg">v</span> #1116 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:58 <span class="ansi-black-intense-fg">v</span> #1304 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi'
+00:00:58 <span class="ansi-black-intense-fg">v</span> #1305 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6/main.spi
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1321 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1322 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some
+   "let rec closure1 () () : unit =
+    let v0 : (string -&gt; unit) = System.Console.WriteLine
+    let v1 : string = "text"
+    v0 v1
+and closure0 () () : int32 =
+    let v3 : unit = ()
+    let v4 : (unit -&gt; unit) = closure1()
+    let v5 : unit = (fun () -&gt; v4 (); v3) ()
+    1
+let v0 : (unit -&gt; int32) = closure0()
+()
+",
+ [], 0)
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1323 Supervisor.buildFile / ofSeqAsync / x: "[
   "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
-    let v1 : string = "text"
-    v0 v1
-and closure0 () () : int32 =
-    let v3 : unit = ()
-    let v4 : (unit -&gt; unit) = closure1()
-    let v5 : unit = (fun () -&gt; v4 (); v3) ()
-    1
-let v0 : (unit -&gt; int32) = closure0()
-()
-"
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1320 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
-   "let rec closure1 () () : unit =
-    let v0 : (string -&gt; unit) = System.Console.WriteLine
-    let v1 : string = "text"
+    let v1 : string = \"text\"
     v0 v1
 and closure0 () () : int32 =
     let v3 : unit = ()
@@ -8793,22 +8796,10 @@ and closure0 () () : int32 =
 let v0 : (unit -&gt; int32) = closure0()
 ()
 ",
- [], 0)
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1321 Supervisor.buildFile / ofSeqAsync / x: (Some
-   "let rec closure1 () () : unit =
-    let v0 : (string -&gt; unit) = System.Console.WriteLine
-    let v1 : string = "text"
-    v0 v1
-and closure0 () () : int32 =
-    let v3 : unit = ()
-    let v4 : (unit -&gt; unit) = closure1()
-    let v5 : unit = (fun () -&gt; v4 (); v3) ()
-    1
-let v0 : (unit -&gt; int32) = closure0()
-()
-",
- [], 0)
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1322 Supervisor.buildFile / result: [] / buildFileResult: Some
+  [],
+  0
+]"
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1324 Supervisor.buildFile / result: [] / buildFileResult: Some
   "let rec closure1 () () : unit =
     let v0 : (string -&gt; unit) = System.Console.WriteLine
     let v1 : string = "text"
@@ -8821,7 +8812,7 @@ and closure0 () () : int32 =
 let v0 : (unit -&gt; int32) = closure0()
 ()
 " / typeErrorCount: 0
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1323 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1325 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/22ccd04317d5605c65f81c7f777766f357e85dc69f2d6d04b9dc60aebd08a0d6 / targetDir: /home/runner/work/polyglot/polyglot/target
 Some
   (Some
      "let rec closure1 () () : unit =
@@ -8891,24 +8882,27 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:58 <span class="ansi-black-intense-fg">v</span> #1344 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1345 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi'
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1346 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1347 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1348 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:00:58 <span class="ansi-black-intense-fg">v</span> #1349 Supervisor.buildFile / before result: ()
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1584 Supervisor.buildFile / buildFileResult: Some "0.3325000000000001
-"
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1585 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.3325000000000001
+<pre>00:00:59 <span class="ansi-black-intense-fg">v</span> #1345 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1346 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi'
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1347 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi"
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1348 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db/main.spi
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1349 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1350 Supervisor.buildFile / before result: ()
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1586 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1587 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some "0.3325000000000001
 ", [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1586 Supervisor.buildFile / ofSeqAsync / x: (Some "0.3325000000000001
-", [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1587 Supervisor.buildFile / result: [] / buildFileResult: Some "0.3325000000000001
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1588 Supervisor.buildFile / ofSeqAsync / x: "[
+  "0.3325000000000001
+",
+  [],
+  0
+]"
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1589 Supervisor.buildFile / result: [] / buildFileResult: Some "0.3325000000000001
 " / typeErrorCount: 0
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1588 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db / targetDir: /home/runner/work/polyglot/polyglot/target
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1590 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c127414de2a2a92d9fd93ea5a8e9312a6aad9129ffd3cbd56ac7f0327106f1db / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (Some "0.3325000000000001
 ", [])
 
@@ -9260,313 +9254,17 @@ Some (Some "0.3325000000000001
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:59 <span class="ansi-black-intense-fg">v</span> #1606 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1607 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi'
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1608 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1609 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi"
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1610 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1611 Supervisor.buildFile / before result: ()
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1850 Supervisor.buildFile / buildFileResult: Some
-  "kernels_aux = r"""
-// The types of these two will be replaced during compilation by the Spiral code generator. 
-// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
-// The two statements need to begin at the start of a line.
-using default_int = int;
-using default_uint = unsigned int;
-
-#ifndef __NVRTC__
-// NVRTC has these includes by default so they need to be left out if it is used as the compiler.
-#include &lt;new&gt;
-#include &lt;assert.h&gt;
-#include &lt;stdio.h&gt;
-#endif
-
-// For error checking on the host.
-#define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
-template &lt;typename T&gt; inline __device__ void destroy(T&amp; obj) { obj.~T(); }
-inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
-    if (error != cudaSuccess) {
-        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
-        if (abort) exit(error);
-    }
-}
-
-template &lt;typename el&gt;
-struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
-{
-    el* base;
-
-    __device__ sptr() : base(nullptr) {}
-    __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
-
-    __device__ ~sptr()
-    {
-        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
-        {
-            delete this-&gt;base;
-            this-&gt;base = nullptr;
-        }
-    }
-
-    __device__ sptr(sptr&amp; x)
-    {
-        this-&gt;base = x.base;
-        this-&gt;base-&gt;refc++;
-    }
-
-    __device__ sptr(sptr&amp;&amp; x)
-    {
-        this-&gt;base = x.base;
-        x.base = nullptr;
-    }
-
-    __device__ sptr&amp; operator=(sptr&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            this-&gt;base-&gt;refc++;
-        }
-        return *this;
-    }
-
-    __device__ sptr&amp; operator=(sptr&amp;&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            x.base = nullptr;
-        }
-        return *this;
-    }
-};
-
-template &lt;typename el&gt;
-struct csptr : public sptr&lt;el&gt;
-{ // Shared pointer for closures specifically.
-    using sptr&lt;el&gt;::sptr;
-    template &lt;typename... Args&gt;
-    __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
-    {
-        return this-&gt;base-&gt;operator()(args...);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array
-{
-    el ptr[max_length];
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array_list
-{
-    default_int length{ 0 };
-    el ptr[max_length];
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_base
-{
-    int refc{ 0 };
-    el* ptr;
-
-    __device__ dynamic_array_base() : ptr(new el[max_length]) {}
-    __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array
-{
-    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
-
-    __device__ dynamic_array() = default;
-    __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
-    __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list_base
-{
-    int refc{ 0 };
-    default_int length{ 0 };
-    el* ptr;
-
-    __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
-    __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
-    __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list
-{
-    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
-
-    __device__ dynamic_array_list() = default;
-    __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
-
-    __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-    __device__ void push(el&amp; x) {
-        this-&gt;ptr.base-&gt;push(x);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        this-&gt;ptr.base-&gt;push(std::move(x));
-    }
-    __device__ el pop() {
-        return this-&gt;ptr.base-&gt;pop();
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        this-&gt;ptr.base-&gt;unsafe_set_length(i);
-    }
-    __device__ default_int length_() {
-        return this-&gt;ptr.base-&gt;length;
-    }
-};
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.append(None)
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
-        self.ptr[index] = value
-
-class static_array_list(static_array):
-    def __init__(self, length):
-        super().__init__(length)
-        self.length = 0
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
-        self.ptr[index] = value
-
-    def push(self,value):
-        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
-        self.ptr[self.length] = value
-        self.length += 1
-
-    def pop(self):
-        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
-        self.length -= 1
-        return self.ptr[self.length]
-
-    def unsafe_set_length(self,i):
-        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
-        self.length = i
-
-class dynamic_array(static_array): 
-    pass
-
-class dynamic_array_list(static_array_list):
-    def length_(self): return self.length
-
-
-kernels_main = r"""
-"""
-from main_auto import *
-kernels = kernels_aux + kernels_main
-import cupy as cp
-import numpy as np
-from dataclasses import dataclass
-from typing import NamedTuple, Union, Callable, Tuple
-i8 = int; i16 = int; i32 = int; i64 = int; u8 = int; u16 = int; u32 = int; u64 = int; f32 = float; f64 = float; char = str; string = str
-cuda = False
-
-
-# fwd_dcls
-# types
-# functions
-# main_defs
-def main_body():
-    return 0.3325000000000001
-
-def main():
-    r = main_body()
-    if cuda: cp.cuda.get_current_stream().synchronize() # This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r
-
-if __name__ == '__main__': result = main(); None if result is None else print(result)
-"
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1851 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
+<pre>00:00:59 <span class="ansi-black-intense-fg">v</span> #1611 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1612 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi'
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1613 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1614 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea/main.spi"
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1615 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1616 Supervisor.buildFile / before result: ()
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1854 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1855 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some
    "kernels_aux = r"""
 // The types of these two will be replaced during compilation by the Spiral code generator. 
 // It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
@@ -9864,8 +9562,8 @@ def main():
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 ",
  [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1852 Supervisor.buildFile / ofSeqAsync / x: (Some
-   "kernels_aux = r"""
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1856 Supervisor.buildFile / ofSeqAsync / x: "[
+  "kernels_aux = r\"\"\"
 // The types of these two will be replaced during compilation by the Spiral code generator. 
 // It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
 // The two statements need to begin at the start of a line.
@@ -9882,261 +9580,11 @@ using default_uint = unsigned int;
 // For error checking on the host.
 #define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
 template &lt;typename T&gt; inline __device__ void destroy(T&amp; obj) { obj.~T(); }
-inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
-    if (error != cudaSuccess) {
-        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
-        if (abort) exit(error);
-    }
-}
-
-template &lt;typename el&gt;
-struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
-{
-    el* base;
-
-    __device__ sptr() : base(nullptr) {}
-    __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
-
-    __device__ ~sptr()
-    {
-        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
-        {
-            delete this-&gt;base;
-            this-&gt;base = nullptr;
-        }
-    }
-
-    __device__ sptr(sptr&amp; x)
-    {
-        this-&gt;base = x.base;
-        this-&gt;base-&gt;refc++;
-    }
-
-    __device__ sptr(sptr&amp;&amp; x)
-    {
-        this-&gt;base = x.base;
-        x.base = nullptr;
-    }
-
-    __device__ sptr&amp; operator=(sptr&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            this-&gt;base-&gt;refc++;
-        }
-        return *this;
-    }
-
-    __device__ sptr&amp; operator=(sptr&amp;&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            x.base = nullptr;
-        }
-        return *this;
-    }
-};
-
-template &lt;typename el&gt;
-struct csptr : public sptr&lt;el&gt;
-{ // Shared pointer for closures specifically.
-    using sptr&lt;el&gt;::sptr;
-    template &lt;typename... Args&gt;
-    __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
-    {
-        return this-&gt;base-&gt;operator()(args...);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array
-{
-    el ptr[max_length];
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array_list
-{
-    default_int length{ 0 };
-    el ptr[max_length];
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_base
-{
-    int refc{ 0 };
-    el* ptr;
-
-    __device__ dynamic_array_base() : ptr(new el[max_length]) {}
-    __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array
-{
-    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
-
-    __device__ dynamic_array() = default;
-    __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
-    __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list_base
-{
-    int refc{ 0 };
-    default_int length{ 0 };
-    el* ptr;
-
-    __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
-    __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
-    __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
-
-    __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list
-{
-    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
-
-    __device__ dynamic_array_list() = default;
-    __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
-
-    __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-    __device__ void push(el&amp; x) {
-        this-&gt;ptr.base-&gt;push(x);
-    }
-    __device__ void push(el&amp;&amp; x) {
-        this-&gt;ptr.base-&gt;push(std::move(x));
-    }
-    __device__ el pop() {
-        return this-&gt;ptr.base-&gt;pop();
-    }
-    // Should be used only during initialization.
-    __device__ void unsafe_set_length(default_int i) {
-        this-&gt;ptr.base-&gt;unsafe_set_length(i);
-    }
-    __device__ default_int length_() {
-        return this-&gt;ptr.base-&gt;length;
-    }
-};
-"""
-class static_array():
-    def __init__(self, length):
-        self.ptr = []
-        for _ in range(length):
-            self.ptr.append(None)
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; len(self.ptr), "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; len(self.ptr), "The set index needs to be in range."
-        self.ptr[index] = value
-
-class static_array_list(static_array):
-    def __init__(self, length):
-        super().__init__(length)
-        self.length = 0
-
-    def __getitem__(self, index):
-        assert 0 &lt;= index &lt; self.length, "The get index needs to be in range."
-        return self.ptr[index]
-    
-    def __setitem__(self, index, value):
-        assert 0 &lt;= index &lt; self.length, "The set index needs to be in range."
-        self.ptr[index] = value
-
-    def push(self,value):
-        assert (self.length &lt; len(self.ptr)), "The length before pushing has to be less than the maximum length of the array."
-        self.ptr[self.length] = value
-        self.length += 1
-
-    def pop(self):
-        assert (0 &lt; self.length), "The length before popping has to be greater than 0."
-        self.length -= 1
-        return self.ptr[self.length]
-
-    def unsafe_set_length(self,i):
-        assert 0 &lt;= i &lt;= len(self.ptr), "The new length has to be in range."
-        self.length = i
-
-class dynamic_array(static_array): 
-    pass
-
-class dynamic_array_list(static_array_list):
-    def length_(self): return self.length
+inline void gpuAssert(cudaError error,...n self.length
 
 
-kernels_main = r"""
-"""
+kernels_main = r\"\"\"
+\"\"\"
 from main_auto import *
 kernels = kernels_aux + kernels_main
 import cupy as cp
@@ -10161,8 +9609,10 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 ",
- [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1853 Supervisor.buildFile / result: [] / buildFileResult: Some
+  [],
+  0
+]"
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1857 Supervisor.buildFile / result: [] / buildFileResult: Some
   "kernels_aux = r"""
 // The types of these two will be replaced during compilation by the Spiral code generator. 
 // It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
@@ -10459,7 +9909,7 @@ def main():
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)
 " / typeErrorCount: 0
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1854 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea / targetDir: /home/runner/work/polyglot/polyglot/target
+00:00:59 <span class="ansi-black-intense-fg">v</span> #1858 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a4224c9f3d674d70fd56b6ecd3ae8c8ff3178a7124ae34f592336fef263568ea / targetDir: /home/runner/work/polyglot/polyglot/target
 Some
   (Some
      "kernels_aux = r"""
@@ -11046,16 +10496,253 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:59 <span class="ansi-black-intense-fg">v</span> #1872 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1873 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi'
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1874 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1875 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi"
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1876 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:00:59 <span class="ansi-black-intense-fg">v</span> #1877 Supervisor.buildFile / before result: ()
-00:00:59 <span class="ansi-black-intense-fg">v</span> #2115 Supervisor.buildFile / buildFileResult: Some
+<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #1877 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #1878 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi'
+00:01:00 <span class="ansi-black-intense-fg">v</span> #1879 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #1880 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52/main.spi"
+00:01:00 <span class="ansi-black-intense-fg">v</span> #1881 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:00 <span class="ansi-black-intense-fg">v</span> #1882 Supervisor.buildFile / before result: ()
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2122 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2123 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some
+   "// The types of these two will be replaced during compilation by the Spiral code generator. 
+// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
+// The two statements need to begin at the start of a line.
+using default_int = int;
+using default_uint = unsigned int;
+
+#ifndef __NVRTC__
+// NVRTC has these includes by default so they need to be left out if it is used as the compiler.
+#include &lt;new&gt;
+#include &lt;assert.h&gt;
+#include &lt;stdio.h&gt;
+#endif
+
+// For error checking on the host.
+#define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+template &lt;typename T&gt; inline __host__ __device__ void destroy(T&amp; obj) { obj.~T(); }
+inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
+    if (error != cudaSuccess) {
+        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
+        if (abort) exit(error);
+    }
+}
+
+template &lt;typename el&gt;
+struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
+{
+    el* base;
+
+    __host__ __device__ sptr() : base(nullptr) {}
+    __host__ __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
+
+    __host__ __device__ ~sptr()
+    {
+        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
+        {
+            delete this-&gt;base;
+            this-&gt;base = nullptr;
+        }
+    }
+
+    __host__ __device__ sptr(sptr&amp; x)
+    {
+        this-&gt;base = x.base;
+        this-&gt;base-&gt;refc++;
+    }
+
+    __host__ __device__ sptr(sptr&amp;&amp; x)
+    {
+        this-&gt;base = x.base;
+        x.base = nullptr;
+    }
+
+    __host__ __device__ sptr&amp; operator=(sptr&amp; x)
+    {
+        if (this-&gt;base != x.base)
+        {
+            delete this-&gt;base;
+            this-&gt;base = x.base;
+            this-&gt;base-&gt;refc++;
+        }
+        return *this;
+    }
+
+    __host__ __device__ sptr&amp; operator=(sptr&amp;&amp; x)
+    {
+        if (this-&gt;base != x.base)
+        {
+            delete this-&gt;base;
+            this-&gt;base = x.base;
+            x.base = nullptr;
+        }
+        return *this;
+    }
+};
+
+template &lt;typename el&gt;
+struct csptr : public sptr&lt;el&gt;
+{ // Shared pointer for closures specifically.
+    using sptr&lt;el&gt;::sptr;
+    template &lt;typename... Args&gt;
+    __host__ __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
+    {
+        return this-&gt;base-&gt;operator()(args...);
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct static_array
+{
+    el ptr[max_length];
+    __host__ __device__ el&amp; operator[](default_int i) {
+        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
+        return this-&gt;ptr[i];
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct static_array_list
+{
+    default_int length{ 0 };
+    el ptr[max_length];
+
+    __host__ __device__ el&amp; operator[](default_int i) {
+        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
+        return this-&gt;ptr[i];
+    }
+    __host__ __device__ void push(el&amp; x) {
+        ptr[this-&gt;length++] = x;
+        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
+    }
+    __host__ __device__ void push(el&amp;&amp; x) {
+        ptr[this-&gt;length++] = std::move(x);
+        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
+    }
+    __host__ __device__ el pop() {
+        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
+        auto x = ptr[--this-&gt;length];
+        ptr[this-&gt;length].~el();
+        new (&amp;ptr[this-&gt;length]) el();
+        return x;
+    }
+    // Should be used only during initialization.
+    __host__ __device__ void unsafe_set_length(default_int i) {
+        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
+        this-&gt;length = i;
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct dynamic_array_base
+{
+    int refc{ 0 };
+    el* ptr;
+
+    __host__ __device__ dynamic_array_base() : ptr(new el[max_length]) {}
+    __host__ __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
+
+    __host__ __device__ el&amp; operator[](default_int i) {
+        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
+        return this-&gt;ptr[i];
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct dynamic_array
+{
+    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
+
+    __host__ __device__ dynamic_array() = default;
+    __host__ __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
+    __host__ __device__ el&amp; operator[](default_int i) {
+        return this-&gt;ptr.base-&gt;operator[](i);
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct dynamic_array_list_base
+{
+    int refc{ 0 };
+    default_int length{ 0 };
+    el* ptr;
+
+    __host__ __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
+    __host__ __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
+    __host__ __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
+
+    __host__ __device__ el&amp; operator[](default_int i) {
+        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
+        return this-&gt;ptr[i];
+    }
+    __host__ __device__ void push(el&amp; x) {
+        ptr[this-&gt;length++] = x;
+        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
+    }
+    __host__ __device__ void push(el&amp;&amp; x) {
+        ptr[this-&gt;length++] = std::move(x);
+        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
+    }
+    __host__ __device__ el pop() {
+        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
+        auto x = ptr[--this-&gt;length];
+        ptr[this-&gt;length].~el();
+        new (&amp;ptr[this-&gt;length]) el();
+        return x;
+    }
+    // Should be used only during initialization.
+    __host__ __device__ void unsafe_set_length(default_int i) {
+        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
+        this-&gt;length = i;
+    }
+};
+
+template &lt;typename el, default_int max_length&gt;
+struct dynamic_array_list
+{
+    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
+
+    __host__ __device__ dynamic_array_list() = default;
+    __host__ __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
+
+    __host__ __device__ el&amp; operator[](default_int i) {
+        return this-&gt;ptr.base-&gt;operator[](i);
+    }
+    __host__ __device__ void push(el&amp; x) {
+        this-&gt;ptr.base-&gt;push(x);
+    }
+    __host__ __device__ void push(el&amp;&amp; x) {
+        this-&gt;ptr.base-&gt;push(std::move(x));
+    }
+    __host__ __device__ el pop() {
+        return this-&gt;ptr.base-&gt;pop();
+    }
+    // Should be used only during initialization.
+    __host__ __device__ void unsafe_set_length(default_int i) {
+        this-&gt;ptr.base-&gt;unsafe_set_length(i);
+    }
+    __host__ __device__ default_int length_() {
+        return this-&gt;ptr.base-&gt;length;
+    }
+};
+#include "main.auto.cu"
+namespace Device {
+}
+int main_body() {
+    int v3;
+    v3 = ;
+    return v3;
+}
+int main(){
+    auto r = main_body();
+    gpuErrchk(cudaDeviceSynchronize()); // This line is here so the `__trap()` calls on the kernel aren't missed.
+    return r;
+}
+",
+ [], 0)
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2124 Supervisor.buildFile / ofSeqAsync / x: "[
   "// The types of these two will be replaced during compilation by the Spiral code generator. 
 // It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
 // The two statements need to begin at the start of a line.
@@ -11072,195 +10759,7 @@ using default_uint = unsigned int;
 // For error checking on the host.
 #define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
 template &lt;typename T&gt; inline __host__ __device__ void destroy(T&amp; obj) { obj.~T(); }
-inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
-    if (error != cudaSuccess) {
-        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
-        if (abort) exit(error);
-    }
-}
-
-template &lt;typename el&gt;
-struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
-{
-    el* base;
-
-    __host__ __device__ sptr() : base(nullptr) {}
-    __host__ __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
-
-    __host__ __device__ ~sptr()
-    {
-        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
-        {
-            delete this-&gt;base;
-            this-&gt;base = nullptr;
-        }
-    }
-
-    __host__ __device__ sptr(sptr&amp; x)
-    {
-        this-&gt;base = x.base;
-        this-&gt;base-&gt;refc++;
-    }
-
-    __host__ __device__ sptr(sptr&amp;&amp; x)
-    {
-        this-&gt;base = x.base;
-        x.base = nullptr;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            this-&gt;base-&gt;refc++;
-        }
-        return *this;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp;&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            x.base = nullptr;
-        }
-        return *this;
-    }
-};
-
-template &lt;typename el&gt;
-struct csptr : public sptr&lt;el&gt;
-{ // Shared pointer for closures specifically.
-    using sptr&lt;el&gt;::sptr;
-    template &lt;typename... Args&gt;
-    __host__ __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
-    {
-        return this-&gt;base-&gt;operator()(args...);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array
-{
-    el ptr[max_length];
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array_list
-{
-    default_int length{ 0 };
-    el ptr[max_length];
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_base
-{
-    int refc{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_base() : ptr(new el[max_length]) {}
-    __host__ __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array
-{
-    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array() = default;
-    __host__ __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list_base
-{
-    int refc{ 0 };
-    default_int length{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
-    __host__ __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
-    __host__ __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list
-{
-    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array_list() = default;
-    __host__ __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-    __host__ __device__ void push(el&amp; x) {
-        this-&gt;ptr.base-&gt;push(x);
+inline void gpuAssert(cudaError error, const char *...s-&gt;ptr.base-&gt;push(x);
     }
     __host__ __device__ void push(el&amp;&amp; x) {
         this-&gt;ptr.base-&gt;push(std::move(x));
@@ -11276,242 +10775,7 @@ struct dynamic_array_list
         return this-&gt;ptr.base-&gt;length;
     }
 };
-#include "main.auto.cu"
-namespace Device {
-}
-int main_body() {
-    int v3;
-    v3 = ;
-    return v3;
-}
-int main(){
-    auto r = main_body();
-    gpuErrchk(cudaDeviceSynchronize()); // This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r;
-}
-"
-00:00:59 <span class="ansi-black-intense-fg">v</span> #2116 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some
-   "// The types of these two will be replaced during compilation by the Spiral code generator. 
-// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
-// The two statements need to begin at the start of a line.
-using default_int = int;
-using default_uint = unsigned int;
-
-#ifndef __NVRTC__
-// NVRTC has these includes by default so they need to be left out if it is used as the compiler.
-#include &lt;new&gt;
-#include &lt;assert.h&gt;
-#include &lt;stdio.h&gt;
-#endif
-
-// For error checking on the host.
-#define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
-template &lt;typename T&gt; inline __host__ __device__ void destroy(T&amp; obj) { obj.~T(); }
-inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
-    if (error != cudaSuccess) {
-        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
-        if (abort) exit(error);
-    }
-}
-
-template &lt;typename el&gt;
-struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
-{
-    el* base;
-
-    __host__ __device__ sptr() : base(nullptr) {}
-    __host__ __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
-
-    __host__ __device__ ~sptr()
-    {
-        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
-        {
-            delete this-&gt;base;
-            this-&gt;base = nullptr;
-        }
-    }
-
-    __host__ __device__ sptr(sptr&amp; x)
-    {
-        this-&gt;base = x.base;
-        this-&gt;base-&gt;refc++;
-    }
-
-    __host__ __device__ sptr(sptr&amp;&amp; x)
-    {
-        this-&gt;base = x.base;
-        x.base = nullptr;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            this-&gt;base-&gt;refc++;
-        }
-        return *this;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp;&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            x.base = nullptr;
-        }
-        return *this;
-    }
-};
-
-template &lt;typename el&gt;
-struct csptr : public sptr&lt;el&gt;
-{ // Shared pointer for closures specifically.
-    using sptr&lt;el&gt;::sptr;
-    template &lt;typename... Args&gt;
-    __host__ __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
-    {
-        return this-&gt;base-&gt;operator()(args...);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array
-{
-    el ptr[max_length];
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array_list
-{
-    default_int length{ 0 };
-    el ptr[max_length];
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_base
-{
-    int refc{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_base() : ptr(new el[max_length]) {}
-    __host__ __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array
-{
-    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array() = default;
-    __host__ __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list_base
-{
-    int refc{ 0 };
-    default_int length{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
-    __host__ __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
-    __host__ __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list
-{
-    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array_list() = default;
-    __host__ __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-    __host__ __device__ void push(el&amp; x) {
-        this-&gt;ptr.base-&gt;push(x);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        this-&gt;ptr.base-&gt;push(std::move(x));
-    }
-    __host__ __device__ el pop() {
-        return this-&gt;ptr.base-&gt;pop();
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        this-&gt;ptr.base-&gt;unsafe_set_length(i);
-    }
-    __host__ __device__ default_int length_() {
-        return this-&gt;ptr.base-&gt;length;
-    }
-};
-#include "main.auto.cu"
+#include \"main.auto.cu\"
 namespace Device {
 }
 int main_body() {
@@ -11525,244 +10789,10 @@ int main(){
     return r;
 }
 ",
- [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #2117 Supervisor.buildFile / ofSeqAsync / x: (Some
-   "// The types of these two will be replaced during compilation by the Spiral code generator. 
-// It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
-// The two statements need to begin at the start of a line.
-using default_int = int;
-using default_uint = unsigned int;
-
-#ifndef __NVRTC__
-// NVRTC has these includes by default so they need to be left out if it is used as the compiler.
-#include &lt;new&gt;
-#include &lt;assert.h&gt;
-#include &lt;stdio.h&gt;
-#endif
-
-// For error checking on the host.
-#define gpuErrchk(ans) { gpuAssert((ans), __FILE__, __LINE__); }
-template &lt;typename T&gt; inline __host__ __device__ void destroy(T&amp; obj) { obj.~T(); }
-inline void gpuAssert(cudaError error, const char *file, int line, bool abort=true) {
-    if (error != cudaSuccess) {
-        fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(error), file, line);
-        if (abort) exit(error);
-    }
-}
-
-template &lt;typename el&gt;
-struct sptr // Shared pointer for the Spiral datatypes. They have to have the refc field inside them to work.
-{
-    el* base;
-
-    __host__ __device__ sptr() : base(nullptr) {}
-    __host__ __device__ sptr(el* ptr) : base(ptr) { this-&gt;base-&gt;refc++; }
-
-    __host__ __device__ ~sptr()
-    {
-        if (this-&gt;base != nullptr &amp;&amp; --this-&gt;base-&gt;refc == 0)
-        {
-            delete this-&gt;base;
-            this-&gt;base = nullptr;
-        }
-    }
-
-    __host__ __device__ sptr(sptr&amp; x)
-    {
-        this-&gt;base = x.base;
-        this-&gt;base-&gt;refc++;
-    }
-
-    __host__ __device__ sptr(sptr&amp;&amp; x)
-    {
-        this-&gt;base = x.base;
-        x.base = nullptr;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            this-&gt;base-&gt;refc++;
-        }
-        return *this;
-    }
-
-    __host__ __device__ sptr&amp; operator=(sptr&amp;&amp; x)
-    {
-        if (this-&gt;base != x.base)
-        {
-            delete this-&gt;base;
-            this-&gt;base = x.base;
-            x.base = nullptr;
-        }
-        return *this;
-    }
-};
-
-template &lt;typename el&gt;
-struct csptr : public sptr&lt;el&gt;
-{ // Shared pointer for closures specifically.
-    using sptr&lt;el&gt;::sptr;
-    template &lt;typename... Args&gt;
-    __host__ __device__ auto operator()(Args... args) -&gt; decltype(this-&gt;base-&gt;operator()(args...))
-    {
-        return this-&gt;base-&gt;operator()(args...);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array
-{
-    el ptr[max_length];
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; max_length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct static_array_list
-{
-    default_int length{ 0 };
-    el ptr[max_length];
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_base
-{
-    int refc{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_base() : ptr(new el[max_length]) {}
-    __host__ __device__ ~dynamic_array_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array
-{
-    sptr&lt;dynamic_array_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array() = default;
-    __host__ __device__ dynamic_array(bool t) : ptr(new dynamic_array_base&lt;el, max_length&gt;()) {}
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list_base
-{
-    int refc{ 0 };
-    default_int length{ 0 };
-    el* ptr;
-
-    __host__ __device__ dynamic_array_list_base() : ptr(new el[max_length]) {}
-    __host__ __device__ dynamic_array_list_base(default_int l) : ptr(new el[max_length]) { this-&gt;unsafe_set_length(l); }
-    __host__ __device__ ~dynamic_array_list_base() { delete[] this-&gt;ptr; }
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        assert("The index has to be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt; this-&gt;length);
-        return this-&gt;ptr[i];
-    }
-    __host__ __device__ void push(el&amp; x) {
-        ptr[this-&gt;length++] = x;
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        ptr[this-&gt;length++] = std::move(x);
-        assert("The array after pushing should not be greater than max length." &amp;&amp; this-&gt;length &lt;= max_length);
-    }
-    __host__ __device__ el pop() {
-        assert("The array before popping should be greater than 0." &amp;&amp; 0 &lt; this-&gt;length);
-        auto x = ptr[--this-&gt;length];
-        ptr[this-&gt;length].~el();
-        new (&amp;ptr[this-&gt;length]) el();
-        return x;
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        assert("The new length should be in range." &amp;&amp; 0 &lt;= i &amp;&amp; i &lt;= max_length);
-        this-&gt;length = i;
-    }
-};
-
-template &lt;typename el, default_int max_length&gt;
-struct dynamic_array_list
-{
-    sptr&lt;dynamic_array_list_base&lt;el, max_length&gt;&gt; ptr;
-
-    __host__ __device__ dynamic_array_list() = default;
-    __host__ __device__ dynamic_array_list(default_int l) : ptr(new dynamic_array_list_base&lt;el, max_length&gt;(l)) {}
-
-    __host__ __device__ el&amp; operator[](default_int i) {
-        return this-&gt;ptr.base-&gt;operator[](i);
-    }
-    __host__ __device__ void push(el&amp; x) {
-        this-&gt;ptr.base-&gt;push(x);
-    }
-    __host__ __device__ void push(el&amp;&amp; x) {
-        this-&gt;ptr.base-&gt;push(std::move(x));
-    }
-    __host__ __device__ el pop() {
-        return this-&gt;ptr.base-&gt;pop();
-    }
-    // Should be used only during initialization.
-    __host__ __device__ void unsafe_set_length(default_int i) {
-        this-&gt;ptr.base-&gt;unsafe_set_length(i);
-    }
-    __host__ __device__ default_int length_() {
-        return this-&gt;ptr.base-&gt;length;
-    }
-};
-#include "main.auto.cu"
-namespace Device {
-}
-int main_body() {
-    int v3;
-    v3 = ;
-    return v3;
-}
-int main(){
-    auto r = main_body();
-    gpuErrchk(cudaDeviceSynchronize()); // This line is here so the `__trap()` calls on the kernel aren't missed.
-    return r;
-}
-",
- [], 0)
-00:00:59 <span class="ansi-black-intense-fg">v</span> #2118 Supervisor.buildFile / result: [] / buildFileResult: Some
+  [],
+  0
+]"
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2125 Supervisor.buildFile / result: [] / buildFileResult: Some
   "// The types of these two will be replaced during compilation by the Spiral code generator. 
 // It matches on `using default_int = ` and `;` with the inner part being replaced so the form should be kept as is. 
 // The two statements need to begin at the start of a line.
@@ -11997,7 +11027,7 @@ int main(){
     return r;
 }
 " / typeErrorCount: 0
-00:00:59 <span class="ansi-black-intense-fg">v</span> #2119 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2126 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a702c5b29a050eccfe7c911beeea63f353f61e71985bbebdb653ac32f3395c52 / targetDir: /home/runner/work/polyglot/polyglot/target
 Some
   (Some
      "// The types of these two will be replaced during compilation by the Spiral code generator. 
@@ -12289,24 +11319,27 @@ int main(){
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #2141 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2142 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi'
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2143 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2144 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi"
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2145 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2146 Supervisor.buildFile / before result: ()
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2384 Supervisor.buildFile / buildFileResult: Some "pub fn main () { 0.3325000000000001
- }"
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2385 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "pub fn main () { 0.3325000000000001
+<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #2146 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2147 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi'
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2148 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2149 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src/main.spi"
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2150 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2151 Supervisor.buildFile / before result: ()
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2391 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2392 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some "pub fn main () { 0.3325000000000001
  }", [], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2386 Supervisor.buildFile / ofSeqAsync / x: (Some "pub fn main () { 0.3325000000000001
- }", [], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2387 Supervisor.buildFile / result: [] / buildFileResult: Some "pub fn main () { 0.3325000000000001
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2393 Supervisor.buildFile / ofSeqAsync / x: "[
+  "pub fn main () { 0.3325000000000001
+ }",
+  [],
+  0
+]"
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2394 Supervisor.buildFile / result: [] / buildFileResult: Some "pub fn main () { 0.3325000000000001
  }" / typeErrorCount: 0
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2388 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2395 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/9fee147a19a3a90ab5113d3c8fb7b0b2072de018aa3d73cd2d4eb0e7e7a32620/src / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (Some "pub fn main () { 0.3325000000000001
  }", [])
 
@@ -12366,24 +11399,27 @@ Some (Some "pub fn main () { 0.3325000000000001
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #2409 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2410 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi'
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2411 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2412 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2413 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2414 Supervisor.buildFile / before result: ()
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2656 Supervisor.buildFile / buildFileResult: Some "0.33332500000000004
-"
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2657 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (Some "0.33332500000000004
+<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #2418 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2419 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi'
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2420 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2421 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4/main.spi"
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2422 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:00 <span class="ansi-black-intense-fg">v</span> #2423 Supervisor.buildFile / before result: ()
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2661 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2662 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (Some "0.33332500000000004
 ", [], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2658 Supervisor.buildFile / ofSeqAsync / x: (Some "0.33332500000000004
-", [], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2659 Supervisor.buildFile / result: [] / buildFileResult: Some "0.33332500000000004
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2663 Supervisor.buildFile / ofSeqAsync / x: "[
+  "0.33332500000000004
+",
+  [],
+  0
+]"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2664 Supervisor.buildFile / result: [] / buildFileResult: Some "0.33332500000000004
 " / typeErrorCount: 0
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2660 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2665 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/2acc44d97e6b50ce3caf39a0b93135633484d22c3ef6e7797ce64875a41451f4 / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (Some "0.33332500000000004
 ", [])
 
@@ -12426,40 +11462,53 @@ Some (Some "0.33332500000000004
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:00 <span class="ansi-black-intense-fg">v</span> #2682 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2683 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi'
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2684 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2685 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2686 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2687 Supervisor.buildFile / before result: ()
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2928 Supervisor.buildFile / buildFileResult: None
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2929 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2942 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot find `main` in file main., FatalError "Cannot find `main` in file main.")) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi'
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2943 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #2688 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2689 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi'
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2690 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2691 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2692 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2693 Supervisor.buildFile / before result: ()
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2936 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2937 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [],
+  0
+]"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2946 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot find `main` in file main., FatalError "Cannot find `main` in file main.")) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi'
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2947 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "Cannot find `main` in file main.",
     {
       "FatalError": "Cannot find `main` in file main."
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2946 Supervisor.buildFile / outputChild / x: Some
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2954 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
          [("Cannot find `main` in file main.",
            FatalError "Cannot find `main` in file main.")], 0)))
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2952 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("Cannot find `main` in file main.",
-   FatalError "Cannot find `main` in file main.")], 0)
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2953 Supervisor.buildFile / result: [("Cannot find `main` in file main.",
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2960 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "Cannot find `main` in file main.",
+      {
+        "FatalError": "Cannot find `main` in file main."
+      }
+    ]
+  ],
+  0
+]"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2961 Supervisor.buildFile / result: [("Cannot find `main` in file main.",
   FatalError "Cannot find `main` in file main.")] / buildFileResult: None / typeErrorCount: 0
-00:01:00 <span class="ansi-black-intense-fg">v</span> #2954 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2962 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/a65342ccc7da0da967b18d8e705d0260e9a932e5e68c0feb33db55c4d28170aa / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (None, ["Cannot find `main` in file main."])
 
 </pre>
@@ -12503,19 +11552,22 @@ Some (None, ["Cannot find `main` in file main."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #2972 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #2973 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi'
-00:01:01 <span class="ansi-black-intense-fg">v</span> #2974 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #2975 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"
-00:01:01 <span class="ansi-black-intense-fg">v</span> #2976 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:01 <span class="ansi-black-intense-fg">v</span> #2977 Supervisor.buildFile / before result: ()
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3214 Supervisor.buildFile / buildFileResult: None
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3215 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3216 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((An attempt to divide by zero has been detected at compile time., TracedError
+<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #2981 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2982 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi'
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2983 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2984 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2985 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:01 <span class="ansi-black-intense-fg">v</span> #2986 Supervisor.buildFile / before result: ()
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3222 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3223 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [],
+  0
+]"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3224 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((An attempt to divide by zero has been detected at compile time., TracedError
   { message = "An attempt to divide by zero has been detected at compile time."
     trace =
      ["Error trace on line: 1, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
@@ -12525,9 +11577,9 @@ inl main () =
       "Error trace on line: 2, column: 5 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
     1i32 / 0i32
     ^
-"] })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi'
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3217 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+"] })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi'
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3225 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "An attempt to divide by zero has been detected at compile time.",
     {
@@ -12546,8 +11598,9 @@ inl main () =
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3219 Supervisor.buildFile / outputChild / x: Some
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3227 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -12565,22 +11618,31 @@ inl main () =
     ^
 "] })],
          0)))
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3220 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("An attempt to divide by zero has been detected at compile time.",
-   TracedError
-     { message =
-        "An attempt to divide by zero has been detected at compile time."
-       trace =
-        ["Error trace on line: 1, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3228 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "An attempt to divide by zero has been detected at compile time.",
+      {
+        "TracedError": {
+          "message": "An attempt to divide by zero has been detected at compile time.",
+          "trace": [
+            "Error trace on line: 1, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
 inl main () =
          ^
-";
-         "Error trace on line: 2, column: 5 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
+",
+            "Error trace on line: 2, column: 5 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2/main.spi .
     1i32 / 0i32
     ^
-"] })],
- 0)
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3221 Supervisor.buildFile / result: [("An attempt to divide by zero has been detected at compile time.",
+"
+          ]
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3229 Supervisor.buildFile / result: [("An attempt to divide by zero has been detected at compile time.",
   TracedError
     { message =
        "An attempt to divide by zero has been detected at compile time."
@@ -12593,7 +11655,7 @@ inl main () =
     1i32 / 0i32
     ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3222 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3230 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/fef9812d9b06b75b1ab26589e52c6d6ff05910b73ead9e8c4f27f88d2a5cdfb2 / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (None, ["An attempt to divide by zero has been detected at compile time."])
 
 </pre>
@@ -12643,19 +11705,22 @@ Some (None, ["An attempt to divide by zero has been detected at compile time."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #3241 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3242 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3243 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3244 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3245 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3246 Supervisor.buildFile / before result: ()
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3483 Supervisor.buildFile / buildFileResult: None
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3484 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3485 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
+<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #3249 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3250 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3251 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3252 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3253 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:01 <span class="ansi-black-intense-fg">v</span> #3254 Supervisor.buildFile / before result: ()
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3491 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3492 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3493 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
      ["Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
@@ -12669,9 +11734,9 @@ inl main () =
       "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         unbox_real ()
         ^
-"] })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3486 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+"] })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3494 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "Cannot apply a forall with a term.",
     {
@@ -12694,8 +11759,9 @@ inl main () =
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3488 Supervisor.buildFile / outputChild / x: Some
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3496 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -12716,25 +11782,35 @@ inl main () =
         ^
 "] })],
          0)))
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3489 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("Cannot apply a forall with a term.",
-   TracedError
-     { message = "Cannot apply a forall with a term."
-       trace =
-        ["Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3497 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "Cannot apply a forall with a term.",
+      {
+        "TracedError": {
+          "message": "Cannot apply a forall with a term.",
+          "trace": [
+            "Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
 inl main () =
          ^
-";
-         "Error trace on line: 4, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+",
+            "Error trace on line: 4, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         inl unbox_real forall a. (obj : a) : a =
         ^
-";
-         "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+",
+            "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         unbox_real ()
         ^
-"] })],
- 0)
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3490 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+"
+          ]
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3498 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
   TracedError
     { message = "Cannot apply a forall with a term."
       trace =
@@ -12750,7 +11826,7 @@ inl main () =
         unbox_real ()
         ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3491 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3499 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (None, ["Cannot apply a forall with a term."])
 
 </pre>
@@ -12799,22 +11875,25 @@ Some (None, ["Cannot apply a forall with a term."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:01 <span class="ansi-black-intense-fg">v</span> #3509 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3510 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi'
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3511 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3512 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3513 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:01 <span class="ansi-black-intense-fg">v</span> #3514 Supervisor.buildFile / before result: ()
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3751 Supervisor.buildFile / buildFileResult: None
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3752 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3753 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((The main function should not have a forall., TracedError { message = "The main function should not have a forall."
-              trace = [] })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3754 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+<pre>00:01:02 <span class="ansi-black-intense-fg">v</span> #3518 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3519 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi'
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3520 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3521 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3522 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3523 Supervisor.buildFile / before result: ()
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3760 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3761 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3762 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((The main function should not have a forall., TracedError { message = "The main function should not have a forall."
+              trace = [] })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi'
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3763 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "The main function should not have a forall.",
     {
@@ -12824,22 +11903,34 @@ Some (None, ["Cannot apply a forall with a term."])
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3756 Supervisor.buildFile / outputChild / x: Some
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3765 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
          [("The main function should not have a forall.",
            TracedError { message = "The main function should not have a forall."
                          trace = [] })], 0)))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3757 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("The main function should not have a forall.",
-   TracedError { message = "The main function should not have a forall."
-                 trace = [] })], 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3758 Supervisor.buildFile / result: [("The main function should not have a forall.",
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3766 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "The main function should not have a forall.",
+      {
+        "TracedError": {
+          "message": "The main function should not have a forall.",
+          "trace": []
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3767 Supervisor.buildFile / result: [("The main function should not have a forall.",
   TracedError { message = "The main function should not have a forall."
                 trace = [] })] / buildFileResult: None / typeErrorCount: 0
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3759 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3768 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/0ba44c42df309b790acdf4f9fc55fcc7912380f5dd2d90fad118bad793251c4f / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (None, ["The main function should not have a forall."])
 
 </pre>
@@ -12889,19 +11980,22 @@ Some (None, ["The main function should not have a forall."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:02 <span class="ansi-black-intense-fg">v</span> #3778 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3779 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3780 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3781 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3782 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:02 <span class="ansi-black-intense-fg">v</span> #3783 Supervisor.buildFile / before result: ()
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4020 Supervisor.buildFile / buildFileResult: None
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4021 Supervisor.buildFile / ofSeqAsync / x: (None, [], 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4022 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
+<pre>00:01:02 <span class="ansi-black-intense-fg">v</span> #3786 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3787 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3788 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3788 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3790 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:02 <span class="ansi-black-intense-fg">v</span> #3791 Supervisor.buildFile / before result: ()
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4028 Supervisor.buildFile / buildFileResult: %A{buildFileResult}
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4029 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4030 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
      ["Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
@@ -12915,9 +12009,9 @@ inl main () =
       "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         unbox_real ()
         ^
-"] })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4023 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+"] })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi'
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4031 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "Cannot apply a forall with a term.",
     {
@@ -12940,8 +12034,9 @@ inl main () =
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4025 Supervisor.buildFile / outputChild / x: Some
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4033 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -12962,25 +12057,35 @@ inl main () =
         ^
 "] })],
          0)))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4026 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("Cannot apply a forall with a term.",
-   TracedError
-     { message = "Cannot apply a forall with a term."
-       trace =
-        ["Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4034 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "Cannot apply a forall with a term.",
+      {
+        "TracedError": {
+          "message": "Cannot apply a forall with a term.",
+          "trace": [
+            "Error trace on line: 2, column: 10 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
 inl main () =
          ^
-";
-         "Error trace on line: 4, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+",
+            "Error trace on line: 4, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         inl unbox_real forall a. (obj : a) : a =
         ^
-";
-         "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
+",
+            "Error trace on line: 7, column: 9 in module: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a/main.spi .
         unbox_real ()
         ^
-"] })],
- 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4027 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
+"
+          ]
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4035 Supervisor.buildFile / result: [("Cannot apply a forall with a term.",
   TracedError
     { message = "Cannot apply a forall with a term."
       trace =
@@ -12996,7 +12101,7 @@ inl main () =
         unbox_real ()
         ^
 "] })] / buildFileResult: None / typeErrorCount: 0
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4028 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:02 <span class="ansi-black-intense-fg">v</span> #4036 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/667528659dc2e5af51a6ec17f1774bd7ffff5b5a47e4e117eec78e740987f29a / targetDir: /home/runner/work/polyglot/polyglot/target
 Some (None, ["Cannot apply a forall with a term."])
 
 </pre>
@@ -13045,17 +12150,16 @@ Some (None, ["Cannot apply a forall with a term."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:02 <span class="ansi-black-intense-fg">v</span> #4047 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4048 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4049 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4050 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4051 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4052 Supervisor.buildFile / before result: ()
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4121 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+<pre>00:01:03 <span class="ansi-black-intense-fg">v</span> #4055 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4056 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4057 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4058 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4059 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4060 Supervisor.buildFile / before result: ()
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4144 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number, TypeErrors
@@ -13067,9 +12171,9 @@ Fails to satisfy: number, TypeErrors
 Got: string
 Fails to satisfy: number")]
     uri =
-     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4132 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4147 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "main.spi:
 Constraint satisfaction error.
@@ -13098,8 +12202,9 @@ Fails to satisfy: number"
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4139 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4156 Supervisor.buildFile / outputContentSeq unfoldAsync / retry: 0 / msg: (None,
  Some
    ("main.spi:
 Constraint satisfaction error.
@@ -13115,8 +12220,8 @@ Got: string
 Fails to satisfy: number")]
         uri =
          "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" }))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4141 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4144 Supervisor.buildFile / outputChild / x: Some
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4159 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4165 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -13135,8 +12240,8 @@ Fails to satisfy: number")]
                uri =
                 "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
          0)))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4146 Supervisor.buildFile / outputChild |&gt; Async.map
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4149 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4167 Supervisor.buildFile / outputChild |&gt; Async.map 1 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4170 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (None,
  [("main.spi:
 Constraint satisfaction error.
 Got: string
@@ -13152,23 +12257,41 @@ Fails to satisfy: number")]
        uri =
         "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
  0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4152 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("main.spi:
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4172 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number",
-   TypeErrors
-     { errors =
-        [(({ character = 8
-             line = 1 }, { character = 10
-                           line = 1 }),
-          "Constraint satisfaction error.
+      {
+        "TypeErrors": {
+          "errors": [
+            [
+              [
+                {
+                  "character": 8,
+                  "line": 1
+                },
+                {
+                  "character": 10,
+                  "line": 1
+                }
+              ],
+              "Constraint satisfaction error.
 Got: string
-Fails to satisfy: number")]
-       uri =
-        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })],
- 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4155 Supervisor.buildFile / result: [("main.spi:
+Fails to satisfy: number"
+            ]
+          ],
+          "uri": "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi"
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4175 Supervisor.buildFile / result: [("main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number",
@@ -13182,8 +12305,8 @@ Got: string
 Fails to satisfy: number")]
       uri =
        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4156 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0 / targetDir: /home/runner/work/polyglot/polyglot/target
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4159 Supervisor.buildFile / outputChild |&gt; Async.map
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4176 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/c030f84f8e553befcbdd9aabeace67685221d91a46e3655199e42df713504aa0 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4179 Supervisor.buildFile / outputChild |&gt; Async.map 2 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
 Some (None, ["main.spi:
 Constraint satisfaction error.
 Got: string
@@ -13234,17 +12357,16 @@ Fails to satisfy: number"])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:02 <span class="ansi-black-intense-fg">v</span> #4318 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4319 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4320 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4321 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4322 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4323 Supervisor.buildFile / before result: ()
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4363 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+<pre>00:01:03 <span class="ansi-black-intense-fg">v</span> #4327 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4328 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4329 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4330 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4331 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4332 Supervisor.buildFile / before result: ()
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4373 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Unbound variable: x.
 Unbound variable: y., TypeErrors
   { errors =
@@ -13255,9 +12377,9 @@ Unbound variable: y., TypeErrors
           line = 1 }, { character = 9
                         line = 1 }), "Unbound variable: y.")]
     uri =
-     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi'
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4364 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4375 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "main.spi:
 Unbound variable: x.
@@ -13296,8 +12418,9 @@ Unbound variable: y.",
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4368 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4379 Supervisor.buildFile / outputContentSeq unfoldAsync / retry: 0 / msg: (None,
  Some
    ("main.spi:
 Unbound variable: x.
@@ -13312,8 +12435,8 @@ Unbound variable: y.",
                             line = 1 }), "Unbound variable: y.")]
         uri =
          "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" }))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4369 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4372 Supervisor.buildFile / outputChild / x: Some
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4380 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4385 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -13331,8 +12454,8 @@ Unbound variable: y.",
                uri =
                 "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
          0)))
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4373 Supervisor.buildFile / outputChild |&gt; Async.map
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4376 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4386 Supervisor.buildFile / outputChild |&gt; Async.map 1 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4389 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (None,
  [("main.spi:
 Unbound variable: x.
 Unbound variable: y.",
@@ -13347,22 +12470,51 @@ Unbound variable: y.",
        uri =
         "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
  0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4379 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("main.spi:
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4390 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "main.spi:
 Unbound variable: x.
 Unbound variable: y.",
-   TypeErrors
-     { errors =
-        [(({ character = 4
-             line = 1 }, { character = 5
-                           line = 1 }), "Unbound variable: x.");
-         (({ character = 8
-             line = 1 }, { character = 9
-                           line = 1 }), "Unbound variable: y.")]
-       uri =
-        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })],
- 0)
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4382 Supervisor.buildFile / result: [("main.spi:
+      {
+        "TypeErrors": {
+          "errors": [
+            [
+              [
+                {
+                  "character": 4,
+                  "line": 1
+                },
+                {
+                  "character": 5,
+                  "line": 1
+                }
+              ],
+              "Unbound variable: x."
+            ],
+            [
+              [
+                {
+                  "character": 8,
+                  "line": 1
+                },
+                {
+                  "character": 9,
+                  "line": 1
+                }
+              ],
+              "Unbound variable: y."
+            ]
+          ],
+          "uri": "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi"
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4393 Supervisor.buildFile / result: [("main.spi:
 Unbound variable: x.
 Unbound variable: y.",
   TypeErrors
@@ -13375,8 +12527,8 @@ Unbound variable: y.",
                           line = 1 }), "Unbound variable: y.")]
       uri =
        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4383 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1 / targetDir: /home/runner/work/polyglot/polyglot/target
-00:01:02 <span class="ansi-black-intense-fg">v</span> #4385 Supervisor.buildFile / outputChild |&gt; Async.map
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4394 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/6cdeec507f9de5ba9c8429cfa7049b777a622aa3bf7333b151c767fde35dc5d1 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4396 Supervisor.buildFile / outputChild |&gt; Async.map 2 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
 Some (None, ["main.spi:
 Unbound variable: x.
 Unbound variable: y."])
@@ -13427,17 +12579,16 @@ Unbound variable: y."])
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:03 <span class="ansi-black-intense-fg">v</span> #4589 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4590 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi'
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4591 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4592 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4593 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4594 Supervisor.buildFile / before result: ()
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4635 Supervisor.buildFile / AsyncSeq.scan / outputContent:
-' / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
+<pre>00:01:03 <span class="ansi-black-intense-fg">v</span> #4599 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4600 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error:  / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4601 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4602 Supervisor.buildFile / fullPathUri: "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4603 Supervisor.buildFile / _fileOpenResult: &lt;null&gt;
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4604 Supervisor.buildFile / before result: ()
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4645 Supervisor.buildFile / AsyncSeq.scan / errors: [] / outputContentResult:  / typeErrorCount: 0 / retry: 0 / error: Some((main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
 Expected: () -&gt; 'a, TypeErrors
@@ -13449,9 +12600,9 @@ Expected: () -&gt; 'a, TypeErrors
 Got:      'a
 Expected: () -&gt; 'a")]
     uri =
-     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })) / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi'
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4637 Supervisor.buildFile / takeWhileInclusive / outputContent:
-'' / errors: [
+     "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })) / outputContent:
+' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi'
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4647 Supervisor.buildFile / takeWhileInclusive / retry: 0 / errors: [
   [
     "main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
@@ -13480,8 +12631,9 @@ Expected: () -&gt; 'a"
       }
     }
   ]
-] / typeErrorCount: 0 / retry: 0 / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4639 Supervisor.buildFile / outputContentSeq unfoldAsync / msg: (None,
+] / typeErrorCount: 0 / outputContent:
+'' / path: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4650 Supervisor.buildFile / outputContentSeq unfoldAsync / retry: 0 / msg: (None,
  Some
    ("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
@@ -13497,8 +12649,8 @@ Got:      'a
 Expected: () -&gt; 'a")]
         uri =
          "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" }))
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4640 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4644 Supervisor.buildFile / outputChild / x: Some
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4651 Supervisor.buildFile / takeWhileInclusive / TypeErrors trigger
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4655 Supervisor.buildFile / outputChild / x: Some
   (Ok
      (Some
         (None,
@@ -13517,8 +12669,8 @@ Expected: () -&gt; 'a")]
                uri =
                 "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
          0)))
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4645 Supervisor.buildFile / outputChild |&gt; Async.map
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4647 Supervisor.buildFile / outputContentSeq2 unfoldAsync / msg: (None,
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4656 Supervisor.buildFile / outputChild |&gt; Async.map 1 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4658 Supervisor.buildFile / outputContentSeq2 unfoldAsync / retry: 0 / msg: (None,
  [("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
@@ -13534,23 +12686,41 @@ Expected: () -&gt; 'a")]
        uri =
         "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
  0)
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4650 Supervisor.buildFile / ofSeqAsync / x: (None,
- [("main.spi:
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4660 Supervisor.buildFile / ofSeqAsync / x: "[
+  null,
+  [
+    [
+      "main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
 Expected: () -&gt; 'a",
-   TypeErrors
-     { errors =
-        [(({ character = 18
-             line = 0 }, { character = 22
-                           line = 0 }),
-          "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+      {
+        "TypeErrors": {
+          "errors": [
+            [
+              [
+                {
+                  "character": 18,
+                  "line": 0
+                },
+                {
+                  "character": 22,
+                  "line": 0
+                }
+              ],
+              "Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
-Expected: () -&gt; 'a")]
-       uri =
-        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })],
- 0)
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4652 Supervisor.buildFile / result: [("main.spi:
+Expected: () -&gt; 'a"
+            ]
+          ],
+          "uri": "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi"
+        }
+      }
+    ]
+  ],
+  0
+]"
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4662 Supervisor.buildFile / result: [("main.spi:
 Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
 Expected: () -&gt; 'a",
@@ -13564,8 +12734,8 @@ Got:      'a
 Expected: () -&gt; 'a")]
       uri =
        "file:///home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7/main.spi" })] / buildFileResult: None / typeErrorCount: 0
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4653 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7 / targetDir: /home/runner/work/polyglot/polyglot/target
-00:01:03 <span class="ansi-black-intense-fg">v</span> #4655 Supervisor.buildFile / outputChild |&gt; Async.map
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4663 Supervisor.buildFile / retry: 0 / typeErrorCount: 0 / fileDir: /home/runner/work/polyglot/polyglot/target/spiral_Eval/packages/883e0123fe6304a9501da46e85facc39c4ac4e3dbb77895f8ccd4581901ee2b7 / targetDir: /home/runner/work/polyglot/polyglot/target
+00:01:03 <span class="ansi-black-intense-fg">v</span> #4665 Supervisor.buildFile / outputChild |&gt; Async.map 2 / errors: %A{errors} / typeErrorCount: %A{typeErrorCount}
 Some
   (None,
    ["main.spi:
