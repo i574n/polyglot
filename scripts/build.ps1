@@ -6,4 +6,42 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-{ . ../deps/spiral/workspace/target/release/spiral$(_exe) dib --path build.dib } | Invoke-Block
+# { . ../deps/spiral/workspace/target/release/spiral$(_exe) dib --path build.dib } | Invoke-Block
+
+{ pwsh ../apps/builder/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../deps/spiral/apps/spiral/build.ps1 -fast 1 -SkipFsx 1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../apps/parser/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../apps/spiral/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../deps/spiral/apps/wasm/build.ps1 -SkipFsx 1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../lib/math/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../apps/plot/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
+
+#!pwsh
+
+{ pwsh ./outdated.ps1 } | Invoke-Block
