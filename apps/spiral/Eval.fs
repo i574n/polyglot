@@ -146,7 +146,7 @@ module Eval =
         | Tests
 
     /// ## toggle
-    let mutable toggle =
+    let mutable toggle : Map<Toggle, bool> =
         [
         ]
         |> Map.ofList

@@ -274,7 +274,7 @@ type Toggle =
 
 #!fsharp
 
-let mutable toggle =
+let mutable toggle : Map<Toggle, bool> =
     [
     ]
     |> Map.ofList
