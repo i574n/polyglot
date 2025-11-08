@@ -45,6 +45,18 @@ open Common
 open FParsec
 open SpiralFileSystem.Operators
 
+#!spiral
+
+//// test
+//// test_force
+
+open testing
+
+#!spiral
+
+open parsing
+open sm'_operators
+
 #!markdown
 
 ## escapeCell (test)
@@ -52,6 +64,7 @@ open SpiralFileSystem.Operators
 #!fsharp
 
 //// test
+//// test_force
 
 let inline escapeCell input =
     input
@@ -69,9 +82,34 @@ let inline escapeCell input =
 
 $"a{nl}\\#!magic{nl}b{nl}"
 |> escapeCell
-|> _assertEqual (
-    $"a{nl}#!magic{nl}b{nl}"
-)
+|> _assertEqual $"a{nl}#!magic{nl}b{nl}"
+
+#!markdown
+
+## escape_cell (test)
+
+#!spiral
+
+//// test
+//// test_force
+
+inl escape_cell input =
+    input
+    |> sm'.split "\n"
+    |> am'.map_base function
+        | line when (line |> sm'.starts_with "\\#!") || (line |> sm'.starts_with "\\#r") =>
+            sm'.replace_regex line "^\\\\#" "#"
+        | line => line
+    |> a
+    |> sm'.concat_array "\n"
+
+#!spiral
+
+//// test
+
+"a\n\#!magic\nb\n"
+|> escape_cell
+|> _assert_eq "a\n#!magic\nb\n"
 
 #!markdown
 
@@ -108,6 +146,47 @@ let magicMarker : Parser<string, unit> = pstring "#!"
         ()
     )
 )
+
+#!markdown
+
+## magic_marker
+
+#!spiral
+
+inl magic_marker () : parser string =
+    "#!" |> p_string
+
+#!spiral
+
+//// test
+
+"#!magic"
+|> run_parser (magic_marker ())
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$("#!", "magic", new_parser_state 0 1 3 7)
+
+#!spiral
+
+//// test
+
+"##!magic"
+|> run_parser (magic_marker ())
+|> sm'.format_debug
+|> _assert_eq (
+    "US0_1\n  \"parsing.p_string / unexpected string / { "
+    ++# $'"expected = ##!!; got = ####; rest = ####!!magic; s = !(new_parser_state 0 1 1 8) }\\\""'
+)
+
+#!spiral
+
+//// test
+
+"\n#!x"
+|> run_parser ((new_line () >>. magic_marker () <|> eof () >>. p_return "") |> look_ahead)
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$("#!", "\n#!x", new_parser_state 0 1 1 4)
 
 #!markdown
 
@@ -154,6 +233,39 @@ a"
 
 #!markdown
 
+## magic_command
+
+#!spiral
+
+inl magic_command () =
+    magic_marker ()
+    >>. many_chars_till (any_char ()) (new_line ())
+    |>> sm'.trim
+
+#!spiral
+
+//// test
+
+"#!magic\n\na"
+|> run_parser (magic_command ())
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$("magic", "\n\na", new_parser_state 0 1 8 10)
+
+#!spiral
+
+//// test
+
+" #!magic\n\na"
+|> run_parser (magic_command ())
+|> sm'.format_debug
+|> _assert_eq (
+    "US0_1\n  \"parsing.p_string / unexpected string / { "
+    ++# $'"expected = ##!!; got =  ##; rest =  ##!!magic\n\na; s = !(new_parser_state 0 1 1 11) }\\\""'
+)
+
+#!markdown
+
 ## content
 
 #!fsharp
@@ -184,6 +296,25 @@ a
 a", (), Position ("", 14, 7, 1))
 )
 
+#!spiral
+
+inl content () =
+    (new_line () >>. magic_marker () <|> eof () >>. p_return "")
+    |> attempt
+    |> look_ahead
+    |> many_chars_till (any_char ())
+    |>> sm'.trim
+
+#!spiral
+
+//// test
+
+"#!magic\n\n\na\n\n\n"
+|> run_parser (content ())
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$("#!magic\n\n\na", "", new_parser_state 14 7 1 14)
+
 #!markdown
 
 ## Output
@@ -191,6 +322,18 @@ a", (), Position ("", 14, 7, 1))
 #!fsharp
 
 type Output =
+    | Fs
+    | Md
+    | Spi
+    | Spir
+
+#!markdown
+
+## output
+
+#!spiral
+
+union output =
     | Fs
     | Md
     | Spi
@@ -210,6 +353,18 @@ type Magic =
 
 #!markdown
 
+## magic
+
+#!spiral
+
+union magic =
+    | Fsharp
+    | Markdown
+    | Spiral : output
+    | Magic : string
+
+#!markdown
+
 ## kernelOutputs
 
 #!fsharp
@@ -220,6 +375,18 @@ let inline kernelOutputs magic =
     | Markdown -> [ Md ]
     | Spiral output -> [ output ]
     | _ -> []
+
+#!markdown
+
+## kernel_outputs
+
+#!spiral
+
+inl kernel_outputs = function
+    | Fsharp => [ Fs ]
+    | Markdown => [ Md ]
+    | Spiral output => [ output ]
+    | _ => []
 
 #!markdown
 
@@ -264,25 +431,51 @@ let block =
                 content = content
             })
 
-#!fsharp
+#!spiral
+
+type block =
+    {
+        magic : magic
+        content : string
+    }
+
+inl block () =
+    pipe2
+        (magic_command ())
+        (content ())
+        fun magic content =>
+            inl magic, content =
+                match magic with
+                | "fsharp" => Fsharp, content
+                | "markdown" => Markdown, content
+                | "spiral" =>
+                    inl output =
+                        if content |> sm'.contains "//// real\n"
+                        then Spir
+                        else Spi
+                    inl content =
+                        if output = Spi
+                        then content
+                        else
+                            content
+                            |> sm'.replace "//// real\n\n" ""
+                            |> sm'.replace "//// real\n" ""
+                    output |> Spiral, content
+                | magic => magic |> Magic, content
+            {
+                magic = magic
+                content = content
+            }
+
+#!spiral
 
 //// test
 
-"#!magic
-
-
-a
-
-
-"
-|> run block
-|> _assertEqual (
-    Success (
-        { magic = Magic "magic"; content = "a" },
-        (),
-        Position ("", 14, 7, 1)
-    )
-)
+"#!magic\n\n\na\n\n\n"
+|> run_parser (block ())
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$(Magic "magic", "a", "", new_parser_state 14 7 1 14)
 
 #!markdown
 
@@ -319,6 +512,30 @@ b
         (),
         Position ("", 26, 9, 1)
     )
+)
+
+#!spiral
+
+inl blocks () =
+    skip_many (new_line ())
+    >>. sep_end_by (block ()) (skip_many1 (new_line ()))
+
+#!spiral
+
+//// test
+
+"#!magic1\n\na\n\n\#!magic2\n\nb\n\n"
+|> escape_cell
+|> run_parser (blocks ())
+|> resultm.get
+|> sm'.format_debug
+|> _assert_eq $$(
+    [
+        { magic = Magic "magic1"; content = "a" }
+        { magic = Magic "magic2"; content = "b" }
+    ],
+    "",
+    new_parser_state 26 9 1 26
 )
 
 #!markdown
