@@ -183,7 +183,7 @@ inl magic_marker () : parser string =
 //// test
 
 "\n#!x"
-|> run_parser ((new_line () >>. magic_marker () <|> eof () >>. p_return "") |> look_ahead)
+|> run_parser ((new_line () >>. magic_marker ()) <|> (eof () >>. p_return "") |> look_ahead)
 |> resultm.get
 |> sm'.format_debug
 |> _assert_eq $$("#!", "\n#!x", new_parser_state 0 1 1 4)
@@ -299,7 +299,7 @@ a", (), Position ("", 14, 7, 1))
 #!spiral
 
 inl content () =
-    (new_line () >>. magic_marker () <|> eof () >>. p_return "")
+    (new_line () >>. magic_marker ()) <|> (eof () >>. p_return "")
     |> attempt
     |> look_ahead
     |> many_chars_till (any_char ())
