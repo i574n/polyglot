@@ -44,7 +44,7 @@ Write-Output "polyglot/lib/math/build.ps1 / path: $path"
 
 cargo fmt --
 
-{ cargo test --release } | Invoke-Block -OnError Continue
+{ cargo test --timings --release } | Invoke-Block -OnError Continue
 
 Write-Output "polyglot/lib/math/build.ps1 / `$targetDir: $targetDir / `$projectName: $projectName / `$env:CI:'$env:CI'"
 

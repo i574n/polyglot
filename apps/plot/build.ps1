@@ -9,4 +9,4 @@ $ErrorActionPreference = "Stop"
 
 { cargo fmt -- } | Invoke-Block
 
-{ cargo build --release } | Invoke-Block
+{ cargo build --timings --release } | Invoke-Block

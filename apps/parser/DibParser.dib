@@ -56,6 +56,7 @@ open testing
 
 open parsing
 open sm'_operators
+open file_system_operators
 
 #!markdown
 
@@ -96,12 +97,13 @@ $"a{nl}\\#!magic{nl}b{nl}"
 inl escape_cell input =
     input
     |> sm'.split "\n"
-    |> am'.map_base function
+    |> am'.to_list_base'
+    |> listm'.unbox
+    |> listm.map function
         | line when (line |> sm'.starts_with "\\#!") || (line |> sm'.starts_with "\\#r") =>
             sm'.replace_regex line "^\\\\#" "#"
         | line => line
-    |> a
-    |> sm'.concat_array "\n"
+    |> sm'.concat_list "\n"
 
 #!spiral
 
@@ -271,7 +273,7 @@ inl magic_command () =
 #!fsharp
 
 let content =
-    (newline >>. magicMarker) <|> (eof >>. preturn "")
+    newline >>. magicMarker <|> (eof >>. preturn "")
     |> attempt
     |> lookAhead
     |> manyTill anyChar
@@ -299,8 +301,7 @@ a", (), Position ("", 14, 7, 1))
 #!spiral
 
 inl content () =
-    (new_line () >>. magic_marker ()) <|> (eof () >>. p_return "")
-    |> attempt
+    new_line () >>. magic_marker () <|> eof () >>. p_return ""
     |> look_ahead
     |> many_chars_till (any_char ())
     |>> sm'.trim
@@ -616,6 +617,62 @@ let a = 1"
 
 #!markdown
 
+## format_block
+
+#!spiral
+
+inl format_block output (block : block) =
+    match output, block with
+    | output, { magic = (Markdown) content = content } =>
+        inl markdown_comment =
+            match output with
+            | Spi | Spir => "/// "
+            | Fs => "/// "
+            | _ => ""
+        content
+        |> sm'.split "\n"
+        |> am'.to_list_base'
+        |> listm'.unbox
+        |> listm.map (sm'.trim_end [])
+        |> listm'.filter (sm'.ends_with " (test)" >> not)
+        |> listm.map function
+            | "" => markdown_comment
+            | line => line |> sm'.replace_regex "^\\s*" ("$&" ++# markdown_comment)
+        |> sm'.concat_list "\n"
+    | Fs, { magic = (Fsharp) content = content } =>
+        inl trimmed_content = content |> sm'.trim
+        if (trimmed_content |> sm'.contains "//// test\n")
+            || (trimmed_content |> sm'.contains "//// ignore\n")
+        then ""
+        else
+            content
+            |> sm'.split "\n"
+            |> am'.to_list_base'
+            |> listm'.unbox
+            |> listm'.filter (sm'.trim_start [] >> sm'.starts_with "#r" >> not)
+            |> sm'.concat_list "\n"
+    | (Spi | Spir), { magic = (Spiral output') content = content } when output' = output =>
+        inl trimmed_content = content |> sm'.trim
+        if (trimmed_content |> sm'.contains "//// test\n")
+            || (trimmed_content |> sm'.contains "//// ignore\n")
+        then ""
+        else content
+    | _ => ""
+
+#!spiral
+
+//// test
+
+"#!markdown\n\n\na\n\n    b\n\nc\n\n\n\#!markdown\n\n\nc\n\n\n\#!fsharp\n\n\nlet a = 1"
+|> escape_cell
+|> run_parser (block ())
+|> function
+    | Ok (block, _, _) => format_block Fs block
+    | Error msg => failwith msg
+|> _assert_eq "/// a\n/// \n    /// b\n/// \n/// c"
+
+#!markdown
+
 ## formatBlocks
 
 #!fsharp
@@ -696,6 +753,41 @@ let a = 3
 
 #!markdown
 
+## format_blocks
+
+#!spiral
+
+inl format_blocks output blocks =
+    blocks
+    |> listm.map fun block =>
+        block, format_block output block
+    |> listm'.filter (snd >> (<>) "")
+    |> fun list =>
+        (list, (None, []))
+        ||> listm.foldBack (fun (block, content) (last_magic, acc) =>
+            inl line_break =
+                if block.magic = Markdown && last_magic <> Some Markdown && last_magic <> None
+                then ""
+                else "\n"
+            Some block.magic, content ++# line_break :: acc
+        )
+    |> snd
+    |> sm'.concat_list "\n"
+
+#!spiral
+
+//// test
+
+"#!markdown\n\n\na\n\nb\n\n\n\#!markdown\n\n\nc\n\n\n\#!fsharp\n\n\nlet a = 1\n\n\#!markdown\n\nd (test)\n\n\#!fsharp\n\n//// test\n\nlet a = 2\n\n\#!markdown\n\ne\n\n\#!fsharp\n\nlet a = 3"
+|> escape_cell
+|> run_parser (blocks ())
+|> function
+    | Ok (blocks, _, _) => format_blocks Fs blocks
+    | Error msg => failwith msg
+|> _assert_eq "/// a\n/// \n/// b\n\n/// c\nlet a = 1\n\n/// e\nlet a = 3\n"
+
+#!markdown
+
 ## indentBlock
 
 #!fsharp
@@ -748,6 +840,61 @@ let inline indentBlock (block : Block) =
             |> fst
             |> List.rev
             |> SpiralSm.concat "\n"
+    }
+
+#!markdown
+
+## indent_block
+
+#!spiral
+
+inl indent_block (block : block) =
+    { block with
+        content =
+            (([], false), block.content |> sm'.split "\n" |> am'.to_list_base' |> listm'.unbox)
+            ||> listm.fold fun (lines, is_multiline) line =>
+                inl trimmed_line = line |> sm'.trim
+                if trimmed_line = ""
+                then "" :: lines, is_multiline
+                else
+                    inl single_quote_line () =
+                        (trimmed_line
+                            |> sm'.to_char_list
+                            |> listm.map ((=) '"' >> convert_i32)
+                            |> listm'.sum) = 1
+                        && trimmed_line |> sm'.contains "'\"'" |> not
+                        && trimmed_line |> sm'.ends_with "{" |> not
+                        && trimmed_line |> sm'.ends_with "{|" |> not
+                        && trimmed_line |> sm'.starts_with "}" |> not
+                        && trimmed_line |> sm'.starts_with "|}" |> not
+
+                    match is_multiline, trimmed_line |> sm'.split_string ;[ "\"\"\"" ] with
+                    | false, ;[ _; _ ] =>
+                        "    " ++# line :: lines, true
+
+                    | true, ;[ _; _ ] =>
+                        line :: lines, false
+
+                    | false, _ when single_quote_line () =>
+                        "    " ++# line :: lines, true
+
+                    | false, _ when line |> sm'.starts_with "#" && block.magic = Fsharp =>
+                        line :: lines, false
+
+                    | false, _ =>
+                        "    " ++# line :: lines, false
+
+                    | true, _ when single_quote_line () && (line |> sm'.starts_with "    ") =>
+                        "    " ++# line :: lines, false
+
+                    | true, _ when single_quote_line () =>
+                        line :: lines, false
+
+                    | true, _ =>
+                        line :: lines, true
+            |> fst
+            |> listm.rev
+            |> sm'.concat_list "\n"
     }
 
 #!markdown
@@ -813,6 +960,7 @@ module {moduleName} ="
 #!fsharp
 
 //// test
+//// test_force
 
 let example1 =
     $"""#!meta
@@ -1028,6 +1176,284 @@ inl x = 2i32
 
 #!markdown
 
+## parse
+
+#!spiral
+
+inl parse output input =
+    match input |> run_parser (blocks ()) with
+    | Ok (blocks, _, _) =>
+        blocks
+        |> listm'.filter fun block =>
+            block.magic |> kernel_outputs |> listm'.contains output || block.magic = Markdown
+        |> listm.map Some
+        |> fun x => x ++ [ None ]
+        |> listm'.pairwise
+        |> listm'.choose function
+            | Some { magic = (Markdown) } as block, Some { magic = (Markdown) } => block
+            | Some { magic = (Markdown) } as block, Some { magic = magic }
+                when magic |> kernel_outputs |> listm'.contains output => block
+            | Some { magic = (Markdown) } as block, _ when output = Md => block
+            | Some { magic = (Markdown) }, _ => None
+            | Some block, _ => Some block
+            | _ => None
+        |> listm.fold
+            fun acc, indent => function
+                | { magic = (Markdown) content = content }
+                    when output = Fs
+                            && content |> sm'.starts_with "# "
+                            && content |> sm'.ends_with ")"
+                    =>
+                    match sm'.index_of " (" content, sm'.last_index_of ")" content with
+                    | i_open, i_close when i_open > 1 && i_close > i_open + 1 =>
+                        inl module_name =
+                            content |> sm'.substring 2 (i_open - 2) |> sm'.trim
+                        inl namespace_name =
+                            content |> sm'.substring (i_open + 2) (i_close - (i_open + 2)) |> sm'.trim
+
+                        inl module_block =
+                            {
+                                magic = Fsharp
+                                content =
+                                    "#if !INTERACTIVE\nnamespace " ++# namespace_name
+                                    ++\# "#endif\n\nmodule " ++# module_name ++# " ="
+                            }
+
+                        module_block :: acc, (indent + 1)
+                    | _ => { magic = Markdown; content = content } :: acc, indent
+                | { magic = magic content = content } as block when indent > 0 =>
+                    indent_block block :: acc, indent
+                | block => block :: acc, indent
+            ([], 0i32)
+        |> fst
+        |> listm.rev
+        |> Ok
+    | Error error_msg => error_msg |> Error
+
+#!spiral
+
+//// test
+//// test_force
+
+inl example1 () =
+    "#!meta"
+    ++\# ""
+    ++\# "{\"kernelInfo\":{\"defaultKernelName\":\"fsharp\",\"items\":[{\"aliases\":[],\"name\":\"fsharp\"},{\"aliases\":[],\"name\":\"fsharp\"}]}}"
+    ++\# ""
+    ++\# "\#!markdown"
+    ++\# ""
+    ++\# "# TestModule (TestNamespace)"
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "\#!import file.dib"
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "\#r \"nuget:Expecto\""
+    ++\# ""
+    ++\# "\#!markdown"
+    ++\# ""
+    ++\# "## ParserLibrary"
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "open System"
+    ++\# ""
+    ++\# "\#!markdown"
+    ++\# ""
+    ++\# "## x (test)"
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "//// ignore"
+    ++\# ""
+    ++\# "let x = 1"
+    ++\# ""
+    ++\# "\#!spiral"
+    ++\# ""
+    ++\# "//// test"
+    ++\# ""
+    ++\# "inl x = 1i32"
+    ++\# ""
+    ++\# "\#!spiral"
+    ++\# ""
+    ++\# "//// real"
+    ++\# ""
+    ++\# "inl x = 2i32"
+    ++\# ""
+    ++\# "\#!spiral"
+    ++\# ""
+    ++\# "inl x = 3i32"
+    ++\# ""
+    ++\# "\#!markdown"
+    ++\# ""
+    ++\# "### TextInput"
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "let str1 = \"abc"
+    ++\# "def\""
+    ++\# ""
+    ++\# "let str2 ="
+    ++\# "    \"abc\\"
+    ++\# "def\""
+    ++\# ""
+    ++\# "let str3 ="
+    ++\# "    $\"1{"
+    ++\# "        1"
+    ++\# "    }1\""
+    ++\# ""
+    ++\# "let str4 ="
+    ++\# "    $\"1{({|"
+    ++\# "        a = 1"
+    ++\# "    |}).a}1\""
+    ++\# ""
+    ++\# "let str5 ="
+    ++\# "    \"abc \\"
+    ++\# "        def\""
+    ++\# ""
+    ++\# "let x ="
+    ++\# "    match '\"' with"
+    ++\# "    | '\"' -> true"
+    ++\# "    | _ -> false"
+    ++\# ""
+    ++\# "let long1 = \"\"\"a\"\"\""
+    ++\# ""
+    ++\# "let long2 ="
+    ++\# "    \"\"\""
+    ++\# "a"
+    ++\# "\"\"\""
+    ++\# ""
+    ++\# "\#!fsharp"
+    ++\# ""
+    ++\# "type Position ="
+    ++\# "    {"
+    ++\# "#if INTERACTIVE"
+    ++\# "        line : string"
+    ++\# "#else"
+    ++\# "        line : int"
+    ++\# "#endif"
+    ++\# "        column : int"
+    ++\# "    }"
+    |> escape_cell
+
+#!spiral
+
+//// test
+
+example1 ()
+|> parse Fs
+|> resultm.get
+|> (format_blocks Fs)
+|> _assert_eq (
+    "#if !INTERACTIVE"
+    ++\# "namespace TestNamespace"
+    ++\# "#endif"
+    ++\# ""
+    ++\# "module TestModule ="
+    ++\# ""
+    ++\# "    /// ## ParserLibrary"
+    ++\# "    open System"
+    ++\# ""
+    ++\# "    /// ### TextInput"
+    ++\# "    let str1 = \"abc"
+    ++\# "def\""
+    ++\# ""
+    ++\# "    let str2 ="
+    ++\# "        \"abc\\"
+    ++\# "def\""
+    ++\# ""
+    ++\# "    let str3 ="
+    ++\# "        $\"1{"
+    ++\# "            1"
+    ++\# "        }1\""
+    ++\# ""
+    ++\# "    let str4 ="
+    ++\# "        $\"1{({|"
+    ++\# "            a = 1"
+    ++\# "        |}).a}1\""
+    ++\# ""
+    ++\# "    let str5 ="
+    ++\# "        \"abc \\"
+    ++\# "            def\""
+    ++\# ""
+    ++\# "    let x ="
+    ++\# "        match '\"' with"
+    ++\# "        | '\"' -> true"
+    ++\# "        | _ -> false"
+    ++\# ""
+    ++\# "    let long1 = \"\"\"a\"\"\""
+    ++\# ""
+    ++\# "    let long2 ="
+    ++\# "        \"\"\""
+    ++\# "a"
+    ++\# "\"\"\""
+    ++\# ""
+    ++\# "    type Position ="
+    ++\# "        {"
+    ++\# "#if INTERACTIVE"
+    ++\# "            line : string"
+    ++\# "#else"
+    ++\# "            line : int"
+    ++\# "#endif"
+    ++\# "            column : int"
+    ++\# "        }"
+    ++\# ""
+)
+
+#!spiral
+
+//// test
+
+example1 ()
+|> parse Md
+|> resultm.get
+|> (format_blocks Md)
+|> _assert_eq (
+    "# TestModule (TestNamespace)"
+    ++\# ""
+    ++\# "## ParserLibrary"
+    ++\# ""
+    ++\# "### TextInput"
+    ++\# ""
+)
+
+#!spiral
+
+//// test
+
+example1 ()
+|> parse Spi
+|> resultm.get
+|> (format_blocks Spi)
+|> _assert_eq (
+    "/// # TestModule (TestNamespace)"
+    ++\# ""
+    ++\# "/// ## ParserLibrary"
+    ++\# "inl x = 3i32"
+    ++\# ""
+)
+
+#!spiral
+
+//// test
+////! gleam
+
+example1 ()
+|> parse Spir
+|> resultm.get
+|> (format_blocks Spir)
+|> _assert_eq (
+    "/// # TestModule (TestNamespace)"
+    ++\# ""
+    ++\# "/// ## ParserLibrary"
+    ++\# "inl x = 2i32"
+    ++\# ""
+)
+
+#!markdown
+
 ## parseDibCode
 
 #!fsharp
@@ -1041,6 +1467,21 @@ let inline parseDibCode output file = async {
     | Result.Ok blocks -> return blocks |> formatBlocks output
     | Result.Error msg -> return failwith msg
 }
+
+#!markdown
+
+## parse_dib_code
+
+#!spiral
+
+inl parse_dib_code output file =
+    trace Debug
+        (fun () => "parse_dib_code")
+        fun () => { output file }
+    inl input = file |> file_system.read_all_text
+    match parse output input with
+    | Ok blocks => blocks |> format_blocks output
+    | Error msg => failwith msg
 
 #!markdown
 
@@ -1061,6 +1502,25 @@ let inline writeDibCode output path = async {
     let outputPath = pathDir </> $"{fileNameWithoutExt}.{output |> string |> SpiralSm.to_lower}"
     do! result |> SpiralFileSystem.write_all_text_async outputPath
 }
+
+#!markdown
+
+## write_dib_code
+
+#!spiral
+
+inl write_dib_code output path =
+    trace Debug
+        (fun () => "write_dib_code")
+        (fun () => { output path })
+    inl result = parse_dib_code output path
+    inl path_dir = path |> file_system.get_directory_name
+    inl file_name_without_ext =
+        match output, path |> file_system.get_file_name_without_extension with
+        | Spir, file_name_without_ext => $"{fileNameWithoutExt}_real"
+        | _, file_name_without_ext => file_name_without_ext
+    inl output_path = path_dir </> file_name_without_ext ++# "." ++# ($output |> sm'.to_lower)
+    result |> file_system.write_all_text output_path
 
 #!markdown
 

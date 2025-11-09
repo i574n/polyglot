@@ -21,37 +21,52 @@
 
 #!pwsh
 
+if (!(Search-Command "cargo-binstall")) {
+    # { cargo +nightly-2025-11-01 install --timings cargo-binstall --locked } | Invoke-Block -OnError Continue
+    if ($IsWindows) {
+        Set-ExecutionPolicy Unrestricted -Scope Process; iex (iwr "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
+    } else {
+        curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+    }
+}
+
+#!pwsh
+
 if (!(Search-Command "cargo-outdated")) {
     $url = git ls-remote --get-url
     $owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
     $domain = ($url -split '/' | Select-Object -Last 3 | Select-Object -First 1) ?? $env:GITHUB_SERVER_URL -replace 'https?://', ''
     Write-Output "polyglot/scripts/init.dib / url: $url / owner: $owner / domain: $domain"
 
-    { cargo install --git https://$domain/$owner/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
+    { cargo binstall --timings --git https://$domain/$owner/cargo-outdated.git --locked } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
 
 if (!(Search-Command "sccache")) {
-    { cargo install sccache --locked } | Invoke-Block -OnError Continue
+    # { cargo install --timings sccache --locked } | Invoke-Block -OnError Continue
+    { cargo binstall -y sccache } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
 
 if (!(Search-Command "wasm-pack")) {
-    { cargo install wasm-pack --locked } | Invoke-Block -OnError Continue
+    # { cargo install --timings wasm-pack --locked } | Invoke-Block -OnError Continue
+    { cargo binstall -y wasm-pack } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
 
 if (!(Search-Command "trunk")) {
-    { cargo install trunk --version 0.21.14 } | Invoke-Block -OnError Continue
+    # { cargo install --timings trunk --version 0.21.14 } | Invoke-Block -OnError Continue
+    { cargo binstall -y trunk --version 0.21.14 } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
 
 if (!(Search-Command "leptosfmt")) {
-    { cargo install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
+    # { cargo install --timings --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
+    { cargo binstall -y leptosfmt } | Invoke-Block -OnError Continue
 }
 
 #!pwsh
