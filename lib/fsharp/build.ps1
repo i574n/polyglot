@@ -21,4 +21,4 @@ if (!$fast) {
     } | Invoke-Block
 }
 
-{ . ../../apps/parser/dist/DibParser$(_exe) Async.dib fs AsyncSeq.dib fs Common.dib fs CommonFSharp.dib fs FileSystem.dib fs Runtime.dib fs } | Invoke-Block
+{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export Async.dib fs AsyncSeq.dib fs Common.dib fs CommonFSharp.dib fs FileSystem.dib fs Runtime.dib fs } | Invoke-Block

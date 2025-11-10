@@ -15,7 +15,7 @@ if (!$fast -and !$SkipNotebook) {
     { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path "$projectName.dib" --retries $($fast -or !$env:CI ? 1 : 2) } | Invoke-Block -OnError Continue
 }
 
-{ . ../../apps/parser/dist/DibParser$(_exe) "$projectName.dib" spi } | Invoke-Block
+{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export "$projectName.dib" spi } | Invoke-Block
 
 { . ../../apps/spiral/dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" --timeout 300000 } | Invoke-Block
 
@@ -44,7 +44,7 @@ Write-Output "polyglot/lib/math/build.ps1 / path: $path"
 
 cargo fmt --
 
-{ cargo test --timings --release } | Invoke-Block -OnError Continue
+{ cargo +nightly-2025-11-01 test --timings --release } | Invoke-Block -OnError Continue
 
 Write-Output "polyglot/lib/math/build.ps1 / `$targetDir: $targetDir / `$projectName: $projectName / `$env:CI:'$env:CI'"
 
