@@ -68,6 +68,7 @@ module Supervisor =
     /// ### Backend
     type Backend =
         | Gleam
+        | Lua
         | Fsharp
         | Python
         | Cpp
@@ -236,6 +237,7 @@ module Supervisor =
             let outputFileName =
                 match backend with
                 | Gleam -> $"{fileName}.gleam"
+                | Lua -> $"{fileName}.lua"
                 | Fsharp -> $"{fileName}.fsx"
                 | Python -> $"{fileName}.py"
                 | Cpp -> $"{fileName}.cpp"
@@ -383,6 +385,7 @@ module Supervisor =
             let backendId =
                 match backend with
                 | Gleam -> "Gleam"
+                | Lua -> "Lua"
                 | Fsharp -> "Fsharp"
                 | Python -> "Python + Cuda"
                 | Cpp -> "Cpp + Cuda"
@@ -579,6 +582,7 @@ modules:
                     | Spir _ -> $"{moduleName}_real"
                 match backend with
                 | Gleam -> $"{fileName}.gleam"
+                | Lua -> $"{fileName}.lua"
                 | Fsharp -> $"{fileName}.fsx"
                 | Python -> $"{fileName}.py"
                 | Cpp -> $"{fileName}.cpp"
@@ -866,6 +870,8 @@ modules:
                         let backend =
                             if outputPath |> SpiralSm.ends_with ".gleam"
                             then Gleam
+                            elif outputPath |> SpiralSm.ends_with ".lua"
+                            then Lua
                             elif outputPath |> SpiralSm.ends_with ".fsx"
                             then Fsharp
                             elif outputPath |> SpiralSm.ends_with ".py"

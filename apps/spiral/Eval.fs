@@ -386,6 +386,7 @@ module Eval =
 
         if props.printCode
             && props.backend <> Supervisor.Gleam
+            && props.backend <> Supervisor.Lua
             && props.backend <> Supervisor.Python
             && props.backend <> Supervisor.Cpp then
             let ext = props.outputPath |> System.IO.Path.GetExtension
@@ -424,6 +425,9 @@ module Eval =
                         elif props.backend = Supervisor.Gleam
                             && builderCommand |> SpiralSm.starts_with "gleam"
                         then [| $"{path} {builderCommand} --gleam-path \"{props.outputPath}\"" |]
+                        elif props.backend = Supervisor.Lua
+                            && builderCommand |> SpiralSm.starts_with "lua"
+                        then [| $"{path} {builderCommand} --lua-path \"{props.outputPath}\"" |]
                         else [||]
                     builderCommand, commands
                 )
@@ -645,6 +649,8 @@ module Eval =
                     |> Array.map (fun x ->
                         if x |> SpiralSm.starts_with "gleam"
                         then Supervisor.Gleam
+                        elif x |> SpiralSm.starts_with "lua"
+                        then Supervisor.Lua
                         elif x |> SpiralSm.starts_with "cuda"
                         then Supervisor.Python
                         elif x |> SpiralSm.starts_with "cpp"

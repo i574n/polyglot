@@ -138,6 +138,7 @@ let getCompilerPort () =
 
 type Backend =
     | Gleam
+    | Lua
     | Fsharp
     | Python
     | Cpp
@@ -374,6 +375,7 @@ let buildFile backend timeout port cancellationToken path =
         let outputFileName =
             match backend with
             | Gleam -> $"{fileName}.gleam"
+            | Lua -> $"{fileName}.lua"
             | Fsharp -> $"{fileName}.fsx"
             | Python -> $"{fileName}.py"
             | Cpp -> $"{fileName}.cpp"
@@ -521,6 +523,7 @@ let buildFile backend timeout port cancellationToken path =
         let backendId =
             match backend with
             | Gleam -> "Gleam"
+            | Lua -> "Lua"
             | Fsharp -> "Fsharp"
             | Python -> "Python + Cuda"
             | Cpp -> "Cpp + Cuda"
@@ -727,6 +730,7 @@ modules:
                 | Spir _ -> $"{moduleName}_real"
             match backend with
             | Gleam -> $"{fileName}.gleam"
+            | Lua -> $"{fileName}.lua"
             | Fsharp -> $"{fileName}.fsx"
             | Python -> $"{fileName}.py"
             | Cpp -> $"{fileName}.cpp"
@@ -2016,6 +2020,8 @@ let main args =
                     let backend =
                         if outputPath |> SpiralSm.ends_with ".gleam"
                         then Gleam
+                        elif outputPath |> SpiralSm.ends_with ".lua"
+                        then Lua
                         elif outputPath |> SpiralSm.ends_with ".fsx"
                         then Fsharp
                         elif outputPath |> SpiralSm.ends_with ".py"

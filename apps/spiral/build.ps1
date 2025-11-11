@@ -21,7 +21,7 @@ $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x
 $builderArgs = @("Supervisor.fs", $runtime, "--packages", "Argu", "FSharp.Control.AsyncSeq", "FSharp.Json", "Microsoft.AspNetCore.SignalR.Client", "System.Reactive.Linq", "Hopac", "FSharpx.Collections", "FParsec", "System.Management", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs", "deps/spiral/apps/compiler/spiral_compiler.fs")
 { . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
 
-if (!$fast) {
+if (!$fast -and !$SkipNotebook) {
     { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Eval.dib --retries 3 } | Invoke-Block
 }
 
