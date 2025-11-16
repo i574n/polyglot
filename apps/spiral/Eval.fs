@@ -633,7 +633,7 @@ module Eval =
             fsi_eval: _
         |})
         = async {
-        let maxRetries = 3
+        let maxRetries = 1
         try
             let cellCode, lastTopLevelIndex = prepareSpiral props.rawCellCode props.lines
             let newAllCode =

@@ -1173,7 +1173,7 @@ inl integral dt : integration =
         |> listm.fold (+) 0
 
 inl main () =
-    integral 0.1 (fun x => x ** 2) 0 1 |> convert : i32
+    integral 0.1 (fun x => x ** 2) 0 1 |> convert.convert : int
 """
 |> fun code -> Spi (code, None)
 |> buildCode Cpp [||] false 10000 None
