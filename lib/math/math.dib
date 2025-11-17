@@ -219,7 +219,7 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
         if re s > 1 then
             (.^(0, 0), (am.init 10000i32 id : a i32 _))
             ||> am.fold fun acc n =>
-                acc .+ (.^(1, 0) ./ (.^(f64 n, 0) .** s))
+                acc .+ (.^(1, 0) ./ (.^(n |> convert.f64, 0) .** s))
         else
             inl gamma_term = gamma (.^(1, 0) .- s)
             inl sin_term = .^(pi, 0) .* s ./ .^(2, 0) |> complex_sin
