@@ -138,6 +138,7 @@ let getCompilerPort () =
 
 type Backend =
     | Gleam
+    | Lua
     | Fsharp
     | Python
     | Cpp
@@ -374,6 +375,7 @@ let buildFile backend timeout port cancellationToken path =
         let outputFileName =
             match backend with
             | Gleam -> $"{fileName}.gleam"
+            | Lua -> $"{fileName}.lua"
             | Fsharp -> $"{fileName}.fsx"
             | Python -> $"{fileName}.py"
             | Cpp -> $"{fileName}.cpp"
@@ -521,6 +523,7 @@ let buildFile backend timeout port cancellationToken path =
         let backendId =
             match backend with
             | Gleam -> "Gleam"
+            | Lua -> "Lua"
             | Fsharp -> "Fsharp"
             | Python -> "Python + Cuda"
             | Cpp -> "Cpp + Cuda"
@@ -727,6 +730,7 @@ modules:
                 | Spir _ -> $"{moduleName}_real"
             match backend with
             | Gleam -> $"{fileName}.gleam"
+            | Lua -> $"{fileName}.lua"
             | Fsharp -> $"{fileName}.fsx"
             | Python -> $"{fileName}.py"
             | Cpp -> $"{fileName}.cpp"
@@ -783,9 +787,9 @@ inl main () =
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v3 : unit = ()
-    let v4 : (unit -> unit) = closure1()
-    let v5 : unit = (fun () -> v4 (); v3) ()
+    let v21 : unit = ()
+    let v22 : (unit -> unit) = closure1()
+    let v23 : unit = (fun () -> v22 (); v21) ()
     1
 let v0 : (unit -> int32) = closure0()
 ()
@@ -1169,7 +1173,7 @@ inl integral dt : integration =
         |> listm.fold (+) 0
 
 inl main () =
-    integral 0.1 (fun x => x ** 2) 0 1 |> convert : i32
+    integral 0.1 (fun x => x ** 2) 0 1 |> convert.convert : int
 """
 |> fun code -> Spi (code, None)
 |> buildCode Cpp [||] false 10000 None
@@ -1400,10 +1404,88 @@ struct dynamic_array_list
 #include ""main.auto.cu""
 namespace Device {
 }
+struct Union0;
+struct Union0_0 { // (0, Some)
+    int v0;
+    Union0_0(int t0) : v0(t0) {}
+    Union0_0() = delete;
+};
+struct Union0_1 { // (1, None)
+};
+struct Union0 {
+    union {
+        Union0_0 case0; // (0, Some)
+        Union0_1 case1; // (1, None)
+    };
+    unsigned char tag{255};
+    Union0() {}
+    Union0(Union0_0 t) : tag(0), case0(t) {} // (0, Some)
+    Union0(Union0_1 t) : tag(1), case1(t) {} // (1, None)
+    Union0(Union0 & x) : tag(x.tag) {
+        switch(x.tag){
+            case 0: new (&this->case0) Union0_0(x.case0); break; // (0, Some)
+            case 1: new (&this->case1) Union0_1(x.case1); break; // (1, None)
+        }
+    }
+    Union0(Union0 && x) : tag(x.tag) {
+        switch(x.tag){
+            case 0: new (&this->case0) Union0_0(std::move(x.case0)); break; // (0, Some)
+            case 1: new (&this->case1) Union0_1(std::move(x.case1)); break; // (1, None)
+        }
+    }
+    Union0 & operator=(Union0 & x) {
+        if (this->tag == x.tag) {
+            switch(x.tag){
+                case 0: this->case0 = x.case0; break; // (0, Some)
+                case 1: this->case1 = x.case1; break; // (1, None)
+            }
+        } else {
+            this->~Union0();
+            new (this) Union0{x};
+        }
+        return *this;
+    }
+    Union0 & operator=(Union0 && x) {
+        if (this->tag == x.tag) {
+            switch(x.tag){
+                case 0: this->case0 = std::move(x.case0); break; // (0, Some)
+                case 1: this->case1 = std::move(x.case1); break; // (1, None)
+            }
+        } else {
+            this->~Union0();
+            new (this) Union0{std::move(x)};
+        }
+        return *this;
+    }
+    ~Union0() {
+        switch(this->tag){
+            case 0: this->case0.~Union0_0(); break; // (0, Some)
+            case 1: this->case1.~Union0_1(); break; // (1, None)
+        }
+        this->tag = 255;
+    }
+};
 int main_body() {
-    int v3;
-    v3 = ;
-    return v3;
+    const char * v70;
+    v70 = ""Cpp"";
+    Union0 v71;
+    v71 = // base.backend_switch / record_type_try_find / key: v70 ;
+    switch (v71.tag) {
+        case 1: { // None
+            
+            printf(""%s\n"", ""Option does not have a value."");
+            __trap();
+            break;
+        }
+        case 0: { // Some
+            int v72 = v71.case0.v0;
+            return v72;
+            break;
+        }
+        default: {
+            assert(""Invalid tag."" && false); __trap();
+        }
+    }
 }
 int main(){
     auto r = main_body();
@@ -2016,6 +2098,8 @@ let main args =
                     let backend =
                         if outputPath |> SpiralSm.ends_with ".gleam"
                         then Gleam
+                        elif outputPath |> SpiralSm.ends_with ".lua"
+                        then Lua
                         elif outputPath |> SpiralSm.ends_with ".fsx"
                         then Fsharp
                         elif outputPath |> SpiralSm.ends_with ".py"

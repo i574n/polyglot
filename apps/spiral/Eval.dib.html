@@ -8419,6 +8419,7 @@ a.anchor-link {
 
     <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">printCode</span>
         <span class="o">&amp;&amp;</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">&lt;&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Gleam</span>
+        <span class="o">&amp;&amp;</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">&lt;&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Lua</span>
         <span class="o">&amp;&amp;</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">&lt;&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Python</span>
         <span class="o">&amp;&amp;</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">&lt;&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Cpp</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">outputPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
@@ -8457,6 +8458,9 @@ a.anchor-link {
                     <span class="k">elif</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Gleam</span>
                         <span class="o">&amp;&amp;</span> <span class="n">builderCommand</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"gleam"</span>
                     <span class="n">then</span> <span class="p">[</span><span class="o">|</span> <span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> </span><span class="si">{builderCommand}</span><span class="s2"> --gleam-path </span><span class="se">\"</span><span class="si">{props.outputPath}</span><span class="se">\"</span><span class="s2">"</span> <span class="o">|</span><span class="p">]</span>
+                    <span class="k">elif</span> <span class="n">props</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Lua</span>
+                        <span class="o">&amp;&amp;</span> <span class="n">builderCommand</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"lua"</span>
+                    <span class="n">then</span> <span class="p">[</span><span class="o">|</span> <span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> </span><span class="si">{builderCommand}</span><span class="s2"> --lua-path </span><span class="se">\"</span><span class="si">{props.outputPath}</span><span class="se">\"</span><span class="s2">"</span> <span class="o">|</span><span class="p">]</span>
                     <span class="k">else</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
                 <span class="n">builderCommand</span><span class="p">,</span> <span class="n">commands</span>
             <span class="p">)</span>
@@ -8706,7 +8710,7 @@ a.anchor-link {
         <span class="n">fsi_eval</span><span class="p">:</span> <span class="n">_</span>
     <span class="o">|</span><span class="p">})</span>
     <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">maxRetries</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">let</span> <span class="n">maxRetries</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">try</span>
         <span class="n">let</span> <span class="n">cellCode</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span> <span class="o">=</span> <span class="n">prepareSpiral</span> <span class="n">props</span><span class="o">.</span><span class="n">rawCellCode</span> <span class="n">props</span><span class="o">.</span><span class="n">lines</span>
         <span class="n">let</span> <span class="n">newAllCode</span> <span class="o">=</span>
@@ -8722,6 +8726,8 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                     <span class="k">if</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"gleam"</span>
                     <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Gleam</span>
+                    <span class="k">elif</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"lua"</span>
+                    <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Lua</span>
                     <span class="k">elif</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"cuda"</span>
                     <span class="n">then</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">Python</span>
                     <span class="k">elif</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"cpp"</span>

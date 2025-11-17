@@ -56,7 +56,7 @@ $rsPath = "$libPath/src/List.rs"
 #     -replace "isEmpty", "isNullOrEmpty" `
 #     | Set-Content $rsPath
 
-{ cargo check } | Invoke-Block -Location $libPath -OnError Continue
+{ cargo check --timings } | Invoke-Block -Location $libPath -OnError Continue
 if (!$fast) {
     # { cargo clippy } | Invoke-Block -Location $libPath -OnError Continue
 }

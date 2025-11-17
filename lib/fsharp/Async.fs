@@ -94,7 +94,7 @@ module Async =
                     trace Debug (fun () -> $"Async.runWithTimeoutAsync") _locals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"Async.runWithTimeoutAsync** / ex: %A{ex}") _locals
+                    trace Critical (fun () -> $"Async.runWithTimeoutAsync** / timeout: {timeout} / ex: %A{ex}") _locals
                     None
             )
     }

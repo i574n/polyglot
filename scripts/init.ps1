@@ -36,6 +36,8 @@ rustup install nightly-2024-07-14
 rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
 rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
+rustup install nightly-2025-11-01
+
 rustup install nightly-2024-10-07
 
 if ($env:CI) {

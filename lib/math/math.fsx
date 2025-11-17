@@ -85,15 +85,15 @@ and method5 (v0 : (string [])) : string =
         let struct (v9 : string, v10 : string) = v3.l1, v3.l2
         let v11 : string = v0.[int v8]
         let v13 : string = v11 + v10 
-        let v17 : string = v13 + v9 
-        let v20 : int32 = v5 + 1
-        let v21 : string = "\n"
-        v3.l0 <- v20
-        v3.l1 <- v17
-        v3.l2 <- v21
+        let v24 : string = v13 + v9 
+        let v34 : int32 = v5 + 1
+        let v35 : string = "\n"
+        v3.l0 <- v34
+        v3.l1 <- v24
+        v3.l2 <- v35
         ()
-    let struct (v22 : string, v23 : string) = v3.l1, v3.l2
-    v22
+    let struct (v36 : string, v37 : string) = v3.l1, v3.l2
+    v36
 and method7 (v0 : pyo3_Python) : pyo3_Python =
     v0
 and method8 () : string =
@@ -147,484 +147,484 @@ and method4 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v39 : string = "$0.im"
     let v40 : float = Fable.Core.RustInterop.emitRustExpr v2 v39 
     let v42 : (float * float) = v38, v40 
-    let v46 : (bool * (float * float)) = false, v42 
-    let v49 : pyo3_Python = method7(v0)
+    let v53 : (bool * (float * float)) = false, v42 
+    let v63 : pyo3_Python = method7(v0)
     (* run_target_args'
-    let v54 : unit = ()
+    let v75 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v55 : string = "&*$0"
-    let v56 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v55 
-    let _run_target_args'_v54 = v56 
+    let v76 : string = "&*$0"
+    let v77 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v76 
+    let _run_target_args'_v75 = v77 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v57 : string = "&*$0"
-    let v58 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v57 
-    let _run_target_args'_v54 = v58 
+    let v78 : string = "&*$0"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v78 
+    let _run_target_args'_v75 = v79 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v59 : string = "&*$0"
-    let v60 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v59 
-    let _run_target_args'_v54 = v60 
+    let v80 : string = "&*$0"
+    let v81 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v80 
+    let _run_target_args'_v75 = v81 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v62 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v62 
+    let v83 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v83 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v66 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v66 
+    let v94 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v94 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v70 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v70 
+    let v105 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v105 
     #endif
 #else
-    let v74 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v74 
+    let v116 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v116 
     #endif
-    let v77 : Ref<Str> = _run_target_args'_v54 
+    let v126 : Ref<Str> = _run_target_args'_v75 
     (* run_target_args'
-    let v90 : unit = ()
+    let v160 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v91 : string = "String::from($0)"
-    let v92 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v91 
-    let _run_target_args'_v90 = v92 
+    let v161 : string = "String::from($0)"
+    let v162 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v161 
+    let _run_target_args'_v160 = v162 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v93 : string = "String::from($0)"
-    let v94 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v93 
-    let _run_target_args'_v90 = v94 
+    let v163 : string = "String::from($0)"
+    let v164 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v163 
+    let _run_target_args'_v160 = v164 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v95 : string = "String::from($0)"
-    let v96 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v95 
-    let _run_target_args'_v90 = v96 
+    let v165 : string = "String::from($0)"
+    let v166 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v165 
+    let _run_target_args'_v160 = v166 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v98 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v98 
+    let v168 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v102 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v102 
+    let v179 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v179 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v106 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v106 
+    let v190 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v190 
     #endif
 #else
-    let v110 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v110 
+    let v201 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v201 
     #endif
-    let v113 : std_string_String = _run_target_args'_v90 
-    let v122 : string = "std::ffi::CString::new($0).unwrap()"
-    let v123 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v113 v122 
-    let v124 : string = ""
+    let v211 : std_string_String = _run_target_args'_v160 
+    let v234 : string = "std::ffi::CString::new($0).unwrap()"
+    let v235 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v211 v234 
+    let v236 : string = ""
     (* run_target_args'
-    let v129 : unit = ()
+    let v248 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v130 : string = "&*$0"
-    let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v130 
-    let _run_target_args'_v129 = v131 
+    let v249 : string = "&*$0"
+    let v250 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v249 
+    let _run_target_args'_v248 = v250 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v132 : string = "&*$0"
-    let v133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v132 
-    let _run_target_args'_v129 = v133 
+    let v251 : string = "&*$0"
+    let v252 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v251 
+    let _run_target_args'_v248 = v252 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v134 : string = "&*$0"
-    let v135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v134 
-    let _run_target_args'_v129 = v135 
+    let v253 : string = "&*$0"
+    let v254 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v253 
+    let _run_target_args'_v248 = v254 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v137 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v137 
+    let v256 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v256 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v141 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v141 
+    let v267 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v267 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v145 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v145 
+    let v278 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v278 
     #endif
 #else
-    let v149 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v149 
+    let v289 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v289 
     #endif
-    let v152 : Ref<Str> = _run_target_args'_v129 
+    let v299 : Ref<Str> = _run_target_args'_v248 
     (* run_target_args'
-    let v165 : unit = ()
+    let v333 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v166 : string = "String::from($0)"
-    let v167 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v166 
-    let _run_target_args'_v165 = v167 
+    let v334 : string = "String::from($0)"
+    let v335 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v334 
+    let _run_target_args'_v333 = v335 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v168 : string = "String::from($0)"
-    let v169 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v168 
-    let _run_target_args'_v165 = v169 
+    let v336 : string = "String::from($0)"
+    let v337 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v336 
+    let _run_target_args'_v333 = v337 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v170 : string = "String::from($0)"
-    let v171 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v170 
-    let _run_target_args'_v165 = v171 
+    let v338 : string = "String::from($0)"
+    let v339 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v338 
+    let _run_target_args'_v333 = v339 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v173 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v173 
+    let v341 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v341 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v177 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v177 
+    let v352 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v352 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v181 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v181 
+    let v363 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v363 
     #endif
 #else
-    let v185 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v185 
+    let v374 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v374 
     #endif
-    let v188 : std_string_String = _run_target_args'_v165 
-    let v197 : string = "std::ffi::CString::new($0).unwrap()"
-    let v198 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v188 v197 
-    let v199 : string = "pyo3::types::PyModule::from_code(v49, &$0, &v198, &v198)"
-    let v200 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v123 v199 
-    let v201 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v202 : bool = Fable.Core.RustInterop.emitRustExpr v200 v201 
-    let v203 : string = "x"
-    let v204 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v203 
+    let v384 : std_string_String = _run_target_args'_v333 
+    let v407 : string = "std::ffi::CString::new($0).unwrap()"
+    let v408 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v384 v407 
+    let v409 : string = "pyo3::types::PyModule::from_code(v63, &$0, &v408, &v408)"
+    let v410 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v235 v409 
+    let v411 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v412 : bool = Fable.Core.RustInterop.emitRustExpr v410 v411 
+    let v413 : string = "x"
+    let v414 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v413 
     (* run_target_args'
-    let v209 : unit = ()
+    let v426 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v210 : string = "format!(\"{}\", $0)"
-    let v211 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v210 
-    let _run_target_args'_v209 = v211 
+    let v427 : string = "format!(\"{}\", $0)"
+    let v428 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v427 
+    let _run_target_args'_v426 = v428 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v212 : string = "format!(\"{}\", $0)"
-    let v213 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v212 
-    let _run_target_args'_v209 = v213 
+    let v429 : string = "format!(\"{}\", $0)"
+    let v430 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v429 
+    let _run_target_args'_v426 = v430 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v214 : string = "format!(\"{}\", $0)"
-    let v215 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v214 
-    let _run_target_args'_v209 = v215 
+    let v431 : string = "format!(\"{}\", $0)"
+    let v432 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v431 
+    let _run_target_args'_v426 = v432 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v217 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v217 
+    let v434 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v434 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v221 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v221 
+    let v445 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v445 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v225 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v225 
+    let v456 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v456 
     #endif
 #else
-    let v229 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v229 
+    let v467 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v467 
     #endif
-    let v232 : std_string_String = _run_target_args'_v209 
-    let v241 : string = "true; $0 })"
-    let v242 : bool = Fable.Core.RustInterop.emitRustExpr v232 v241 
-    let v243 : string = "_result_map_error__"
-    let v244 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v243 
+    let v477 : std_string_String = _run_target_args'_v426 
+    let v500 : string = "true; $0 })"
+    let v501 : bool = Fable.Core.RustInterop.emitRustExpr v477 v500 
+    let v502 : string = "_result_map_error__"
+    let v503 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v502 
     (* run_target_args'
-    let v246 : unit = ()
+    let v505 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v247 : string = "$0.unwrap()"
-    let v248 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v247 
-    let _run_target_args'_v246 = v248 
+    let v506 : string = "$0.unwrap()"
+    let v507 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v506 
+    let _run_target_args'_v505 = v507 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v249 : string = "$0.unwrap()"
-    let v250 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v249 
-    let _run_target_args'_v246 = v250 
+    let v508 : string = "$0.unwrap()"
+    let v509 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v508 
+    let _run_target_args'_v505 = v509 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v251 : string = "$0.unwrap()"
-    let v252 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v251 
-    let _run_target_args'_v246 = v252 
+    let v510 : string = "$0.unwrap()"
+    let v511 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v510 
+    let _run_target_args'_v505 = v511 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v253 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v253 
+    let v512 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v512 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v254 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v254 
+    let v513 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v513 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v255 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v255 
+    let v514 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v514 
     #endif
 #else
-    let v256 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v256 
+    let v515 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v515 
     #endif
-    let v257 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v246 
-    let v260 : string = method8()
+    let v516 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v505 
+    let v519 : string = method8()
     (* run_target_args'
-    let v265 : unit = ()
+    let v531 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v266 : string = "&*$0"
-    let v267 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v266 
-    let _run_target_args'_v265 = v267 
+    let v532 : string = "&*$0"
+    let v533 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v532 
+    let _run_target_args'_v531 = v533 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v268 : string = "&*$0"
-    let v269 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v268 
-    let _run_target_args'_v265 = v269 
+    let v534 : string = "&*$0"
+    let v535 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v534 
+    let _run_target_args'_v531 = v535 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v270 : string = "&*$0"
-    let v271 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v270 
-    let _run_target_args'_v265 = v271 
+    let v536 : string = "&*$0"
+    let v537 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v536 
+    let _run_target_args'_v531 = v537 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v273 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v273 
+    let v539 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v539 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v277 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v277 
+    let v550 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v550 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v281 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v281 
+    let v561 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v561 
     #endif
 #else
-    let v285 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v285 
+    let v572 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v572 
     #endif
-    let v288 : Ref<Str> = _run_target_args'_v265 
-    let v297 : pyo3_Bound<pyo3_types_PyModule> = method9(v257)
-    let v298 : string = "v297.getattr($0)"
-    let v299 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v288 v298 
-    let v300 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v301 : bool = Fable.Core.RustInterop.emitRustExpr v299 v300 
-    let v302 : string = "x"
-    let v303 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v302 
+    let v582 : Ref<Str> = _run_target_args'_v531 
+    let v605 : pyo3_Bound<pyo3_types_PyModule> = method9(v516)
+    let v606 : string = "v605.getattr($0)"
+    let v607 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v582 v606 
+    let v608 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v609 : bool = Fable.Core.RustInterop.emitRustExpr v607 v608 
+    let v610 : string = "x"
+    let v611 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v610 
     (* run_target_args'
-    let v308 : unit = ()
+    let v623 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v309 : string = "format!(\"{}\", $0)"
-    let v310 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v309 
-    let _run_target_args'_v308 = v310 
+    let v624 : string = "format!(\"{}\", $0)"
+    let v625 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v624 
+    let _run_target_args'_v623 = v625 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v311 : string = "format!(\"{}\", $0)"
-    let v312 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v311 
-    let _run_target_args'_v308 = v312 
+    let v626 : string = "format!(\"{}\", $0)"
+    let v627 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v626 
+    let _run_target_args'_v623 = v627 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v313 : string = "format!(\"{}\", $0)"
-    let v314 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v313 
-    let _run_target_args'_v308 = v314 
+    let v628 : string = "format!(\"{}\", $0)"
+    let v629 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v628 
+    let _run_target_args'_v623 = v629 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v316 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v316 
+    let v631 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v631 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v320 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v320 
+    let v642 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v642 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v324 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v324 
+    let v653 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v653 
     #endif
 #else
-    let v328 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v328 
+    let v664 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v664 
     #endif
-    let v331 : std_string_String = _run_target_args'_v308 
-    let v340 : string = "true; $0 })"
-    let v341 : bool = Fable.Core.RustInterop.emitRustExpr v331 v340 
-    let v342 : string = "_result_map_error__"
-    let v343 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v342 
+    let v674 : std_string_String = _run_target_args'_v623 
+    let v697 : string = "true; $0 })"
+    let v698 : bool = Fable.Core.RustInterop.emitRustExpr v674 v697 
+    let v699 : string = "_result_map_error__"
+    let v700 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v699 
     (* run_target_args'
-    let v345 : unit = ()
+    let v702 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v346 : string = "$0.unwrap()"
-    let v347 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v346 
-    let _run_target_args'_v345 = v347 
+    let v703 : string = "$0.unwrap()"
+    let v704 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v703 
+    let _run_target_args'_v702 = v704 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v348 : string = "$0.unwrap()"
-    let v349 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v348 
-    let _run_target_args'_v345 = v349 
+    let v705 : string = "$0.unwrap()"
+    let v706 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v705 
+    let _run_target_args'_v702 = v706 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v350 : string = "$0.unwrap()"
-    let v351 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v350 
-    let _run_target_args'_v345 = v351 
+    let v707 : string = "$0.unwrap()"
+    let v708 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v707 
+    let _run_target_args'_v702 = v708 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v352 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v352 
+    let v709 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v709 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v353 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v353 
+    let v710 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v710 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v354 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v354 
+    let v711 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v711 
     #endif
 #else
-    let v355 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v355 
+    let v712 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v712 
     #endif
-    let v356 : pyo3_Bound<pyo3_PyAny> = _run_target_args'_v345 
-    let v359 : (bool * (float * float)) = method10(v46)
-    let v360 : pyo3_Bound<pyo3_PyAny> = method11(v356)
-    let v361 : string = "pyo3::prelude::PyAnyMethods::call(&v360, ((*v359).0, *(*v359).1), None)"
-    let v362 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v361 
-    let v363 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v364 : bool = Fable.Core.RustInterop.emitRustExpr v362 v363 
-    let v365 : string = "x"
-    let v366 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v365 
+    let v713 : pyo3_Bound<pyo3_PyAny> = _run_target_args'_v702 
+    let v716 : (bool * (float * float)) = method10(v53)
+    let v717 : pyo3_Bound<pyo3_PyAny> = method11(v713)
+    let v718 : string = "pyo3::prelude::PyAnyMethods::call(&v717, ((*v716).0, *(*v716).1), None)"
+    let v719 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v718 
+    let v720 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v721 : bool = Fable.Core.RustInterop.emitRustExpr v719 v720 
+    let v722 : string = "x"
+    let v723 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v722 
     (* run_target_args'
-    let v371 : unit = ()
+    let v735 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v372 : string = "format!(\"{}\", $0)"
-    let v373 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v372 
-    let _run_target_args'_v371 = v373 
+    let v736 : string = "format!(\"{}\", $0)"
+    let v737 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v736 
+    let _run_target_args'_v735 = v737 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v374 : string = "format!(\"{}\", $0)"
-    let v375 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v374 
-    let _run_target_args'_v371 = v375 
+    let v738 : string = "format!(\"{}\", $0)"
+    let v739 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v738 
+    let _run_target_args'_v735 = v739 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v376 : string = "format!(\"{}\", $0)"
-    let v377 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v376 
-    let _run_target_args'_v371 = v377 
+    let v740 : string = "format!(\"{}\", $0)"
+    let v741 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v740 
+    let _run_target_args'_v735 = v741 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v379 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v379 
+    let v743 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v743 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v383 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v383 
+    let v754 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v754 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v387 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v387 
+    let v765 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v765 
     #endif
 #else
-    let v391 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v391 
+    let v776 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v776 
     #endif
-    let v394 : std_string_String = _run_target_args'_v371 
-    let v403 : string = "true; $0 })"
-    let v404 : bool = Fable.Core.RustInterop.emitRustExpr v394 v403 
-    let v405 : string = "_result_map_error__"
-    let v406 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v405 
-    let v407 : string = "$0?"
-    let v408 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v406 v407 
-    let v409 : pyo3_Bound<pyo3_PyAny> = method12(v408)
-    let v410 : string = "v409.extract()"
-    let v411 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v410 
-    let v412 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v413 : bool = Fable.Core.RustInterop.emitRustExpr v411 v412 
-    let v414 : string = "x"
-    let v415 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v414 
+    let v786 : std_string_String = _run_target_args'_v735 
+    let v809 : string = "true; $0 })"
+    let v810 : bool = Fable.Core.RustInterop.emitRustExpr v786 v809 
+    let v811 : string = "_result_map_error__"
+    let v812 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v811 
+    let v813 : string = "$0?"
+    let v814 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v812 v813 
+    let v815 : pyo3_Bound<pyo3_PyAny> = method12(v814)
+    let v816 : string = "v815.extract()"
+    let v817 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v816 
+    let v818 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v819 : bool = Fable.Core.RustInterop.emitRustExpr v817 v818 
+    let v820 : string = "x"
+    let v821 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v820 
     (* run_target_args'
-    let v420 : unit = ()
+    let v833 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v421 : string = "format!(\"{}\", $0)"
-    let v422 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v421 
-    let _run_target_args'_v420 = v422 
+    let v834 : string = "format!(\"{}\", $0)"
+    let v835 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v834 
+    let _run_target_args'_v833 = v835 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v423 : string = "format!(\"{}\", $0)"
-    let v424 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v423 
-    let _run_target_args'_v420 = v424 
+    let v836 : string = "format!(\"{}\", $0)"
+    let v837 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v836 
+    let _run_target_args'_v833 = v837 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v425 : string = "format!(\"{}\", $0)"
-    let v426 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v425 
-    let _run_target_args'_v420 = v426 
+    let v838 : string = "format!(\"{}\", $0)"
+    let v839 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v838 
+    let _run_target_args'_v833 = v839 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v428 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v428 
+    let v841 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v841 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v432 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v432 
+    let v852 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v852 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v436 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v436 
+    let v863 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v863 
     #endif
 #else
-    let v440 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v440 
+    let v874 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v874 
     #endif
-    let v443 : std_string_String = _run_target_args'_v420 
-    let v452 : string = "true; $0 })"
-    let v453 : bool = Fable.Core.RustInterop.emitRustExpr v443 v452 
-    let v454 : string = "_result_map_error__"
-    let v455 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v454 
-    let v456 : string = "$0?"
-    let struct (v457 : float, v458 : float) = Fable.Core.RustInterop.emitRustExpr v455 v456 
-    let v459 : string = "num_complex::Complex::new($0, $1)"
-    let v460 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v457, v458) v459 
-    let v462 : Result<num_complex_Complex<float>, std_string_String> = Ok v460 
-    v462
+    let v884 : std_string_String = _run_target_args'_v833 
+    let v907 : string = "true; $0 })"
+    let v908 : bool = Fable.Core.RustInterop.emitRustExpr v884 v907 
+    let v909 : string = "_result_map_error__"
+    let v910 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v909 
+    let v911 : string = "$0?"
+    let struct (v912 : float, v913 : float) = Fable.Core.RustInterop.emitRustExpr v910 v911 
+    let v914 : string = "num_complex::Complex::new($0, $1)"
+    let v915 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v912, v913) v914 
+    let v917 : Result<num_complex_Complex<float>, std_string_String> = Ok v915 
+    v917
 and method14 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
     let v2 : bool = v1 < 10000
@@ -673,484 +673,484 @@ and method16 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v39 : string = "$0.im"
     let v40 : float = Fable.Core.RustInterop.emitRustExpr v2 v39 
     let v42 : (float * float) = v38, v40 
-    let v46 : (bool * (float * float)) = false, v42 
-    let v49 : pyo3_Python = method7(v0)
+    let v53 : (bool * (float * float)) = false, v42 
+    let v63 : pyo3_Python = method7(v0)
     (* run_target_args'
-    let v54 : unit = ()
+    let v75 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v55 : string = "&*$0"
-    let v56 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v55 
-    let _run_target_args'_v54 = v56 
+    let v76 : string = "&*$0"
+    let v77 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v76 
+    let _run_target_args'_v75 = v77 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v57 : string = "&*$0"
-    let v58 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v57 
-    let _run_target_args'_v54 = v58 
+    let v78 : string = "&*$0"
+    let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v78 
+    let _run_target_args'_v75 = v79 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v59 : string = "&*$0"
-    let v60 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v59 
-    let _run_target_args'_v54 = v60 
+    let v80 : string = "&*$0"
+    let v81 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v36 v80 
+    let _run_target_args'_v75 = v81 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v62 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v62 
+    let v83 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v83 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v66 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v66 
+    let v94 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v94 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v70 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v70 
+    let v105 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v105 
     #endif
 #else
-    let v74 : Ref<Str> = v36 |> unbox<Ref<Str>>
-    let _run_target_args'_v54 = v74 
+    let v116 : Ref<Str> = v36 |> unbox<Ref<Str>>
+    let _run_target_args'_v75 = v116 
     #endif
-    let v77 : Ref<Str> = _run_target_args'_v54 
+    let v126 : Ref<Str> = _run_target_args'_v75 
     (* run_target_args'
-    let v90 : unit = ()
+    let v160 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v91 : string = "String::from($0)"
-    let v92 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v91 
-    let _run_target_args'_v90 = v92 
+    let v161 : string = "String::from($0)"
+    let v162 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v161 
+    let _run_target_args'_v160 = v162 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v93 : string = "String::from($0)"
-    let v94 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v93 
-    let _run_target_args'_v90 = v94 
+    let v163 : string = "String::from($0)"
+    let v164 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v163 
+    let _run_target_args'_v160 = v164 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v95 : string = "String::from($0)"
-    let v96 : std_string_String = Fable.Core.RustInterop.emitRustExpr v77 v95 
-    let _run_target_args'_v90 = v96 
+    let v165 : string = "String::from($0)"
+    let v166 : std_string_String = Fable.Core.RustInterop.emitRustExpr v126 v165 
+    let _run_target_args'_v160 = v166 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v98 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v98 
+    let v168 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v168 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v102 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v102 
+    let v179 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v179 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v106 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v106 
+    let v190 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v190 
     #endif
 #else
-    let v110 : std_string_String = v77 |> unbox<std_string_String>
-    let _run_target_args'_v90 = v110 
+    let v201 : std_string_String = v126 |> unbox<std_string_String>
+    let _run_target_args'_v160 = v201 
     #endif
-    let v113 : std_string_String = _run_target_args'_v90 
-    let v122 : string = "std::ffi::CString::new($0).unwrap()"
-    let v123 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v113 v122 
-    let v124 : string = ""
+    let v211 : std_string_String = _run_target_args'_v160 
+    let v234 : string = "std::ffi::CString::new($0).unwrap()"
+    let v235 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v211 v234 
+    let v236 : string = ""
     (* run_target_args'
-    let v129 : unit = ()
+    let v248 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v130 : string = "&*$0"
-    let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v130 
-    let _run_target_args'_v129 = v131 
+    let v249 : string = "&*$0"
+    let v250 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v249 
+    let _run_target_args'_v248 = v250 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v132 : string = "&*$0"
-    let v133 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v132 
-    let _run_target_args'_v129 = v133 
+    let v251 : string = "&*$0"
+    let v252 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v251 
+    let _run_target_args'_v248 = v252 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v134 : string = "&*$0"
-    let v135 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v124 v134 
-    let _run_target_args'_v129 = v135 
+    let v253 : string = "&*$0"
+    let v254 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v236 v253 
+    let _run_target_args'_v248 = v254 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v137 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v137 
+    let v256 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v256 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v141 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v141 
+    let v267 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v267 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v145 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v145 
+    let v278 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v278 
     #endif
 #else
-    let v149 : Ref<Str> = v124 |> unbox<Ref<Str>>
-    let _run_target_args'_v129 = v149 
+    let v289 : Ref<Str> = v236 |> unbox<Ref<Str>>
+    let _run_target_args'_v248 = v289 
     #endif
-    let v152 : Ref<Str> = _run_target_args'_v129 
+    let v299 : Ref<Str> = _run_target_args'_v248 
     (* run_target_args'
-    let v165 : unit = ()
+    let v333 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v166 : string = "String::from($0)"
-    let v167 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v166 
-    let _run_target_args'_v165 = v167 
+    let v334 : string = "String::from($0)"
+    let v335 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v334 
+    let _run_target_args'_v333 = v335 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v168 : string = "String::from($0)"
-    let v169 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v168 
-    let _run_target_args'_v165 = v169 
+    let v336 : string = "String::from($0)"
+    let v337 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v336 
+    let _run_target_args'_v333 = v337 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v170 : string = "String::from($0)"
-    let v171 : std_string_String = Fable.Core.RustInterop.emitRustExpr v152 v170 
-    let _run_target_args'_v165 = v171 
+    let v338 : string = "String::from($0)"
+    let v339 : std_string_String = Fable.Core.RustInterop.emitRustExpr v299 v338 
+    let _run_target_args'_v333 = v339 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v173 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v173 
+    let v341 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v341 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v177 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v177 
+    let v352 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v352 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v181 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v181 
+    let v363 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v363 
     #endif
 #else
-    let v185 : std_string_String = v152 |> unbox<std_string_String>
-    let _run_target_args'_v165 = v185 
+    let v374 : std_string_String = v299 |> unbox<std_string_String>
+    let _run_target_args'_v333 = v374 
     #endif
-    let v188 : std_string_String = _run_target_args'_v165 
-    let v197 : string = "std::ffi::CString::new($0).unwrap()"
-    let v198 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v188 v197 
-    let v199 : string = "pyo3::types::PyModule::from_code(v49, &$0, &v198, &v198)"
-    let v200 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v123 v199 
-    let v201 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v202 : bool = Fable.Core.RustInterop.emitRustExpr v200 v201 
-    let v203 : string = "x"
-    let v204 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v203 
+    let v384 : std_string_String = _run_target_args'_v333 
+    let v407 : string = "std::ffi::CString::new($0).unwrap()"
+    let v408 : std_ffi_CString = Fable.Core.RustInterop.emitRustExpr v384 v407 
+    let v409 : string = "pyo3::types::PyModule::from_code(v63, &$0, &v408, &v408)"
+    let v410 : Result<pyo3_Bound<pyo3_types_PyModule>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v235 v409 
+    let v411 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v412 : bool = Fable.Core.RustInterop.emitRustExpr v410 v411 
+    let v413 : string = "x"
+    let v414 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v413 
     (* run_target_args'
-    let v209 : unit = ()
+    let v426 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v210 : string = "format!(\"{}\", $0)"
-    let v211 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v210 
-    let _run_target_args'_v209 = v211 
+    let v427 : string = "format!(\"{}\", $0)"
+    let v428 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v427 
+    let _run_target_args'_v426 = v428 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v212 : string = "format!(\"{}\", $0)"
-    let v213 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v212 
-    let _run_target_args'_v209 = v213 
+    let v429 : string = "format!(\"{}\", $0)"
+    let v430 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v429 
+    let _run_target_args'_v426 = v430 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v214 : string = "format!(\"{}\", $0)"
-    let v215 : std_string_String = Fable.Core.RustInterop.emitRustExpr v204 v214 
-    let _run_target_args'_v209 = v215 
+    let v431 : string = "format!(\"{}\", $0)"
+    let v432 : std_string_String = Fable.Core.RustInterop.emitRustExpr v414 v431 
+    let _run_target_args'_v426 = v432 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v217 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v217 
+    let v434 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v434 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v221 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v221 
+    let v445 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v445 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v225 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v225 
+    let v456 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v456 
     #endif
 #else
-    let v229 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v209 = v229 
+    let v467 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v426 = v467 
     #endif
-    let v232 : std_string_String = _run_target_args'_v209 
-    let v241 : string = "true; $0 })"
-    let v242 : bool = Fable.Core.RustInterop.emitRustExpr v232 v241 
-    let v243 : string = "_result_map_error__"
-    let v244 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v243 
+    let v477 : std_string_String = _run_target_args'_v426 
+    let v500 : string = "true; $0 })"
+    let v501 : bool = Fable.Core.RustInterop.emitRustExpr v477 v500 
+    let v502 : string = "_result_map_error__"
+    let v503 : Result<pyo3_Bound<pyo3_types_PyModule>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v502 
     (* run_target_args'
-    let v246 : unit = ()
+    let v505 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v247 : string = "$0.unwrap()"
-    let v248 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v247 
-    let _run_target_args'_v246 = v248 
+    let v506 : string = "$0.unwrap()"
+    let v507 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v506 
+    let _run_target_args'_v505 = v507 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v249 : string = "$0.unwrap()"
-    let v250 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v249 
-    let _run_target_args'_v246 = v250 
+    let v508 : string = "$0.unwrap()"
+    let v509 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v508 
+    let _run_target_args'_v505 = v509 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v251 : string = "$0.unwrap()"
-    let v252 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v244 v251 
-    let _run_target_args'_v246 = v252 
+    let v510 : string = "$0.unwrap()"
+    let v511 : pyo3_Bound<pyo3_types_PyModule> = Fable.Core.RustInterop.emitRustExpr v503 v510 
+    let _run_target_args'_v505 = v511 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v253 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v253 
+    let v512 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v512 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v254 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v254 
+    let v513 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v513 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v255 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v255 
+    let v514 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v514 
     #endif
 #else
-    let v256 : pyo3_Bound<pyo3_types_PyModule> = match v244 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v246 = v256 
+    let v515 : pyo3_Bound<pyo3_types_PyModule> = match v503 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v505 = v515 
     #endif
-    let v257 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v246 
-    let v260 : string = method8()
+    let v516 : pyo3_Bound<pyo3_types_PyModule> = _run_target_args'_v505 
+    let v519 : string = method8()
     (* run_target_args'
-    let v265 : unit = ()
+    let v531 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v266 : string = "&*$0"
-    let v267 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v266 
-    let _run_target_args'_v265 = v267 
+    let v532 : string = "&*$0"
+    let v533 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v532 
+    let _run_target_args'_v531 = v533 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v268 : string = "&*$0"
-    let v269 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v268 
-    let _run_target_args'_v265 = v269 
+    let v534 : string = "&*$0"
+    let v535 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v534 
+    let _run_target_args'_v531 = v535 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v270 : string = "&*$0"
-    let v271 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v260 v270 
-    let _run_target_args'_v265 = v271 
+    let v536 : string = "&*$0"
+    let v537 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v519 v536 
+    let _run_target_args'_v531 = v537 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v273 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v273 
+    let v539 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v539 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v277 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v277 
+    let v550 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v550 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v281 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v281 
+    let v561 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v561 
     #endif
 #else
-    let v285 : Ref<Str> = v260 |> unbox<Ref<Str>>
-    let _run_target_args'_v265 = v285 
+    let v572 : Ref<Str> = v519 |> unbox<Ref<Str>>
+    let _run_target_args'_v531 = v572 
     #endif
-    let v288 : Ref<Str> = _run_target_args'_v265 
-    let v297 : pyo3_Bound<pyo3_types_PyModule> = method9(v257)
-    let v298 : string = "v297.getattr($0)"
-    let v299 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v288 v298 
-    let v300 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v301 : bool = Fable.Core.RustInterop.emitRustExpr v299 v300 
-    let v302 : string = "x"
-    let v303 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v302 
+    let v582 : Ref<Str> = _run_target_args'_v531 
+    let v605 : pyo3_Bound<pyo3_types_PyModule> = method9(v516)
+    let v606 : string = "v605.getattr($0)"
+    let v607 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr v582 v606 
+    let v608 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v609 : bool = Fable.Core.RustInterop.emitRustExpr v607 v608 
+    let v610 : string = "x"
+    let v611 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v610 
     (* run_target_args'
-    let v308 : unit = ()
+    let v623 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v309 : string = "format!(\"{}\", $0)"
-    let v310 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v309 
-    let _run_target_args'_v308 = v310 
+    let v624 : string = "format!(\"{}\", $0)"
+    let v625 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v624 
+    let _run_target_args'_v623 = v625 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v311 : string = "format!(\"{}\", $0)"
-    let v312 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v311 
-    let _run_target_args'_v308 = v312 
+    let v626 : string = "format!(\"{}\", $0)"
+    let v627 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v626 
+    let _run_target_args'_v623 = v627 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v313 : string = "format!(\"{}\", $0)"
-    let v314 : std_string_String = Fable.Core.RustInterop.emitRustExpr v303 v313 
-    let _run_target_args'_v308 = v314 
+    let v628 : string = "format!(\"{}\", $0)"
+    let v629 : std_string_String = Fable.Core.RustInterop.emitRustExpr v611 v628 
+    let _run_target_args'_v623 = v629 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v316 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v316 
+    let v631 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v631 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v320 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v320 
+    let v642 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v642 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v324 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v324 
+    let v653 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v653 
     #endif
 #else
-    let v328 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v308 = v328 
+    let v664 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v623 = v664 
     #endif
-    let v331 : std_string_String = _run_target_args'_v308 
-    let v340 : string = "true; $0 })"
-    let v341 : bool = Fable.Core.RustInterop.emitRustExpr v331 v340 
-    let v342 : string = "_result_map_error__"
-    let v343 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v342 
+    let v674 : std_string_String = _run_target_args'_v623 
+    let v697 : string = "true; $0 })"
+    let v698 : bool = Fable.Core.RustInterop.emitRustExpr v674 v697 
+    let v699 : string = "_result_map_error__"
+    let v700 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v699 
     (* run_target_args'
-    let v345 : unit = ()
+    let v702 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v346 : string = "$0.unwrap()"
-    let v347 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v346 
-    let _run_target_args'_v345 = v347 
+    let v703 : string = "$0.unwrap()"
+    let v704 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v703 
+    let _run_target_args'_v702 = v704 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v348 : string = "$0.unwrap()"
-    let v349 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v348 
-    let _run_target_args'_v345 = v349 
+    let v705 : string = "$0.unwrap()"
+    let v706 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v705 
+    let _run_target_args'_v702 = v706 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v350 : string = "$0.unwrap()"
-    let v351 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v343 v350 
-    let _run_target_args'_v345 = v351 
+    let v707 : string = "$0.unwrap()"
+    let v708 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v700 v707 
+    let _run_target_args'_v702 = v708 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v352 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v352 
+    let v709 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v709 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v353 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v353 
+    let v710 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v710 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v354 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v354 
+    let v711 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v711 
     #endif
 #else
-    let v355 : pyo3_Bound<pyo3_PyAny> = match v343 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
-    let _run_target_args'_v345 = v355 
+    let v712 : pyo3_Bound<pyo3_PyAny> = match v700 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    let _run_target_args'_v702 = v712 
     #endif
-    let v356 : pyo3_Bound<pyo3_PyAny> = _run_target_args'_v345 
-    let v359 : (bool * (float * float)) = method10(v46)
-    let v360 : pyo3_Bound<pyo3_PyAny> = method11(v356)
-    let v361 : string = "pyo3::prelude::PyAnyMethods::call(&v360, ((*v359).0, *(*v359).1), None)"
-    let v362 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v361 
-    let v363 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v364 : bool = Fable.Core.RustInterop.emitRustExpr v362 v363 
-    let v365 : string = "x"
-    let v366 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v365 
+    let v713 : pyo3_Bound<pyo3_PyAny> = _run_target_args'_v702 
+    let v716 : (bool * (float * float)) = method10(v53)
+    let v717 : pyo3_Bound<pyo3_PyAny> = method11(v713)
+    let v718 : string = "pyo3::prelude::PyAnyMethods::call(&v717, ((*v716).0, *(*v716).1), None)"
+    let v719 : Result<pyo3_Bound<pyo3_PyAny>, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v718 
+    let v720 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v721 : bool = Fable.Core.RustInterop.emitRustExpr v719 v720 
+    let v722 : string = "x"
+    let v723 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v722 
     (* run_target_args'
-    let v371 : unit = ()
+    let v735 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v372 : string = "format!(\"{}\", $0)"
-    let v373 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v372 
-    let _run_target_args'_v371 = v373 
+    let v736 : string = "format!(\"{}\", $0)"
+    let v737 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v736 
+    let _run_target_args'_v735 = v737 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v374 : string = "format!(\"{}\", $0)"
-    let v375 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v374 
-    let _run_target_args'_v371 = v375 
+    let v738 : string = "format!(\"{}\", $0)"
+    let v739 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v738 
+    let _run_target_args'_v735 = v739 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v376 : string = "format!(\"{}\", $0)"
-    let v377 : std_string_String = Fable.Core.RustInterop.emitRustExpr v366 v376 
-    let _run_target_args'_v371 = v377 
+    let v740 : string = "format!(\"{}\", $0)"
+    let v741 : std_string_String = Fable.Core.RustInterop.emitRustExpr v723 v740 
+    let _run_target_args'_v735 = v741 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v379 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v379 
+    let v743 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v743 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v383 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v383 
+    let v754 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v754 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v387 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v387 
+    let v765 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v765 
     #endif
 #else
-    let v391 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v371 = v391 
+    let v776 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v735 = v776 
     #endif
-    let v394 : std_string_String = _run_target_args'_v371 
-    let v403 : string = "true; $0 })"
-    let v404 : bool = Fable.Core.RustInterop.emitRustExpr v394 v403 
-    let v405 : string = "_result_map_error__"
-    let v406 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v405 
-    let v407 : string = "$0?"
-    let v408 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v406 v407 
-    let v409 : pyo3_Bound<pyo3_PyAny> = method12(v408)
-    let v410 : string = "v409.extract()"
-    let v411 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v410 
-    let v412 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
-    let v413 : bool = Fable.Core.RustInterop.emitRustExpr v411 v412 
-    let v414 : string = "x"
-    let v415 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v414 
+    let v786 : std_string_String = _run_target_args'_v735 
+    let v809 : string = "true; $0 })"
+    let v810 : bool = Fable.Core.RustInterop.emitRustExpr v786 v809 
+    let v811 : string = "_result_map_error__"
+    let v812 : Result<pyo3_Bound<pyo3_PyAny>, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v811 
+    let v813 : string = "$0?"
+    let v814 : pyo3_Bound<pyo3_PyAny> = Fable.Core.RustInterop.emitRustExpr v812 v813 
+    let v815 : pyo3_Bound<pyo3_PyAny> = method12(v814)
+    let v816 : string = "v815.extract()"
+    let v817 : Result<struct (float * float), pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v816 
+    let v818 : string = "true; let _result_map_error__ = $0.map_err(|x| { //"
+    let v819 : bool = Fable.Core.RustInterop.emitRustExpr v817 v818 
+    let v820 : string = "x"
+    let v821 : pyo3_PyErr = Fable.Core.RustInterop.emitRustExpr () v820 
     (* run_target_args'
-    let v420 : unit = ()
+    let v833 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v421 : string = "format!(\"{}\", $0)"
-    let v422 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v421 
-    let _run_target_args'_v420 = v422 
+    let v834 : string = "format!(\"{}\", $0)"
+    let v835 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v834 
+    let _run_target_args'_v833 = v835 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v423 : string = "format!(\"{}\", $0)"
-    let v424 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v423 
-    let _run_target_args'_v420 = v424 
+    let v836 : string = "format!(\"{}\", $0)"
+    let v837 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v836 
+    let _run_target_args'_v833 = v837 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v425 : string = "format!(\"{}\", $0)"
-    let v426 : std_string_String = Fable.Core.RustInterop.emitRustExpr v415 v425 
-    let _run_target_args'_v420 = v426 
+    let v838 : string = "format!(\"{}\", $0)"
+    let v839 : std_string_String = Fable.Core.RustInterop.emitRustExpr v821 v838 
+    let _run_target_args'_v833 = v839 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v428 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v428 
+    let v841 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v841 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v432 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v432 
+    let v852 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v852 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v436 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v436 
+    let v863 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v863 
     #endif
 #else
-    let v440 : std_string_String = null |> unbox<std_string_String>
-    let _run_target_args'_v420 = v440 
+    let v874 : std_string_String = null |> unbox<std_string_String>
+    let _run_target_args'_v833 = v874 
     #endif
-    let v443 : std_string_String = _run_target_args'_v420 
-    let v452 : string = "true; $0 })"
-    let v453 : bool = Fable.Core.RustInterop.emitRustExpr v443 v452 
-    let v454 : string = "_result_map_error__"
-    let v455 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v454 
-    let v456 : string = "$0?"
-    let struct (v457 : float, v458 : float) = Fable.Core.RustInterop.emitRustExpr v455 v456 
-    let v459 : string = "num_complex::Complex::new($0, $1)"
-    let v460 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v457, v458) v459 
-    let v462 : Result<num_complex_Complex<float>, std_string_String> = Ok v460 
-    v462
+    let v884 : std_string_String = _run_target_args'_v833 
+    let v907 : string = "true; $0 })"
+    let v908 : bool = Fable.Core.RustInterop.emitRustExpr v884 v907 
+    let v909 : string = "_result_map_error__"
+    let v910 : Result<struct (float * float), std_string_String> = Fable.Core.RustInterop.emitRustExpr () v909 
+    let v911 : string = "$0?"
+    let struct (v912 : float, v913 : float) = Fable.Core.RustInterop.emitRustExpr v910 v911 
+    let v914 : string = "num_complex::Complex::new($0, $1)"
+    let v915 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v912, v913) v914 
+    let v917 : Result<num_complex_Complex<float>, std_string_String> = Ok v915 
+    v917
 and closure1 () (v0 : num_complex_Complex<float>) : US0 =
     US0_0(v0)
 and method17 () : (num_complex_Complex<float> -> US0) =
@@ -1182,748 +1182,774 @@ and method13 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
             let v20 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v19 
             let v22 : (int32 -> float) = float
             let v23 : float = v22 v18
-            let v26 : string = "num_complex::Complex::new($0, $1)"
-            let v27 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v23, 0.0) v26 
-            let v28 : string = "num_complex::Complex::powc($0, $1)"
-            let v29 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v27, v1) v28 
-            let v30 : string = "$0 / $1"
-            let v31 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v20, v29) v30 
-            let v32 : string = "$0 + $1"
-            let v33 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v17, v31) v32 
-            let v34 : int32 = v16 + 1
-            v14.l0 <- v34
-            v14.l1 <- v33
+            let v33 : string = "num_complex::Complex::new($0, $1)"
+            let v34 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v23, 0.0) v33 
+            let v35 : string = "num_complex::Complex::powc($0, $1)"
+            let v36 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v34, v1) v35 
+            let v37 : string = "$0 / $1"
+            let v38 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v20, v36) v37 
+            let v39 : string = "$0 + $1"
+            let v40 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v17, v38) v39 
+            let v41 : int32 = v16 + 1
+            v14.l0 <- v41
+            v14.l1 <- v40
             ()
-        let v35 : num_complex_Complex<float> = v14.l1
-        v35
+        let v42 : num_complex_Complex<float> = v14.l1
+        v42
     else
-        let v36 : string = "num_complex::Complex::new($0, $1)"
-        let v37 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v36 
-        let v38 : string = "$0 - $1"
-        let v39 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v37, v1) v38 
-        let v40 : string = $"        s = mpmath.gamma(s)"
-        let v41 : num_complex_Complex<float> = method3(v39)
-        let v42 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v40, v41)
+        let v43 : string = "num_complex::Complex::new($0, $1)"
+        let v44 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v43 
+        let v45 : string = "$0 - $1"
+        let v46 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v44, v1) v45 
+        let v47 : string = $"        s = mpmath.gamma(s)"
+        let v48 : num_complex_Complex<float> = method3(v46)
+        let v49 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v47, v48)
         (* run_target_args'
-        let v44 : unit = ()
+        let v51 : unit = ()
         run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v45 : string = "$0.ok()"
-        let v46 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v42 v45 
-        let _run_target_args'_v44 = v46 
+        let v52 : string = "$0.ok()"
+        let v53 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v49 v52 
+        let _run_target_args'_v51 = v53 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v47 : string = "$0.ok()"
-        let v48 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v42 v47 
-        let _run_target_args'_v44 = v48 
+        let v54 : string = "$0.ok()"
+        let v55 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v49 v54 
+        let _run_target_args'_v51 = v55 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v49 : string = "$0.ok()"
-        let v50 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v42 v49 
-        let _run_target_args'_v44 = v50 
+        let v56 : string = "$0.ok()"
+        let v57 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v49 v56 
+        let _run_target_args'_v51 = v57 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v51 : num_complex_Complex<float> option = match v42 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v44 = v51 
+        let v58 : num_complex_Complex<float> option = match v49 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v51 = v58 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v52 : num_complex_Complex<float> option = match v42 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v44 = v52 
+        let v59 : num_complex_Complex<float> option = match v49 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v51 = v59 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-        let v53 : num_complex_Complex<float> option = match v42 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v44 = v53 
+        let v60 : num_complex_Complex<float> option = match v49 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v51 = v60 
         #endif
 #else
-        let v54 : num_complex_Complex<float> option = match v42 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v44 = v54 
+        let v61 : num_complex_Complex<float> option = match v49 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v51 = v61 
         #endif
-        let v55 : num_complex_Complex<float> option = _run_target_args'_v44 
-        let v60 : (num_complex_Complex<float> -> US0) = method17()
-        let v61 : US0 option = v55 |> Option.map v60 
-        let v81 : US0 = US0_1
-        let v82 : US0 = v61 |> Option.defaultValue v81 
-        let v86 : string = "f64::NAN"
-        let v87 : float = Fable.Core.RustInterop.emitRustExpr () v86 
-        let v88 : string = "f64::NAN"
-        let v89 : float = Fable.Core.RustInterop.emitRustExpr () v88 
-        let v90 : string = "num_complex::Complex::new($0, $1)"
-        let v91 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v87, v89) v90 
-        let v94 : num_complex_Complex<float> =
-            match v82 with
+        let v62 : num_complex_Complex<float> option = _run_target_args'_v51 
+        let v76 : (num_complex_Complex<float> -> US0) = method17()
+        let v77 : US0 option = v62 |> Option.map v76 
+        let v125 : US0 = US0_1
+        let v126 : US0 = v77 |> Option.defaultValue v125 
+        let v137 : string = "f64::NAN"
+        let v138 : float = Fable.Core.RustInterop.emitRustExpr () v137 
+        let v139 : string = "f64::NAN"
+        let v140 : float = Fable.Core.RustInterop.emitRustExpr () v139 
+        let v141 : string = "num_complex::Complex::new($0, $1)"
+        let v142 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v138, v140) v141 
+        let v145 : num_complex_Complex<float> =
+            match v126 with
             | US0_1 -> (* None *)
-                v91
-            | US0_0(v92) -> (* Some *)
-                v92
-        let v95 : string = "num_complex::Complex::new($0, $1)"
-        let v96 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v95 
-        let v97 : string = "$0 * $1"
-        let v98 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v96, v1) v97 
-        let v99 : string = "num_complex::Complex::new($0, $1)"
-        let v100 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v99 
-        let v101 : string = "$0 / $1"
-        let v102 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v98, v100) v101 
-        let v103 : string = "$0.sin()"
-        let v104 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v102 v103 
-        let v105 : string = "$0.re"
-        let v106 : float = Fable.Core.RustInterop.emitRustExpr v1 v105 
-        let v107 : float = 1.0 - v106
-        let v108 : string = "$0.im"
-        let v109 : float = Fable.Core.RustInterop.emitRustExpr v1 v108 
-        let v110 : float =  -v109
-        let v111 : string = "num_complex::Complex::new($0, $1)"
-        let v112 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v107, v110) v111 
-        let v113 : string = "$0.re"
-        let v114 : float = Fable.Core.RustInterop.emitRustExpr v112 v113 
-        let v115 : bool = v114 <= 1.0
-        let v646 : num_complex_Complex<float> =
-            if v115 then
-                let v116 : string = "num_complex::Complex::new($0, $1)"
-                let v117 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v116 
-                v117
+                v142
+            | US0_0(v143) -> (* Some *)
+                v143
+        let v146 : string = "num_complex::Complex::new($0, $1)"
+        let v147 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v146 
+        let v148 : string = "$0 * $1"
+        let v149 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v147, v1) v148 
+        let v150 : string = "num_complex::Complex::new($0, $1)"
+        let v151 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v150 
+        let v152 : string = "$0 / $1"
+        let v153 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v149, v151) v152 
+        let v154 : string = "$0.sin()"
+        let v155 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v153 v154 
+        let v156 : string = "$0.re"
+        let v157 : float = Fable.Core.RustInterop.emitRustExpr v1 v156 
+        let v158 : float = 1.0 - v157
+        let v159 : string = "$0.im"
+        let v160 : float = Fable.Core.RustInterop.emitRustExpr v1 v159 
+        let v161 : float =  -v160
+        let v162 : string = "num_complex::Complex::new($0, $1)"
+        let v163 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v158, v161) v162 
+        let v164 : string = "$0.re"
+        let v165 : float = Fable.Core.RustInterop.emitRustExpr v163 v164 
+        let v166 : bool = v165 <= 1.0
+        let v901 : num_complex_Complex<float> =
+            if v166 then
+                let v167 : string = "num_complex::Complex::new($0, $1)"
+                let v168 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v167 
+                v168
             else
-                let v118 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
-                Fable.Core.RustInterop.emitRustExpr struct (1, v112) v118 
-                let v119 : string = "$0.re"
-                let v120 : float = Fable.Core.RustInterop.emitRustExpr v112 v119 
-                let v121 : bool = v120 > 1.0
-                if v121 then
-                    let v122 : string = "num_complex::Complex::new($0, $1)"
-                    let v123 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v122 
-                    let v124 : (int32 []) = Array.zeroCreate<int32> (10000)
-                    let v125 : Mut0 = {l0 = 0} : Mut0
-                    while method14(v125) do
-                        let v127 : int32 = v125.l0
-                        v124.[int v127] <- v127
-                        let v128 : int32 = v127 + 1
-                        v125.l0 <- v128
+                let v169 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
+                Fable.Core.RustInterop.emitRustExpr struct (1, v163) v169 
+                let v170 : string = "$0.re"
+                let v171 : float = Fable.Core.RustInterop.emitRustExpr v163 v170 
+                let v172 : bool = v171 > 1.0
+                if v172 then
+                    let v173 : string = "num_complex::Complex::new($0, $1)"
+                    let v174 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v173 
+                    let v175 : (int32 []) = Array.zeroCreate<int32> (10000)
+                    let v176 : Mut0 = {l0 = 0} : Mut0
+                    while method14(v176) do
+                        let v178 : int32 = v176.l0
+                        v175.[int v178] <- v178
+                        let v179 : int32 = v178 + 1
+                        v176.l0 <- v179
                         ()
-                    let v129 : int32 = v124.Length
-                    let v130 : Mut2 = {l0 = 0; l1 = v123} : Mut2
-                    while method15(v129, v130) do
-                        let v132 : int32 = v130.l0
-                        let v133 : num_complex_Complex<float> = v130.l1
-                        let v134 : int32 = v124.[int v132]
-                        let v135 : string = "num_complex::Complex::new($0, $1)"
-                        let v136 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v135 
-                        let v138 : (int32 -> float) = float
-                        let v139 : float = v138 v134
-                        let v142 : string = "num_complex::Complex::new($0, $1)"
-                        let v143 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v139, 0.0) v142 
-                        let v144 : string = "num_complex::Complex::powc($0, $1)"
-                        let v145 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v143, v112) v144 
-                        let v146 : string = "$0 / $1"
-                        let v147 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v136, v145) v146 
-                        let v148 : string = "$0 + $1"
-                        let v149 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v133, v147) v148 
-                        let v150 : int32 = v132 + 1
-                        v130.l0 <- v150
-                        v130.l1 <- v149
+                    let v180 : int32 = v175.Length
+                    let v181 : Mut2 = {l0 = 0; l1 = v174} : Mut2
+                    while method15(v180, v181) do
+                        let v183 : int32 = v181.l0
+                        let v184 : num_complex_Complex<float> = v181.l1
+                        let v185 : int32 = v175.[int v183]
+                        let v186 : string = "num_complex::Complex::new($0, $1)"
+                        let v187 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v186 
+                        let v189 : (int32 -> float) = float
+                        let v190 : float = v189 v185
+                        let v200 : string = "num_complex::Complex::new($0, $1)"
+                        let v201 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v190, 0.0) v200 
+                        let v202 : string = "num_complex::Complex::powc($0, $1)"
+                        let v203 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v201, v163) v202 
+                        let v204 : string = "$0 / $1"
+                        let v205 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v187, v203) v204 
+                        let v206 : string = "$0 + $1"
+                        let v207 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v184, v205) v206 
+                        let v208 : int32 = v183 + 1
+                        v181.l0 <- v208
+                        v181.l1 <- v207
                         ()
-                    let v151 : num_complex_Complex<float> = v130.l1
-                    v151
+                    let v209 : num_complex_Complex<float> = v181.l1
+                    v209
                 else
-                    let v152 : string = "num_complex::Complex::new($0, $1)"
-                    let v153 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v152 
-                    let v154 : string = "$0 - $1"
-                    let v155 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v153, v112) v154 
-                    let v156 : string = $"        s = mpmath.gamma(s)"
-                    let v157 : num_complex_Complex<float> = method3(v155)
-                    let v158 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v156, v157)
+                    let v210 : string = "num_complex::Complex::new($0, $1)"
+                    let v211 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v210 
+                    let v212 : string = "$0 - $1"
+                    let v213 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v211, v163) v212 
+                    let v214 : string = $"        s = mpmath.gamma(s)"
+                    let v215 : num_complex_Complex<float> = method3(v213)
+                    let v216 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v214, v215)
                     (* run_target_args'
-                    let v160 : unit = ()
+                    let v218 : unit = ()
                     run_target_args' *)
                     
 #if FABLE_COMPILER || WASM || CONTRACT
                     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                    let v161 : string = "$0.ok()"
-                    let v162 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v158 v161 
-                    let _run_target_args'_v160 = v162 
+                    let v219 : string = "$0.ok()"
+                    let v220 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v216 v219 
+                    let _run_target_args'_v218 = v220 
                     #endif
 #if FABLE_COMPILER_RUST && WASM
-                    let v163 : string = "$0.ok()"
-                    let v164 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v158 v163 
-                    let _run_target_args'_v160 = v164 
+                    let v221 : string = "$0.ok()"
+                    let v222 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v216 v221 
+                    let _run_target_args'_v218 = v222 
                     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                    let v165 : string = "$0.ok()"
-                    let v166 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v158 v165 
-                    let _run_target_args'_v160 = v166 
+                    let v223 : string = "$0.ok()"
+                    let v224 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v216 v223 
+                    let _run_target_args'_v218 = v224 
                     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                    let v167 : num_complex_Complex<float> option = match v158 with Ok x -> Some x | Error _ -> None
-                    let _run_target_args'_v160 = v167 
+                    let v225 : num_complex_Complex<float> option = match v216 with Ok x -> Some x | Error _ -> None
+                    let _run_target_args'_v218 = v225 
                     #endif
 #if FABLE_COMPILER_PYTHON
-                    let v168 : num_complex_Complex<float> option = match v158 with Ok x -> Some x | Error _ -> None
-                    let _run_target_args'_v160 = v168 
+                    let v226 : num_complex_Complex<float> option = match v216 with Ok x -> Some x | Error _ -> None
+                    let _run_target_args'_v218 = v226 
                     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                    let v169 : num_complex_Complex<float> option = match v158 with Ok x -> Some x | Error _ -> None
-                    let _run_target_args'_v160 = v169 
+                    let v227 : num_complex_Complex<float> option = match v216 with Ok x -> Some x | Error _ -> None
+                    let _run_target_args'_v218 = v227 
                     #endif
 #else
-                    let v170 : num_complex_Complex<float> option = match v158 with Ok x -> Some x | Error _ -> None
-                    let _run_target_args'_v160 = v170 
+                    let v228 : num_complex_Complex<float> option = match v216 with Ok x -> Some x | Error _ -> None
+                    let _run_target_args'_v218 = v228 
                     #endif
-                    let v171 : num_complex_Complex<float> option = _run_target_args'_v160 
-                    let v176 : (num_complex_Complex<float> -> US0) = method17()
-                    let v177 : US0 option = v171 |> Option.map v176 
-                    let v197 : US0 = US0_1
-                    let v198 : US0 = v177 |> Option.defaultValue v197 
-                    let v202 : string = "f64::NAN"
-                    let v203 : float = Fable.Core.RustInterop.emitRustExpr () v202 
-                    let v204 : string = "f64::NAN"
-                    let v205 : float = Fable.Core.RustInterop.emitRustExpr () v204 
-                    let v206 : string = "num_complex::Complex::new($0, $1)"
-                    let v207 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v203, v205) v206 
-                    let v210 : num_complex_Complex<float> =
-                        match v198 with
+                    let v229 : num_complex_Complex<float> option = _run_target_args'_v218 
+                    let v243 : (num_complex_Complex<float> -> US0) = method17()
+                    let v244 : US0 option = v229 |> Option.map v243 
+                    let v292 : US0 = US0_1
+                    let v293 : US0 = v244 |> Option.defaultValue v292 
+                    let v304 : string = "f64::NAN"
+                    let v305 : float = Fable.Core.RustInterop.emitRustExpr () v304 
+                    let v306 : string = "f64::NAN"
+                    let v307 : float = Fable.Core.RustInterop.emitRustExpr () v306 
+                    let v308 : string = "num_complex::Complex::new($0, $1)"
+                    let v309 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v305, v307) v308 
+                    let v312 : num_complex_Complex<float> =
+                        match v293 with
                         | US0_1 -> (* None *)
-                            v207
-                        | US0_0(v208) -> (* Some *)
-                            v208
-                    let v211 : string = "num_complex::Complex::new($0, $1)"
-                    let v212 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v211 
-                    let v213 : string = "$0 * $1"
-                    let v214 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v212, v112) v213 
-                    let v215 : string = "num_complex::Complex::new($0, $1)"
-                    let v216 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v215 
-                    let v217 : string = "$0 / $1"
-                    let v218 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v214, v216) v217 
-                    let v219 : string = "$0.sin()"
-                    let v220 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v218 v219 
-                    let v221 : string = "$0.re"
-                    let v222 : float = Fable.Core.RustInterop.emitRustExpr v112 v221 
-                    let v223 : float = 1.0 - v222
-                    let v224 : string = "$0.im"
-                    let v225 : float = Fable.Core.RustInterop.emitRustExpr v112 v224 
-                    let v226 : float =  -v225
-                    let v227 : string = "num_complex::Complex::new($0, $1)"
-                    let v228 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v223, v226) v227 
-                    let v229 : string = "$0.re"
-                    let v230 : float = Fable.Core.RustInterop.emitRustExpr v228 v229 
-                    let v231 : bool = v230 <= 1.0
-                    let v630 : num_complex_Complex<float> =
-                        if v231 then
-                            let v232 : string = "num_complex::Complex::new($0, $1)"
-                            let v233 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v232 
-                            v233
+                            v309
+                        | US0_0(v310) -> (* Some *)
+                            v310
+                    let v313 : string = "num_complex::Complex::new($0, $1)"
+                    let v314 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v313 
+                    let v315 : string = "$0 * $1"
+                    let v316 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v314, v163) v315 
+                    let v317 : string = "num_complex::Complex::new($0, $1)"
+                    let v318 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v317 
+                    let v319 : string = "$0 / $1"
+                    let v320 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v316, v318) v319 
+                    let v321 : string = "$0.sin()"
+                    let v322 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v320 v321 
+                    let v323 : string = "$0.re"
+                    let v324 : float = Fable.Core.RustInterop.emitRustExpr v163 v323 
+                    let v325 : float = 1.0 - v324
+                    let v326 : string = "$0.im"
+                    let v327 : float = Fable.Core.RustInterop.emitRustExpr v163 v326 
+                    let v328 : float =  -v327
+                    let v329 : string = "num_complex::Complex::new($0, $1)"
+                    let v330 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v325, v328) v329 
+                    let v331 : string = "$0.re"
+                    let v332 : float = Fable.Core.RustInterop.emitRustExpr v330 v331 
+                    let v333 : bool = v332 <= 1.0
+                    let v885 : num_complex_Complex<float> =
+                        if v333 then
+                            let v334 : string = "num_complex::Complex::new($0, $1)"
+                            let v335 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v334 
+                            v335
                         else
-                            let v234 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
-                            Fable.Core.RustInterop.emitRustExpr struct (2, v228) v234 
-                            let v235 : string = "$0.re"
-                            let v236 : float = Fable.Core.RustInterop.emitRustExpr v228 v235 
-                            let v237 : bool = v236 > 1.0
-                            if v237 then
-                                let v238 : string = "num_complex::Complex::new($0, $1)"
-                                let v239 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v238 
-                                let v240 : (int32 []) = Array.zeroCreate<int32> (10000)
-                                let v241 : Mut0 = {l0 = 0} : Mut0
-                                while method14(v241) do
-                                    let v243 : int32 = v241.l0
-                                    v240.[int v243] <- v243
-                                    let v244 : int32 = v243 + 1
-                                    v241.l0 <- v244
+                            let v336 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
+                            Fable.Core.RustInterop.emitRustExpr struct (2, v330) v336 
+                            let v337 : string = "$0.re"
+                            let v338 : float = Fable.Core.RustInterop.emitRustExpr v330 v337 
+                            let v339 : bool = v338 > 1.0
+                            if v339 then
+                                let v340 : string = "num_complex::Complex::new($0, $1)"
+                                let v341 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v340 
+                                let v342 : (int32 []) = Array.zeroCreate<int32> (10000)
+                                let v343 : Mut0 = {l0 = 0} : Mut0
+                                while method14(v343) do
+                                    let v345 : int32 = v343.l0
+                                    v342.[int v345] <- v345
+                                    let v346 : int32 = v345 + 1
+                                    v343.l0 <- v346
                                     ()
-                                let v245 : int32 = v240.Length
-                                let v246 : Mut2 = {l0 = 0; l1 = v239} : Mut2
-                                while method15(v245, v246) do
-                                    let v248 : int32 = v246.l0
-                                    let v249 : num_complex_Complex<float> = v246.l1
-                                    let v250 : int32 = v240.[int v248]
-                                    let v251 : string = "num_complex::Complex::new($0, $1)"
-                                    let v252 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v251 
-                                    let v254 : (int32 -> float) = float
-                                    let v255 : float = v254 v250
-                                    let v258 : string = "num_complex::Complex::new($0, $1)"
-                                    let v259 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v255, 0.0) v258 
-                                    let v260 : string = "num_complex::Complex::powc($0, $1)"
-                                    let v261 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v259, v228) v260 
-                                    let v262 : string = "$0 / $1"
-                                    let v263 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v252, v261) v262 
-                                    let v264 : string = "$0 + $1"
-                                    let v265 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v249, v263) v264 
-                                    let v266 : int32 = v248 + 1
-                                    v246.l0 <- v266
-                                    v246.l1 <- v265
+                                let v347 : int32 = v342.Length
+                                let v348 : Mut2 = {l0 = 0; l1 = v341} : Mut2
+                                while method15(v347, v348) do
+                                    let v350 : int32 = v348.l0
+                                    let v351 : num_complex_Complex<float> = v348.l1
+                                    let v352 : int32 = v342.[int v350]
+                                    let v353 : string = "num_complex::Complex::new($0, $1)"
+                                    let v354 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v353 
+                                    let v356 : (int32 -> float) = float
+                                    let v357 : float = v356 v352
+                                    let v367 : string = "num_complex::Complex::new($0, $1)"
+                                    let v368 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v357, 0.0) v367 
+                                    let v369 : string = "num_complex::Complex::powc($0, $1)"
+                                    let v370 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v368, v330) v369 
+                                    let v371 : string = "$0 / $1"
+                                    let v372 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v354, v370) v371 
+                                    let v373 : string = "$0 + $1"
+                                    let v374 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v351, v372) v373 
+                                    let v375 : int32 = v350 + 1
+                                    v348.l0 <- v375
+                                    v348.l1 <- v374
                                     ()
-                                let v267 : num_complex_Complex<float> = v246.l1
-                                v267
+                                let v376 : num_complex_Complex<float> = v348.l1
+                                v376
                             else
-                                let v268 : string = "num_complex::Complex::new($0, $1)"
-                                let v269 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v268 
-                                let v270 : string = "$0 - $1"
-                                let v271 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v269, v228) v270 
-                                let v272 : string = $"        s = mpmath.gamma(s)"
-                                let v273 : num_complex_Complex<float> = method3(v271)
-                                let v274 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v272, v273)
+                                let v377 : string = "num_complex::Complex::new($0, $1)"
+                                let v378 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v377 
+                                let v379 : string = "$0 - $1"
+                                let v380 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v378, v330) v379 
+                                let v381 : string = $"        s = mpmath.gamma(s)"
+                                let v382 : num_complex_Complex<float> = method3(v380)
+                                let v383 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v381, v382)
                                 (* run_target_args'
-                                let v276 : unit = ()
+                                let v385 : unit = ()
                                 run_target_args' *)
                                 
 #if FABLE_COMPILER || WASM || CONTRACT
                                 
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                let v277 : string = "$0.ok()"
-                                let v278 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v274 v277 
-                                let _run_target_args'_v276 = v278 
+                                let v386 : string = "$0.ok()"
+                                let v387 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v383 v386 
+                                let _run_target_args'_v385 = v387 
                                 #endif
 #if FABLE_COMPILER_RUST && WASM
-                                let v279 : string = "$0.ok()"
-                                let v280 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v274 v279 
-                                let _run_target_args'_v276 = v280 
+                                let v388 : string = "$0.ok()"
+                                let v389 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v383 v388 
+                                let _run_target_args'_v385 = v389 
                                 #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                                let v281 : string = "$0.ok()"
-                                let v282 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v274 v281 
-                                let _run_target_args'_v276 = v282 
+                                let v390 : string = "$0.ok()"
+                                let v391 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v383 v390 
+                                let _run_target_args'_v385 = v391 
                                 #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                                let v283 : num_complex_Complex<float> option = match v274 with Ok x -> Some x | Error _ -> None
-                                let _run_target_args'_v276 = v283 
+                                let v392 : num_complex_Complex<float> option = match v383 with Ok x -> Some x | Error _ -> None
+                                let _run_target_args'_v385 = v392 
                                 #endif
 #if FABLE_COMPILER_PYTHON
-                                let v284 : num_complex_Complex<float> option = match v274 with Ok x -> Some x | Error _ -> None
-                                let _run_target_args'_v276 = v284 
+                                let v393 : num_complex_Complex<float> option = match v383 with Ok x -> Some x | Error _ -> None
+                                let _run_target_args'_v385 = v393 
                                 #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                                let v285 : num_complex_Complex<float> option = match v274 with Ok x -> Some x | Error _ -> None
-                                let _run_target_args'_v276 = v285 
+                                let v394 : num_complex_Complex<float> option = match v383 with Ok x -> Some x | Error _ -> None
+                                let _run_target_args'_v385 = v394 
                                 #endif
 #else
-                                let v286 : num_complex_Complex<float> option = match v274 with Ok x -> Some x | Error _ -> None
-                                let _run_target_args'_v276 = v286 
+                                let v395 : num_complex_Complex<float> option = match v383 with Ok x -> Some x | Error _ -> None
+                                let _run_target_args'_v385 = v395 
                                 #endif
-                                let v287 : num_complex_Complex<float> option = _run_target_args'_v276 
-                                let v292 : (num_complex_Complex<float> -> US0) = method17()
-                                let v293 : US0 option = v287 |> Option.map v292 
-                                let v313 : US0 = US0_1
-                                let v314 : US0 = v293 |> Option.defaultValue v313 
-                                let v318 : string = "f64::NAN"
-                                let v319 : float = Fable.Core.RustInterop.emitRustExpr () v318 
-                                let v320 : string = "f64::NAN"
-                                let v321 : float = Fable.Core.RustInterop.emitRustExpr () v320 
-                                let v322 : string = "num_complex::Complex::new($0, $1)"
-                                let v323 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v319, v321) v322 
-                                let v326 : num_complex_Complex<float> =
-                                    match v314 with
+                                let v396 : num_complex_Complex<float> option = _run_target_args'_v385 
+                                let v410 : (num_complex_Complex<float> -> US0) = method17()
+                                let v411 : US0 option = v396 |> Option.map v410 
+                                let v459 : US0 = US0_1
+                                let v460 : US0 = v411 |> Option.defaultValue v459 
+                                let v471 : string = "f64::NAN"
+                                let v472 : float = Fable.Core.RustInterop.emitRustExpr () v471 
+                                let v473 : string = "f64::NAN"
+                                let v474 : float = Fable.Core.RustInterop.emitRustExpr () v473 
+                                let v475 : string = "num_complex::Complex::new($0, $1)"
+                                let v476 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v472, v474) v475 
+                                let v479 : num_complex_Complex<float> =
+                                    match v460 with
                                     | US0_1 -> (* None *)
-                                        v323
-                                    | US0_0(v324) -> (* Some *)
-                                        v324
-                                let v327 : string = "num_complex::Complex::new($0, $1)"
-                                let v328 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v327 
-                                let v329 : string = "$0 * $1"
-                                let v330 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v328, v228) v329 
-                                let v331 : string = "num_complex::Complex::new($0, $1)"
-                                let v332 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v331 
-                                let v333 : string = "$0 / $1"
-                                let v334 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v330, v332) v333 
-                                let v335 : string = "$0.sin()"
-                                let v336 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v334 v335 
-                                let v337 : string = "$0.re"
-                                let v338 : float = Fable.Core.RustInterop.emitRustExpr v228 v337 
-                                let v339 : float = 1.0 - v338
-                                let v340 : string = "$0.im"
-                                let v341 : float = Fable.Core.RustInterop.emitRustExpr v228 v340 
-                                let v342 : float =  -v341
-                                let v343 : string = "num_complex::Complex::new($0, $1)"
-                                let v344 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v339, v342) v343 
-                                let v345 : string = "$0.re"
-                                let v346 : float = Fable.Core.RustInterop.emitRustExpr v344 v345 
-                                let v347 : bool = v346 <= 1.0
-                                let v614 : num_complex_Complex<float> =
-                                    if v347 then
-                                        let v348 : string = "num_complex::Complex::new($0, $1)"
-                                        let v349 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v348 
-                                        v349
+                                        v476
+                                    | US0_0(v477) -> (* Some *)
+                                        v477
+                                let v480 : string = "num_complex::Complex::new($0, $1)"
+                                let v481 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v480 
+                                let v482 : string = "$0 * $1"
+                                let v483 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v481, v330) v482 
+                                let v484 : string = "num_complex::Complex::new($0, $1)"
+                                let v485 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v484 
+                                let v486 : string = "$0 / $1"
+                                let v487 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v483, v485) v486 
+                                let v488 : string = "$0.sin()"
+                                let v489 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v487 v488 
+                                let v490 : string = "$0.re"
+                                let v491 : float = Fable.Core.RustInterop.emitRustExpr v330 v490 
+                                let v492 : float = 1.0 - v491
+                                let v493 : string = "$0.im"
+                                let v494 : float = Fable.Core.RustInterop.emitRustExpr v330 v493 
+                                let v495 : float =  -v494
+                                let v496 : string = "num_complex::Complex::new($0, $1)"
+                                let v497 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v492, v495) v496 
+                                let v498 : string = "$0.re"
+                                let v499 : float = Fable.Core.RustInterop.emitRustExpr v497 v498 
+                                let v500 : bool = v499 <= 1.0
+                                let v869 : num_complex_Complex<float> =
+                                    if v500 then
+                                        let v501 : string = "num_complex::Complex::new($0, $1)"
+                                        let v502 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v501 
+                                        v502
                                     else
-                                        let v350 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
-                                        Fable.Core.RustInterop.emitRustExpr struct (3, v344) v350 
-                                        let v351 : string = "$0.re"
-                                        let v352 : float = Fable.Core.RustInterop.emitRustExpr v344 v351 
-                                        let v353 : bool = v352 > 1.0
-                                        if v353 then
-                                            let v354 : string = "num_complex::Complex::new($0, $1)"
-                                            let v355 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v354 
-                                            let v356 : (int32 []) = Array.zeroCreate<int32> (10000)
-                                            let v357 : Mut0 = {l0 = 0} : Mut0
-                                            while method14(v357) do
-                                                let v359 : int32 = v357.l0
-                                                v356.[int v359] <- v359
-                                                let v360 : int32 = v359 + 1
-                                                v357.l0 <- v360
+                                        let v503 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
+                                        Fable.Core.RustInterop.emitRustExpr struct (3, v497) v503 
+                                        let v504 : string = "$0.re"
+                                        let v505 : float = Fable.Core.RustInterop.emitRustExpr v497 v504 
+                                        let v506 : bool = v505 > 1.0
+                                        if v506 then
+                                            let v507 : string = "num_complex::Complex::new($0, $1)"
+                                            let v508 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v507 
+                                            let v509 : (int32 []) = Array.zeroCreate<int32> (10000)
+                                            let v510 : Mut0 = {l0 = 0} : Mut0
+                                            while method14(v510) do
+                                                let v512 : int32 = v510.l0
+                                                v509.[int v512] <- v512
+                                                let v513 : int32 = v512 + 1
+                                                v510.l0 <- v513
                                                 ()
-                                            let v361 : int32 = v356.Length
-                                            let v362 : Mut2 = {l0 = 0; l1 = v355} : Mut2
-                                            while method15(v361, v362) do
-                                                let v364 : int32 = v362.l0
-                                                let v365 : num_complex_Complex<float> = v362.l1
-                                                let v366 : int32 = v356.[int v364]
-                                                let v367 : string = "num_complex::Complex::new($0, $1)"
-                                                let v368 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v367 
-                                                let v370 : (int32 -> float) = float
-                                                let v371 : float = v370 v366
-                                                let v374 : string = "num_complex::Complex::new($0, $1)"
-                                                let v375 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v371, 0.0) v374 
-                                                let v376 : string = "num_complex::Complex::powc($0, $1)"
-                                                let v377 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v375, v344) v376 
-                                                let v378 : string = "$0 / $1"
-                                                let v379 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v368, v377) v378 
-                                                let v380 : string = "$0 + $1"
-                                                let v381 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v365, v379) v380 
-                                                let v382 : int32 = v364 + 1
-                                                v362.l0 <- v382
-                                                v362.l1 <- v381
+                                            let v514 : int32 = v509.Length
+                                            let v515 : Mut2 = {l0 = 0; l1 = v508} : Mut2
+                                            while method15(v514, v515) do
+                                                let v517 : int32 = v515.l0
+                                                let v518 : num_complex_Complex<float> = v515.l1
+                                                let v519 : int32 = v509.[int v517]
+                                                let v520 : string = "num_complex::Complex::new($0, $1)"
+                                                let v521 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v520 
+                                                let v523 : (int32 -> float) = float
+                                                let v524 : float = v523 v519
+                                                let v534 : string = "num_complex::Complex::new($0, $1)"
+                                                let v535 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v524, 0.0) v534 
+                                                let v536 : string = "num_complex::Complex::powc($0, $1)"
+                                                let v537 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v535, v497) v536 
+                                                let v538 : string = "$0 / $1"
+                                                let v539 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v521, v537) v538 
+                                                let v540 : string = "$0 + $1"
+                                                let v541 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v518, v539) v540 
+                                                let v542 : int32 = v517 + 1
+                                                v515.l0 <- v542
+                                                v515.l1 <- v541
                                                 ()
-                                            let v383 : num_complex_Complex<float> = v362.l1
-                                            v383
+                                            let v543 : num_complex_Complex<float> = v515.l1
+                                            v543
                                         else
-                                            let v384 : string = "num_complex::Complex::new($0, $1)"
-                                            let v385 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v384 
-                                            let v386 : string = "$0 - $1"
-                                            let v387 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v385, v344) v386 
-                                            let v388 : string = $"        s = mpmath.gamma(s)"
-                                            let v389 : num_complex_Complex<float> = method3(v387)
-                                            let v390 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v388, v389)
+                                            let v544 : string = "num_complex::Complex::new($0, $1)"
+                                            let v545 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v544 
+                                            let v546 : string = "$0 - $1"
+                                            let v547 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v545, v497) v546 
+                                            let v548 : string = $"        s = mpmath.gamma(s)"
+                                            let v549 : num_complex_Complex<float> = method3(v547)
+                                            let v550 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v548, v549)
                                             (* run_target_args'
-                                            let v392 : unit = ()
+                                            let v552 : unit = ()
                                             run_target_args' *)
                                             
 #if FABLE_COMPILER || WASM || CONTRACT
                                             
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                            let v393 : string = "$0.ok()"
-                                            let v394 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v390 v393 
-                                            let _run_target_args'_v392 = v394 
+                                            let v553 : string = "$0.ok()"
+                                            let v554 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v550 v553 
+                                            let _run_target_args'_v552 = v554 
                                             #endif
 #if FABLE_COMPILER_RUST && WASM
-                                            let v395 : string = "$0.ok()"
-                                            let v396 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v390 v395 
-                                            let _run_target_args'_v392 = v396 
+                                            let v555 : string = "$0.ok()"
+                                            let v556 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v550 v555 
+                                            let _run_target_args'_v552 = v556 
                                             #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                                            let v397 : string = "$0.ok()"
-                                            let v398 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v390 v397 
-                                            let _run_target_args'_v392 = v398 
+                                            let v557 : string = "$0.ok()"
+                                            let v558 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v550 v557 
+                                            let _run_target_args'_v552 = v558 
                                             #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                                            let v399 : num_complex_Complex<float> option = match v390 with Ok x -> Some x | Error _ -> None
-                                            let _run_target_args'_v392 = v399 
+                                            let v559 : num_complex_Complex<float> option = match v550 with Ok x -> Some x | Error _ -> None
+                                            let _run_target_args'_v552 = v559 
                                             #endif
 #if FABLE_COMPILER_PYTHON
-                                            let v400 : num_complex_Complex<float> option = match v390 with Ok x -> Some x | Error _ -> None
-                                            let _run_target_args'_v392 = v400 
+                                            let v560 : num_complex_Complex<float> option = match v550 with Ok x -> Some x | Error _ -> None
+                                            let _run_target_args'_v552 = v560 
                                             #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                                            let v401 : num_complex_Complex<float> option = match v390 with Ok x -> Some x | Error _ -> None
-                                            let _run_target_args'_v392 = v401 
+                                            let v561 : num_complex_Complex<float> option = match v550 with Ok x -> Some x | Error _ -> None
+                                            let _run_target_args'_v552 = v561 
                                             #endif
 #else
-                                            let v402 : num_complex_Complex<float> option = match v390 with Ok x -> Some x | Error _ -> None
-                                            let _run_target_args'_v392 = v402 
+                                            let v562 : num_complex_Complex<float> option = match v550 with Ok x -> Some x | Error _ -> None
+                                            let _run_target_args'_v552 = v562 
                                             #endif
-                                            let v403 : num_complex_Complex<float> option = _run_target_args'_v392 
-                                            let v408 : (num_complex_Complex<float> -> US0) = method17()
-                                            let v409 : US0 option = v403 |> Option.map v408 
-                                            let v429 : US0 = US0_1
-                                            let v430 : US0 = v409 |> Option.defaultValue v429 
-                                            let v434 : string = "f64::NAN"
-                                            let v435 : float = Fable.Core.RustInterop.emitRustExpr () v434 
-                                            let v436 : string = "f64::NAN"
-                                            let v437 : float = Fable.Core.RustInterop.emitRustExpr () v436 
-                                            let v438 : string = "num_complex::Complex::new($0, $1)"
-                                            let v439 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v435, v437) v438 
-                                            let v442 : num_complex_Complex<float> =
-                                                match v430 with
+                                            let v563 : num_complex_Complex<float> option = _run_target_args'_v552 
+                                            let v577 : (num_complex_Complex<float> -> US0) = method17()
+                                            let v578 : US0 option = v563 |> Option.map v577 
+                                            let v626 : US0 = US0_1
+                                            let v627 : US0 = v578 |> Option.defaultValue v626 
+                                            let v638 : string = "f64::NAN"
+                                            let v639 : float = Fable.Core.RustInterop.emitRustExpr () v638 
+                                            let v640 : string = "f64::NAN"
+                                            let v641 : float = Fable.Core.RustInterop.emitRustExpr () v640 
+                                            let v642 : string = "num_complex::Complex::new($0, $1)"
+                                            let v643 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v639, v641) v642 
+                                            let v646 : num_complex_Complex<float> =
+                                                match v627 with
                                                 | US0_1 -> (* None *)
-                                                    v439
-                                                | US0_0(v440) -> (* Some *)
-                                                    v440
-                                            let v443 : string = "num_complex::Complex::new($0, $1)"
-                                            let v444 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v443 
-                                            let v445 : string = "$0 * $1"
-                                            let v446 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v444, v344) v445 
-                                            let v447 : string = "num_complex::Complex::new($0, $1)"
-                                            let v448 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v447 
-                                            let v449 : string = "$0 / $1"
-                                            let v450 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v446, v448) v449 
-                                            let v451 : string = "$0.sin()"
-                                            let v452 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v450 v451 
-                                            let v453 : string = "$0.re"
-                                            let v454 : float = Fable.Core.RustInterop.emitRustExpr v344 v453 
-                                            let v455 : float = 1.0 - v454
-                                            let v456 : string = "$0.im"
-                                            let v457 : float = Fable.Core.RustInterop.emitRustExpr v344 v456 
-                                            let v458 : float =  -v457
-                                            let v459 : string = "num_complex::Complex::new($0, $1)"
-                                            let v460 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v455, v458) v459 
-                                            let v461 : string = "$0.re"
-                                            let v462 : float = Fable.Core.RustInterop.emitRustExpr v460 v461 
-                                            let v463 : bool = v462 <= 1.0
-                                            let v598 : num_complex_Complex<float> =
-                                                if v463 then
-                                                    let v464 : string = "num_complex::Complex::new($0, $1)"
-                                                    let v465 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v464 
-                                                    v465
+                                                    v643
+                                                | US0_0(v644) -> (* Some *)
+                                                    v644
+                                            let v647 : string = "num_complex::Complex::new($0, $1)"
+                                            let v648 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v647 
+                                            let v649 : string = "$0 * $1"
+                                            let v650 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v648, v497) v649 
+                                            let v651 : string = "num_complex::Complex::new($0, $1)"
+                                            let v652 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v651 
+                                            let v653 : string = "$0 / $1"
+                                            let v654 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v650, v652) v653 
+                                            let v655 : string = "$0.sin()"
+                                            let v656 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v654 v655 
+                                            let v657 : string = "$0.re"
+                                            let v658 : float = Fable.Core.RustInterop.emitRustExpr v497 v657 
+                                            let v659 : float = 1.0 - v658
+                                            let v660 : string = "$0.im"
+                                            let v661 : float = Fable.Core.RustInterop.emitRustExpr v497 v660 
+                                            let v662 : float =  -v661
+                                            let v663 : string = "num_complex::Complex::new($0, $1)"
+                                            let v664 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v659, v662) v663 
+                                            let v665 : string = "$0.re"
+                                            let v666 : float = Fable.Core.RustInterop.emitRustExpr v664 v665 
+                                            let v667 : bool = v666 <= 1.0
+                                            let v853 : num_complex_Complex<float> =
+                                                if v667 then
+                                                    let v668 : string = "num_complex::Complex::new($0, $1)"
+                                                    let v669 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v668 
+                                                    v669
                                                 else
-                                                    let v466 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
-                                                    Fable.Core.RustInterop.emitRustExpr struct (4, v460) v466 
-                                                    let v467 : string = "$0.re"
-                                                    let v468 : float = Fable.Core.RustInterop.emitRustExpr v460 v467 
-                                                    let v469 : bool = v468 > 1.0
-                                                    if v469 then
-                                                        let v470 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v471 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v470 
-                                                        let v472 : (int32 []) = Array.zeroCreate<int32> (10000)
-                                                        let v473 : Mut0 = {l0 = 0} : Mut0
-                                                        while method14(v473) do
-                                                            let v475 : int32 = v473.l0
-                                                            v472.[int v475] <- v475
-                                                            let v476 : int32 = v475 + 1
-                                                            v473.l0 <- v476
+                                                    let v670 : string = "println!(\"zeta / count: {:?} / s: {:?}\", $0, $1)"
+                                                    Fable.Core.RustInterop.emitRustExpr struct (4, v664) v670 
+                                                    let v671 : string = "$0.re"
+                                                    let v672 : float = Fable.Core.RustInterop.emitRustExpr v664 v671 
+                                                    let v673 : bool = v672 > 1.0
+                                                    if v673 then
+                                                        let v674 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v675 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v674 
+                                                        let v676 : (int32 []) = Array.zeroCreate<int32> (10000)
+                                                        let v677 : Mut0 = {l0 = 0} : Mut0
+                                                        while method14(v677) do
+                                                            let v679 : int32 = v677.l0
+                                                            v676.[int v679] <- v679
+                                                            let v680 : int32 = v679 + 1
+                                                            v677.l0 <- v680
                                                             ()
-                                                        let v477 : int32 = v472.Length
-                                                        let v478 : Mut2 = {l0 = 0; l1 = v471} : Mut2
-                                                        while method15(v477, v478) do
-                                                            let v480 : int32 = v478.l0
-                                                            let v481 : num_complex_Complex<float> = v478.l1
-                                                            let v482 : int32 = v472.[int v480]
-                                                            let v483 : string = "num_complex::Complex::new($0, $1)"
-                                                            let v484 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v483 
-                                                            let v486 : (int32 -> float) = float
-                                                            let v487 : float = v486 v482
-                                                            let v490 : string = "num_complex::Complex::new($0, $1)"
-                                                            let v491 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v487, 0.0) v490 
-                                                            let v492 : string = "num_complex::Complex::powc($0, $1)"
-                                                            let v493 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v491, v460) v492 
-                                                            let v494 : string = "$0 / $1"
-                                                            let v495 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v484, v493) v494 
-                                                            let v496 : string = "$0 + $1"
-                                                            let v497 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v481, v495) v496 
-                                                            let v498 : int32 = v480 + 1
-                                                            v478.l0 <- v498
-                                                            v478.l1 <- v497
+                                                        let v681 : int32 = v676.Length
+                                                        let v682 : Mut2 = {l0 = 0; l1 = v675} : Mut2
+                                                        while method15(v681, v682) do
+                                                            let v684 : int32 = v682.l0
+                                                            let v685 : num_complex_Complex<float> = v682.l1
+                                                            let v686 : int32 = v676.[int v684]
+                                                            let v687 : string = "num_complex::Complex::new($0, $1)"
+                                                            let v688 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v687 
+                                                            let v690 : (int32 -> float) = float
+                                                            let v691 : float = v690 v686
+                                                            let v701 : string = "num_complex::Complex::new($0, $1)"
+                                                            let v702 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v691, 0.0) v701 
+                                                            let v703 : string = "num_complex::Complex::powc($0, $1)"
+                                                            let v704 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v702, v664) v703 
+                                                            let v705 : string = "$0 / $1"
+                                                            let v706 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v688, v704) v705 
+                                                            let v707 : string = "$0 + $1"
+                                                            let v708 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v685, v706) v707 
+                                                            let v709 : int32 = v684 + 1
+                                                            v682.l0 <- v709
+                                                            v682.l1 <- v708
                                                             ()
-                                                        let v499 : num_complex_Complex<float> = v478.l1
-                                                        v499
+                                                        let v710 : num_complex_Complex<float> = v682.l1
+                                                        v710
                                                     else
-                                                        let v500 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v501 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v500 
-                                                        let v502 : string = "$0 - $1"
-                                                        let v503 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v501, v460) v502 
-                                                        let v504 : string = $"        s = mpmath.gamma(s)"
-                                                        let v505 : num_complex_Complex<float> = method3(v503)
-                                                        let v506 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v504, v505)
+                                                        let v711 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v712 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v711 
+                                                        let v713 : string = "$0 - $1"
+                                                        let v714 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v712, v664) v713 
+                                                        let v715 : string = $"        s = mpmath.gamma(s)"
+                                                        let v716 : num_complex_Complex<float> = method3(v714)
+                                                        let v717 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v715, v716)
                                                         (* run_target_args'
-                                                        let v508 : unit = ()
+                                                        let v719 : unit = ()
                                                         run_target_args' *)
                                                         
 #if FABLE_COMPILER || WASM || CONTRACT
                                                         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-                                                        let v509 : string = "$0.ok()"
-                                                        let v510 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v506 v509 
-                                                        let _run_target_args'_v508 = v510 
+                                                        let v720 : string = "$0.ok()"
+                                                        let v721 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v717 v720 
+                                                        let _run_target_args'_v719 = v721 
                                                         #endif
 #if FABLE_COMPILER_RUST && WASM
-                                                        let v511 : string = "$0.ok()"
-                                                        let v512 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v506 v511 
-                                                        let _run_target_args'_v508 = v512 
+                                                        let v722 : string = "$0.ok()"
+                                                        let v723 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v717 v722 
+                                                        let _run_target_args'_v719 = v723 
                                                         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-                                                        let v513 : string = "$0.ok()"
-                                                        let v514 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v506 v513 
-                                                        let _run_target_args'_v508 = v514 
+                                                        let v724 : string = "$0.ok()"
+                                                        let v725 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v717 v724 
+                                                        let _run_target_args'_v719 = v725 
                                                         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-                                                        let v515 : num_complex_Complex<float> option = match v506 with Ok x -> Some x | Error _ -> None
-                                                        let _run_target_args'_v508 = v515 
+                                                        let v726 : num_complex_Complex<float> option = match v717 with Ok x -> Some x | Error _ -> None
+                                                        let _run_target_args'_v719 = v726 
                                                         #endif
 #if FABLE_COMPILER_PYTHON
-                                                        let v516 : num_complex_Complex<float> option = match v506 with Ok x -> Some x | Error _ -> None
-                                                        let _run_target_args'_v508 = v516 
+                                                        let v727 : num_complex_Complex<float> option = match v717 with Ok x -> Some x | Error _ -> None
+                                                        let _run_target_args'_v719 = v727 
                                                         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-                                                        let v517 : num_complex_Complex<float> option = match v506 with Ok x -> Some x | Error _ -> None
-                                                        let _run_target_args'_v508 = v517 
+                                                        let v728 : num_complex_Complex<float> option = match v717 with Ok x -> Some x | Error _ -> None
+                                                        let _run_target_args'_v719 = v728 
                                                         #endif
 #else
-                                                        let v518 : num_complex_Complex<float> option = match v506 with Ok x -> Some x | Error _ -> None
-                                                        let _run_target_args'_v508 = v518 
+                                                        let v729 : num_complex_Complex<float> option = match v717 with Ok x -> Some x | Error _ -> None
+                                                        let _run_target_args'_v719 = v729 
                                                         #endif
-                                                        let v519 : num_complex_Complex<float> option = _run_target_args'_v508 
-                                                        let v524 : (num_complex_Complex<float> -> US0) = method17()
-                                                        let v525 : US0 option = v519 |> Option.map v524 
-                                                        let v545 : US0 = US0_1
-                                                        let v546 : US0 = v525 |> Option.defaultValue v545 
-                                                        let v550 : string = "f64::NAN"
-                                                        let v551 : float = Fable.Core.RustInterop.emitRustExpr () v550 
-                                                        let v552 : string = "f64::NAN"
-                                                        let v553 : float = Fable.Core.RustInterop.emitRustExpr () v552 
-                                                        let v554 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v555 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v551, v553) v554 
-                                                        let v558 : num_complex_Complex<float> =
-                                                            match v546 with
+                                                        let v730 : num_complex_Complex<float> option = _run_target_args'_v719 
+                                                        let v744 : (num_complex_Complex<float> -> US0) = method17()
+                                                        let v745 : US0 option = v730 |> Option.map v744 
+                                                        let v793 : US0 = US0_1
+                                                        let v794 : US0 = v745 |> Option.defaultValue v793 
+                                                        let v805 : string = "f64::NAN"
+                                                        let v806 : float = Fable.Core.RustInterop.emitRustExpr () v805 
+                                                        let v807 : string = "f64::NAN"
+                                                        let v808 : float = Fable.Core.RustInterop.emitRustExpr () v807 
+                                                        let v809 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v810 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v806, v808) v809 
+                                                        let v813 : num_complex_Complex<float> =
+                                                            match v794 with
                                                             | US0_1 -> (* None *)
-                                                                v555
-                                                            | US0_0(v556) -> (* Some *)
-                                                                v556
-                                                        let v559 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v560 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v559 
-                                                        let v561 : string = "$0 * $1"
-                                                        let v562 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v560, v460) v561 
-                                                        let v563 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v564 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v563 
-                                                        let v565 : string = "$0 / $1"
-                                                        let v566 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v562, v564) v565 
-                                                        let v567 : string = "$0.sin()"
-                                                        let v568 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v566 v567 
-                                                        let v569 : string = "$0.re"
-                                                        let v570 : float = Fable.Core.RustInterop.emitRustExpr v460 v569 
-                                                        let v571 : float = 1.0 - v570
-                                                        let v572 : string = "$0.im"
-                                                        let v573 : float = Fable.Core.RustInterop.emitRustExpr v460 v572 
-                                                        let v574 : float =  -v573
-                                                        let v575 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v576 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v571, v574) v575 
-                                                        let v577 : string = "$0.re"
-                                                        let v578 : float = Fable.Core.RustInterop.emitRustExpr v576 v577 
-                                                        let v579 : bool = v578 <= 1.0
-                                                        let v582 : num_complex_Complex<float> =
-                                                            if v579 then
-                                                                let v580 : string = "num_complex::Complex::new($0, $1)"
-                                                                let v581 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v580 
-                                                                v581
+                                                                v810
+                                                            | US0_0(v811) -> (* Some *)
+                                                                v811
+                                                        let v814 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v815 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v814 
+                                                        let v816 : string = "$0 * $1"
+                                                        let v817 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v815, v664) v816 
+                                                        let v818 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v819 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v818 
+                                                        let v820 : string = "$0 / $1"
+                                                        let v821 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v817, v819) v820 
+                                                        let v822 : string = "$0.sin()"
+                                                        let v823 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v821 v822 
+                                                        let v824 : string = "$0.re"
+                                                        let v825 : float = Fable.Core.RustInterop.emitRustExpr v664 v824 
+                                                        let v826 : float = 1.0 - v825
+                                                        let v827 : string = "$0.im"
+                                                        let v828 : float = Fable.Core.RustInterop.emitRustExpr v664 v827 
+                                                        let v829 : float =  -v828
+                                                        let v830 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v831 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v826, v829) v830 
+                                                        let v832 : string = "$0.re"
+                                                        let v833 : float = Fable.Core.RustInterop.emitRustExpr v831 v832 
+                                                        let v834 : bool = v833 <= 1.0
+                                                        let v837 : num_complex_Complex<float> =
+                                                            if v834 then
+                                                                let v835 : string = "num_complex::Complex::new($0, $1)"
+                                                                let v836 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.0, 0.0) v835 
+                                                                v836
                                                             else
-                                                                v576
-                                                        let v583 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v584 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v583 
-                                                        let v585 : string = "num_complex::Complex::new($0, $1)"
-                                                        let v586 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v585 
-                                                        let v587 : string = "num_complex::Complex::powc($0, $1)"
-                                                        let v588 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v586, v460) v587 
-                                                        let v589 : string = "$0 * $1"
-                                                        let v590 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v584, v588) v589 
-                                                        let v591 : string = "$0 * $1"
-                                                        let v592 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v590, v568) v591 
-                                                        let v593 : string = "$0 * $1"
-                                                        let v594 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v592, v558) v593 
-                                                        let v595 : string = "$0 * $1"
-                                                        let v596 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v594, v582) v595 
-                                                        v596
-                                            let v599 : string = "num_complex::Complex::new($0, $1)"
-                                            let v600 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v599 
-                                            let v601 : string = "num_complex::Complex::new($0, $1)"
-                                            let v602 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v601 
-                                            let v603 : string = "num_complex::Complex::powc($0, $1)"
-                                            let v604 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v602, v344) v603 
-                                            let v605 : string = "$0 * $1"
-                                            let v606 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v600, v604) v605 
-                                            let v607 : string = "$0 * $1"
-                                            let v608 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v606, v452) v607 
-                                            let v609 : string = "$0 * $1"
-                                            let v610 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v608, v442) v609 
-                                            let v611 : string = "$0 * $1"
-                                            let v612 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v610, v598) v611 
-                                            v612
-                                let v615 : string = "num_complex::Complex::new($0, $1)"
-                                let v616 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v615 
-                                let v617 : string = "num_complex::Complex::new($0, $1)"
-                                let v618 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v617 
-                                let v619 : string = "num_complex::Complex::powc($0, $1)"
-                                let v620 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v618, v228) v619 
-                                let v621 : string = "$0 * $1"
-                                let v622 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v616, v620) v621 
-                                let v623 : string = "$0 * $1"
-                                let v624 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v622, v336) v623 
-                                let v625 : string = "$0 * $1"
-                                let v626 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v624, v326) v625 
-                                let v627 : string = "$0 * $1"
-                                let v628 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v626, v614) v627 
-                                v628
-                    let v631 : string = "num_complex::Complex::new($0, $1)"
-                    let v632 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v631 
-                    let v633 : string = "num_complex::Complex::new($0, $1)"
-                    let v634 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v633 
-                    let v635 : string = "num_complex::Complex::powc($0, $1)"
-                    let v636 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v634, v112) v635 
-                    let v637 : string = "$0 * $1"
-                    let v638 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v632, v636) v637 
-                    let v639 : string = "$0 * $1"
-                    let v640 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v638, v220) v639 
-                    let v641 : string = "$0 * $1"
-                    let v642 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v640, v210) v641 
-                    let v643 : string = "$0 * $1"
-                    let v644 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v642, v630) v643 
-                    v644
-        let v647 : string = "num_complex::Complex::new($0, $1)"
-        let v648 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v647 
-        let v649 : string = "num_complex::Complex::new($0, $1)"
-        let v650 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v649 
-        let v651 : string = "num_complex::Complex::powc($0, $1)"
-        let v652 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v650, v1) v651 
-        let v653 : string = "$0 * $1"
-        let v654 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v648, v652) v653 
-        let v655 : string = "$0 * $1"
-        let v656 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v654, v104) v655 
-        let v657 : string = "$0 * $1"
-        let v658 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v656, v94) v657 
-        let v659 : string = "$0 * $1"
-        let v660 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v658, v646) v659 
-        v660
+                                                                v831
+                                                        let v838 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v839 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v838 
+                                                        let v840 : string = "num_complex::Complex::new($0, $1)"
+                                                        let v841 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v840 
+                                                        let v842 : string = "num_complex::Complex::powc($0, $1)"
+                                                        let v843 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v841, v664) v842 
+                                                        let v844 : string = "$0 * $1"
+                                                        let v845 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v839, v843) v844 
+                                                        let v846 : string = "$0 * $1"
+                                                        let v847 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v845, v823) v846 
+                                                        let v848 : string = "$0 * $1"
+                                                        let v849 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v847, v813) v848 
+                                                        let v850 : string = "$0 * $1"
+                                                        let v851 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v849, v837) v850 
+                                                        v851
+                                            let v854 : string = "num_complex::Complex::new($0, $1)"
+                                            let v855 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v854 
+                                            let v856 : string = "num_complex::Complex::new($0, $1)"
+                                            let v857 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v856 
+                                            let v858 : string = "num_complex::Complex::powc($0, $1)"
+                                            let v859 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v857, v497) v858 
+                                            let v860 : string = "$0 * $1"
+                                            let v861 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v855, v859) v860 
+                                            let v862 : string = "$0 * $1"
+                                            let v863 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v861, v656) v862 
+                                            let v864 : string = "$0 * $1"
+                                            let v865 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v863, v646) v864 
+                                            let v866 : string = "$0 * $1"
+                                            let v867 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v865, v853) v866 
+                                            v867
+                                let v870 : string = "num_complex::Complex::new($0, $1)"
+                                let v871 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v870 
+                                let v872 : string = "num_complex::Complex::new($0, $1)"
+                                let v873 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v872 
+                                let v874 : string = "num_complex::Complex::powc($0, $1)"
+                                let v875 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v873, v330) v874 
+                                let v876 : string = "$0 * $1"
+                                let v877 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v871, v875) v876 
+                                let v878 : string = "$0 * $1"
+                                let v879 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v877, v489) v878 
+                                let v880 : string = "$0 * $1"
+                                let v881 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v879, v479) v880 
+                                let v882 : string = "$0 * $1"
+                                let v883 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v881, v869) v882 
+                                v883
+                    let v886 : string = "num_complex::Complex::new($0, $1)"
+                    let v887 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v886 
+                    let v888 : string = "num_complex::Complex::new($0, $1)"
+                    let v889 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v888 
+                    let v890 : string = "num_complex::Complex::powc($0, $1)"
+                    let v891 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v889, v163) v890 
+                    let v892 : string = "$0 * $1"
+                    let v893 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v887, v891) v892 
+                    let v894 : string = "$0 * $1"
+                    let v895 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v893, v322) v894 
+                    let v896 : string = "$0 * $1"
+                    let v897 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v895, v312) v896 
+                    let v898 : string = "$0 * $1"
+                    let v899 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v897, v885) v898 
+                    v899
+        let v902 : string = "num_complex::Complex::new($0, $1)"
+        let v903 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v902 
+        let v904 : string = "num_complex::Complex::new($0, $1)"
+        let v905 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v904 
+        let v906 : string = "num_complex::Complex::powc($0, $1)"
+        let v907 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v905, v1) v906 
+        let v908 : string = "$0 * $1"
+        let v909 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v903, v907) v908 
+        let v910 : string = "$0 * $1"
+        let v911 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v909, v155) v910 
+        let v912 : string = "$0 * $1"
+        let v913 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v911, v145) v912 
+        let v914 : string = "$0 * $1"
+        let v915 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v913, v901) v914 
+        v915
 and method18 (v0 : bool) : bool =
     v0
 and method20 () : string =
     let v0 : string = ""
     v0
-and method21 (v0 : Mut3, v1 : string) : unit =
+and method21 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = "{ "
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
+and method22 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = "expected"
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
+and method23 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = " = "
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
+and method24 (v0 : Mut3, v1 : string) : unit =
     let v2 : string = v0.l0
     let v4 : string = v2 + v1 
     v0.l0 <- v4
     ()
+and method25 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = " }"
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
 and method19 (v0 : float) : string =
     let v1 : string = method20()
-    let v3 : Mut3 = {l0 = v1} : Mut3
-    let v5 : string = "{ "
-    method21(v3, v5)
-    let v20 : string = "expected"
-    method21(v3, v20)
-    let v35 : string = " = "
-    method21(v3, v35)
-    let v53 : string = $"%+.6f{v0}"
-    method21(v3, v53)
-    let v70 : string = " }"
-    method21(v3, v70)
-    let v84 : string = v3.l0
-    v84
-and method22 (v0 : float, v1 : float) : string =
+    let v10 : Mut3 = {l0 = v1} : Mut3
+    method21(v10)
+    method22(v10)
+    method23(v10)
+    let v154 : string = $"%+.6f{v0}"
+    method24(v10, v154)
+    method25(v10)
+    let v243 : string = v10.l0
+    v243
+and method27 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = "actual"
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
+and method28 (v0 : Mut3) : unit =
+    let v1 : string = v0.l0
+    let v4 : string = "; "
+    let v5 : string = v1 + v4 
+    v0.l0 <- v5
+    ()
+and method26 (v0 : float, v1 : float) : string =
     let v2 : string = method20()
-    let v4 : Mut3 = {l0 = v2} : Mut3
-    let v6 : string = "{ "
-    method21(v4, v6)
-    let v21 : string = "actual"
-    method21(v4, v21)
-    let v36 : string = " = "
-    method21(v4, v36)
-    let v54 : string = $"%+.6f{v0}"
-    method21(v4, v54)
-    let v71 : string = "; "
-    method21(v4, v71)
-    let v86 : string = "expected"
-    method21(v4, v86)
-    method21(v4, v36)
-    let v118 : string = $"%+.6f{v1}"
-    method21(v4, v118)
-    let v135 : string = " }"
-    method21(v4, v135)
-    let v149 : string = v4.l0
-    v149
+    let v11 : Mut3 = {l0 = v2} : Mut3
+    method21(v11)
+    method27(v11)
+    method23(v11)
+    let v155 : string = $"%+.6f{v0}"
+    method24(v11, v155)
+    method28(v11)
+    method22(v11)
+    method23(v11)
+    let v343 : string = $"%+.6f{v1}"
+    method24(v11, v343)
+    method25(v11)
+    let v432 : string = v11.l0
+    v432
 and closure2 (v0 : string) () : unit =
     let v1 : (string -> unit) = System.Console.WriteLine
     v1 v0
@@ -1980,98 +2006,98 @@ and method1 (v0 : pyo3_Python) : unit =
         let _run_target_args'_v17 = v27 
         #endif
         let v28 : num_complex_Complex<float> option = _run_target_args'_v17 
-        let v33 : (num_complex_Complex<float> -> US0) = method17()
-        let v34 : US0 option = v28 |> Option.map v33 
-        let v54 : US0 = US0_1
-        let v55 : US0 = v34 |> Option.defaultValue v54 
-        let v59 : string = "f64::NAN"
-        let v60 : float = Fable.Core.RustInterop.emitRustExpr () v59 
-        let v61 : string = "f64::NAN"
-        let v62 : float = Fable.Core.RustInterop.emitRustExpr () v61 
-        let v63 : string = "num_complex::Complex::new($0, $1)"
-        let v64 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v60, v62) v63 
-        let v67 : num_complex_Complex<float> =
-            match v55 with
+        let v42 : (num_complex_Complex<float> -> US0) = method17()
+        let v43 : US0 option = v28 |> Option.map v42 
+        let v91 : US0 = US0_1
+        let v92 : US0 = v43 |> Option.defaultValue v91 
+        let v103 : string = "f64::NAN"
+        let v104 : float = Fable.Core.RustInterop.emitRustExpr () v103 
+        let v105 : string = "f64::NAN"
+        let v106 : float = Fable.Core.RustInterop.emitRustExpr () v105 
+        let v107 : string = "num_complex::Complex::new($0, $1)"
+        let v108 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v104, v106) v107 
+        let v111 : num_complex_Complex<float> =
+            match v92 with
             | US0_1 -> (* None *)
-                v64
-            | US0_0(v65) -> (* Some *)
-                v65
-        let v68 : string = "$0.im"
-        let v69 : float = Fable.Core.RustInterop.emitRustExpr v67 v68 
-        let v70 : bool = v69 = 0.0
-        let v72 : bool =
-            if v70 then
+                v108
+            | US0_0(v109) -> (* Some *)
+                v109
+        let v112 : string = "$0.im"
+        let v113 : float = Fable.Core.RustInterop.emitRustExpr v111 v112 
+        let v114 : bool = v113 = 0.0
+        let v116 : bool =
+            if v114 then
                 true
             else
-                method18(v70)
-        let v77 : string =
-            if v70 then
-                let v73 : float = 0.0
-                method19(v73)
+                method18(v114)
+        let v121 : string =
+            if v114 then
+                let v117 : float = 0.0
+                method19(v117)
             else
-                let v75 : float = 0.0
-                method22(v69, v75)
-        let v81 : string = "__assert_eq"
-        let v82 : string = " "
-        let v83 : string = v81 + v82 
-        let v90 : string =
-            if v70 then
-                let v86 : float = 0.0
-                method19(v86)
+                let v119 : float = 0.0
+                method26(v113, v119)
+        let v125 : string = "__assert_eq"
+        let v126 : string = " "
+        let v127 : string = v125 + v126 
+        let v141 : string =
+            if v114 then
+                let v137 : float = 0.0
+                method19(v137)
             else
-                let v88 : float = 0.0
-                method22(v69, v88)
-        let v92 : string = v83 + v90 
-        let v96 : unit = ()
-        let v97 : (unit -> unit) = closure2(v92)
-        let v98 : unit = (fun () -> v97 (); v96) ()
-        let v100 : bool = v72 = false
-        if v100 then
-            failwith<unit> v92
-        let v101 : string = "$0.re"
-        let v102 : float = Fable.Core.RustInterop.emitRustExpr v67 v101 
-        let v103 : float = v102 - v11
-        let v104 : float =  -v103
-        let v105 : bool = v103 >= v104
-        let v106 : float =
-            if v105 then
-                v103
+                let v139 : float = 0.0
+                method26(v113, v139)
+        let v143 : string = v127 + v141 
+        let v172 : unit = ()
+        let v173 : (unit -> unit) = closure2(v143)
+        let v174 : unit = (fun () -> v173 (); v172) ()
+        let v184 : bool = v116 = false
+        if v184 then
+            failwith<unit> v143
+        let v185 : string = "$0.re"
+        let v186 : float = Fable.Core.RustInterop.emitRustExpr v111 v185 
+        let v187 : float = v186 - v11
+        let v188 : float =  -v187
+        let v189 : bool = v187 >= v188
+        let v190 : float =
+            if v189 then
+                v187
             else
-                v104
-        let v107 : bool = v106 < 0.0001
-        let v109 : bool =
-            if v107 then
+                v188
+        let v191 : bool = v190 < 0.0001
+        let v193 : bool =
+            if v191 then
                 true
             else
-                method18(v107)
-        let v114 : string =
-            if v107 then
-                let v110 : float = 0.0001
-                method19(v110)
+                method18(v191)
+        let v198 : string =
+            if v191 then
+                let v194 : float = 0.0001
+                method19(v194)
             else
-                let v112 : float = 0.0001
-                method22(v106, v112)
-        let v117 : string = "__assert_lt"
-        let v118 : string = v117 + v82 
-        let v125 : string =
-            if v107 then
-                let v121 : float = 0.0001
-                method19(v121)
+                let v196 : float = 0.0001
+                method26(v190, v196)
+        let v201 : string = "__assert_lt"
+        let v202 : string = v201 + v126 
+        let v216 : string =
+            if v191 then
+                let v212 : float = 0.0001
+                method19(v212)
             else
-                let v123 : float = 0.0001
-                method22(v106, v123)
-        let v127 : string = v118 + v125 
-        let v131 : unit = ()
-        let v132 : (unit -> unit) = closure2(v127)
-        let v133 : unit = (fun () -> v132 (); v131) ()
-        let v135 : bool = v109 = false
-        if v135 then
-            failwith<unit> v127
-        let v136 : int32 = v9 + 1
-        v7.l0 <- v136
+                let v214 : float = 0.0001
+                method26(v190, v214)
+        let v218 : string = v202 + v216 
+        let v247 : unit = ()
+        let v248 : (unit -> unit) = closure2(v218)
+        let v249 : unit = (fun () -> v248 (); v247) ()
+        let v259 : bool = v193 = false
+        if v259 then
+            failwith<unit> v218
+        let v260 : int32 = v9 + 1
+        v7.l0 <- v260
         ()
     ()
-and method23 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
+and method29 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
     v0
 and method0 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
@@ -2082,87 +2108,87 @@ and method0 () : unit =
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
     method1(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method25 (v0 : pyo3_Python) : unit =
+and method31 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, -2.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -2207,190 +2233,190 @@ and method25 (v0 : pyo3_Python) : unit =
     let _run_target_args'_v8 = v18 
     #endif
     let v19 : num_complex_Complex<float> option = _run_target_args'_v8 
-    let v24 : (num_complex_Complex<float> -> US0) = method17()
-    let v25 : US0 option = v19 |> Option.map v24 
-    let v45 : US0 = US0_1
-    let v46 : US0 = v25 |> Option.defaultValue v45 
-    let v50 : string = "f64::NAN"
-    let v51 : float = Fable.Core.RustInterop.emitRustExpr () v50 
-    let v52 : string = "f64::NAN"
-    let v53 : float = Fable.Core.RustInterop.emitRustExpr () v52 
-    let v54 : string = "num_complex::Complex::new($0, $1)"
-    let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v51, v53) v54 
-    let v58 : num_complex_Complex<float> =
-        match v46 with
+    let v33 : (num_complex_Complex<float> -> US0) = method17()
+    let v34 : US0 option = v19 |> Option.map v33 
+    let v82 : US0 = US0_1
+    let v83 : US0 = v34 |> Option.defaultValue v82 
+    let v94 : string = "f64::NAN"
+    let v95 : float = Fable.Core.RustInterop.emitRustExpr () v94 
+    let v96 : string = "f64::NAN"
+    let v97 : float = Fable.Core.RustInterop.emitRustExpr () v96 
+    let v98 : string = "num_complex::Complex::new($0, $1)"
+    let v99 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v95, v97) v98 
+    let v102 : num_complex_Complex<float> =
+        match v83 with
         | US0_1 -> (* None *)
-            v55
-        | US0_0(v56) -> (* Some *)
-            v56
-    let v59 : string = "$0.re"
-    let v60 : float = Fable.Core.RustInterop.emitRustExpr v58 v59 
-    let v61 : float = v60 - 0.8673
-    let v62 : float =  -v61
-    let v63 : bool = v61 >= v62
-    let v64 : float =
-        if v63 then
-            v61
-        else
-            v62
-    let v65 : bool = v64 < 0.001
-    let v67 : bool =
-        if v65 then
-            true
-        else
-            method18(v65)
-    let v72 : string =
-        if v65 then
-            let v68 : float = 0.001
-            method19(v68)
-        else
-            let v70 : float = 0.001
-            method22(v64, v70)
-    let v76 : string = "__assert_lt"
-    let v77 : string = " "
-    let v78 : string = v76 + v77 
-    let v85 : string =
-        if v65 then
-            let v81 : float = 0.001
-            method19(v81)
-        else
-            let v83 : float = 0.001
-            method22(v64, v83)
-    let v87 : string = v78 + v85 
-    let v91 : unit = ()
-    let v92 : (unit -> unit) = closure2(v87)
-    let v93 : unit = (fun () -> v92 (); v91) ()
-    let v95 : bool = v67 = false
-    if v95 then
-        failwith<unit> v87
-    let v96 : string = "$0.im"
-    let v97 : float = Fable.Core.RustInterop.emitRustExpr v58 v96 
-    let v98 : float = v97 - 0.275
-    let v99 : float =  -v98
-    let v100 : bool = v98 >= v99
-    let v101 : float =
-        if v100 then
-            v98
-        else
             v99
-    let v102 : bool = v101 < 0.001
-    let v104 : bool =
-        if v102 then
+        | US0_0(v100) -> (* Some *)
+            v100
+    let v103 : string = "$0.re"
+    let v104 : float = Fable.Core.RustInterop.emitRustExpr v102 v103 
+    let v105 : float = v104 - 0.8673
+    let v106 : float =  -v105
+    let v107 : bool = v105 >= v106
+    let v108 : float =
+        if v107 then
+            v105
+        else
+            v106
+    let v109 : bool = v108 < 0.001
+    let v111 : bool =
+        if v109 then
             true
         else
-            method18(v102)
-    let v109 : string =
-        if v102 then
-            let v105 : float = 0.001
-            method19(v105)
+            method18(v109)
+    let v116 : string =
+        if v109 then
+            let v112 : float = 0.001
+            method19(v112)
         else
-            let v107 : float = 0.001
-            method22(v101, v107)
-    let v111 : string = v76 + v77 
-    let v118 : string =
-        if v102 then
             let v114 : float = 0.001
-            method19(v114)
+            method26(v108, v114)
+    let v120 : string = "__assert_lt"
+    let v121 : string = " "
+    let v122 : string = v120 + v121 
+    let v136 : string =
+        if v109 then
+            let v132 : float = 0.001
+            method19(v132)
         else
-            let v116 : float = 0.001
-            method22(v101, v116)
-    let v120 : string = v111 + v118 
-    let v124 : unit = ()
-    let v125 : (unit -> unit) = closure2(v120)
-    let v126 : unit = (fun () -> v125 (); v124) ()
-    let v128 : bool = v104 = false
-    if v128 then
-        failwith<unit> v120
-and method24 () : unit =
+            let v134 : float = 0.001
+            method26(v108, v134)
+    let v138 : string = v122 + v136 
+    let v167 : unit = ()
+    let v168 : (unit -> unit) = closure2(v138)
+    let v169 : unit = (fun () -> v168 (); v167) ()
+    let v179 : bool = v111 = false
+    if v179 then
+        failwith<unit> v138
+    let v180 : string = "$0.im"
+    let v181 : float = Fable.Core.RustInterop.emitRustExpr v102 v180 
+    let v182 : float = v181 - 0.275
+    let v183 : float =  -v182
+    let v184 : bool = v182 >= v183
+    let v185 : float =
+        if v184 then
+            v182
+        else
+            v183
+    let v186 : bool = v185 < 0.001
+    let v188 : bool =
+        if v186 then
+            true
+        else
+            method18(v186)
+    let v193 : string =
+        if v186 then
+            let v189 : float = 0.001
+            method19(v189)
+        else
+            let v191 : float = 0.001
+            method26(v185, v191)
+    let v195 : string = v120 + v121 
+    let v209 : string =
+        if v186 then
+            let v205 : float = 0.001
+            method19(v205)
+        else
+            let v207 : float = 0.001
+            method26(v185, v207)
+    let v211 : string = v195 + v209 
+    let v240 : unit = ()
+    let v241 : (unit -> unit) = closure2(v211)
+    let v242 : unit = (fun () -> v241 (); v240) ()
+    let v252 : bool = v188 = false
+    if v252 then
+        failwith<unit> v211
+and method30 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method25(v3)
+    method31(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method28 () : UH0 =
+and method34 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(-40.0, v0)
     let v2 : UH0 = UH0_1(-38.0, v1)
@@ -2412,7 +2438,7 @@ and method28 () : UH0 =
     let v18 : UH0 = UH0_1(-6.0, v17)
     let v19 : UH0 = UH0_1(-4.0, v18)
     UH0_1(-2.0, v19)
-and method29 (v0 : pyo3_Python, v1 : UH0) : unit =
+and method35 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
     | UH0_1(v2, v3) -> (* Cons *)
         let v4 : string = "num_complex::Complex::new($0, $1)"
@@ -2459,180 +2485,180 @@ and method29 (v0 : pyo3_Python, v1 : UH0) : unit =
         let _run_target_args'_v11 = v21 
         #endif
         let v22 : num_complex_Complex<float> option = _run_target_args'_v11 
-        let v27 : (num_complex_Complex<float> -> US0) = method17()
-        let v28 : US0 option = v22 |> Option.map v27 
-        let v48 : US0 = US0_1
-        let v49 : US0 = v28 |> Option.defaultValue v48 
-        let v53 : string = "f64::NAN"
-        let v54 : float = Fable.Core.RustInterop.emitRustExpr () v53 
-        let v55 : string = "f64::NAN"
-        let v56 : float = Fable.Core.RustInterop.emitRustExpr () v55 
-        let v57 : string = "num_complex::Complex::new($0, $1)"
-        let v58 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v54, v56) v57 
-        let v61 : num_complex_Complex<float> =
-            match v49 with
+        let v36 : (num_complex_Complex<float> -> US0) = method17()
+        let v37 : US0 option = v22 |> Option.map v36 
+        let v85 : US0 = US0_1
+        let v86 : US0 = v37 |> Option.defaultValue v85 
+        let v97 : string = "f64::NAN"
+        let v98 : float = Fable.Core.RustInterop.emitRustExpr () v97 
+        let v99 : string = "f64::NAN"
+        let v100 : float = Fable.Core.RustInterop.emitRustExpr () v99 
+        let v101 : string = "num_complex::Complex::new($0, $1)"
+        let v102 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v98, v100) v101 
+        let v105 : num_complex_Complex<float> =
+            match v86 with
             | US0_1 -> (* None *)
-                v58
-            | US0_0(v59) -> (* Some *)
-                v59
-        let v62 : string = "$0.re"
-        let v63 : float = Fable.Core.RustInterop.emitRustExpr v61 v62 
-        let v64 : bool = v63 = 0.0
-        let v66 : bool =
-            if v64 then
+                v102
+            | US0_0(v103) -> (* Some *)
+                v103
+        let v106 : string = "$0.re"
+        let v107 : float = Fable.Core.RustInterop.emitRustExpr v105 v106 
+        let v108 : bool = v107 = 0.0
+        let v110 : bool =
+            if v108 then
                 true
             else
-                method18(v64)
-        let v71 : string =
-            if v64 then
-                let v67 : float = 0.0
-                method19(v67)
-            else
-                let v69 : float = 0.0
-                method22(v63, v69)
-        let v75 : string = "__assert_eq"
-        let v76 : string = " "
-        let v77 : string = v75 + v76 
-        let v84 : string =
-            if v64 then
-                let v80 : float = 0.0
-                method19(v80)
-            else
-                let v82 : float = 0.0
-                method22(v63, v82)
-        let v86 : string = v77 + v84 
-        let v90 : unit = ()
-        let v91 : (unit -> unit) = closure2(v86)
-        let v92 : unit = (fun () -> v91 (); v90) ()
-        let v94 : bool = v66 = false
-        if v94 then
-            failwith<unit> v86
-        let v95 : string = "$0.im"
-        let v96 : float = Fable.Core.RustInterop.emitRustExpr v61 v95 
-        let v97 : bool = v96 = 0.0
-        let v99 : bool =
-            if v97 then
-                true
-            else
-                method18(v97)
-        let v104 : string =
-            if v97 then
-                let v100 : float = 0.0
-                method19(v100)
-            else
-                let v102 : float = 0.0
-                method22(v96, v102)
-        let v106 : string = v75 + v76 
-        let v113 : string =
-            if v97 then
-                let v109 : float = 0.0
-                method19(v109)
-            else
+                method18(v108)
+        let v115 : string =
+            if v108 then
                 let v111 : float = 0.0
-                method22(v96, v111)
-        let v115 : string = v106 + v113 
-        let v119 : unit = ()
-        let v120 : (unit -> unit) = closure2(v115)
-        let v121 : unit = (fun () -> v120 (); v119) ()
-        let v123 : bool = v99 = false
-        if v123 then
-            failwith<unit> v115
-        method29(v0, v3)
+                method19(v111)
+            else
+                let v113 : float = 0.0
+                method26(v107, v113)
+        let v119 : string = "__assert_eq"
+        let v120 : string = " "
+        let v121 : string = v119 + v120 
+        let v135 : string =
+            if v108 then
+                let v131 : float = 0.0
+                method19(v131)
+            else
+                let v133 : float = 0.0
+                method26(v107, v133)
+        let v137 : string = v121 + v135 
+        let v166 : unit = ()
+        let v167 : (unit -> unit) = closure2(v137)
+        let v168 : unit = (fun () -> v167 (); v166) ()
+        let v178 : bool = v110 = false
+        if v178 then
+            failwith<unit> v137
+        let v179 : string = "$0.im"
+        let v180 : float = Fable.Core.RustInterop.emitRustExpr v105 v179 
+        let v181 : bool = v180 = 0.0
+        let v183 : bool =
+            if v181 then
+                true
+            else
+                method18(v181)
+        let v188 : string =
+            if v181 then
+                let v184 : float = 0.0
+                method19(v184)
+            else
+                let v186 : float = 0.0
+                method26(v180, v186)
+        let v190 : string = v119 + v120 
+        let v204 : string =
+            if v181 then
+                let v200 : float = 0.0
+                method19(v200)
+            else
+                let v202 : float = 0.0
+                method26(v180, v202)
+        let v206 : string = v190 + v204 
+        let v235 : unit = ()
+        let v236 : (unit -> unit) = closure2(v206)
+        let v237 : unit = (fun () -> v236 (); v235) ()
+        let v247 : bool = v183 = false
+        if v247 then
+            failwith<unit> v206
+        method35(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
-and method27 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method28()
-    method29(v0, v1)
-and method26 () : unit =
+and method33 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method34()
+    method35(v0, v1)
+and method32 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method27(v3)
+    method33(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method31 (v0 : pyo3_Python) : unit =
+and method37 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v1 
     let v3 : string = "num_complex::Complex::new($0, $1)"
@@ -2693,192 +2719,192 @@ and method31 (v0 : pyo3_Python) : unit =
         let _run_target_args'_v24 = v34 
         #endif
         let v35 : num_complex_Complex<float> option = _run_target_args'_v24 
-        let v40 : (num_complex_Complex<float> -> US0) = method17()
-        let v41 : US0 option = v35 |> Option.map v40 
-        let v61 : US0 = US0_1
-        let v62 : US0 = v41 |> Option.defaultValue v61 
-        let v66 : string = "f64::NAN"
-        let v67 : float = Fable.Core.RustInterop.emitRustExpr () v66 
-        let v68 : string = "f64::NAN"
-        let v69 : float = Fable.Core.RustInterop.emitRustExpr () v68 
-        let v70 : string = "num_complex::Complex::new($0, $1)"
-        let v71 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v67, v69) v70 
-        let v74 : num_complex_Complex<float> =
-            match v62 with
+        let v49 : (num_complex_Complex<float> -> US0) = method17()
+        let v50 : US0 option = v35 |> Option.map v49 
+        let v98 : US0 = US0_1
+        let v99 : US0 = v50 |> Option.defaultValue v98 
+        let v110 : string = "f64::NAN"
+        let v111 : float = Fable.Core.RustInterop.emitRustExpr () v110 
+        let v112 : string = "f64::NAN"
+        let v113 : float = Fable.Core.RustInterop.emitRustExpr () v112 
+        let v114 : string = "num_complex::Complex::new($0, $1)"
+        let v115 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v111, v113) v114 
+        let v118 : num_complex_Complex<float> =
+            match v99 with
             | US0_1 -> (* None *)
-                v71
-            | US0_0(v72) -> (* Some *)
-                v72
-        let v75 : string = "$0.re"
-        let v76 : float = Fable.Core.RustInterop.emitRustExpr v74 v75 
-        let v77 : float =  -v76
-        let v78 : bool = v76 >= v77
-        let v79 : float =
-            if v78 then
-                v76
+                v115
+            | US0_0(v116) -> (* Some *)
+                v116
+        let v119 : string = "$0.re"
+        let v120 : float = Fable.Core.RustInterop.emitRustExpr v118 v119 
+        let v121 : float =  -v120
+        let v122 : bool = v120 >= v121
+        let v123 : float =
+            if v122 then
+                v120
             else
-                v77
-        let v80 : bool = v79 < 0.0001
-        let v82 : bool =
-            if v80 then
+                v121
+        let v124 : bool = v123 < 0.0001
+        let v126 : bool =
+            if v124 then
                 true
             else
-                method18(v80)
-        let v87 : string =
-            if v80 then
-                let v83 : float = 0.0001
-                method19(v83)
+                method18(v124)
+        let v131 : string =
+            if v124 then
+                let v127 : float = 0.0001
+                method19(v127)
             else
-                let v85 : float = 0.0001
-                method22(v79, v85)
-        let v91 : string = "__assert_lt"
-        let v92 : string = " "
-        let v93 : string = v91 + v92 
-        let v100 : string =
-            if v80 then
-                let v96 : float = 0.0001
-                method19(v96)
+                let v129 : float = 0.0001
+                method26(v123, v129)
+        let v135 : string = "__assert_lt"
+        let v136 : string = " "
+        let v137 : string = v135 + v136 
+        let v151 : string =
+            if v124 then
+                let v147 : float = 0.0001
+                method19(v147)
             else
-                let v98 : float = 0.0001
-                method22(v79, v98)
-        let v102 : string = v93 + v100 
-        let v106 : unit = ()
-        let v107 : (unit -> unit) = closure2(v102)
-        let v108 : unit = (fun () -> v107 (); v106) ()
-        let v110 : bool = v82 = false
-        if v110 then
-            failwith<unit> v102
-        let v111 : string = "$0.im"
-        let v112 : float = Fable.Core.RustInterop.emitRustExpr v74 v111 
-        let v113 : float =  -v112
-        let v114 : bool = v112 >= v113
-        let v115 : float =
-            if v114 then
-                v112
+                let v149 : float = 0.0001
+                method26(v123, v149)
+        let v153 : string = v137 + v151 
+        let v182 : unit = ()
+        let v183 : (unit -> unit) = closure2(v153)
+        let v184 : unit = (fun () -> v183 (); v182) ()
+        let v194 : bool = v126 = false
+        if v194 then
+            failwith<unit> v153
+        let v195 : string = "$0.im"
+        let v196 : float = Fable.Core.RustInterop.emitRustExpr v118 v195 
+        let v197 : float =  -v196
+        let v198 : bool = v196 >= v197
+        let v199 : float =
+            if v198 then
+                v196
             else
-                v113
-        let v116 : bool = v115 < 0.0001
-        let v118 : bool =
-            if v116 then
+                v197
+        let v200 : bool = v199 < 0.0001
+        let v202 : bool =
+            if v200 then
                 true
             else
-                method18(v116)
-        let v123 : string =
-            if v116 then
-                let v119 : float = 0.0001
-                method19(v119)
+                method18(v200)
+        let v207 : string =
+            if v200 then
+                let v203 : float = 0.0001
+                method19(v203)
             else
-                let v121 : float = 0.0001
-                method22(v115, v121)
-        let v125 : string = v91 + v92 
-        let v132 : string =
-            if v116 then
-                let v128 : float = 0.0001
-                method19(v128)
+                let v205 : float = 0.0001
+                method26(v199, v205)
+        let v209 : string = v135 + v136 
+        let v223 : string =
+            if v200 then
+                let v219 : float = 0.0001
+                method19(v219)
             else
-                let v130 : float = 0.0001
-                method22(v115, v130)
-        let v134 : string = v125 + v132 
-        let v138 : unit = ()
-        let v139 : (unit -> unit) = closure2(v134)
-        let v140 : unit = (fun () -> v139 (); v138) ()
-        let v142 : bool = v118 = false
-        if v142 then
-            failwith<unit> v134
-        let v143 : int32 = v17 + 1
-        v15.l0 <- v143
+                let v221 : float = 0.0001
+                method26(v199, v221)
+        let v225 : string = v209 + v223 
+        let v254 : unit = ()
+        let v255 : (unit -> unit) = closure2(v225)
+        let v256 : unit = (fun () -> v255 (); v254) ()
+        let v266 : bool = v202 = false
+        if v266 then
+            failwith<unit> v225
+        let v267 : int32 = v17 + 1
+        v15.l0 <- v267
         ()
     ()
-and method30 () : unit =
+and method36 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method31(v3)
+    method37(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method33 (v0 : pyo3_Python) : unit =
+and method39 (v0 : pyo3_Python) : unit =
     let v1 : (float []) = [|2.0; 3.0; 4.0; 5.0; 10.0; 20.0; 50.0|]
     let v2 : int32 = v1.Length
     let v3 : Mut0 = {l0 = 0} : Mut0
@@ -2929,179 +2955,179 @@ and method33 (v0 : pyo3_Python) : unit =
         let _run_target_args'_v14 = v24 
         #endif
         let v25 : num_complex_Complex<float> option = _run_target_args'_v14 
-        let v30 : (num_complex_Complex<float> -> US0) = method17()
-        let v31 : US0 option = v25 |> Option.map v30 
-        let v51 : US0 = US0_1
-        let v52 : US0 = v31 |> Option.defaultValue v51 
-        let v56 : string = "f64::NAN"
-        let v57 : float = Fable.Core.RustInterop.emitRustExpr () v56 
-        let v58 : string = "f64::NAN"
-        let v59 : float = Fable.Core.RustInterop.emitRustExpr () v58 
-        let v60 : string = "num_complex::Complex::new($0, $1)"
-        let v61 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v57, v59) v60 
-        let v64 : num_complex_Complex<float> =
-            match v52 with
+        let v39 : (num_complex_Complex<float> -> US0) = method17()
+        let v40 : US0 option = v25 |> Option.map v39 
+        let v88 : US0 = US0_1
+        let v89 : US0 = v40 |> Option.defaultValue v88 
+        let v100 : string = "f64::NAN"
+        let v101 : float = Fable.Core.RustInterop.emitRustExpr () v100 
+        let v102 : string = "f64::NAN"
+        let v103 : float = Fable.Core.RustInterop.emitRustExpr () v102 
+        let v104 : string = "num_complex::Complex::new($0, $1)"
+        let v105 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v101, v103) v104 
+        let v108 : num_complex_Complex<float> =
+            match v89 with
             | US0_1 -> (* None *)
-                v61
-            | US0_0(v62) -> (* Some *)
-                v62
-        let v65 : string = "$0.re"
-        let v66 : float = Fable.Core.RustInterop.emitRustExpr v64 v65 
-        let v67 : bool = v66 > 0.0
-        let v69 : bool =
-            if v67 then
+                v105
+            | US0_0(v106) -> (* Some *)
+                v106
+        let v109 : string = "$0.re"
+        let v110 : float = Fable.Core.RustInterop.emitRustExpr v108 v109 
+        let v111 : bool = v110 > 0.0
+        let v113 : bool =
+            if v111 then
                 true
             else
-                method18(v67)
-        let v74 : string =
-            if v67 then
-                let v70 : float = 0.0
-                method19(v70)
-            else
-                let v72 : float = 0.0
-                method22(v66, v72)
-        let v78 : string = "__assert_gt"
-        let v79 : string = " "
-        let v80 : string = v78 + v79 
-        let v87 : string =
-            if v67 then
-                let v83 : float = 0.0
-                method19(v83)
-            else
-                let v85 : float = 0.0
-                method22(v66, v85)
-        let v89 : string = v80 + v87 
-        let v93 : unit = ()
-        let v94 : (unit -> unit) = closure2(v89)
-        let v95 : unit = (fun () -> v94 (); v93) ()
-        let v97 : bool = v69 = false
-        if v97 then
-            failwith<unit> v89
-        let v98 : string = "$0.im"
-        let v99 : float = Fable.Core.RustInterop.emitRustExpr v64 v98 
-        let v100 : bool = v99 = 0.0
-        let v102 : bool =
-            if v100 then
-                true
-            else
-                method18(v100)
-        let v107 : string =
-            if v100 then
-                let v103 : float = 0.0
-                method19(v103)
-            else
-                let v105 : float = 0.0
-                method22(v99, v105)
-        let v110 : string = "__assert_eq"
-        let v111 : string = v110 + v79 
+                method18(v111)
         let v118 : string =
-            if v100 then
+            if v111 then
                 let v114 : float = 0.0
                 method19(v114)
             else
                 let v116 : float = 0.0
-                method22(v99, v116)
-        let v120 : string = v111 + v118 
-        let v124 : unit = ()
-        let v125 : (unit -> unit) = closure2(v120)
-        let v126 : unit = (fun () -> v125 (); v124) ()
-        let v128 : bool = v102 = false
-        if v128 then
-            failwith<unit> v120
-        let v129 : int32 = v5 + 1
-        v3.l0 <- v129
+                method26(v110, v116)
+        let v122 : string = "__assert_gt"
+        let v123 : string = " "
+        let v124 : string = v122 + v123 
+        let v138 : string =
+            if v111 then
+                let v134 : float = 0.0
+                method19(v134)
+            else
+                let v136 : float = 0.0
+                method26(v110, v136)
+        let v140 : string = v124 + v138 
+        let v169 : unit = ()
+        let v170 : (unit -> unit) = closure2(v140)
+        let v171 : unit = (fun () -> v170 (); v169) ()
+        let v181 : bool = v113 = false
+        if v181 then
+            failwith<unit> v140
+        let v182 : string = "$0.im"
+        let v183 : float = Fable.Core.RustInterop.emitRustExpr v108 v182 
+        let v184 : bool = v183 = 0.0
+        let v186 : bool =
+            if v184 then
+                true
+            else
+                method18(v184)
+        let v191 : string =
+            if v184 then
+                let v187 : float = 0.0
+                method19(v187)
+            else
+                let v189 : float = 0.0
+                method26(v183, v189)
+        let v194 : string = "__assert_eq"
+        let v195 : string = v194 + v123 
+        let v209 : string =
+            if v184 then
+                let v205 : float = 0.0
+                method19(v205)
+            else
+                let v207 : float = 0.0
+                method26(v183, v207)
+        let v211 : string = v195 + v209 
+        let v240 : unit = ()
+        let v241 : (unit -> unit) = closure2(v211)
+        let v242 : unit = (fun () -> v241 (); v240) ()
+        let v252 : bool = v186 = false
+        if v252 then
+            failwith<unit> v211
+        let v253 : int32 = v5 + 1
+        v3.l0 <- v253
         ()
     ()
-and method32 () : unit =
+and method38 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method33(v3)
+    method39(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method35 (v0 : pyo3_Python) : unit =
+and method41 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3146,174 +3172,174 @@ and method35 (v0 : pyo3_Python) : unit =
     let _run_target_args'_v8 = v18 
     #endif
     let v19 : num_complex_Complex<float> option = _run_target_args'_v8 
-    let v24 : (num_complex_Complex<float> -> US0) = method17()
-    let v25 : US0 option = v19 |> Option.map v24 
-    let v45 : US0 = US0_1
-    let v46 : US0 = v25 |> Option.defaultValue v45 
-    let v50 : string = "f64::NAN"
-    let v51 : float = Fable.Core.RustInterop.emitRustExpr () v50 
-    let v52 : string = "f64::NAN"
-    let v53 : float = Fable.Core.RustInterop.emitRustExpr () v52 
-    let v54 : string = "num_complex::Complex::new($0, $1)"
-    let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v51, v53) v54 
-    let v58 : num_complex_Complex<float> =
-        match v46 with
+    let v33 : (num_complex_Complex<float> -> US0) = method17()
+    let v34 : US0 option = v19 |> Option.map v33 
+    let v82 : US0 = US0_1
+    let v83 : US0 = v34 |> Option.defaultValue v82 
+    let v94 : string = "f64::NAN"
+    let v95 : float = Fable.Core.RustInterop.emitRustExpr () v94 
+    let v96 : string = "f64::NAN"
+    let v97 : float = Fable.Core.RustInterop.emitRustExpr () v96 
+    let v98 : string = "num_complex::Complex::new($0, $1)"
+    let v99 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v95, v97) v98 
+    let v102 : num_complex_Complex<float> =
+        match v83 with
         | US0_1 -> (* None *)
-            v55
-        | US0_0(v56) -> (* Some *)
-            v56
-    let v59 : string = "$0.re"
-    let v60 : float = Fable.Core.RustInterop.emitRustExpr v58 v59 
-    let v61 : bool = v60 = infinity
-    let v63 : bool =
-        if v61 then
+            v99
+        | US0_0(v100) -> (* Some *)
+            v100
+    let v103 : string = "$0.re"
+    let v104 : float = Fable.Core.RustInterop.emitRustExpr v102 v103 
+    let v105 : bool = v104 = infinity
+    let v107 : bool =
+        if v105 then
             true
         else
-            method18(v61)
-    let v68 : string =
-        if v61 then
-            let v64 : float = infinity
-            method19(v64)
+            method18(v105)
+    let v112 : string =
+        if v105 then
+            let v108 : float = infinity
+            method19(v108)
         else
-            let v66 : float = infinity
-            method22(v60, v66)
-    let v72 : string = "__assert_eq"
-    let v73 : string = " "
-    let v74 : string = v72 + v73 
-    let v81 : string =
-        if v61 then
-            let v77 : float = infinity
-            method19(v77)
+            let v110 : float = infinity
+            method26(v104, v110)
+    let v116 : string = "__assert_eq"
+    let v117 : string = " "
+    let v118 : string = v116 + v117 
+    let v132 : string =
+        if v105 then
+            let v128 : float = infinity
+            method19(v128)
         else
-            let v79 : float = infinity
-            method22(v60, v79)
-    let v83 : string = v74 + v81 
-    let v87 : unit = ()
-    let v88 : (unit -> unit) = closure2(v83)
-    let v89 : unit = (fun () -> v88 (); v87) ()
-    let v91 : bool = v63 = false
-    if v91 then
-        failwith<unit> v83
-    let v92 : string = "$0.im"
-    let v93 : float = Fable.Core.RustInterop.emitRustExpr v58 v92 
-    let v94 : bool = v93 = 0.0
-    let v96 : bool =
-        if v94 then
+            let v130 : float = infinity
+            method26(v104, v130)
+    let v134 : string = v118 + v132 
+    let v163 : unit = ()
+    let v164 : (unit -> unit) = closure2(v134)
+    let v165 : unit = (fun () -> v164 (); v163) ()
+    let v175 : bool = v107 = false
+    if v175 then
+        failwith<unit> v134
+    let v176 : string = "$0.im"
+    let v177 : float = Fable.Core.RustInterop.emitRustExpr v102 v176 
+    let v178 : bool = v177 = 0.0
+    let v180 : bool =
+        if v178 then
             true
         else
-            method18(v94)
-    let v101 : string =
-        if v94 then
-            let v97 : float = 0.0
-            method19(v97)
+            method18(v178)
+    let v185 : string =
+        if v178 then
+            let v181 : float = 0.0
+            method19(v181)
         else
-            let v99 : float = 0.0
-            method22(v93, v99)
-    let v103 : string = v72 + v73 
-    let v110 : string =
-        if v94 then
-            let v106 : float = 0.0
-            method19(v106)
+            let v183 : float = 0.0
+            method26(v177, v183)
+    let v187 : string = v116 + v117 
+    let v201 : string =
+        if v178 then
+            let v197 : float = 0.0
+            method19(v197)
         else
-            let v108 : float = 0.0
-            method22(v93, v108)
-    let v112 : string = v103 + v110 
-    let v116 : unit = ()
-    let v117 : (unit -> unit) = closure2(v112)
-    let v118 : unit = (fun () -> v117 (); v116) ()
-    let v120 : bool = v96 = false
-    if v120 then
-        failwith<unit> v112
-and method34 () : unit =
+            let v199 : float = 0.0
+            method26(v177, v199)
+    let v203 : string = v187 + v201 
+    let v232 : unit = ()
+    let v233 : (unit -> unit) = closure2(v203)
+    let v234 : unit = (fun () -> v233 (); v232) ()
+    let v244 : bool = v180 = false
+    if v244 then
+        failwith<unit> v203
+and method40 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method35(v3)
+    method41(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method37 (v0 : pyo3_Python) : unit =
+and method43 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 10.0) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3358,237 +3384,237 @@ and method37 (v0 : pyo3_Python) : unit =
     let _run_target_args'_v8 = v18 
     #endif
     let v19 : num_complex_Complex<float> option = _run_target_args'_v8 
-    let v24 : (num_complex_Complex<float> -> US0) = method17()
-    let v25 : US0 option = v19 |> Option.map v24 
-    let v45 : US0 = US0_1
-    let v46 : US0 = v25 |> Option.defaultValue v45 
-    let v50 : string = "f64::NAN"
-    let v51 : float = Fable.Core.RustInterop.emitRustExpr () v50 
-    let v52 : string = "f64::NAN"
-    let v53 : float = Fable.Core.RustInterop.emitRustExpr () v52 
-    let v54 : string = "num_complex::Complex::new($0, $1)"
-    let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v51, v53) v54 
-    let v58 : num_complex_Complex<float> =
-        match v46 with
+    let v33 : (num_complex_Complex<float> -> US0) = method17()
+    let v34 : US0 option = v19 |> Option.map v33 
+    let v82 : US0 = US0_1
+    let v83 : US0 = v34 |> Option.defaultValue v82 
+    let v94 : string = "f64::NAN"
+    let v95 : float = Fable.Core.RustInterop.emitRustExpr () v94 
+    let v96 : string = "f64::NAN"
+    let v97 : float = Fable.Core.RustInterop.emitRustExpr () v96 
+    let v98 : string = "num_complex::Complex::new($0, $1)"
+    let v99 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v95, v97) v98 
+    let v102 : num_complex_Complex<float> =
+        match v83 with
         | US0_1 -> (* None *)
-            v55
-        | US0_0(v56) -> (* Some *)
-            v56
-    let v59 : string = "$0.re"
-    let v60 : float = Fable.Core.RustInterop.emitRustExpr v2 v59 
-    let v61 : string = "$0.im"
-    let v62 : float = Fable.Core.RustInterop.emitRustExpr v2 v61 
-    let v63 : float =  -v62
-    let v64 : string = "num_complex::Complex::new($0, $1)"
-    let v65 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v60, v63) v64 
-    let v66 : string = $"        s = mpmath.zeta(s)"
-    let v67 : num_complex_Complex<float> = method3(v65)
-    let v68 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v66, v67)
-    let v69 : num_complex_Complex<float> = method13(v0, v65)
+            v99
+        | US0_0(v100) -> (* Some *)
+            v100
+    let v103 : string = "$0.re"
+    let v104 : float = Fable.Core.RustInterop.emitRustExpr v2 v103 
+    let v105 : string = "$0.im"
+    let v106 : float = Fable.Core.RustInterop.emitRustExpr v2 v105 
+    let v107 : float =  -v106
+    let v108 : string = "num_complex::Complex::new($0, $1)"
+    let v109 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v104, v107) v108 
+    let v110 : string = $"        s = mpmath.zeta(s)"
+    let v111 : num_complex_Complex<float> = method3(v109)
+    let v112 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v110, v111)
+    let v113 : num_complex_Complex<float> = method13(v0, v109)
     (* run_target_args'
-    let v71 : unit = ()
+    let v115 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v72 : string = "$0.ok()"
-    let v73 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v68 v72 
-    let _run_target_args'_v71 = v73 
+    let v116 : string = "$0.ok()"
+    let v117 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v112 v116 
+    let _run_target_args'_v115 = v117 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v74 : string = "$0.ok()"
-    let v75 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v68 v74 
-    let _run_target_args'_v71 = v75 
+    let v118 : string = "$0.ok()"
+    let v119 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v112 v118 
+    let _run_target_args'_v115 = v119 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v76 : string = "$0.ok()"
-    let v77 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v68 v76 
-    let _run_target_args'_v71 = v77 
+    let v120 : string = "$0.ok()"
+    let v121 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v112 v120 
+    let _run_target_args'_v115 = v121 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let v78 : num_complex_Complex<float> option = match v68 with Ok x -> Some x | Error _ -> None
-    let _run_target_args'_v71 = v78 
+    let v122 : num_complex_Complex<float> option = match v112 with Ok x -> Some x | Error _ -> None
+    let _run_target_args'_v115 = v122 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let v79 : num_complex_Complex<float> option = match v68 with Ok x -> Some x | Error _ -> None
-    let _run_target_args'_v71 = v79 
+    let v123 : num_complex_Complex<float> option = match v112 with Ok x -> Some x | Error _ -> None
+    let _run_target_args'_v115 = v123 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let v80 : num_complex_Complex<float> option = match v68 with Ok x -> Some x | Error _ -> None
-    let _run_target_args'_v71 = v80 
+    let v124 : num_complex_Complex<float> option = match v112 with Ok x -> Some x | Error _ -> None
+    let _run_target_args'_v115 = v124 
     #endif
 #else
-    let v81 : num_complex_Complex<float> option = match v68 with Ok x -> Some x | Error _ -> None
-    let _run_target_args'_v71 = v81 
+    let v125 : num_complex_Complex<float> option = match v112 with Ok x -> Some x | Error _ -> None
+    let _run_target_args'_v115 = v125 
     #endif
-    let v82 : num_complex_Complex<float> option = _run_target_args'_v71 
-    let v87 : (num_complex_Complex<float> -> US0) = method17()
-    let v88 : US0 option = v82 |> Option.map v87 
-    let v108 : US0 = US0_1
-    let v109 : US0 = v88 |> Option.defaultValue v108 
-    let v113 : string = "f64::NAN"
-    let v114 : float = Fable.Core.RustInterop.emitRustExpr () v113 
-    let v115 : string = "f64::NAN"
-    let v116 : float = Fable.Core.RustInterop.emitRustExpr () v115 
-    let v117 : string = "num_complex::Complex::new($0, $1)"
-    let v118 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v114, v116) v117 
-    let v121 : num_complex_Complex<float> =
-        match v109 with
+    let v126 : num_complex_Complex<float> option = _run_target_args'_v115 
+    let v140 : (num_complex_Complex<float> -> US0) = method17()
+    let v141 : US0 option = v126 |> Option.map v140 
+    let v189 : US0 = US0_1
+    let v190 : US0 = v141 |> Option.defaultValue v189 
+    let v201 : string = "f64::NAN"
+    let v202 : float = Fable.Core.RustInterop.emitRustExpr () v201 
+    let v203 : string = "f64::NAN"
+    let v204 : float = Fable.Core.RustInterop.emitRustExpr () v203 
+    let v205 : string = "num_complex::Complex::new($0, $1)"
+    let v206 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v202, v204) v205 
+    let v209 : num_complex_Complex<float> =
+        match v190 with
         | US0_1 -> (* None *)
-            v118
-        | US0_0(v119) -> (* Some *)
-            v119
-    let v122 : string = "$0.conj()"
-    let v123 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v121 v122 
-    let v124 : string = "$0.re"
-    let v125 : float = Fable.Core.RustInterop.emitRustExpr v58 v124 
-    let v126 : string = "$0.re"
-    let v127 : float = Fable.Core.RustInterop.emitRustExpr v123 v126 
-    let v128 : bool = v125 = v127
-    let v130 : bool =
-        if v128 then
+            v206
+        | US0_0(v207) -> (* Some *)
+            v207
+    let v210 : string = "$0.conj()"
+    let v211 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v209 v210 
+    let v212 : string = "$0.re"
+    let v213 : float = Fable.Core.RustInterop.emitRustExpr v102 v212 
+    let v214 : string = "$0.re"
+    let v215 : float = Fable.Core.RustInterop.emitRustExpr v211 v214 
+    let v216 : bool = v213 = v215
+    let v218 : bool =
+        if v216 then
             true
         else
-            method18(v128)
-    let v133 : string =
-        if v128 then
-            method19(v127)
+            method18(v216)
+    let v221 : string =
+        if v216 then
+            method19(v215)
         else
-            method22(v125, v127)
-    let v137 : string = "__assert_eq"
-    let v138 : string = " "
-    let v139 : string = v137 + v138 
-    let v144 : string =
-        if v128 then
-            method19(v127)
+            method26(v213, v215)
+    let v225 : string = "__assert_eq"
+    let v226 : string = " "
+    let v227 : string = v225 + v226 
+    let v239 : string =
+        if v216 then
+            method19(v215)
         else
-            method22(v125, v127)
-    let v146 : string = v139 + v144 
-    let v150 : unit = ()
-    let v151 : (unit -> unit) = closure2(v146)
-    let v152 : unit = (fun () -> v151 (); v150) ()
-    let v154 : bool = v130 = false
-    if v154 then
-        failwith<unit> v146
-    let v155 : string = "$0.im"
-    let v156 : float = Fable.Core.RustInterop.emitRustExpr v58 v155 
-    let v157 : string = "$0.im"
-    let v158 : float = Fable.Core.RustInterop.emitRustExpr v123 v157 
-    let v159 : bool = v156 = v158
-    let v161 : bool =
-        if v159 then
+            method26(v213, v215)
+    let v241 : string = v227 + v239 
+    let v270 : unit = ()
+    let v271 : (unit -> unit) = closure2(v241)
+    let v272 : unit = (fun () -> v271 (); v270) ()
+    let v282 : bool = v218 = false
+    if v282 then
+        failwith<unit> v241
+    let v283 : string = "$0.im"
+    let v284 : float = Fable.Core.RustInterop.emitRustExpr v102 v283 
+    let v285 : string = "$0.im"
+    let v286 : float = Fable.Core.RustInterop.emitRustExpr v211 v285 
+    let v287 : bool = v284 = v286
+    let v289 : bool =
+        if v287 then
             true
         else
-            method18(v159)
-    let v164 : string =
-        if v159 then
-            method19(v158)
+            method18(v287)
+    let v292 : string =
+        if v287 then
+            method19(v286)
         else
-            method22(v156, v158)
-    let v166 : string = v137 + v138 
-    let v171 : string =
-        if v159 then
-            method19(v158)
+            method26(v284, v286)
+    let v294 : string = v225 + v226 
+    let v306 : string =
+        if v287 then
+            method19(v286)
         else
-            method22(v156, v158)
-    let v173 : string = v166 + v171 
-    let v177 : unit = ()
-    let v178 : (unit -> unit) = closure2(v173)
-    let v179 : unit = (fun () -> v178 (); v177) ()
-    let v181 : bool = v161 = false
-    if v181 then
-        failwith<unit> v173
-and method36 () : unit =
+            method26(v284, v286)
+    let v308 : string = v294 + v306 
+    let v337 : unit = ()
+    let v338 : (unit -> unit) = closure2(v308)
+    let v339 : unit = (fun () -> v338 (); v337) ()
+    let v349 : bool = v289 = false
+    if v349 then
+        failwith<unit> v308
+and method42 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method37(v3)
+    method43(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method39 (v0 : pyo3_Python) : unit =
+and method45 (v0 : pyo3_Python) : unit =
     let v1 : string = "num_complex::Complex::new($0, $1)"
     let v2 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.01, 0.01) v1 
     let v3 : string = $"        s = mpmath.zeta(s)"
@@ -3633,174 +3659,174 @@ and method39 (v0 : pyo3_Python) : unit =
     let _run_target_args'_v8 = v18 
     #endif
     let v19 : num_complex_Complex<float> option = _run_target_args'_v8 
-    let v24 : (num_complex_Complex<float> -> US0) = method17()
-    let v25 : US0 option = v19 |> Option.map v24 
-    let v45 : US0 = US0_1
-    let v46 : US0 = v25 |> Option.defaultValue v45 
-    let v50 : string = "f64::NAN"
-    let v51 : float = Fable.Core.RustInterop.emitRustExpr () v50 
-    let v52 : string = "f64::NAN"
-    let v53 : float = Fable.Core.RustInterop.emitRustExpr () v52 
-    let v54 : string = "num_complex::Complex::new($0, $1)"
-    let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v51, v53) v54 
-    let v58 : num_complex_Complex<float> =
-        match v46 with
+    let v33 : (num_complex_Complex<float> -> US0) = method17()
+    let v34 : US0 option = v19 |> Option.map v33 
+    let v82 : US0 = US0_1
+    let v83 : US0 = v34 |> Option.defaultValue v82 
+    let v94 : string = "f64::NAN"
+    let v95 : float = Fable.Core.RustInterop.emitRustExpr () v94 
+    let v96 : string = "f64::NAN"
+    let v97 : float = Fable.Core.RustInterop.emitRustExpr () v96 
+    let v98 : string = "num_complex::Complex::new($0, $1)"
+    let v99 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v95, v97) v98 
+    let v102 : num_complex_Complex<float> =
+        match v83 with
         | US0_1 -> (* None *)
-            v55
-        | US0_0(v56) -> (* Some *)
-            v56
-    let v59 : string = "$0.re"
-    let v60 : float = Fable.Core.RustInterop.emitRustExpr v58 v59 
-    let v61 : bool = v60 < infinity
-    let v63 : bool =
-        if v61 then
+            v99
+        | US0_0(v100) -> (* Some *)
+            v100
+    let v103 : string = "$0.re"
+    let v104 : float = Fable.Core.RustInterop.emitRustExpr v102 v103 
+    let v105 : bool = v104 < infinity
+    let v107 : bool =
+        if v105 then
             true
         else
-            method18(v61)
-    let v68 : string =
-        if v61 then
-            let v64 : float = infinity
-            method19(v64)
-        else
-            let v66 : float = infinity
-            method22(v60, v66)
-    let v72 : string = "__assert_lt"
-    let v73 : string = " "
-    let v74 : string = v72 + v73 
-    let v81 : string =
-        if v61 then
-            let v77 : float = infinity
-            method19(v77)
-        else
-            let v79 : float = infinity
-            method22(v60, v79)
-    let v83 : string = v74 + v81 
-    let v87 : unit = ()
-    let v88 : (unit -> unit) = closure2(v83)
-    let v89 : unit = (fun () -> v88 (); v87) ()
-    let v91 : bool = v63 = false
-    if v91 then
-        failwith<unit> v83
-    let v92 : string = "$0.im"
-    let v93 : float = Fable.Core.RustInterop.emitRustExpr v58 v92 
-    let v94 : bool = v93 < infinity
-    let v96 : bool =
-        if v94 then
-            true
-        else
-            method18(v94)
-    let v101 : string =
-        if v94 then
-            let v97 : float = infinity
-            method19(v97)
-        else
-            let v99 : float = infinity
-            method22(v93, v99)
-    let v103 : string = v72 + v73 
-    let v110 : string =
-        if v94 then
-            let v106 : float = infinity
-            method19(v106)
-        else
+            method18(v105)
+    let v112 : string =
+        if v105 then
             let v108 : float = infinity
-            method22(v93, v108)
-    let v112 : string = v103 + v110 
-    let v116 : unit = ()
-    let v117 : (unit -> unit) = closure2(v112)
-    let v118 : unit = (fun () -> v117 (); v116) ()
-    let v120 : bool = v96 = false
-    if v120 then
-        failwith<unit> v112
-and method38 () : unit =
+            method19(v108)
+        else
+            let v110 : float = infinity
+            method26(v104, v110)
+    let v116 : string = "__assert_lt"
+    let v117 : string = " "
+    let v118 : string = v116 + v117 
+    let v132 : string =
+        if v105 then
+            let v128 : float = infinity
+            method19(v128)
+        else
+            let v130 : float = infinity
+            method26(v104, v130)
+    let v134 : string = v118 + v132 
+    let v163 : unit = ()
+    let v164 : (unit -> unit) = closure2(v134)
+    let v165 : unit = (fun () -> v164 (); v163) ()
+    let v175 : bool = v107 = false
+    if v175 then
+        failwith<unit> v134
+    let v176 : string = "$0.im"
+    let v177 : float = Fable.Core.RustInterop.emitRustExpr v102 v176 
+    let v178 : bool = v177 < infinity
+    let v180 : bool =
+        if v178 then
+            true
+        else
+            method18(v178)
+    let v185 : string =
+        if v178 then
+            let v181 : float = infinity
+            method19(v181)
+        else
+            let v183 : float = infinity
+            method26(v177, v183)
+    let v187 : string = v116 + v117 
+    let v201 : string =
+        if v178 then
+            let v197 : float = infinity
+            method19(v197)
+        else
+            let v199 : float = infinity
+            method26(v177, v199)
+    let v203 : string = v187 + v201 
+    let v232 : unit = ()
+    let v233 : (unit -> unit) = closure2(v203)
+    let v234 : unit = (fun () -> v233 (); v232) ()
+    let v244 : bool = v180 = false
+    if v244 then
+        failwith<unit> v203
+and method44 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method39(v3)
+    method45(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method42 () : UH0 =
+and method48 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(100.0, v0)
     let v2 : UH0 = UH0_1(90.0, v1)
@@ -3812,7 +3838,7 @@ and method42 () : UH0 =
     let v8 : UH0 = UH0_1(30.0, v7)
     let v9 : UH0 = UH0_1(20.0, v8)
     UH0_1(10.0, v9)
-and method43 (v0 : pyo3_Python, v1 : UH0) : unit =
+and method49 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
     | UH0_1(v2, v3) -> (* Cons *)
         let v4 : string = "num_complex::Complex::new($0, $1)"
@@ -3859,180 +3885,180 @@ and method43 (v0 : pyo3_Python, v1 : UH0) : unit =
         let _run_target_args'_v11 = v21 
         #endif
         let v22 : num_complex_Complex<float> option = _run_target_args'_v11 
-        let v27 : (num_complex_Complex<float> -> US0) = method17()
-        let v28 : US0 option = v22 |> Option.map v27 
-        let v48 : US0 = US0_1
-        let v49 : US0 = v28 |> Option.defaultValue v48 
-        let v53 : string = "f64::NAN"
-        let v54 : float = Fable.Core.RustInterop.emitRustExpr () v53 
-        let v55 : string = "f64::NAN"
-        let v56 : float = Fable.Core.RustInterop.emitRustExpr () v55 
-        let v57 : string = "num_complex::Complex::new($0, $1)"
-        let v58 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v54, v56) v57 
-        let v61 : num_complex_Complex<float> =
-            match v49 with
+        let v36 : (num_complex_Complex<float> -> US0) = method17()
+        let v37 : US0 option = v22 |> Option.map v36 
+        let v85 : US0 = US0_1
+        let v86 : US0 = v37 |> Option.defaultValue v85 
+        let v97 : string = "f64::NAN"
+        let v98 : float = Fable.Core.RustInterop.emitRustExpr () v97 
+        let v99 : string = "f64::NAN"
+        let v100 : float = Fable.Core.RustInterop.emitRustExpr () v99 
+        let v101 : string = "num_complex::Complex::new($0, $1)"
+        let v102 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v98, v100) v101 
+        let v105 : num_complex_Complex<float> =
+            match v86 with
             | US0_1 -> (* None *)
-                v58
-            | US0_0(v59) -> (* Some *)
-                v59
-        let v62 : string = "$0.re"
-        let v63 : float = Fable.Core.RustInterop.emitRustExpr v61 v62 
-        let v65 : bool = v63 <> 0.0 
-        let v69 : bool =
-            if v65 then
+                v102
+            | US0_0(v103) -> (* Some *)
+                v103
+        let v106 : string = "$0.re"
+        let v107 : float = Fable.Core.RustInterop.emitRustExpr v105 v106 
+        let v109 : bool = v107 <> 0.0 
+        let v120 : bool =
+            if v109 then
                 true
             else
-                method18(v65)
-        let v74 : string =
-            if v65 then
-                let v70 : float = 0.0
-                method19(v70)
+                method18(v109)
+        let v125 : string =
+            if v109 then
+                let v121 : float = 0.0
+                method19(v121)
             else
-                let v72 : float = 0.0
-                method22(v63, v72)
-        let v78 : string = "__assert_ne"
-        let v79 : string = " "
-        let v80 : string = v78 + v79 
-        let v87 : string =
-            if v65 then
-                let v83 : float = 0.0
-                method19(v83)
+                let v123 : float = 0.0
+                method26(v107, v123)
+        let v129 : string = "__assert_ne"
+        let v130 : string = " "
+        let v131 : string = v129 + v130 
+        let v145 : string =
+            if v109 then
+                let v141 : float = 0.0
+                method19(v141)
             else
-                let v85 : float = 0.0
-                method22(v63, v85)
-        let v89 : string = v80 + v87 
-        let v93 : unit = ()
-        let v94 : (unit -> unit) = closure2(v89)
-        let v95 : unit = (fun () -> v94 (); v93) ()
-        let v97 : bool = v69 = false
-        if v97 then
-            failwith<unit> v89
-        let v98 : string = "$0.im"
-        let v99 : float = Fable.Core.RustInterop.emitRustExpr v61 v98 
-        let v101 : bool = v99 <> 0.0 
-        let v105 : bool =
-            if v101 then
+                let v143 : float = 0.0
+                method26(v107, v143)
+        let v147 : string = v131 + v145 
+        let v176 : unit = ()
+        let v177 : (unit -> unit) = closure2(v147)
+        let v178 : unit = (fun () -> v177 (); v176) ()
+        let v188 : bool = v120 = false
+        if v188 then
+            failwith<unit> v147
+        let v189 : string = "$0.im"
+        let v190 : float = Fable.Core.RustInterop.emitRustExpr v105 v189 
+        let v192 : bool = v190 <> 0.0 
+        let v203 : bool =
+            if v192 then
                 true
             else
-                method18(v101)
-        let v110 : string =
-            if v101 then
-                let v106 : float = 0.0
-                method19(v106)
+                method18(v192)
+        let v208 : string =
+            if v192 then
+                let v204 : float = 0.0
+                method19(v204)
             else
-                let v108 : float = 0.0
-                method22(v99, v108)
-        let v112 : string = v78 + v79 
-        let v119 : string =
-            if v101 then
-                let v115 : float = 0.0
-                method19(v115)
+                let v206 : float = 0.0
+                method26(v190, v206)
+        let v210 : string = v129 + v130 
+        let v224 : string =
+            if v192 then
+                let v220 : float = 0.0
+                method19(v220)
             else
-                let v117 : float = 0.0
-                method22(v99, v117)
-        let v121 : string = v112 + v119 
-        let v125 : unit = ()
-        let v126 : (unit -> unit) = closure2(v121)
-        let v127 : unit = (fun () -> v126 (); v125) ()
-        let v129 : bool = v105 = false
-        if v129 then
-            failwith<unit> v121
-        method43(v0, v3)
+                let v222 : float = 0.0
+                method26(v190, v222)
+        let v226 : string = v210 + v224 
+        let v255 : unit = ()
+        let v256 : (unit -> unit) = closure2(v226)
+        let v257 : unit = (fun () -> v256 (); v255) ()
+        let v267 : bool = v203 = false
+        if v267 then
+            failwith<unit> v226
+        method49(v0, v3)
     | UH0_0 -> (* Nil *)
         ()
-and method41 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method42()
-    method43(v0, v1)
-and method40 () : unit =
+and method47 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method48()
+    method49(v0, v1)
+and method46 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method41(v3)
+    method47(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method46 () : UH1 =
+and method52 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
     let v1 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (0.5, 14.134725) v0 
     let v2 : string = "num_complex::Complex::new($0, $1)"
@@ -4049,7 +4075,7 @@ and method46 () : UH1 =
     let v13 : UH1 = UH1_1(v5, v12)
     let v14 : UH1 = UH1_1(v3, v13)
     UH1_1(v1, v14)
-and method47 (v0 : pyo3_Python, v1 : UH1) : unit =
+and method53 (v0 : pyo3_Python, v1 : UH1) : unit =
     match v1 with
     | UH1_1(v2, v3) -> (* Cons *)
         let v4 : string = $"        s = mpmath.zeta(s)"
@@ -4094,180 +4120,180 @@ and method47 (v0 : pyo3_Python, v1 : UH1) : unit =
         let _run_target_args'_v9 = v19 
         #endif
         let v20 : num_complex_Complex<float> option = _run_target_args'_v9 
-        let v25 : (num_complex_Complex<float> -> US0) = method17()
-        let v26 : US0 option = v20 |> Option.map v25 
-        let v46 : US0 = US0_1
-        let v47 : US0 = v26 |> Option.defaultValue v46 
-        let v51 : string = "f64::NAN"
-        let v52 : float = Fable.Core.RustInterop.emitRustExpr () v51 
-        let v53 : string = "f64::NAN"
-        let v54 : float = Fable.Core.RustInterop.emitRustExpr () v53 
-        let v55 : string = "num_complex::Complex::new($0, $1)"
-        let v56 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v52, v54) v55 
-        let v59 : num_complex_Complex<float> =
-            match v47 with
+        let v34 : (num_complex_Complex<float> -> US0) = method17()
+        let v35 : US0 option = v20 |> Option.map v34 
+        let v83 : US0 = US0_1
+        let v84 : US0 = v35 |> Option.defaultValue v83 
+        let v95 : string = "f64::NAN"
+        let v96 : float = Fable.Core.RustInterop.emitRustExpr () v95 
+        let v97 : string = "f64::NAN"
+        let v98 : float = Fable.Core.RustInterop.emitRustExpr () v97 
+        let v99 : string = "num_complex::Complex::new($0, $1)"
+        let v100 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v96, v98) v99 
+        let v103 : num_complex_Complex<float> =
+            match v84 with
             | US0_1 -> (* None *)
-                v56
-            | US0_0(v57) -> (* Some *)
-                v57
-        let v60 : string = "$0.re"
-        let v61 : float = Fable.Core.RustInterop.emitRustExpr v59 v60 
-        let v63 : bool = v61 <> 0.0 
-        let v67 : bool =
-            if v63 then
+                v100
+            | US0_0(v101) -> (* Some *)
+                v101
+        let v104 : string = "$0.re"
+        let v105 : float = Fable.Core.RustInterop.emitRustExpr v103 v104 
+        let v107 : bool = v105 <> 0.0 
+        let v118 : bool =
+            if v107 then
                 true
             else
-                method18(v63)
-        let v72 : string =
-            if v63 then
-                let v68 : float = 0.0
-                method19(v68)
+                method18(v107)
+        let v123 : string =
+            if v107 then
+                let v119 : float = 0.0
+                method19(v119)
             else
-                let v70 : float = 0.0
-                method22(v61, v70)
-        let v76 : string = "__assert_ne"
-        let v77 : string = " "
-        let v78 : string = v76 + v77 
-        let v85 : string =
-            if v63 then
-                let v81 : float = 0.0
-                method19(v81)
+                let v121 : float = 0.0
+                method26(v105, v121)
+        let v127 : string = "__assert_ne"
+        let v128 : string = " "
+        let v129 : string = v127 + v128 
+        let v143 : string =
+            if v107 then
+                let v139 : float = 0.0
+                method19(v139)
             else
-                let v83 : float = 0.0
-                method22(v61, v83)
-        let v87 : string = v78 + v85 
-        let v91 : unit = ()
-        let v92 : (unit -> unit) = closure2(v87)
-        let v93 : unit = (fun () -> v92 (); v91) ()
-        let v95 : bool = v67 = false
-        if v95 then
-            failwith<unit> v87
-        let v96 : string = "$0.im"
-        let v97 : float = Fable.Core.RustInterop.emitRustExpr v59 v96 
-        let v99 : bool = v97 <> 0.0 
-        let v103 : bool =
-            if v99 then
+                let v141 : float = 0.0
+                method26(v105, v141)
+        let v145 : string = v129 + v143 
+        let v174 : unit = ()
+        let v175 : (unit -> unit) = closure2(v145)
+        let v176 : unit = (fun () -> v175 (); v174) ()
+        let v186 : bool = v118 = false
+        if v186 then
+            failwith<unit> v145
+        let v187 : string = "$0.im"
+        let v188 : float = Fable.Core.RustInterop.emitRustExpr v103 v187 
+        let v190 : bool = v188 <> 0.0 
+        let v201 : bool =
+            if v190 then
                 true
             else
-                method18(v99)
-        let v108 : string =
-            if v99 then
-                let v104 : float = 0.0
-                method19(v104)
+                method18(v190)
+        let v206 : string =
+            if v190 then
+                let v202 : float = 0.0
+                method19(v202)
             else
-                let v106 : float = 0.0
-                method22(v97, v106)
-        let v110 : string = v76 + v77 
-        let v117 : string =
-            if v99 then
-                let v113 : float = 0.0
-                method19(v113)
+                let v204 : float = 0.0
+                method26(v188, v204)
+        let v208 : string = v127 + v128 
+        let v222 : string =
+            if v190 then
+                let v218 : float = 0.0
+                method19(v218)
             else
-                let v115 : float = 0.0
-                method22(v97, v115)
-        let v119 : string = v110 + v117 
-        let v123 : unit = ()
-        let v124 : (unit -> unit) = closure2(v119)
-        let v125 : unit = (fun () -> v124 (); v123) ()
-        let v127 : bool = v103 = false
-        if v127 then
-            failwith<unit> v119
-        method47(v0, v3)
+                let v220 : float = 0.0
+                method26(v188, v220)
+        let v224 : string = v208 + v222 
+        let v253 : unit = ()
+        let v254 : (unit -> unit) = closure2(v224)
+        let v255 : unit = (fun () -> v254 (); v253) ()
+        let v265 : bool = v201 = false
+        if v265 then
+            failwith<unit> v224
+        method53(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
-and method45 (v0 : pyo3_Python) : unit =
-    let v1 : UH1 = method46()
-    method47(v0, v1)
-and method44 () : unit =
+and method51 (v0 : pyo3_Python) : unit =
+    let v1 : UH1 = method52()
+    method53(v0, v1)
+and method50 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method45(v3)
+    method51(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method50 () : UH1 =
+and method56 () : UH1 =
     let v0 : string = "num_complex::Complex::new($0, $1)"
     let v1 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.0, 4.0) v0 
     let v2 : string = "num_complex::Complex::new($0, $1)"
@@ -4281,7 +4307,7 @@ and method50 () : UH1 =
     let v10 : UH1 = UH1_1(v5, v9)
     let v11 : UH1 = UH1_1(v3, v10)
     UH1_1(v1, v11)
-and method51 (v0 : pyo3_Python, v1 : UH1) : unit =
+and method57 (v0 : pyo3_Python, v1 : UH1) : unit =
     match v1 with
     | UH1_1(v2, v3) -> (* Cons *)
         let v4 : string = $"        s = mpmath.zeta(s)"
@@ -4326,357 +4352,357 @@ and method51 (v0 : pyo3_Python, v1 : UH1) : unit =
         let _run_target_args'_v9 = v19 
         #endif
         let v20 : num_complex_Complex<float> option = _run_target_args'_v9 
-        let v25 : (num_complex_Complex<float> -> US0) = method17()
-        let v26 : US0 option = v20 |> Option.map v25 
-        let v46 : US0 = US0_1
-        let v47 : US0 = v26 |> Option.defaultValue v46 
-        let v51 : string = "f64::NAN"
-        let v52 : float = Fable.Core.RustInterop.emitRustExpr () v51 
-        let v53 : string = "f64::NAN"
-        let v54 : float = Fable.Core.RustInterop.emitRustExpr () v53 
-        let v55 : string = "num_complex::Complex::new($0, $1)"
-        let v56 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v52, v54) v55 
-        let v59 : num_complex_Complex<float> =
-            match v47 with
+        let v34 : (num_complex_Complex<float> -> US0) = method17()
+        let v35 : US0 option = v20 |> Option.map v34 
+        let v83 : US0 = US0_1
+        let v84 : US0 = v35 |> Option.defaultValue v83 
+        let v95 : string = "f64::NAN"
+        let v96 : float = Fable.Core.RustInterop.emitRustExpr () v95 
+        let v97 : string = "f64::NAN"
+        let v98 : float = Fable.Core.RustInterop.emitRustExpr () v97 
+        let v99 : string = "num_complex::Complex::new($0, $1)"
+        let v100 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v96, v98) v99 
+        let v103 : num_complex_Complex<float> =
+            match v84 with
             | US0_1 -> (* None *)
-                v56
-            | US0_0(v57) -> (* Some *)
-                v57
-        let v60 : string = "num_complex::Complex::new($0, $1)"
-        let v61 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v60 
-        let v62 : string = "num_complex::Complex::powc($0, $1)"
-        let v63 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v61, v2) v62 
-        let v64 : string = "num_complex::Complex::new($0, $1)"
-        let v65 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v64 
-        let v66 : string = "num_complex::Complex::new($0, $1)"
-        let v67 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v66 
-        let v68 : string = "$0 - $1"
-        let v69 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v2, v67) v68 
-        let v70 : string = "num_complex::Complex::powc($0, $1)"
-        let v71 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v65, v69) v70 
-        let v72 : string = "$0 * $1"
-        let v73 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v63, v71) v72 
-        let v74 : string = "num_complex::Complex::new($0, $1)"
-        let v75 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v74 
-        let v76 : string = "$0 * $1"
-        let v77 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v75, v2) v76 
-        let v78 : string = "num_complex::Complex::new($0, $1)"
-        let v79 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v78 
-        let v80 : string = "$0 / $1"
-        let v81 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v77, v79) v80 
-        let v82 : string = "$0.sin()"
-        let v83 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v81 v82 
-        let v84 : string = "$0 * $1"
-        let v85 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v73, v83) v84 
-        let v86 : string = "num_complex::Complex::new($0, $1)"
-        let v87 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v86 
-        let v88 : string = "$0 - $1"
-        let v89 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v87, v2) v88 
-        let v90 : string = $"        s = mpmath.gamma(s)"
-        let v91 : num_complex_Complex<float> = method3(v89)
-        let v92 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v90, v91)
+                v100
+            | US0_0(v101) -> (* Some *)
+                v101
+        let v104 : string = "num_complex::Complex::new($0, $1)"
+        let v105 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v104 
+        let v106 : string = "num_complex::Complex::powc($0, $1)"
+        let v107 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v105, v2) v106 
+        let v108 : string = "num_complex::Complex::new($0, $1)"
+        let v109 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v108 
+        let v110 : string = "num_complex::Complex::new($0, $1)"
+        let v111 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v110 
+        let v112 : string = "$0 - $1"
+        let v113 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v2, v111) v112 
+        let v114 : string = "num_complex::Complex::powc($0, $1)"
+        let v115 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v109, v113) v114 
+        let v116 : string = "$0 * $1"
+        let v117 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v107, v115) v116 
+        let v118 : string = "num_complex::Complex::new($0, $1)"
+        let v119 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (3.141592653589793, 0.0) v118 
+        let v120 : string = "$0 * $1"
+        let v121 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v119, v2) v120 
+        let v122 : string = "num_complex::Complex::new($0, $1)"
+        let v123 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (2.0, 0.0) v122 
+        let v124 : string = "$0 / $1"
+        let v125 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v121, v123) v124 
+        let v126 : string = "$0.sin()"
+        let v127 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr v125 v126 
+        let v128 : string = "$0 * $1"
+        let v129 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v117, v127) v128 
+        let v130 : string = "num_complex::Complex::new($0, $1)"
+        let v131 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (1.0, 0.0) v130 
+        let v132 : string = "$0 - $1"
+        let v133 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v131, v2) v132 
+        let v134 : string = $"        s = mpmath.gamma(s)"
+        let v135 : num_complex_Complex<float> = method3(v133)
+        let v136 : Result<num_complex_Complex<float>, std_string_String> = method16(v0, v134, v135)
         (* run_target_args'
-        let v94 : unit = ()
+        let v138 : unit = ()
         run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v95 : string = "$0.ok()"
-        let v96 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v92 v95 
-        let _run_target_args'_v94 = v96 
+        let v139 : string = "$0.ok()"
+        let v140 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v136 v139 
+        let _run_target_args'_v138 = v140 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v97 : string = "$0.ok()"
-        let v98 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v92 v97 
-        let _run_target_args'_v94 = v98 
+        let v141 : string = "$0.ok()"
+        let v142 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v136 v141 
+        let _run_target_args'_v138 = v142 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v99 : string = "$0.ok()"
-        let v100 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v92 v99 
-        let _run_target_args'_v94 = v100 
+        let v143 : string = "$0.ok()"
+        let v144 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v136 v143 
+        let _run_target_args'_v138 = v144 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v101 : num_complex_Complex<float> option = match v92 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v94 = v101 
+        let v145 : num_complex_Complex<float> option = match v136 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v138 = v145 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v102 : num_complex_Complex<float> option = match v92 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v94 = v102 
+        let v146 : num_complex_Complex<float> option = match v136 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v138 = v146 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-        let v103 : num_complex_Complex<float> option = match v92 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v94 = v103 
+        let v147 : num_complex_Complex<float> option = match v136 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v138 = v147 
         #endif
 #else
-        let v104 : num_complex_Complex<float> option = match v92 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v94 = v104 
+        let v148 : num_complex_Complex<float> option = match v136 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v138 = v148 
         #endif
-        let v105 : num_complex_Complex<float> option = _run_target_args'_v94 
-        let v110 : (num_complex_Complex<float> -> US0) = method17()
-        let v111 : US0 option = v105 |> Option.map v110 
-        let v131 : US0 = US0_1
-        let v132 : US0 = v111 |> Option.defaultValue v131 
-        let v136 : string = "f64::NAN"
-        let v137 : float = Fable.Core.RustInterop.emitRustExpr () v136 
-        let v138 : string = "f64::NAN"
-        let v139 : float = Fable.Core.RustInterop.emitRustExpr () v138 
-        let v140 : string = "num_complex::Complex::new($0, $1)"
-        let v141 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v137, v139) v140 
-        let v144 : num_complex_Complex<float> =
-            match v132 with
+        let v149 : num_complex_Complex<float> option = _run_target_args'_v138 
+        let v163 : (num_complex_Complex<float> -> US0) = method17()
+        let v164 : US0 option = v149 |> Option.map v163 
+        let v212 : US0 = US0_1
+        let v213 : US0 = v164 |> Option.defaultValue v212 
+        let v224 : string = "f64::NAN"
+        let v225 : float = Fable.Core.RustInterop.emitRustExpr () v224 
+        let v226 : string = "f64::NAN"
+        let v227 : float = Fable.Core.RustInterop.emitRustExpr () v226 
+        let v228 : string = "num_complex::Complex::new($0, $1)"
+        let v229 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v225, v227) v228 
+        let v232 : num_complex_Complex<float> =
+            match v213 with
             | US0_1 -> (* None *)
-                v141
-            | US0_0(v142) -> (* Some *)
-                v142
-        let v145 : string = "$0 * $1"
-        let v146 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v85, v144) v145 
-        let v147 : string = "$0.re"
-        let v148 : float = Fable.Core.RustInterop.emitRustExpr v2 v147 
-        let v149 : float = 1.0 - v148
-        let v150 : string = "$0.im"
-        let v151 : float = Fable.Core.RustInterop.emitRustExpr v2 v150 
-        let v152 : float =  -v151
-        let v153 : string = "num_complex::Complex::new($0, $1)"
-        let v154 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v149, v152) v153 
-        let v155 : string = $"        s = mpmath.zeta(s)"
-        let v156 : num_complex_Complex<float> = method3(v154)
-        let v157 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v155, v156)
-        let v158 : num_complex_Complex<float> = method13(v0, v154)
+                v229
+            | US0_0(v230) -> (* Some *)
+                v230
+        let v233 : string = "$0 * $1"
+        let v234 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v129, v232) v233 
+        let v235 : string = "$0.re"
+        let v236 : float = Fable.Core.RustInterop.emitRustExpr v2 v235 
+        let v237 : float = 1.0 - v236
+        let v238 : string = "$0.im"
+        let v239 : float = Fable.Core.RustInterop.emitRustExpr v2 v238 
+        let v240 : float =  -v239
+        let v241 : string = "num_complex::Complex::new($0, $1)"
+        let v242 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v237, v240) v241 
+        let v243 : string = $"        s = mpmath.zeta(s)"
+        let v244 : num_complex_Complex<float> = method3(v242)
+        let v245 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v243, v244)
+        let v246 : num_complex_Complex<float> = method13(v0, v242)
         (* run_target_args'
-        let v160 : unit = ()
+        let v248 : unit = ()
         run_target_args' *)
         
 #if FABLE_COMPILER || WASM || CONTRACT
         
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v161 : string = "$0.ok()"
-        let v162 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v157 v161 
-        let _run_target_args'_v160 = v162 
+        let v249 : string = "$0.ok()"
+        let v250 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v245 v249 
+        let _run_target_args'_v248 = v250 
         #endif
 #if FABLE_COMPILER_RUST && WASM
-        let v163 : string = "$0.ok()"
-        let v164 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v157 v163 
-        let _run_target_args'_v160 = v164 
+        let v251 : string = "$0.ok()"
+        let v252 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v245 v251 
+        let _run_target_args'_v248 = v252 
         #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-        let v165 : string = "$0.ok()"
-        let v166 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v157 v165 
-        let _run_target_args'_v160 = v166 
+        let v253 : string = "$0.ok()"
+        let v254 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr v245 v253 
+        let _run_target_args'_v248 = v254 
         #endif
 #if FABLE_COMPILER_TYPESCRIPT
-        let v167 : num_complex_Complex<float> option = match v157 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v160 = v167 
+        let v255 : num_complex_Complex<float> option = match v245 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v248 = v255 
         #endif
 #if FABLE_COMPILER_PYTHON
-        let v168 : num_complex_Complex<float> option = match v157 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v160 = v168 
+        let v256 : num_complex_Complex<float> option = match v245 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v248 = v256 
         #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-        let v169 : num_complex_Complex<float> option = match v157 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v160 = v169 
+        let v257 : num_complex_Complex<float> option = match v245 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v248 = v257 
         #endif
 #else
-        let v170 : num_complex_Complex<float> option = match v157 with Ok x -> Some x | Error _ -> None
-        let _run_target_args'_v160 = v170 
+        let v258 : num_complex_Complex<float> option = match v245 with Ok x -> Some x | Error _ -> None
+        let _run_target_args'_v248 = v258 
         #endif
-        let v171 : num_complex_Complex<float> option = _run_target_args'_v160 
-        let v176 : (num_complex_Complex<float> -> US0) = method17()
-        let v177 : US0 option = v171 |> Option.map v176 
-        let v197 : US0 = US0_1
-        let v198 : US0 = v177 |> Option.defaultValue v197 
-        let v202 : string = "f64::NAN"
-        let v203 : float = Fable.Core.RustInterop.emitRustExpr () v202 
-        let v204 : string = "f64::NAN"
-        let v205 : float = Fable.Core.RustInterop.emitRustExpr () v204 
-        let v206 : string = "num_complex::Complex::new($0, $1)"
-        let v207 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v203, v205) v206 
-        let v210 : num_complex_Complex<float> =
-            match v198 with
+        let v259 : num_complex_Complex<float> option = _run_target_args'_v248 
+        let v273 : (num_complex_Complex<float> -> US0) = method17()
+        let v274 : US0 option = v259 |> Option.map v273 
+        let v322 : US0 = US0_1
+        let v323 : US0 = v274 |> Option.defaultValue v322 
+        let v334 : string = "f64::NAN"
+        let v335 : float = Fable.Core.RustInterop.emitRustExpr () v334 
+        let v336 : string = "f64::NAN"
+        let v337 : float = Fable.Core.RustInterop.emitRustExpr () v336 
+        let v338 : string = "num_complex::Complex::new($0, $1)"
+        let v339 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v335, v337) v338 
+        let v342 : num_complex_Complex<float> =
+            match v323 with
             | US0_1 -> (* None *)
-                v207
-            | US0_0(v208) -> (* Some *)
-                v208
-        let v211 : string = "$0 * $1"
-        let v212 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v146, v210) v211 
-        let v213 : string = "$0.re"
-        let v214 : float = Fable.Core.RustInterop.emitRustExpr v59 v213 
-        let v215 : string = "$0.re"
-        let v216 : float = Fable.Core.RustInterop.emitRustExpr v212 v215 
-        let v217 : float = v214 - v216
-        let v218 : float =  -v217
-        let v219 : bool = v217 >= v218
-        let v220 : float =
-            if v219 then
-                v217
+                v339
+            | US0_0(v340) -> (* Some *)
+                v340
+        let v343 : string = "$0 * $1"
+        let v344 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v234, v342) v343 
+        let v345 : string = "$0.re"
+        let v346 : float = Fable.Core.RustInterop.emitRustExpr v103 v345 
+        let v347 : string = "$0.re"
+        let v348 : float = Fable.Core.RustInterop.emitRustExpr v344 v347 
+        let v349 : float = v346 - v348
+        let v350 : float =  -v349
+        let v351 : bool = v349 >= v350
+        let v352 : float =
+            if v351 then
+                v349
             else
-                v218
-        let v221 : bool = v220 < 0.0001
-        let v223 : bool =
-            if v221 then
+                v350
+        let v353 : bool = v352 < 0.0001
+        let v355 : bool =
+            if v353 then
                 true
             else
-                method18(v221)
-        let v228 : string =
-            if v221 then
-                let v224 : float = 0.0001
-                method19(v224)
+                method18(v353)
+        let v360 : string =
+            if v353 then
+                let v356 : float = 0.0001
+                method19(v356)
             else
-                let v226 : float = 0.0001
-                method22(v220, v226)
-        let v232 : string = "__assert_lt"
-        let v233 : string = " "
-        let v234 : string = v232 + v233 
-        let v241 : string =
-            if v221 then
-                let v237 : float = 0.0001
-                method19(v237)
+                let v358 : float = 0.0001
+                method26(v352, v358)
+        let v364 : string = "__assert_lt"
+        let v365 : string = " "
+        let v366 : string = v364 + v365 
+        let v380 : string =
+            if v353 then
+                let v376 : float = 0.0001
+                method19(v376)
             else
-                let v239 : float = 0.0001
-                method22(v220, v239)
-        let v243 : string = v234 + v241 
-        let v247 : unit = ()
-        let v248 : (unit -> unit) = closure2(v243)
-        let v249 : unit = (fun () -> v248 (); v247) ()
-        let v251 : bool = v223 = false
-        if v251 then
-            failwith<unit> v243
-        let v252 : string = "$0.im"
-        let v253 : float = Fable.Core.RustInterop.emitRustExpr v59 v252 
-        let v254 : string = "$0.im"
-        let v255 : float = Fable.Core.RustInterop.emitRustExpr v212 v254 
-        let v256 : float = v253 - v255
-        let v257 : float =  -v256
-        let v258 : bool = v256 >= v257
-        let v259 : float =
-            if v258 then
-                v256
+                let v378 : float = 0.0001
+                method26(v352, v378)
+        let v382 : string = v366 + v380 
+        let v411 : unit = ()
+        let v412 : (unit -> unit) = closure2(v382)
+        let v413 : unit = (fun () -> v412 (); v411) ()
+        let v423 : bool = v355 = false
+        if v423 then
+            failwith<unit> v382
+        let v424 : string = "$0.im"
+        let v425 : float = Fable.Core.RustInterop.emitRustExpr v103 v424 
+        let v426 : string = "$0.im"
+        let v427 : float = Fable.Core.RustInterop.emitRustExpr v344 v426 
+        let v428 : float = v425 - v427
+        let v429 : float =  -v428
+        let v430 : bool = v428 >= v429
+        let v431 : float =
+            if v430 then
+                v428
             else
-                v257
-        let v260 : bool = v259 < 0.0001
-        let v262 : bool =
-            if v260 then
+                v429
+        let v432 : bool = v431 < 0.0001
+        let v434 : bool =
+            if v432 then
                 true
             else
-                method18(v260)
-        let v267 : string =
-            if v260 then
-                let v263 : float = 0.0001
-                method19(v263)
+                method18(v432)
+        let v439 : string =
+            if v432 then
+                let v435 : float = 0.0001
+                method19(v435)
             else
-                let v265 : float = 0.0001
-                method22(v259, v265)
-        let v269 : string = v232 + v233 
-        let v276 : string =
-            if v260 then
-                let v272 : float = 0.0001
-                method19(v272)
+                let v437 : float = 0.0001
+                method26(v431, v437)
+        let v441 : string = v364 + v365 
+        let v455 : string =
+            if v432 then
+                let v451 : float = 0.0001
+                method19(v451)
             else
-                let v274 : float = 0.0001
-                method22(v259, v274)
-        let v278 : string = v269 + v276 
-        let v282 : unit = ()
-        let v283 : (unit -> unit) = closure2(v278)
-        let v284 : unit = (fun () -> v283 (); v282) ()
-        let v286 : bool = v262 = false
-        if v286 then
-            failwith<unit> v278
-        method51(v0, v3)
+                let v453 : float = 0.0001
+                method26(v431, v453)
+        let v457 : string = v441 + v455 
+        let v486 : unit = ()
+        let v487 : (unit -> unit) = closure2(v457)
+        let v488 : unit = (fun () -> v487 (); v486) ()
+        let v498 : bool = v434 = false
+        if v498 then
+            failwith<unit> v457
+        method57(v0, v3)
     | UH1_0 -> (* Nil *)
         ()
-and method49 (v0 : pyo3_Python) : unit =
-    let v1 : UH1 = method50()
-    method51(v0, v1)
-and method48 () : unit =
+and method55 (v0 : pyo3_Python) : unit =
+    let v1 : UH1 = method56()
+    method57(v0, v1)
+and method54 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method49(v3)
+    method55(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
-and method54 () : UH0 =
+and method60 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(5.0, v0)
     let v2 : UH0 = UH0_1(4.5, v1)
@@ -4685,7 +4711,7 @@ and method54 () : UH0 =
     let v5 : UH0 = UH0_1(3.0, v4)
     let v6 : UH0 = UH0_1(2.5, v5)
     UH0_1(2.0, v6)
-and method55 () : UH0 =
+and method61 () : UH0 =
     let v0 : UH0 = UH0_0
     let v1 : UH0 = UH0_1(71.0, v0)
     let v2 : UH0 = UH0_1(67.0, v1)
@@ -4707,23 +4733,23 @@ and method55 () : UH0 =
     let v18 : UH0 = UH0_1(5.0, v17)
     let v19 : UH0 = UH0_1(3.0, v18)
     UH0_1(2.0, v19)
-and method57 (v0 : float, v1 : UH0, v2 : float) : float =
+and method63 (v0 : float, v1 : UH0, v2 : float) : float =
     match v1 with
     | UH0_1(v3, v4) -> (* Cons *)
         let v5 : float =  -v0
         let v6 : float = v3 ** v5
         let v7 : float = 1.0 - v6
         let v8 : float = v2 / v7
-        method57(v0, v4, v8)
+        method63(v0, v4, v8)
     | UH0_0 -> (* Nil *)
         v2
-and method56 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
+and method62 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
     match v2 with
     | UH0_1(v3, v4) -> (* Cons *)
         let v5 : string = "num_complex::Complex::new($0, $1)"
         let v6 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v3, 0.0) v5 
         let v7 : float = 1.0
-        let v8 : float = method57(v3, v1, v7)
+        let v8 : float = method63(v3, v1, v7)
         let v9 : string = $"        s = mpmath.zeta(s)"
         let v10 : num_complex_Complex<float> = method3(v6)
         let v11 : Result<num_complex_Complex<float>, std_string_String> = method4(v0, v9, v10)
@@ -4766,185 +4792,185 @@ and method56 (v0 : pyo3_Python, v1 : UH0, v2 : UH0) : unit =
         let _run_target_args'_v14 = v24 
         #endif
         let v25 : num_complex_Complex<float> option = _run_target_args'_v14 
-        let v30 : (num_complex_Complex<float> -> US0) = method17()
-        let v31 : US0 option = v25 |> Option.map v30 
-        let v51 : US0 = US0_1
-        let v52 : US0 = v31 |> Option.defaultValue v51 
-        let v56 : string = "f64::NAN"
-        let v57 : float = Fable.Core.RustInterop.emitRustExpr () v56 
-        let v58 : string = "f64::NAN"
-        let v59 : float = Fable.Core.RustInterop.emitRustExpr () v58 
-        let v60 : string = "num_complex::Complex::new($0, $1)"
-        let v61 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v57, v59) v60 
-        let v64 : num_complex_Complex<float> =
-            match v52 with
+        let v39 : (num_complex_Complex<float> -> US0) = method17()
+        let v40 : US0 option = v25 |> Option.map v39 
+        let v88 : US0 = US0_1
+        let v89 : US0 = v40 |> Option.defaultValue v88 
+        let v100 : string = "f64::NAN"
+        let v101 : float = Fable.Core.RustInterop.emitRustExpr () v100 
+        let v102 : string = "f64::NAN"
+        let v103 : float = Fable.Core.RustInterop.emitRustExpr () v102 
+        let v104 : string = "num_complex::Complex::new($0, $1)"
+        let v105 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr struct (v101, v103) v104 
+        let v108 : num_complex_Complex<float> =
+            match v89 with
             | US0_1 -> (* None *)
-                v61
-            | US0_0(v62) -> (* Some *)
-                v62
-        let v65 : string = "$0.re"
-        let v66 : float = Fable.Core.RustInterop.emitRustExpr v64 v65 
-        let v67 : float = v66 - v8
-        let v68 : float =  -v67
-        let v69 : bool = v67 >= v68
-        let v70 : float =
-            if v69 then
-                v67
+                v105
+            | US0_0(v106) -> (* Some *)
+                v106
+        let v109 : string = "$0.re"
+        let v110 : float = Fable.Core.RustInterop.emitRustExpr v108 v109 
+        let v111 : float = v110 - v8
+        let v112 : float =  -v111
+        let v113 : bool = v111 >= v112
+        let v114 : float =
+            if v113 then
+                v111
             else
-                v68
-        let v71 : bool = v70 < 0.01
-        let v73 : bool =
-            if v71 then
+                v112
+        let v115 : bool = v114 < 0.01
+        let v117 : bool =
+            if v115 then
                 true
             else
-                method18(v71)
-        let v78 : string =
-            if v71 then
-                let v74 : float = 0.01
-                method19(v74)
-            else
-                let v76 : float = 0.01
-                method22(v70, v76)
-        let v82 : string = "__assert_lt"
-        let v83 : string = " "
-        let v84 : string = v82 + v83 
-        let v91 : string =
-            if v71 then
-                let v87 : float = 0.01
-                method19(v87)
-            else
-                let v89 : float = 0.01
-                method22(v70, v89)
-        let v93 : string = v84 + v91 
-        let v97 : unit = ()
-        let v98 : (unit -> unit) = closure2(v93)
-        let v99 : unit = (fun () -> v98 (); v97) ()
-        let v101 : bool = v73 = false
-        if v101 then
-            failwith<unit> v93
-        let v102 : string = "$0.im"
-        let v103 : float = Fable.Core.RustInterop.emitRustExpr v64 v102 
-        let v104 : bool = v103 < 0.01
-        let v106 : bool =
-            if v104 then
-                true
-            else
-                method18(v104)
-        let v111 : string =
-            if v104 then
-                let v107 : float = 0.01
-                method19(v107)
-            else
-                let v109 : float = 0.01
-                method22(v103, v109)
-        let v113 : string = v82 + v83 
-        let v120 : string =
-            if v104 then
-                let v116 : float = 0.01
-                method19(v116)
-            else
+                method18(v115)
+        let v122 : string =
+            if v115 then
                 let v118 : float = 0.01
-                method22(v103, v118)
-        let v122 : string = v113 + v120 
-        let v126 : unit = ()
-        let v127 : (unit -> unit) = closure2(v122)
-        let v128 : unit = (fun () -> v127 (); v126) ()
-        let v130 : bool = v106 = false
-        if v130 then
-            failwith<unit> v122
-        method56(v0, v1, v4)
+                method19(v118)
+            else
+                let v120 : float = 0.01
+                method26(v114, v120)
+        let v126 : string = "__assert_lt"
+        let v127 : string = " "
+        let v128 : string = v126 + v127 
+        let v142 : string =
+            if v115 then
+                let v138 : float = 0.01
+                method19(v138)
+            else
+                let v140 : float = 0.01
+                method26(v114, v140)
+        let v144 : string = v128 + v142 
+        let v173 : unit = ()
+        let v174 : (unit -> unit) = closure2(v144)
+        let v175 : unit = (fun () -> v174 (); v173) ()
+        let v185 : bool = v117 = false
+        if v185 then
+            failwith<unit> v144
+        let v186 : string = "$0.im"
+        let v187 : float = Fable.Core.RustInterop.emitRustExpr v108 v186 
+        let v188 : bool = v187 < 0.01
+        let v190 : bool =
+            if v188 then
+                true
+            else
+                method18(v188)
+        let v195 : string =
+            if v188 then
+                let v191 : float = 0.01
+                method19(v191)
+            else
+                let v193 : float = 0.01
+                method26(v187, v193)
+        let v197 : string = v126 + v127 
+        let v211 : string =
+            if v188 then
+                let v207 : float = 0.01
+                method19(v207)
+            else
+                let v209 : float = 0.01
+                method26(v187, v209)
+        let v213 : string = v197 + v211 
+        let v242 : unit = ()
+        let v243 : (unit -> unit) = closure2(v213)
+        let v244 : unit = (fun () -> v243 (); v242) ()
+        let v254 : bool = v190 = false
+        if v254 then
+            failwith<unit> v213
+        method62(v0, v1, v4)
     | UH0_0 -> (* Nil *)
         ()
-and method53 (v0 : pyo3_Python) : unit =
-    let v1 : UH0 = method54()
-    let v2 : UH0 = method55()
-    method56(v0, v2, v1)
-and method52 () : unit =
+and method59 (v0 : pyo3_Python) : unit =
+    let v1 : UH0 = method60()
+    let v2 : UH0 = method61()
+    method62(v0, v2, v1)
+and method58 () : unit =
     let v0 : string = "pyo3::Python::initialize()"
     Fable.Core.RustInterop.emitRustExpr () v0 
     let v1 : string = "let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"
     Fable.Core.RustInterop.emitRustExpr () v1 
     let v2 : string = "py"
     let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2 
-    method53(v3)
+    method59(v3)
     let v5 : Result<unit, pyo3_PyErr> = Ok () 
-    let v8 : Result<unit, pyo3_PyErr> = method23(v5)
-    let v9 : string = ""
-    let v10 : string = "}"
-    let v11 : string = v9 + v10 
-    let v12 : string = v11 + v10 
-    let v13 : string = "{"
-    let v14 : string = v9 + v13 
-    let x = v8 //
-    let v15 : _ = x
-    let v16 : unit = ()
+    let v15 : Result<unit, pyo3_PyErr> = method29(v5)
+    let v16 : string = ""
+    let v17 : string = "}"
+    let v18 : string = v16 + v17 
+    let v19 : string = v18 + v17 
+    let v20 : string = "{"
+    let v21 : string = v16 + v20 
+    let x = v15 //
+    let v22 : _ = x
+    let v23 : unit = ()
     (* run_target_args'
-    let v17 : unit = ()
+    let v24 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v18 : string = $"true; let _fix_closure_v16 = $0"
-    let v19 : bool = Fable.Core.RustInterop.emitRustExpr v15 v18 
-    let _run_target_args'_v17 = true 
+    let v25 : string = $"true; let _fix_closure_v23 = $0"
+    let v26 : bool = Fable.Core.RustInterop.emitRustExpr v22 v25 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v20 : string = $"true; let _fix_closure_v16 = $0"
-    let v21 : bool = Fable.Core.RustInterop.emitRustExpr v15 v20 
-    let _run_target_args'_v17 = true 
+    let v27 : string = $"true; let _fix_closure_v23 = $0"
+    let v28 : bool = Fable.Core.RustInterop.emitRustExpr v22 v27 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v22 : string = $"true; let _fix_closure_v16 = $0"
-    let v23 : bool = Fable.Core.RustInterop.emitRustExpr v15 v22 
-    let _run_target_args'_v17 = true 
+    let v29 : string = $"true; let _fix_closure_v23 = $0"
+    let v30 : bool = Fable.Core.RustInterop.emitRustExpr v22 v29 
+    let _run_target_args'_v24 = true 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
 #else
-    let _run_target_args'_v17 = false 
+    let _run_target_args'_v24 = false 
     #endif
-    let v24 : bool = _run_target_args'_v17 
-    let v25 : string = $"true; _fix_closure_v16 " + v12 + "); " + v14 + " // rust.fix_closure'"
-    let v26 : bool = Fable.Core.RustInterop.emitRustExpr () v25 
-    let v27 : string = "__run_test"
-    let v28 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v27 
+    let v31 : bool = _run_target_args'_v24 
+    let v32 : string = $"true; _fix_closure_v23 " + v19 + "); " + v21 + " // rust.fix_closure'"
+    let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
+    let v34 : string = "__run_test"
+    let v35 : Result<unit, pyo3_PyErr> = Fable.Core.RustInterop.emitRustExpr () v34 
     (* run_target_args'
-    let v29 : unit = ()
+    let v36 : unit = ()
     run_target_args' *)
     
 #if FABLE_COMPILER || WASM || CONTRACT
     
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v30 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v30 
+    let v37 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v37 
     #endif
 #if FABLE_COMPILER_RUST && WASM
-    let v31 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v31 
+    let v38 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v38 
     #endif
 #if FABLE_COMPILER_RUST && CONTRACT
-    let v32 : string = "$0.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr v28 v32 
+    let v39 : string = "$0.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr v35 v39 
     #endif
 #if FABLE_COMPILER_TYPESCRIPT
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #if !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !FABLE_COMPILER_PYTHON
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
 #else
-    match v28 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
+    match v35 with Ok x -> x | Error e -> failwith $"resultm.unwrap' / e: {e}"
     #endif
     // run_target_args' is_unit
     ()
@@ -4962,67 +4988,67 @@ and closure0 () () : unit =
     let v7 : string = "test_zeta_at_2_minus2"
     let v8 : string = $"*/ #[test] fn " + v7 + "() { //"
     let v9 : bool = Fable.Core.RustInterop.emitRustExpr () v8 
-    method24()
+    method30()
     let v10 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v10 
     let v11 : string = "test_trivial_zero_at_negative_even___"
     let v12 : string = $"*/ #[test] fn " + v11 + "() { //"
     let v13 : bool = Fable.Core.RustInterop.emitRustExpr () v12 
-    method26()
+    method32()
     let v14 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v14 
     let v15 : string = "test_non_trivial_zero___"
     let v16 : string = $"*/ #[test] fn " + v15 + "() { //"
     let v17 : bool = Fable.Core.RustInterop.emitRustExpr () v16 
-    method30()
+    method36()
     let v18 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v18 
     let v19 : string = "test_real_part_greater_than_one___"
     let v20 : string = $"*/ #[test] fn " + v19 + "() { //"
     let v21 : bool = Fable.Core.RustInterop.emitRustExpr () v20 
-    method32()
+    method38()
     let v22 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v22 
     let v23 : string = "test_zeta_at_1___"
     let v24 : string = $"*/ #[test] fn " + v23 + "() { //"
     let v25 : bool = Fable.Core.RustInterop.emitRustExpr () v24 
-    method34()
+    method40()
     let v26 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v26 
     let v27 : string = "test_symmetry_across_real_axis___"
     let v28 : string = $"*/ #[test] fn " + v27 + "() { //"
     let v29 : bool = Fable.Core.RustInterop.emitRustExpr () v28 
-    method36()
+    method42()
     let v30 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v30 
     let v31 : string = "test_behavior_near_origin___"
     let v32 : string = $"*/ #[test] fn " + v31 + "() { //"
     let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32 
-    method38()
+    method44()
     let v34 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v34 
     let v35 : string = "test_imaginary_axis"
     let v36 : string = $"*/ #[test] fn " + v35 + "() { //"
     let v37 : bool = Fable.Core.RustInterop.emitRustExpr () v36 
-    method40()
+    method46()
     let v38 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v38 
     let v39 : string = "test_critical_strip"
     let v40 : string = $"*/ #[test] fn " + v39 + "() { //"
     let v41 : bool = Fable.Core.RustInterop.emitRustExpr () v40 
-    method44()
+    method50()
     let v42 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v42 
     let v43 : string = "test_reflection_formula_for_specific_value"
     let v44 : string = $"*/ #[test] fn " + v43 + "() { //"
     let v45 : bool = Fable.Core.RustInterop.emitRustExpr () v44 
-    method48()
+    method54()
     let v46 : string = "} /* /*"
     Fable.Core.RustInterop.emitRustExpr () v46 
     let v47 : string = "test_euler_product_formula"
     let v48 : string = $"*/ #[test] fn " + v47 + "() { //"
     let v49 : bool = Fable.Core.RustInterop.emitRustExpr () v48 
-    method52()
+    method58()
     let v50 : string = "{ //"
     Fable.Core.RustInterop.emitRustExpr () v50 
     let v51 : string = "{ //"
@@ -5050,9 +5076,9 @@ and closure0 () () : unit =
     ()
 and closure3 () (v0 : (string [])) : int32 =
     let v1 : string = $"value: {1}"
-    let v3 : unit = ()
-    let v4 : (unit -> unit) = closure2(v1)
-    let v5 : unit = (fun () -> v4 (); v3) ()
+    let v21 : unit = ()
+    let v22 : (unit -> unit) = closure2(v1)
+    let v23 : unit = (fun () -> v22 (); v21) ()
     0
 let v0 : (unit -> unit) = closure0()
 let tests () = v0 ()
