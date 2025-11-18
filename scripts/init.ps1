@@ -61,7 +61,7 @@ if (!(Search-Command "nix")) {
     }
     else {
         if (!(Test-Path "~/.bun/bin/bun.exe")) {
-            { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block -OnError Continue
+            { Invoke-RestMethod bun.sh/install.ps1 | Invoke-Expression } | Invoke-Block
         }
 
         { choco install rsync -y } | Invoke-Block -OnError Continue
