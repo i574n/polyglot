@@ -1466,11 +1466,11 @@ struct Union0 {
     }
 };
 int main_body() {
-    const char * v70;
-    v70 = ""Cpp"";
-    Union0 v71;
-    v71 = // base.backend_switch / record_type_try_find / key: v70 ;
-    switch (v71.tag) {
+    const char * v62;
+    v62 = ""Cpp"";
+    Union0 v63;
+    v63 = // base.backend_switch / record_type_try_find / key: v62 ;
+    switch (v63.tag) {
         case 1: { // None
             
             printf(""%s\n"", ""Option does not have a value."");
@@ -1478,8 +1478,8 @@ int main_body() {
             break;
         }
         case 0: { // Some
-            int v72 = v71.case0.v0;
-            return v72;
+            int v64 = v63.case0.v0;
+            return v64;
             break;
         }
         default: {
