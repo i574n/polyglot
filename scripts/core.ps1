@@ -345,3 +345,21 @@ function Search-DotnetSdk($version) {
     }
     return $false
 }
+
+function ClearCargoTarget($path) {
+    Remove-Item "$path/target/debug/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/debug/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/debug/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/release/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/release/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/release/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/build" -Recurse -Force -ErrorAction Ignore
+}

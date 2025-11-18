@@ -50,4 +50,5 @@ Write-Output "polyglot/lib/math/build.ps1 / `$targetDir: $targetDir / `$projectN
 
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
+    ClearCargoTarget "../../workspace"
 }
