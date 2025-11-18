@@ -51,7 +51,7 @@ if (!(Search-Command "nix")) {
         }
 
         if (!(Test-Path "~/.bun/bin/bun")) {
-            curl -sSL https://bun.sh/install | bash
+            { curl -sSL https://bun.sh/install | bash } | Invoke-Block
             $env:PATH = "~/.bun/bin:$env:PATH"
         }
 
