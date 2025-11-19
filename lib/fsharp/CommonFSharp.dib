@@ -31,7 +31,7 @@ let inline getUnionCaseName<'T> (x: 'T) =
 
 #!fsharp
 
-//// test
+///- --test
 
 TraceLevel.Critical
 |> getUnionCaseName

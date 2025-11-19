@@ -106,7 +106,7 @@ let inline runWithTimeoutChoice timeout fn =
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 120
 |> runWithTimeoutChoice 10
@@ -114,7 +114,7 @@ Async.Sleep 120
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 10
 |> runWithTimeoutChoice 60
@@ -122,7 +122,7 @@ Async.Sleep 10
 
 #!fsharp
 
-//// test
+///- --test
 
 async {
     raise (exn "error")
@@ -176,7 +176,7 @@ let inline runWithTimeout timeout fn =
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 60
 |> runWithTimeout 10
@@ -184,7 +184,7 @@ Async.Sleep 60
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 10
 |> runWithTimeout 60
@@ -192,7 +192,7 @@ Async.Sleep 10
 
 #!fsharp
 
-//// test
+///- --test
 
 async {
     raise (exn "error")
@@ -255,7 +255,7 @@ let inline runWithTimeoutStrict (timeout : int) fn =
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 60
 |> runWithTimeoutStrict 10
@@ -263,7 +263,7 @@ Async.Sleep 60
 
 #!fsharp
 
-//// test
+///- --test
 
 Async.Sleep 10
 |> runWithTimeoutStrict 60
@@ -271,7 +271,7 @@ Async.Sleep 10
 
 #!fsharp
 
-//// test
+///- --test
 
 async {
     raise (exn "error")
@@ -303,7 +303,7 @@ let inline init x = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 init 1
 |> Async.RunSynchronously
@@ -321,7 +321,7 @@ let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
 
 #!fsharp
 
-//// test
+///- --test
 
 let cts = new System.Threading.CancellationTokenSource ()
 
@@ -367,7 +367,7 @@ let inline retryAsync retries fn =
 
 #!fsharp
 
-//// test
+///- --test
 
 let retry_fn_test = ref 0
 async {
@@ -380,7 +380,7 @@ async {
 
 #!fsharp
 
-//// test
+///- --test
 
 let retry_fn_test = ref 0
 async {

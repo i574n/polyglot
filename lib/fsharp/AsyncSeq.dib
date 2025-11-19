@@ -45,7 +45,7 @@ let inline subscribeEvent (event: IEvent<'H, 'A>) map =
 
 #!fsharp
 
-//// test
+///- --test
 
 type TestEvent () as self =
     member val Calls = [] with get, set
@@ -95,7 +95,7 @@ type TestEvent () as self =
 
 #!fsharp
 
-//// test
+///- --test
 
 let testEvent = TestEvent ()
 
@@ -116,7 +116,7 @@ testEvent.Calls
 
 #!fsharp
 
-//// test
+///- --test
 
 let testEvent = TestEvent ()
 
@@ -140,7 +140,7 @@ testEvent.Calls
 
 #!fsharp
 
-//// test
+///- --test
 
 let testEvent = TestEvent ()
 
@@ -199,7 +199,7 @@ let subscribeToken (token : System.Threading.CancellationToken) =
 
 #!fsharp
 
-//// test
+///- --test
 
 let cts = new System.Threading.CancellationTokenSource ()
 

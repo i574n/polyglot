@@ -8,7 +8,7 @@
 
 #!fsharp
 
-//// test
+///- --test
 
 type AssertExceptionFormatter (ex) =
     member _.Text =
@@ -23,7 +23,7 @@ Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline __expect fn log expected actual =
     if log then printfn $"{actual.ToDisplayString ()}"
@@ -68,7 +68,7 @@ let inline _throwsC expected actual = __throwsC true expected actual
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline __isBetween log a b actual =
     let inline isBetween actual (a, b) _ =

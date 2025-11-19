@@ -157,7 +157,7 @@ details > div {{
 
 #!fsharp
 
-//// test
+///- --test
 
 let expected = """<!DOCTYPE html>
 <html lang="en">
@@ -233,7 +233,7 @@ type Arguments =
 
 #!fsharp
 
-//// test
+///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
@@ -269,7 +269,7 @@ let main args =
 
 #!fsharp
 
-//// test
+///- --test
 
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"

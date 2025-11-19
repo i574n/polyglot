@@ -57,7 +57,12 @@ export const getFileTokenRange = async (workspaceRoot: string, text: string) => 
     fs.mkdirSync(codeDir, { recursive: true })
   }
 
-  const codeFile = path.join(codeDir, text.indexOf("//// real\n") >= 0 ? "main_real.spir" : "main.spi")
+  const codeFile = path.join(
+    codeDir,
+    text.indexOf("///- ") >= 0 && text.indexOf(" --real") >= 0
+      ? "main_real.spir"
+      : "main.spi"
+  )
   const tokensFile = path.join(codeDir, "tokens.json")
 
   console.log(`polyglot/apps/spiral/supervisor.ts/getFileTokenRange / codeDir: ${codeDir}`)

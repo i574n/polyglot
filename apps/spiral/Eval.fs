@@ -926,10 +926,21 @@ module Eval =
             let builderCommands =
                 lines
                 |> Array.choose (fun line ->
-                    if line |> SpiralSm.starts_with "///! "
-                    then line |> SpiralSm.split "///! " |> Array.tryItem 1
+                    if line |> SpiralSm.starts_with "///> "
+                    then line |> SpiralSm.split "///> " |> Array.tryItem 1
+                    elif line |> SpiralSm.starts_with "///> "
+                    then line |> SpiralSm.split "///> " |> Array.tryItem 1
                     else None
                 )
+
+            let args =
+                lines
+                |> Array.tryPick (fun line ->
+                    if line |> SpiralSm.starts_with "///- "
+                    then line |> SpiralSm.split "///- " |> Array.tryItem 1
+                    else None
+                )
+                |> Option.defaultValue ""
 
             let packages =
                 lines
@@ -951,26 +962,30 @@ module Eval =
                 |> Option.defaultValue (60003 * 60 * 24)
 
             let boolArg def command =
-                lines
-                |> Array.tryPick (fun line ->
-                    let text = $"//// {command}"
-                    match line.[0..text.Length - 1], line.[text.Length..] with
-                    | head, "" when head = text -> Some true
-                    | head, _ when head = text ->
-                        line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
-                    | _ -> None
-                )
-                |> Option.defaultValue def
+                let args = args |> SpiralSm.contains command
+                if args
+                then true
+                else
+                    lines
+                    |> Array.tryPick (fun line ->
+                        let text = $"///- --{command}"
+                        match line.[0..text.Length - 1], line.[text.Length..] with
+                        | head, "" when head = text -> Some true
+                        | head, _ when head = text ->
+                            line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
+                        | _ -> None
+                    )
+                    |> Option.defaultValue def
 
-            let printCode = "print_code" |> boolArg false
-            let isTraceToggle = "trace_toggle" |> boolArg false
-            let isTestsToggle = "tests_toggle" |> boolArg false
-            let isTrace = "trace" |> boolArg false
-            let isTest = "test" |> boolArg false
-            let isTestForce = "test_force" |> boolArg false
-            let isCache = "cache" |> boolArg false
-            let isReal = "real" |> boolArg false
-            let timeout_continue = "timeout_continue" |> boolArg false
+            let printCode = "--print-code" |> boolArg false || "print_code" |> boolArg false
+            let isTraceToggle = "--toggle trace" |> boolArg false || "trace_toggle" |> boolArg false
+            let isTestsToggle = "--toggle tests" |> boolArg false || "tests_toggle" |> boolArg false
+            let isTrace = "--trace" |> boolArg false || "trace" |> boolArg false
+            let isTestForce = "--test force" |> boolArg false
+            let isTest = isTestForce || "--test" |> boolArg false || "test" |> boolArg false
+            let isCache = "--cache" |> boolArg false || "cache" |> boolArg false
+            let isReal = "--real" |> boolArg false || "real" |> boolArg false
+            let isStatic = "--static" |> boolArg false
 
             let getToggle key toggle =
                 toggle |> Map.tryFind key |> Option.defaultValue false
@@ -997,7 +1012,7 @@ module Eval =
             ))
 
             let rawCellCode, lines, builderCommands =
-                if (automation |> not) && (isTestForce |> not) && isTest && toggle |> getToggle Tests |> not
+                if isStatic || (automation |> not) && (isTestForce |> not) && isTest && toggle |> getToggle Tests |> not
                 then "()", [| "()" |], [||]
                 else rawCellCode, lines, builderCommands
 
@@ -1027,7 +1042,7 @@ module Eval =
             )
             |> Option.defaultWith (fun () -> (
                 let lines = lines |> SpiralSm.concat (string '\n') |> SpiralSm.ellipsis_end 1500
-                Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / timeout_continue: {timeout_continue} / lines: {lines}"),
+                Error (Exception $"Eval.eval / Async.runWithTimeout / Exception / timeout: {timeout} / lines: {lines}"),
                 [|
                     (
                         TraceLevel.Critical, $"Eval.eval / Async.runWithTimeout / errors[0] / timeout: {timeout} / lines: {lines}", 0, ("", (0, 0), (0, 0))

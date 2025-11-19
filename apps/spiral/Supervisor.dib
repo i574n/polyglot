@@ -764,7 +764,7 @@ let buildCode backend packages isCache timeout cancellationToken input = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """inl app () =
@@ -800,7 +800,7 @@ let v0 : (unit -> int32) = closure0()
 
 #!fsharp
 
-//// test
+///- --test
 
 """
 inl init_series start end inc =
@@ -831,7 +831,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 """
 inl init_series start end inc =
@@ -1157,7 +1157,7 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
 
 #!fsharp
 
-//// test
+///- --test
 
 """
 inl init_series start end inc =
@@ -1499,7 +1499,7 @@ int main(){
 
 #!fsharp
 
-//// test
+///- --test
 
 """
 inl init_series start end inc =
@@ -1530,7 +1530,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """
@@ -1564,7 +1564,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 ""
@@ -1581,7 +1581,7 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """inl main () =
@@ -1600,7 +1600,7 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """
@@ -1625,7 +1625,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """
@@ -1649,7 +1649,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """
@@ -1674,7 +1674,7 @@ inl main () =
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """inl main () =
@@ -1698,7 +1698,7 @@ Fails to satisfy: number"
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """inl main () =
@@ -1721,7 +1721,7 @@ Unbound variable: y."
 
 #!fsharp
 
-//// test
+///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
 """inl rec main () = main"""
@@ -1840,7 +1840,7 @@ let getCodeTokenRange cancellationToken code = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 """inl main () = ()"""
 |> getCodeTokenRange None
@@ -1851,7 +1851,7 @@ let getCodeTokenRange cancellationToken code = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 """inl main () = 1i32"""
 |> getCodeTokenRange None
@@ -1951,7 +1951,7 @@ let getCodeHoverAt cancellationToken code position = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 4 |}
 |> Async.runWithTimeout 10000
@@ -1960,7 +1960,7 @@ getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 4 |}
 
 #!fsharp
 
-//// test
+///- --test
 
 getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 0 |}
 |> Async.runWithTimeout 10000
@@ -1969,7 +1969,7 @@ getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 0 |}
 
 #!fsharp
 
-//// test
+///- --test
 
 getCodeHoverAt None """inl rec main () = main""" {| line = 0; character = 8 |}
 |> Async.runWithTimeout 10000
@@ -1978,7 +1978,7 @@ getCodeHoverAt None """inl rec main () = main""" {| line = 0; character = 8 |}
 
 #!fsharp
 
-//// test
+///- --test
 
 getCodeHoverAt None """inl main () = 1""" {| line = 0; character = 4 |}
 |> Async.runWithTimeout 10000
@@ -2016,7 +2016,7 @@ type Arguments =
 
 #!fsharp
 
-//// test
+///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
@@ -2205,7 +2205,7 @@ let main args =
 
 #!fsharp
 
-//// test
+///- --test
 
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"

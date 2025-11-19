@@ -460,7 +460,7 @@ inl tests () =
         test_euler_product_formula
     }
 
-///! _
+///> _
 
 inl main (_args : array_base string) =
     inl value = 1i32

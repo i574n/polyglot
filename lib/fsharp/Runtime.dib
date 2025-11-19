@@ -39,7 +39,7 @@ open Common
 
 #!fsharp
 
-//// test
+///- --test
 
 open SpiralFileSystem.Operators
 
@@ -66,7 +66,7 @@ let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
 
 #!fsharp
 
-//// test
+///- --test
 
 [<RequireQualifiedAccess>]
 type Arguments =
@@ -80,13 +80,13 @@ type Arguments =
 
 #!fsharp
 
-//// test
+///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
 #!fsharp
 
-//// test
+///- --test
 
 fun () -> parseArgs<Arguments> [||] |> ignore
 |> _throwsC (fun ex _ ->
@@ -103,7 +103,7 @@ let inline parseAllArgs<'T when 'T :> Argu.IArgParserTemplate> args =
 
 #!fsharp
 
-//// test
+///- --test
 
 [<RequireQualifiedAccess>]
 type Arguments =
@@ -128,7 +128,7 @@ let inline parseArgsMap<'T when 'T :> Argu.IArgParserTemplate> args =
 
 #!fsharp
 
-//// test
+///- --test
 
 parseArgsMap<Arguments> [| "a b"; "c" |]
 |> _assertEqual (

@@ -70,6 +70,6 @@ let trace level fn locals =
 
 #!fsharp
 
-//// test
+///- --test
 
 trace Debug (fun () -> "test") _locals

@@ -190,7 +190,7 @@ let inline buildCode runtime packages modules outputDir name code = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 "1 + 1 |> ignore"
 |> buildCode None [] [] None "test1"
@@ -199,7 +199,7 @@ let inline buildCode runtime packages modules outputDir name code = async {
 
 #!fsharp
 
-//// test
+///- --test
 
 "1 + a |> ignore"
 |> buildCode None [] [] None "test2"
@@ -280,7 +280,7 @@ type Arguments =
 
 #!fsharp
 
-//// test
+///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
@@ -326,7 +326,7 @@ let main args =
 
 #!fsharp
 
-//// test
+///- --test
 
 let args =
     System.Environment.GetEnvironmentVariable "ARGS"

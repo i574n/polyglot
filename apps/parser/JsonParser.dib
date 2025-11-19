@@ -51,7 +51,7 @@ The JSON spec is available at [json.org](http://www.json.org/). I'll paraphase i
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
     match actual, expected with
@@ -97,7 +97,7 @@ let jNull =
 
 #!fsharp
 
-//// test
+///- --test
 
 jValueRef <|
     choice
@@ -107,14 +107,14 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jValue "null"
 |> parserEqual (Success JNull)
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNull "nulp"
 |> parserEqual (
@@ -144,7 +144,7 @@ let jBool =
 
 #!fsharp
 
-//// test
+///- --test
 
 jValueRef <|
     choice
@@ -155,21 +155,21 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jBool "true"
 |> parserEqual (Success (JBool true))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jBool "false"
 |> parserEqual (Success (JBool false))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jBool "truX"
 |> parserEqual (
@@ -191,14 +191,14 @@ let jUnescapedChar =
 
 #!fsharp
 
-//// test
+///- --test
 
 run jUnescapedChar "a"
 |> parserEqual (Success 'a')
 
 #!fsharp
 
-//// test
+///- --test
 
 run jUnescapedChar "\\"
 |> parserEqual (
@@ -234,35 +234,35 @@ let jEscapedChar =
 
 #!fsharp
 
-//// test
+///- --test
 
 run jEscapedChar "\\\\"
 |> parserEqual (Success '\\')
 
 #!fsharp
 
-//// test
+///- --test
 
 run jEscapedChar "\\t"
 |> parserEqual (Success '\t')
 
 #!fsharp
 
-//// test
+///- --test
 
 run jEscapedChar @"\\"
 |> parserEqual (Success '\\')
 
 #!fsharp
 
-//// test
+///- --test
 
 run jEscapedChar @"\n"
 |> parserEqual (Success '\n')
 
 #!fsharp
 
-//// test
+///- --test
 
 run jEscapedChar "a"
 |> parserEqual (
@@ -294,7 +294,7 @@ let jUnicodeChar =
 
 #!fsharp
 
-//// test
+///- --test
 
 run jUnicodeChar "\\u263A"
 |> parserEqual (Success '☺')
@@ -320,7 +320,7 @@ let jString =
 
 #!fsharp
 
-//// test
+///- --test
 
 jValueRef <|
     choice
@@ -332,35 +332,35 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jString "\"\""
 |> parserEqual (Success (JString ""))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jString "\"a\""
 |> parserEqual (Success (JString "a"))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jString "\"ab\""
 |> parserEqual (Success (JString "ab"))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jString "\"ab\\tde\""
 |> parserEqual (Success (JString "ab\tde"))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jString "\"ab\\u263Ade\""
 |> parserEqual (Success (JString "ab☺de"))
@@ -428,7 +428,7 @@ let jNumber =
 
 #!fsharp
 
-//// test
+///- --test
 
 jValueRef <|
     choice
@@ -441,62 +441,62 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber "123"
 |> parserEqual (Success (JNumber 123.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber "-123"
 |> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber "123.4"
 |> parserEqual (Success (JNumber 123.4))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber "-123."
 |> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber "00.1"
 |> parserEqual (Success (JNumber 0.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 let jNumber_ = jNumber .>> spaces1
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "123"
 |> parserEqual (Success (JNumber 123.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "-123"
 |> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "-123."
 |> parserEqual (
@@ -509,14 +509,14 @@ run jNumber_ "-123."
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "123.4"
 |> parserEqual (Success (JNumber 123.4))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "00.4"
 |> parserEqual (
@@ -529,21 +529,21 @@ run jNumber_ "00.4"
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "123e4"
 |> parserEqual (Success (JNumber 1230000.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "123.4e5"
 |> parserEqual (Success (JNumber 12340000.0))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jNumber_ "123.4e-5"
 |> parserEqual (Success (JNumber 0.001234))
@@ -568,7 +568,7 @@ let jArray =
 
 #!fsharp
 
-//// test
+///- --test
 
 jValueRef <|
     choice
@@ -582,14 +582,14 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jArray "[ 1, 2 ]"
 |> parserEqual (Success (JArray [ JNumber 1.0; JNumber 2.0 ]))
 
 #!fsharp
 
-//// test
+///- --test
 
 run jArray "[ 1, 2, ]"
 |> parserEqual (
@@ -637,7 +637,7 @@ jValueRef <|
 
 #!fsharp
 
-//// test
+///- --test
 
 run jObject """{ "a":1, "b"  :  2 }"""
 |> parserEqual (
@@ -653,7 +653,7 @@ run jObject """{ "a":1, "b"  :  2 }"""
 
 #!fsharp
 
-//// test
+///- --test
 
 run jObject """{ "a":1, "b"  :  2, }"""
 |> parserEqual (
@@ -670,7 +670,7 @@ run jObject """{ "a":1, "b"  :  2, }"""
 
 #!fsharp
 
-//// test
+///- --test
 
 let example1 = """{
     "name" : "Scott",
@@ -704,7 +704,7 @@ run jValue example1
 
 #!fsharp
 
-//// test
+///- --test
 
 let example2 = """{"widget": {
     "debug": "on",
@@ -779,7 +779,7 @@ run jValue example2
 
 #!fsharp
 
-//// test
+///- --test
 
 let example3 = """{
   "string": "Hello, \"World\"!",

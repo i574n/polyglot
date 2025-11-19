@@ -4,7 +4,7 @@
 
 #!fsharp
 
-//// test
+///- --test
 
 Formatter.ListExpansionLimit <- 100
 

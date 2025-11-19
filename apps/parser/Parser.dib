@@ -66,7 +66,7 @@ let inline fromStr str =
 
 #!fsharp
 
-//// test
+///- --test
 
 fromStr "" |> _assertEqual {
     lines = [||]
@@ -75,7 +75,7 @@ fromStr "" |> _assertEqual {
 
 #!fsharp
 
-//// test
+///- --test
 
 fromStr "Hello \n World" |> _assertEqual {
     lines = [| "Hello "; " World" |]
@@ -113,7 +113,7 @@ let inline nextChar input =
 
 #!fsharp
 
-//// test
+///- --test
 
 let newInput, charOpt = fromStr "Hello World" |> nextChar
 
@@ -125,7 +125,7 @@ charOpt |> _assertEqual (Some 'H')
 
 #!fsharp
 
-//// test
+///- --test
 
 let newInput, charOpt = fromStr "Hello\n\nWorld" |> nextChar
 
@@ -237,7 +237,7 @@ let inline satisfy predicate label =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -253,7 +253,7 @@ runOnInput parser input |> _assertEqual (
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "World"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -286,7 +286,7 @@ let inline (>>=) p f = bindP f p
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -303,7 +303,7 @@ runOnInput parser2 input |> _assertEqual (
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "World"
 let parser = satisfy (fun c -> c = 'W') "W"
@@ -330,7 +330,7 @@ let inline returnP x =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = returnP "Hello"
@@ -359,7 +359,7 @@ let inline (|>>) x f = f <!> x
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -394,7 +394,7 @@ let inline lift2 f xP yP =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -426,7 +426,7 @@ let (.>>.) = andThen
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -459,7 +459,7 @@ let (<|>) = orElse
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -482,7 +482,7 @@ let inline choice listOfParsers =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -507,7 +507,7 @@ let rec sequence parserList =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -543,7 +543,7 @@ let inline many parser =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -570,7 +570,7 @@ let inline many1 p =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -597,7 +597,7 @@ let inline opt p =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
@@ -631,7 +631,7 @@ let inline between p1 p2 p3 =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "[Hello]"
 let parser =
@@ -663,7 +663,7 @@ let inline sepBy p sep =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello,World"
 let parser = sepBy (many (satisfy (fun c -> c <> ',') "not comma")) (satisfy (fun c -> c = ',') "comma")
@@ -692,7 +692,7 @@ let inline anyOf listOfChars =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = anyOf [ 'H'; 'e'; 'l'; 'o' ] |> many
@@ -725,7 +725,7 @@ let inline manyChars1 cp =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = manyChars1 (anyOf [ 'H'; 'e'; 'l'; 'o' ])
@@ -751,7 +751,7 @@ let inline pstring str =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = pstring "Hello"
@@ -780,7 +780,7 @@ let spaces1 = many1 whitespaceChar
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "  Hello"
 let parser = spaces1 .>>. pstring "Hello"
@@ -801,7 +801,7 @@ let digitChar =
 
 #!fsharp
 
-//// test
+///- --test
 
 let input = fromStr "Hello"
 let parser = digitChar
@@ -834,7 +834,7 @@ let pint =
 
 #!fsharp
 
-//// test
+///- --test
 
 run pint "-123"
 |> _assertEqual (
@@ -864,7 +864,7 @@ let pfloat =
 
 #!fsharp
 
-//// test
+///- --test
 
 run pfloat "-123.45"
 |> _assertEqual (

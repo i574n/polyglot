@@ -186,7 +186,7 @@ let inline watchDirectory path =
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
@@ -257,7 +257,7 @@ let inline testEventsRaw
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 2
@@ -321,7 +321,7 @@ run
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 2
@@ -402,7 +402,7 @@ run
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline sortEvent event =
     match event with
@@ -491,7 +491,7 @@ let inline testEventsSorted
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 3
@@ -541,7 +541,7 @@ run
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 2
@@ -589,7 +589,7 @@ run
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 2
@@ -642,7 +642,7 @@ run
 
 #!fsharp
 
-//// test
+///- --test
 
 let inline write path = async {
     let n = 2
