@@ -623,7 +623,7 @@ module Eval =
             lines: _
             isReal: _
             isTest: _
-            isTestForce: _
+            isTestStatic: _
             builderCommands: _ array
             isCache: _
             timeout: _
@@ -833,7 +833,7 @@ module Eval =
                                 ch, errors'
                     match ch with
                     | Choice1Of2 v ->
-                        if (props.isTest |> not) || props.isTestForce then
+                        if (props.isTest |> not) || props.isTestStatic then
                             if props.isReal
                             then allCodeReal <- newAllCode
                             else allCode <- newAllCode
@@ -981,8 +981,8 @@ module Eval =
             let isTraceToggle = "--toggle trace" |> boolArg false || "trace_toggle" |> boolArg false
             let isTestsToggle = "--toggle tests" |> boolArg false || "tests_toggle" |> boolArg false
             let isTrace = "--trace" |> boolArg false || "trace" |> boolArg false
-            let isTestForce = "--test force" |> boolArg false
-            let isTest = isTestForce || "--test" |> boolArg false || "test" |> boolArg false
+            let isTestStatic = "--test static" |> boolArg false
+            let isTest = isTestStatic || "--test" |> boolArg false || "test" |> boolArg false
             let isCache = "--cache" |> boolArg false || "cache" |> boolArg false
             let isReal = "--real" |> boolArg false || "real" |> boolArg false
             let isStatic = "--static" |> boolArg false
@@ -1012,7 +1012,7 @@ module Eval =
             ))
 
             let rawCellCode, lines, builderCommands =
-                if isStatic || (automation |> not) && (isTestForce |> not) && isTest && toggle |> getToggle Tests |> not
+                if isStatic || (automation |> not) && (isTestStatic |> not) && isTest && toggle |> getToggle Tests |> not
                 then "()", [| "()" |], [||]
                 else rawCellCode, lines, builderCommands
 
@@ -1022,7 +1022,7 @@ module Eval =
                     lines = lines
                     isReal = isReal
                     isTest = isTest
-                    isTestForce = isTestForce
+                    isTestStatic = isTestStatic
                     builderCommands = builderCommands
                     isCache = isCache
                     timeout = timeout

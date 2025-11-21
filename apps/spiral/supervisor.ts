@@ -59,7 +59,7 @@ export const getFileTokenRange = async (workspaceRoot: string, text: string) => 
 
   const codeFile = path.join(
     codeDir,
-    text.indexOf("///- ") >= 0 && text.indexOf(" --real") >= 0
+    text.indexOf("///- ") >= 0 && text.indexOf(" --" + "real") >= 0
       ? "main_real.spir"
       : "main.spi"
   )

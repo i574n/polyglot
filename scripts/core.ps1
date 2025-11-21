@@ -126,7 +126,8 @@ function Invoke-Block {
     }
 
     if ($env:CI -and $IsLinux) {
-        df -h
+        Write-Output "core.Invoke-Block / df - /dev/root"
+        df -h /dev/root
     }
 
     if ($Return) {
