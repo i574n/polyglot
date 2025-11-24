@@ -276,6 +276,7 @@ type Toggle =
 
 let mutable toggle : Map<Toggle, bool> =
     [
+        Tests, true
     ]
     |> Map.ofList
 
@@ -1091,8 +1092,6 @@ let inline eval
             |> Array.choose (fun line ->
                 if line |> SpiralSm.starts_with "///> "
                 then line |> SpiralSm.split "///> " |> Array.tryItem 1
-                elif line |> SpiralSm.starts_with "///> "
-                then line |> SpiralSm.split "///> " |> Array.tryItem 1
                 else None
             )
 
@@ -1106,49 +1105,46 @@ let inline eval
             |> Option.defaultValue ""
 
         let packages =
-            lines
-            |> Array.choose (fun line ->
-                if line |> SpiralSm.starts_with "//// package="
-                then line |> SpiralSm.split "=" |> Array.skip 1 |> SpiralSm.concat "" |> Some
-                else None
-            )
+            if args |> SpiralSm.contains "--package " |> not
+            then [||]
+            else
+                args
+                |> SpiralSm.split "--package "
+                |> Array.choose (SpiralSm.split " " >> Array.tryItem 0)
 
         allPackages <- packages |> Array.append allPackages |> Array.distinct
 
         let timeout =
-            lines
-            |> Array.tryPick (fun line ->
-                if line |> SpiralSm.starts_with "//// timeout="
-                then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
-                else None
-            )
+            if args |> SpiralSm.contains "--timeout " |> not
+            then None
+            else
+                args
+                |> SpiralSm.split "--timeout "
+                |> Array.choose (SpiralSm.split " " >> Array.tryItem 0)
+                |> Array.tryItem 0
+                |> Option.map int
             |> Option.defaultValue (60003 * 60 * 24)
 
-        let boolArg def command =
-            let args = args |> SpiralSm.contains command
-            if args
+        let getArg def value command =
+            let command_value =
+                match value with
+                | None -> command
+                | Some value -> command + " " + value
+            if args |> SpiralSm.contains command_value
             then true
-            else
-                lines
-                |> Array.tryPick (fun line ->
-                    let text = $"///- --{command}"
-                    match line.[0..text.Length - 1], line.[text.Length..] with
-                    | head, "" when head = text -> Some true
-                    | head, _ when head = text ->
-                        line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((<>) "false")
-                    | _ -> None
-                )
-                |> Option.defaultValue def
+            elif args |> SpiralSm.contains $"{command} false"
+            then false
+            else def
 
-        let printCode = "--print-code" |> boolArg false || "print_code" |> boolArg false
-        let isTraceToggle = "--toggle trace" |> boolArg false || "trace_toggle" |> boolArg false
-        let isTestsToggle = "--toggle tests" |> boolArg false || "tests_toggle" |> boolArg false
-        let isTrace = "--trace" |> boolArg false || "trace" |> boolArg false
-        let isTestStatic = "--test static" |> boolArg false
-        let isTest = isTestStatic || "--test" |> boolArg false || "test" |> boolArg false
-        let isCache = "--cache" |> boolArg false || "cache" |> boolArg false
-        let isReal = "--real" |> boolArg false || "real" |> boolArg false
-        let isStatic = "--static" |> boolArg false
+        let printCode = "--print-code" |> getArg false None
+        let isTraceToggle = "--toggle" |> getArg false ("trace" |> Some)
+        let isTestsToggle = "--toggle" |> getArg false ("tests" |> Some)
+        let isTrace = "--trace" |> getArg false None
+        let isTestStatic = "--test" |> getArg false ("static" |> Some)
+        let isTest = isTestStatic || "--test" |> getArg false None
+        let isCache = "--cache" |> getArg false None
+        let isReal = "--real" |> getArg false None
+        let isStatic = "--static" |> getArg false None
 
         let getToggle key toggle =
             toggle |> Map.tryFind key |> Option.defaultValue false
@@ -1162,9 +1158,40 @@ let inline eval
         if isTestsToggle
         then toggle <- toggle |> applyToggle Tests
 
+        let testsToggled = toggle |> getToggle Tests
+        let traceToggled = toggle |> getToggle Trace
+
+        let testsToggled, traceToggled, builderCommands =
+            let mold = "MOLD" |> System.Environment.GetEnvironmentVariable
+            if mold |> Directory.Exists then
+                // TODO: read from toml
+                let appdataPath = mold </> "dist/appdata/spiral/appdata.spi" 
+                let appdata =
+                    appdataPath
+                    |> SpiralFileSystem.read_all_text_async
+                    |> Async.RunSynchronously
+                    |> SpiralSm.to_lower
+                let builderCommands =
+                    builderCommands
+                    |> Array.filter (fun x ->
+                        let appdata =
+                            if x |> SpiralSm.contains "-w"
+                            then appdata |> SpiralSm.replace " (Some Wasm)" ""
+                            elif x |> SpiralSm.contains "-c"
+                            then appdata |> SpiralSm.replace " (Some Contract)" ""
+                            else appdata |> SpiralSm.replace " None" ""
+                        let x'' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
+                        appdata |> SpiralSm.contains $"{x''}, false" |> not
+                    )
+                trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
+                appdata |> SpiralSm.contains "tests = false" |> not,
+                appdata |> SpiralSm.contains "trace = false" |> not,
+                builderCommands
+            else testsToggled, traceToggled, builderCommands
+
         let oldLevel = get_trace_level ()
         let traceLevel =
-            if isTrace || toggle |> getToggle Trace
+            if isTrace || traceToggled
             then Verbose
             else Info
         traceLevel
@@ -1175,7 +1202,7 @@ let inline eval
         ))
 
         let rawCellCode, lines, builderCommands =
-            if isStatic || (automation |> not) && (isTestStatic |> not) && isTest && toggle |> getToggle Tests |> not
+            if isStatic || (automation |> not) && (isTestStatic |> not) && isTest && testsToggled |> not
             then "()", [| "()" |], [||]
             else rawCellCode, lines, builderCommands
 

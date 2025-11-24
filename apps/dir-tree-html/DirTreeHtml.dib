@@ -6,6 +6,10 @@
 
 # DirTreeHtml (Polyglot)
 
+#!spiral
+
+// TODO: embed in the readme
+
 #!fsharp
 
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
@@ -39,12 +43,26 @@ open Lib
 open SpiralFileSystem.Operators
 open Falco.Markup
 
+#!markdown
+
+## DirTreeHtml
+
+#!markdown
+
+### FileSystemNode
+
 #!fsharp
 
 type FileSystemNode =
     | File of string * string * int64
     | Folder of string * string * FileSystemNode list
     | Root of FileSystemNode list
+
+#!markdown
+
+### scanDirectory
+
+#!fsharp
 
 let rec scanDirectory isRoot (basePath : string) (path : string) =
     let relativePath =
@@ -71,6 +89,12 @@ let rec scanDirectory isRoot (basePath : string) (path : string) =
     if isRoot
     then Root children
     else Folder (path |> System.IO.Path.GetFileName, relativePath, children)
+
+#!markdown
+
+### generateHtml
+
+#!fsharp
 
 let rec generateHtml fsNode =
     let sizeLabel size =
@@ -124,6 +148,12 @@ let rec generateHtml fsNode =
             yield! children |> List.map generateHtml
         ]
 
+#!markdown
+
+### generateHtmlForFileSystem
+
+#!fsharp
+
 let generateHtmlForFileSystem root =
     $"""<!DOCTYPE html>
 <html lang="en">
@@ -154,6 +184,10 @@ details > div {{
 </body>
 </html>
 """
+
+#!markdown
+
+## tests
 
 #!fsharp
 

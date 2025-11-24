@@ -11,11 +11,15 @@ module DirTreeHtml =
     open SpiralFileSystem.Operators
     open Falco.Markup
 
+    /// ## DirTreeHtml
+
+    /// ### FileSystemNode
     type FileSystemNode =
         | File of string * string * int64
         | Folder of string * string * FileSystemNode list
         | Root of FileSystemNode list
 
+    /// ### scanDirectory
     let rec scanDirectory isRoot (basePath : string) (path : string) =
         let relativePath =
             path
@@ -42,6 +46,7 @@ module DirTreeHtml =
         then Root children
         else Folder (path |> System.IO.Path.GetFileName, relativePath, children)
 
+    /// ### generateHtml
     let rec generateHtml fsNode =
         let sizeLabel size =
             match float size with
@@ -94,6 +99,7 @@ module DirTreeHtml =
                 yield! children |> List.map generateHtml
             ]
 
+    /// ### generateHtmlForFileSystem
     let generateHtmlForFileSystem root =
         $"""<!DOCTYPE html>
 <html lang="en">
@@ -124,6 +130,8 @@ details > div {{
 </body>
 </html>
 """
+
+    /// ## tests
 
     /// ## Arguments
     [<RequireQualifiedAccess>]
