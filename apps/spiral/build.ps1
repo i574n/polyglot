@@ -9,7 +9,9 @@ $ErrorActionPreference = "Stop"
 . ../../deps/spiral/lib/spiral/lib.ps1
 
 
-{ pwsh ../../deps/spiral/apps/compiler/build.ps1 -fast 1 } | Invoke-Block
+if (!$fast) {
+    { pwsh ../../deps/spiral/apps/compiler/build.ps1 -fast 1 } | Invoke-Block
+}
 
 if (!$fast -and !$SkipNotebook) {
     { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Supervisor.dib --retries 3 } | Invoke-Block

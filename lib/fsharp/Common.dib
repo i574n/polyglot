@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
 
 #!markdown
 
@@ -53,7 +53,7 @@ let inline _locals () = ""
 
 #!markdown
 
-## trace
+### to_trace_level
 
 #!fsharp
 
@@ -63,6 +63,25 @@ let to_trace_level = function
     | Info -> SpiralTrace.TraceLevel.US0_2
     | Warning -> SpiralTrace.TraceLevel.US0_3
     | Critical -> SpiralTrace.TraceLevel.US0_4
+
+#!markdown
+
+### from_trace_level
+
+#!fsharp
+
+let from_trace_level = function
+    | SpiralTrace.TraceLevel.US0_0 -> Verbose
+    | SpiralTrace.TraceLevel.US0_1 -> Debug
+    | SpiralTrace.TraceLevel.US0_2 -> Info
+    | SpiralTrace.TraceLevel.US0_3 -> Warning
+    | SpiralTrace.TraceLevel.US0_4 -> Critical
+
+#!markdown
+
+### trace
+
+#!fsharp
 
 let trace level fn locals =
     let level = level |> to_trace_level

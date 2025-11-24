@@ -36,6 +36,13 @@ module Common =
         | Warning -> SpiralTrace.TraceLevel.US0_3
         | Critical -> SpiralTrace.TraceLevel.US0_4
 
+    let from_trace_level = function
+        | SpiralTrace.TraceLevel.US0_0 -> Verbose
+        | SpiralTrace.TraceLevel.US0_1 -> Debug
+        | SpiralTrace.TraceLevel.US0_2 -> Info
+        | SpiralTrace.TraceLevel.US0_3 -> Warning
+        | SpiralTrace.TraceLevel.US0_4 -> Critical
+
     let trace level fn locals =
         let level = level |> to_trace_level
         SpiralTrace.trace level fn locals

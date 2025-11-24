@@ -1064,6 +1064,33 @@ let inline eval
     (cancellationToken: Option<System.Threading.CancellationToken>)
     (code: string)
     =
+    let getToggle key toggle =
+        toggle |> Map.tryFind key |> Option.defaultValue false
+
+    let applyToggle key toggle =
+        toggle |> Map.add key (toggle |> getToggle key |> not)
+
+    let oldLevel = get_trace_level ()
+    let traceLevel =
+        let traceToggled = toggle |> getToggle Trace
+        if traceToggled |> not
+        then oldLevel |> from_trace_level
+        else
+            let newLevel = Verbose
+
+            newLevel
+            |> to_trace_level
+            |> set_trace_level
+
+            use _ = (new_disposable (fun () ->
+                trace Verbose
+                    (fun () -> $"Eval.eval / disposable")
+                    (fun () -> $"oldLevel: {oldLevel} / newLevel: {newLevel} / get_trace_level(): {get_trace_level ()} / {_locals ()}")
+                oldLevel |> set_trace_level
+            ))
+
+            newLevel
+
     trace Verbose
         (fun () -> $"Eval.eval")
         (fun () -> $"code: {code |> SpiralSm.ellipsis_end 400} / {_locals ()}")
@@ -1128,8 +1155,9 @@ let inline eval
         let getArg def value command =
             let command_value =
                 match value with
-                | None -> command
                 | Some value -> command + " " + value
+                | None -> command
+            trace Verbose (fun () -> $"Eval.eval / getArg / command_value: {command_value} / value: %A{value} / command: {command} / args: {args}") _locals
             if args |> SpiralSm.contains command_value
             then true
             elif args |> SpiralSm.contains $"{command} false"
@@ -1146,12 +1174,6 @@ let inline eval
         let isReal = "--real" |> getArg false None
         let isStatic = "--static" |> getArg false None
 
-        let getToggle key toggle =
-            toggle |> Map.tryFind key |> Option.defaultValue false
-
-        let applyToggle key toggle =
-            toggle |> Map.add key (toggle |> getToggle key |> not)
-
         if isTraceToggle
         then toggle <- toggle |> applyToggle Trace
 
@@ -1163,6 +1185,7 @@ let inline eval
 
         let testsToggled, traceToggled, builderCommands =
             let mold = "MOLD" |> System.Environment.GetEnvironmentVariable
+            trace Verbose (fun () -> $"Eval.eval / mold: {mold}") _locals
             if mold |> Directory.Exists then
                 // TODO: read from toml
                 let appdataPath = mold </> "dist/appdata/spiral/appdata.spi" 
@@ -1176,20 +1199,20 @@ let inline eval
                     |> Array.filter (fun x ->
                         let appdata =
                             if x |> SpiralSm.contains "-w"
-                            then appdata |> SpiralSm.replace " (Some Wasm)" ""
+                            then appdata |> SpiralSm.replace " (Wasm |> Some)" ""
                             elif x |> SpiralSm.contains "-c"
-                            then appdata |> SpiralSm.replace " (Some Contract)" ""
+                            then appdata |> SpiralSm.replace " (Contract |> Some)" ""
                             else appdata |> SpiralSm.replace " None" ""
-                        let x'' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
-                        appdata |> SpiralSm.contains $"{x''}, false" |> not
+                        let x' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
+                        trace Verbose (fun () -> $"Eval.eval / mold' / appdata: {appdata} / x: {x} / x': {x'}") _locals
+                        appdata |> SpiralSm.contains $"{x'}, false" |> not
                     )
                 trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
-                appdata |> SpiralSm.contains "tests = false" |> not,
-                appdata |> SpiralSm.contains "trace = false" |> not,
+                testsToggled || appdata |> SpiralSm.contains "tests = false" |> not,
+                traceToggled || appdata |> SpiralSm.contains "trace = true",
                 builderCommands
             else testsToggled, traceToggled, builderCommands
 
-        let oldLevel = get_trace_level ()
         let traceLevel =
             if isTrace || traceToggled
             then Verbose
@@ -1197,9 +1220,6 @@ let inline eval
         traceLevel
         |> to_trace_level
         |> set_trace_level
-        use _ = (new_disposable (fun () ->
-            oldLevel |> set_trace_level
-        ))
 
         let rawCellCode, lines, builderCommands =
             if isStatic || (automation |> not) && (isTestStatic |> not) && isTest && testsToggled |> not
