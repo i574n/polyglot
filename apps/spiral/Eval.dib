@@ -1199,10 +1199,10 @@ let inline eval
                     |> Array.filter (fun x ->
                         let appdata =
                             if x |> SpiralSm.contains "-w"
-                            then appdata |> SpiralSm.replace " (Wasm |> Some)" ""
+                            then appdata |> SpiralSm.replace " (wasm |> some)" ""
                             elif x |> SpiralSm.contains "-c"
-                            then appdata |> SpiralSm.replace " (Contract |> Some)" ""
-                            else appdata |> SpiralSm.replace " None" ""
+                            then appdata |> SpiralSm.replace " (contract |> some)" ""
+                            else appdata |> SpiralSm.replace " none" ""
                         let x' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
                         trace Verbose (fun () -> $"Eval.eval / mold' / appdata: {appdata} / x: {x} / x': {x'}") _locals
                         appdata |> SpiralSm.contains $"{x'}, false" |> not
