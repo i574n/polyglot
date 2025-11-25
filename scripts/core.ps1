@@ -229,7 +229,7 @@ function GetFullPath([string] $Path) {
         Write-Host "polyglot/scripts/core.ps1/GetFullPath / FullPath: $Path"
     }
 
-    return $Path
+    return ResolveLink $Path
 }
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
