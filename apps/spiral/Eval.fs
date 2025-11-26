@@ -643,7 +643,7 @@ module Eval =
                 else $"{allCode}\n\n{cellCode}"
 
             let buildBackends =
-                if props.builderCommands.Length = 0
+                if props.builderCommands = [||]
                 then [| Supervisor.Fsharp |]
                 else
                     props.builderCommands
@@ -1001,6 +1001,7 @@ module Eval =
                 then false
                 else def
 
+            // TODO: accordion/tab by language
             let printCode = "--print-code" |> getArg false None
             let isTraceToggle = "--toggle" |> getArg false ("trace" |> Some)
             let isTestsToggle = "--toggle" |> getArg false ("tests" |> Some)
@@ -1020,7 +1021,7 @@ module Eval =
             let testsToggled = toggle |> getToggle Tests
             let traceToggled = toggle |> getToggle Trace
 
-            let testsToggled, traceToggled, builderCommands =
+            let testsToggled, traceToggled, builderCommands' =
                 let mold = "MOLD" |> System.Environment.GetEnvironmentVariable
                 trace Verbose (fun () -> $"Eval.eval / mold: {mold}") _locals
                 if mold |> Directory.Exists then
@@ -1041,7 +1042,7 @@ module Eval =
                                 then appdata |> SpiralSm.replace " (contract |> some)" ""
                                 else appdata |> SpiralSm.replace " none" ""
                             let x' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
-                            trace Verbose (fun () -> $"Eval.eval / mold' / appdata: {appdata} / x: {x} / x': {x'}") _locals
+                            trace Verbose (fun () -> $"Eval.eval / mold' / x: {x} / x': {x'}") _locals
                             appdata |> SpiralSm.contains $"{x'}, false" |> not
                         )
                     trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
@@ -1058,10 +1059,15 @@ module Eval =
             |> to_trace_level
             |> set_trace_level
 
-            let rawCellCode, lines, builderCommands =
-                if isStatic || (automation |> not) && (isTestStatic |> not) && isTest && testsToggled |> not
+            let rawCellCode, lines, builderCommands' =
+                if isStatic
+                    || (builderCommands' = [||] && builderCommands <> [||])
+                    || (automation |> not)
+                    && (isTestStatic |> not)
+                    && isTest
+                    && testsToggled |> not
                 then "()", [| "()" |], [||]
-                else rawCellCode, lines, builderCommands
+                else rawCellCode, lines, builderCommands'
 
             evalAsync 1 [||]
                 {|
@@ -1070,7 +1076,7 @@ module Eval =
                     isReal = isReal
                     isTest = isTest
                     isTestStatic = isTestStatic
-                    builderCommands = builderCommands
+                    builderCommands = builderCommands'
                     isCache = isCache
                     timeout = timeout
                     cancellationToken = cancellationToken
