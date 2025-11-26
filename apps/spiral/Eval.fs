@@ -142,12 +142,14 @@ module Eval =
 
     /// ## Toggle
     type Toggle =
+        | AppData
         | Trace
         | Tests
 
     /// ## toggle
     let mutable toggle : Map<Toggle, bool> =
         [
+            AppData, true
             Tests, true
         ]
         |> Map.ofList
@@ -1003,6 +1005,7 @@ module Eval =
 
             // TODO: accordion/tab by language
             let printCode = "--print-code" |> getArg false None
+            let isAppDataToggle = "--toggle" |> getArg false ("appdata" |> Some)
             let isTraceToggle = "--toggle" |> getArg false ("trace" |> Some)
             let isTestsToggle = "--toggle" |> getArg false ("tests" |> Some)
             let isTrace = "--trace" |> getArg false None
@@ -1012,44 +1015,53 @@ module Eval =
             let isReal = "--real" |> getArg false None
             let isStatic = "--static" |> getArg false None
 
+            if isAppDataToggle
+            then toggle <- toggle |> applyToggle AppData
+
             if isTraceToggle
             then toggle <- toggle |> applyToggle Trace
 
             if isTestsToggle
             then toggle <- toggle |> applyToggle Tests
 
+            let appDataToggled = toggle |> getToggle AppData
             let testsToggled = toggle |> getToggle Tests
             let traceToggled = toggle |> getToggle Trace
 
             let testsToggled, traceToggled, builderCommands' =
-                let mold = "MOLD" |> System.Environment.GetEnvironmentVariable
-                trace Verbose (fun () -> $"Eval.eval / mold: {mold}") _locals
-                if mold |> Directory.Exists then
-                    // TODO: read from toml
-                    let appdataPath = mold </> "dist/appdata/spiral/appdata.spi" 
-                    let appdata =
-                        appdataPath
-                        |> SpiralFileSystem.read_all_text_async
-                        |> Async.RunSynchronously
-                        |> SpiralSm.to_lower
-                    let builderCommands =
-                        builderCommands
-                        |> Array.filter (fun x ->
-                            let appdata =
-                                if x |> SpiralSm.contains "-w"
-                                then appdata |> SpiralSm.replace " (wasm |> some)" ""
-                                elif x |> SpiralSm.contains "-c"
-                                then appdata |> SpiralSm.replace " (contract |> some)" ""
-                                else appdata |> SpiralSm.replace " none" ""
-                            let x' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
-                            trace Verbose (fun () -> $"Eval.eval / mold' / x: {x} / x': {x'}") _locals
-                            appdata |> SpiralSm.contains $"{x'}, false" |> not
-                        )
-                    trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
-                    testsToggled || appdata |> SpiralSm.contains "tests = false" |> not,
-                    traceToggled || appdata |> SpiralSm.contains "trace = true",
-                    builderCommands
-                else testsToggled, traceToggled, builderCommands
+                if appDataToggled |> not
+                then None
+                else
+                    let mold = "MOLD" |> System.Environment.GetEnvironmentVariable
+                    trace Verbose (fun () -> $"Eval.eval / mold: {mold}") _locals
+                    if mold |> Directory.Exists then
+                        // TODO: read from toml
+                        let appdataPath = mold </> "dist/appdata/spiral/appdata.spi" 
+                        let appdata =
+                            appdataPath
+                            |> SpiralFileSystem.read_all_text_async
+                            |> Async.RunSynchronously
+                            |> SpiralSm.to_lower
+                        let builderCommands =
+                            builderCommands
+                            |> Array.filter (fun x ->
+                                let appdata =
+                                    if x |> SpiralSm.contains "-w"
+                                    then appdata |> SpiralSm.replace " (wasm |> some)" ""
+                                    elif x |> SpiralSm.contains "-c"
+                                    then appdata |> SpiralSm.replace " (contract |> some)" ""
+                                    else appdata |> SpiralSm.replace " none" ""
+                                let x' = x |> SpiralSm.split " " |> Array.tryHead |> Option.defaultValue ""
+                                trace Verbose (fun () -> $"Eval.eval / mold' / x: {x} / x': {x'}") _locals
+                                appdata |> SpiralSm.contains $"{x'}, false" |> not
+                            )
+                        trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
+                        (testsToggled || appdata |> SpiralSm.contains "tests = false" |> not,
+                        traceToggled || appdata |> SpiralSm.contains "trace = true",
+                        builderCommands)
+                        |> Some
+                    else None
+                |> Option.defaultValue (testsToggled, traceToggled, builderCommands)
 
             let traceLevel =
                 if isTrace || traceToggled
