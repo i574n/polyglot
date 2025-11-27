@@ -42,6 +42,15 @@ pub mod Polyglot {
                 _ => US0::US0_0,
             }
         }
+        pub fn from_trace_level(_arg: US0) -> LrcPtr<Polyglot::Common::TraceLevel> {
+            match &_arg {
+                US0::US0_1 => LrcPtr::new(Polyglot::Common::TraceLevel::Debug),
+                US0::US0_2 => LrcPtr::new(Polyglot::Common::TraceLevel::Info),
+                US0::US0_3 => LrcPtr::new(Polyglot::Common::TraceLevel::Warning),
+                US0::US0_4 => LrcPtr::new(Polyglot::Common::TraceLevel::Critical),
+                _ => LrcPtr::new(Polyglot::Common::TraceLevel::Verbose),
+            }
+        }
         pub fn trace(
             level: LrcPtr<Polyglot::Common::TraceLevel>,
             r#fn: Func0<string>,

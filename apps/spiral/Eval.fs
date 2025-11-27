@@ -976,6 +976,7 @@ module Eval =
                 else
                     args
                     |> SpiralSm.split "--package "
+                    |> Array.skip 1
                     |> Array.choose (SpiralSm.split " " >> Array.tryItem 0)
 
             allPackages <- packages |> Array.append allPackages |> Array.distinct
@@ -986,10 +987,13 @@ module Eval =
                 else
                     args
                     |> SpiralSm.split "--timeout "
+                    |> Array.skip 1
                     |> Array.choose (SpiralSm.split " " >> Array.tryItem 0)
                     |> Array.tryItem 0
                     |> Option.map int
                 |> Option.defaultValue (60003 * 60 * 24)
+
+            trace Verbose (fun () -> $"Eval.eval / packages: %A{packages} / allPackages: %A{allPackages}") _locals
 
             let getArg def value command =
                 let command_value =

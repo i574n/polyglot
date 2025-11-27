@@ -74,6 +74,21 @@ export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     }
 }
 
+export function from_trace_level(_arg: US0_$union): TraceLevel_$union {
+    switch (_arg.tag) {
+        case /* US0_1 */ 1:
+            return TraceLevel_Debug();
+        case /* US0_2 */ 2:
+            return TraceLevel_Info();
+        case /* US0_3 */ 3:
+            return TraceLevel_Warning();
+        case /* US0_4 */ 4:
+            return TraceLevel_Critical();
+        default:
+            return TraceLevel_Verbose();
+    }
+}
+
 export function trace(level: TraceLevel_$union, fn: (() => string), locals: (() => string)): void {
     SpiralTrace_trace(to_trace_level(level))(fn)(locals);
 }

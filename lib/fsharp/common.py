@@ -47,6 +47,24 @@ def to_trace_level(_arg: TraceLevel) -> US0:
 
 
 
+def from_trace_level(_arg: US0) -> TraceLevel:
+    if _arg.tag == 1:
+        return TraceLevel(1)
+
+    elif _arg.tag == 2:
+        return TraceLevel(2)
+
+    elif _arg.tag == 3:
+        return TraceLevel(3)
+
+    elif _arg.tag == 4:
+        return TraceLevel(4)
+
+    else: 
+        return TraceLevel(0)
+
+
+
 def trace(level: TraceLevel, fn: Callable[[], str], locals: Callable[[], str]) -> None:
     SpiralTrace_trace(to_trace_level(level))(fn)(locals)
 
