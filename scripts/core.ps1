@@ -62,6 +62,9 @@ function Invoke-Block {
     $result = $null
     $output = $null
 
+    Write-Output "────────────────────────────────────────────────────────────────────────────────"
+    Write-Output "core.Invoke-Block / Get-Location: $(Get-Location) / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+
     $retry = 1
     while ($retry -le $Retries) {
         try {
