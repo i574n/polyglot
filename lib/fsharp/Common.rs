@@ -32,7 +32,7 @@ pub mod Polyglot {
             }
         }
         ///
-        /// ## trace
+        /// ### to_trace_level
         pub fn to_trace_level(_arg: LrcPtr<Polyglot::Common::TraceLevel>) -> US0 {
             match _arg.as_ref() {
                 Polyglot::Common::TraceLevel::Debug => US0::US0_1,
@@ -42,6 +42,8 @@ pub mod Polyglot {
                 _ => US0::US0_0,
             }
         }
+        ///
+        /// ### from_trace_level
         pub fn from_trace_level(_arg: US0) -> LrcPtr<Polyglot::Common::TraceLevel> {
             match &_arg {
                 US0::US0_1 => LrcPtr::new(Polyglot::Common::TraceLevel::Debug),
@@ -51,6 +53,8 @@ pub mod Polyglot {
                 _ => LrcPtr::new(Polyglot::Common::TraceLevel::Verbose),
             }
         }
+        ///
+        /// ### trace
         pub fn trace(
             level: LrcPtr<Polyglot::Common::TraceLevel>,
             r#fn: Func0<string>,

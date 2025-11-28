@@ -28,7 +28,7 @@ module Common =
 
     let inline _locals () = ""
 
-    /// ## trace
+    /// ### to_trace_level
     let to_trace_level = function
         | Verbose -> SpiralTrace.TraceLevel.US0_0
         | Debug -> SpiralTrace.TraceLevel.US0_1
@@ -36,6 +36,7 @@ module Common =
         | Warning -> SpiralTrace.TraceLevel.US0_3
         | Critical -> SpiralTrace.TraceLevel.US0_4
 
+    /// ### from_trace_level
     let from_trace_level = function
         | SpiralTrace.TraceLevel.US0_0 -> Verbose
         | SpiralTrace.TraceLevel.US0_1 -> Debug
@@ -43,6 +44,7 @@ module Common =
         | SpiralTrace.TraceLevel.US0_3 -> Warning
         | SpiralTrace.TraceLevel.US0_4 -> Critical
 
+    /// ### trace
     let trace level fn locals =
         let level = level |> to_trace_level
         SpiralTrace.trace level fn locals
