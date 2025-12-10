@@ -1032,7 +1032,7 @@ module Eval =
             let testsToggled = toggle |> getToggle Tests
             let traceToggled = toggle |> getToggle Trace
 
-            let testsToggled, traceToggled, builderCommands' =
+            let testsToggled, traceToggled, builderCommands', appdata =
                 if appDataToggled |> not
                 then None
                 else
@@ -1062,10 +1062,11 @@ module Eval =
                         trace Verbose (fun () -> $"Eval.eval / mold / appdata: {appdata} / builderCommands: %A{builderCommands}") _locals
                         (testsToggled || appdata |> SpiralSm.contains "tests = false" |> not,
                         traceToggled || appdata |> SpiralSm.contains "trace = true",
-                        builderCommands)
+                        builderCommands,
+                        appdata |> Some)
                         |> Some
                     else None
-                |> Option.defaultValue (testsToggled, traceToggled, builderCommands)
+                |> Option.defaultValue (testsToggled, traceToggled, builderCommands, None)
 
             let traceLevel =
                 if isTrace || traceToggled
@@ -1077,7 +1078,9 @@ module Eval =
 
             let rawCellCode, lines, builderCommands' =
                 if isStatic
-                    || (builderCommands' = [||] && builderCommands <> [||])
+                    || (builderCommands' = [||]
+                            && builderCommands <> [||]
+                            && appdata |> Option.map (SpiralSm.contains $"fsharp, false") |> Option.defaultValue false)
                     || (automation |> not)
                     && (isTestStatic |> not)
                     && isTest
