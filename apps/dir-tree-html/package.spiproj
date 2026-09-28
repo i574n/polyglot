@@ -1,4 +1,4 @@
-packageDir: ../../../spiral/apps/compiler/tmp/samples
+packageDir: ../../deps/spiral/apps/compiler/tmp/samples
 moduleDir: .
 packages:
     core-
