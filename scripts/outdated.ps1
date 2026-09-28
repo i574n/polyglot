@@ -36,6 +36,10 @@ if (!$SkipPaket) {
 
 CheckToml "../workspace/Cargo.toml" `-w
 
+CheckToml "../apps/builder/Cargo.toml"
+
+CheckToml "../apps/dir-tree-html/Cargo.toml"
+
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson ".."

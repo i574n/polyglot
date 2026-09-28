@@ -1,0 +1,11 @@
+[package]
+name = "dir-tree-html"
+workspace = "../../workspace"
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "DirTreeHtml"
+path = "dir_tree_html.rs"

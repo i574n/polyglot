@@ -1,0 +1,362 @@
+nominal source_phase = ()
+nominal code_phase = ()
+nominal project_phase = ()
+
+nominal source_path = string
+nominal module_name = string
+nominal source_text = string
+nominal publish_dir = string
+nominal project_file = string
+nominal workspace_root = string
+
+union build phase =
+    | Source :: source_path -> build source_phase
+    | Code :: module_name * source_text * publish_dir -> build code_phase
+    | Project :: project_file * publish_dir -> build project_phase
+
+union runtimes =
+    | Chosen : string
+    | Defaults
+
+union command =
+    | Check
+    | Ship
+
+inl (~!\\) forall t u. ((args : t), (code : string)) : u =
+    $'Fable.Core.RustInterop.emitRustExpr !args !code '
+
+inl host_arg_count () : i32 =
+    !\\((), $'"std::env::args().count() as i32"')
+
+inl host_arg (i : i32) : string =
+    !\\(i, $'"Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())"')
+
+inl (++) (left : string) (right : string) : string = sm.concat left right
+
+inl host_read (path : string) : string =
+    !\\(path, $'"{ let path = std::path::absolute($0.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from($0.as_ref())); Rc::<str>::from(std::fs::read_to_string(path).unwrap_or_default()) }"')
+
+inl host_absolute (path : string) : string =
+    !\\(path, $'"Rc::<str>::from(std::path::absolute($0.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from($0.as_ref())).display().to_string())"')
+
+inl host_exists (path : string) : i32 =
+    !\\(path, $'"i32::from(std::path::Path::new($0.as_ref()).exists())"')
+
+inl host_is_file (path : string) : i32 =
+    !\\(path, $'"i32::from(std::path::Path::new($0.as_ref()).is_file())"')
+
+inl host_is_dir (path : string) : i32 =
+    !\\(path, $'"i32::from(std::path::Path::new($0.as_ref()).is_dir())"')
+
+inl host_cwd () : string =
+    !\\((), $'"Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default())"')
+
+inl host_exe_dir () : string =
+    !\\((), $'"Rc::<str>::from(std::env::current_exe().ok().and_then(|path| path.parent().map(|dir| dir.to_path_buf())).map(|path| path.display().to_string()).unwrap_or_default())"')
+
+inl host_join (left : string) (right : string) : string =
+    !\\((left, right), $'"Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())"')
+
+inl host_file_equals (path : string) (text : string) : i32 =
+    !\\((path, text), $'"{ let path = std::path::Path::new($0.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some($1.as_ref())) }"')
+
+inl host_write_file (path : string) (text : string) : i32 =
+    !\\((path, text), $'"i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())"')
+
+inl host_create_dir (path : string) : i32 =
+    !\\(path, $'"i32::from(std::fs::create_dir_all($0.as_ref()).is_err())"')
+
+inl host_remove_file (path : string) : i32 =
+    !\\(path, $'"i32::from(std::fs::remove_file($0.as_ref()).is_err())"')
+
+inl host_remove_dir (path : string) : i32 =
+    !\\(path, $'"i32::from(std::fs::remove_dir_all($0.as_ref()).is_err())"')
+
+inl host_env (name : string) : string =
+    !\\(name, $'"Rc::<str>::from(std::env::var($0.as_ref()).unwrap_or_default())"')
+
+inl host_status (program : string) (cwd : string) (args : string) : i32 =
+    !\\((program, cwd, args), $'"{ let mut command = std::process::Command::new($0.as_ref()); command.args($2.as_ref().split(char::from(10)).filter(|arg| arg.is_empty() == false)); let status = command.current_dir($1.as_ref()).status(); status.map(|status| status.code().unwrap_or(1)).unwrap_or(1) }"')
+
+inl raw_path (source_path value) : string = value
+inl raw_name (module_name value) : string = value
+inl raw_text (source_text value) : string = value
+inl raw_dir (publish_dir value) : string = value
+inl raw_project (project_file value) : string = value
+inl raw_root (workspace_root value) : string = value
+
+inl starts (text : string) (index : i32) (prefix : string) : bool =
+    inl prefix_len = sm.length prefix : i32
+    inl text_len = sm.length text : i32
+    if (index +. prefix_len) > text_len then false
+    else (sm.slice text {from=index; to=index +. prefix_len -. 1i32}) =. prefix
+
+let rec find_from (text : string) (index : i32) (prefix : string) : i32 =
+    inl text_len = sm.length text : i32
+    if (index +. (sm.length prefix : i32)) > text_len then -1i32
+    elif starts text index prefix then index
+    else find_from text (index +. 1i32) prefix
+
+let rec line_start (text : string) (index : i32) : i32 =
+    if index =. 0i32 then 0i32
+    elif (sm.index text (index -. 1i32)) =. (sm.index "\n" 0i32) then index
+    else line_start text (index -. 1i32)
+
+let rec trim_at (text : string) (index : i32) : i32 =
+    if index =. 0i32 then 0i32
+    else
+        inl ch = sm.index text (index -. 1i32)
+        if ch =. ' ' then trim_at text (index -. 1i32)
+        elif ch =. (sm.index "\t" 0i32) then trim_at text (index -. 1i32)
+        elif ch =. (sm.index "\r" 0i32) then trim_at text (index -. 1i32)
+        elif ch =. (sm.index "\n" 0i32) then trim_at text (index -. 1i32)
+        else index
+
+inl trim_end (text : string) : string =
+    sm.slice text {from=0i32; to=trim_at text (sm.length text : i32) -. 1i32}
+
+inl is_flag (text : string) : bool =
+    inl n = sm.length text : i32
+    if n < 2i32 then false
+    else (sm.slice text {from=0i32; to=1i32}) =. "--"
+
+let rec source_at (index : i32) (count : i32) : string =
+    if index =. count then ""
+    elif is_flag (host_arg index) then source_at (index +. 1i32) count
+    else host_arg index
+
+let rec find_flag (name : string) (index : i32) (count : i32) : i32 =
+    if index =. count then -1i32
+    elif (host_arg index) =. name then index
+    else find_flag name (index +. 1i32) count
+
+let rec join_args (index : i32) (count : i32) (acc : string) (fresh : i32) : string =
+    if index =. count then acc
+    elif is_flag (host_arg index) then acc
+    else
+        inl part = host_arg index
+        inl next = if fresh =. 1i32 then part else acc ++ "\n" ++ part
+        join_args (index +. 1i32) count next 0i32
+
+inl flag_values (name : string) : string =
+    inl count = host_arg_count ()
+    inl start = find_flag name 1i32 count
+    if start =. -1i32 then ""
+    else join_args (start +. 1i32) count "" 1i32
+
+inl first_value (index : i32) (count : i32) : string =
+    if index =. count then ""
+    elif is_flag (host_arg index) then ""
+    else host_arg index
+
+inl packages () : string =
+    inl extras = flag_values "--packages"
+    if (sm.length extras : i32) =. 0i32 then "FSharp.Core"
+    else "FSharp.Core\n" ++ extras
+
+let rec module_lines (index : i32) (count : i32) (root : string) (acc : string) (fresh : i32) : string =
+    if index =. count then acc
+    elif is_flag (host_arg index) then acc
+    else
+        inl line = "<Compile Include=\"" ++ host_join root (host_arg index) ++ "\" />"
+        inl next = if fresh =. 1i32 then line else acc ++ "\n        " ++ line
+        module_lines (index +. 1i32) count root next 0i32
+
+inl modules (root : workspace_root) : string =
+    inl count = host_arg_count ()
+    inl start = find_flag "--modules" 1i32 count
+    if start =. -1i32 then ""
+    else module_lines (start +. 1i32) count (raw_root root) "" 1i32
+
+inl runtime_text () : string =
+    inl count = host_arg_count ()
+    inl start = find_flag "--runtime" 1i32 count
+    if start =. -1i32 then "" else first_value (start +. 1i32) count
+
+inl persist_only () : i32 =
+    if (find_flag "--persist-only" 1i32 (host_arg_count ())) =. -1i32 then 0i32 else 1i32
+
+let rec last_sep (text : string) (at : i32) (found : i32) : i32 =
+    if at =. (sm.length text : i32) then found
+    else
+        inl ch = sm.index text at
+        inl next =
+            if ch =. (sm.index "/" 0i32) then at
+            elif ch =. (sm.index "\\" 0i32) then at
+            else found
+        last_sep text (at +. 1i32) next
+
+let rec last_dot (text : string) (at : i32) (found : i32) : i32 =
+    if at =. (sm.length text : i32) then found
+    else
+        inl next = if (sm.index text at) =. (sm.index "." 0i32) then at else found
+        last_dot text (at +. 1i32) next
+
+inl file_name (path : string) : string =
+    inl sep = last_sep path 0i32 -1i32
+    inl len = sm.length path : i32
+    if sep =. -1i32 then path
+    elif (sep +. 1i32) =. len then ""
+    else sm.slice path {from=sep +. 1i32; to=len -. 1i32}
+
+inl parent_text (path : string) : string =
+    inl sep = last_sep path 0i32 -1i32
+    if sep =. -1i32 then ""
+    else
+        inl parent = sm.slice path {from=0i32; to=sep -. 1i32}
+        if (sm.length parent : i32) =. 2i32 && (sm.index parent 1i32) =. (sm.index ":" 0i32) then
+            sm.slice path {from=0i32; to=sep}
+        else parent
+
+inl host_write (path : string) (text : string) : i32 =
+    if (host_file_equals path text) =. 1i32 then 0i32
+    else
+        inl parent = parent_text path
+        inl made = if (sm.length parent : i32) =. 0i32 then 0i32 else host_create_dir parent
+        if made =. 0i32 then host_write_file path text else made
+
+inl host_delete (path : string) : i32 =
+    if (host_is_dir path) =. 1i32 then host_remove_dir path else host_remove_file path
+
+inl host_ci () : i32 =
+    if (sm.length (host_env "CI") : i32) =. 0i32 then 0i32 else 1i32
+
+inl host_publish (fsproj : string) (output : string) (runtime : string) : i32 =
+    inl args = "publish" ++ "\n" ++ fsproj ++ "\n" ++ "--configuration" ++ "\n" ++ "Release" ++ "\n" ++ "--output" ++ "\n" ++ output ++ "\n" ++ "--runtime" ++ "\n" ++ runtime
+    inl parent = parent_text fsproj
+    inl cwd = if (sm.length parent : i32) =. 0i32 then "." else parent
+    host_status "dotnet" cwd args
+
+inl stem_text (path : string) : string =
+    inl name = file_name path
+    inl dot = last_dot name 0i32 -1i32
+    if dot <= 0i32 then name else sm.slice name {from=0i32; to=dot -. 1i32}
+
+inl stem_of (path : string) : string = stem_text (host_absolute path)
+inl parent_of (path : string) : string = parent_text (host_absolute path)
+
+let rec find_up (dir : string) (marker : string) : string =
+    if dir =. "" then ""
+    elif (host_exists (host_join dir marker)) =. 1i32 then dir
+    else
+        inl up = parent_text dir
+        if up =. "" then ""
+        elif up =. dir then ""
+        else find_up up marker
+
+inl workspace_text () : string =
+    inl marker = host_join "spiral" "workspace"
+    inl from_cwd = find_up (host_cwd ()) marker
+    inl from_exe = if from_cwd =. "" then find_up (host_exe_dir ()) marker else from_cwd
+    inl found = if from_exe =. "" then find_up "/workspaces" marker else from_exe
+    inl base = if found =. "" then "" elif (file_name found) =. "deps" then find_up (parent_text found) marker else found
+    inl poly = if base =. "" then "" else host_join base "polyglot"
+    inl paket = ".paket/Paket.Restore.targets"
+    if poly =. "" then
+        inl walked = find_up (host_cwd ()) paket
+        if walked =. "" then "." else walked
+    elif (host_exists (host_join poly paket)) =. 1i32 then poly
+    else
+        inl walked = find_up (host_cwd ()) paket
+        if walked =. "" then "." else walked
+
+inl prepare (text : string) : string =
+    inl found = find_from text 0i32 "let main"
+    inl edited =
+        if found =. -1i32 then text
+        else
+            inl start = line_start text found
+            inl indent = sm.slice text {from=start; to=found -. 1i32}
+            inl rest = sm.slice text {from=found; to=(sm.length text : i32) -. 1i32}
+            inl prefix = sm.slice text {from=0i32; to=start -. 1i32}
+            prefix ++ indent ++ "[<EntryPoint>]\n" ++ indent ++ rest
+    inl trimmed = trim_end edited
+    inl trimmed_len = sm.length trimmed : i32
+    if trimmed_len < 3i32 then edited
+    elif (sm.slice trimmed {from=trimmed_len -. 3i32; to=trimmed_len -. 1i32}) =. "\n()" then
+        sm.slice trimmed {from=0i32; to=trimmed_len -. 4i32}
+    else edited
+
+inl read_source (path : source_path) : build source_phase = Source path
+
+inl load (source : build source_phase) : build code_phase =
+    match source with
+    | Source path =>
+        inl raw = raw_path path
+        Code (
+            module_name (stem_of raw),
+            source_text (prepare (host_read raw)),
+            publish_dir (host_join (parent_of raw) "dist")
+        )
+
+inl project_text (root : string) (file : string) (modules : string) : string =
+    "<Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>preview</LangVersion>\n        <RollForward>Major</RollForward>\n        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n        <ServerGarbageCollection>true</ServerGarbageCollection>\n        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>\n        <PublishAot>false</PublishAot>\n        <PublishTrimmed>false</PublishTrimmed>\n        <PublishSingleFile>true</PublishSingleFile>\n        <SelfContained>true</SelfContained>\n        <Version>0.0.1-alpha.1</Version>\n        <OutputType>Exe</OutputType>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">\n        <DefineConstants>_FREEBSD</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">\n        <DefineConstants>_LINUX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">\n        <DefineConstants>_OSX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">\n        <DefineConstants>_WINDOWS</DefineConstants>\n    </PropertyGroup>\n\n    <ItemGroup>\n        "
+        ++ modules
+        ++ "\n        <Compile Include=\""
+        ++ file
+        ++ "\" />\n    </ItemGroup>\n    <ItemGroup>\n        <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />\n    </ItemGroup>\n    <Import Project=\""
+        ++ root
+        ++ "/.paket/Paket.Restore.targets\" />\n</Project>\n"
+
+inl persist (code : build code_phase) (root : workspace_root) (module_items : string) (package_list : string) : build project_phase =
+    match code with
+    | Code (name, text, out) =>
+        inl root_text = raw_root root
+        inl name_text = raw_name name
+        inl dir = host_join (host_join (host_join root_text "target") "Builder") name_text
+        inl file = host_join dir (name_text ++ ".fs")
+        inl fsproj = host_join dir (name_text ++ ".fsproj")
+        inl _ = host_write file (raw_text text)
+        inl _ = host_write fsproj (project_text root_text file module_items)
+        inl _ = host_write (host_join dir "paket.references") package_list
+        Project (project_file fsproj, out)
+
+inl cleanup (fsproj : string) (code : i32) : i32 =
+    if (host_ci ()) =. 1i32 then
+        inl dir = parent_of fsproj
+        inl _ = host_delete (host_join dir "bin")
+        inl _ = host_delete (host_join dir "obj")
+        code
+    else code
+
+let publish (built : build project_phase) (which : runtimes) : i32 =
+    match built with
+    | Project (fsproj, out) =>
+        inl fsproj_text = raw_project fsproj
+        inl out_text = raw_dir out
+        inl code =
+            match which with
+            | Chosen runtime => host_publish fsproj_text out_text runtime
+            | Defaults =>
+                inl linux = host_publish fsproj_text out_text "linux-x64"
+                inl win = host_publish fsproj_text out_text "win-x64"
+                linux +. win
+        cleanup fsproj_text code
+
+inl runtime_choice () : runtimes =
+    inl runtime = runtime_text ()
+    if (sm.length runtime : i32) =. 0i32 then Defaults else Chosen runtime
+
+inl command_of () : command =
+    inl count = host_arg_count ()
+    if count =. 2i32 then
+        if (host_arg 1i32) =. "--self-test" then Check else Ship
+    else Ship
+
+inl self_test () : i32 =
+    inl plain = prepare "    let main args = 0\n()\n"
+    inl preamble = prepare "let x = 1\n    let main args = 0\n()\n"
+    if plain =. "    [<EntryPoint>]\n    let main args = 0" then
+        if preamble =. "let x = 1\n    [<EntryPoint>]\n    let main args = 0" then 0i32 else 1i32
+    else 1i32
+
+inl run () : i32 =
+    inl root = workspace_root (workspace_text ())
+    inl code = load (read_source (source_path (source_at 1i32 (host_arg_count ()))))
+    inl built = persist code root (modules root) (packages ())
+    if (persist_only ()) =. 1i32 then 0i32 else publish built (runtime_choice ())
+
+inl main () : i32 =
+    match command_of () with
+    | Check => self_test ()
+    | Ship => run ()

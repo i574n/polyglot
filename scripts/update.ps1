@@ -33,6 +33,10 @@ if (!$fast) {
 
 { cargo update } | Invoke-Block
 
+UpdateToml "../apps/builder/Cargo.toml"
+
+UpdateToml "../apps/dir-tree-html/Cargo.toml"
+
 UpdateToml "../apps/plot/Cargo.toml"
 
 if (!$fast) {

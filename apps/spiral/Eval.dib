@@ -110,8 +110,6 @@ ls ~/.nuget/packages/microsoft.extensions.logging.abstractions
 #!import ../../lib/fsharp/Runtime.fs
 #!import ../../lib/fsharp/FileSystem.fs
 
-#!import ../../apps/builder/Builder.fs
-
 #!import ../../deps/spiral/apps/compiler/spiral_compiler.fs
 
 #!fsharp

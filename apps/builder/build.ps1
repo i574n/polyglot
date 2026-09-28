@@ -5,15 +5,16 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
-. ../../deps/spiral/lib/spiral/lib.ps1
+. ../../scripts/spiral-bundle.ps1
 
+$spiral = Ensure-SpiralRustCompiler
+$dotnet = $spiral.Dotnet
+$compiler = $spiral.Compiler
 
-$projectName = "Builder"
+{ & $dotnet $compiler --backend Rust builder.spi builder.rs } | Invoke-Block
+{ cargo +nightly-2025-11-01 build --release } | Invoke-Block
 
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export "$ScriptDir/$projectName.dib" fs } | Invoke-Block
-
-$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
-$builderArgs = @("$projectName.fs", [String]::Join(" ", $runtime), "--packages", "Argu", "FSharp.Control.AsyncSeq", "System.Reactive.Linq", "--modules", [String]::Join(" ", $(GetFsxModules)), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Builder.dib } | Invoke-Block -EnvironmentVariables @{ "ARGS" = [String]::Join(" ", $builderArgs) }
-
-Write-Output "polyglot/apps/builder/build.ps1 / `$env:CI:'$env:CI'"
+Remove-Item dist -Recurse -Force -ErrorAction Ignore
+New-Item -ItemType Directory -Force -Path dist | Out-Null
+Copy-Item -Force "../../workspace/target/release/Builder$(_exe)" "dist/Builder$(_exe)"
+{ & "dist/Builder$(_exe)" --self-test } | Invoke-Block

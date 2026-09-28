@@ -3,6 +3,8 @@ cargo-features = ["profile-rustflags"]
 [workspace]
 resolver = "2"
 members = [
+    "../apps/builder",
+    "../apps/dir-tree-html",
     "../apps/plot",
     "../lib/math"
 ]

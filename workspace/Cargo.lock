@@ -45,6 +45,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "builder"
+version = "0.0.1"
+
+[[package]]
 name = "bumpalo"
 version = "3.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -127,6 +131,10 @@ dependencies = [
  "const-oid",
  "crypto-common",
 ]
+
+[[package]]
+name = "dir-tree-html"
+version = "0.0.1"
 
 [[package]]
 name = "fable_library_rust"
