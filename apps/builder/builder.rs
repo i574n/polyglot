@@ -23,7 +23,7 @@ fn SpiralStringSlice(value: &Rc<str>, from_index: i32, to_index: i32) -> Rc<str>
     let slice = &bytes[from_index..=to_index];
     match std::str::from_utf8(slice) {
         Ok(text) => Rc::<str>::from(text),
-        Err(error) => Rc::<str>::from(&slice[..error.valid_up_to()]),
+        Err(error) => Rc::<str>::from(std::str::from_utf8(&slice[..error.valid_up_to()]).unwrap_or("")),
     }
 }
 
