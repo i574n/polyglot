@@ -97,6 +97,39 @@ let rec find_from (text : string) (index : i32) (prefix : string) : i32 =
     elif starts text index prefix then index
     else find_from text (index +. 1i32) prefix
 
+let rec skip_hspace (text : string) (at : i32) : i32 =
+    inl len = sm.length text : i32
+    if at > (len -. 1i32) then at
+    else
+        inl ch = sm.index text at
+        if ch =. ' ' then skip_hspace text (at +. 1i32)
+        elif ch =. (sm.index "\t" 0i32) then skip_hspace text (at +. 1i32)
+        else at
+
+inl is_hspace (text : string) (at : i32) : bool =
+    inl ch = sm.index text at
+    if ch =. ' ' then true
+    elif ch =. (sm.index "\t" 0i32) then true
+    else false
+
+inl entry_at (text : string) (index : i32) : bool =
+    inl len = sm.length text : i32
+    inl after = index +. 8i32
+    if after > (len -. 1i32) then false
+    elif (sm.index text after) =. (sm.index "(" 0i32) then true
+    elif is_hspace text after then
+        inl at = skip_hspace text after
+        if at > (len -. 1i32) then false
+        elif (sm.index text at) =. (sm.index "=" 0i32) then false
+        else true
+    else false
+
+let rec find_entry (text : string) (index : i32) : i32 =
+    inl found = find_from text index "let main"
+    if found =. -1i32 then -1i32
+    elif entry_at text found then found
+    else find_entry text (found +. 8i32)
+
 let rec line_start (text : string) (index : i32) : i32 =
     if index =. 0i32 then 0i32
     elif (sm.index text (index -. 1i32)) =. (sm.index "\n" 0i32) then index
@@ -261,7 +294,7 @@ inl workspace_text () : string =
         if walked =. "" then "." else walked
 
 inl prepare (text : string) : string =
-    inl found = find_from text 0i32 "let main"
+    inl found = find_entry text 0i32
     inl edited =
         if found =. -1i32 then text
         else
@@ -346,8 +379,17 @@ inl command_of () : command =
 inl self_test () : i32 =
     inl plain = prepare "    let main args = 0\n()\n"
     inl preamble = prepare "let x = 1\n    let main args = 0\n()\n"
+    inl nested = prepare "        let main = StringBuilder()\n    let main args = 0\n()\n"
+    inl value = prepare "let main = StringBuilder()\n()\n"
+    inl paren = prepare "let main() = 0\n()\n"
     if plain =. "    [<EntryPoint>]\n    let main args = 0" then
-        if preamble =. "let x = 1\n    [<EntryPoint>]\n    let main args = 0" then 0i32 else 1i32
+        if preamble =. "let x = 1\n    [<EntryPoint>]\n    let main args = 0" then
+            if nested =. "        let main = StringBuilder()\n    [<EntryPoint>]\n    let main args = 0" then
+                if value =. "let main = StringBuilder()" then
+                    if paren =. "[<EntryPoint>]\nlet main() = 0" then 0i32 else 5i32
+                else 4i32
+            else 3i32
+        else 2i32
     else 1i32
 
 inl run () : i32 =
