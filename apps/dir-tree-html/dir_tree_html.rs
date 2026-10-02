@@ -1,4 +1,4 @@
-#![allow(unused_mut, unused_variables, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_patterns, unreachable_code, while_true)]
+#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_patterns, unreachable_code, while_true)]
 use std::cell::RefCell;
 use std::rc::Rc;
 fn string_slice(value: &str, from: i64, to: i64) -> Rc<str> {
@@ -6,7 +6,10 @@ fn string_slice(value: &str, from: i64, to: i64) -> Rc<str> {
     let length = bytes.len() as i64;
     if from < 0 || from > length || to < from - 1 || to >= length { std::process::abort(); }
     if to < from { return Rc::<str>::from(""); }
-    match std::str::from_utf8(&bytes[from as usize..(to + 1) as usize]) { Ok(slice) => Rc::<str>::from(slice), Err(_) => std::process::abort() }
+    // A slice that starts or ends inside a code point fails like the C and Delphi backends (abort / Halt(3)).
+    if (bytes[from as usize] & 0xC0) == 0x80 || (to + 1 < length && (bytes[(to + 1) as usize] & 0xC0) == 0x80) { std::process::exit(3); }
+    let slice = &bytes[from as usize..(to + 1) as usize];
+    match std::str::from_utf8(slice) { Ok(text) => Rc::<str>::from(text), Err(error) => Rc::<str>::from(std::str::from_utf8(&slice[..error.valid_up_to()]).unwrap_or("")) }
 }
 #[derive(Clone)]
 enum UH0 {
@@ -153,8 +156,7 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
         if v2 {
             return 0i32;
         } else {
-            let mut v3: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-            let mut v4: i32 = Fable.Core.RustInterop.emitRustExpr v0 v3 ;
+            let mut v4: i32 = i32::from(std::fs::create_dir_all(v0.as_ref()).is_err());
             let mut v5: bool = v1 == 0i64;
             let mut v35: Rc<str> = if v5 {
                 let mut v6: Rc<str> = Rc::<str>::from("0");
@@ -217,9 +219,8 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
                     }
                 }
             };
-            let mut v36: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
             let mut v37: Rc<str> = Rc::<str>::from("file.txt");
-            let mut v38: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v0.clone(), v37.clone()) v36 ;
+            let mut v38: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v37.as_ref()).display().to_string());
             let mut v39: i64 = v1 + 1i64;
             let mut v40: Rc<str> = method2(v35.clone(), v39);
             let mut v41: i32 = 0i32;
@@ -253,20 +254,17 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
             let mut v60: i32 = if v57 {
                 0i32
             } else {
-                let mut v58: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                let mut v59: i32 = Fable.Core.RustInterop.emitRustExpr v55 v58 ;
+                let mut v59: i32 = i32::from(std::fs::create_dir_all(v55.as_ref()).is_err());
                 v59
             };
             let mut v61: bool = v60 == 0i32;
             let mut v64: i32 = if v61 {
-                let mut v62: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
-                let mut v63: i32 = Fable.Core.RustInterop.emitRustExpr (v38.clone(), v40.clone()) v62 ;
+                let mut v63: i32 = i32::from(std::fs::write(v38.as_ref(), v40.as_ref().as_bytes()).is_err());
                 v63
             } else {
                 v60
             };
-            let mut v65: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-            let mut v66: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v0.clone(), v35.clone()) v65 ;
+            let mut v66: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v35.as_ref()).display().to_string());
             let mut v67: i64 = v1 - 1i64;
             (v0, v1) = (v66.clone(), v67);
             continue;
@@ -478,8 +476,7 @@ fn method10(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH1> {
             let mut v7: Rc<UH1> = method10(v0.clone(), v1.clone(), v6.clone());
             let mut v8: bool = v4 == 1i32;
             if v8 {
-                let mut v9: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-                let mut v10: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v0.clone(), v5.clone()) v9 ;
+                let mut v10: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v5.as_ref()).display().to_string());
                 let mut v11: i32 = (v1.clone().len() as i32);
                 let mut v12: bool = v11 == 0i32;
                 let mut v15: Rc<str> = if v12 {
@@ -489,18 +486,15 @@ fn method10(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH1> {
                     let mut v14: Rc<str> = Rc::<str>::from(format!("{}{}", v13.clone(), v5.clone()));
                     v14.clone()
                 };
-                let mut v16: Rc<str> = "{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }";
-                let mut v17: Rc<str> = Fable.Core.RustInterop.emitRustExpr v10 v16 ;
+                let mut v17: Rc<str> = { let mut out = String::new(); if let Ok(read) = std::fs::read_dir(v10.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) };
                 let mut v18: i32 = 0i32;
                 let mut v19: Rc<UH0> = method4(v17.clone(), v18);
                 let mut v20: Rc<UH0> = method7(v19.clone());
                 let mut v21: Rc<UH1> = method10(v10.clone(), v15.clone(), v20.clone());
                 Rc::new(UH1::UH1_2(v5.clone(), v15.clone(), v21.clone(), v7.clone()))
             } else {
-                let mut v23: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-                let mut v24: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v0.clone(), v5.clone()) v23 ;
-                let mut v25: Rc<str> = "std::fs::metadata($0.as_ref()).map(|meta| meta.len() as i64).unwrap_or(0)";
-                let mut v26: i64 = Fable.Core.RustInterop.emitRustExpr v24 v25 ;
+                let mut v24: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v5.as_ref()).display().to_string());
+                let mut v26: i64 = std::fs::metadata(v24.as_ref()).map(|meta| meta.len() as i64).unwrap_or(0);
                 Rc::new(UH1::UH1_1(v5.clone(), v1.clone(), v26, v7.clone()))
             }
         }
@@ -721,8 +715,7 @@ fn method13(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
         if v3 {
             return -1i32;
         } else {
-            let mut v4: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-            let mut v5: Rc<str> = Fable.Core.RustInterop.emitRustExpr v1 v4 ;
+            let mut v5: Rc<str> = Rc::<str>::from(std::env::args().nth(v1 as usize).unwrap_or_default());
             let mut v6: bool = v5.clone() == v0.clone();
             if v6 {
                 return v1;
@@ -735,34 +728,26 @@ fn method13(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
     }
 }
 fn spiral_main() -> i32 {
-    let mut v0: Rc<str> = "std::env::args().count() as i32";
-    let mut v1: i32 = Fable.Core.RustInterop.emitRustExpr () v0 ;
+    let mut v1: i32 = std::env::args().count() as i32;
     let mut v2: bool = v1 == 2i32;
     if v2 {
-        let mut v3: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-        let mut v4: Rc<str> = Fable.Core.RustInterop.emitRustExpr 1i32 v3 ;
+        let mut v4: Rc<str> = Rc::<str>::from(std::env::args().nth(1i32 as usize).unwrap_or_default());
         let mut v5: bool = v4.clone() == Rc::<str>::from("--self-test");
         if v5 {
-            let mut v6: Rc<str> = "Rc::<str>::from(std::env::temp_dir().display().to_string())";
-            let mut v7: Rc<str> = Fable.Core.RustInterop.emitRustExpr () v6 ;
-            let mut v8: Rc<str> = "std::process::id() as i64";
-            let mut v9: i64 = Fable.Core.RustInterop.emitRustExpr () v8 ;
+            let mut v7: Rc<str> = Rc::<str>::from(std::env::temp_dir().display().to_string());
+            let mut v9: i64 = std::process::id() as i64;
             let mut v10: Rc<str> = method0(v9);
             let mut v11: Rc<str> = Rc::<str>::from(format!("{}{}", v10.clone(), Rc::<str>::from("-")));
-            let mut v12: Rc<str> = "std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos() as i64";
-            let mut v13: i64 = Fable.Core.RustInterop.emitRustExpr () v12 ;
+            let mut v13: i64 = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos() as i64;
             let mut v14: Rc<str> = method0(v13);
             let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v11.clone(), v14.clone()));
-            let mut v16: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-            let mut v17: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v7.clone(), v15.clone()) v16 ;
-            let mut v18: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+            let mut v17: Rc<str> = Rc::<str>::from(std::path::Path::new(v7.as_ref()).join(v15.as_ref()).display().to_string());
             let mut v19: Rc<str> = Rc::<str>::from("_.root");
-            let mut v20: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v17.clone(), v19.clone()) v18 ;
+            let mut v20: Rc<str> = Rc::<str>::from(std::path::Path::new(v17.as_ref()).join(v19.as_ref()).display().to_string());
             let mut v21: i64 = 3i64;
             let mut v22: i32 = method1(v20.clone(), v21);
             let mut v23: Rc<str> = Rc::<str>::from("");
-            let mut v24: Rc<str> = "{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }";
-            let mut v25: Rc<str> = Fable.Core.RustInterop.emitRustExpr v17 v24 ;
+            let mut v25: Rc<str> = { let mut out = String::new(); if let Ok(read) = std::fs::read_dir(v17.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) };
             let mut v26: i32 = 0i32;
             let mut v27: Rc<UH0> = method4(v25.clone(), v26);
             let mut v28: Rc<UH0> = method7(v27.clone());
@@ -774,11 +759,9 @@ fn spiral_main() -> i32 {
             let mut v62: i32 = if v33 {
                 0i32
             } else {
-                let mut v34: Rc<str> = "Rc::<str>::from(std::env::temp_dir().display().to_string())";
-                let mut v35: Rc<str> = Fable.Core.RustInterop.emitRustExpr () v34 ;
-                let mut v36: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+                let mut v35: Rc<str> = Rc::<str>::from(std::env::temp_dir().display().to_string());
                 let mut v37: Rc<str> = Rc::<str>::from("dir-tree-html-got.html");
-                let mut v38: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v35.clone(), v37.clone()) v36 ;
+                let mut v38: Rc<str> = Rc::<str>::from(std::path::Path::new(v35.as_ref()).join(v37.as_ref()).display().to_string());
                 let mut v39: i32 = 0i32;
                 let mut v40: i32 = -1i32;
                 let mut v41: i32 = method3(v38.clone(), v39, v40);
@@ -809,14 +792,12 @@ fn spiral_main() -> i32 {
                 let mut v57: i32 = if v54 {
                     0i32
                 } else {
-                    let mut v55: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                    let mut v56: i32 = Fable.Core.RustInterop.emitRustExpr v52 v55 ;
+                    let mut v56: i32 = i32::from(std::fs::create_dir_all(v52.as_ref()).is_err());
                     v56
                 };
                 let mut v58: bool = v57 == 0i32;
                 let mut v61: i32 = if v58 {
-                    let mut v59: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
-                    let mut v60: i32 = Fable.Core.RustInterop.emitRustExpr (v38.clone(), v32.clone()) v59 ;
+                    let mut v60: i32 = i32::from(std::fs::write(v38.as_ref(), v32.as_ref().as_bytes()).is_err());
                     v60
                 } else {
                     v57
@@ -830,26 +811,19 @@ fn spiral_main() -> i32 {
             } else {
                 3i32
             };
-            let mut v66: Rc<str> = "Rc::<str>::from(std::env::temp_dir().display().to_string())";
-            let mut v67: Rc<str> = Fable.Core.RustInterop.emitRustExpr () v66 ;
-            let mut v68: Rc<str> = "std::process::id() as i64";
-            let mut v69: i64 = Fable.Core.RustInterop.emitRustExpr () v68 ;
+            let mut v67: Rc<str> = Rc::<str>::from(std::env::temp_dir().display().to_string());
+            let mut v69: i64 = std::process::id() as i64;
             let mut v70: Rc<str> = method0(v69);
             let mut v71: Rc<str> = Rc::<str>::from(format!("{}{}", v70.clone(), Rc::<str>::from("-")));
-            let mut v72: Rc<str> = "std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos() as i64";
-            let mut v73: i64 = Fable.Core.RustInterop.emitRustExpr () v72 ;
+            let mut v73: i64 = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos() as i64;
             let mut v74: Rc<str> = method0(v73);
             let mut v75: Rc<str> = Rc::<str>::from(format!("{}{}", v71.clone(), v74.clone()));
-            let mut v76: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-            let mut v77: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v67.clone(), v75.clone()) v76 ;
-            let mut v78: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+            let mut v77: Rc<str> = Rc::<str>::from(std::path::Path::new(v67.as_ref()).join(v75.as_ref()).display().to_string());
             let mut v79: Rc<str> = Rc::<str>::from("m");
-            let mut v80: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v77.clone(), v79.clone()) v78 ;
-            let mut v81: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-            let mut v82: i32 = Fable.Core.RustInterop.emitRustExpr v80 v81 ;
-            let mut v83: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+            let mut v80: Rc<str> = Rc::<str>::from(std::path::Path::new(v77.as_ref()).join(v79.as_ref()).display().to_string());
+            let mut v82: i32 = i32::from(std::fs::create_dir_all(v80.as_ref()).is_err());
             let mut v84: Rc<str> = Rc::<str>::from("b.txt");
-            let mut v85: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v77.clone(), v84.clone()) v83 ;
+            let mut v85: Rc<str> = Rc::<str>::from(std::path::Path::new(v77.as_ref()).join(v84.as_ref()).display().to_string());
             let mut v86: i32 = 0i32;
             let mut v87: i32 = -1i32;
             let mut v88: i32 = method3(v85.clone(), v86, v87);
@@ -880,22 +854,19 @@ fn spiral_main() -> i32 {
             let mut v104: i32 = if v101 {
                 0i32
             } else {
-                let mut v102: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                let mut v103: i32 = Fable.Core.RustInterop.emitRustExpr v99 v102 ;
+                let mut v103: i32 = i32::from(std::fs::create_dir_all(v99.as_ref()).is_err());
                 v103
             };
             let mut v105: bool = v104 == 0i32;
             let mut v109: i32 = if v105 {
-                let mut v106: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
                 let mut v107: Rc<str> = Rc::<str>::from("x");
-                let mut v108: i32 = Fable.Core.RustInterop.emitRustExpr (v85.clone(), v107.clone()) v106 ;
+                let mut v108: i32 = i32::from(std::fs::write(v85.as_ref(), v107.as_ref().as_bytes()).is_err());
                 v108
             } else {
                 v104
             };
-            let mut v110: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
             let mut v111: Rc<str> = Rc::<str>::from("a.txt");
-            let mut v112: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v77.clone(), v111.clone()) v110 ;
+            let mut v112: Rc<str> = Rc::<str>::from(std::path::Path::new(v77.as_ref()).join(v111.as_ref()).display().to_string());
             let mut v113: i32 = 0i32;
             let mut v114: i32 = -1i32;
             let mut v115: i32 = method3(v112.clone(), v113, v114);
@@ -926,24 +897,20 @@ fn spiral_main() -> i32 {
             let mut v131: i32 = if v128 {
                 0i32
             } else {
-                let mut v129: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                let mut v130: i32 = Fable.Core.RustInterop.emitRustExpr v126 v129 ;
+                let mut v130: i32 = i32::from(std::fs::create_dir_all(v126.as_ref()).is_err());
                 v130
             };
             let mut v132: bool = v131 == 0i32;
             let mut v136: i32 = if v132 {
-                let mut v133: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
                 let mut v134: Rc<str> = Rc::<str>::from("yy");
-                let mut v135: i32 = Fable.Core.RustInterop.emitRustExpr (v112.clone(), v134.clone()) v133 ;
+                let mut v135: i32 = i32::from(std::fs::write(v112.as_ref(), v134.as_ref().as_bytes()).is_err());
                 v135
             } else {
                 v131
             };
-            let mut v137: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
-            let mut v138: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v77.clone(), v79.clone()) v137 ;
-            let mut v139: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+            let mut v138: Rc<str> = Rc::<str>::from(std::path::Path::new(v77.as_ref()).join(v79.as_ref()).display().to_string());
             let mut v140: Rc<str> = Rc::<str>::from("file.txt");
-            let mut v141: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v138.clone(), v140.clone()) v139 ;
+            let mut v141: Rc<str> = Rc::<str>::from(std::path::Path::new(v138.as_ref()).join(v140.as_ref()).display().to_string());
             let mut v142: i32 = 0i32;
             let mut v143: i32 = -1i32;
             let mut v144: i32 = method3(v141.clone(), v142, v143);
@@ -974,21 +941,18 @@ fn spiral_main() -> i32 {
             let mut v160: i32 = if v157 {
                 0i32
             } else {
-                let mut v158: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                let mut v159: i32 = Fable.Core.RustInterop.emitRustExpr v155 v158 ;
+                let mut v159: i32 = i32::from(std::fs::create_dir_all(v155.as_ref()).is_err());
                 v159
             };
             let mut v161: bool = v160 == 0i32;
             let mut v165: i32 = if v161 {
-                let mut v162: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
                 let mut v163: Rc<str> = Rc::<str>::from("z");
-                let mut v164: i32 = Fable.Core.RustInterop.emitRustExpr (v141.clone(), v163.clone()) v162 ;
+                let mut v164: i32 = i32::from(std::fs::write(v141.as_ref(), v163.as_ref().as_bytes()).is_err());
                 v164
             } else {
                 v160
             };
-            let mut v166: Rc<str> = "{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }";
-            let mut v167: Rc<str> = Fable.Core.RustInterop.emitRustExpr v77 v166 ;
+            let mut v167: Rc<str> = { let mut out = String::new(); if let Ok(read) = std::fs::read_dir(v77.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) };
             let mut v168: i32 = 0i32;
             let mut v169: Rc<UH0> = method4(v167.clone(), v168);
             let mut v170: Rc<UH0> = method7(v169.clone());
@@ -1000,11 +964,9 @@ fn spiral_main() -> i32 {
             let mut v204: i32 = if v175 {
                 0i32
             } else {
-                let mut v176: Rc<str> = "Rc::<str>::from(std::env::temp_dir().display().to_string())";
-                let mut v177: Rc<str> = Fable.Core.RustInterop.emitRustExpr () v176 ;
-                let mut v178: Rc<str> = "Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())";
+                let mut v177: Rc<str> = Rc::<str>::from(std::env::temp_dir().display().to_string());
                 let mut v179: Rc<str> = Rc::<str>::from("dir-tree-html-order-got.html");
-                let mut v180: Rc<str> = Fable.Core.RustInterop.emitRustExpr (v177.clone(), v179.clone()) v178 ;
+                let mut v180: Rc<str> = Rc::<str>::from(std::path::Path::new(v177.as_ref()).join(v179.as_ref()).display().to_string());
                 let mut v181: i32 = 0i32;
                 let mut v182: i32 = -1i32;
                 let mut v183: i32 = method3(v180.clone(), v181, v182);
@@ -1035,14 +997,12 @@ fn spiral_main() -> i32 {
                 let mut v199: i32 = if v196 {
                     0i32
                 } else {
-                    let mut v197: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                    let mut v198: i32 = Fable.Core.RustInterop.emitRustExpr v194 v197 ;
+                    let mut v198: i32 = i32::from(std::fs::create_dir_all(v194.as_ref()).is_err());
                     v198
                 };
                 let mut v200: bool = v199 == 0i32;
                 let mut v203: i32 = if v200 {
-                    let mut v201: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
-                    let mut v202: i32 = Fable.Core.RustInterop.emitRustExpr (v180.clone(), v174.clone()) v201 ;
+                    let mut v202: i32 = i32::from(std::fs::write(v180.as_ref(), v174.as_ref().as_bytes()).is_err());
                     v202
                 } else {
                     v199
@@ -1121,16 +1081,14 @@ fn spiral_main() -> i32 {
         } else {
             let mut v251: Rc<str> = Rc::<str>::from("--dir");
             let mut v252: i32 = 1i32;
-            let mut v253: Rc<str> = "std::env::args().count() as i32";
-            let mut v254: i32 = Fable.Core.RustInterop.emitRustExpr () v253 ;
+            let mut v254: i32 = std::env::args().count() as i32;
             let mut v255: i32 = method13(v251.clone(), v252, v254);
             let mut v256: bool = v255 == -1i32;
             let mut v262: i32 = if v256 {
                 -1i32
             } else {
                 let mut v257: i32 = v255 + 1i32;
-                let mut v258: Rc<str> = "std::env::args().count() as i32";
-                let mut v259: i32 = Fable.Core.RustInterop.emitRustExpr () v258 ;
+                let mut v259: i32 = std::env::args().count() as i32;
                 let mut v260: bool = v257 < v259;
                 if v260 {
                     v257
@@ -1140,16 +1098,14 @@ fn spiral_main() -> i32 {
             };
             let mut v263: Rc<str> = Rc::<str>::from("--html");
             let mut v264: i32 = 1i32;
-            let mut v265: Rc<str> = "std::env::args().count() as i32";
-            let mut v266: i32 = Fable.Core.RustInterop.emitRustExpr () v265 ;
+            let mut v266: i32 = std::env::args().count() as i32;
             let mut v267: i32 = method13(v263.clone(), v264, v266);
             let mut v268: bool = v267 == -1i32;
             let mut v274: i32 = if v268 {
                 -1i32
             } else {
                 let mut v269: i32 = v267 + 1i32;
-                let mut v270: Rc<str> = "std::env::args().count() as i32";
-                let mut v271: i32 = Fable.Core.RustInterop.emitRustExpr () v270 ;
+                let mut v271: i32 = std::env::args().count() as i32;
                 let mut v272: bool = v269 < v271;
                 if v272 {
                     v269
@@ -1165,13 +1121,10 @@ fn spiral_main() -> i32 {
                 if v276 {
                     2i32
                 } else {
-                    let mut v277: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-                    let mut v278: Rc<str> = Fable.Core.RustInterop.emitRustExpr v274 v277 ;
-                    let mut v279: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-                    let mut v280: Rc<str> = Fable.Core.RustInterop.emitRustExpr v262 v279 ;
+                    let mut v278: Rc<str> = Rc::<str>::from(std::env::args().nth(v274 as usize).unwrap_or_default());
+                    let mut v280: Rc<str> = Rc::<str>::from(std::env::args().nth(v262 as usize).unwrap_or_default());
                     let mut v281: Rc<str> = Rc::<str>::from("");
-                    let mut v282: Rc<str> = "{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }";
-                    let mut v283: Rc<str> = Fable.Core.RustInterop.emitRustExpr v280 v282 ;
+                    let mut v283: Rc<str> = { let mut out = String::new(); if let Ok(read) = std::fs::read_dir(v280.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) };
                     let mut v284: i32 = 0i32;
                     let mut v285: Rc<UH0> = method4(v283.clone(), v284);
                     let mut v286: Rc<UH0> = method7(v285.clone());
@@ -1209,14 +1162,12 @@ fn spiral_main() -> i32 {
                     let mut v309: i32 = if v306 {
                         0i32
                     } else {
-                        let mut v307: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                        let mut v308: i32 = Fable.Core.RustInterop.emitRustExpr v304 v307 ;
+                        let mut v308: i32 = i32::from(std::fs::create_dir_all(v304.as_ref()).is_err());
                         v308
                     };
                     let mut v310: bool = v309 == 0i32;
                     if v310 {
-                        let mut v311: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
-                        let mut v312: i32 = Fable.Core.RustInterop.emitRustExpr (v278.clone(), v290.clone()) v311 ;
+                        let mut v312: i32 = i32::from(std::fs::write(v278.as_ref(), v290.as_ref().as_bytes()).is_err());
                         v312
                     } else {
                         v309
@@ -1227,16 +1178,14 @@ fn spiral_main() -> i32 {
     } else {
         let mut v317: Rc<str> = Rc::<str>::from("--dir");
         let mut v318: i32 = 1i32;
-        let mut v319: Rc<str> = "std::env::args().count() as i32";
-        let mut v320: i32 = Fable.Core.RustInterop.emitRustExpr () v319 ;
+        let mut v320: i32 = std::env::args().count() as i32;
         let mut v321: i32 = method13(v317.clone(), v318, v320);
         let mut v322: bool = v321 == -1i32;
         let mut v328: i32 = if v322 {
             -1i32
         } else {
             let mut v323: i32 = v321 + 1i32;
-            let mut v324: Rc<str> = "std::env::args().count() as i32";
-            let mut v325: i32 = Fable.Core.RustInterop.emitRustExpr () v324 ;
+            let mut v325: i32 = std::env::args().count() as i32;
             let mut v326: bool = v323 < v325;
             if v326 {
                 v323
@@ -1246,16 +1195,14 @@ fn spiral_main() -> i32 {
         };
         let mut v329: Rc<str> = Rc::<str>::from("--html");
         let mut v330: i32 = 1i32;
-        let mut v331: Rc<str> = "std::env::args().count() as i32";
-        let mut v332: i32 = Fable.Core.RustInterop.emitRustExpr () v331 ;
+        let mut v332: i32 = std::env::args().count() as i32;
         let mut v333: i32 = method13(v329.clone(), v330, v332);
         let mut v334: bool = v333 == -1i32;
         let mut v340: i32 = if v334 {
             -1i32
         } else {
             let mut v335: i32 = v333 + 1i32;
-            let mut v336: Rc<str> = "std::env::args().count() as i32";
-            let mut v337: i32 = Fable.Core.RustInterop.emitRustExpr () v336 ;
+            let mut v337: i32 = std::env::args().count() as i32;
             let mut v338: bool = v335 < v337;
             if v338 {
                 v335
@@ -1271,13 +1218,10 @@ fn spiral_main() -> i32 {
             if v342 {
                 2i32
             } else {
-                let mut v343: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-                let mut v344: Rc<str> = Fable.Core.RustInterop.emitRustExpr v340 v343 ;
-                let mut v345: Rc<str> = "Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())";
-                let mut v346: Rc<str> = Fable.Core.RustInterop.emitRustExpr v328 v345 ;
+                let mut v344: Rc<str> = Rc::<str>::from(std::env::args().nth(v340 as usize).unwrap_or_default());
+                let mut v346: Rc<str> = Rc::<str>::from(std::env::args().nth(v328 as usize).unwrap_or_default());
                 let mut v347: Rc<str> = Rc::<str>::from("");
-                let mut v348: Rc<str> = "{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }";
-                let mut v349: Rc<str> = Fable.Core.RustInterop.emitRustExpr v346 v348 ;
+                let mut v349: Rc<str> = { let mut out = String::new(); if let Ok(read) = std::fs::read_dir(v346.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) };
                 let mut v350: i32 = 0i32;
                 let mut v351: Rc<UH0> = method4(v349.clone(), v350);
                 let mut v352: Rc<UH0> = method7(v351.clone());
@@ -1315,14 +1259,12 @@ fn spiral_main() -> i32 {
                 let mut v375: i32 = if v372 {
                     0i32
                 } else {
-                    let mut v373: Rc<str> = "i32::from(std::fs::create_dir_all($0.as_ref()).is_err())";
-                    let mut v374: i32 = Fable.Core.RustInterop.emitRustExpr v370 v373 ;
+                    let mut v374: i32 = i32::from(std::fs::create_dir_all(v370.as_ref()).is_err());
                     v374
                 };
                 let mut v376: bool = v375 == 0i32;
                 if v376 {
-                    let mut v377: Rc<str> = "i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())";
-                    let mut v378: i32 = Fable.Core.RustInterop.emitRustExpr (v344.clone(), v356.clone()) v377 ;
+                    let mut v378: i32 = i32::from(std::fs::write(v344.as_ref(), v356.as_ref().as_bytes()).is_err());
                     v378
                 } else {
                     v375
@@ -1332,5 +1274,6 @@ fn spiral_main() -> i32 {
     }
 }
 fn main() {
-    std::process::exit(spiral_main());
+    let main = std::thread::Builder::new().stack_size(1 << 30).spawn(spiral_main).unwrap();
+    std::process::exit(main.join().unwrap());
 }

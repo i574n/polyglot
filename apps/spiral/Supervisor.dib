@@ -345,8 +345,8 @@ open Hopac.Infixes
 
 #!fsharp
 
-// No editor here: errors come from BuildFile, and the compiler's attention loop (per-file diagnostics for an
-// editor) kept ~4 cores busy for good after a build, starving later builds and hovers in this process.
+// No editor here: errors come from BuildFile, so the compiler's attention loop (per-file diagnostics for an
+// editor) would only type check files for diagnostics nobody reads.
 if isNull (System.Environment.GetEnvironmentVariable "SPIRAL_ATTENTION_SERVER") then
     System.Environment.SetEnvironmentVariable ("SPIRAL_ATTENTION_SERVER", "0")
 
@@ -429,7 +429,10 @@ let buildFile backend timeout port cancellationToken path =
             |> FSharp.Control.AsyncSeq.choose (fun error ->
                 match error with
                 | FatalError message ->
-                    Some (message, error)
+                    // The build's package is a temporary directory under target/: drop it from the message, so a
+                    // type error reads `main.spi:2:9: ...` instead of a hash path that only exists on this machine.
+                    let packageDir = (fileDir |> SpiralSm.replace "\\" "/") + "/"
+                    Some (message.Replace (packageDir, "", System.StringComparison.OrdinalIgnoreCase), error)
                 | TracedError data ->
                     Some (data.message, error)
                 | PackageErrors data when data.errors |> List.isEmpty |> not ->
@@ -1420,88 +1423,8 @@ struct dynamic_array_list
 #include ""main.auto.cu""
 namespace Device {
 }
-struct Union0;
-struct Union0_0 { // (0, Some)
-    int v0;
-    Union0_0(int t0) : v0(t0) {}
-    Union0_0() = delete;
-};
-struct Union0_1 { // (1, None)
-};
-struct Union0 {
-    union {
-        Union0_0 case0; // (0, Some)
-        Union0_1 case1; // (1, None)
-    };
-    unsigned char tag{255};
-    Union0() {}
-    Union0(Union0_0 t) : tag(0), case0(t) {} // (0, Some)
-    Union0(Union0_1 t) : tag(1), case1(t) {} // (1, None)
-    Union0(Union0 & x) : tag(x.tag) {
-        switch(x.tag){
-            case 0: new (&this->case0) Union0_0(x.case0); break; // (0, Some)
-            case 1: new (&this->case1) Union0_1(x.case1); break; // (1, None)
-        }
-    }
-    Union0(Union0 && x) : tag(x.tag) {
-        switch(x.tag){
-            case 0: new (&this->case0) Union0_0(std::move(x.case0)); break; // (0, Some)
-            case 1: new (&this->case1) Union0_1(std::move(x.case1)); break; // (1, None)
-        }
-    }
-    Union0 & operator=(Union0 & x) {
-        if (this->tag == x.tag) {
-            switch(x.tag){
-                case 0: this->case0 = x.case0; break; // (0, Some)
-                case 1: this->case1 = x.case1; break; // (1, None)
-            }
-        } else {
-            this->~Union0();
-            new (this) Union0{x};
-        }
-        return *this;
-    }
-    Union0 & operator=(Union0 && x) {
-        if (this->tag == x.tag) {
-            switch(x.tag){
-                case 0: this->case0 = std::move(x.case0); break; // (0, Some)
-                case 1: this->case1 = std::move(x.case1); break; // (1, None)
-            }
-        } else {
-            this->~Union0();
-            new (this) Union0{std::move(x)};
-        }
-        return *this;
-    }
-    ~Union0() {
-        switch(this->tag){
-            case 0: this->case0.~Union0_0(); break; // (0, Some)
-            case 1: this->case1.~Union0_1(); break; // (1, None)
-        }
-        this->tag = 255;
-    }
-};
 int main_body() {
-    const char * v62;
-    v62 = ""Cpp"";
-    Union0 v63;
-    v63 = // base.backend_switch / record_type_try_find / key: v62 ;
-    switch (v63.tag) {
-        case 1: { // None
-            
-            printf(""%s\n"", ""Option does not have a value."");
-            __trap();
-            break;
-        }
-        case 0: { // Some
-            int v64 = v63.case0.v0;
-            return v64;
-            break;
-        }
-        default: {
-            assert(""Invalid tag."" && false); __trap();
-        }
-    }
+    return 0;
 }
 int main(){
     auto r = main_body();
@@ -1704,8 +1627,8 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
     Some (
         None,
         [
-            "main.spi:
-Constraint satisfaction error.
+            "File main has a type error somewhere in its path.
+main.spi:2:9: Constraint satisfaction error.
 Got: string
 Fails to satisfy: number"
         ]
@@ -1728,9 +1651,9 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
     Some (
         None,
         [
-            "main.spi:
-Unbound variable: x.
-Unbound variable: y."
+            "File main has a type error somewhere in its path.
+main.spi:2:5: Unbound variable: x.
+main.spi:2:9: Unbound variable: y."
         ]
     )
 )
@@ -1749,8 +1672,8 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
     Some (
         None,
         [
-            "main.spi:
-Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
+            "File main has a type error somewhere in its path.
+main.spi:1:19: Recursive metavariables are not allowed. A metavar cannot be unified with a type that has itself.
 Got:      'a
 Expected: () -> 'a"
         ]

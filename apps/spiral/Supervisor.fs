@@ -212,8 +212,8 @@ module Supervisor =
     open Hopac.Infixes
 
     /// ### server
-    // No editor here: errors come from BuildFile, and the compiler's attention loop (per-file diagnostics for an
-    // editor) kept ~4 cores busy for good after a build, starving later builds and hovers in this process.
+    // No editor here: errors come from BuildFile, so the compiler's attention loop (per-file diagnostics for an
+    // editor) would only type check files for diagnostics nobody reads.
     if isNull (System.Environment.GetEnvironmentVariable "SPIRAL_ATTENTION_SERVER") then
         System.Environment.SetEnvironmentVariable ("SPIRAL_ATTENTION_SERVER", "0")
 
@@ -291,7 +291,10 @@ module Supervisor =
                 |> FSharp.Control.AsyncSeq.choose (fun error ->
                     match error with
                     | FatalError message ->
-                        Some (message, error)
+                        // The build's package is a temporary directory under target/: drop it from the message, so a
+                        // type error reads `main.spi:2:9: ...` instead of a hash path that only exists on this machine.
+                        let packageDir = (fileDir |> SpiralSm.replace "\\" "/") + "/"
+                        Some (message.Replace (packageDir, "", System.StringComparison.OrdinalIgnoreCase), error)
                     | TracedError data ->
                         Some (data.message, error)
                     | PackageErrors data when data.errors |> List.isEmpty |> not ->
