@@ -212,6 +212,11 @@ module Supervisor =
     open Hopac.Infixes
 
     /// ### server
+    // No editor here: errors come from BuildFile, and the compiler's attention loop (per-file diagnostics for an
+    // editor) kept ~4 cores busy for good after a build, starving later builds and hovers in this process.
+    if isNull (System.Environment.GetEnvironmentVariable "SPIRAL_ATTENTION_SERVER") then
+        System.Environment.SetEnvironmentVariable ("SPIRAL_ATTENTION_SERVER", "0")
+
     let server1 = new_server<Job<unit>, obj, string option, Job<unit>, unit> ()
     let server2 = new_server<Job<unit>, obj, int array, Job<unit>, unit> ()
 
