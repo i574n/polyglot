@@ -270,8 +270,19 @@ module Supervisor =
             let serverPort = port
             // use _ = disposable
 
+            // Subscribe now, before FileOpen is sent below: the type checker reports while handling FileOpen, and a
+            // subscription made only when the watcher first pulls (it starts asynchronously) missed those errors
+            // (Supervisor.dib's type-error tests got None). Disposing it when the build ends unsubscribes, so no
+            // reader outlives its build.
+            let errorsEnumerator = server1.errors.GetEnumerator ()
+            use _ = errorsEnumerator
             let errorsSeq =
-                server1.errors
+                FSharp.Control.AsyncSeq.unfoldAsync
+                    (fun () -> async {
+                        let! error = errorsEnumerator.MoveNext ()
+                        return error |> Option.map (fun error -> error, ())
+                    })
+                    ()
                 |> FSharp.Control.AsyncSeq.choose (fun error ->
                     match error with
                     | FatalError message ->

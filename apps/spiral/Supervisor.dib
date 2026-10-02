@@ -408,8 +408,19 @@ let buildFile backend timeout port cancellationToken path =
         let serverPort = port
         // use _ = disposable
 
+        // Subscribe now, before FileOpen is sent below: the type checker reports while handling FileOpen, and a
+        // subscription made only when the watcher first pulls (it starts asynchronously) missed those errors
+        // (Supervisor.dib's type-error tests got None). Disposing it when the build ends unsubscribes, so no
+        // reader outlives its build.
+        let errorsEnumerator = server1.errors.GetEnumerator ()
+        use _ = errorsEnumerator
         let errorsSeq =
-            server1.errors
+            FSharp.Control.AsyncSeq.unfoldAsync
+                (fun () -> async {
+                    let! error = errorsEnumerator.MoveNext ()
+                    return error |> Option.map (fun error -> error, ())
+                })
+                ()
             |> FSharp.Control.AsyncSeq.choose (fun error ->
                 match error with
                 | FatalError message ->
@@ -787,9 +798,9 @@ inl main () =
     let v1 : string = "text"
     v0 v1
 and closure0 () () : int32 =
-    let v21 : unit = ()
-    let v22 : (unit -> unit) = closure1()
-    let v23 : unit = (fun () -> v22 (); v21) ()
+    let v6 : unit = ()
+    let v7 : (unit -> unit) = closure1()
+    let v8 : unit = (fun () -> v7 (); v6) ()
     1
 let v0 : (unit -> int32) = closure0()
 ()

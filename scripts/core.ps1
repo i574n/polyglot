@@ -65,6 +65,7 @@ function Invoke-Block {
     Write-Output "`n────────────────────────────────────────────────────────────────────────────────"
     Write-Output "core.Invoke-Block / Get-Location: $(Get-Location) / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
+    $fatal = $null
     $retry = 1
     while ($retry -le $Retries) {
         try {
@@ -97,7 +98,11 @@ function Invoke-Block {
             if ($OnError -eq "Stop") {
                 if ($retry -eq $Retries) {
                     if ($host.Name -match "Interactive") {
-                        [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+                        # In a notebook, end the cell: a terminating error (thrown after the cleanup below) fails
+                        # the command. Publishing CommandFailed instead left the script running after a fatal error
+                        # (dep_spiral.ps1 went on past its failed build) and gave the cell two completions.
+                        $fatal = $msg
+                        break
                     }
                     else {
                         exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
@@ -126,6 +131,10 @@ function Invoke-Block {
                 Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
             }
         }
+    }
+
+    if ($fatal) {
+        throw $fatal
     }
 
     if ($env:CI -and $IsLinux) {

@@ -6,6 +6,8 @@ fn string_slice(value: &str, from: i64, to: i64) -> Rc<str> {
     let length = bytes.len() as i64;
     if from < 0 || from > length || to < from - 1 || to >= length { std::process::abort(); }
     if to < from { return Rc::<str>::from(""); }
+    // A slice that starts or ends inside a code point fails like the C and Delphi backends (abort / Halt(3)).
+    if (bytes[from as usize] & 0xC0) == 0x80 || (to + 1 < length && (bytes[(to + 1) as usize] & 0xC0) == 0x80) { std::process::exit(3); }
     let slice = &bytes[from as usize..(to + 1) as usize];
     match std::str::from_utf8(slice) { Ok(text) => Rc::<str>::from(text), Err(error) => Rc::<str>::from(std::str::from_utf8(&slice[..error.valid_up_to()]).unwrap_or("")) }
 }
@@ -46,6 +48,27 @@ impl US2 {
         }
     }
 }
+fn method2(mut v0: Rc<str>, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> bool {
+    loop {
+        let mut v4: i32 = (v2.clone().len() as i32);
+        let mut v5: bool = v3 == v4;
+        if v5 {
+            return true;
+        } else {
+            let mut v6: i32 = v1 + v3;
+            let mut v7: u8 = v0.clone().as_bytes()[v6 as usize];
+            let mut v8: u8 = v2.clone().as_bytes()[v3 as usize];
+            let mut v9: bool = v7 == v8;
+            if v9 {
+                let mut v10: i32 = v3 + 1i32;
+                (v0, v1, v2, v3) = (v0.clone(), v1, v2.clone(), v10);
+                continue;
+            } else {
+                return false;
+            }
+        }
+    }
+}
 fn method1(mut v0: Rc<str>, mut v1: i32, mut v2: Rc<str>) -> i32 {
     loop {
         let mut v3: i32 = (v0.clone().len() as i32);
@@ -55,20 +78,25 @@ fn method1(mut v0: Rc<str>, mut v1: i32, mut v2: Rc<str>) -> i32 {
         if v6 {
             return -1i32;
         } else {
-            let mut v7: i32 = v5 - 1i32;
-            let mut v8: Rc<str> = string_slice(&v0.clone(), v1 as i64, v7 as i64);
-            let mut v9: bool = v8.clone() == v2.clone();
-            if v9 {
+            let mut v7: bool = v1 < 0i32;
+            let mut v8: bool = v7 || v6;
+            let mut v11: bool = if v8 {
+                false
+            } else {
+                let mut v9: i32 = 0i32;
+                method2(v0.clone(), v1, v2.clone(), v9)
+            };
+            if v11 {
                 return v1;
             } else {
-                let mut v10: i32 = v1 + 1i32;
-                (v0, v1, v2) = (v0.clone(), v10, v2.clone());
+                let mut v12: i32 = v1 + 1i32;
+                (v0, v1, v2) = (v0.clone(), v12, v2.clone());
                 continue;
             }
         }
     }
 }
-fn method2(mut v0: Rc<str>, mut v1: i32) -> i32 {
+fn method3(mut v0: Rc<str>, mut v1: i32) -> i32 {
     loop {
         let mut v2: i32 = (v0.clone().len() as i32);
         let mut v3: i32 = v2 - 1i32;
@@ -123,7 +151,7 @@ fn method0(mut v0: Rc<str>, mut v1: i32) -> i32 {
                         v12
                     };
                     if v13 {
-                        let mut v14: i32 = method2(v0.clone(), v6);
+                        let mut v14: i32 = method3(v0.clone(), v6);
                         let mut v15: bool = v14 > v7;
                         if v15 {
                             false
@@ -147,7 +175,7 @@ fn method0(mut v0: Rc<str>, mut v1: i32) -> i32 {
         }
     }
 }
-fn method3(mut v0: Rc<str>, mut v1: i32) -> i32 {
+fn method4(mut v0: Rc<str>, mut v1: i32) -> i32 {
     loop {
         let mut v2: bool = v1 == 0i32;
         if v2 {
@@ -165,7 +193,7 @@ fn method3(mut v0: Rc<str>, mut v1: i32) -> i32 {
         }
     }
 }
-fn method4(mut v0: Rc<str>, mut v1: i32) -> i32 {
+fn method5(mut v0: Rc<str>, mut v1: i32) -> i32 {
     loop {
         let mut v2: bool = v1 == 0i32;
         if v2 {
@@ -201,7 +229,7 @@ fn method4(mut v0: Rc<str>, mut v1: i32) -> i32 {
         }
     }
 }
-fn method6(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
+fn method7(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
     loop {
         let mut v3: i32 = (v0.clone().len() as i32);
         let mut v4: bool = v1 == v3;
@@ -226,7 +254,7 @@ fn method6(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
         }
     }
 }
-fn method5(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
+fn method6(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
     loop {
         let mut v2: bool = v0.clone() == Rc::<str>::from("");
         if v2 {
@@ -241,7 +269,7 @@ fn method5(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
             } else {
                 let mut v9: i32 = 0i32;
                 let mut v10: i32 = -1i32;
-                let mut v11: i32 = method6(v0.clone(), v9, v10);
+                let mut v11: i32 = method7(v0.clone(), v9, v10);
                 let mut v12: bool = v11 == -1i32;
                 let mut v23: Rc<str> = if v12 {
                     let mut v13: Rc<str> = Rc::<str>::from("");
@@ -283,7 +311,7 @@ fn method5(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
         }
     }
 }
-fn method7(mut v0: i32, mut v1: i32) -> Rc<str> {
+fn method8(mut v0: i32, mut v1: i32) -> Rc<str> {
     loop {
         let mut v2: bool = v0 == v1;
         if v2 {
@@ -311,7 +339,7 @@ fn method7(mut v0: i32, mut v1: i32) -> Rc<str> {
         }
     }
 }
-fn method8(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
+fn method9(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
     loop {
         let mut v3: i32 = (v0.clone().len() as i32);
         let mut v4: bool = v1 == v3;
@@ -331,7 +359,7 @@ fn method8(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
         }
     }
 }
-fn method9(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
+fn method10(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
     loop {
         let mut v3: bool = v1 == v2;
         if v3 {
@@ -349,7 +377,7 @@ fn method9(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
         }
     }
 }
-fn method10(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: Rc<str>, mut v4: i32) -> Rc<str> {
+fn method11(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: Rc<str>, mut v4: i32) -> Rc<str> {
     loop {
         let mut v5: bool = v0 == v1;
         if v5 {
@@ -388,7 +416,7 @@ fn method10(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: Rc<str>, mut v4: 
         }
     }
 }
-fn method11(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> Rc<str> {
+fn method12(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> Rc<str> {
     loop {
         let mut v4: bool = v0 == v1;
         if v4 {
@@ -424,7 +452,7 @@ fn method11(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> Rc<str> {
         }
     }
 }
-fn method12(mut v0: US1, mut v1: US2) -> i32 {
+fn method13(mut v0: US1, mut v1: US2) -> i32 {
     match &v0 {
         US1::US1_2(v2, v3) => { // Project
             let mut v2: Rc<str> = v2.clone();
@@ -447,7 +475,7 @@ fn method12(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v17: Rc<str> = Rc::<str>::from(format!("{}{}", v16.clone(), v4.clone()));
                     let mut v18: i32 = 0i32;
                     let mut v19: i32 = -1i32;
-                    let mut v20: i32 = method6(v2.clone(), v18, v19);
+                    let mut v20: i32 = method7(v2.clone(), v18, v19);
                     let mut v21: bool = v20 == -1i32;
                     let mut v32: Rc<str> = if v21 {
                         let mut v22: Rc<str> = Rc::<str>::from("");
@@ -499,7 +527,7 @@ fn method12(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v52: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), Rc::<str>::from("linux-x64")));
                     let mut v53: i32 = 0i32;
                     let mut v54: i32 = -1i32;
-                    let mut v55: i32 = method6(v2.clone(), v53, v54);
+                    let mut v55: i32 = method7(v2.clone(), v53, v54);
                     let mut v56: bool = v55 == -1i32;
                     let mut v67: Rc<str> = if v56 {
                         let mut v57: Rc<str> = Rc::<str>::from("");
@@ -536,7 +564,7 @@ fn method12(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v75: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), Rc::<str>::from("win-x64")));
                     let mut v76: i32 = 0i32;
                     let mut v77: i32 = -1i32;
-                    let mut v78: i32 = method6(v2.clone(), v76, v77);
+                    let mut v78: i32 = method7(v2.clone(), v76, v77);
                     let mut v79: bool = v78 == -1i32;
                     let mut v90: Rc<str> = if v79 {
                         let mut v80: Rc<str> = Rc::<str>::from("");
@@ -588,7 +616,7 @@ fn method12(mut v0: US1, mut v1: US2) -> i32 {
                 let mut v108: Rc<str> = Rc::<str>::from(std::path::absolute(v2.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v2.as_ref())).display().to_string());
                 let mut v109: i32 = 0i32;
                 let mut v110: i32 = -1i32;
-                let mut v111: i32 = method6(v108.clone(), v109, v110);
+                let mut v111: i32 = method7(v108.clone(), v109, v110);
                 let mut v112: bool = v111 == -1i32;
                 let mut v123: Rc<str> = if v112 {
                     let mut v113: Rc<str> = Rc::<str>::from("");
@@ -665,7 +693,7 @@ fn spiral_main() -> i32 {
             let mut v25: Rc<str> = if v14 {
                 v11.clone()
             } else {
-                let mut v15: i32 = method3(v11.clone(), v13);
+                let mut v15: i32 = method4(v11.clone(), v13);
                 let mut v16: i32 = v13 - 1i32;
                 let mut v17: Rc<str> = string_slice(&Rc::<str>::from("    let main args = 0\n()\n"), v15 as i64, v16 as i64);
                 let mut v18: Rc<str> = string_slice(&Rc::<str>::from("    let main args = 0\n()\n"), v13 as i64, 24i32 as i64);
@@ -678,196 +706,256 @@ fn spiral_main() -> i32 {
                 v24.clone()
             };
             let mut v26: i32 = (v25.clone().len() as i32);
-            let mut v27: i32 = method4(v25.clone(), v26);
+            let mut v27: i32 = method5(v25.clone(), v26);
             let mut v28: i32 = v27 - 1i32;
             let mut v29: Rc<str> = string_slice(&v25.clone(), 0i32 as i64, v28 as i64);
             let mut v30: i32 = (v29.clone().len() as i32);
             let mut v31: bool = v30 < 3i32;
-            let mut v39: Rc<str> = if v31 {
+            let mut v44: Rc<str> = if v31 {
                 v25.clone()
             } else {
                 let mut v32: i32 = v30 - 3i32;
-                let mut v33: i32 = v30 - 1i32;
-                let mut v34: Rc<str> = string_slice(&v29.clone(), v32 as i64, v33 as i64);
-                let mut v35: bool = v34.clone() == Rc::<str>::from("\n()");
-                if v35 {
-                    let mut v36: i32 = v30 - 4i32;
-                    let mut v37: Rc<str> = string_slice(&v29.clone(), 0i32 as i64, v36 as i64);
-                    v37.clone()
+                let mut v33: bool = v32 < 0i32;
+                let mut v36: bool = if v33 {
+                    true
+                } else {
+                    let mut v34: i32 = v32 + 3i32;
+                    let mut v35: bool = v34 > v30;
+                    v35
+                };
+                let mut v40: bool = if v36 {
+                    false
+                } else {
+                    let mut v37: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v38: i32 = 0i32;
+                    method2(v29.clone(), v32, v37.clone(), v38)
+                };
+                if v40 {
+                    let mut v41: i32 = v30 - 4i32;
+                    let mut v42: Rc<str> = string_slice(&v29.clone(), 0i32 as i64, v41 as i64);
+                    v42.clone()
                 } else {
                     v25.clone()
                 }
             };
-            let mut v40: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n");
-            let mut v41: i32 = 0i32;
-            let mut v42: i32 = method0(v40.clone(), v41);
-            let mut v43: bool = v42 == -1i32;
-            let mut v54: Rc<str> = if v43 {
-                v40.clone()
+            let mut v45: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n");
+            let mut v46: i32 = 0i32;
+            let mut v47: i32 = method0(v45.clone(), v46);
+            let mut v48: bool = v47 == -1i32;
+            let mut v59: Rc<str> = if v48 {
+                v45.clone()
             } else {
-                let mut v44: i32 = method3(v40.clone(), v42);
-                let mut v45: i32 = v42 - 1i32;
-                let mut v46: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v44 as i64, v45 as i64);
-                let mut v47: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v42 as i64, 34i32 as i64);
-                let mut v48: i32 = v44 - 1i32;
-                let mut v49: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), 0i32 as i64, v48 as i64);
-                let mut v50: Rc<str> = Rc::<str>::from(format!("{}{}", v49.clone(), v46.clone()));
-                let mut v51: Rc<str> = Rc::<str>::from(format!("{}{}", v50.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
-                let mut v52: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), v46.clone()));
-                let mut v53: Rc<str> = Rc::<str>::from(format!("{}{}", v52.clone(), v47.clone()));
-                v53.clone()
+                let mut v49: i32 = method4(v45.clone(), v47);
+                let mut v50: i32 = v47 - 1i32;
+                let mut v51: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v49 as i64, v50 as i64);
+                let mut v52: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v47 as i64, 34i32 as i64);
+                let mut v53: i32 = v49 - 1i32;
+                let mut v54: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), 0i32 as i64, v53 as i64);
+                let mut v55: Rc<str> = Rc::<str>::from(format!("{}{}", v54.clone(), v51.clone()));
+                let mut v56: Rc<str> = Rc::<str>::from(format!("{}{}", v55.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v57: Rc<str> = Rc::<str>::from(format!("{}{}", v56.clone(), v51.clone()));
+                let mut v58: Rc<str> = Rc::<str>::from(format!("{}{}", v57.clone(), v52.clone()));
+                v58.clone()
             };
-            let mut v55: i32 = (v54.clone().len() as i32);
-            let mut v56: i32 = method4(v54.clone(), v55);
-            let mut v57: i32 = v56 - 1i32;
-            let mut v58: Rc<str> = string_slice(&v54.clone(), 0i32 as i64, v57 as i64);
-            let mut v59: i32 = (v58.clone().len() as i32);
-            let mut v60: bool = v59 < 3i32;
-            let mut v68: Rc<str> = if v60 {
-                v54.clone()
+            let mut v60: i32 = (v59.clone().len() as i32);
+            let mut v61: i32 = method5(v59.clone(), v60);
+            let mut v62: i32 = v61 - 1i32;
+            let mut v63: Rc<str> = string_slice(&v59.clone(), 0i32 as i64, v62 as i64);
+            let mut v64: i32 = (v63.clone().len() as i32);
+            let mut v65: bool = v64 < 3i32;
+            let mut v78: Rc<str> = if v65 {
+                v59.clone()
             } else {
-                let mut v61: i32 = v59 - 3i32;
-                let mut v62: i32 = v59 - 1i32;
-                let mut v63: Rc<str> = string_slice(&v58.clone(), v61 as i64, v62 as i64);
-                let mut v64: bool = v63.clone() == Rc::<str>::from("\n()");
-                if v64 {
-                    let mut v65: i32 = v59 - 4i32;
-                    let mut v66: Rc<str> = string_slice(&v58.clone(), 0i32 as i64, v65 as i64);
-                    v66.clone()
+                let mut v66: i32 = v64 - 3i32;
+                let mut v67: bool = v66 < 0i32;
+                let mut v70: bool = if v67 {
+                    true
                 } else {
-                    v54.clone()
+                    let mut v68: i32 = v66 + 3i32;
+                    let mut v69: bool = v68 > v64;
+                    v69
+                };
+                let mut v74: bool = if v70 {
+                    false
+                } else {
+                    let mut v71: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v72: i32 = 0i32;
+                    method2(v63.clone(), v66, v71.clone(), v72)
+                };
+                if v74 {
+                    let mut v75: i32 = v64 - 4i32;
+                    let mut v76: Rc<str> = string_slice(&v63.clone(), 0i32 as i64, v75 as i64);
+                    v76.clone()
+                } else {
+                    v59.clone()
                 }
             };
-            let mut v69: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n");
-            let mut v70: i32 = 0i32;
-            let mut v71: i32 = method0(v69.clone(), v70);
-            let mut v72: bool = v71 == -1i32;
-            let mut v83: Rc<str> = if v72 {
-                v69.clone()
+            let mut v79: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n");
+            let mut v80: i32 = 0i32;
+            let mut v81: i32 = method0(v79.clone(), v80);
+            let mut v82: bool = v81 == -1i32;
+            let mut v93: Rc<str> = if v82 {
+                v79.clone()
             } else {
-                let mut v73: i32 = method3(v69.clone(), v71);
-                let mut v74: i32 = v71 - 1i32;
-                let mut v75: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v73 as i64, v74 as i64);
-                let mut v76: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v71 as i64, 59i32 as i64);
-                let mut v77: i32 = v73 - 1i32;
-                let mut v78: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), 0i32 as i64, v77 as i64);
-                let mut v79: Rc<str> = Rc::<str>::from(format!("{}{}", v78.clone(), v75.clone()));
-                let mut v80: Rc<str> = Rc::<str>::from(format!("{}{}", v79.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
-                let mut v81: Rc<str> = Rc::<str>::from(format!("{}{}", v80.clone(), v75.clone()));
-                let mut v82: Rc<str> = Rc::<str>::from(format!("{}{}", v81.clone(), v76.clone()));
-                v82.clone()
+                let mut v83: i32 = method4(v79.clone(), v81);
+                let mut v84: i32 = v81 - 1i32;
+                let mut v85: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v83 as i64, v84 as i64);
+                let mut v86: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v81 as i64, 59i32 as i64);
+                let mut v87: i32 = v83 - 1i32;
+                let mut v88: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), 0i32 as i64, v87 as i64);
+                let mut v89: Rc<str> = Rc::<str>::from(format!("{}{}", v88.clone(), v85.clone()));
+                let mut v90: Rc<str> = Rc::<str>::from(format!("{}{}", v89.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v91: Rc<str> = Rc::<str>::from(format!("{}{}", v90.clone(), v85.clone()));
+                let mut v92: Rc<str> = Rc::<str>::from(format!("{}{}", v91.clone(), v86.clone()));
+                v92.clone()
             };
-            let mut v84: i32 = (v83.clone().len() as i32);
-            let mut v85: i32 = method4(v83.clone(), v84);
-            let mut v86: i32 = v85 - 1i32;
-            let mut v87: Rc<str> = string_slice(&v83.clone(), 0i32 as i64, v86 as i64);
-            let mut v88: i32 = (v87.clone().len() as i32);
-            let mut v89: bool = v88 < 3i32;
-            let mut v97: Rc<str> = if v89 {
-                v83.clone()
+            let mut v94: i32 = (v93.clone().len() as i32);
+            let mut v95: i32 = method5(v93.clone(), v94);
+            let mut v96: i32 = v95 - 1i32;
+            let mut v97: Rc<str> = string_slice(&v93.clone(), 0i32 as i64, v96 as i64);
+            let mut v98: i32 = (v97.clone().len() as i32);
+            let mut v99: bool = v98 < 3i32;
+            let mut v112: Rc<str> = if v99 {
+                v93.clone()
             } else {
-                let mut v90: i32 = v88 - 3i32;
-                let mut v91: i32 = v88 - 1i32;
-                let mut v92: Rc<str> = string_slice(&v87.clone(), v90 as i64, v91 as i64);
-                let mut v93: bool = v92.clone() == Rc::<str>::from("\n()");
-                if v93 {
-                    let mut v94: i32 = v88 - 4i32;
-                    let mut v95: Rc<str> = string_slice(&v87.clone(), 0i32 as i64, v94 as i64);
-                    v95.clone()
+                let mut v100: i32 = v98 - 3i32;
+                let mut v101: bool = v100 < 0i32;
+                let mut v104: bool = if v101 {
+                    true
                 } else {
-                    v83.clone()
+                    let mut v102: i32 = v100 + 3i32;
+                    let mut v103: bool = v102 > v98;
+                    v103
+                };
+                let mut v108: bool = if v104 {
+                    false
+                } else {
+                    let mut v105: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v106: i32 = 0i32;
+                    method2(v97.clone(), v100, v105.clone(), v106)
+                };
+                if v108 {
+                    let mut v109: i32 = v98 - 4i32;
+                    let mut v110: Rc<str> = string_slice(&v97.clone(), 0i32 as i64, v109 as i64);
+                    v110.clone()
+                } else {
+                    v93.clone()
                 }
             };
-            let mut v98: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n");
-            let mut v99: i32 = 0i32;
-            let mut v100: i32 = method0(v98.clone(), v99);
-            let mut v101: bool = v100 == -1i32;
-            let mut v112: Rc<str> = if v101 {
-                v98.clone()
+            let mut v113: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n");
+            let mut v114: i32 = 0i32;
+            let mut v115: i32 = method0(v113.clone(), v114);
+            let mut v116: bool = v115 == -1i32;
+            let mut v127: Rc<str> = if v116 {
+                v113.clone()
             } else {
-                let mut v102: i32 = method3(v98.clone(), v100);
-                let mut v103: i32 = v100 - 1i32;
-                let mut v104: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v102 as i64, v103 as i64);
-                let mut v105: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v100 as i64, 29i32 as i64);
-                let mut v106: i32 = v102 - 1i32;
-                let mut v107: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), 0i32 as i64, v106 as i64);
-                let mut v108: Rc<str> = Rc::<str>::from(format!("{}{}", v107.clone(), v104.clone()));
-                let mut v109: Rc<str> = Rc::<str>::from(format!("{}{}", v108.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
-                let mut v110: Rc<str> = Rc::<str>::from(format!("{}{}", v109.clone(), v104.clone()));
-                let mut v111: Rc<str> = Rc::<str>::from(format!("{}{}", v110.clone(), v105.clone()));
-                v111.clone()
+                let mut v117: i32 = method4(v113.clone(), v115);
+                let mut v118: i32 = v115 - 1i32;
+                let mut v119: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v117 as i64, v118 as i64);
+                let mut v120: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v115 as i64, 29i32 as i64);
+                let mut v121: i32 = v117 - 1i32;
+                let mut v122: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), 0i32 as i64, v121 as i64);
+                let mut v123: Rc<str> = Rc::<str>::from(format!("{}{}", v122.clone(), v119.clone()));
+                let mut v124: Rc<str> = Rc::<str>::from(format!("{}{}", v123.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v125: Rc<str> = Rc::<str>::from(format!("{}{}", v124.clone(), v119.clone()));
+                let mut v126: Rc<str> = Rc::<str>::from(format!("{}{}", v125.clone(), v120.clone()));
+                v126.clone()
             };
-            let mut v113: i32 = (v112.clone().len() as i32);
-            let mut v114: i32 = method4(v112.clone(), v113);
-            let mut v115: i32 = v114 - 1i32;
-            let mut v116: Rc<str> = string_slice(&v112.clone(), 0i32 as i64, v115 as i64);
-            let mut v117: i32 = (v116.clone().len() as i32);
-            let mut v118: bool = v117 < 3i32;
-            let mut v126: Rc<str> = if v118 {
-                v112.clone()
-            } else {
-                let mut v119: i32 = v117 - 3i32;
-                let mut v120: i32 = v117 - 1i32;
-                let mut v121: Rc<str> = string_slice(&v116.clone(), v119 as i64, v120 as i64);
-                let mut v122: bool = v121.clone() == Rc::<str>::from("\n()");
-                if v122 {
-                    let mut v123: i32 = v117 - 4i32;
-                    let mut v124: Rc<str> = string_slice(&v116.clone(), 0i32 as i64, v123 as i64);
-                    v124.clone()
-                } else {
-                    v112.clone()
-                }
-            };
-            let mut v127: Rc<str> = Rc::<str>::from("let main() = 0\n()\n");
-            let mut v128: i32 = 0i32;
-            let mut v129: i32 = method0(v127.clone(), v128);
-            let mut v130: bool = v129 == -1i32;
-            let mut v141: Rc<str> = if v130 {
+            let mut v128: i32 = (v127.clone().len() as i32);
+            let mut v129: i32 = method5(v127.clone(), v128);
+            let mut v130: i32 = v129 - 1i32;
+            let mut v131: Rc<str> = string_slice(&v127.clone(), 0i32 as i64, v130 as i64);
+            let mut v132: i32 = (v131.clone().len() as i32);
+            let mut v133: bool = v132 < 3i32;
+            let mut v146: Rc<str> = if v133 {
                 v127.clone()
             } else {
-                let mut v131: i32 = method3(v127.clone(), v129);
-                let mut v132: i32 = v129 - 1i32;
-                let mut v133: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v131 as i64, v132 as i64);
-                let mut v134: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v129 as i64, 17i32 as i64);
-                let mut v135: i32 = v131 - 1i32;
-                let mut v136: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), 0i32 as i64, v135 as i64);
-                let mut v137: Rc<str> = Rc::<str>::from(format!("{}{}", v136.clone(), v133.clone()));
-                let mut v138: Rc<str> = Rc::<str>::from(format!("{}{}", v137.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
-                let mut v139: Rc<str> = Rc::<str>::from(format!("{}{}", v138.clone(), v133.clone()));
-                let mut v140: Rc<str> = Rc::<str>::from(format!("{}{}", v139.clone(), v134.clone()));
-                v140.clone()
-            };
-            let mut v142: i32 = (v141.clone().len() as i32);
-            let mut v143: i32 = method4(v141.clone(), v142);
-            let mut v144: i32 = v143 - 1i32;
-            let mut v145: Rc<str> = string_slice(&v141.clone(), 0i32 as i64, v144 as i64);
-            let mut v146: i32 = (v145.clone().len() as i32);
-            let mut v147: bool = v146 < 3i32;
-            let mut v155: Rc<str> = if v147 {
-                v141.clone()
-            } else {
-                let mut v148: i32 = v146 - 3i32;
-                let mut v149: i32 = v146 - 1i32;
-                let mut v150: Rc<str> = string_slice(&v145.clone(), v148 as i64, v149 as i64);
-                let mut v151: bool = v150.clone() == Rc::<str>::from("\n()");
-                if v151 {
-                    let mut v152: i32 = v146 - 4i32;
-                    let mut v153: Rc<str> = string_slice(&v145.clone(), 0i32 as i64, v152 as i64);
-                    v153.clone()
+                let mut v134: i32 = v132 - 3i32;
+                let mut v135: bool = v134 < 0i32;
+                let mut v138: bool = if v135 {
+                    true
                 } else {
-                    v141.clone()
+                    let mut v136: i32 = v134 + 3i32;
+                    let mut v137: bool = v136 > v132;
+                    v137
+                };
+                let mut v142: bool = if v138 {
+                    false
+                } else {
+                    let mut v139: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v140: i32 = 0i32;
+                    method2(v131.clone(), v134, v139.clone(), v140)
+                };
+                if v142 {
+                    let mut v143: i32 = v132 - 4i32;
+                    let mut v144: Rc<str> = string_slice(&v131.clone(), 0i32 as i64, v143 as i64);
+                    v144.clone()
+                } else {
+                    v127.clone()
                 }
             };
-            let mut v156: bool = v39.clone() == Rc::<str>::from("    [<EntryPoint>]\n    let main args = 0");
-            if v156 {
-                let mut v157: bool = v68.clone() == Rc::<str>::from("let x = 1\n    [<EntryPoint>]\n    let main args = 0");
-                if v157 {
-                    let mut v158: bool = v97.clone() == Rc::<str>::from("        let main = StringBuilder()\n    [<EntryPoint>]\n    let main args = 0");
-                    if v158 {
-                        let mut v159: bool = v126.clone() == Rc::<str>::from("let main = StringBuilder()");
-                        if v159 {
-                            let mut v160: bool = v155.clone() == Rc::<str>::from("[<EntryPoint>]\nlet main() = 0");
-                            if v160 {
+            let mut v147: Rc<str> = Rc::<str>::from("let main() = 0\n()\n");
+            let mut v148: i32 = 0i32;
+            let mut v149: i32 = method0(v147.clone(), v148);
+            let mut v150: bool = v149 == -1i32;
+            let mut v161: Rc<str> = if v150 {
+                v147.clone()
+            } else {
+                let mut v151: i32 = method4(v147.clone(), v149);
+                let mut v152: i32 = v149 - 1i32;
+                let mut v153: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v151 as i64, v152 as i64);
+                let mut v154: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v149 as i64, 17i32 as i64);
+                let mut v155: i32 = v151 - 1i32;
+                let mut v156: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), 0i32 as i64, v155 as i64);
+                let mut v157: Rc<str> = Rc::<str>::from(format!("{}{}", v156.clone(), v153.clone()));
+                let mut v158: Rc<str> = Rc::<str>::from(format!("{}{}", v157.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v159: Rc<str> = Rc::<str>::from(format!("{}{}", v158.clone(), v153.clone()));
+                let mut v160: Rc<str> = Rc::<str>::from(format!("{}{}", v159.clone(), v154.clone()));
+                v160.clone()
+            };
+            let mut v162: i32 = (v161.clone().len() as i32);
+            let mut v163: i32 = method5(v161.clone(), v162);
+            let mut v164: i32 = v163 - 1i32;
+            let mut v165: Rc<str> = string_slice(&v161.clone(), 0i32 as i64, v164 as i64);
+            let mut v166: i32 = (v165.clone().len() as i32);
+            let mut v167: bool = v166 < 3i32;
+            let mut v180: Rc<str> = if v167 {
+                v161.clone()
+            } else {
+                let mut v168: i32 = v166 - 3i32;
+                let mut v169: bool = v168 < 0i32;
+                let mut v172: bool = if v169 {
+                    true
+                } else {
+                    let mut v170: i32 = v168 + 3i32;
+                    let mut v171: bool = v170 > v166;
+                    v171
+                };
+                let mut v176: bool = if v172 {
+                    false
+                } else {
+                    let mut v173: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v174: i32 = 0i32;
+                    method2(v165.clone(), v168, v173.clone(), v174)
+                };
+                if v176 {
+                    let mut v177: i32 = v166 - 4i32;
+                    let mut v178: Rc<str> = string_slice(&v165.clone(), 0i32 as i64, v177 as i64);
+                    v178.clone()
+                } else {
+                    v161.clone()
+                }
+            };
+            let mut v181: bool = v44.clone() == Rc::<str>::from("    [<EntryPoint>]\n    let main args = 0");
+            if v181 {
+                let mut v182: bool = v78.clone() == Rc::<str>::from("let x = 1\n    [<EntryPoint>]\n    let main args = 0");
+                if v182 {
+                    let mut v183: bool = v112.clone() == Rc::<str>::from("        let main = StringBuilder()\n    [<EntryPoint>]\n    let main args = 0");
+                    if v183 {
+                        let mut v184: bool = v146.clone() == Rc::<str>::from("let main = StringBuilder()");
+                        if v184 {
+                            let mut v185: bool = v180.clone() == Rc::<str>::from("[<EntryPoint>]\nlet main() = 0");
+                            if v185 {
                                 0i32
                             } else {
                                 5i32
@@ -886,479 +974,491 @@ fn spiral_main() -> i32 {
             }
         }
         US0::US0_1 => { // Ship
-            let mut v167: Rc<str> = Rc::<str>::from("spiral");
-            let mut v168: Rc<str> = Rc::<str>::from("workspace");
-            let mut v169: Rc<str> = Rc::<str>::from(std::path::Path::new(v167.as_ref()).join(v168.as_ref()).display().to_string());
-            let mut v171: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
-            let mut v172: Rc<str> = method5(v171.clone(), v169.clone());
-            let mut v173: bool = v172.clone() == Rc::<str>::from("");
-            let mut v177: Rc<str> = if v173 {
-                let mut v175: Rc<str> = Rc::<str>::from(std::env::current_exe().ok().and_then(|path| path.parent().map(|dir| dir.to_path_buf())).map(|path| path.display().to_string()).unwrap_or_default());
-                method5(v175.clone(), v169.clone())
+            let mut v192: Rc<str> = Rc::<str>::from("spiral");
+            let mut v193: Rc<str> = Rc::<str>::from("workspace");
+            let mut v194: Rc<str> = Rc::<str>::from(std::path::Path::new(v192.as_ref()).join(v193.as_ref()).display().to_string());
+            let mut v196: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
+            let mut v197: Rc<str> = method6(v196.clone(), v194.clone());
+            let mut v198: bool = v197.clone() == Rc::<str>::from("");
+            let mut v202: Rc<str> = if v198 {
+                let mut v200: Rc<str> = Rc::<str>::from(std::env::current_exe().ok().and_then(|path| path.parent().map(|dir| dir.to_path_buf())).map(|path| path.display().to_string()).unwrap_or_default());
+                method6(v200.clone(), v194.clone())
             } else {
-                v172.clone()
+                v197.clone()
             };
-            let mut v178: bool = v177.clone() == Rc::<str>::from("");
-            let mut v181: Rc<str> = if v178 {
-                let mut v179: Rc<str> = Rc::<str>::from("/workspaces");
-                method5(v179.clone(), v169.clone())
+            let mut v203: bool = v202.clone() == Rc::<str>::from("");
+            let mut v206: Rc<str> = if v203 {
+                let mut v204: Rc<str> = Rc::<str>::from("/workspaces");
+                method6(v204.clone(), v194.clone())
             } else {
-                v177.clone()
+                v202.clone()
             };
-            let mut v182: bool = v181.clone() == Rc::<str>::from("");
-            let mut v214: Rc<str> = if v182 {
-                let mut v183: Rc<str> = Rc::<str>::from("");
-                v183.clone()
+            let mut v207: bool = v206.clone() == Rc::<str>::from("");
+            let mut v239: Rc<str> = if v207 {
+                let mut v208: Rc<str> = Rc::<str>::from("");
+                v208.clone()
             } else {
-                let mut v184: i32 = 0i32;
-                let mut v185: i32 = -1i32;
-                let mut v186: i32 = method6(v181.clone(), v184, v185);
-                let mut v187: i32 = (v181.clone().len() as i32);
-                let mut v188: bool = v186 == -1i32;
-                let mut v195: Rc<str> = if v188 {
-                    v181.clone()
+                let mut v209: i32 = 0i32;
+                let mut v210: i32 = -1i32;
+                let mut v211: i32 = method7(v206.clone(), v209, v210);
+                let mut v212: i32 = (v206.clone().len() as i32);
+                let mut v213: bool = v211 == -1i32;
+                let mut v220: Rc<str> = if v213 {
+                    v206.clone()
                 } else {
-                    let mut v189: i32 = v186 + 1i32;
-                    let mut v190: bool = v189 == v187;
-                    if v190 {
-                        let mut v191: Rc<str> = Rc::<str>::from("");
-                        v191.clone()
+                    let mut v214: i32 = v211 + 1i32;
+                    let mut v215: bool = v214 == v212;
+                    if v215 {
+                        let mut v216: Rc<str> = Rc::<str>::from("");
+                        v216.clone()
                     } else {
-                        let mut v192: i32 = v187 - 1i32;
-                        let mut v193: Rc<str> = string_slice(&v181.clone(), v189 as i64, v192 as i64);
-                        v193.clone()
+                        let mut v217: i32 = v212 - 1i32;
+                        let mut v218: Rc<str> = string_slice(&v206.clone(), v214 as i64, v217 as i64);
+                        v218.clone()
                     }
                 };
-                let mut v196: bool = v195.clone() == Rc::<str>::from("deps");
-                if v196 {
-                    let mut v197: i32 = 0i32;
-                    let mut v198: i32 = -1i32;
-                    let mut v199: i32 = method6(v181.clone(), v197, v198);
-                    let mut v200: bool = v199 == -1i32;
-                    let mut v211: Rc<str> = if v200 {
-                        let mut v201: Rc<str> = Rc::<str>::from("");
-                        v201.clone()
+                let mut v221: bool = v220.clone() == Rc::<str>::from("deps");
+                if v221 {
+                    let mut v222: i32 = 0i32;
+                    let mut v223: i32 = -1i32;
+                    let mut v224: i32 = method7(v206.clone(), v222, v223);
+                    let mut v225: bool = v224 == -1i32;
+                    let mut v236: Rc<str> = if v225 {
+                        let mut v226: Rc<str> = Rc::<str>::from("");
+                        v226.clone()
                     } else {
-                        let mut v202: i32 = v199 - 1i32;
-                        let mut v203: Rc<str> = string_slice(&v181.clone(), 0i32 as i64, v202 as i64);
-                        let mut v204: i32 = (v203.clone().len() as i32);
-                        let mut v205: bool = v204 == 2i32;
-                        let mut v208: bool = if v205 {
-                            let mut v206: u8 = v203.clone().as_bytes()[1i32 as usize];
-                            let mut v207: bool = v206 == b':';
-                            v207
+                        let mut v227: i32 = v224 - 1i32;
+                        let mut v228: Rc<str> = string_slice(&v206.clone(), 0i32 as i64, v227 as i64);
+                        let mut v229: i32 = (v228.clone().len() as i32);
+                        let mut v230: bool = v229 == 2i32;
+                        let mut v233: bool = if v230 {
+                            let mut v231: u8 = v228.clone().as_bytes()[1i32 as usize];
+                            let mut v232: bool = v231 == b':';
+                            v232
                         } else {
                             false
                         };
-                        if v208 {
-                            let mut v209: Rc<str> = string_slice(&v181.clone(), 0i32 as i64, v199 as i64);
-                            v209.clone()
+                        if v233 {
+                            let mut v234: Rc<str> = string_slice(&v206.clone(), 0i32 as i64, v224 as i64);
+                            v234.clone()
                         } else {
-                            v203.clone()
+                            v228.clone()
                         }
                     };
-                    method5(v211.clone(), v169.clone())
+                    method6(v236.clone(), v194.clone())
                 } else {
-                    v181.clone()
+                    v206.clone()
                 }
             };
-            let mut v215: bool = v214.clone() == Rc::<str>::from("");
-            let mut v220: Rc<str> = if v215 {
-                let mut v216: Rc<str> = Rc::<str>::from("");
-                v216.clone()
+            let mut v240: bool = v239.clone() == Rc::<str>::from("");
+            let mut v245: Rc<str> = if v240 {
+                let mut v241: Rc<str> = Rc::<str>::from("");
+                v241.clone()
             } else {
-                let mut v218: Rc<str> = Rc::<str>::from("polyglot");
-                let mut v219: Rc<str> = Rc::<str>::from(std::path::Path::new(v214.as_ref()).join(v218.as_ref()).display().to_string());
-                v219.clone()
+                let mut v243: Rc<str> = Rc::<str>::from("polyglot");
+                let mut v244: Rc<str> = Rc::<str>::from(std::path::Path::new(v239.as_ref()).join(v243.as_ref()).display().to_string());
+                v244.clone()
             };
-            let mut v221: bool = v220.clone() == Rc::<str>::from("");
-            let mut v242: Rc<str> = if v221 {
-                let mut v223: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
-                let mut v224: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
-                let mut v225: Rc<str> = method5(v223.clone(), v224.clone());
-                let mut v226: bool = v225.clone() == Rc::<str>::from("");
-                if v226 {
-                    let mut v227: Rc<str> = Rc::<str>::from(".");
-                    v227.clone()
+            let mut v246: bool = v245.clone() == Rc::<str>::from("");
+            let mut v267: Rc<str> = if v246 {
+                let mut v248: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
+                let mut v249: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
+                let mut v250: Rc<str> = method6(v248.clone(), v249.clone());
+                let mut v251: bool = v250.clone() == Rc::<str>::from("");
+                if v251 {
+                    let mut v252: Rc<str> = Rc::<str>::from(".");
+                    v252.clone()
                 } else {
-                    v225.clone()
+                    v250.clone()
                 }
             } else {
-                let mut v230: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
-                let mut v231: Rc<str> = Rc::<str>::from(std::path::Path::new(v220.as_ref()).join(v230.as_ref()).display().to_string());
-                let mut v233: i32 = i32::from(std::path::Path::new(v231.as_ref()).exists());
-                let mut v234: bool = v233 == 1i32;
-                if v234 {
-                    v220.clone()
+                let mut v255: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
+                let mut v256: Rc<str> = Rc::<str>::from(std::path::Path::new(v245.as_ref()).join(v255.as_ref()).display().to_string());
+                let mut v258: i32 = i32::from(std::path::Path::new(v256.as_ref()).exists());
+                let mut v259: bool = v258 == 1i32;
+                if v259 {
+                    v245.clone()
                 } else {
-                    let mut v236: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
-                    let mut v237: Rc<str> = method5(v236.clone(), v230.clone());
-                    let mut v238: bool = v237.clone() == Rc::<str>::from("");
-                    if v238 {
-                        let mut v239: Rc<str> = Rc::<str>::from(".");
-                        v239.clone()
+                    let mut v261: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
+                    let mut v262: Rc<str> = method6(v261.clone(), v255.clone());
+                    let mut v263: bool = v262.clone() == Rc::<str>::from("");
+                    if v263 {
+                        let mut v264: Rc<str> = Rc::<str>::from(".");
+                        v264.clone()
                     } else {
-                        v237.clone()
+                        v262.clone()
                     }
                 }
             };
-            let mut v243: i32 = 1i32;
-            let mut v245: i32 = std::env::args().count() as i32;
-            let mut v246: Rc<str> = method7(v243, v245);
-            let mut v248: Rc<str> = Rc::<str>::from(std::path::absolute(v246.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v246.as_ref())).display().to_string());
-            let mut v249: i32 = 0i32;
-            let mut v250: i32 = -1i32;
-            let mut v251: i32 = method6(v248.clone(), v249, v250);
-            let mut v252: i32 = (v248.clone().len() as i32);
-            let mut v253: bool = v251 == -1i32;
-            let mut v260: Rc<str> = if v253 {
-                v248.clone()
+            let mut v268: i32 = 1i32;
+            let mut v270: i32 = std::env::args().count() as i32;
+            let mut v271: Rc<str> = method8(v268, v270);
+            let mut v273: Rc<str> = Rc::<str>::from(std::path::absolute(v271.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v271.as_ref())).display().to_string());
+            let mut v274: i32 = 0i32;
+            let mut v275: i32 = -1i32;
+            let mut v276: i32 = method7(v273.clone(), v274, v275);
+            let mut v277: i32 = (v273.clone().len() as i32);
+            let mut v278: bool = v276 == -1i32;
+            let mut v285: Rc<str> = if v278 {
+                v273.clone()
             } else {
-                let mut v254: i32 = v251 + 1i32;
-                let mut v255: bool = v254 == v252;
-                if v255 {
-                    let mut v256: Rc<str> = Rc::<str>::from("");
-                    v256.clone()
+                let mut v279: i32 = v276 + 1i32;
+                let mut v280: bool = v279 == v277;
+                if v280 {
+                    let mut v281: Rc<str> = Rc::<str>::from("");
+                    v281.clone()
                 } else {
-                    let mut v257: i32 = v252 - 1i32;
-                    let mut v258: Rc<str> = string_slice(&v248.clone(), v254 as i64, v257 as i64);
-                    v258.clone()
+                    let mut v282: i32 = v277 - 1i32;
+                    let mut v283: Rc<str> = string_slice(&v273.clone(), v279 as i64, v282 as i64);
+                    v283.clone()
                 }
             };
-            let mut v261: i32 = 0i32;
-            let mut v262: i32 = -1i32;
-            let mut v263: i32 = method8(v260.clone(), v261, v262);
-            let mut v264: bool = v263 <= 0i32;
-            let mut v267: Rc<str> = if v264 {
-                v260.clone()
-            } else {
-                let mut v265: i32 = v263 - 1i32;
-                let mut v266: Rc<str> = string_slice(&v260.clone(), 0i32 as i64, v265 as i64);
-                v266.clone()
-            };
-            let mut v269: Rc<str> = { let path = std::path::absolute(v246.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v246.as_ref())); Rc::<str>::from(std::fs::read_to_string(path).unwrap_or_default()) };
-            let mut v270: i32 = 0i32;
-            let mut v271: i32 = method0(v269.clone(), v270);
-            let mut v272: bool = v271 == -1i32;
-            let mut v285: Rc<str> = if v272 {
-                v269.clone()
-            } else {
-                let mut v273: i32 = method3(v269.clone(), v271);
-                let mut v274: i32 = v271 - 1i32;
-                let mut v275: Rc<str> = string_slice(&v269.clone(), v273 as i64, v274 as i64);
-                let mut v276: i32 = (v269.clone().len() as i32);
-                let mut v277: i32 = v276 - 1i32;
-                let mut v278: Rc<str> = string_slice(&v269.clone(), v271 as i64, v277 as i64);
-                let mut v279: i32 = v273 - 1i32;
-                let mut v280: Rc<str> = string_slice(&v269.clone(), 0i32 as i64, v279 as i64);
-                let mut v281: Rc<str> = Rc::<str>::from(format!("{}{}", v280.clone(), v275.clone()));
-                let mut v282: Rc<str> = Rc::<str>::from(format!("{}{}", v281.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
-                let mut v283: Rc<str> = Rc::<str>::from(format!("{}{}", v282.clone(), v275.clone()));
-                let mut v284: Rc<str> = Rc::<str>::from(format!("{}{}", v283.clone(), v278.clone()));
-                v284.clone()
-            };
-            let mut v286: i32 = (v285.clone().len() as i32);
-            let mut v287: i32 = method4(v285.clone(), v286);
-            let mut v288: i32 = v287 - 1i32;
-            let mut v289: Rc<str> = string_slice(&v285.clone(), 0i32 as i64, v288 as i64);
-            let mut v290: i32 = (v289.clone().len() as i32);
-            let mut v291: bool = v290 < 3i32;
-            let mut v299: Rc<str> = if v291 {
+            let mut v286: i32 = 0i32;
+            let mut v287: i32 = -1i32;
+            let mut v288: i32 = method9(v285.clone(), v286, v287);
+            let mut v289: bool = v288 <= 0i32;
+            let mut v292: Rc<str> = if v289 {
                 v285.clone()
             } else {
-                let mut v292: i32 = v290 - 3i32;
-                let mut v293: i32 = v290 - 1i32;
-                let mut v294: Rc<str> = string_slice(&v289.clone(), v292 as i64, v293 as i64);
-                let mut v295: bool = v294.clone() == Rc::<str>::from("\n()");
-                if v295 {
-                    let mut v296: i32 = v290 - 4i32;
-                    let mut v297: Rc<str> = string_slice(&v289.clone(), 0i32 as i64, v296 as i64);
-                    v297.clone()
+                let mut v290: i32 = v288 - 1i32;
+                let mut v291: Rc<str> = string_slice(&v285.clone(), 0i32 as i64, v290 as i64);
+                v291.clone()
+            };
+            let mut v294: Rc<str> = { let path = std::path::absolute(v271.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v271.as_ref())); Rc::<str>::from(std::fs::read_to_string(path).unwrap_or_default()) };
+            let mut v295: i32 = 0i32;
+            let mut v296: i32 = method0(v294.clone(), v295);
+            let mut v297: bool = v296 == -1i32;
+            let mut v310: Rc<str> = if v297 {
+                v294.clone()
+            } else {
+                let mut v298: i32 = method4(v294.clone(), v296);
+                let mut v299: i32 = v296 - 1i32;
+                let mut v300: Rc<str> = string_slice(&v294.clone(), v298 as i64, v299 as i64);
+                let mut v301: i32 = (v294.clone().len() as i32);
+                let mut v302: i32 = v301 - 1i32;
+                let mut v303: Rc<str> = string_slice(&v294.clone(), v296 as i64, v302 as i64);
+                let mut v304: i32 = v298 - 1i32;
+                let mut v305: Rc<str> = string_slice(&v294.clone(), 0i32 as i64, v304 as i64);
+                let mut v306: Rc<str> = Rc::<str>::from(format!("{}{}", v305.clone(), v300.clone()));
+                let mut v307: Rc<str> = Rc::<str>::from(format!("{}{}", v306.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v308: Rc<str> = Rc::<str>::from(format!("{}{}", v307.clone(), v300.clone()));
+                let mut v309: Rc<str> = Rc::<str>::from(format!("{}{}", v308.clone(), v303.clone()));
+                v309.clone()
+            };
+            let mut v311: i32 = (v310.clone().len() as i32);
+            let mut v312: i32 = method5(v310.clone(), v311);
+            let mut v313: i32 = v312 - 1i32;
+            let mut v314: Rc<str> = string_slice(&v310.clone(), 0i32 as i64, v313 as i64);
+            let mut v315: i32 = (v314.clone().len() as i32);
+            let mut v316: bool = v315 < 3i32;
+            let mut v329: Rc<str> = if v316 {
+                v310.clone()
+            } else {
+                let mut v317: i32 = v315 - 3i32;
+                let mut v318: bool = v317 < 0i32;
+                let mut v321: bool = if v318 {
+                    true
                 } else {
-                    v285.clone()
+                    let mut v319: i32 = v317 + 3i32;
+                    let mut v320: bool = v319 > v315;
+                    v320
+                };
+                let mut v325: bool = if v321 {
+                    false
+                } else {
+                    let mut v322: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v323: i32 = 0i32;
+                    method2(v314.clone(), v317, v322.clone(), v323)
+                };
+                if v325 {
+                    let mut v326: i32 = v315 - 4i32;
+                    let mut v327: Rc<str> = string_slice(&v314.clone(), 0i32 as i64, v326 as i64);
+                    v327.clone()
+                } else {
+                    v310.clone()
                 }
             };
-            let mut v301: Rc<str> = Rc::<str>::from(std::path::absolute(v246.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v246.as_ref())).display().to_string());
-            let mut v302: i32 = 0i32;
-            let mut v303: i32 = -1i32;
-            let mut v304: i32 = method6(v301.clone(), v302, v303);
-            let mut v305: bool = v304 == -1i32;
-            let mut v316: Rc<str> = if v305 {
-                let mut v306: Rc<str> = Rc::<str>::from("");
-                v306.clone()
+            let mut v331: Rc<str> = Rc::<str>::from(std::path::absolute(v271.as_ref()).unwrap_or_else(|_| std::path::PathBuf::from(v271.as_ref())).display().to_string());
+            let mut v332: i32 = 0i32;
+            let mut v333: i32 = -1i32;
+            let mut v334: i32 = method7(v331.clone(), v332, v333);
+            let mut v335: bool = v334 == -1i32;
+            let mut v346: Rc<str> = if v335 {
+                let mut v336: Rc<str> = Rc::<str>::from("");
+                v336.clone()
             } else {
-                let mut v307: i32 = v304 - 1i32;
-                let mut v308: Rc<str> = string_slice(&v301.clone(), 0i32 as i64, v307 as i64);
-                let mut v309: i32 = (v308.clone().len() as i32);
-                let mut v310: bool = v309 == 2i32;
-                let mut v313: bool = if v310 {
-                    let mut v311: u8 = v308.clone().as_bytes()[1i32 as usize];
-                    let mut v312: bool = v311 == b':';
-                    v312
+                let mut v337: i32 = v334 - 1i32;
+                let mut v338: Rc<str> = string_slice(&v331.clone(), 0i32 as i64, v337 as i64);
+                let mut v339: i32 = (v338.clone().len() as i32);
+                let mut v340: bool = v339 == 2i32;
+                let mut v343: bool = if v340 {
+                    let mut v341: u8 = v338.clone().as_bytes()[1i32 as usize];
+                    let mut v342: bool = v341 == b':';
+                    v342
                 } else {
                     false
                 };
-                if v313 {
-                    let mut v314: Rc<str> = string_slice(&v301.clone(), 0i32 as i64, v304 as i64);
-                    v314.clone()
+                if v343 {
+                    let mut v344: Rc<str> = string_slice(&v331.clone(), 0i32 as i64, v334 as i64);
+                    v344.clone()
                 } else {
-                    v308.clone()
+                    v338.clone()
                 }
             };
-            let mut v318: Rc<str> = Rc::<str>::from("dist");
-            let mut v319: Rc<str> = Rc::<str>::from(std::path::Path::new(v316.as_ref()).join(v318.as_ref()).display().to_string());
-            let mut v321: i32 = std::env::args().count() as i32;
-            let mut v322: Rc<str> = Rc::<str>::from("--modules");
-            let mut v323: i32 = 1i32;
-            let mut v324: i32 = method9(v322.clone(), v323, v321);
-            let mut v325: bool = v324 == -1i32;
-            let mut v331: Rc<str> = if v325 {
-                let mut v326: Rc<str> = Rc::<str>::from("");
-                v326.clone()
+            let mut v348: Rc<str> = Rc::<str>::from("dist");
+            let mut v349: Rc<str> = Rc::<str>::from(std::path::Path::new(v346.as_ref()).join(v348.as_ref()).display().to_string());
+            let mut v351: i32 = std::env::args().count() as i32;
+            let mut v352: Rc<str> = Rc::<str>::from("--modules");
+            let mut v353: i32 = 1i32;
+            let mut v354: i32 = method10(v352.clone(), v353, v351);
+            let mut v355: bool = v354 == -1i32;
+            let mut v361: Rc<str> = if v355 {
+                let mut v356: Rc<str> = Rc::<str>::from("");
+                v356.clone()
             } else {
-                let mut v327: i32 = v324 + 1i32;
-                let mut v328: Rc<str> = Rc::<str>::from("");
-                let mut v329: i32 = 1i32;
-                method10(v327, v321, v242.clone(), v328.clone(), v329)
+                let mut v357: i32 = v354 + 1i32;
+                let mut v358: Rc<str> = Rc::<str>::from("");
+                let mut v359: i32 = 1i32;
+                method11(v357, v351, v267.clone(), v358.clone(), v359)
             };
-            let mut v333: i32 = std::env::args().count() as i32;
-            let mut v334: Rc<str> = Rc::<str>::from("--packages");
-            let mut v335: i32 = 1i32;
-            let mut v336: i32 = method9(v334.clone(), v335, v333);
-            let mut v337: bool = v336 == -1i32;
-            let mut v343: Rc<str> = if v337 {
-                let mut v338: Rc<str> = Rc::<str>::from("");
-                v338.clone()
+            let mut v363: i32 = std::env::args().count() as i32;
+            let mut v364: Rc<str> = Rc::<str>::from("--packages");
+            let mut v365: i32 = 1i32;
+            let mut v366: i32 = method10(v364.clone(), v365, v363);
+            let mut v367: bool = v366 == -1i32;
+            let mut v373: Rc<str> = if v367 {
+                let mut v368: Rc<str> = Rc::<str>::from("");
+                v368.clone()
             } else {
-                let mut v339: i32 = v336 + 1i32;
-                let mut v340: Rc<str> = Rc::<str>::from("");
-                let mut v341: i32 = 1i32;
-                method11(v339, v333, v340.clone(), v341)
+                let mut v369: i32 = v366 + 1i32;
+                let mut v370: Rc<str> = Rc::<str>::from("");
+                let mut v371: i32 = 1i32;
+                method12(v369, v363, v370.clone(), v371)
             };
-            let mut v344: i32 = (v343.clone().len() as i32);
-            let mut v345: bool = v344 == 0i32;
-            let mut v348: Rc<str> = if v345 {
-                let mut v346: Rc<str> = Rc::<str>::from("FSharp.Core");
-                v346.clone()
+            let mut v374: i32 = (v373.clone().len() as i32);
+            let mut v375: bool = v374 == 0i32;
+            let mut v378: Rc<str> = if v375 {
+                let mut v376: Rc<str> = Rc::<str>::from("FSharp.Core");
+                v376.clone()
             } else {
-                let mut v347: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("FSharp.Core\n"), v343.clone()));
-                v347.clone()
+                let mut v377: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("FSharp.Core\n"), v373.clone()));
+                v377.clone()
             };
-            let mut v350: Rc<str> = Rc::<str>::from("target");
-            let mut v351: Rc<str> = Rc::<str>::from(std::path::Path::new(v242.as_ref()).join(v350.as_ref()).display().to_string());
-            let mut v353: Rc<str> = Rc::<str>::from("Builder");
-            let mut v354: Rc<str> = Rc::<str>::from(std::path::Path::new(v351.as_ref()).join(v353.as_ref()).display().to_string());
-            let mut v356: Rc<str> = Rc::<str>::from(std::path::Path::new(v354.as_ref()).join(v267.as_ref()).display().to_string());
-            let mut v357: Rc<str> = Rc::<str>::from(format!("{}{}", v267.clone(), Rc::<str>::from(".fs")));
-            let mut v359: Rc<str> = Rc::<str>::from(std::path::Path::new(v356.as_ref()).join(v357.as_ref()).display().to_string());
-            let mut v360: Rc<str> = Rc::<str>::from(format!("{}{}", v267.clone(), Rc::<str>::from(".fsproj")));
-            let mut v362: Rc<str> = Rc::<str>::from(std::path::Path::new(v356.as_ref()).join(v360.as_ref()).display().to_string());
-            let mut v364: i32 = { let path = std::path::Path::new(v359.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v299.as_ref())) };
-            let mut v365: bool = v364 == 1i32;
-            let mut v390: i32 = if v365 {
+            let mut v380: Rc<str> = Rc::<str>::from("target");
+            let mut v381: Rc<str> = Rc::<str>::from(std::path::Path::new(v267.as_ref()).join(v380.as_ref()).display().to_string());
+            let mut v383: Rc<str> = Rc::<str>::from("Builder");
+            let mut v384: Rc<str> = Rc::<str>::from(std::path::Path::new(v381.as_ref()).join(v383.as_ref()).display().to_string());
+            let mut v386: Rc<str> = Rc::<str>::from(std::path::Path::new(v384.as_ref()).join(v292.as_ref()).display().to_string());
+            let mut v387: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), Rc::<str>::from(".fs")));
+            let mut v389: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v387.as_ref()).display().to_string());
+            let mut v390: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), Rc::<str>::from(".fsproj")));
+            let mut v392: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v390.as_ref()).display().to_string());
+            let mut v394: i32 = { let path = std::path::Path::new(v389.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v329.as_ref())) };
+            let mut v395: bool = v394 == 1i32;
+            let mut v420: i32 = if v395 {
                 0i32
             } else {
-                let mut v366: i32 = 0i32;
-                let mut v367: i32 = -1i32;
-                let mut v368: i32 = method6(v359.clone(), v366, v367);
-                let mut v369: bool = v368 == -1i32;
-                let mut v380: Rc<str> = if v369 {
-                    let mut v370: Rc<str> = Rc::<str>::from("");
-                    v370.clone()
+                let mut v396: i32 = 0i32;
+                let mut v397: i32 = -1i32;
+                let mut v398: i32 = method7(v389.clone(), v396, v397);
+                let mut v399: bool = v398 == -1i32;
+                let mut v410: Rc<str> = if v399 {
+                    let mut v400: Rc<str> = Rc::<str>::from("");
+                    v400.clone()
                 } else {
-                    let mut v371: i32 = v368 - 1i32;
-                    let mut v372: Rc<str> = string_slice(&v359.clone(), 0i32 as i64, v371 as i64);
-                    let mut v373: i32 = (v372.clone().len() as i32);
-                    let mut v374: bool = v373 == 2i32;
-                    let mut v377: bool = if v374 {
-                        let mut v375: u8 = v372.clone().as_bytes()[1i32 as usize];
-                        let mut v376: bool = v375 == b':';
-                        v376
+                    let mut v401: i32 = v398 - 1i32;
+                    let mut v402: Rc<str> = string_slice(&v389.clone(), 0i32 as i64, v401 as i64);
+                    let mut v403: i32 = (v402.clone().len() as i32);
+                    let mut v404: bool = v403 == 2i32;
+                    let mut v407: bool = if v404 {
+                        let mut v405: u8 = v402.clone().as_bytes()[1i32 as usize];
+                        let mut v406: bool = v405 == b':';
+                        v406
                     } else {
                         false
                     };
-                    if v377 {
-                        let mut v378: Rc<str> = string_slice(&v359.clone(), 0i32 as i64, v368 as i64);
-                        v378.clone()
+                    if v407 {
+                        let mut v408: Rc<str> = string_slice(&v389.clone(), 0i32 as i64, v398 as i64);
+                        v408.clone()
                     } else {
-                        v372.clone()
+                        v402.clone()
                     }
                 };
-                let mut v381: i32 = (v380.clone().len() as i32);
-                let mut v382: bool = v381 == 0i32;
-                let mut v385: i32 = if v382 {
+                let mut v411: i32 = (v410.clone().len() as i32);
+                let mut v412: bool = v411 == 0i32;
+                let mut v415: i32 = if v412 {
                     0i32
                 } else {
-                    let mut v384: i32 = i32::from(std::fs::create_dir_all(v380.as_ref()).is_err());
-                    v384
+                    let mut v414: i32 = i32::from(std::fs::create_dir_all(v410.as_ref()).is_err());
+                    v414
                 };
-                let mut v386: bool = v385 == 0i32;
-                if v386 {
-                    let mut v388: i32 = i32::from(std::fs::write(v359.as_ref(), v299.as_ref().as_bytes()).is_err());
-                    v388
-                } else {
-                    v385
-                }
-            };
-            let mut v391: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("<Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>preview</LangVersion>\n        <RollForward>Major</RollForward>\n        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n        <ServerGarbageCollection>true</ServerGarbageCollection>\n        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>\n        <PublishAot>false</PublishAot>\n        <PublishTrimmed>false</PublishTrimmed>\n        <PublishSingleFile>true</PublishSingleFile>\n        <SelfContained>true</SelfContained>\n        <Version>0.0.1-alpha.1</Version>\n        <OutputType>Exe</OutputType>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">\n        <DefineConstants>_FREEBSD</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">\n        <DefineConstants>_LINUX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">\n        <DefineConstants>_OSX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">\n        <DefineConstants>_WINDOWS</DefineConstants>\n    </PropertyGroup>\n\n    <ItemGroup>\n        "), v331.clone()));
-            let mut v392: Rc<str> = Rc::<str>::from(format!("{}{}", v391.clone(), Rc::<str>::from("\n        <Compile Include=\"")));
-            let mut v393: Rc<str> = Rc::<str>::from(format!("{}{}", v392.clone(), v359.clone()));
-            let mut v394: Rc<str> = Rc::<str>::from(format!("{}{}", v393.clone(), Rc::<str>::from("\" />\n    </ItemGroup>\n    <ItemGroup>\n        <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />\n    </ItemGroup>\n    <Import Project=\"")));
-            let mut v395: Rc<str> = Rc::<str>::from(format!("{}{}", v394.clone(), v242.clone()));
-            let mut v396: Rc<str> = Rc::<str>::from(format!("{}{}", v395.clone(), Rc::<str>::from("/.paket/Paket.Restore.targets\" />\n</Project>\n")));
-            let mut v398: i32 = { let path = std::path::Path::new(v362.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v396.as_ref())) };
-            let mut v399: bool = v398 == 1i32;
-            let mut v424: i32 = if v399 {
-                0i32
-            } else {
-                let mut v400: i32 = 0i32;
-                let mut v401: i32 = -1i32;
-                let mut v402: i32 = method6(v362.clone(), v400, v401);
-                let mut v403: bool = v402 == -1i32;
-                let mut v414: Rc<str> = if v403 {
-                    let mut v404: Rc<str> = Rc::<str>::from("");
-                    v404.clone()
-                } else {
-                    let mut v405: i32 = v402 - 1i32;
-                    let mut v406: Rc<str> = string_slice(&v362.clone(), 0i32 as i64, v405 as i64);
-                    let mut v407: i32 = (v406.clone().len() as i32);
-                    let mut v408: bool = v407 == 2i32;
-                    let mut v411: bool = if v408 {
-                        let mut v409: u8 = v406.clone().as_bytes()[1i32 as usize];
-                        let mut v410: bool = v409 == b':';
-                        v410
-                    } else {
-                        false
-                    };
-                    if v411 {
-                        let mut v412: Rc<str> = string_slice(&v362.clone(), 0i32 as i64, v402 as i64);
-                        v412.clone()
-                    } else {
-                        v406.clone()
-                    }
-                };
-                let mut v415: i32 = (v414.clone().len() as i32);
                 let mut v416: bool = v415 == 0i32;
-                let mut v419: i32 = if v416 {
-                    0i32
-                } else {
-                    let mut v418: i32 = i32::from(std::fs::create_dir_all(v414.as_ref()).is_err());
+                if v416 {
+                    let mut v418: i32 = i32::from(std::fs::write(v389.as_ref(), v329.as_ref().as_bytes()).is_err());
                     v418
-                };
-                let mut v420: bool = v419 == 0i32;
-                if v420 {
-                    let mut v422: i32 = i32::from(std::fs::write(v362.as_ref(), v396.as_ref().as_bytes()).is_err());
-                    v422
                 } else {
-                    v419
+                    v415
                 }
             };
-            let mut v426: Rc<str> = Rc::<str>::from("paket.references");
-            let mut v427: Rc<str> = Rc::<str>::from(std::path::Path::new(v356.as_ref()).join(v426.as_ref()).display().to_string());
-            let mut v429: i32 = { let path = std::path::Path::new(v427.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v348.as_ref())) };
-            let mut v430: bool = v429 == 1i32;
-            let mut v455: i32 = if v430 {
+            let mut v421: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("<Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>preview</LangVersion>\n        <RollForward>Major</RollForward>\n        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n        <ServerGarbageCollection>true</ServerGarbageCollection>\n        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>\n        <PublishAot>false</PublishAot>\n        <PublishTrimmed>false</PublishTrimmed>\n        <PublishSingleFile>true</PublishSingleFile>\n        <SelfContained>true</SelfContained>\n        <Version>0.0.1-alpha.1</Version>\n        <OutputType>Exe</OutputType>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">\n        <DefineConstants>_FREEBSD</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">\n        <DefineConstants>_LINUX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">\n        <DefineConstants>_OSX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">\n        <DefineConstants>_WINDOWS</DefineConstants>\n    </PropertyGroup>\n\n    <ItemGroup>\n        "), v361.clone()));
+            let mut v422: Rc<str> = Rc::<str>::from(format!("{}{}", v421.clone(), Rc::<str>::from("\n        <Compile Include=\"")));
+            let mut v423: Rc<str> = Rc::<str>::from(format!("{}{}", v422.clone(), v389.clone()));
+            let mut v424: Rc<str> = Rc::<str>::from(format!("{}{}", v423.clone(), Rc::<str>::from("\" />\n    </ItemGroup>\n    <ItemGroup>\n        <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />\n    </ItemGroup>\n    <Import Project=\"")));
+            let mut v425: Rc<str> = Rc::<str>::from(format!("{}{}", v424.clone(), v267.clone()));
+            let mut v426: Rc<str> = Rc::<str>::from(format!("{}{}", v425.clone(), Rc::<str>::from("/.paket/Paket.Restore.targets\" />\n</Project>\n")));
+            let mut v428: i32 = { let path = std::path::Path::new(v392.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v426.as_ref())) };
+            let mut v429: bool = v428 == 1i32;
+            let mut v454: i32 = if v429 {
                 0i32
             } else {
-                let mut v431: i32 = 0i32;
-                let mut v432: i32 = -1i32;
-                let mut v433: i32 = method6(v427.clone(), v431, v432);
-                let mut v434: bool = v433 == -1i32;
-                let mut v445: Rc<str> = if v434 {
-                    let mut v435: Rc<str> = Rc::<str>::from("");
-                    v435.clone()
+                let mut v430: i32 = 0i32;
+                let mut v431: i32 = -1i32;
+                let mut v432: i32 = method7(v392.clone(), v430, v431);
+                let mut v433: bool = v432 == -1i32;
+                let mut v444: Rc<str> = if v433 {
+                    let mut v434: Rc<str> = Rc::<str>::from("");
+                    v434.clone()
                 } else {
-                    let mut v436: i32 = v433 - 1i32;
-                    let mut v437: Rc<str> = string_slice(&v427.clone(), 0i32 as i64, v436 as i64);
-                    let mut v438: i32 = (v437.clone().len() as i32);
-                    let mut v439: bool = v438 == 2i32;
-                    let mut v442: bool = if v439 {
-                        let mut v440: u8 = v437.clone().as_bytes()[1i32 as usize];
-                        let mut v441: bool = v440 == b':';
-                        v441
+                    let mut v435: i32 = v432 - 1i32;
+                    let mut v436: Rc<str> = string_slice(&v392.clone(), 0i32 as i64, v435 as i64);
+                    let mut v437: i32 = (v436.clone().len() as i32);
+                    let mut v438: bool = v437 == 2i32;
+                    let mut v441: bool = if v438 {
+                        let mut v439: u8 = v436.clone().as_bytes()[1i32 as usize];
+                        let mut v440: bool = v439 == b':';
+                        v440
                     } else {
                         false
                     };
-                    if v442 {
-                        let mut v443: Rc<str> = string_slice(&v427.clone(), 0i32 as i64, v433 as i64);
-                        v443.clone()
+                    if v441 {
+                        let mut v442: Rc<str> = string_slice(&v392.clone(), 0i32 as i64, v432 as i64);
+                        v442.clone()
                     } else {
-                        v437.clone()
+                        v436.clone()
                     }
                 };
-                let mut v446: i32 = (v445.clone().len() as i32);
-                let mut v447: bool = v446 == 0i32;
-                let mut v450: i32 = if v447 {
+                let mut v445: i32 = (v444.clone().len() as i32);
+                let mut v446: bool = v445 == 0i32;
+                let mut v449: i32 = if v446 {
                     0i32
                 } else {
-                    let mut v449: i32 = i32::from(std::fs::create_dir_all(v445.as_ref()).is_err());
-                    v449
+                    let mut v448: i32 = i32::from(std::fs::create_dir_all(v444.as_ref()).is_err());
+                    v448
                 };
-                let mut v451: bool = v450 == 0i32;
-                if v451 {
-                    let mut v453: i32 = i32::from(std::fs::write(v427.as_ref(), v348.as_ref().as_bytes()).is_err());
-                    v453
+                let mut v450: bool = v449 == 0i32;
+                if v450 {
+                    let mut v452: i32 = i32::from(std::fs::write(v392.as_ref(), v426.as_ref().as_bytes()).is_err());
+                    v452
                 } else {
-                    v450
+                    v449
                 }
             };
-            let mut v456: Rc<str> = Rc::<str>::from("--persist-only");
-            let mut v457: i32 = 1i32;
-            let mut v459: i32 = std::env::args().count() as i32;
-            let mut v460: i32 = method9(v456.clone(), v457, v459);
-            let mut v461: bool = v460 == -1i32;
-            let mut v462: i32 = if v461 {
+            let mut v456: Rc<str> = Rc::<str>::from("paket.references");
+            let mut v457: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v456.as_ref()).display().to_string());
+            let mut v459: i32 = { let path = std::path::Path::new(v457.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v378.as_ref())) };
+            let mut v460: bool = v459 == 1i32;
+            let mut v485: i32 = if v460 {
+                0i32
+            } else {
+                let mut v461: i32 = 0i32;
+                let mut v462: i32 = -1i32;
+                let mut v463: i32 = method7(v457.clone(), v461, v462);
+                let mut v464: bool = v463 == -1i32;
+                let mut v475: Rc<str> = if v464 {
+                    let mut v465: Rc<str> = Rc::<str>::from("");
+                    v465.clone()
+                } else {
+                    let mut v466: i32 = v463 - 1i32;
+                    let mut v467: Rc<str> = string_slice(&v457.clone(), 0i32 as i64, v466 as i64);
+                    let mut v468: i32 = (v467.clone().len() as i32);
+                    let mut v469: bool = v468 == 2i32;
+                    let mut v472: bool = if v469 {
+                        let mut v470: u8 = v467.clone().as_bytes()[1i32 as usize];
+                        let mut v471: bool = v470 == b':';
+                        v471
+                    } else {
+                        false
+                    };
+                    if v472 {
+                        let mut v473: Rc<str> = string_slice(&v457.clone(), 0i32 as i64, v463 as i64);
+                        v473.clone()
+                    } else {
+                        v467.clone()
+                    }
+                };
+                let mut v476: i32 = (v475.clone().len() as i32);
+                let mut v477: bool = v476 == 0i32;
+                let mut v480: i32 = if v477 {
+                    0i32
+                } else {
+                    let mut v479: i32 = i32::from(std::fs::create_dir_all(v475.as_ref()).is_err());
+                    v479
+                };
+                let mut v481: bool = v480 == 0i32;
+                if v481 {
+                    let mut v483: i32 = i32::from(std::fs::write(v457.as_ref(), v378.as_ref().as_bytes()).is_err());
+                    v483
+                } else {
+                    v480
+                }
+            };
+            let mut v486: Rc<str> = Rc::<str>::from("--persist-only");
+            let mut v487: i32 = 1i32;
+            let mut v489: i32 = std::env::args().count() as i32;
+            let mut v490: i32 = method10(v486.clone(), v487, v489);
+            let mut v491: bool = v490 == -1i32;
+            let mut v492: i32 = if v491 {
                 0i32
             } else {
                 1i32
             };
-            let mut v463: bool = v462 == 1i32;
-            if v463 {
+            let mut v493: bool = v492 == 1i32;
+            if v493 {
                 0i32
             } else {
-                let mut v464: US1 = US1::US1_2(v362.clone(), v319.clone());
-                let mut v466: i32 = std::env::args().count() as i32;
-                let mut v467: Rc<str> = Rc::<str>::from("--runtime");
-                let mut v468: i32 = 1i32;
-                let mut v469: i32 = method9(v467.clone(), v468, v466);
-                let mut v470: bool = v469 == -1i32;
-                let mut v487: Rc<str> = if v470 {
-                    let mut v471: Rc<str> = Rc::<str>::from("");
-                    v471.clone()
+                let mut v494: US1 = US1::US1_2(v392.clone(), v349.clone());
+                let mut v496: i32 = std::env::args().count() as i32;
+                let mut v497: Rc<str> = Rc::<str>::from("--runtime");
+                let mut v498: i32 = 1i32;
+                let mut v499: i32 = method10(v497.clone(), v498, v496);
+                let mut v500: bool = v499 == -1i32;
+                let mut v517: Rc<str> = if v500 {
+                    let mut v501: Rc<str> = Rc::<str>::from("");
+                    v501.clone()
                 } else {
-                    let mut v472: i32 = v469 + 1i32;
-                    let mut v473: bool = v472 == v466;
-                    if v473 {
-                        let mut v474: Rc<str> = Rc::<str>::from("");
-                        v474.clone()
+                    let mut v502: i32 = v499 + 1i32;
+                    let mut v503: bool = v502 == v496;
+                    if v503 {
+                        let mut v504: Rc<str> = Rc::<str>::from("");
+                        v504.clone()
                     } else {
-                        let mut v476: Rc<str> = Rc::<str>::from(std::env::args().nth(v472 as usize).unwrap_or_default());
-                        let mut v477: i32 = (v476.clone().len() as i32);
-                        let mut v478: bool = v477 < 2i32;
-                        let mut v481: bool = if v478 {
+                        let mut v506: Rc<str> = Rc::<str>::from(std::env::args().nth(v502 as usize).unwrap_or_default());
+                        let mut v507: i32 = (v506.clone().len() as i32);
+                        let mut v508: bool = v507 < 2i32;
+                        let mut v511: bool = if v508 {
                             false
                         } else {
-                            let mut v479: Rc<str> = string_slice(&v476.clone(), 0i32 as i64, 1i32 as i64);
-                            let mut v480: bool = v479.clone() == Rc::<str>::from("--");
-                            v480
+                            let mut v509: Rc<str> = string_slice(&v506.clone(), 0i32 as i64, 1i32 as i64);
+                            let mut v510: bool = v509.clone() == Rc::<str>::from("--");
+                            v510
                         };
-                        if v481 {
-                            let mut v482: Rc<str> = Rc::<str>::from("");
-                            v482.clone()
+                        if v511 {
+                            let mut v512: Rc<str> = Rc::<str>::from("");
+                            v512.clone()
                         } else {
-                            let mut v484: Rc<str> = Rc::<str>::from(std::env::args().nth(v472 as usize).unwrap_or_default());
-                            v484.clone()
+                            let mut v514: Rc<str> = Rc::<str>::from(std::env::args().nth(v502 as usize).unwrap_or_default());
+                            v514.clone()
                         }
                     }
                 };
-                let mut v488: i32 = (v487.clone().len() as i32);
-                let mut v489: bool = v488 == 0i32;
-                let mut v492: US2 = if v489 {
+                let mut v518: i32 = (v517.clone().len() as i32);
+                let mut v519: bool = v518 == 0i32;
+                let mut v522: US2 = if v519 {
                     US2::US2_1
                 } else {
-                    US2::US2_0(v487.clone())
+                    US2::US2_0(v517.clone())
                 };
-                method12(v464.clone(), v492.clone())
+                method13(v494.clone(), v522.clone())
             }
         }
         _ => unreachable!(),
