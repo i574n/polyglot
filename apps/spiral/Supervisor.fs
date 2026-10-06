@@ -72,6 +72,7 @@ module Supervisor =
         | Fsharp
         | Python
         | Cpp
+        | Rust
 
 
 
@@ -220,6 +221,91 @@ module Supervisor =
     let server1 = new_server<Job<unit>, obj, string option, Job<unit>, unit> ()
     let server2 = new_server<Job<unit>, obj, int array, Job<unit>, unit> ()
 
+    /// ### rewriteRustEmitExpr
+    /// Fallback for Rust output produced (or cached under target/spiral_Eval) before the compiler's own `inlineFableEmits`
+    /// pass: such output prints Fable's `emitRustExpr` (lib/spiral's `!\` / `!\\` operators) as a call and keeps the
+    /// snippet in a separate string binding. Inline the snippet and drop that binding. A no-op on current compiler output
+    /// (it returns the text unchanged when no `emitRustExpr` call is left); idempotent.
+    let rewriteRustEmitExpr (generated : string) =
+        if not (generated.Contains ("Fable.Core.RustInterop.emitRustExpr", System.StringComparison.Ordinal)) then generated
+        else
+            let lines = generated.Split ([| "\r\n"; "\n" |], System.StringSplitOptions.None)
+            let bindingPattern =
+                System.Text.RegularExpressions.Regex @"^\s*let mut (v[0-9]+): Rc<str> = (""(?:\\.|[^""\\])*"");\s*$"
+            let emitPattern =
+                System.Text.RegularExpressions.Regex
+                    @"^(?<prefix>\s*let mut v[0-9]+: [^=]+ = )Fable\.Core\.RustInterop\.emitRustExpr (?<args>.*?) (?<code>v[0-9]+) ;\s*$"
+            let unescape (literal : string) =
+                let body = literal.Substring (1, literal.Length - 2)
+                let text = System.Text.StringBuilder ()
+                let mutable i = 0
+                while i < body.Length do
+                    if body.[i] = '\\' && i + 1 < body.Length then
+                        match body.[i + 1] with
+                        | 'n' -> text.Append '\n' |> ignore
+                        | 'r' -> text.Append '\r' |> ignore
+                        | 't' -> text.Append '\t' |> ignore
+                        | '"' -> text.Append '"' |> ignore
+                        | '\\' -> text.Append '\\' |> ignore
+                        | other -> text.Append('\\').Append(other) |> ignore
+                        i <- i + 2
+                    else
+                        text.Append body.[i] |> ignore
+                        i <- i + 1
+                text.ToString ()
+            let splitArgs (value : string) =
+                let value = value.Trim ()
+                if value = "()" then []
+                else
+                    let body =
+                        if value.Length >= 2 && value.[0] = '(' && value.[value.Length - 1] = ')'
+                        then value.Substring (1, value.Length - 2)
+                        else value
+                    if not (body.Contains ',') then [ body.Trim () ]
+                    else
+                        let parts = ResizeArray<string> ()
+                        let mutable start = 0
+                        let mutable depth = 0
+                        for index = 0 to body.Length - 1 do
+                            match body.[index] with
+                            | '(' -> depth <- depth + 1
+                            | ')' -> depth <- depth - 1
+                            | ',' when depth = 0 ->
+                                parts.Add (body.Substring(start, index - start).Trim ())
+                                start <- index + 1
+                            | _ -> ()
+                        parts.Add (body.Substring(start).Trim ())
+                        parts |> Seq.filter (fun part -> part <> "") |> Seq.toList
+            let borrow (argument : string) =
+                let cloned = System.Text.RegularExpressions.Regex.Match (argument, @"^v[0-9]+\.clone\(\)$")
+                if cloned.Success then argument.Substring (0, argument.Length - ".clone()".Length) else argument
+            let snippets = System.Collections.Generic.Dictionary<string, string> (System.StringComparer.Ordinal)
+            let bindingLine = System.Collections.Generic.Dictionary<string, int> (System.StringComparer.Ordinal)
+            let drop = System.Collections.Generic.HashSet<int> ()
+            let rewritten = Array.copy lines
+            for index = 0 to lines.Length - 1 do
+                let binding = bindingPattern.Match lines.[index]
+                if binding.Success then
+                    let name = binding.Groups.[1].Value
+                    snippets.[name] <- unescape binding.Groups.[2].Value
+                    bindingLine.[name] <- index
+                let emitted = emitPattern.Match lines.[index]
+                if emitted.Success then
+                    let code = emitted.Groups.["code"].Value
+                    match snippets.TryGetValue code, bindingLine.TryGetValue code with
+                    | (true, payload), (true, lineIndex) ->
+                        drop.Add lineIndex |> ignore
+                        let args = splitArgs emitted.Groups.["args"].Value |> List.map borrow
+                        let mutable expression = payload
+                        for argIndex = args.Length - 1 downto 0 do
+                            expression <- expression.Replace ($"${argIndex}", args.[argIndex])
+                        rewritten.[index] <- emitted.Groups.["prefix"].Value + expression + ";"
+                    | _ -> () // not a literal binding (e.g. a method parameter): leave the call for rustc to report
+            rewritten
+            |> Array.mapi (fun index line -> if drop.Contains index then None else Some line)
+            |> Array.choose id
+            |> String.concat "\n"
+
     /// ### buildFile
     let buildFile backend timeout port cancellationToken path =
 #if INTERACTIVE
@@ -246,6 +332,7 @@ module Supervisor =
                 | Fsharp -> $"{fileName}.fsx"
                 | Python -> $"{fileName}.py"
                 | Cpp -> $"{fileName}.cpp"
+                | Rust -> $"{fileName}.rs"
 
             // let outputContentSeq =
             //     stream
@@ -408,6 +495,7 @@ module Supervisor =
                 | Fsharp -> "Fsharp"
                 | Python -> "Python + Cuda"
                 | Cpp -> "Cpp + Cuda"
+                | Rust -> "Rust"
             // let buildFileObj = {| BuildFile = {| uri = fullPathUri; backend = backendId |} |}
 
             // let backend = Supervisor.Fsharp
@@ -423,7 +511,9 @@ module Supervisor =
                 let buildFileResult =
                     if buildFileResult = "" || buildFileResult = null
                     then None
-                    else buildFileResult |> SpiralSm.replace "\r\n" "\n" |> Some
+                    else
+                        let code = buildFileResult |> SpiralSm.replace "\r\n" "\n"
+                        Some (if backend = Rust then rewriteRustEmitExpr code else code)
                 trace Verbose (fun () -> $"Supervisor.buildFile") (fun () -> "buildFileResult: %A{buildFileResult}")
                 if buildFileResult.IsSome then
                     compilerEvent2.Trigger (buildFileResult, [], 0)
@@ -605,6 +695,7 @@ modules:
                 | Fsharp -> $"{fileName}.fsx"
                 | Python -> $"{fileName}.py"
                 | Cpp -> $"{fileName}.cpp"
+                | Rust -> $"{fileName}.rs"
             let outputPath = packageDir </> outputFileName
             if outputPath |> System.IO.File.Exists |> not
             then return spiralPath, None
@@ -897,6 +988,8 @@ modules:
                             then Python
                             elif outputPath |> SpiralSm.ends_with ".cpp"
                             then Cpp
+                            elif outputPath |> SpiralSm.ends_with ".rs"
+                            then Rust
                             else failwith $"Supervisor.main / invalid backend / outputPath: {outputPath}"
                         let isReal = inputPath |> SpiralSm.ends_with ".spir"
                         inputPath |> buildFile backend timeout (Some serverPort) None

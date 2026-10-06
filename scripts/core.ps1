@@ -346,6 +346,42 @@ function Invoke-Dib {
     | Set-Content "$path.html"
 }
 
+# Runs a notebook whose code cells are all `#!pwsh` (e.g. init.dib) as one plain pwsh script, without a notebook kernel
+# (dotnet repl): its cells in order, in one session (they share variables, as in the notebook), from the notebook's
+# directory (nbs_header.ps1 then takes it as $ScriptDir); the first error stops it, like a failing cell.
+function Invoke-PwshDib {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Path
+    )
+    $fullPath = (Resolve-Path $Path).Path
+    $cells = @()
+    $kernel = $null
+    $lines = @()
+    foreach ($line in (Get-Content $fullPath)) {
+        if ($line -match '^#!([\w-]+)\s*$' -and $Matches[1] -notin @("import", "set", "share", "connect", "value")) {
+            if ($kernel) { $cells += [pscustomobject]@{ Kernel = $kernel; Code = $lines -join "`n" } }
+            $kernel = $Matches[1]
+            $lines = @()
+        } else {
+            $lines += $line
+        }
+    }
+    if ($kernel) { $cells += [pscustomobject]@{ Kernel = $kernel; Code = $lines -join "`n" } }
+    $other = $cells | Where-Object { $_.Kernel -notin @("meta", "markdown", "pwsh") -and $_.Code.Trim() }
+    if ($other) {
+        throw "polyglot/scripts/core.ps1/Invoke-PwshDib / $Path has non-pwsh code cells ($(($other.Kernel | Select-Object -Unique) -join ', '))"
+    }
+    $script = Join-Path ([IO.Path]::GetTempPath()) "$([IO.Path]::GetFileNameWithoutExtension($fullPath))-$([guid]::NewGuid().ToString('N')).ps1"
+    ($cells | Where-Object Kernel -eq "pwsh" | ForEach-Object Code) -join "`n`n" | Set-Content $script
+    Write-Output "polyglot/scripts/core.ps1/Invoke-PwshDib / path: $fullPath / cells: $(@($cells | Where-Object Kernel -eq 'pwsh').Count)"
+    try {
+        { pwsh -NoProfile -NonInteractive -File $script } | Invoke-Block -Location (Split-Path $fullPath)
+    } finally {
+        Remove-Item $script -Force -ErrorAction Ignore
+    }
+}
+
 function Search-DotnetSdk($version) {
     if (!(Search-Command "dotnet")) {
         return $false

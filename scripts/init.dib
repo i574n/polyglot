@@ -94,10 +94,6 @@ if (!(Search-Command "nix")) {
 
 #!pwsh
 
-{ . "$ScriptDir/dep_fable.ps1" } | Invoke-Block
-
-#!pwsh
-
 if (!(Test-Path ../deps/hyperui/.next/package.json)) {
     { . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block
 }

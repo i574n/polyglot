@@ -79,9 +79,38 @@ fn draw_line_plot(
     Ok(())
 }
 
+// polyglot's root, found the way lib/spiral's `file_system.get_workspace_root` finds it: the first ancestor of the
+// current directory (then of this crate's directory, then of /workspaces) that holds `spiral/workspace`, searched
+// again from its parent when it is a `deps` directory, joined with `polyglot`. Native replacement for the
+// Fable-generated `SpiralFileSystem` this crate used to link (lib.rs -> spiral/lib/spiral/lib_spiral.rs).
+fn get_workspace_root() -> std::path::PathBuf {
+    fn find(dir: &std::path::Path) -> Option<std::path::PathBuf> {
+        dir.ancestors()
+            .find(|d| d.join("spiral").join("workspace").is_dir())
+            .map(|d| d.to_path_buf())
+    }
+    let starts = [
+        std::env::current_dir().ok(),
+        Some(std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))),
+        Some(std::path::PathBuf::from("/workspaces")),
+    ];
+    let root = starts
+        .iter()
+        .flatten()
+        .find_map(|dir| find(dir))
+        .expect("plot.get_workspace_root / no ancestor holds spiral/workspace");
+    let root = if root.file_name().and_then(|name| name.to_str()) == Some("deps") {
+        root.parent()
+            .and_then(find)
+            .expect("plot.get_workspace_root / no ancestor of deps holds spiral/workspace")
+    } else {
+        root
+    };
+    root.join("polyglot")
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let workspace_root = plot::SpiralFileSystem::get_workspace_root();
-    let workspace_root = std::path::PathBuf::from(workspace_root.to_string());
+    let workspace_root = get_workspace_root();
     let tmp_spiral_dir = workspace_root.join("target/plot");
     let line_plots_data_dir = tmp_spiral_dir.join("line_data");
     let line_plots_svg_dir = tmp_spiral_dir.join("line_svg");

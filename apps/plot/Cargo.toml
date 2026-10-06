@@ -9,7 +9,6 @@ license-file.workspace = true
 repository.workspace = true
 
 [dependencies]
-fable_library_rust = { workspace = true, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
 inline_colorization = { workspace = true }
 sha2 = { workspace = true }
 serde_json = { workspace = true }
@@ -24,6 +23,3 @@ plotters = { version = ">=0.3,<1", default-features = false, features = [
 [[bin]]
 name = "plot"
 path = "plot.rs"
-
-[lib]
-path = "lib.rs"

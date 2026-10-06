@@ -57,7 +57,7 @@ export function TraceLevel_$reflection(): TypeInfo {
 }
 
 /**
- * ## trace
+ * ### to_trace_level
  */
 export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     switch (_arg.tag) {
@@ -74,6 +74,9 @@ export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     }
 }
 
+/**
+ * ### from_trace_level
+ */
 export function from_trace_level(_arg: US0_$union): TraceLevel_$union {
     switch (_arg.tag) {
         case /* US0_1 */ 1:
@@ -89,6 +92,9 @@ export function from_trace_level(_arg: US0_$union): TraceLevel_$union {
     }
 }
 
+/**
+ * ### trace
+ */
 export function trace(level: TraceLevel_$union, fn: (() => string), locals: (() => string)): void {
     SpiralTrace_trace(to_trace_level(level))(fn)(locals);
 }

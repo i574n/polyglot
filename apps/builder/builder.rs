@@ -5,7 +5,7 @@ fn string_slice(value: &str, from: i64, to: i64) -> Rc<str> {
     let bytes = value.as_bytes();
     let length = bytes.len() as i64;
     if from < 0 || from > length || to < from - 1 || to >= length { std::process::abort(); }
-    if to < from { return Rc::<str>::from(""); }
+    if to < from { return { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) }; }
     // A slice that starts or ends inside a code point fails like the C and Delphi backends (abort / Halt(3)).
     if (bytes[from as usize] & 0xC0) == 0x80 || (to + 1 < length && (bytes[(to + 1) as usize] & 0xC0) == 0x80) { std::process::exit(3); }
     let slice = &bytes[from as usize..(to + 1) as usize];
@@ -125,7 +125,7 @@ fn method3(mut v0: Rc<str>, mut v1: i32) -> i32 {
 }
 fn method0(mut v0: Rc<str>, mut v1: i32) -> i32 {
     loop {
-        let mut v2: Rc<str> = Rc::<str>::from("let main");
+        let mut v2: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main"); } LIT.with(|lit| lit.clone()) };
         let mut v3: i32 = method1(v0.clone(), v1, v2.clone());
         let mut v4: bool = v3 == -1i32;
         if v4 {
@@ -256,9 +256,9 @@ fn method7(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
 }
 fn method6(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
     loop {
-        let mut v2: bool = v0.clone() == Rc::<str>::from("");
+        let mut v2: bool = v0.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
         if v2 {
-            let mut v3: Rc<str> = Rc::<str>::from("");
+            let mut v3: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             return v3.clone();
         } else {
             let mut v5: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v1.as_ref()).display().to_string());
@@ -272,7 +272,7 @@ fn method6(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
                 let mut v11: i32 = method7(v0.clone(), v9, v10);
                 let mut v12: bool = v11 == -1i32;
                 let mut v23: Rc<str> = if v12 {
-                    let mut v13: Rc<str> = Rc::<str>::from("");
+                    let mut v13: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v13.clone()
                 } else {
                     let mut v14: i32 = v11 - 1i32;
@@ -293,14 +293,14 @@ fn method6(mut v0: Rc<str>, mut v1: Rc<str>) -> Rc<str> {
                         v15.clone()
                     }
                 };
-                let mut v24: bool = v23.clone() == Rc::<str>::from("");
+                let mut v24: bool = v23.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 if v24 {
-                    let mut v25: Rc<str> = Rc::<str>::from("");
+                    let mut v25: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     return v25.clone();
                 } else {
                     let mut v26: bool = v23.clone() == v0.clone();
                     if v26 {
-                        let mut v27: Rc<str> = Rc::<str>::from("");
+                        let mut v27: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         return v27.clone();
                     } else {
                         (v0, v1) = (v23.clone(), v1.clone());
@@ -315,7 +315,7 @@ fn method8(mut v0: i32, mut v1: i32) -> Rc<str> {
     loop {
         let mut v2: bool = v0 == v1;
         if v2 {
-            let mut v3: Rc<str> = Rc::<str>::from("");
+            let mut v3: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             return v3.clone();
         } else {
             let mut v5: Rc<str> = Rc::<str>::from(std::env::args().nth(v0 as usize).unwrap_or_default());
@@ -325,7 +325,7 @@ fn method8(mut v0: i32, mut v1: i32) -> Rc<str> {
                 false
             } else {
                 let mut v8: Rc<str> = string_slice(&v5.clone(), 0i32 as i64, 1i32 as i64);
-                let mut v9: bool = v8.clone() == Rc::<str>::from("--");
+                let mut v9: bool = v8.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--"); } LIT.with(|lit| lit.clone()) };
                 v9
             };
             if v10 {
@@ -390,7 +390,7 @@ fn method11(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: Rc<str>, mut v4: 
                 false
             } else {
                 let mut v10: Rc<str> = string_slice(&v7.clone(), 0i32 as i64, 1i32 as i64);
-                let mut v11: bool = v10.clone() == Rc::<str>::from("--");
+                let mut v11: bool = v10.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--"); } LIT.with(|lit| lit.clone()) };
                 v11
             };
             if v12 {
@@ -398,13 +398,13 @@ fn method11(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: Rc<str>, mut v4: 
             } else {
                 let mut v14: Rc<str> = Rc::<str>::from(std::env::args().nth(v0 as usize).unwrap_or_default());
                 let mut v16: Rc<str> = Rc::<str>::from(std::path::Path::new(v2.as_ref()).join(v14.as_ref()).display().to_string());
-                let mut v17: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("<Compile Include=\""), v16.clone()));
-                let mut v18: Rc<str> = Rc::<str>::from(format!("{}{}", v17.clone(), Rc::<str>::from("\" />")));
+                let mut v17: Rc<str> = Rc::<str>::from(format!("{}{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("<Compile Include=\""); } LIT.with(|lit| lit.clone()) }, v16.clone()));
+                let mut v18: Rc<str> = Rc::<str>::from(format!("{}{}", v17.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\" />"); } LIT.with(|lit| lit.clone()) }));
                 let mut v19: bool = v4 == 1i32;
                 let mut v22: Rc<str> = if v19 {
                     v18.clone()
                 } else {
-                    let mut v20: Rc<str> = Rc::<str>::from(format!("{}{}", v3.clone(), Rc::<str>::from("\n        ")));
+                    let mut v20: Rc<str> = Rc::<str>::from(format!("{}{}", v3.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n        "); } LIT.with(|lit| lit.clone()) }));
                     let mut v21: Rc<str> = Rc::<str>::from(format!("{}{}", v20.clone(), v18.clone()));
                     v21.clone()
                 };
@@ -429,7 +429,7 @@ fn method12(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> Rc<str> {
                 false
             } else {
                 let mut v9: Rc<str> = string_slice(&v6.clone(), 0i32 as i64, 1i32 as i64);
-                let mut v10: bool = v9.clone() == Rc::<str>::from("--");
+                let mut v10: bool = v9.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--"); } LIT.with(|lit| lit.clone()) };
                 v10
             };
             if v11 {
@@ -440,7 +440,7 @@ fn method12(mut v0: i32, mut v1: i32, mut v2: Rc<str>, mut v3: i32) -> Rc<str> {
                 let mut v17: Rc<str> = if v14 {
                     v13.clone()
                 } else {
-                    let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v2.clone(), Rc::<str>::from("\n")));
+                    let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v2.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
                     let mut v16: Rc<str> = Rc::<str>::from(format!("{}{}", v15.clone(), v13.clone()));
                     v16.clone()
                 };
@@ -460,25 +460,25 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
             let mut v99: i32 = match &v1 {
                 US2::US2_0(v4) => { // Chosen
                     let mut v4: Rc<str> = v4.clone();
-                    let mut v5: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("publish\n"), v2.clone()));
-                    let mut v6: Rc<str> = Rc::<str>::from(format!("{}{}", v5.clone(), Rc::<str>::from("\n")));
-                    let mut v7: Rc<str> = Rc::<str>::from(format!("{}{}", v6.clone(), Rc::<str>::from("--configuration")));
-                    let mut v8: Rc<str> = Rc::<str>::from(format!("{}{}", v7.clone(), Rc::<str>::from("\n")));
-                    let mut v9: Rc<str> = Rc::<str>::from(format!("{}{}", v8.clone(), Rc::<str>::from("Release")));
-                    let mut v10: Rc<str> = Rc::<str>::from(format!("{}{}", v9.clone(), Rc::<str>::from("\n")));
-                    let mut v11: Rc<str> = Rc::<str>::from(format!("{}{}", v10.clone(), Rc::<str>::from("--output")));
-                    let mut v12: Rc<str> = Rc::<str>::from(format!("{}{}", v11.clone(), Rc::<str>::from("\n")));
+                    let mut v5: Rc<str> = Rc::<str>::from(format!("{}{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("publish\n"); } LIT.with(|lit| lit.clone()) }, v2.clone()));
+                    let mut v6: Rc<str> = Rc::<str>::from(format!("{}{}", v5.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v7: Rc<str> = Rc::<str>::from(format!("{}{}", v6.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--configuration"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v8: Rc<str> = Rc::<str>::from(format!("{}{}", v7.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v9: Rc<str> = Rc::<str>::from(format!("{}{}", v8.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("Release"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v10: Rc<str> = Rc::<str>::from(format!("{}{}", v9.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v11: Rc<str> = Rc::<str>::from(format!("{}{}", v10.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--output"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v12: Rc<str> = Rc::<str>::from(format!("{}{}", v11.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
                     let mut v13: Rc<str> = Rc::<str>::from(format!("{}{}", v12.clone(), v3.clone()));
-                    let mut v14: Rc<str> = Rc::<str>::from(format!("{}{}", v13.clone(), Rc::<str>::from("\n")));
-                    let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v14.clone(), Rc::<str>::from("--runtime")));
-                    let mut v16: Rc<str> = Rc::<str>::from(format!("{}{}", v15.clone(), Rc::<str>::from("\n")));
+                    let mut v14: Rc<str> = Rc::<str>::from(format!("{}{}", v13.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v14.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--runtime"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v16: Rc<str> = Rc::<str>::from(format!("{}{}", v15.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
                     let mut v17: Rc<str> = Rc::<str>::from(format!("{}{}", v16.clone(), v4.clone()));
                     let mut v18: i32 = 0i32;
                     let mut v19: i32 = -1i32;
                     let mut v20: i32 = method7(v2.clone(), v18, v19);
                     let mut v21: bool = v20 == -1i32;
                     let mut v32: Rc<str> = if v21 {
-                        let mut v22: Rc<str> = Rc::<str>::from("");
+                        let mut v22: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v22.clone()
                     } else {
                         let mut v23: i32 = v20 - 1i32;
@@ -502,35 +502,35 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v33: i32 = (v32.clone().len() as i32);
                     let mut v34: bool = v33 == 0i32;
                     let mut v36: Rc<str> = if v34 {
-                        let mut v35: Rc<str> = Rc::<str>::from(".");
+                        let mut v35: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
                         v35.clone()
                     } else {
                         v32.clone()
                     };
-                    let mut v38: Rc<str> = Rc::<str>::from("dotnet");
+                    let mut v38: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("dotnet"); } LIT.with(|lit| lit.clone()) };
                     let mut v39: i32 = { let mut command = std::process::Command::new(v38.as_ref()); command.args(v17.as_ref().split(char::from(10)).filter(|arg| arg.is_empty() == false)); let status = command.current_dir(v36.as_ref()).status(); status.map(|status| status.code().unwrap_or(1)).unwrap_or(1) };
                     v39
                 }
                 US2::US2_1 => { // Defaults
-                    let mut v40: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("publish\n"), v2.clone()));
-                    let mut v41: Rc<str> = Rc::<str>::from(format!("{}{}", v40.clone(), Rc::<str>::from("\n")));
-                    let mut v42: Rc<str> = Rc::<str>::from(format!("{}{}", v41.clone(), Rc::<str>::from("--configuration")));
-                    let mut v43: Rc<str> = Rc::<str>::from(format!("{}{}", v42.clone(), Rc::<str>::from("\n")));
-                    let mut v44: Rc<str> = Rc::<str>::from(format!("{}{}", v43.clone(), Rc::<str>::from("Release")));
-                    let mut v45: Rc<str> = Rc::<str>::from(format!("{}{}", v44.clone(), Rc::<str>::from("\n")));
-                    let mut v46: Rc<str> = Rc::<str>::from(format!("{}{}", v45.clone(), Rc::<str>::from("--output")));
-                    let mut v47: Rc<str> = Rc::<str>::from(format!("{}{}", v46.clone(), Rc::<str>::from("\n")));
+                    let mut v40: Rc<str> = Rc::<str>::from(format!("{}{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("publish\n"); } LIT.with(|lit| lit.clone()) }, v2.clone()));
+                    let mut v41: Rc<str> = Rc::<str>::from(format!("{}{}", v40.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v42: Rc<str> = Rc::<str>::from(format!("{}{}", v41.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--configuration"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v43: Rc<str> = Rc::<str>::from(format!("{}{}", v42.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v44: Rc<str> = Rc::<str>::from(format!("{}{}", v43.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("Release"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v45: Rc<str> = Rc::<str>::from(format!("{}{}", v44.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v46: Rc<str> = Rc::<str>::from(format!("{}{}", v45.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--output"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v47: Rc<str> = Rc::<str>::from(format!("{}{}", v46.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
                     let mut v48: Rc<str> = Rc::<str>::from(format!("{}{}", v47.clone(), v3.clone()));
-                    let mut v49: Rc<str> = Rc::<str>::from(format!("{}{}", v48.clone(), Rc::<str>::from("\n")));
-                    let mut v50: Rc<str> = Rc::<str>::from(format!("{}{}", v49.clone(), Rc::<str>::from("--runtime")));
-                    let mut v51: Rc<str> = Rc::<str>::from(format!("{}{}", v50.clone(), Rc::<str>::from("\n")));
-                    let mut v52: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), Rc::<str>::from("linux-x64")));
+                    let mut v49: Rc<str> = Rc::<str>::from(format!("{}{}", v48.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v50: Rc<str> = Rc::<str>::from(format!("{}{}", v49.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--runtime"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v51: Rc<str> = Rc::<str>::from(format!("{}{}", v50.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) }));
+                    let mut v52: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("linux-x64"); } LIT.with(|lit| lit.clone()) }));
                     let mut v53: i32 = 0i32;
                     let mut v54: i32 = -1i32;
                     let mut v55: i32 = method7(v2.clone(), v53, v54);
                     let mut v56: bool = v55 == -1i32;
                     let mut v67: Rc<str> = if v56 {
-                        let mut v57: Rc<str> = Rc::<str>::from("");
+                        let mut v57: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v57.clone()
                     } else {
                         let mut v58: i32 = v55 - 1i32;
@@ -554,20 +554,20 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v68: i32 = (v67.clone().len() as i32);
                     let mut v69: bool = v68 == 0i32;
                     let mut v71: Rc<str> = if v69 {
-                        let mut v70: Rc<str> = Rc::<str>::from(".");
+                        let mut v70: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
                         v70.clone()
                     } else {
                         v67.clone()
                     };
-                    let mut v73: Rc<str> = Rc::<str>::from("dotnet");
+                    let mut v73: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("dotnet"); } LIT.with(|lit| lit.clone()) };
                     let mut v74: i32 = { let mut command = std::process::Command::new(v73.as_ref()); command.args(v52.as_ref().split(char::from(10)).filter(|arg| arg.is_empty() == false)); let status = command.current_dir(v71.as_ref()).status(); status.map(|status| status.code().unwrap_or(1)).unwrap_or(1) };
-                    let mut v75: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), Rc::<str>::from("win-x64")));
+                    let mut v75: Rc<str> = Rc::<str>::from(format!("{}{}", v51.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("win-x64"); } LIT.with(|lit| lit.clone()) }));
                     let mut v76: i32 = 0i32;
                     let mut v77: i32 = -1i32;
                     let mut v78: i32 = method7(v2.clone(), v76, v77);
                     let mut v79: bool = v78 == -1i32;
                     let mut v90: Rc<str> = if v79 {
-                        let mut v80: Rc<str> = Rc::<str>::from("");
+                        let mut v80: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v80.clone()
                     } else {
                         let mut v81: i32 = v78 - 1i32;
@@ -591,7 +591,7 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v91: i32 = (v90.clone().len() as i32);
                     let mut v92: bool = v91 == 0i32;
                     let mut v94: Rc<str> = if v92 {
-                        let mut v93: Rc<str> = Rc::<str>::from(".");
+                        let mut v93: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
                         v93.clone()
                     } else {
                         v90.clone()
@@ -602,7 +602,7 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                 }
                 _ => unreachable!(),
             };
-            let mut v101: Rc<str> = Rc::<str>::from("CI");
+            let mut v101: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("CI"); } LIT.with(|lit| lit.clone()) };
             let mut v102: Rc<str> = Rc::<str>::from(std::env::var(v101.as_ref()).unwrap_or_default());
             let mut v103: i32 = (v102.clone().len() as i32);
             let mut v104: bool = v103 == 0i32;
@@ -619,7 +619,7 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                 let mut v111: i32 = method7(v108.clone(), v109, v110);
                 let mut v112: bool = v111 == -1i32;
                 let mut v123: Rc<str> = if v112 {
-                    let mut v113: Rc<str> = Rc::<str>::from("");
+                    let mut v113: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v113.clone()
                 } else {
                     let mut v114: i32 = v111 - 1i32;
@@ -640,7 +640,7 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                         v115.clone()
                     }
                 };
-                let mut v125: Rc<str> = Rc::<str>::from("bin");
+                let mut v125: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("bin"); } LIT.with(|lit| lit.clone()) };
                 let mut v126: Rc<str> = Rc::<str>::from(std::path::Path::new(v123.as_ref()).join(v125.as_ref()).display().to_string());
                 let mut v128: i32 = i32::from(std::path::Path::new(v126.as_ref()).is_dir());
                 let mut v129: bool = v128 == 1i32;
@@ -651,7 +651,7 @@ fn method13(mut v0: US1, mut v1: US2) -> i32 {
                     let mut v133: i32 = i32::from(std::fs::remove_file(v126.as_ref()).is_err());
                     v133
                 };
-                let mut v136: Rc<str> = Rc::<str>::from("obj");
+                let mut v136: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("obj"); } LIT.with(|lit| lit.clone()) };
                 let mut v137: Rc<str> = Rc::<str>::from(std::path::Path::new(v123.as_ref()).join(v136.as_ref()).display().to_string());
                 let mut v139: i32 = i32::from(std::path::Path::new(v137.as_ref()).is_dir());
                 let mut v140: bool = v139 == 1i32;
@@ -675,7 +675,7 @@ fn spiral_main() -> i32 {
     let mut v2: bool = v1 == 2i32;
     let mut v10: US0 = if v2 {
         let mut v4: Rc<str> = Rc::<str>::from(std::env::args().nth(1i32 as usize).unwrap_or_default());
-        let mut v5: bool = v4.clone() == Rc::<str>::from("--self-test");
+        let mut v5: bool = v4.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--self-test"); } LIT.with(|lit| lit.clone()) };
         if v5 {
             US0::US0_0
         } else {
@@ -686,7 +686,7 @@ fn spiral_main() -> i32 {
     };
     match &v10 {
         US0::US0_0 => { // Check
-            let mut v11: Rc<str> = Rc::<str>::from("    let main args = 0\n()\n");
+            let mut v11: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) };
             let mut v12: i32 = 0i32;
             let mut v13: i32 = method0(v11.clone(), v12);
             let mut v14: bool = v13 == -1i32;
@@ -695,12 +695,12 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v15: i32 = method4(v11.clone(), v13);
                 let mut v16: i32 = v13 - 1i32;
-                let mut v17: Rc<str> = string_slice(&Rc::<str>::from("    let main args = 0\n()\n"), v15 as i64, v16 as i64);
-                let mut v18: Rc<str> = string_slice(&Rc::<str>::from("    let main args = 0\n()\n"), v13 as i64, 24i32 as i64);
+                let mut v17: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v15 as i64, v16 as i64);
+                let mut v18: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v13 as i64, 24i32 as i64);
                 let mut v19: i32 = v15 - 1i32;
-                let mut v20: Rc<str> = string_slice(&Rc::<str>::from("    let main args = 0\n()\n"), 0i32 as i64, v19 as i64);
+                let mut v20: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, 0i32 as i64, v19 as i64);
                 let mut v21: Rc<str> = Rc::<str>::from(format!("{}{}", v20.clone(), v17.clone()));
-                let mut v22: Rc<str> = Rc::<str>::from(format!("{}{}", v21.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v22: Rc<str> = Rc::<str>::from(format!("{}{}", v21.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v23: Rc<str> = Rc::<str>::from(format!("{}{}", v22.clone(), v17.clone()));
                 let mut v24: Rc<str> = Rc::<str>::from(format!("{}{}", v23.clone(), v18.clone()));
                 v24.clone()
@@ -726,7 +726,7 @@ fn spiral_main() -> i32 {
                 let mut v40: bool = if v36 {
                     false
                 } else {
-                    let mut v37: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v37: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v38: i32 = 0i32;
                     method2(v29.clone(), v32, v37.clone(), v38)
                 };
@@ -738,7 +738,7 @@ fn spiral_main() -> i32 {
                     v25.clone()
                 }
             };
-            let mut v45: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n");
+            let mut v45: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) };
             let mut v46: i32 = 0i32;
             let mut v47: i32 = method0(v45.clone(), v46);
             let mut v48: bool = v47 == -1i32;
@@ -747,12 +747,12 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v49: i32 = method4(v45.clone(), v47);
                 let mut v50: i32 = v47 - 1i32;
-                let mut v51: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v49 as i64, v50 as i64);
-                let mut v52: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), v47 as i64, 34i32 as i64);
+                let mut v51: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v49 as i64, v50 as i64);
+                let mut v52: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v47 as i64, 34i32 as i64);
                 let mut v53: i32 = v49 - 1i32;
-                let mut v54: Rc<str> = string_slice(&Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"), 0i32 as i64, v53 as i64);
+                let mut v54: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let x = 1\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, 0i32 as i64, v53 as i64);
                 let mut v55: Rc<str> = Rc::<str>::from(format!("{}{}", v54.clone(), v51.clone()));
-                let mut v56: Rc<str> = Rc::<str>::from(format!("{}{}", v55.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v56: Rc<str> = Rc::<str>::from(format!("{}{}", v55.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v57: Rc<str> = Rc::<str>::from(format!("{}{}", v56.clone(), v51.clone()));
                 let mut v58: Rc<str> = Rc::<str>::from(format!("{}{}", v57.clone(), v52.clone()));
                 v58.clone()
@@ -778,7 +778,7 @@ fn spiral_main() -> i32 {
                 let mut v74: bool = if v70 {
                     false
                 } else {
-                    let mut v71: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v71: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v72: i32 = 0i32;
                     method2(v63.clone(), v66, v71.clone(), v72)
                 };
@@ -790,7 +790,7 @@ fn spiral_main() -> i32 {
                     v59.clone()
                 }
             };
-            let mut v79: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n");
+            let mut v79: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) };
             let mut v80: i32 = 0i32;
             let mut v81: i32 = method0(v79.clone(), v80);
             let mut v82: bool = v81 == -1i32;
@@ -799,12 +799,12 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v83: i32 = method4(v79.clone(), v81);
                 let mut v84: i32 = v81 - 1i32;
-                let mut v85: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v83 as i64, v84 as i64);
-                let mut v86: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), v81 as i64, 59i32 as i64);
+                let mut v85: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v83 as i64, v84 as i64);
+                let mut v86: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v81 as i64, 59i32 as i64);
                 let mut v87: i32 = v83 - 1i32;
-                let mut v88: Rc<str> = string_slice(&Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"), 0i32 as i64, v87 as i64);
+                let mut v88: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    let main args = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, 0i32 as i64, v87 as i64);
                 let mut v89: Rc<str> = Rc::<str>::from(format!("{}{}", v88.clone(), v85.clone()));
-                let mut v90: Rc<str> = Rc::<str>::from(format!("{}{}", v89.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v90: Rc<str> = Rc::<str>::from(format!("{}{}", v89.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v91: Rc<str> = Rc::<str>::from(format!("{}{}", v90.clone(), v85.clone()));
                 let mut v92: Rc<str> = Rc::<str>::from(format!("{}{}", v91.clone(), v86.clone()));
                 v92.clone()
@@ -830,7 +830,7 @@ fn spiral_main() -> i32 {
                 let mut v108: bool = if v104 {
                     false
                 } else {
-                    let mut v105: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v105: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v106: i32 = 0i32;
                     method2(v97.clone(), v100, v105.clone(), v106)
                 };
@@ -842,7 +842,7 @@ fn spiral_main() -> i32 {
                     v93.clone()
                 }
             };
-            let mut v113: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n");
+            let mut v113: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n"); } LIT.with(|lit| lit.clone()) };
             let mut v114: i32 = 0i32;
             let mut v115: i32 = method0(v113.clone(), v114);
             let mut v116: bool = v115 == -1i32;
@@ -851,12 +851,12 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v117: i32 = method4(v113.clone(), v115);
                 let mut v118: i32 = v115 - 1i32;
-                let mut v119: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v117 as i64, v118 as i64);
-                let mut v120: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), v115 as i64, 29i32 as i64);
+                let mut v119: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n"); } LIT.with(|lit| lit.clone()) }, v117 as i64, v118 as i64);
+                let mut v120: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n"); } LIT.with(|lit| lit.clone()) }, v115 as i64, 29i32 as i64);
                 let mut v121: i32 = v117 - 1i32;
-                let mut v122: Rc<str> = string_slice(&Rc::<str>::from("let main = StringBuilder()\n()\n"), 0i32 as i64, v121 as i64);
+                let mut v122: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main = StringBuilder()\n()\n"); } LIT.with(|lit| lit.clone()) }, 0i32 as i64, v121 as i64);
                 let mut v123: Rc<str> = Rc::<str>::from(format!("{}{}", v122.clone(), v119.clone()));
-                let mut v124: Rc<str> = Rc::<str>::from(format!("{}{}", v123.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v124: Rc<str> = Rc::<str>::from(format!("{}{}", v123.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v125: Rc<str> = Rc::<str>::from(format!("{}{}", v124.clone(), v119.clone()));
                 let mut v126: Rc<str> = Rc::<str>::from(format!("{}{}", v125.clone(), v120.clone()));
                 v126.clone()
@@ -882,7 +882,7 @@ fn spiral_main() -> i32 {
                 let mut v142: bool = if v138 {
                     false
                 } else {
-                    let mut v139: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v139: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v140: i32 = 0i32;
                     method2(v131.clone(), v134, v139.clone(), v140)
                 };
@@ -894,7 +894,7 @@ fn spiral_main() -> i32 {
                     v127.clone()
                 }
             };
-            let mut v147: Rc<str> = Rc::<str>::from("let main() = 0\n()\n");
+            let mut v147: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main() = 0\n()\n"); } LIT.with(|lit| lit.clone()) };
             let mut v148: i32 = 0i32;
             let mut v149: i32 = method0(v147.clone(), v148);
             let mut v150: bool = v149 == -1i32;
@@ -903,12 +903,12 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v151: i32 = method4(v147.clone(), v149);
                 let mut v152: i32 = v149 - 1i32;
-                let mut v153: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v151 as i64, v152 as i64);
-                let mut v154: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), v149 as i64, 17i32 as i64);
+                let mut v153: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main() = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v151 as i64, v152 as i64);
+                let mut v154: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main() = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, v149 as i64, 17i32 as i64);
                 let mut v155: i32 = v151 - 1i32;
-                let mut v156: Rc<str> = string_slice(&Rc::<str>::from("let main() = 0\n()\n"), 0i32 as i64, v155 as i64);
+                let mut v156: Rc<str> = string_slice(&{ thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main() = 0\n()\n"); } LIT.with(|lit| lit.clone()) }, 0i32 as i64, v155 as i64);
                 let mut v157: Rc<str> = Rc::<str>::from(format!("{}{}", v156.clone(), v153.clone()));
-                let mut v158: Rc<str> = Rc::<str>::from(format!("{}{}", v157.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v158: Rc<str> = Rc::<str>::from(format!("{}{}", v157.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v159: Rc<str> = Rc::<str>::from(format!("{}{}", v158.clone(), v153.clone()));
                 let mut v160: Rc<str> = Rc::<str>::from(format!("{}{}", v159.clone(), v154.clone()));
                 v160.clone()
@@ -934,7 +934,7 @@ fn spiral_main() -> i32 {
                 let mut v176: bool = if v172 {
                     false
                 } else {
-                    let mut v173: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v173: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v174: i32 = 0i32;
                     method2(v165.clone(), v168, v173.clone(), v174)
                 };
@@ -946,15 +946,15 @@ fn spiral_main() -> i32 {
                     v161.clone()
                 }
             };
-            let mut v181: bool = v44.clone() == Rc::<str>::from("    [<EntryPoint>]\n    let main args = 0");
+            let mut v181: bool = v44.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("    [<EntryPoint>]\n    let main args = 0"); } LIT.with(|lit| lit.clone()) };
             if v181 {
-                let mut v182: bool = v78.clone() == Rc::<str>::from("let x = 1\n    [<EntryPoint>]\n    let main args = 0");
+                let mut v182: bool = v78.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let x = 1\n    [<EntryPoint>]\n    let main args = 0"); } LIT.with(|lit| lit.clone()) };
                 if v182 {
-                    let mut v183: bool = v112.clone() == Rc::<str>::from("        let main = StringBuilder()\n    [<EntryPoint>]\n    let main args = 0");
+                    let mut v183: bool = v112.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("        let main = StringBuilder()\n    [<EntryPoint>]\n    let main args = 0"); } LIT.with(|lit| lit.clone()) };
                     if v183 {
-                        let mut v184: bool = v146.clone() == Rc::<str>::from("let main = StringBuilder()");
+                        let mut v184: bool = v146.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("let main = StringBuilder()"); } LIT.with(|lit| lit.clone()) };
                         if v184 {
-                            let mut v185: bool = v180.clone() == Rc::<str>::from("[<EntryPoint>]\nlet main() = 0");
+                            let mut v185: bool = v180.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\nlet main() = 0"); } LIT.with(|lit| lit.clone()) };
                             if v185 {
                                 0i32
                             } else {
@@ -974,28 +974,28 @@ fn spiral_main() -> i32 {
             }
         }
         US0::US0_1 => { // Ship
-            let mut v192: Rc<str> = Rc::<str>::from("spiral");
-            let mut v193: Rc<str> = Rc::<str>::from("workspace");
+            let mut v192: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("spiral"); } LIT.with(|lit| lit.clone()) };
+            let mut v193: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("workspace"); } LIT.with(|lit| lit.clone()) };
             let mut v194: Rc<str> = Rc::<str>::from(std::path::Path::new(v192.as_ref()).join(v193.as_ref()).display().to_string());
             let mut v196: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
             let mut v197: Rc<str> = method6(v196.clone(), v194.clone());
-            let mut v198: bool = v197.clone() == Rc::<str>::from("");
+            let mut v198: bool = v197.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             let mut v202: Rc<str> = if v198 {
                 let mut v200: Rc<str> = Rc::<str>::from(std::env::current_exe().ok().and_then(|path| path.parent().map(|dir| dir.to_path_buf())).map(|path| path.display().to_string()).unwrap_or_default());
                 method6(v200.clone(), v194.clone())
             } else {
                 v197.clone()
             };
-            let mut v203: bool = v202.clone() == Rc::<str>::from("");
+            let mut v203: bool = v202.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             let mut v206: Rc<str> = if v203 {
-                let mut v204: Rc<str> = Rc::<str>::from("/workspaces");
+                let mut v204: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("/workspaces"); } LIT.with(|lit| lit.clone()) };
                 method6(v204.clone(), v194.clone())
             } else {
                 v202.clone()
             };
-            let mut v207: bool = v206.clone() == Rc::<str>::from("");
+            let mut v207: bool = v206.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             let mut v239: Rc<str> = if v207 {
-                let mut v208: Rc<str> = Rc::<str>::from("");
+                let mut v208: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v208.clone()
             } else {
                 let mut v209: i32 = 0i32;
@@ -1009,7 +1009,7 @@ fn spiral_main() -> i32 {
                     let mut v214: i32 = v211 + 1i32;
                     let mut v215: bool = v214 == v212;
                     if v215 {
-                        let mut v216: Rc<str> = Rc::<str>::from("");
+                        let mut v216: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v216.clone()
                     } else {
                         let mut v217: i32 = v212 - 1i32;
@@ -1017,14 +1017,14 @@ fn spiral_main() -> i32 {
                         v218.clone()
                     }
                 };
-                let mut v221: bool = v220.clone() == Rc::<str>::from("deps");
+                let mut v221: bool = v220.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("deps"); } LIT.with(|lit| lit.clone()) };
                 if v221 {
                     let mut v222: i32 = 0i32;
                     let mut v223: i32 = -1i32;
                     let mut v224: i32 = method7(v206.clone(), v222, v223);
                     let mut v225: bool = v224 == -1i32;
                     let mut v236: Rc<str> = if v225 {
-                        let mut v226: Rc<str> = Rc::<str>::from("");
+                        let mut v226: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v226.clone()
                     } else {
                         let mut v227: i32 = v224 - 1i32;
@@ -1050,29 +1050,29 @@ fn spiral_main() -> i32 {
                     v206.clone()
                 }
             };
-            let mut v240: bool = v239.clone() == Rc::<str>::from("");
+            let mut v240: bool = v239.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             let mut v245: Rc<str> = if v240 {
-                let mut v241: Rc<str> = Rc::<str>::from("");
+                let mut v241: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v241.clone()
             } else {
-                let mut v243: Rc<str> = Rc::<str>::from("polyglot");
+                let mut v243: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("polyglot"); } LIT.with(|lit| lit.clone()) };
                 let mut v244: Rc<str> = Rc::<str>::from(std::path::Path::new(v239.as_ref()).join(v243.as_ref()).display().to_string());
                 v244.clone()
             };
-            let mut v246: bool = v245.clone() == Rc::<str>::from("");
+            let mut v246: bool = v245.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
             let mut v267: Rc<str> = if v246 {
                 let mut v248: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
-                let mut v249: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
+                let mut v249: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets"); } LIT.with(|lit| lit.clone()) };
                 let mut v250: Rc<str> = method6(v248.clone(), v249.clone());
-                let mut v251: bool = v250.clone() == Rc::<str>::from("");
+                let mut v251: bool = v250.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 if v251 {
-                    let mut v252: Rc<str> = Rc::<str>::from(".");
+                    let mut v252: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
                     v252.clone()
                 } else {
                     v250.clone()
                 }
             } else {
-                let mut v255: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets");
+                let mut v255: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(".paket/Paket.Restore.targets"); } LIT.with(|lit| lit.clone()) };
                 let mut v256: Rc<str> = Rc::<str>::from(std::path::Path::new(v245.as_ref()).join(v255.as_ref()).display().to_string());
                 let mut v258: i32 = i32::from(std::path::Path::new(v256.as_ref()).exists());
                 let mut v259: bool = v258 == 1i32;
@@ -1081,9 +1081,9 @@ fn spiral_main() -> i32 {
                 } else {
                     let mut v261: Rc<str> = Rc::<str>::from(std::env::current_dir().map(|path| path.display().to_string()).unwrap_or_default());
                     let mut v262: Rc<str> = method6(v261.clone(), v255.clone());
-                    let mut v263: bool = v262.clone() == Rc::<str>::from("");
+                    let mut v263: bool = v262.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     if v263 {
-                        let mut v264: Rc<str> = Rc::<str>::from(".");
+                        let mut v264: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
                         v264.clone()
                     } else {
                         v262.clone()
@@ -1105,7 +1105,7 @@ fn spiral_main() -> i32 {
                 let mut v279: i32 = v276 + 1i32;
                 let mut v280: bool = v279 == v277;
                 if v280 {
-                    let mut v281: Rc<str> = Rc::<str>::from("");
+                    let mut v281: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v281.clone()
                 } else {
                     let mut v282: i32 = v277 - 1i32;
@@ -1140,7 +1140,7 @@ fn spiral_main() -> i32 {
                 let mut v304: i32 = v298 - 1i32;
                 let mut v305: Rc<str> = string_slice(&v294.clone(), 0i32 as i64, v304 as i64);
                 let mut v306: Rc<str> = Rc::<str>::from(format!("{}{}", v305.clone(), v300.clone()));
-                let mut v307: Rc<str> = Rc::<str>::from(format!("{}{}", v306.clone(), Rc::<str>::from("[<EntryPoint>]\n")));
+                let mut v307: Rc<str> = Rc::<str>::from(format!("{}{}", v306.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("[<EntryPoint>]\n"); } LIT.with(|lit| lit.clone()) }));
                 let mut v308: Rc<str> = Rc::<str>::from(format!("{}{}", v307.clone(), v300.clone()));
                 let mut v309: Rc<str> = Rc::<str>::from(format!("{}{}", v308.clone(), v303.clone()));
                 v309.clone()
@@ -1166,7 +1166,7 @@ fn spiral_main() -> i32 {
                 let mut v325: bool = if v321 {
                     false
                 } else {
-                    let mut v322: Rc<str> = Rc::<str>::from("\n()");
+                    let mut v322: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n()"); } LIT.with(|lit| lit.clone()) };
                     let mut v323: i32 = 0i32;
                     method2(v314.clone(), v317, v322.clone(), v323)
                 };
@@ -1184,7 +1184,7 @@ fn spiral_main() -> i32 {
             let mut v334: i32 = method7(v331.clone(), v332, v333);
             let mut v335: bool = v334 == -1i32;
             let mut v346: Rc<str> = if v335 {
-                let mut v336: Rc<str> = Rc::<str>::from("");
+                let mut v336: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v336.clone()
             } else {
                 let mut v337: i32 = v334 - 1i32;
@@ -1205,53 +1205,53 @@ fn spiral_main() -> i32 {
                     v338.clone()
                 }
             };
-            let mut v348: Rc<str> = Rc::<str>::from("dist");
+            let mut v348: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("dist"); } LIT.with(|lit| lit.clone()) };
             let mut v349: Rc<str> = Rc::<str>::from(std::path::Path::new(v346.as_ref()).join(v348.as_ref()).display().to_string());
             let mut v351: i32 = std::env::args().count() as i32;
-            let mut v352: Rc<str> = Rc::<str>::from("--modules");
+            let mut v352: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--modules"); } LIT.with(|lit| lit.clone()) };
             let mut v353: i32 = 1i32;
             let mut v354: i32 = method10(v352.clone(), v353, v351);
             let mut v355: bool = v354 == -1i32;
             let mut v361: Rc<str> = if v355 {
-                let mut v356: Rc<str> = Rc::<str>::from("");
+                let mut v356: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v356.clone()
             } else {
                 let mut v357: i32 = v354 + 1i32;
-                let mut v358: Rc<str> = Rc::<str>::from("");
+                let mut v358: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 let mut v359: i32 = 1i32;
                 method11(v357, v351, v267.clone(), v358.clone(), v359)
             };
             let mut v363: i32 = std::env::args().count() as i32;
-            let mut v364: Rc<str> = Rc::<str>::from("--packages");
+            let mut v364: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--packages"); } LIT.with(|lit| lit.clone()) };
             let mut v365: i32 = 1i32;
             let mut v366: i32 = method10(v364.clone(), v365, v363);
             let mut v367: bool = v366 == -1i32;
             let mut v373: Rc<str> = if v367 {
-                let mut v368: Rc<str> = Rc::<str>::from("");
+                let mut v368: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v368.clone()
             } else {
                 let mut v369: i32 = v366 + 1i32;
-                let mut v370: Rc<str> = Rc::<str>::from("");
+                let mut v370: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 let mut v371: i32 = 1i32;
                 method12(v369, v363, v370.clone(), v371)
             };
             let mut v374: i32 = (v373.clone().len() as i32);
             let mut v375: bool = v374 == 0i32;
             let mut v378: Rc<str> = if v375 {
-                let mut v376: Rc<str> = Rc::<str>::from("FSharp.Core");
+                let mut v376: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("FSharp.Core"); } LIT.with(|lit| lit.clone()) };
                 v376.clone()
             } else {
-                let mut v377: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("FSharp.Core\n"), v373.clone()));
+                let mut v377: Rc<str> = Rc::<str>::from(format!("{}{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("FSharp.Core\n"); } LIT.with(|lit| lit.clone()) }, v373.clone()));
                 v377.clone()
             };
-            let mut v380: Rc<str> = Rc::<str>::from("target");
+            let mut v380: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("target"); } LIT.with(|lit| lit.clone()) };
             let mut v381: Rc<str> = Rc::<str>::from(std::path::Path::new(v267.as_ref()).join(v380.as_ref()).display().to_string());
-            let mut v383: Rc<str> = Rc::<str>::from("Builder");
+            let mut v383: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("Builder"); } LIT.with(|lit| lit.clone()) };
             let mut v384: Rc<str> = Rc::<str>::from(std::path::Path::new(v381.as_ref()).join(v383.as_ref()).display().to_string());
             let mut v386: Rc<str> = Rc::<str>::from(std::path::Path::new(v384.as_ref()).join(v292.as_ref()).display().to_string());
-            let mut v387: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), Rc::<str>::from(".fs")));
+            let mut v387: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(".fs"); } LIT.with(|lit| lit.clone()) }));
             let mut v389: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v387.as_ref()).display().to_string());
-            let mut v390: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), Rc::<str>::from(".fsproj")));
+            let mut v390: Rc<str> = Rc::<str>::from(format!("{}{}", v292.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(".fsproj"); } LIT.with(|lit| lit.clone()) }));
             let mut v392: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v390.as_ref()).display().to_string());
             let mut v394: i32 = { let path = std::path::Path::new(v389.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v329.as_ref())) };
             let mut v395: bool = v394 == 1i32;
@@ -1263,7 +1263,7 @@ fn spiral_main() -> i32 {
                 let mut v398: i32 = method7(v389.clone(), v396, v397);
                 let mut v399: bool = v398 == -1i32;
                 let mut v410: Rc<str> = if v399 {
-                    let mut v400: Rc<str> = Rc::<str>::from("");
+                    let mut v400: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v400.clone()
                 } else {
                     let mut v401: i32 = v398 - 1i32;
@@ -1300,12 +1300,12 @@ fn spiral_main() -> i32 {
                     v415
                 }
             };
-            let mut v421: Rc<str> = Rc::<str>::from(format!("{}{}", Rc::<str>::from("<Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>preview</LangVersion>\n        <RollForward>Major</RollForward>\n        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n        <ServerGarbageCollection>true</ServerGarbageCollection>\n        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>\n        <PublishAot>false</PublishAot>\n        <PublishTrimmed>false</PublishTrimmed>\n        <PublishSingleFile>true</PublishSingleFile>\n        <SelfContained>true</SelfContained>\n        <Version>0.0.1-alpha.1</Version>\n        <OutputType>Exe</OutputType>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">\n        <DefineConstants>_FREEBSD</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">\n        <DefineConstants>_LINUX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">\n        <DefineConstants>_OSX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">\n        <DefineConstants>_WINDOWS</DefineConstants>\n    </PropertyGroup>\n\n    <ItemGroup>\n        "), v361.clone()));
-            let mut v422: Rc<str> = Rc::<str>::from(format!("{}{}", v421.clone(), Rc::<str>::from("\n        <Compile Include=\"")));
+            let mut v421: Rc<str> = Rc::<str>::from(format!("{}{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("<Project Sdk=\"Microsoft.NET.Sdk\">\n    <PropertyGroup>\n        <TargetFramework>net9.0</TargetFramework>\n        <LangVersion>preview</LangVersion>\n        <RollForward>Major</RollForward>\n        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>\n        <ServerGarbageCollection>true</ServerGarbageCollection>\n        <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>\n        <PublishAot>false</PublishAot>\n        <PublishTrimmed>false</PublishTrimmed>\n        <PublishSingleFile>true</PublishSingleFile>\n        <SelfContained>true</SelfContained>\n        <Version>0.0.1-alpha.1</Version>\n        <OutputType>Exe</OutputType>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('FreeBSD'))\">\n        <DefineConstants>_FREEBSD</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Linux'))\">\n        <DefineConstants>_LINUX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('OSX'))\">\n        <DefineConstants>_OSX</DefineConstants>\n    </PropertyGroup>\n\n    <PropertyGroup Condition=\"$([MSBuild]::IsOSPlatform('Windows'))\">\n        <DefineConstants>_WINDOWS</DefineConstants>\n    </PropertyGroup>\n\n    <ItemGroup>\n        "); } LIT.with(|lit| lit.clone()) }, v361.clone()));
+            let mut v422: Rc<str> = Rc::<str>::from(format!("{}{}", v421.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n        <Compile Include=\""); } LIT.with(|lit| lit.clone()) }));
             let mut v423: Rc<str> = Rc::<str>::from(format!("{}{}", v422.clone(), v389.clone()));
-            let mut v424: Rc<str> = Rc::<str>::from(format!("{}{}", v423.clone(), Rc::<str>::from("\" />\n    </ItemGroup>\n    <ItemGroup>\n        <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />\n    </ItemGroup>\n    <Import Project=\"")));
+            let mut v424: Rc<str> = Rc::<str>::from(format!("{}{}", v423.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\" />\n    </ItemGroup>\n    <ItemGroup>\n        <FrameworkReference Include=\"Microsoft.AspNetCore.App\" />\n    </ItemGroup>\n    <Import Project=\""); } LIT.with(|lit| lit.clone()) }));
             let mut v425: Rc<str> = Rc::<str>::from(format!("{}{}", v424.clone(), v267.clone()));
-            let mut v426: Rc<str> = Rc::<str>::from(format!("{}{}", v425.clone(), Rc::<str>::from("/.paket/Paket.Restore.targets\" />\n</Project>\n")));
+            let mut v426: Rc<str> = Rc::<str>::from(format!("{}{}", v425.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("/.paket/Paket.Restore.targets\" />\n</Project>\n"); } LIT.with(|lit| lit.clone()) }));
             let mut v428: i32 = { let path = std::path::Path::new(v392.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v426.as_ref())) };
             let mut v429: bool = v428 == 1i32;
             let mut v454: i32 = if v429 {
@@ -1316,7 +1316,7 @@ fn spiral_main() -> i32 {
                 let mut v432: i32 = method7(v392.clone(), v430, v431);
                 let mut v433: bool = v432 == -1i32;
                 let mut v444: Rc<str> = if v433 {
-                    let mut v434: Rc<str> = Rc::<str>::from("");
+                    let mut v434: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v434.clone()
                 } else {
                     let mut v435: i32 = v432 - 1i32;
@@ -1353,7 +1353,7 @@ fn spiral_main() -> i32 {
                     v449
                 }
             };
-            let mut v456: Rc<str> = Rc::<str>::from("paket.references");
+            let mut v456: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("paket.references"); } LIT.with(|lit| lit.clone()) };
             let mut v457: Rc<str> = Rc::<str>::from(std::path::Path::new(v386.as_ref()).join(v456.as_ref()).display().to_string());
             let mut v459: i32 = { let path = std::path::Path::new(v457.as_ref()); i32::from(path.is_file() && std::fs::read_to_string(path).ok().as_deref() == Some(v378.as_ref())) };
             let mut v460: bool = v459 == 1i32;
@@ -1365,7 +1365,7 @@ fn spiral_main() -> i32 {
                 let mut v463: i32 = method7(v457.clone(), v461, v462);
                 let mut v464: bool = v463 == -1i32;
                 let mut v475: Rc<str> = if v464 {
-                    let mut v465: Rc<str> = Rc::<str>::from("");
+                    let mut v465: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v465.clone()
                 } else {
                     let mut v466: i32 = v463 - 1i32;
@@ -1402,7 +1402,7 @@ fn spiral_main() -> i32 {
                     v480
                 }
             };
-            let mut v486: Rc<str> = Rc::<str>::from("--persist-only");
+            let mut v486: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--persist-only"); } LIT.with(|lit| lit.clone()) };
             let mut v487: i32 = 1i32;
             let mut v489: i32 = std::env::args().count() as i32;
             let mut v490: i32 = method10(v486.clone(), v487, v489);
@@ -1418,18 +1418,18 @@ fn spiral_main() -> i32 {
             } else {
                 let mut v494: US1 = US1::US1_2(v392.clone(), v349.clone());
                 let mut v496: i32 = std::env::args().count() as i32;
-                let mut v497: Rc<str> = Rc::<str>::from("--runtime");
+                let mut v497: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--runtime"); } LIT.with(|lit| lit.clone()) };
                 let mut v498: i32 = 1i32;
                 let mut v499: i32 = method10(v497.clone(), v498, v496);
                 let mut v500: bool = v499 == -1i32;
                 let mut v517: Rc<str> = if v500 {
-                    let mut v501: Rc<str> = Rc::<str>::from("");
+                    let mut v501: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                     v501.clone()
                 } else {
                     let mut v502: i32 = v499 + 1i32;
                     let mut v503: bool = v502 == v496;
                     if v503 {
-                        let mut v504: Rc<str> = Rc::<str>::from("");
+                        let mut v504: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                         v504.clone()
                     } else {
                         let mut v506: Rc<str> = Rc::<str>::from(std::env::args().nth(v502 as usize).unwrap_or_default());
@@ -1439,11 +1439,11 @@ fn spiral_main() -> i32 {
                             false
                         } else {
                             let mut v509: Rc<str> = string_slice(&v506.clone(), 0i32 as i64, 1i32 as i64);
-                            let mut v510: bool = v509.clone() == Rc::<str>::from("--");
+                            let mut v510: bool = v509.clone() == { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("--"); } LIT.with(|lit| lit.clone()) };
                             v510
                         };
                         if v511 {
-                            let mut v512: Rc<str> = Rc::<str>::from("");
+                            let mut v512: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                             v512.clone()
                         } else {
                             let mut v514: Rc<str> = Rc::<str>::from(std::env::args().nth(v502 as usize).unwrap_or_default());
@@ -1464,7 +1464,12 @@ fn spiral_main() -> i32 {
         _ => unreachable!(),
     }
 }
+#[cfg(not(target_arch = "wasm32"))]
 fn main() {
     let main = std::thread::Builder::new().stack_size(1 << 30).spawn(spiral_main).unwrap();
-    std::process::exit(main.join().unwrap());
+    std::process::exit(match main.join() { Ok(code) => code, Err(_) => 101 });
+}
+#[cfg(target_arch = "wasm32")]
+fn main() {
+    spiral_main();
 }

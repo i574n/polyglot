@@ -508,7 +508,6 @@ name = "plot"
 version = "0.0.1"
 dependencies = [
  "chrono",
- "fable_library_rust",
  "inline_colorization",
  "plotters",
  "regex",

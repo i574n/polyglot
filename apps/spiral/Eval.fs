@@ -391,6 +391,7 @@ module Eval =
             && props.backend <> Supervisor.Gleam
             && props.backend <> Supervisor.Lua
             && props.backend <> Supervisor.Python
+            && props.backend <> Supervisor.Rust
             && props.backend <> Supervisor.Cpp then
             let ext = props.outputPath |> System.IO.Path.GetExtension
             _trace (fun () -> if props.builderCommands.Length > 0 then $"{ext}:\n{props.code}\n" else props.code)
@@ -412,16 +413,28 @@ module Eval =
                         workspaceRoot </> $@"deps/spiral/workspace/target/release/spiral{SpiralPlatform.get_executable_suffix ()}"
                         |> System.IO.Path.GetFullPath
                     let commands =
+                        // TypeScript still goes through Fable (F# output -> `spiral fable`) until the native TypeScript
+                        // backend lands.
                         if props.backend = Supervisor.Fsharp
-                            && (
-                                builderCommand |> SpiralSm.starts_with "rust"
-                                || builderCommand |> SpiralSm.starts_with "typescript"
-                                || builderCommand |> SpiralSm.starts_with "python"
-                            )
+                            && builderCommand |> SpiralSm.starts_with "typescript"
                         then [| $"{path} fable --fs-path \"{props.outputPath}\" --command \"{builderCommand}\"" |]
+                        elif props.backend = Supervisor.Rust
+                            && builderCommand |> SpiralSm.starts_with "rust"
+                        then
+                            // Native Rust. The compiler inlines Fable's `emitRustExpr` calls itself (`inlineFableEmits`);
+                            // a build cached before that pass still has them, so give the CLI a copy with them inlined.
+                            let rsPath = System.IO.Path.ChangeExtension (props.outputPath, ".native.rs")
+                            System.IO.File.WriteAllText (rsPath, props.code |> Supervisor.rewriteRustEmitExpr)
+                            [| $"{path} {builderCommand} --rs-path \"{rsPath}\"" |]
                         elif props.backend = Supervisor.Python
                             && builderCommand |> SpiralSm.starts_with "cuda"
                         then [| $"{path} {builderCommand} --py-path \"{props.outputPath}\"" |]
+                        // Native Python hook: `///> python` cells run on the native Python backend, through the same CLI
+                        // command as `///> cuda` (Fable Python is gone). Point this at the native Python backend's own
+                        // runner once it has one.
+                        elif props.backend = Supervisor.Python
+                            && builderCommand |> SpiralSm.starts_with "python"
+                        then [| $"{path} cuda{builderCommand.Substring(6)} --py-path \"{props.outputPath}\"" |]
                         elif props.backend = Supervisor.Cpp
                             && builderCommand |> SpiralSm.starts_with "cpp"
                         then [| $"{path} {builderCommand} --cpp-path \"{props.outputPath}\"" |]
@@ -445,6 +458,7 @@ module Eval =
                                     l1 = props.cancellationToken
                                     l2 = [|
                                         "AUTOMATION", automation |> string
+                                        "SPIRAL_JSON", "1"
                                         "TRACE_LEVEL", $"%A{if props.printCode then props.traceLevel else Info}"
                                     |]
                                     l6 = workspaceRootExternal
@@ -506,6 +520,10 @@ module Eval =
                                         result''
                                         |> FSharp.Json.Json.deserialize<Map<string,string>>
                                         |> Map.add "builderCommand" result.builderCommand
+                                    // `spiral rust --rs-path` (native Rust) answers with the result itself; the
+                                    // `command_result` wrapper comes from `spiral fable --command`.
+                                    | None when result' |> Map.containsKey "extension" ->
+                                        result' |> Map.add "builderCommand" result.builderCommand
                                     | None -> Map.empty
                                 result, [||]
                             | Ok result when result.eval = true ->
@@ -656,6 +674,10 @@ module Eval =
                         then Supervisor.Lua
                         elif x |> SpiralSm.starts_with "cuda"
                         then Supervisor.Python
+                        elif x |> SpiralSm.starts_with "python"
+                        then Supervisor.Python
+                        elif x |> SpiralSm.starts_with "rust"
+                        then Supervisor.Rust
                         elif x |> SpiralSm.starts_with "cpp"
                         then Supervisor.Cpp
                         else Supervisor.Fsharp
@@ -673,6 +695,11 @@ module Eval =
                         if props.isReal
                         then Supervisor.Spir newAllCode
                         else
+                            // codegenRust's entry returns the process exit code (i32): wrap the cell's `main`.
+                            let newAllCode =
+                                if backend = Supervisor.Rust
+                                then $"{newAllCode}\n\ninl main () : i32 =\n    main () |> ignore\n    0i32\n"
+                                else newAllCode
                             Supervisor.Spi
                                 (newAllCode, if allCodeReal = "" then None else Some allCodeReal)
                         |> Supervisor.buildCode backend allPackages props.isCache props.timeout props.cancellationToken
