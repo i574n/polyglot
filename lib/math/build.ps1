@@ -11,43 +11,37 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "math"
 
+# The notebook runs through Kino (core.ps1 Invoke-Notebook) and exports math.spi.
 if (!$fast -and !$SkipNotebook) {
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path "$projectName.dib" --retries $($fast -or !$env:CI ? 1 : 2) } | Invoke-Block -OnError Continue
+    Invoke-Notebook "$projectName.livemd" -Retries ($fast -or !$env:CI ? 1 : 2)
 }
 
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export "$projectName.dib" spi } | Invoke-Block
-
-{ . ../../apps/spiral/dist/Supervisor$(_exe) --build-file "$projectName.spi" "$projectName.fsx" --timeout 300000 } | Invoke-Block
-
-$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
-$builderArgs = @("$projectName.fsx", $runtime, "--packages", "Fable.Core", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs")
-{ . ../../apps/builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
+Invoke-Notebook "$projectName.livemd" @("--spi-path", "$ScriptDir/$projectName.spi", "--export-only")
 
 $targetDir = GetTargetDir $projectName
 
-{ BuildFable $targetDir $projectName "rs" } | Invoke-Block
-
-$path = "$targetDir/$projectName.rs"
-if (!(Test-Path $path)) {
-    $path = "$targetDir/target/rs/target/Builder/$projectName/$projectName.rs"
+# Rust: math.spi (its `main` has a `Rust` arm that runs the tests by name, plus one `#[test]` wrapper per test) ->
+# math.rs (tracked) with the Spiral compiler's own Rust backend: the `math` bin of Cargo.toml, a member of the polyglot
+# workspace. Required check: `cargo test` must pass all 12 tests (pyo3 + Python's mpmath).
+$rustTests = 12
+if (!(BuildSpiral "$projectName.spi" "$projectName.rs" "lib/math")) {
+    throw "RUST-FAILED lib/math / compile"
 }
-if (!(Test-Path $path)) {
-    $path = "$targetDir/target/rs/$projectName.rs"
+Push-Location ../../workspace
+try {
+    $rustOutput = cargo +nightly-2025-11-01 test --release --package $projectName 2>&1 | ForEach-Object { "$_" }
+    $rustExit = $LASTEXITCODE
+} finally {
+    Pop-Location
 }
-Write-Output "polyglot/lib/math/build.ps1 / path: $path"
-(Get-Content $path) `
-    -replace "`"../../../../../deps", "`"../../deps" `
-    -replace "`"./lib", "`"../../lib" `
-    -replace ".fsx`"]", ".rs`"]" `
-    | FixRust `
-    | Set-Content "$projectName.rs"
-
-cargo fmt --
-
-{ cargo +nightly-2025-11-01 test --timings --release } | Invoke-Block -OnError Continue
-
+$rustOutput | ForEach-Object { Write-Output "polyglot/lib/math/build.ps1 / cargo test / $_" }
+if ($rustExit -ne 0 -or !($rustOutput -match "^test result: ok\. $rustTests passed; 0 failed")) {
+    throw "RUST-FAILED lib/math / cargo test exit code $($rustExit): expected 'test result: ok. $rustTests passed; 0 failed'"
+}
+Write-Output "RUST-OK lib/math"
 Write-Output "polyglot/lib/math/build.ps1 / `$targetDir: $targetDir / `$projectName: $projectName / `$env:CI:'$env:CI'"
 
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
+    ClearCargoTarget "../../workspace"
 }

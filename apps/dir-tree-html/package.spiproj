@@ -1,0 +1,6 @@
+packageDir: ../../deps/spiral/apps/compiler/tmp/samples
+moduleDir: .
+packages:
+    core-
+modules:
+    dir_tree_html

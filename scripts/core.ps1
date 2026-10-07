@@ -62,6 +62,10 @@ function Invoke-Block {
     $result = $null
     $output = $null
 
+    Write-Output "`n────────────────────────────────────────────────────────────────────────────────"
+    Write-Output "core.Invoke-Block / Get-Location: $(Get-Location) / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+
+    $fatal = $null
     $retry = 1
     while ($retry -le $Retries) {
         try {
@@ -94,7 +98,11 @@ function Invoke-Block {
             if ($OnError -eq "Stop") {
                 if ($retry -eq $Retries) {
                     if ($host.Name -match "Interactive") {
-                        [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+                        # In a notebook, end the cell: a terminating error (thrown after the cleanup below) fails
+                        # the command. Publishing CommandFailed instead left the script running after a fatal error
+                        # (dep_spiral.ps1 went on past its failed build) and gave the cell two completions.
+                        $fatal = $msg
+                        break
                     }
                     else {
                         exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
@@ -125,8 +133,13 @@ function Invoke-Block {
         }
     }
 
+    if ($fatal) {
+        throw $fatal
+    }
+
     if ($env:CI -and $IsLinux) {
-        df -h
+        Write-Output "core.Invoke-Block / df - /dev/root"
+        df -h /dev/root
     }
 
     if ($Return) {
@@ -228,7 +241,7 @@ function GetFullPath([string] $Path) {
         Write-Host "polyglot/scripts/core.ps1/GetFullPath / FullPath: $Path"
     }
 
-    return $Path
+    return ResolveLink $Path
 }
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
@@ -297,41 +310,90 @@ function _exe {
     }
 }
 
-function Invoke-Dib {
+# Runs a notebook through Kino (spiral/apps/kino/spi/run_notebook.ps1: Spiral cells on the native backends, F# cells on
+# dotnet fsi) with the given run_notebook.ps1 arguments (--spi-path, --fs-path, --no-spi, --export-only, ...). A run
+# writes <nb>.livemd.ipynb and <nb>.livemd.html unless --output-path is given.
+function Invoke-Notebook {
     param (
-        [Parameter(Position = 0, Mandatory)]
-        [string] $path,
-
-        [Parameter(Position = 1, ValueFromRemainingArguments)]
-        [Object[]] $_args
+        [Parameter(Mandatory)]
+        [string] $Path,
+        [string[]] $Arguments = @(),
+        [int] $Retries = 1
     )
-    $mergedArgs = @{
-        "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run }
-    }
-    $key = $null
-    foreach ($item in $_args) {
-        if ($item -match "^-") {
-            $key = $item -replace "^-"
-        }
-        elseif ($null -ne $key) {
-            $mergedArgs[$key] = $item
-            $key = $null
-        }
-    }
-    Write-Output ("polyglot/scripts/core.ps1/Invoke-Dib / " + `
-        "Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)")
-
-    $mergedArgs["EnvironmentVariables"] = @{ LOG_LEVEL = "Verbose" }
-
-    { Invoke-Block @mergedArgs } | Invoke-Block
-
-    { jupyter nbconvert "$path.ipynb" --to html --HTMLExporter.theme=dark } | Invoke-Block
-
-    $counter = 1
-    (Get-Content "$path.html" -Raw) `
-        -replace '(id="cell\-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } `
-    | Set-Content "$path.html"
+    $fullPath = (Resolve-Path $Path).Path
+    $runNotebook = Join-Path $PSScriptRoot "../deps/spiral/apps/kino/spi/run_notebook.ps1"
+    { pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments } | Invoke-Block -Retries $Retries
 }
+
+# Runs a notebook whose code cells are all pwsh (e.g. init.livemd) as one plain pwsh script, without a notebook kernel:
+# its cells in order, in one session (they share variables, as in the notebook), from the notebook's directory
+# (nbs_header.ps1 then takes it as $ScriptDir); the first error stops it, like a failing cell. A .livemd's pwsh cells are
+# its `<!-- livebook:{"spiral_code":"pwsh"} -->` fences (spiral/apps/kino Document).
+function Invoke-PwshNotebook {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Path
+    )
+    $fullPath = (Resolve-Path $Path).Path
+    $cells = @()
+    $text = [IO.File]::ReadAllText($fullPath).Replace("`r`n", "`n")
+    $fence = '(?ms)^<!-- livebook:\{"spiral_code":"([^"]+)"\} -->\n\n```[^\n]*\n(.*?)\n^```[ \t]*$'
+    foreach ($match in [regex]::Matches($text, $fence)) {
+        $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = $match.Groups[2].Value }
+    }
+    foreach ($match in [regex]::Matches($text, '(?m)^```(elixir|fsharp|spiral)\s*$')) {
+        $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = "-" }
+    }
+    $other = $cells | Where-Object { $_.Kernel -notin @("meta", "markdown", "pwsh") -and $_.Code.Trim() }
+    if ($other) {
+        throw "polyglot/scripts/core.ps1/Invoke-PwshNotebook / $Path has non-pwsh code cells ($(($other.Kernel | Select-Object -Unique) -join ', '))"
+    }
+    $pwshCells = @($cells | Where-Object Kernel -eq "pwsh" | ForEach-Object Code)
+    $name = [IO.Path]::GetFileNameWithoutExtension($fullPath)
+    $temp = Join-Path ([IO.Path]::GetTempPath()) "$name-$([guid]::NewGuid().ToString('N'))"
+    $script = "$temp.ps1"
+    $log = "$temp.log"
+    # Each cell starts with a marker line, so the run's stdout splits back into per-cell outputs for the notebook file.
+    $marker = "polyglot/scripts/core.ps1/Invoke-PwshNotebook / $name / cell"
+    $body = for ($i = 0; $i -lt $pwshCells.Count; $i++) { "Write-Output '$marker $($i + 1)/$($pwshCells.Count)'`n$($pwshCells[$i])" }
+    $body -join "`n`n" | Set-Content $script
+    Write-Output "polyglot/scripts/core.ps1/Invoke-PwshNotebook / path: $fullPath / cells: $($pwshCells.Count)"
+    try {
+        { pwsh -NoProfile -NonInteractive -File $script | Tee-Object -FilePath $log } | Invoke-Block -Location (Split-Path $fullPath)
+        # A successful run writes <nb>.livemd.ipynb (the cells with their stdout) and, through jupyter nbconvert when it's
+        # installed, <nb>.livemd.html (README and gh-pages link to them), the names Kino gives a notebook's outputs.
+        $outputs = foreach ($i in 0..$pwshCells.Count) { , [Collections.Generic.List[string]]::new() }
+        $current = 0
+        foreach ($line in [IO.File]::ReadAllLines($log)) {
+            if ($line.StartsWith("$marker ") -and $line -match ' (\d+)/\d+$') { $current = [int]$Matches[1]; continue }
+            if ($current -gt 0) { $outputs[$current].Add("$line`n") }
+        }
+        $notebookCells = for ($i = 0; $i -lt $pwshCells.Count; $i++) {
+            $text = $outputs[$i + 1].ToArray()
+            $lines = $pwshCells[$i] -split "`n"
+            [ordered]@{
+                cell_type = "code"; execution_count = $i + 1; id = "$($i + 1)"; metadata = @{}
+                outputs = @(if ($text.Count) { [ordered]@{ name = "stdout"; output_type = "stream"; text = $text } })
+                source = @(for ($j = 0; $j -lt $lines.Count; $j++) { $j -lt $lines.Count - 1 ? "$($lines[$j])`n" : $lines[$j] })
+            }
+        }
+        $ipynb = "$fullPath.ipynb"
+        $notebook = [ordered]@{
+            cells = @($notebookCells)
+            metadata = [ordered]@{ kernelspec = [ordered]@{ display_name = "PowerShell"; language = "pwsh"; name = "pwsh" }; language_info = @{ name = "pwsh" } }
+            nbformat = 4; nbformat_minor = 5
+        }
+        [IO.File]::WriteAllText($ipynb, ($notebook | ConvertTo-Json -Depth 10).Replace("`r`n", "`n") + "`n")
+        if (Search-Command "jupyter") {
+            { jupyter nbconvert $ipynb --to html --HTMLExporter.theme=dark } | Invoke-Block -OnError Continue
+        } else {
+            Write-Output "polyglot/scripts/core.ps1/Invoke-PwshNotebook / no jupyter: $ipynb written, no html"
+        }
+    } finally {
+        Remove-Item $script, $log -Force -ErrorAction Ignore
+    }
+}
+
 
 function Search-DotnetSdk($version) {
     if (!(Search-Command "dotnet")) {
@@ -344,4 +406,22 @@ function Search-DotnetSdk($version) {
         }
     }
     return $false
+}
+
+function ClearCargoTarget($path) {
+    Remove-Item "$path/target/debug/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/debug/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/debug/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/release/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/release/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/release/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/debug/build" -Recurse -Force -ErrorAction Ignore
+
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/deps" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/incremental" -Recurse -Force -ErrorAction Ignore
+    Remove-Item "$path/target/wasm32-unknown-unknown/release/build" -Recurse -Force -ErrorAction Ignore
 }

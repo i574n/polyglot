@@ -88,13 +88,11 @@ Build
 <td>
 
 - Initialization output (PowerShell)  
-<https://i574n.github.io/polyglot/scripts/init.dib.html>
+<https://i574n.github.io/polyglot/scripts/init.livemd.html>
 
 - Full build output (PowerShell)  
-<https://i574n.github.io/polyglot/scripts/build.dib.html>
+<https://i574n.github.io/polyglot/scripts/build.livemd.html>
 
-- Spiral supervisor notebook (F#)  
-<https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
 
 </td>
 </tr>
@@ -108,19 +106,19 @@ Samples
 <td>
 
 - Performance tests  
-<https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
+<https://i574n.github.io/polyglot/apps/perf/Perf.livemd.html>
 
 - Multiplatform rotating ASCII cube (F#, Rust, TypeScript, Python)  
-<https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.dib.html>
+<https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.livemd.html>
 
 - Chat smart contract notebook (Rust, NEAR Protocol)  
-<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.dib.html>
+<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.livemd.html>
 
 - Domain Modeling Sample: Scheduling with recurrency  
-<https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
+<https://i574n.github.io/polyglot/apps/scheduler/Tasks.livemd.html>
 
 - Computational Mathematics: Unit testing with Spiral, Rust and Python  
-<https://i574n.github.io/polyglot/lib/math/math.dib.html>
+<https://i574n.github.io/polyglot/lib/math/math.livemd.html>
 
 </td>
 </tr>
@@ -246,7 +244,7 @@ The repository structure serves not just as a file hierarchy but as a living emb
 
 ### Embracing Literate Programming in Spiral's Context
 
-Literate programming, a methodology introduced by Donald Knuth, emphasizes the importance of writing software in a way that is understandable by humans. In the context of Spiral, this approach is taken to heart through the detailed documentation embedded directly within the codebase, manifesting not only as traditional comments but also through extensive use of notebooks (.dib, .ipynb) and markdown files (.md) to provide context, explanations, and usage examples.
+Literate programming, a methodology introduced by Donald Knuth, emphasizes the importance of writing software in a way that is understandable by humans. In the context of Spiral, this approach is taken to heart through the detailed documentation embedded directly within the codebase, manifesting not only as traditional comments but also through extensive use of notebooks (.livemd, .ipynb) and markdown files (.md) to provide context, explanations, and usage examples.
 
 ### Repository Structure Overview
 

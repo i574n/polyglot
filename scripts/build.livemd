@@ -1,0 +1,54 @@
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+. ./nbs_header.ps1
+. ./core.ps1
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../deps/spiral/apps/spiral/build.ps1 -fast 1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../apps/parser/build.ps1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../lib/fsharp/build.ps1 -sequential 1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../deps/spiral/apps/wasm/build.ps1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../lib/math/build.ps1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../apps/plot/build.ps1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ../apps/dir-tree-html/build.ps1 } | Invoke-Block
+```
+
+<!-- livebook:{"spiral_code":"pwsh"} -->
+
+```pwsh
+{ pwsh ./outdated.ps1 } | Invoke-Block
+```

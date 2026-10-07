@@ -27,11 +27,9 @@ function UpdateJson {
 }
 
 
-if (!$fast) {
-    { dotnet paket update } | Invoke-Block
-}
-
 { cargo update } | Invoke-Block
+
+UpdateToml "../apps/dir-tree-html/Cargo.toml"
 
 UpdateToml "../apps/plot/Cargo.toml"
 

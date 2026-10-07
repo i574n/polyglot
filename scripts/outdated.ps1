@@ -1,5 +1,4 @@
 param(
-    $SkipPaket,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -30,11 +29,9 @@ function CheckJson {
 }
 
 
-if (!$SkipPaket) {
-    { dotnet paket outdated --include-prereleases } | Invoke-Block -OnError Continue
-}
-
 CheckToml "../workspace/Cargo.toml" `-w
+
+CheckToml "../apps/dir-tree-html/Cargo.toml"
 
 CheckToml "../apps/plot/Cargo.toml"
 

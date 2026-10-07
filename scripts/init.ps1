@@ -1,6 +1,8 @@
 param(
     $fast,
     $init,
+    # No Fable, dotnet-repl or dotnet-interactive: the Spiral apps and libraries build with the Spiral compiler's native
+    # backends, notebooks run through Kino (spiral/apps/kino).
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -51,7 +53,7 @@ if (!(Search-Command "nix")) {
         }
 
         if (!(Test-Path "~/.bun/bin/bun")) {
-            curl -sSL https://bun.sh/install | bash
+            { curl -sSL https://bun.sh/install | bash } | Invoke-Block
             $env:PATH = "~/.bun/bin:$env:PATH"
         }
 
@@ -79,7 +81,9 @@ if (!(Search-Command "nix")) {
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
-    { pip install -r ../requirements.txt } | Invoke-Block -OnError Continue
+    # Ubuntu's system Python is externally managed (PEP 668): pip refuses a plain install there.
+    $pipArgs = $IsLinux ? @("--break-system-packages") : @()
+    { pip install @pipArgs -r ../requirements.txt } | Invoke-Block -OnError Continue
 }
 else {
     mkdir -p ~/.bun/bin
@@ -120,15 +124,10 @@ if (!(Search-Command "gleam")) {
     }
 }
 
-{ dotnet tool restore } | Invoke-Block -OnError Continue
-
-{ dotnet paket restore } | Invoke-Block
-
 Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
-{ pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
 $gitPath = ResolveLink (GetFullPath "../..")
 
@@ -151,11 +150,9 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
-if (!$fast) {
-    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
-}
+# init.livemd's cells are all pwsh: a plain script run, no notebook kernel.
+Invoke-PwshNotebook init.livemd
 
-Invoke-Dib init.dib
+# The native Rust spiral CLI (apps/spiral/build.ps1 ships it to spiral/workspace/target/release).
 
 { pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") -SkipPreBuild 1 } | Invoke-Block

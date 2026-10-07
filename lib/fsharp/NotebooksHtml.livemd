@@ -1,0 +1,8 @@
+```fsharp
+Formatter.Register<string * string> (
+    (fun (html, _mime) ->
+        html
+    ),
+    "text/html"
+)
+```

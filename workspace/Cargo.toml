@@ -3,6 +3,7 @@ cargo-features = ["profile-rustflags"]
 [workspace]
 resolver = "2"
 members = [
+    "../apps/dir-tree-html",
     "../apps/plot",
     "../lib/math"
 ]
@@ -14,7 +15,6 @@ license-file = "../LICENSE"
 repository = "https://github.com/i574n/polyglot"
 
 [workspace.dependencies]
-fable_library_rust = { path = "../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = [] }
 inline_colorization = ">=0.1,<1"
 chrono = ">=0.4,<1"
 regex = "1.10"

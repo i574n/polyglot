@@ -1,0 +1,299 @@
+union rec entry =
+    | End
+    | File : string * string * i64 * entry
+    | Folder : string * string * entry * entry
+
+union rec child =
+    | ChildEnd
+    | Child : i32 * string * child
+
+nominal root = entry
+
+prototype bytes node : node -> i64
+prototype render node : node -> string
+
+inl (++) (left : string) (right : string) : string = sm.concat left right
+inl (<.) (left : char) (right : char) : bool = !!!!LT(left, right)
+
+inl (~!\\) forall t u. ((args : t), (code : string)) : u =
+    $'__spiral_emit_rust !args !code '
+
+inl host_arg_count () : i32 =
+    !\\((), $'"std::env::args().count() as i32"')
+
+inl host_arg (i : i32) : string =
+    !\\(i, $'"Rc::<str>::from(std::env::args().nth($0 as usize).unwrap_or_default())"')
+
+inl host_listing (path : string) : string =
+    !\\(path, $'"{ let mut out = String::new(); if let Ok(read) = std::fs::read_dir($0.as_ref()) { for entry in read.flatten() { let child = entry.path(); let Some(name) = child.file_name() else { continue }; let name = name.to_string_lossy(); if child.is_dir() { out.push(char::from(49)); } else if child.is_file() { out.push(char::from(48)); } else { continue }; out.push(char::from(32)); out.push_str(&name.len().to_string()); out.push(char::from(10)); out.push_str(&name); } } Rc::<str>::from(out) }"')
+
+inl host_file_len (path : string) : i64 =
+    !\\(path, $'"std::fs::metadata($0.as_ref()).map(|meta| meta.len() as i64).unwrap_or(0)"')
+
+inl host_join (left : string) (right : string) : string =
+    !\\((left, right), $'"Rc::<str>::from(std::path::Path::new($0.as_ref()).join($1.as_ref()).display().to_string())"')
+
+inl host_write_file (path : string) (text : string) : i32 =
+    !\\((path, text), $'"i32::from(std::fs::write($0.as_ref(), $1.as_ref().as_bytes()).is_err())"')
+
+inl host_mkdir (path : string) : i32 =
+    !\\(path, $'"i32::from(std::fs::create_dir_all($0.as_ref()).is_err())"')
+
+inl host_temp () : string =
+    !\\((), $'"Rc::<str>::from(std::env::temp_dir().display().to_string())"')
+
+inl host_process_id () : i64 =
+    !\\((), $'"std::process::id() as i64"')
+
+inl host_unix_nanos () : i64 =
+    !\\((), $'"std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos() as i64"')
+
+inl digit (n : i64) : string =
+    if n =. 0i64 then "0"
+    elif n =. 1i64 then "1"
+    elif n =. 2i64 then "2"
+    elif n =. 3i64 then "3"
+    elif n =. 4i64 then "4"
+    elif n =. 5i64 then "5"
+    elif n =. 6i64 then "6"
+    elif n =. 7i64 then "7"
+    elif n =. 8i64 then "8"
+    elif n =. 9i64 then "9"
+    else "0"
+
+let rec show_i64 (n : i64) : string =
+    inl ch = digit (n %. 10i64)
+    inl rest = n /. 10i64
+    if rest =. 0i64 then ch else show_i64 rest ++ ch
+
+inl pad2 (n : i64) : string =
+    inl text = show_i64 n
+    if n < 10i64 then "0" ++ text else text
+
+inl show_hundredths (n : i64) : string =
+    show_i64 (n /. 100i64) ++ "." ++ pad2 (n %. 100i64)
+
+inl scaled (bytes : i64) (scale : i64) : i64 =
+    (bytes *. 100i64 +. (scale /. 2i64)) /. scale
+
+inl size_label (bytes : i64) : string =
+    if bytes > 1048576i64 then show_hundredths (scaled bytes 1048576i64) ++ " MB"
+    elif bytes > 1024i64 then show_hundredths (scaled bytes 1024i64) ++ " KB"
+    else show_hundredths (scaled bytes 1i64) ++ " B"
+
+inl join_rel (parent : string) (name : string) : string =
+    if (sm.length parent : i32) =. 0i32 then name else parent ++ "/" ++ name
+
+inl digit_value ch : i32 =
+    if ch =. (sm.index "0" 0i32) then 0i32
+    elif ch =. (sm.index "1" 0i32) then 1i32
+    elif ch =. (sm.index "2" 0i32) then 2i32
+    elif ch =. (sm.index "3" 0i32) then 3i32
+    elif ch =. (sm.index "4" 0i32) then 4i32
+    elif ch =. (sm.index "5" 0i32) then 5i32
+    elif ch =. (sm.index "6" 0i32) then 6i32
+    elif ch =. (sm.index "7" 0i32) then 7i32
+    elif ch =. (sm.index "8" 0i32) then 8i32
+    elif ch =. (sm.index "9" 0i32) then 9i32
+    else 0i32
+
+let rec find_nl (text : string) (at : i32) : i32 =
+    if at =. (sm.length text : i32) then at
+    elif (sm.index text at) =. (sm.index "\n" 0i32) then at
+    else find_nl text (at +. 1i32)
+
+let rec parse_digits (text : string) (at : i32) (stop : i32) (acc : i32) : i32 =
+    if at =. stop then acc
+    else parse_digits text (at +. 1i32) stop (acc *. 10i32 +. digit_value (sm.index text at))
+
+let rec parse (listing : string) (at : i32) : child =
+    if at =. (sm.length listing : i32) then ChildEnd
+    else
+        inl nl_at = find_nl listing (at +. 2i32)
+        inl nbytes = parse_digits listing (at +. 2i32) nl_at 0i32
+        inl name_from = nl_at +. 1i32
+        inl name = sm.slice listing {from=name_from; to=name_from +. nbytes -. 1i32}
+        inl flag = if (sm.index listing at) =. (sm.index "1" 0i32) then 1i32 else 0i32
+        Child (flag, name, parse listing (name_from +. nbytes))
+
+let rec cmp_at (left : string) (right : string) (at : i32) : i32 =
+    inl left_len = sm.length left : i32
+    inl right_len = sm.length right : i32
+    if at =. left_len && at =. right_len then 0i32
+    elif at =. left_len then -1i32
+    elif at =. right_len then 1i32
+    else
+        inl left_ch = sm.index left at
+        inl right_ch = sm.index right at
+        if left_ch =. right_ch then cmp_at left right (at +. 1i32)
+        elif left_ch <. right_ch then -1i32
+        else 1i32
+
+inl name_before (left : string) (right : string) : bool =
+    (cmp_at left right 0i32) < 0i32
+
+inl child_before (left_dir : i32) (left_name : string) (right_dir : i32) (right_name : string) : bool =
+    if left_dir =. right_dir then name_before left_name right_name else left_dir > right_dir
+
+let rec insert (is_dir : i32) (name : string) (rest : child) : child =
+    match rest with
+    | ChildEnd => Child (is_dir, name, ChildEnd)
+    | Child (other_dir, other_name, more) =>
+        if child_before is_dir name other_dir other_name then Child (is_dir, name, rest)
+        else Child (other_dir, other_name, insert is_dir name more)
+
+let rec sort (items : child) : child =
+    match items with
+    | ChildEnd => ChildEnd
+    | Child (is_dir, name, more) => insert is_dir name (sort more)
+
+inl anchor (icon : string) (href : string) (text : string) (size : i64) : string =
+    inl q = "\""
+    icon ++ " <a href=" ++ q ++ href ++ q ++ ">" ++ text ++ "</a><span> (" ++ size_label size ++ ")</span>"
+
+let rec folder_bytes (item : entry) : i64 =
+    match item with
+    | End => 0i64
+    | File (_, _, size, next) => size +. folder_bytes next
+    | Folder (_, _, children, next) => folder_bytes children +. folder_bytes next
+
+instance bytes entry = fun item => folder_bytes item
+instance bytes root = fun (root items) => bytes items
+
+let rec html_chain (item : entry) : string =
+    match item with
+    | End => ""
+    | File (name, parent, size, next) =>
+        "<div>" ++ anchor "&#128196;" (join_rel parent name) name size ++ "</div>" ++ html_chain next
+    | Folder (name, rel, children, next) =>
+        inl q = "\""
+        "<details open=" ++ q ++ "true" ++ q ++ "><summary>" ++ anchor "&#128194;" rel name (bytes children) ++ "</summary><div>" ++ html_chain children ++ "</div></details>" ++ html_chain next
+
+inl doc_head () : string = "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\nbody {\n    background-color: #222;\n    color: #ccc;\n}\na {\n  color: #777;\n  font-size: 15px;\n}\nspan {\n  font-size: 11px;\n}\ndiv > div {\n  padding-left: 10px;\n}\ndetails > div {\n  padding-left: 19px;\n}\n  </style>\n</head>\n<body>\n  <div>"
+inl doc_tail () : string = "</div>\n</body>\n</html>\n"
+
+instance render entry = fun item => html_chain item
+instance render root = fun (root items) => render items
+
+inl page (tree : root) : string = doc_head () ++ render tree ++ doc_tail ()
+
+let rec chain (path : string) (rel : string) (items : child) : entry =
+    match items with
+    | ChildEnd => End
+    | Child (is_dir, name, more) =>
+        inl next = chain path rel more
+        if is_dir =. 1i32 then
+            inl child_path = host_join path name
+            inl child_rel = join_rel rel name
+            inl nested = chain child_path child_rel (sort (parse (host_listing child_path) 0i32))
+            Folder (name, child_rel, nested, next)
+        else
+            File (name, rel, host_file_len (host_join path name), next)
+
+inl read_tree (dir : string) : root =
+    root (chain dir "" (sort (parse (host_listing dir) 0i32)))
+
+let rec flag_at (name : string) (index : i32) (count : i32) : i32 =
+    if index =. count then -1i32
+    elif (host_arg index) =. name then index
+    else flag_at name (index +. 1i32) count
+
+inl argument (name : string) : i32 =
+    inl found = flag_at name 1i32 (host_arg_count ())
+    if found =. -1i32 then -1i32
+    elif (found +. 1i32) < (host_arg_count ()) then found +. 1i32
+    else -1i32
+
+let rec last_sep (text : string) (at : i32) (found : i32) : i32 =
+    if at =. (sm.length text : i32) then found
+    else
+        inl ch = sm.index text at
+        inl next =
+            if ch =. (sm.index "/" 0i32) then at
+            elif ch =. (sm.index "\\" 0i32) then at
+            else found
+        last_sep text (at +. 1i32) next
+
+inl parent_text (path : string) : string =
+    inl sep = last_sep path 0i32 -1i32
+    if sep =. -1i32 then ""
+    else
+        inl parent = sm.slice path {from=0i32; to=sep -. 1i32}
+        if (sm.length parent : i32) =. 2i32 && (sm.index parent 1i32) =. (sm.index ":" 0i32) then
+            sm.slice path {from=0i32; to=sep}
+        else parent
+
+inl host_write (path : string) (text : string) : i32 =
+    inl parent = parent_text path
+    inl made = if (sm.length parent : i32) =. 0i32 then 0i32 else host_mkdir parent
+    if made =. 0i32 then host_write_file path text else made
+
+let rec times (piece : string) (n : i64) : string =
+    if n <= 0i64 then "" else piece ++ times piece (n -. 1i64)
+
+let rec lay (dir : string) (n : i64) : i32 =
+    if n < 0i64 then 0i32
+    else
+        inl _ = host_mkdir dir
+        inl mark = digit n
+        inl _ = host_write (host_join dir "file.txt") (times mark (n +. 1i64))
+        lay (host_join dir mark) (n -. 1i64)
+
+inl host_unique () : string =
+    show_i64 (host_process_id ()) ++ "-" ++ show_i64 (host_unix_nanos ())
+
+inl fresh () : string =
+    host_join (host_temp ()) (host_unique ())
+
+inl fixture () : string =
+    inl dir = fresh ()
+    inl _ = lay (host_join dir "_.root") 3i64
+    dir
+
+inl order_fixture () : string =
+    inl dir = fresh ()
+    inl _ = host_mkdir (host_join dir "m")
+    inl _ = host_write (host_join dir "b.txt") "x"
+    inl _ = host_write (host_join dir "a.txt") "yy"
+    inl _ = host_write (host_join (host_join dir "m") "file.txt") "z"
+    dir
+
+inl same (got : string) (want : string) (dump : string) : i32 =
+    if got =. want then 0i32
+    else
+        inl _ = host_write (host_join (host_temp ()) dump) got
+        1i32
+
+inl fixture_body () : string = "<details open=\"true\"><summary>&#128194; <a href=\"_.root\">_.root</a><span> (10.00 B)</span></summary><div><details open=\"true\"><summary>&#128194; <a href=\"_.root/3\">3</a><span> (6.00 B)</span></summary><div><details open=\"true\"><summary>&#128194; <a href=\"_.root/3/2\">2</a><span> (3.00 B)</span></summary><div><details open=\"true\"><summary>&#128194; <a href=\"_.root/3/2/1\">1</a><span> (1.00 B)</span></summary><div><div>&#128196; <a href=\"_.root/3/2/1/file.txt\">file.txt</a><span> (1.00 B)</span></div></div></details><div>&#128196; <a href=\"_.root/3/2/file.txt\">file.txt</a><span> (2.00 B)</span></div></div></details><div>&#128196; <a href=\"_.root/3/file.txt\">file.txt</a><span> (3.00 B)</span></div></div></details><div>&#128196; <a href=\"_.root/file.txt\">file.txt</a><span> (4.00 B)</span></div></div></details>"
+inl order_body () : string = "<details open=\"true\"><summary>&#128194; <a href=\"m\">m</a><span> (1.00 B)</span></summary><div><div>&#128196; <a href=\"m/file.txt\">file.txt</a><span> (1.00 B)</span></div></div></details><div>&#128196; <a href=\"a.txt\">a.txt</a><span> (2.00 B)</span></div><div>&#128196; <a href=\"b.txt\">b.txt</a><span> (1.00 B)</span></div>"
+
+inl self_test () : i32 =
+    inl tree = read_tree (fixture ())
+    inl page_ok = same (page tree) (doc_head () ++ fixture_body () ++ doc_tail ()) "dir-tree-html-got.html"
+    inl total_ok = if (bytes tree) =. 10i64 then 0i32 else 3i32
+    inl order_ok = same (page (read_tree (order_fixture ()))) (doc_head () ++ order_body () ++ doc_tail ()) "dir-tree-html-order-got.html"
+    inl labels_ok =
+        if (size_label 1024i64) =. "1024.00 B" then
+            if (size_label 1025i64) =. "1.00 KB" then
+                if (size_label 1048576i64) =. "1024.00 KB" then
+                    if (size_label 1048577i64) =. "1.00 MB" then 0i32 else 1i32
+                else 1i32
+            else 1i32
+        else 1i32
+    if page_ok =. 0i32 then
+        if total_ok =. 0i32 then
+            if order_ok =. 0i32 then labels_ok else order_ok
+        else total_ok
+    else page_ok
+
+inl run () : i32 =
+    inl dir_at = argument "--dir"
+    inl html_at = argument "--html"
+    if dir_at =. -1i32 then 2i32
+    elif html_at =. -1i32 then 2i32
+    else host_write (host_arg html_at) (page (read_tree (host_arg dir_at)))
+
+inl main () : i32 =
+    if (host_arg_count ()) =. 2i32 then
+        if (host_arg 1i32) =. "--self-test" then self_test () else run ()
+    else run ()
