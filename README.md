@@ -252,7 +252,7 @@ The repository is organized into several key directories, each serving a distinc
 
 - **`_config`, `_devcontainer`, `_github`**: These directories contain configuration files and scripts essential for project setup, containerization, and GitHub workflows, facilitating a seamless development experience.
 - **`apps`**: A significant portion of the repository, showcasing a variety of applications built using Spiral. Each subdirectory within `apps` represents a different application, demonstrating adaptability across different domains and integration with other programming languages and technologies. Notable examples include:
-  - **`builder`**, **`chat`**, **`dir-tree-html`**: These directories contain the source code, compiled artifacts, and documentation for specific applications, highlighting Spiral's capability to build complex, real-world projects.
+  - **`chat`**: This directory contains the source code, compiled artifacts, and documentation for specific applications, highlighting Spiral's capability to build complex, real-world projects.
   - **Subdirectories like `dist`**, **`src`**, and **`tests`** within each app further detail the structure, separating the build output, source code, and test suites, respectively.
 - **`lib`**: Contains libraries and utility functions written in Spiral and other languages, showcasing how Spiral can be used to create reusable components. This directory serves as a testament to Spiral's power in abstracting complex logic into easily understandable and reusable modules.
 - **`scripts`**: Houses utility scripts for building, publishing, and managing the project. This directory emphasizes automation and tooling in modern software development, showcasing Spiral's integration into broader development workflows.

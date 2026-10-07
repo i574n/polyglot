@@ -31,8 +31,6 @@ function CheckJson {
 
 CheckToml "../workspace/Cargo.toml" `-w
 
-CheckToml "../apps/dir-tree-html/Cargo.toml"
-
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson ".."
