@@ -698,153 +698,153 @@ int32_t render0(Array0 * v0, Array1 * v1, double v2, double v3, double v4, int32
     
     ArrayDecref0(v0);
     
-    printf("%s", "u001b[H");
+    printf("u001b[H");
     
     
-    Mut2 * v19;
-    v19 = MutCreate2(v5);
+    Mut2 * v16;
+    v16 = MutCreate2(v5);
     
     
-    Mut0 * v20;
-    v20 = MutCreate0(0l);
+    Mut0 * v17;
+    v17 = MutCreate0(0l);
     
     
     
-    while (method_while4(v20)){
+    while (method_while4(v17)){
         
         
-        int32_t v22;
-        v22 = v20->v0;
-        
-        
-        
+        int32_t v19;
+        v19 = v17->v0;
         
         
         
-        Mut0 * v23;
-        v23 = MutCreate0(0l);
         
         
         
-        while (method_while5(v23)){
+        Mut0 * v20;
+        v20 = MutCreate0(0l);
+        
+        
+        
+        while (method_while5(v20)){
+            
+            
+            int32_t v22;
+            v22 = v20->v0;
+            
+            
+            
+            
+            
+            
+            int32_t v23;
+            v23 = v19 * 160l;
+            
+            
+            int32_t v24;
+            v24 = v22 + v23;
             
             
             int32_t v25;
-            v25 = v23->v0;
+            v25 = v1->ptr[v24];
             
             
+            bool v26;
+            v26 = v25 == 59l;
             
             
-            
-            
-            int32_t v26;
-            v26 = v22 * 160l;
-            
-            
-            int32_t v27;
-            v27 = v25 + v26;
-            
-            
-            int32_t v28;
-            v28 = v1->ptr[v27];
-            
-            
-            bool v29;
-            v29 = v28 == 59l;
-            
-            
-            String * v47;
-            if (v29){
+            String * v44;
+            if (v26){
                 
                 
-                String * v30;
-                v30 = StringLit(2, ";");
+                String * v27;
+                v27 = StringLit(2, ";");
                 
                 
-                v47 = v30;
+                v44 = v27;
             } else {
                 
                 
-                bool v31;
-                v31 = v28 == 92l;
+                bool v28;
+                v28 = v25 == 92l;
                 
                 
-                if (v31){
+                if (v28){
                     
                     
-                    String * v32;
-                    v32 = StringLit(2, "\\");
+                    String * v29;
+                    v29 = StringLit(2, "\\");
                     
                     
-                    v47 = v32;
+                    v44 = v29;
                 } else {
                     
                     
-                    bool v33;
-                    v33 = v28 == 47l;
+                    bool v30;
+                    v30 = v25 == 47l;
                     
                     
-                    if (v33){
+                    if (v30){
                         
                         
-                        String * v34;
-                        v34 = StringLit(2, "/");
+                        String * v31;
+                        v31 = StringLit(2, "/");
                         
                         
-                        v47 = v34;
+                        v44 = v31;
                     } else {
                         
                         
-                        bool v35;
-                        v35 = v28 == 61l;
+                        bool v32;
+                        v32 = v25 == 61l;
                         
                         
-                        if (v35){
+                        if (v32){
                             
                             
-                            String * v36;
-                            v36 = StringLit(2, "=");
+                            String * v33;
+                            v33 = StringLit(2, "=");
                             
                             
-                            v47 = v36;
+                            v44 = v33;
                         } else {
                             
                             
-                            bool v37;
-                            v37 = v28 == 62l;
+                            bool v34;
+                            v34 = v25 == 62l;
                             
                             
-                            if (v37){
+                            if (v34){
                                 
                                 
-                                String * v38;
-                                v38 = StringLit(2, ">");
+                                String * v35;
+                                v35 = StringLit(2, ">");
                                 
                                 
-                                v47 = v38;
+                                v44 = v35;
                             } else {
                                 
                                 
-                                bool v39;
-                                v39 = v28 == 60l;
+                                bool v36;
+                                v36 = v25 == 60l;
                                 
                                 
-                                if (v39){
+                                if (v36){
                                     
                                     
-                                    String * v40;
-                                    v40 = StringLit(2, "<");
+                                    String * v37;
+                                    v37 = StringLit(2, "<");
                                     
                                     
-                                    v47 = v40;
+                                    v44 = v37;
                                 } else {
                                     
                                     
-                                    String * v41;
-                                    v41 = StringLit(2, ".");
+                                    String * v38;
+                                    v38 = StringLit(2, ".");
                                     
                                     
-                                    v47 = v41;
+                                    v44 = v38;
                                 }
                             }
                         }
@@ -854,35 +854,35 @@ int32_t render0(Array0 * v0, Array1 * v1, double v2, double v3, double v4, int32
             
             
             
-            printf("%s", v47->ptr);
+            printf("%s", v44->ptr);
             
-            StringDecref(v47);
+            StringDecref(v44);
+            int32_t v45;
+            v45 = v16->v0;
+            
+            
+            int32_t v46;
+            v46 = v45 * 31l;
+            
+            
+            int32_t v47;
+            v47 = v46 + v25;
+            
+            
             int32_t v48;
-            v48 = v19->v0;
+            v48 = v47 % 1000003l;
+            
+            
+            
+            AssignMut0(&(v16->v0), v48);
             
             
             int32_t v49;
-            v49 = v48 * 31l;
-            
-            
-            int32_t v50;
-            v50 = v49 + v28;
-            
-            
-            int32_t v51;
-            v51 = v50 % 1000003l;
+            v49 = v22 + 1l;
             
             
             
-            AssignMut0(&(v19->v0), v51);
-            
-            
-            int32_t v52;
-            v52 = v25 + 1l;
-            
-            
-            
-            AssignMut0(&(v23->v0), v52);
+            AssignMut0(&(v20->v0), v49);
             
             
             
@@ -892,17 +892,17 @@ int32_t render0(Array0 * v0, Array1 * v1, double v2, double v3, double v4, int32
         
         
         
-        MutDecref0(v23);
+        MutDecref0(v20);
         
-        printf("%s", "\n");
-        
-        
-        int32_t v56;
-        v56 = v22 + 1l;
+        printf("\n");
         
         
+        int32_t v50;
+        v50 = v19 + 1l;
         
-        AssignMut0(&(v20->v0), v56);
+        
+        
+        AssignMut0(&(v17->v0), v50);
         
         
         
@@ -912,202 +912,17 @@ int32_t render0(Array0 * v0, Array1 * v1, double v2, double v3, double v4, int32
     
     
     
-    MutDecref0(v20);
-    int32_t v57;
-    v57 = v19->v0;
+    MutDecref0(v17);
+    int32_t v51;
+    v51 = v16->v0;
     
-    MutDecref2(v19);
-    return v57;
+    MutDecref2(v16);
+    return v51;
 }
 static inline void AssignMut2(double * a0, double b0, double * a1, double b1, double * a2, double b2){
     
     
     *a0 = b0; *a1 = b1; *a2 = b2;
-}
-void print_digits3(int32_t v0){
-    
-    
-    bool v1;
-    v1 = v0 >= 10l;
-    
-    
-    
-    if (v1){
-        
-        
-        int32_t v2;
-        v2 = v0 / 10l;
-        
-        
-        print_digits3(v2);
-    } else {
-        
-        
-        
-    }
-    
-    
-    int32_t v3;
-    v3 = v0 % 10l;
-    
-    
-    bool v4;
-    v4 = v3 == 0l;
-    
-    
-    String * v31;
-    if (v4){
-        
-        
-        String * v5;
-        v5 = StringLit(2, "0");
-        
-        
-        v31 = v5;
-    } else {
-        
-        
-        bool v6;
-        v6 = v3 == 1l;
-        
-        
-        if (v6){
-            
-            
-            String * v7;
-            v7 = StringLit(2, "1");
-            
-            
-            v31 = v7;
-        } else {
-            
-            
-            bool v8;
-            v8 = v3 == 2l;
-            
-            
-            if (v8){
-                
-                
-                String * v9;
-                v9 = StringLit(2, "2");
-                
-                
-                v31 = v9;
-            } else {
-                
-                
-                bool v10;
-                v10 = v3 == 3l;
-                
-                
-                if (v10){
-                    
-                    
-                    String * v11;
-                    v11 = StringLit(2, "3");
-                    
-                    
-                    v31 = v11;
-                } else {
-                    
-                    
-                    bool v12;
-                    v12 = v3 == 4l;
-                    
-                    
-                    if (v12){
-                        
-                        
-                        String * v13;
-                        v13 = StringLit(2, "4");
-                        
-                        
-                        v31 = v13;
-                    } else {
-                        
-                        
-                        bool v14;
-                        v14 = v3 == 5l;
-                        
-                        
-                        if (v14){
-                            
-                            
-                            String * v15;
-                            v15 = StringLit(2, "5");
-                            
-                            
-                            v31 = v15;
-                        } else {
-                            
-                            
-                            bool v16;
-                            v16 = v3 == 6l;
-                            
-                            
-                            if (v16){
-                                
-                                
-                                String * v17;
-                                v17 = StringLit(2, "6");
-                                
-                                
-                                v31 = v17;
-                            } else {
-                                
-                                
-                                bool v18;
-                                v18 = v3 == 7l;
-                                
-                                
-                                if (v18){
-                                    
-                                    
-                                    String * v19;
-                                    v19 = StringLit(2, "7");
-                                    
-                                    
-                                    v31 = v19;
-                                } else {
-                                    
-                                    
-                                    bool v20;
-                                    v20 = v3 == 8l;
-                                    
-                                    
-                                    if (v20){
-                                        
-                                        
-                                        String * v21;
-                                        v21 = StringLit(2, "8");
-                                        
-                                        
-                                        v31 = v21;
-                                    } else {
-                                        
-                                        
-                                        String * v22;
-                                        v22 = StringLit(2, "9");
-                                        
-                                        
-                                        v31 = v22;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    
-    printf("%s", v31->ptr);
-    
-    StringDecref(v31);
-    return ;
 }
 int32_t main(){
     
@@ -1268,32 +1083,12 @@ int32_t main(){
     
     
     MutDecref0(v12);
-    
-    printf("%s", "cube: ");
-    
-    
-    int32_t v30;
-    v30 = 60l;
-    
-    
-    
-    print_digits3(v30);
-    
-    
-    
-    printf("%s", " frames, checksum ");
-    
-    
-    int32_t v34;
-    v34 = v11->v0;
+    int32_t v27;
+    v27 = v11->v0;
     
     MutDecref2(v11);
     
-    print_digits3(v34);
-    
-    
-    
-    printf("%s", "\n");
+    printf("cube: %d frames, checksum %d\n", (int)60l, (int)v27);
     
     
     return 0l;

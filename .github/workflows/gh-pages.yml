@@ -31,8 +31,6 @@ jobs:
             - uses: actions/setup-dotnet@v5
               with:
                   dotnet-version: "9.0.202"
-                  cache: true
-                  cache-dependency-path: paket.lock
 
             - uses: actions/setup-node@v6
               with:

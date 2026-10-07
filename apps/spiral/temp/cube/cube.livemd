@@ -1,8 +1,8 @@
 # cube
 Spinning ASCII cubes: three cubes rotated in 3D and projected through a z-buffer into a 160 x 44 character
 frame (the classic rotating-cube demo). Core-only Spiral: loops, mutable cells, arrays and float math run on every
-backend; the only effect is printing. A run renders `frames` frames, each preceded by ESC[H (cursor home, so a
-terminal redraws in place), then prints a checksum of all frames.
+backend; the only effect is printing (the portable `!!!!Printf`). A run renders `frames` frames, each preceded
+by ESC[H (cursor home, so a terminal redraws in place), then prints a checksum of all frames.
 ## cube
 ### rotation
 
@@ -51,29 +51,6 @@ Spiral.Kino.eval!(
   inl cos64 (x : f64) : f64 = !!!!Cos(x)
   inl to_i32 (x : f64) : i32 = !!!!Conv(`i32, x)
   inl to_f64 (x : i32) : f64 = !!!!Conv(`f64, x)
-  """,
-  timeout: 300_000
-)
-```
-
-### print
-Writes text to stdout. `Printf` covers C, Rust, TypeScript and Delphi; F#, Python and Lua write directly.
-
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"inl print (text : string) : () =\n    !!!!BackendSwitch({\n        C = fun () => !!!!Printf(\"%s\", text) : ()\n        Rust = fun () => !!!!Printf(\"%s\", text) : ()\n        TypeScript = fun () => !!!!Printf(\"%s\", text) : ()\n        Delphi = fun () => !!!!Printf(\"%s\", text) : ()\n        Fsharp = fun () => $\"System.Console.Write(!text)\" : ()\n        Python = fun () => $\"print(!text, end='')\" : ()\n        Lua = fun () => $\"io.write(!text)\" : ()\n    })","print_code":false},"livebook_object":"smart_cell"} -->
-
-```elixir
-Spiral.Kino.eval!(
-  ~S"""
-  inl print (text : string) : () =
-      !!!!BackendSwitch({
-          C = fun () => !!!!Printf("%s", text) : ()
-          Rust = fun () => !!!!Printf("%s", text) : ()
-          TypeScript = fun () => !!!!Printf("%s", text) : ()
-          Delphi = fun () => !!!!Printf("%s", text) : ()
-          Fsharp = fun () => $"System.Console.Write(!text)" : ()
-          Python = fun () => $"print(!text, end='')" : ()
-          Lua = fun () => $"io.write(!text)" : ()
-      })
   """,
   timeout: 300_000
 )
@@ -202,7 +179,7 @@ Spiral.Kino.eval!(
 ### render
 Clears the buffers, draws the three cubes, prints the frame row by row and returns the updated checksum.
 
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"let render (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (checksum : i32) : i32 =\n    inl size = width () * height ()\n    loopw.for' {from=0i32; nearTo=size} fun i =>\n        set depth i 0f64\n        set chars i (background ())\n    draw_cube depth chars rot 20f64 (0f64 - 40f64)\n    draw_cube depth chars rot 10f64 10f64\n    draw_cube depth chars rot 5f64 40f64\n    print \"\\u001b[H\"\n    inl sum = mut checksum\n    loopw.for' {from=0i32; nearTo=height ()} fun row =>\n        loopw.for' {from=0i32; nearTo=width ()} fun col =>\n            inl ch = index chars (col + row * width ())\n            print (cell_text ch)\n            sum <- (*sum * 31i32 + ch) % 1000003i32\n        print \"\\n\"\n    *sum","print_code":false},"livebook_object":"smart_cell"} -->
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"let render (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (checksum : i32) : i32 =\n    inl size = width () * height ()\n    loopw.for' {from=0i32; nearTo=size} fun i =>\n        set depth i 0f64\n        set chars i (background ())\n    draw_cube depth chars rot 20f64 (0f64 - 40f64)\n    draw_cube depth chars rot 10f64 10f64\n    draw_cube depth chars rot 5f64 40f64\n    !!!!Printf(\"\\u001b[H\")\n    inl sum = mut checksum\n    loopw.for' {from=0i32; nearTo=height ()} fun row =>\n        loopw.for' {from=0i32; nearTo=width ()} fun col =>\n            inl ch = index chars (col + row * width ())\n            !!!!Printf(\"%s\", cell_text ch)\n            sum <- (*sum * 31i32 + ch) % 1000003i32\n        !!!!Printf(\"\\n\")\n    *sum","print_code":false},"livebook_object":"smart_cell"} -->
 
 ```elixir
 Spiral.Kino.eval!(
@@ -215,14 +192,14 @@ Spiral.Kino.eval!(
       draw_cube depth chars rot 20f64 (0f64 - 40f64)
       draw_cube depth chars rot 10f64 10f64
       draw_cube depth chars rot 5f64 40f64
-      print "\u001b[H"
+      !!!!Printf("\u001b[H")
       inl sum = mut checksum
       loopw.for' {from=0i32; nearTo=height ()} fun row =>
           loopw.for' {from=0i32; nearTo=width ()} fun col =>
               inl ch = index chars (col + row * width ())
-              print (cell_text ch)
+              !!!!Printf("%s", cell_text ch)
               sum <- (*sum * 31i32 + ch) % 1000003i32
-          print "\n"
+          !!!!Printf("\n")
       *sum
   """,
   timeout: 300_000
@@ -242,27 +219,9 @@ Spiral.Kino.eval!(
 )
 ```
 
-### print_digits
-Prints a non-negative i32 in decimal (string arguments only: the C backend's Printf takes strings).
-
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"let rec print_digits (n : i32) : () =\n    if n >= 10i32 then print_digits (n / 10i32)\n    inl d = n % 10i32\n    inl text = if d = 0i32 then \"0\" elif d = 1i32 then \"1\" elif d = 2i32 then \"2\" elif d = 3i32 then \"3\" elif d = 4i32 then \"4\" elif d = 5i32 then \"5\" elif d = 6i32 then \"6\" elif d = 7i32 then \"7\" elif d = 8i32 then \"8\" else \"9\"\n    print text","print_code":false},"livebook_object":"smart_cell"} -->
-
-```elixir
-Spiral.Kino.eval!(
-  ~S"""
-  let rec print_digits (n : i32) : () =
-      if n >= 10i32 then print_digits (n / 10i32)
-      inl d = n % 10i32
-      inl text = if d = 0i32 then "0" elif d = 1i32 then "1" elif d = 2i32 then "2" elif d = 3i32 then "3" elif d = 4i32 then "4" elif d = 5i32 then "5" elif d = 6i32 then "6" elif d = 7i32 then "7" elif d = 8i32 then "8" else "9"
-      print text
-  """,
-  timeout: 300_000
-)
-```
-
 ### main
 
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"inl main () : i32 =\n    inl frames = 60i32\n    inl size = width () * height ()\n    inl depth : a i32 f64 = am.init size (fun _ => 0f64)\n    inl chars : a i32 i32 = am.init size (fun _ => background ())\n    inl rot = mut (rotation { a = 0f64; b = 0f64; c = 0f64 })\n    inl checksum = mut 0i32\n    loopw.for' {from=0i32; nearTo=frames} fun _ =>\n        checksum <- render depth chars *rot *checksum\n        rot <- next_rotation *rot\n    print \"cube: \"\n    print_digits frames\n    print \" frames, checksum \"\n    print_digits *checksum\n    print \"\\n\"\n    0i32","print_code":false},"livebook_object":"smart_cell"} -->
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"inl main () : i32 =\n    inl frames = 60i32\n    inl size = width () * height ()\n    inl depth : a i32 f64 = am.init size (fun _ => 0f64)\n    inl chars : a i32 i32 = am.init size (fun _ => background ())\n    inl rot = mut (rotation { a = 0f64; b = 0f64; c = 0f64 })\n    inl checksum = mut 0i32\n    loopw.for' {from=0i32; nearTo=frames} fun _ =>\n        checksum <- render depth chars *rot *checksum\n        rot <- next_rotation *rot\n    inl checksum = *checksum\n    !!!!Printf(\"cube: %d frames, checksum %d\\n\", frames, checksum)\n    0i32","print_code":false},"livebook_object":"smart_cell"} -->
 
 ```elixir
 Spiral.Kino.eval!(
@@ -277,11 +236,8 @@ Spiral.Kino.eval!(
       loopw.for' {from=0i32; nearTo=frames} fun _ =>
           checksum <- render depth chars *rot *checksum
           rot <- next_rotation *rot
-      print "cube: "
-      print_digits frames
-      print " frames, checksum "
-      print_digits *checksum
-      print "\n"
+      inl checksum = *checksum
+      !!!!Printf("cube: %d frames, checksum %d\n", frames, checksum)
       0i32
   """,
   timeout: 300_000

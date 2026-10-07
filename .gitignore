@@ -12,6 +12,7 @@ obj/
 target/
 dist_extension/
 tmp/
+# leftovers of the former paket setup (removed 2026-10-07) in existing checkouts
 paket-files/
 .paket/
 .history/

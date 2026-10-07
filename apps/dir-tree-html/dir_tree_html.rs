@@ -1,4 +1,4 @@
-#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_patterns, unreachable_code, while_true)]
+#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_code, while_true)]
 use std::cell::RefCell;
 use std::rc::Rc;
 fn string_slice(value: &str, from: i64, to: i64) -> Rc<str> {
@@ -40,7 +40,7 @@ impl UH1 {
     }
 }
 fn method0(mut v0: i64) -> Rc<str> {
-    let mut v1: i64 = v0 % 10i64;
+    let mut v1: i64 = v0.wrapping_rem(10i64);
     let mut v2: bool = v1 == 0i64;
     let mut v32: Rc<str> = if v2 {
         let mut v3: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("0"); } LIT.with(|lit| lit.clone()) };
@@ -103,7 +103,7 @@ fn method0(mut v0: i64) -> Rc<str> {
             }
         }
     };
-    let mut v33: i64 = v0 / 10i64;
+    let mut v33: i64 = v0.wrapping_div(10i64);
     let mut v34: bool = v33 == 0i64;
     if v34 {
         v32.clone()
@@ -119,7 +119,7 @@ fn method2(mut v0: Rc<str>, mut v1: i64) -> Rc<str> {
         let mut v3: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
         v3.clone()
     } else {
-        let mut v4: i64 = v1 - 1i64;
+        let mut v4: i64 = v1.wrapping_sub(1i64);
         let mut v5: Rc<str> = method2(v0.clone(), v4);
         let mut v6: Rc<str> = Rc::<str>::from(format!("{}{}", v0.clone(), v5.clone()));
         v6.clone()
@@ -144,7 +144,7 @@ fn method3(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
                     v2
                 }
             };
-            let mut v10: i32 = v1 + 1i32;
+            let mut v10: i32 = v1.wrapping_add(1i32);
             (v0, v1, v2) = (v0.clone(), v10, v9);
             continue;
         }
@@ -221,7 +221,7 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
             };
             let mut v37: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("file.txt"); } LIT.with(|lit| lit.clone()) };
             let mut v38: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v37.as_ref()).display().to_string());
-            let mut v39: i64 = v1 + 1i64;
+            let mut v39: i64 = v1.wrapping_add(1i64);
             let mut v40: Rc<str> = method2(v35.clone(), v39);
             let mut v41: i32 = 0i32;
             let mut v42: i32 = -1i32;
@@ -231,7 +231,7 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
                 let mut v45: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
                 v45.clone()
             } else {
-                let mut v46: i32 = v43 - 1i32;
+                let mut v46: i32 = v43.wrapping_sub(1i32);
                 let mut v47: Rc<str> = string_slice(&v38.clone(), 0i32 as i64, v46 as i64);
                 let mut v48: i32 = (v47.clone().len() as i32);
                 let mut v49: bool = v48 == 2i32;
@@ -265,7 +265,7 @@ fn method1(mut v0: Rc<str>, mut v1: i64) -> i32 {
                 v60
             };
             let mut v66: Rc<str> = Rc::<str>::from(std::path::Path::new(v0.as_ref()).join(v35.as_ref()).display().to_string());
-            let mut v67: i64 = v1 - 1i64;
+            let mut v67: i64 = v1.wrapping_sub(1i64);
             (v0, v1) = (v66.clone(), v67);
             continue;
         }
@@ -283,7 +283,7 @@ fn method5(mut v0: Rc<str>, mut v1: i32) -> i32 {
             if v5 {
                 return v1;
             } else {
-                let mut v6: i32 = v1 + 1i32;
+                let mut v6: i32 = v1.wrapping_add(1i32);
                 (v0, v1) = (v0.clone(), v6);
                 continue;
             }
@@ -296,8 +296,8 @@ fn method6(mut v0: Rc<str>, mut v1: i32, mut v2: i32, mut v3: i32) -> i32 {
         if v4 {
             return v3;
         } else {
-            let mut v5: i32 = v1 + 1i32;
-            let mut v6: i32 = v3 * 10i32;
+            let mut v5: i32 = v1.wrapping_add(1i32);
+            let mut v6: i32 = v3.wrapping_mul(10i32);
             let mut v7: u8 = v0.clone().as_bytes()[v1 as usize];
             let mut v8: bool = v7 == b'0';
             let mut v27: i32 = if v8 {
@@ -350,7 +350,7 @@ fn method6(mut v0: Rc<str>, mut v1: i32, mut v2: i32, mut v3: i32) -> i32 {
                     }
                 }
             };
-            let mut v28: i32 = v6 + v27;
+            let mut v28: i32 = v6.wrapping_add(v27);
             (v0, v1, v2, v3) = (v0.clone(), v5, v2, v28);
             continue;
         }
@@ -362,13 +362,13 @@ fn method4(mut v0: Rc<str>, mut v1: i32) -> Rc<UH0> {
     if v3 {
         { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) }
     } else {
-        let mut v5: i32 = v1 + 2i32;
+        let mut v5: i32 = v1.wrapping_add(2i32);
         let mut v6: i32 = method5(v0.clone(), v5);
         let mut v7: i32 = 0i32;
         let mut v8: i32 = method6(v0.clone(), v5, v6, v7);
-        let mut v9: i32 = v6 + 1i32;
-        let mut v10: i32 = v9 + v8;
-        let mut v11: i32 = v10 - 1i32;
+        let mut v9: i32 = v6.wrapping_add(1i32);
+        let mut v10: i32 = v9.wrapping_add(v8);
+        let mut v11: i32 = v10.wrapping_sub(1i32);
         let mut v12: Rc<str> = string_slice(&v0.clone(), v9 as i64, v11 as i64);
         let mut v13: u8 = v0.clone().as_bytes()[v1 as usize];
         let mut v14: bool = v13 == b'1';
@@ -406,7 +406,7 @@ fn method9(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: i32) -> i32 {
                     let mut v10: u8 = v1.clone().as_bytes()[v2 as usize];
                     let mut v11: bool = v9 == v10;
                     if v11 {
-                        let mut v12: i32 = v2 + 1i32;
+                        let mut v12: i32 = v2.wrapping_add(1i32);
                         (v0, v1, v2) = (v0.clone(), v1.clone(), v12);
                         continue;
                     } else {
@@ -425,7 +425,7 @@ fn method9(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: i32) -> i32 {
 fn method8(mut v0: i32, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH0> {
     match &*v2 {
         UH0::UH0_1(v5, v6, v7) => { // Child
-            let mut v5: i32 = v5.clone();
+            let mut v5: i32 = *v5;
             let mut v6: Rc<str> = v6.clone();
             let mut v7: Rc<UH0> = v7.clone();
             let mut v8: bool = v0 == v5;
@@ -449,13 +449,12 @@ fn method8(mut v0: i32, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH0> {
             let mut v3: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) };
             Rc::new(UH0::UH0_1(v0, v1.clone(), v3.clone()))
         }
-        _ => unreachable!(),
     }
 }
 fn method7(mut v0: Rc<UH0>) -> Rc<UH0> {
     match &*v0 {
         UH0::UH0_1(v2, v3, v4) => { // Child
-            let mut v2: i32 = v2.clone();
+            let mut v2: i32 = *v2;
             let mut v3: Rc<str> = v3.clone();
             let mut v4: Rc<UH0> = v4.clone();
             let mut v5: Rc<UH0> = method7(v4.clone());
@@ -464,13 +463,12 @@ fn method7(mut v0: Rc<UH0>) -> Rc<UH0> {
         UH0::UH0_0 => { // ChildEnd
             { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) }
         }
-        _ => unreachable!(),
     }
 }
 fn method10(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH1> {
     match &*v2 {
         UH0::UH0_1(v4, v5, v6) => { // Child
-            let mut v4: i32 = v4.clone();
+            let mut v4: i32 = *v4;
             let mut v5: Rc<str> = v5.clone();
             let mut v6: Rc<UH0> = v6.clone();
             let mut v7: Rc<UH1> = method10(v0.clone(), v1.clone(), v6.clone());
@@ -501,7 +499,6 @@ fn method10(mut v0: Rc<str>, mut v1: Rc<str>, mut v2: Rc<UH0>) -> Rc<UH1> {
         UH0::UH0_0 => { // ChildEnd
             { thread_local!{ static CASE: Rc<UH1> = Rc::new(UH1::UH1_0); } CASE.with(|case| case.clone()) }
         }
-        _ => unreachable!(),
     }
 }
 fn method12(mut v0: Rc<UH1>) -> i64 {
@@ -512,10 +509,10 @@ fn method12(mut v0: Rc<UH1>) -> i64 {
         UH1::UH1_1(v1, v2, v3, v4) => { // File
             let mut v1: Rc<str> = v1.clone();
             let mut v2: Rc<str> = v2.clone();
-            let mut v3: i64 = v3.clone();
+            let mut v3: i64 = *v3;
             let mut v4: Rc<UH1> = v4.clone();
             let mut v5: i64 = method12(v4.clone());
-            let mut v6: i64 = v3 + v5;
+            let mut v6: i64 = v3.wrapping_add(v5);
             v6
         }
         UH1::UH1_2(v7, v8, v9, v10) => { // Folder
@@ -525,10 +522,9 @@ fn method12(mut v0: Rc<UH1>) -> i64 {
             let mut v10: Rc<UH1> = v10.clone();
             let mut v11: i64 = method12(v9.clone());
             let mut v12: i64 = method12(v10.clone());
-            let mut v13: i64 = v11 + v12;
+            let mut v13: i64 = v11.wrapping_add(v12);
             v13
         }
-        _ => unreachable!(),
     }
 }
 fn method11(mut v0: Rc<UH1>) -> Rc<str> {
@@ -540,7 +536,7 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
         UH1::UH1_1(v2, v3, v4, v5) => { // File
             let mut v2: Rc<str> = v2.clone();
             let mut v3: Rc<str> = v3.clone();
-            let mut v4: i64 = v4.clone();
+            let mut v4: i64 = *v4;
             let mut v5: Rc<UH1> = v5.clone();
             let mut v6: i32 = (v3.clone().len() as i32);
             let mut v7: bool = v6 == 0i32;
@@ -558,13 +554,13 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
             let mut v15: Rc<str> = Rc::<str>::from(format!("{}{}", v14.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("</a><span> ("); } LIT.with(|lit| lit.clone()) }));
             let mut v16: bool = v4 > 1048576i64;
             let mut v56: Rc<str> = if v16 {
-                let mut v17: i64 = v4 * 100i64;
-                let mut v18: i64 = v17 + 524288i64;
-                let mut v19: i64 = v18 / 1048576i64;
-                let mut v20: i64 = v19 / 100i64;
+                let mut v17: i64 = v4.wrapping_mul(100i64);
+                let mut v18: i64 = v17.wrapping_add(524288i64);
+                let mut v19: i64 = v18.wrapping_div(1048576i64);
+                let mut v20: i64 = v19.wrapping_div(100i64);
                 let mut v21: Rc<str> = method0(v20);
                 let mut v22: Rc<str> = Rc::<str>::from(format!("{}{}", v21.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                let mut v23: i64 = v19 % 100i64;
+                let mut v23: i64 = v19.wrapping_rem(100i64);
                 let mut v24: Rc<str> = method0(v23);
                 let mut v25: bool = v23 < 10i64;
                 let mut v27: Rc<str> = if v25 {
@@ -579,13 +575,13 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
             } else {
                 let mut v30: bool = v4 > 1024i64;
                 if v30 {
-                    let mut v31: i64 = v4 * 100i64;
-                    let mut v32: i64 = v31 + 512i64;
-                    let mut v33: i64 = v32 / 1024i64;
-                    let mut v34: i64 = v33 / 100i64;
+                    let mut v31: i64 = v4.wrapping_mul(100i64);
+                    let mut v32: i64 = v31.wrapping_add(512i64);
+                    let mut v33: i64 = v32.wrapping_div(1024i64);
+                    let mut v34: i64 = v33.wrapping_div(100i64);
                     let mut v35: Rc<str> = method0(v34);
                     let mut v36: Rc<str> = Rc::<str>::from(format!("{}{}", v35.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                    let mut v37: i64 = v33 % 100i64;
+                    let mut v37: i64 = v33.wrapping_rem(100i64);
                     let mut v38: Rc<str> = method0(v37);
                     let mut v39: bool = v37 < 10i64;
                     let mut v41: Rc<str> = if v39 {
@@ -598,11 +594,11 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
                     let mut v43: Rc<str> = Rc::<str>::from(format!("{}{}", v42.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" KB"); } LIT.with(|lit| lit.clone()) }));
                     v43.clone()
                 } else {
-                    let mut v44: i64 = v4 * 100i64;
-                    let mut v45: i64 = v44 / 100i64;
+                    let mut v44: i64 = v4.wrapping_mul(100i64);
+                    let mut v45: i64 = v44.wrapping_div(100i64);
                     let mut v46: Rc<str> = method0(v45);
                     let mut v47: Rc<str> = Rc::<str>::from(format!("{}{}", v46.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                    let mut v48: i64 = v44 % 100i64;
+                    let mut v48: i64 = v44.wrapping_rem(100i64);
                     let mut v49: Rc<str> = method0(v48);
                     let mut v50: bool = v48 < 10i64;
                     let mut v52: Rc<str> = if v50 {
@@ -637,13 +633,13 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
             let mut v72: Rc<str> = Rc::<str>::from(format!("{}{}", v71.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("</a><span> ("); } LIT.with(|lit| lit.clone()) }));
             let mut v73: bool = v67 > 1048576i64;
             let mut v113: Rc<str> = if v73 {
-                let mut v74: i64 = v67 * 100i64;
-                let mut v75: i64 = v74 + 524288i64;
-                let mut v76: i64 = v75 / 1048576i64;
-                let mut v77: i64 = v76 / 100i64;
+                let mut v74: i64 = v67.wrapping_mul(100i64);
+                let mut v75: i64 = v74.wrapping_add(524288i64);
+                let mut v76: i64 = v75.wrapping_div(1048576i64);
+                let mut v77: i64 = v76.wrapping_div(100i64);
                 let mut v78: Rc<str> = method0(v77);
                 let mut v79: Rc<str> = Rc::<str>::from(format!("{}{}", v78.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                let mut v80: i64 = v76 % 100i64;
+                let mut v80: i64 = v76.wrapping_rem(100i64);
                 let mut v81: Rc<str> = method0(v80);
                 let mut v82: bool = v80 < 10i64;
                 let mut v84: Rc<str> = if v82 {
@@ -658,13 +654,13 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
             } else {
                 let mut v87: bool = v67 > 1024i64;
                 if v87 {
-                    let mut v88: i64 = v67 * 100i64;
-                    let mut v89: i64 = v88 + 512i64;
-                    let mut v90: i64 = v89 / 1024i64;
-                    let mut v91: i64 = v90 / 100i64;
+                    let mut v88: i64 = v67.wrapping_mul(100i64);
+                    let mut v89: i64 = v88.wrapping_add(512i64);
+                    let mut v90: i64 = v89.wrapping_div(1024i64);
+                    let mut v91: i64 = v90.wrapping_div(100i64);
                     let mut v92: Rc<str> = method0(v91);
                     let mut v93: Rc<str> = Rc::<str>::from(format!("{}{}", v92.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                    let mut v94: i64 = v90 % 100i64;
+                    let mut v94: i64 = v90.wrapping_rem(100i64);
                     let mut v95: Rc<str> = method0(v94);
                     let mut v96: bool = v94 < 10i64;
                     let mut v98: Rc<str> = if v96 {
@@ -677,11 +673,11 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
                     let mut v100: Rc<str> = Rc::<str>::from(format!("{}{}", v99.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" KB"); } LIT.with(|lit| lit.clone()) }));
                     v100.clone()
                 } else {
-                    let mut v101: i64 = v67 * 100i64;
-                    let mut v102: i64 = v101 / 100i64;
+                    let mut v101: i64 = v67.wrapping_mul(100i64);
+                    let mut v102: i64 = v101.wrapping_div(100i64);
                     let mut v103: Rc<str> = method0(v102);
                     let mut v104: Rc<str> = Rc::<str>::from(format!("{}{}", v103.clone(), { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) }));
-                    let mut v105: i64 = v101 % 100i64;
+                    let mut v105: i64 = v101.wrapping_rem(100i64);
                     let mut v106: Rc<str> = method0(v105);
                     let mut v107: bool = v105 < 10i64;
                     let mut v109: Rc<str> = if v107 {
@@ -706,7 +702,6 @@ fn method11(mut v0: Rc<UH1>) -> Rc<str> {
             let mut v122: Rc<str> = Rc::<str>::from(format!("{}{}", v120.clone(), v121.clone()));
             v122.clone()
         }
-        _ => unreachable!(),
     }
 }
 fn method13(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
@@ -720,7 +715,7 @@ fn method13(mut v0: Rc<str>, mut v1: i32, mut v2: i32) -> i32 {
             if v6 {
                 return v1;
             } else {
-                let mut v7: i32 = v1 + 1i32;
+                let mut v7: i32 = v1.wrapping_add(1i32);
                 (v0, v1, v2) = (v0.clone(), v7, v2);
                 continue;
             }
@@ -769,7 +764,7 @@ fn spiral_main() -> i32 {
                 let mut v52: Rc<str> = if v42 {
                     v23.clone()
                 } else {
-                    let mut v43: i32 = v41 - 1i32;
+                    let mut v43: i32 = v41.wrapping_sub(1i32);
                     let mut v44: Rc<str> = string_slice(&v38.clone(), 0i32 as i64, v43 as i64);
                     let mut v45: i32 = (v44.clone().len() as i32);
                     let mut v46: bool = v45 == 2i32;
@@ -831,7 +826,7 @@ fn spiral_main() -> i32 {
             let mut v99: Rc<str> = if v89 {
                 v23.clone()
             } else {
-                let mut v90: i32 = v88 - 1i32;
+                let mut v90: i32 = v88.wrapping_sub(1i32);
                 let mut v91: Rc<str> = string_slice(&v85.clone(), 0i32 as i64, v90 as i64);
                 let mut v92: i32 = (v91.clone().len() as i32);
                 let mut v93: bool = v92 == 2i32;
@@ -874,7 +869,7 @@ fn spiral_main() -> i32 {
             let mut v126: Rc<str> = if v116 {
                 v23.clone()
             } else {
-                let mut v117: i32 = v115 - 1i32;
+                let mut v117: i32 = v115.wrapping_sub(1i32);
                 let mut v118: Rc<str> = string_slice(&v112.clone(), 0i32 as i64, v117 as i64);
                 let mut v119: i32 = (v118.clone().len() as i32);
                 let mut v120: bool = v119 == 2i32;
@@ -918,7 +913,7 @@ fn spiral_main() -> i32 {
             let mut v155: Rc<str> = if v145 {
                 v23.clone()
             } else {
-                let mut v146: i32 = v144 - 1i32;
+                let mut v146: i32 = v144.wrapping_sub(1i32);
                 let mut v147: Rc<str> = string_slice(&v141.clone(), 0i32 as i64, v146 as i64);
                 let mut v148: i32 = (v147.clone().len() as i32);
                 let mut v149: bool = v148 == 2i32;
@@ -974,7 +969,7 @@ fn spiral_main() -> i32 {
                 let mut v194: Rc<str> = if v184 {
                     v23.clone()
                 } else {
-                    let mut v185: i32 = v183 - 1i32;
+                    let mut v185: i32 = v183.wrapping_sub(1i32);
                     let mut v186: Rc<str> = string_slice(&v180.clone(), 0i32 as i64, v185 as i64);
                     let mut v187: i32 = (v186.clone().len() as i32);
                     let mut v188: bool = v187 == 2i32;
@@ -1087,7 +1082,7 @@ fn spiral_main() -> i32 {
             let mut v262: i32 = if v256 {
                 -1i32
             } else {
-                let mut v257: i32 = v255 + 1i32;
+                let mut v257: i32 = v255.wrapping_add(1i32);
                 let mut v259: i32 = std::env::args().count() as i32;
                 let mut v260: bool = v257 < v259;
                 if v260 {
@@ -1104,7 +1099,7 @@ fn spiral_main() -> i32 {
             let mut v274: i32 = if v268 {
                 -1i32
             } else {
-                let mut v269: i32 = v267 + 1i32;
+                let mut v269: i32 = v267.wrapping_add(1i32);
                 let mut v271: i32 = std::env::args().count() as i32;
                 let mut v272: bool = v269 < v271;
                 if v272 {
@@ -1139,7 +1134,7 @@ fn spiral_main() -> i32 {
                     let mut v304: Rc<str> = if v294 {
                         v281.clone()
                     } else {
-                        let mut v295: i32 = v293 - 1i32;
+                        let mut v295: i32 = v293.wrapping_sub(1i32);
                         let mut v296: Rc<str> = string_slice(&v278.clone(), 0i32 as i64, v295 as i64);
                         let mut v297: i32 = (v296.clone().len() as i32);
                         let mut v298: bool = v297 == 2i32;
@@ -1184,7 +1179,7 @@ fn spiral_main() -> i32 {
         let mut v328: i32 = if v322 {
             -1i32
         } else {
-            let mut v323: i32 = v321 + 1i32;
+            let mut v323: i32 = v321.wrapping_add(1i32);
             let mut v325: i32 = std::env::args().count() as i32;
             let mut v326: bool = v323 < v325;
             if v326 {
@@ -1201,7 +1196,7 @@ fn spiral_main() -> i32 {
         let mut v340: i32 = if v334 {
             -1i32
         } else {
-            let mut v335: i32 = v333 + 1i32;
+            let mut v335: i32 = v333.wrapping_add(1i32);
             let mut v337: i32 = std::env::args().count() as i32;
             let mut v338: bool = v335 < v337;
             if v338 {
@@ -1236,7 +1231,7 @@ fn spiral_main() -> i32 {
                 let mut v370: Rc<str> = if v360 {
                     v347.clone()
                 } else {
-                    let mut v361: i32 = v359 - 1i32;
+                    let mut v361: i32 = v359.wrapping_sub(1i32);
                     let mut v362: Rc<str> = string_slice(&v344.clone(), 0i32 as i64, v361 as i64);
                     let mut v363: i32 = (v362.clone().len() as i32);
                     let mut v364: bool = v363 == 2i32;

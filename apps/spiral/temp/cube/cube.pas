@@ -22,7 +22,6 @@ procedure method3(v0: TArray0; v1: TArray1; v2: Double; v3: Double; v4: Double; 
 function method7(v0: TMut0): Boolean; forward;
 function method8(v0: TMut0): Boolean; forward;
 function method2(v0: TArray0; v1: TArray1; v2: Double; v3: Double; v4: Double; v5: LongInt): LongInt; forward;
-procedure method9(v0: LongInt); forward;
 function MutCreate0(a0: LongInt): TMut0;
 begin
   Result := TMut0.Create; Result.l0 := a0;
@@ -278,35 +277,35 @@ var
   v13: Double;
   v14: Double;
   v15: Double;
-  v19: TMut2;
+  v16: TMut2;
+  v17: TMut0;
+  v19: LongInt;
   v20: TMut0;
   v22: LongInt;
-  v23: TMut0;
+  v23: LongInt;
+  v24: LongInt;
   v25: LongInt;
-  v26: LongInt;
-  v27: LongInt;
-  v28: LongInt;
-  v29: Boolean;
-  v47: AnsiString;
-  v30: AnsiString;
-  v31: Boolean;
-  v32: AnsiString;
-  v33: Boolean;
-  v34: AnsiString;
-  v35: Boolean;
-  v36: AnsiString;
-  v37: Boolean;
+  v26: Boolean;
+  v44: AnsiString;
+  v27: AnsiString;
+  v28: Boolean;
+  v29: AnsiString;
+  v30: Boolean;
+  v31: AnsiString;
+  v32: Boolean;
+  v33: AnsiString;
+  v34: Boolean;
+  v35: AnsiString;
+  v36: Boolean;
+  v37: AnsiString;
   v38: AnsiString;
-  v39: Boolean;
-  v40: AnsiString;
-  v41: AnsiString;
+  v45: LongInt;
+  v46: LongInt;
+  v47: LongInt;
   v48: LongInt;
   v49: LongInt;
   v50: LongInt;
   v51: LongInt;
-  v52: LongInt;
-  v56: LongInt;
-  v57: LongInt;
 begin
   v6 := MutCreate0(0);
   while method0(v6) do begin
@@ -326,160 +325,69 @@ begin
   v15 := 40.0;
   method3(v0, v1, v2, v3, v4, v14, v15);
   Write('u001b[H');
-  v19 := MutCreate2(v5);
-  v20 := MutCreate0(0);
-  while method7(v20) do begin
-      v22 := v20.l0;
-      v23 := MutCreate0(0);
-      while method8(v23) do begin
-          v25 := v23.l0;
-          v26 := v22 * 160;
-          v27 := v25 + v26;
-          v28 := v1[v27];
-          v29 := v28 = 59;
-          if v29 then begin
-              v30 := ';';
-              v47 := v30;
+  v16 := MutCreate2(v5);
+  v17 := MutCreate0(0);
+  while method7(v17) do begin
+      v19 := v17.l0;
+      v20 := MutCreate0(0);
+      while method8(v20) do begin
+          v22 := v20.l0;
+          v23 := v19 * 160;
+          v24 := v22 + v23;
+          v25 := v1[v24];
+          v26 := v25 = 59;
+          if v26 then begin
+              v27 := ';';
+              v44 := v27;
           end else begin
-              v31 := v28 = 92;
-              if v31 then begin
-                  v32 := '\';
-                  v47 := v32;
+              v28 := v25 = 92;
+              if v28 then begin
+                  v29 := '\';
+                  v44 := v29;
               end else begin
-                  v33 := v28 = 47;
-                  if v33 then begin
-                      v34 := '/';
-                      v47 := v34;
+                  v30 := v25 = 47;
+                  if v30 then begin
+                      v31 := '/';
+                      v44 := v31;
                   end else begin
-                      v35 := v28 = 61;
-                      if v35 then begin
-                          v36 := '=';
-                          v47 := v36;
+                      v32 := v25 = 61;
+                      if v32 then begin
+                          v33 := '=';
+                          v44 := v33;
                       end else begin
-                          v37 := v28 = 62;
-                          if v37 then begin
-                              v38 := '>';
-                              v47 := v38;
+                          v34 := v25 = 62;
+                          if v34 then begin
+                              v35 := '>';
+                              v44 := v35;
                           end else begin
-                              v39 := v28 = 60;
-                              if v39 then begin
-                                  v40 := '<';
-                                  v47 := v40;
+                              v36 := v25 = 60;
+                              if v36 then begin
+                                  v37 := '<';
+                                  v44 := v37;
                               end else begin
-                                  v41 := '.';
-                                  v47 := v41;
+                                  v38 := '.';
+                                  v44 := v38;
                               end;
                           end;
                       end;
                   end;
               end;
           end;
-          Write(v47);
-          v48 := v19.l0;
-          v49 := v48 * 31;
-          v50 := v49 + v28;
-          v51 := v50 mod 1000003;
-          v19.l0 := v51;
-          v52 := v25 + 1;
-          v23.l0 := v52;
+          Write(v44);
+          v45 := v16.l0;
+          v46 := v45 * 31;
+          v47 := v46 + v25;
+          v48 := v47 mod 1000003;
+          v16.l0 := v48;
+          v49 := v22 + 1;
+          v20.l0 := v49;
       end;
       Write(#10);
-      v56 := v22 + 1;
-      v20.l0 := v56;
+      v50 := v19 + 1;
+      v17.l0 := v50;
   end;
-  v57 := v19.l0;
-  Result := v57;
-end;
-procedure method9(v0: LongInt);
-var
-  v1: Boolean;
-  v2: LongInt;
-  v3: LongInt;
-  v4: Boolean;
-  v31: AnsiString;
-  v5: AnsiString;
-  v6: Boolean;
-  v7: AnsiString;
-  v8: Boolean;
-  v9: AnsiString;
-  v10: Boolean;
-  v11: AnsiString;
-  v12: Boolean;
-  v13: AnsiString;
-  v14: Boolean;
-  v15: AnsiString;
-  v16: Boolean;
-  v17: AnsiString;
-  v18: Boolean;
-  v19: AnsiString;
-  v20: Boolean;
-  v21: AnsiString;
-  v22: AnsiString;
-begin
-  v1 := v0 >= 10;
-  if v1 then begin
-      v2 := v0 div 10;
-      method9(v2);
-  end else begin
-  end;
-  v3 := v0 mod 10;
-  v4 := v3 = 0;
-  if v4 then begin
-      v5 := '0';
-      v31 := v5;
-  end else begin
-      v6 := v3 = 1;
-      if v6 then begin
-          v7 := '1';
-          v31 := v7;
-      end else begin
-          v8 := v3 = 2;
-          if v8 then begin
-              v9 := '2';
-              v31 := v9;
-          end else begin
-              v10 := v3 = 3;
-              if v10 then begin
-                  v11 := '3';
-                  v31 := v11;
-              end else begin
-                  v12 := v3 = 4;
-                  if v12 then begin
-                      v13 := '4';
-                      v31 := v13;
-                  end else begin
-                      v14 := v3 = 5;
-                      if v14 then begin
-                          v15 := '5';
-                          v31 := v15;
-                      end else begin
-                          v16 := v3 = 6;
-                          if v16 then begin
-                              v17 := '6';
-                              v31 := v17;
-                          end else begin
-                              v18 := v3 = 7;
-                              if v18 then begin
-                                  v19 := '7';
-                                  v31 := v19;
-                              end else begin
-                                  v20 := v3 = 8;
-                                  if v20 then begin
-                                      v21 := '8';
-                                      v31 := v21;
-                                  end else begin
-                                      v22 := '9';
-                                      v31 := v22;
-                                  end;
-                              end;
-                          end;
-                      end;
-                  end;
-              end;
-          end;
-      end;
-  end;
-  Write(v31);
+  v51 := v16.l0;
+  Result := v51;
 end;
 function SpiralMain: LongInt;
 var
@@ -509,8 +417,7 @@ var
   v24: Double;
   v25: Double;
   v26: LongInt;
-  v30: LongInt;
-  v34: LongInt;
+  v27: LongInt;
 begin
   tmp1 := nil;
   SetLength(tmp1, 7040);
@@ -555,13 +462,8 @@ begin
       v26 := v14 + 1;
       v12.l0 := v26;
   end;
-  Write('cube: ');
-  v30 := 60;
-  method9(v30);
-  Write(' frames, checksum ');
-  v34 := v11.l0;
-  method9(v34);
-  Write(#10);
+  v27 := v11.l0;
+  Write('cube: ', 60, ' frames, checksum ', v27, #10);
   Result := 0;
 end;
 begin

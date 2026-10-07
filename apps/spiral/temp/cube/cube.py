@@ -243,170 +243,89 @@ def method2(v0 : cp.ndarray, v1 : cp.ndarray, v2 : f64, v3 : f64, v4 : f64, v5 :
     v15 = 40.0
     method3(v0, v1, v2, v3, v4, v14, v15)
     del v0, v2, v3, v4, v14, v15
-    v17 = "u001b[H"
-    print(v17, end='')
-    del v17
-    v18 = Mut2(v5)
+    print("u001b[H", end='')
+    v16 = Mut2(v5)
     del v5
-    v19 = Mut0(0)
-    while method7(v19):
-        v21 = v19.v0
-        v22 = Mut0(0)
-        while method8(v22):
-            v24 = v22.v0
-            v25 = v21 * 160
-            v26 = v24 + v25
-            del v25
-            v27 = spiral_array_index(v1, v26)
-            del v26
-            v28 = v27 == 59
-            if v28:
-                v29 = ";"
-                v46 = v29
-            else:
-                v30 = v27 == 92
-                if v30:
-                    del v30
-                    v31 = "\\"
-                    v46 = v31
-                else:
-                    del v30
-                    v32 = v27 == 47
-                    if v32:
-                        del v32
-                        v33 = "/"
-                        v46 = v33
-                    else:
-                        del v32
-                        v34 = v27 == 61
-                        if v34:
-                            del v34
-                            v35 = "="
-                            v46 = v35
-                        else:
-                            del v34
-                            v36 = v27 == 62
-                            if v36:
-                                del v36
-                                v37 = ">"
-                                v46 = v37
-                            else:
-                                del v36
-                                v38 = v27 == 60
-                                if v38:
-                                    del v38
-                                    v39 = "<"
-                                    v46 = v39
-                                else:
-                                    del v38
-                                    v40 = "."
-                                    v46 = v40
-            del v28
-            print(v46, end='')
-            del v46
-            v47 = v18.v0
-            v48 = v47 * 31
-            del v47
-            v49 = v48 + v27
-            del v27, v48
-            v50 = v49 % 1000003
-            del v49
-            v18.v0 = v50
-            del v50
-            v51 = v24 + 1
+    v17 = Mut0(0)
+    while method7(v17):
+        v19 = v17.v0
+        v20 = Mut0(0)
+        while method8(v20):
+            v22 = v20.v0
+            v23 = v19 * 160
+            v24 = v22 + v23
+            del v23
+            v25 = spiral_array_index(v1, v24)
             del v24
-            v22.v0 = v51
-            del v51
-        del v22
-        v53 = "\n"
-        print(v53, end='')
-        del v53
-        v54 = v21 + 1
-        del v21
-        v19.v0 = v54
-        del v54
-    del v1
-    del v19
-    v55 = v18.v0
-    del v18
-    return v55
-def method9(v0 : i32) -> None:
-    v1 = v0 >= 10
-    if v1:
-        v2 = v0 // 10
-        method9(v2)
-    else:
-        pass
-    del v1
-    v3 = v0 % 10
-    del v0
-    v4 = v3 == 0
-    if v4:
-        v5 = "0"
-        v31 = v5
-    else:
-        v6 = v3 == 1
-        if v6:
-            del v6
-            v7 = "1"
-            v31 = v7
-        else:
-            del v6
-            v8 = v3 == 2
-            if v8:
-                del v8
-                v9 = "2"
-                v31 = v9
+            v26 = v25 == 59
+            if v26:
+                v27 = ";"
+                v44 = v27
             else:
-                del v8
-                v10 = v3 == 3
-                if v10:
-                    del v10
-                    v11 = "3"
-                    v31 = v11
+                v28 = v25 == 92
+                if v28:
+                    del v28
+                    v29 = "\\"
+                    v44 = v29
                 else:
-                    del v10
-                    v12 = v3 == 4
-                    if v12:
-                        del v12
-                        v13 = "4"
-                        v31 = v13
+                    del v28
+                    v30 = v25 == 47
+                    if v30:
+                        del v30
+                        v31 = "/"
+                        v44 = v31
                     else:
-                        del v12
-                        v14 = v3 == 5
-                        if v14:
-                            del v14
-                            v15 = "5"
-                            v31 = v15
+                        del v30
+                        v32 = v25 == 61
+                        if v32:
+                            del v32
+                            v33 = "="
+                            v44 = v33
                         else:
-                            del v14
-                            v16 = v3 == 6
-                            if v16:
-                                del v16
-                                v17 = "6"
-                                v31 = v17
+                            del v32
+                            v34 = v25 == 62
+                            if v34:
+                                del v34
+                                v35 = ">"
+                                v44 = v35
                             else:
-                                del v16
-                                v18 = v3 == 7
-                                if v18:
-                                    del v18
-                                    v19 = "7"
-                                    v31 = v19
+                                del v34
+                                v36 = v25 == 60
+                                if v36:
+                                    del v36
+                                    v37 = "<"
+                                    v44 = v37
                                 else:
-                                    del v18
-                                    v20 = v3 == 8
-                                    if v20:
-                                        del v20
-                                        v21 = "8"
-                                        v31 = v21
-                                    else:
-                                        del v20
-                                        v22 = "9"
-                                        v31 = v22
-    del v3, v4
-    print(v31, end='')
-    del v31
-    return 
+                                    del v36
+                                    v38 = "."
+                                    v44 = v38
+            del v26
+            print(v44, end='')
+            del v44
+            v45 = v16.v0
+            v46 = v45 * 31
+            del v45
+            v47 = v46 + v25
+            del v25, v46
+            v48 = v47 % 1000003
+            del v47
+            v16.v0 = v48
+            del v48
+            v49 = v22 + 1
+            del v22
+            v20.v0 = v49
+            del v49
+        del v20
+        print("\n", end='')
+        v50 = v19 + 1
+        del v19
+        v17.v0 = v50
+        del v50
+    del v1
+    del v17
+    v51 = v16.v0
+    del v16
+    return v51
 def main():
     v0 = cp.empty(7040,dtype=cp.float64)
     v1 = Mut0(0)
@@ -456,22 +375,10 @@ def main():
         del v26
     del v0, v5, v10
     del v12
-    v28 = "cube: "
-    print(v28, end='')
-    del v28
-    v29 = 60
-    method9(v29)
-    del v29
-    v31 = " frames, checksum "
-    print(v31, end='')
-    del v31
-    v32 = v11.v0
+    v27 = v11.v0
     del v11
-    method9(v32)
-    del v32
-    v33 = "\n"
-    print(v33, end='')
-    del v33
+    print("cube: ", 60, " frames, checksum ", v27, "\n", sep='', end='')
+    del v27
     return 0
 
 if __name__ == '__main__': result = main(); None if result is None else print(result)

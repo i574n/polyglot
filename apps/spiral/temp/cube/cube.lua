@@ -75,10 +75,10 @@ function method6(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
     local v50 = v49 * v31
     local v51 = v50 * 2.0
     local v52 = v48 + v51
-    local v53 = v52
+    local v53 = (math.modf(v52))
     local v54 = v49 * v40
     local v55 = 22.0 + v54
-    local v56 = v55
+    local v56 = (math.modf(v55))
     local v57 = v56 * 160
     local v58 = v53 + v57
     local v59 = v58 >= 0
@@ -169,51 +169,50 @@ function method2(v0, v1, v2, v3, v4, v5)
     local v14 = 5.0
     local v15 = 40.0
     method3(v0, v1, v2, v3, v4, v14, v15)            
-    local v18 = "u001b[H"
-    io.write(v18)            
-    local v19 = { __tag = "Mut2", l0 = v5 }
-    local v20 = { __tag = "Mut0", l0 = 0 }
-    while method7(v20) do
-        local v22 = v20 ~= nil and v20.l0
-        local v23 = { __tag = "Mut0", l0 = 0 }
-        while method8(v23) do
-            local v25 = v23 ~= nil and v23.l0
-            local v26 = v22 * 160
-            local v27 = v25 + v26
-            local v28 = (v1)[(v27)+1]
-            local v29 = v28 == 59
-            local getv47 = function()
-                if v29 then
-                    local v30 = ";"
-                    return v30          
+    io.write("u001b[H")            
+    local v16 = { __tag = "Mut2", l0 = v5 }
+    local v17 = { __tag = "Mut0", l0 = 0 }
+    while method7(v17) do
+        local v19 = v17 ~= nil and v17.l0
+        local v20 = { __tag = "Mut0", l0 = 0 }
+        while method8(v20) do
+            local v22 = v20 ~= nil and v20.l0
+            local v23 = v19 * 160
+            local v24 = v22 + v23
+            local v25 = (v1)[(v24)+1]
+            local v26 = v25 == 59
+            local getv44 = function()
+                if v26 then
+                    local v27 = ";"
+                    return v27          
                 else
-                    local v31 = v28 == 92
-                    if v31 then
-                        local v32 = "\\"
-                        return v32          
+                    local v28 = v25 == 92
+                    if v28 then
+                        local v29 = "\\"
+                        return v29          
                     else
-                        local v33 = v28 == 47
-                        if v33 then
-                            local v34 = "/"
-                            return v34          
+                        local v30 = v25 == 47
+                        if v30 then
+                            local v31 = "/"
+                            return v31          
                         else
-                            local v35 = v28 == 61
-                            if v35 then
-                                local v36 = "="
-                                return v36          
+                            local v32 = v25 == 61
+                            if v32 then
+                                local v33 = "="
+                                return v33          
                             else
-                                local v37 = v28 == 62
-                                if v37 then
-                                    local v38 = ">"
-                                    return v38          
+                                local v34 = v25 == 62
+                                if v34 then
+                                    local v35 = ">"
+                                    return v35          
                                 else
-                                    local v39 = v28 == 60
-                                    if v39 then
-                                        local v40 = "<"
-                                        return v40          
+                                    local v36 = v25 == 60
+                                    if v36 then
+                                        local v37 = "<"
+                                        return v37          
                                     else
-                                        local v41 = "."
-                                        return v41          
+                                        local v38 = "."
+                                        return v38          
                                     end
                                 end
                             end
@@ -221,98 +220,25 @@ function method2(v0, v1, v2, v3, v4, v5)
                     end
                 end
             end
-            local v47 = getv47()
-            io.write(v47)            
-            local v48 = v19 ~= nil and v19.l0
-            local v49 = v48 * 31
-            local v50 = v49 + v28
-            local v51 = v50 % 1000003
-            v19.l0 = v51
-            local v52 = v25 + 1
-            v23.l0 = v52
+            local v44 = getv44()
+            io.write(v44)            
+            local v45 = v16 ~= nil and v16.l0
+            local v46 = v45 * 31
+            local v47 = v46 + v25
+            local v48 = math.fmod(v47, 1000003)
+            v16.l0 = v48
+            local v49 = v22 + 1
+            v20.l0 = v49
         end
-        local v55 = "\n"
-        io.write(v55)            
-        local v56 = v22 + 1
-        v20.l0 = v56
+        io.write("\n")            
+        local v50 = v19 + 1
+        v17.l0 = v50
     end
-    local v57 = v19 ~= nil and v19.l0
-    return v57          
+    local v51 = v16 ~= nil and v16.l0
+    return v51          
 end
 
-function method9(v0)
-    local v1 = v0 >= 10
-    if v1 then
-        local v2 = v0 / 10
-        method9(v2)            
-    else
-        -- return nil
-    end
-    local v3 = v0 % 10
-    local v4 = v3 == 0
-    local getv31 = function()
-        if v4 then
-            local v5 = "0"
-            return v5          
-        else
-            local v6 = v3 == 1
-            if v6 then
-                local v7 = "1"
-                return v7          
-            else
-                local v8 = v3 == 2
-                if v8 then
-                    local v9 = "2"
-                    return v9          
-                else
-                    local v10 = v3 == 3
-                    if v10 then
-                        local v11 = "3"
-                        return v11          
-                    else
-                        local v12 = v3 == 4
-                        if v12 then
-                            local v13 = "4"
-                            return v13          
-                        else
-                            local v14 = v3 == 5
-                            if v14 then
-                                local v15 = "5"
-                                return v15          
-                            else
-                                local v16 = v3 == 6
-                                if v16 then
-                                    local v17 = "6"
-                                    return v17          
-                                else
-                                    local v18 = v3 == 7
-                                    if v18 then
-                                        local v19 = "7"
-                                        return v19          
-                                    else
-                                        local v20 = v3 == 8
-                                        if v20 then
-                                            local v21 = "8"
-                                            return v21          
-                                        else
-                                            local v22 = "9"
-                                            return v22          
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-    local v31 = getv31()
-    io.write(v31)            
-    return nil                
-end
-
-local v0 = {}
+local v0 = (function(n) local t = {} for i = 1, n do t[i] = 0.0 end return t end)(7040)
 local v1 = { __tag = "Mut0", l0 = 0 }
 while method0(v1) do
     local v3 = v1 ~= nil and v1.l0
@@ -320,7 +246,7 @@ while method0(v1) do
     local v4 = v3 + 1
     v1.l0 = v4
 end
-local v5 = {}
+local v5 = (function(n) local t = {} for i = 1, n do t[i] = 0 end return t end)(7040)
 local v6 = { __tag = "Mut0", l0 = 0 }
 while method0(v6) do
     local v8 = v6 ~= nil and v6.l0
@@ -333,11 +259,11 @@ local v11 = { __tag = "Mut2", l0 = 0 }
 local v12 = { __tag = "Mut0", l0 = 0 }
 while method1(v12) do
     local v14 = v12 ~= nil and v12.l0
-    local v15, v16, v17 = (table.unpack or unpack)(v10 ~= nil and v10.l0, v10 ~= nil and v10.l1, v10 ~= nil and v10.l2)
+    local v15, v16, v17 = v10 ~= nil and v10.l0, v10 ~= nil and v10.l1, v10 ~= nil and v10.l2
     local v18 = v11 ~= nil and v11.l0
     local v19 = method2(v0, v5, v15, v16, v17, v18)
     v11.l0 = v19
-    local v20, v21, v22 = (table.unpack or unpack)(v10 ~= nil and v10.l0, v10 ~= nil and v10.l1, v10 ~= nil and v10.l2)
+    local v20, v21, v22 = v10 ~= nil and v10.l0, v10 ~= nil and v10.l1, v10 ~= nil and v10.l2
     local v23 = v20 + 0.05
     local v24 = v21 + 0.05
     local v25 = v22 + 0.01
@@ -347,14 +273,6 @@ while method1(v12) do
     local v26 = v14 + 1
     v12.l0 = v26
 end
-local v29 = "cube: "
-io.write(v29)            
-local v30 = 60
-method9(v30)            
-local v33 = " frames, checksum "
-io.write(v33)            
-local v34 = v11 ~= nil and v11.l0
-method9(v34)            
-local v35 = "\n"
-io.write(v35)            
+local v27 = v11 ~= nil and v11.l0
+io.write("cube: ", string.format("%d", 60), " frames, checksum ", string.format("%d", v27), "\n")            
 return 0          

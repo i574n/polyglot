@@ -124,10 +124,6 @@ if (!(Search-Command "gleam")) {
     }
 }
 
-{ dotnet tool restore } | Invoke-Block -OnError Continue
-
-{ dotnet paket restore } | Invoke-Block
-
 Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block

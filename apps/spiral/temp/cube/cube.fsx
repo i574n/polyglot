@@ -139,123 +139,65 @@ and method2 (v0 : (float []), v1 : (int32 []), v2 : float, v3 : float, v4 : floa
     let v14 : float = 5.0
     let v15 : float = 40.0
     method3(v0, v1, v2, v3, v4, v14, v15)
-    let v16 : string = "u001b[H"
-    System.Console.Write(v16)
-    let v17 : Mut2 = {l0 = v5} : Mut2
-    let v18 : Mut0 = {l0 = 0} : Mut0
-    while method7(v18) do
-        let v20 : int32 = v18.l0
-        let v21 : Mut0 = {l0 = 0} : Mut0
-        while method8(v21) do
-            let v23 : int32 = v21.l0
-            let v24 : int32 = v20 * 160
-            let v25 : int32 = v23 + v24
-            let v26 : int32 = v1.[int v25]
-            let v27 : bool = v26 = 59
-            let v45 : string =
-                if v27 then
-                    let v28 : string = ";"
-                    v28
+    System.Console.Write("u001b[H")
+    let v16 : Mut2 = {l0 = v5} : Mut2
+    let v17 : Mut0 = {l0 = 0} : Mut0
+    while method7(v17) do
+        let v19 : int32 = v17.l0
+        let v20 : Mut0 = {l0 = 0} : Mut0
+        while method8(v20) do
+            let v22 : int32 = v20.l0
+            let v23 : int32 = v19 * 160
+            let v24 : int32 = v22 + v23
+            let v25 : int32 = v1.[int v24]
+            let v26 : bool = v25 = 59
+            let v44 : string =
+                if v26 then
+                    let v27 : string = ";"
+                    v27
                 else
-                    let v29 : bool = v26 = 92
-                    if v29 then
-                        let v30 : string = "\\"
-                        v30
+                    let v28 : bool = v25 = 92
+                    if v28 then
+                        let v29 : string = "\\"
+                        v29
                     else
-                        let v31 : bool = v26 = 47
-                        if v31 then
-                            let v32 : string = "/"
-                            v32
+                        let v30 : bool = v25 = 47
+                        if v30 then
+                            let v31 : string = "/"
+                            v31
                         else
-                            let v33 : bool = v26 = 61
-                            if v33 then
-                                let v34 : string = "="
-                                v34
+                            let v32 : bool = v25 = 61
+                            if v32 then
+                                let v33 : string = "="
+                                v33
                             else
-                                let v35 : bool = v26 = 62
-                                if v35 then
-                                    let v36 : string = ">"
-                                    v36
+                                let v34 : bool = v25 = 62
+                                if v34 then
+                                    let v35 : string = ">"
+                                    v35
                                 else
-                                    let v37 : bool = v26 = 60
-                                    if v37 then
-                                        let v38 : string = "<"
+                                    let v36 : bool = v25 = 60
+                                    if v36 then
+                                        let v37 : string = "<"
+                                        v37
+                                    else
+                                        let v38 : string = "."
                                         v38
-                                    else
-                                        let v39 : string = "."
-                                        v39
-            System.Console.Write(v45)
-            let v46 : int32 = v17.l0
-            let v47 : int32 = v46 * 31
-            let v48 : int32 = v47 + v26
-            let v49 : int32 = v48 % 1000003
-            v17.l0 <- v49
-            let v50 : int32 = v23 + 1
-            v21.l0 <- v50
+            System.Console.Write(v44)
+            let v45 : int32 = v16.l0
+            let v46 : int32 = v45 * 31
+            let v47 : int32 = v46 + v25
+            let v48 : int32 = v47 % 1000003
+            v16.l0 <- v48
+            let v49 : int32 = v22 + 1
+            v20.l0 <- v49
             ()
-        let v51 : string = "\n"
-        System.Console.Write(v51)
-        let v52 : int32 = v20 + 1
-        v18.l0 <- v52
+        System.Console.Write("\n")
+        let v50 : int32 = v19 + 1
+        v17.l0 <- v50
         ()
-    let v53 : int32 = v17.l0
-    v53
-and method9 (v0 : int32) : unit =
-    let v1 : bool = v0 >= 10
-    if v1 then
-        let v2 : int32 = v0 / 10
-        method9(v2)
-    let v3 : int32 = v0 % 10
-    let v4 : bool = v3 = 0
-    let v31 : string =
-        if v4 then
-            let v5 : string = "0"
-            v5
-        else
-            let v6 : bool = v3 = 1
-            if v6 then
-                let v7 : string = "1"
-                v7
-            else
-                let v8 : bool = v3 = 2
-                if v8 then
-                    let v9 : string = "2"
-                    v9
-                else
-                    let v10 : bool = v3 = 3
-                    if v10 then
-                        let v11 : string = "3"
-                        v11
-                    else
-                        let v12 : bool = v3 = 4
-                        if v12 then
-                            let v13 : string = "4"
-                            v13
-                        else
-                            let v14 : bool = v3 = 5
-                            if v14 then
-                                let v15 : string = "5"
-                                v15
-                            else
-                                let v16 : bool = v3 = 6
-                                if v16 then
-                                    let v17 : string = "6"
-                                    v17
-                                else
-                                    let v18 : bool = v3 = 7
-                                    if v18 then
-                                        let v19 : string = "7"
-                                        v19
-                                    else
-                                        let v20 : bool = v3 = 8
-                                        if v20 then
-                                            let v21 : string = "8"
-                                            v21
-                                        else
-                                            let v22 : string = "9"
-                                            v22
-    System.Console.Write(v31)
-    ()
+    let v51 : int32 = v16.l0
+    v51
 let v0 : (float []) = Array.zeroCreate<float> (7040)
 let v1 : Mut0 = {l0 = 0} : Mut0
 while method0(v1) do
@@ -291,14 +233,6 @@ while method1(v12) do
     let v26 : int32 = v14 + 1
     v12.l0 <- v26
     ()
-let v27 : string = "cube: "
-System.Console.Write(v27)
-let v28 : int32 = 60
-method9(v28)
-let v29 : string = " frames, checksum "
-System.Console.Write(v29)
-let v30 : int32 = v11.l0
-method9(v30)
-let v31 : string = "\n"
-System.Console.Write(v31)
+let v27 : int32 = v11.l0
+System.Console.Write("cube: " + string (60) + " frames, checksum " + string (v27) + "\n")
 0

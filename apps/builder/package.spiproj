@@ -1,6 +1,0 @@
-packageDir: ../../deps/spiral/apps/compiler/tmp/samples
-moduleDir: .
-packages:
-    core-
-modules:
-    builder

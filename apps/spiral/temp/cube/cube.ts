@@ -158,136 +158,70 @@ function method2(v0: Array<number>, v1: Array<number>, v2: number, v3: number, v
     let v15: number = 40;
     method3(v0, v1, v2, v3, v4, v14, v15);
     process.stdout.write("u001b[H");
-    let v19: Mut2 = { l0: v5 };
-    let v20: Mut0 = { l0: 0 };
-    while (method7(v20)) {
-        let v22: number = v20.l0;
-        let v23: Mut0 = { l0: 0 };
-        while (method8(v23)) {
-            let v25: number = v23.l0;
-            let v26: number = Math.imul(v22, 160);
-            let v27: number = (v25 + v26) | 0;
-            let v28: number = spiral_array_index(v1, v27);
-            let v29: boolean = v28 === 59;
-            let v47: string;
-            if (v29) {
-                let v30: string = ";";
-                v47 = v30;
+    let v16: Mut2 = { l0: v5 };
+    let v17: Mut0 = { l0: 0 };
+    while (method7(v17)) {
+        let v19: number = v17.l0;
+        let v20: Mut0 = { l0: 0 };
+        while (method8(v20)) {
+            let v22: number = v20.l0;
+            let v23: number = Math.imul(v19, 160);
+            let v24: number = (v22 + v23) | 0;
+            let v25: number = spiral_array_index(v1, v24);
+            let v26: boolean = v25 === 59;
+            let v44: string;
+            if (v26) {
+                let v27: string = ";";
+                v44 = v27;
             } else {
-                let v31: boolean = v28 === 92;
-                if (v31) {
-                    let v32: string = "\\";
-                    v47 = v32;
+                let v28: boolean = v25 === 92;
+                if (v28) {
+                    let v29: string = "\\";
+                    v44 = v29;
                 } else {
-                    let v33: boolean = v28 === 47;
-                    if (v33) {
-                        let v34: string = "/";
-                        v47 = v34;
+                    let v30: boolean = v25 === 47;
+                    if (v30) {
+                        let v31: string = "/";
+                        v44 = v31;
                     } else {
-                        let v35: boolean = v28 === 61;
-                        if (v35) {
-                            let v36: string = "=";
-                            v47 = v36;
+                        let v32: boolean = v25 === 61;
+                        if (v32) {
+                            let v33: string = "=";
+                            v44 = v33;
                         } else {
-                            let v37: boolean = v28 === 62;
-                            if (v37) {
-                                let v38: string = ">";
-                                v47 = v38;
+                            let v34: boolean = v25 === 62;
+                            if (v34) {
+                                let v35: string = ">";
+                                v44 = v35;
                             } else {
-                                let v39: boolean = v28 === 60;
-                                if (v39) {
-                                    let v40: string = "<";
-                                    v47 = v40;
+                                let v36: boolean = v25 === 60;
+                                if (v36) {
+                                    let v37: string = "<";
+                                    v44 = v37;
                                 } else {
-                                    let v41: string = ".";
-                                    v47 = v41;
+                                    let v38: string = ".";
+                                    v44 = v38;
                                 }
                             }
                         }
                     }
                 }
             }
-            process.stdout.write(v47);
-            let v48: number = v19.l0;
-            let v49: number = Math.imul(v48, 31);
-            let v50: number = (v49 + v28) | 0;
-            let v51: number = (v50 % 1000003) | 0;
-            v19.l0 = v51;
-            let v52: number = (v25 + 1) | 0;
-            v23.l0 = v52;
+            process.stdout.write(v44);
+            let v45: number = v16.l0;
+            let v46: number = Math.imul(v45, 31);
+            let v47: number = (v46 + v25) | 0;
+            let v48: number = (v47 % 1000003) | 0;
+            v16.l0 = v48;
+            let v49: number = (v22 + 1) | 0;
+            v20.l0 = v49;
         }
         process.stdout.write("\n");
-        let v56: number = (v22 + 1) | 0;
-        v20.l0 = v56;
+        let v50: number = (v19 + 1) | 0;
+        v17.l0 = v50;
     }
-    let v57: number = v19.l0;
-    return v57;
-}
-function method9(v0: number): void {
-    let v1: boolean = v0 >= 10;
-    if (v1) {
-        let v2: number = (v0 / 10) | 0;
-        method9(v2);
-    }
-    let v3: number = (v0 % 10) | 0;
-    let v4: boolean = v3 === 0;
-    let v31: string;
-    if (v4) {
-        let v5: string = "0";
-        v31 = v5;
-    } else {
-        let v6: boolean = v3 === 1;
-        if (v6) {
-            let v7: string = "1";
-            v31 = v7;
-        } else {
-            let v8: boolean = v3 === 2;
-            if (v8) {
-                let v9: string = "2";
-                v31 = v9;
-            } else {
-                let v10: boolean = v3 === 3;
-                if (v10) {
-                    let v11: string = "3";
-                    v31 = v11;
-                } else {
-                    let v12: boolean = v3 === 4;
-                    if (v12) {
-                        let v13: string = "4";
-                        v31 = v13;
-                    } else {
-                        let v14: boolean = v3 === 5;
-                        if (v14) {
-                            let v15: string = "5";
-                            v31 = v15;
-                        } else {
-                            let v16: boolean = v3 === 6;
-                            if (v16) {
-                                let v17: string = "6";
-                                v31 = v17;
-                            } else {
-                                let v18: boolean = v3 === 7;
-                                if (v18) {
-                                    let v19: string = "7";
-                                    v31 = v19;
-                                } else {
-                                    let v20: boolean = v3 === 8;
-                                    if (v20) {
-                                        let v21: string = "8";
-                                        v31 = v21;
-                                    } else {
-                                        let v22: string = "9";
-                                        v31 = v22;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    process.stdout.write(v31);
+    let v51: number = v16.l0;
+    return v51;
 }
 export function main(): number {
     let v0: Array<number> = new Array<number>(7040).fill(0);
@@ -329,13 +263,8 @@ export function main(): number {
         let v26: number = (v14 + 1) | 0;
         v12.l0 = v26;
     }
-    process.stdout.write("cube: ");
-    let v30: number = 60;
-    method9(v30);
-    process.stdout.write(" frames, checksum ");
-    let v34: number = v11.l0;
-    method9(v34);
-    process.stdout.write("\n");
+    let v27: number = v11.l0;
+    process.stdout.write("cube: " + String(60) + " frames, checksum " + String(v27) + "\n");
     return 0;
 }
 process.exitCode = main();

@@ -1,4 +1,4 @@
-#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_patterns, unreachable_code, while_true)]
+#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_code, while_true)]
 use std::cell::RefCell;
 use std::rc::Rc;
 struct Mut0 { l0: i32 }
@@ -73,8 +73,8 @@ fn method6(mut v0: Rc<RefCell<Vec<f64>>>, mut v1: Rc<RefCell<Vec<i32>>>, mut v2:
     let mut v54: f64 = v49 * v40;
     let mut v55: f64 = 22.0f64 + v54;
     let mut v56: i32 = (v55 as i32);
-    let mut v57: i32 = v56 * 160i32;
-    let mut v58: i32 = v53 + v57;
+    let mut v57: i32 = v56.wrapping_mul(160i32);
+    let mut v58: i32 = v53.wrapping_add(v57);
     let mut v59: bool = v58 >= 0i32;
     let mut v61: bool = if v59 {
         let mut v60: bool = v58 < 7040i32;
@@ -142,7 +142,7 @@ fn method2(mut v0: Rc<RefCell<Vec<f64>>>, mut v1: Rc<RefCell<Vec<i32>>>, mut v2:
         let mut v8: i32 = v6.borrow().l0.clone();
         v0.clone().borrow_mut()[v8 as usize] = 0.0f64;
         v1.clone().borrow_mut()[v8 as usize] = 46i32;
-        let mut v9: i32 = v8 + 1i32;
+        let mut v9: i32 = v8.wrapping_add(1i32);
         v6.borrow_mut().l0 = v9;
         ()
     };
@@ -155,138 +155,72 @@ fn method2(mut v0: Rc<RefCell<Vec<f64>>>, mut v1: Rc<RefCell<Vec<i32>>>, mut v2:
     let mut v14: f64 = 5.0f64;
     let mut v15: f64 = 40.0f64;
     method3(v0.clone(), v1.clone(), v2, v3, v4, v14, v15);
-    print!("{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("u001b[H"); } LIT.with(|lit| lit.clone()) });
-    let mut v19: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: v5 }));
-    let mut v20: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-    while method7(v20.clone()) {
-        let mut v22: i32 = v20.borrow().l0.clone();
-        let mut v23: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-        while method8(v23.clone()) {
-            let mut v25: i32 = v23.borrow().l0.clone();
-            let mut v26: i32 = v22 * 160i32;
-            let mut v27: i32 = v25 + v26;
-            let mut v28: i32 = v1.clone().borrow()[v27 as usize].clone();
-            let mut v29: bool = v28 == 59i32;
-            let mut v47: Rc<str> = if v29 {
-                let mut v30: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(";"); } LIT.with(|lit| lit.clone()) };
-                v30.clone()
+    print!("u001b[H");
+    let mut v16: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: v5 }));
+    let mut v17: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+    while method7(v17.clone()) {
+        let mut v19: i32 = v17.borrow().l0.clone();
+        let mut v20: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+        while method8(v20.clone()) {
+            let mut v22: i32 = v20.borrow().l0.clone();
+            let mut v23: i32 = v19.wrapping_mul(160i32);
+            let mut v24: i32 = v22.wrapping_add(v23);
+            let mut v25: i32 = v1.clone().borrow()[v24 as usize].clone();
+            let mut v26: bool = v25 == 59i32;
+            let mut v44: Rc<str> = if v26 {
+                let mut v27: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(";"); } LIT.with(|lit| lit.clone()) };
+                v27.clone()
             } else {
-                let mut v31: bool = v28 == 92i32;
-                if v31 {
-                    let mut v32: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\\"); } LIT.with(|lit| lit.clone()) };
-                    v32.clone()
+                let mut v28: bool = v25 == 92i32;
+                if v28 {
+                    let mut v29: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\\"); } LIT.with(|lit| lit.clone()) };
+                    v29.clone()
                 } else {
-                    let mut v33: bool = v28 == 47i32;
-                    if v33 {
-                        let mut v34: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("/"); } LIT.with(|lit| lit.clone()) };
-                        v34.clone()
+                    let mut v30: bool = v25 == 47i32;
+                    if v30 {
+                        let mut v31: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("/"); } LIT.with(|lit| lit.clone()) };
+                        v31.clone()
                     } else {
-                        let mut v35: bool = v28 == 61i32;
-                        if v35 {
-                            let mut v36: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("="); } LIT.with(|lit| lit.clone()) };
-                            v36.clone()
+                        let mut v32: bool = v25 == 61i32;
+                        if v32 {
+                            let mut v33: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("="); } LIT.with(|lit| lit.clone()) };
+                            v33.clone()
                         } else {
-                            let mut v37: bool = v28 == 62i32;
-                            if v37 {
-                                let mut v38: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(">"); } LIT.with(|lit| lit.clone()) };
-                                v38.clone()
+                            let mut v34: bool = v25 == 62i32;
+                            if v34 {
+                                let mut v35: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(">"); } LIT.with(|lit| lit.clone()) };
+                                v35.clone()
                             } else {
-                                let mut v39: bool = v28 == 60i32;
-                                if v39 {
-                                    let mut v40: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("<"); } LIT.with(|lit| lit.clone()) };
-                                    v40.clone()
+                                let mut v36: bool = v25 == 60i32;
+                                if v36 {
+                                    let mut v37: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("<"); } LIT.with(|lit| lit.clone()) };
+                                    v37.clone()
                                 } else {
-                                    let mut v41: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
-                                    v41.clone()
+                                    let mut v38: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("."); } LIT.with(|lit| lit.clone()) };
+                                    v38.clone()
                                 }
                             }
                         }
                     }
                 }
             };
-            print!("{}", v47.clone());
-            let mut v48: i32 = v19.borrow().l0.clone();
-            let mut v49: i32 = v48 * 31i32;
-            let mut v50: i32 = v49 + v28;
-            let mut v51: i32 = v50 % 1000003i32;
-            v19.borrow_mut().l0 = v51;
-            let mut v52: i32 = v25 + 1i32;
-            v23.borrow_mut().l0 = v52;
+            print!("{}", v44.clone());
+            let mut v45: i32 = v16.borrow().l0.clone();
+            let mut v46: i32 = v45.wrapping_mul(31i32);
+            let mut v47: i32 = v46.wrapping_add(v25);
+            let mut v48: i32 = v47.wrapping_rem(1000003i32);
+            v16.borrow_mut().l0 = v48;
+            let mut v49: i32 = v22.wrapping_add(1i32);
+            v20.borrow_mut().l0 = v49;
             ()
         };
-        print!("{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) });
-        let mut v56: i32 = v22 + 1i32;
-        v20.borrow_mut().l0 = v56;
+        print!("\n");
+        let mut v50: i32 = v19.wrapping_add(1i32);
+        v17.borrow_mut().l0 = v50;
         ()
     };
-    let mut v57: i32 = v19.borrow().l0.clone();
-    v57
-}
-fn method9(mut v0: i32) -> () {
-    let mut v1: bool = v0 >= 10i32;
-    if v1 {
-        let mut v2: i32 = v0 / 10i32;
-        method9(v2)
-    };
-    let mut v3: i32 = v0 % 10i32;
-    let mut v4: bool = v3 == 0i32;
-    let mut v31: Rc<str> = if v4 {
-        let mut v5: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("0"); } LIT.with(|lit| lit.clone()) };
-        v5.clone()
-    } else {
-        let mut v6: bool = v3 == 1i32;
-        if v6 {
-            let mut v7: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("1"); } LIT.with(|lit| lit.clone()) };
-            v7.clone()
-        } else {
-            let mut v8: bool = v3 == 2i32;
-            if v8 {
-                let mut v9: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("2"); } LIT.with(|lit| lit.clone()) };
-                v9.clone()
-            } else {
-                let mut v10: bool = v3 == 3i32;
-                if v10 {
-                    let mut v11: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("3"); } LIT.with(|lit| lit.clone()) };
-                    v11.clone()
-                } else {
-                    let mut v12: bool = v3 == 4i32;
-                    if v12 {
-                        let mut v13: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("4"); } LIT.with(|lit| lit.clone()) };
-                        v13.clone()
-                    } else {
-                        let mut v14: bool = v3 == 5i32;
-                        if v14 {
-                            let mut v15: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("5"); } LIT.with(|lit| lit.clone()) };
-                            v15.clone()
-                        } else {
-                            let mut v16: bool = v3 == 6i32;
-                            if v16 {
-                                let mut v17: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("6"); } LIT.with(|lit| lit.clone()) };
-                                v17.clone()
-                            } else {
-                                let mut v18: bool = v3 == 7i32;
-                                if v18 {
-                                    let mut v19: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("7"); } LIT.with(|lit| lit.clone()) };
-                                    v19.clone()
-                                } else {
-                                    let mut v20: bool = v3 == 8i32;
-                                    if v20 {
-                                        let mut v21: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("8"); } LIT.with(|lit| lit.clone()) };
-                                        v21.clone()
-                                    } else {
-                                        let mut v22: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("9"); } LIT.with(|lit| lit.clone()) };
-                                        v22.clone()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    };
-    print!("{}", v31.clone());
-    ()
+    let mut v51: i32 = v16.borrow().l0.clone();
+    v51
 }
 fn spiral_main() -> i32 {
     let mut v0: Rc<RefCell<Vec<f64>>> = Rc::new(RefCell::new(vec![<f64>::default(); 7040i32 as usize]));
@@ -294,7 +228,7 @@ fn spiral_main() -> i32 {
     while method0(v1.clone()) {
         let mut v3: i32 = v1.borrow().l0.clone();
         v0.clone().borrow_mut()[v3 as usize] = 0.0f64;
-        let mut v4: i32 = v3 + 1i32;
+        let mut v4: i32 = v3.wrapping_add(1i32);
         v1.borrow_mut().l0 = v4;
         ()
     };
@@ -303,7 +237,7 @@ fn spiral_main() -> i32 {
     while method0(v6.clone()) {
         let mut v8: i32 = v6.borrow().l0.clone();
         v5.clone().borrow_mut()[v8 as usize] = 46i32;
-        let mut v9: i32 = v8 + 1i32;
+        let mut v9: i32 = v8.wrapping_add(1i32);
         v6.borrow_mut().l0 = v9;
         ()
     };
@@ -323,17 +257,12 @@ fn spiral_main() -> i32 {
         v10.borrow_mut().l0 = v23;
         v10.borrow_mut().l1 = v24;
         v10.borrow_mut().l2 = v25;
-        let mut v26: i32 = v14 + 1i32;
+        let mut v26: i32 = v14.wrapping_add(1i32);
         v12.borrow_mut().l0 = v26;
         ()
     };
-    print!("{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("cube: "); } LIT.with(|lit| lit.clone()) });
-    let mut v30: i32 = 60i32;
-    method9(v30);
-    print!("{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" frames, checksum "); } LIT.with(|lit| lit.clone()) });
-    let mut v34: i32 = v11.borrow().l0.clone();
-    method9(v34);
-    print!("{}", { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) });
+    let mut v27: i32 = v11.borrow().l0.clone();
+    print!("cube: {} frames, checksum {}\n", 60i32, v27);
     0i32
 }
 #[cfg(not(target_arch = "wasm32"))]

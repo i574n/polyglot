@@ -1,4 +1,4 @@
-#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_patterns, unreachable_code, while_true)]
+#![allow(unused_mut, unused_variables, unused_imports, unused_parens, unused_braces, unused_assignments, dead_code, non_snake_case, non_camel_case_types, unreachable_code, while_true)]
 use std::cell::RefCell;
 use std::rc::Rc;
 thread_local! { static SPIRAL_TEST_NAME: std::cell::RefCell<Option<std::rc::Rc<str>>> = const { std::cell::RefCell::new(None) }; }
@@ -138,14 +138,14 @@ fn method5(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> Result<nu
     let mut v36: Rc<RefCell<Mut1>> = Rc::new(RefCell::new(Mut1 { l0: 0i32, l1: v35.clone(), l2: v35.clone() }));
     while method6(v34, v36.clone()) {
         let mut v38: i32 = v36.borrow().l0.clone();
-        let mut v39: i32 = -(v38);
-        let mut v40: i32 = v39 + v34;
-        let mut v41: i32 = v40 - 1i32;
+        let mut v39: i32 = v38.wrapping_neg();
+        let mut v40: i32 = v39.wrapping_add(v34);
+        let mut v41: i32 = v40.wrapping_sub(1i32);
         let (mut v42, mut v43): (Rc<str>, Rc<str>) = (v36.borrow().l1.clone(), v36.borrow().l2.clone());
         let mut v44: Rc<str> = v33.clone().borrow()[v41 as usize].clone();
         let mut v61: Rc<str> = Rc::<str>::from(format!("{}{}", v44, v43));
         let mut v67: Rc<str> = Rc::<str>::from(format!("{}{}", v61, v42));
-        let mut v68: i32 = v38 + 1i32;
+        let mut v68: i32 = v38.wrapping_add(1i32);
         let mut v69: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) };
         v36.borrow_mut().l0 = v68;
         v36.borrow_mut().l1 = v67.clone();
@@ -156,57 +156,57 @@ fn method5(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> Result<nu
     let mut v86: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__NAME__"); } LIT.with(|lit| lit.clone()) };
     let mut v87: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("zeta_"); } LIT.with(|lit| lit.clone()) };
     let mut v88: Rc<str> = Rc::<str>::from(v70.replace(&*v86, &*v87));
-    let mut v102: Rc<str> = method7(v88.clone());
-    let mut v104: f64 = v1.re;
-    let mut v106: f64 = v1.im;
-    let (mut v123, mut v124): (f64, f64) = method8(v104, v106);
-    let mut v125: (f64, f64) = (v123, v124);
-    let (mut v157, mut v158): (bool, (f64, f64)) = method9(v125.clone());
-    let mut v159: (bool, (f64, f64)) = (v157, v158);
-    let mut v175: pyo3::Python = method10(v0.clone());
-    let mut v448: &str = &*v102;
-    let mut v606: std::string::String = String::from(v448);
-    let mut v611: std::ffi::CString = std::ffi::CString::new(v606).unwrap();
-    let mut v613: &str = &*v35;
-    let mut v615: std::string::String = String::from(v613);
-    let mut v617: std::ffi::CString = std::ffi::CString::new(v615).unwrap();
-    let mut v619: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v175, &v611, &v617, &v617);
-    let mut v621: bool = true; let _result_map_error__ = v619.map_err(|x| { //;
-    let mut v623: pyo3::PyErr = x;
-    let mut v651: std::string::String = format!("{}", v623);
-    let mut v656: bool = true; v651 });
-    let mut v658: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
-    let mut v660: pyo3::Bound<pyo3::types::PyModule> = v658.unwrap();
-    let mut v661: Rc<str> = method11();
-    let mut v663: &str = &*v661;
-    let mut v664: pyo3::Bound<pyo3::types::PyModule> = method12(v660.clone());
-    let mut v666: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v664.getattr(v663);
-    let mut v668: bool = true; let _result_map_error__ = v666.map_err(|x| { //;
-    let mut v670: pyo3::PyErr = x;
-    let mut v672: std::string::String = format!("{}", v670);
-    let mut v674: bool = true; v672 });
-    let mut v676: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v678: pyo3::Bound<pyo3::PyAny> = v676.unwrap();
-    let mut v679: (bool, (f64, f64)) = method13(v159.clone());
-    let mut v680: pyo3::Bound<pyo3::PyAny> = method14(v678.clone());
-    let mut v682: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v680, v679, None);
-    let mut v684: bool = true; let _result_map_error__ = v682.map_err(|x| { //;
-    let mut v686: pyo3::PyErr = x;
-    let mut v688: std::string::String = format!("{}", v686);
-    let mut v690: bool = true; v688 });
-    let mut v692: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v694: pyo3::Bound<pyo3::PyAny> = v692?;
-    let mut v695: pyo3::Bound<pyo3::PyAny> = method15(v694.clone());
-    let mut v697: Result<(f64, f64), pyo3::PyErr> = v695.extract();
-    let mut v699: bool = true; let _result_map_error__ = v697.map_err(|x| { //;
-    let mut v701: pyo3::PyErr = x;
-    let mut v703: std::string::String = format!("{}", v701);
-    let mut v705: bool = true; v703 });
-    let mut v707: Result<(f64, f64), std::string::String> = _result_map_error__;
-    let (mut v709, mut v710): (f64, f64) = v707?;
-    let mut v712: num_complex::Complex<f64> = num_complex::Complex::new(v709, v710);
-    let mut v729: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v712);
-    v729.clone()
+    let mut v92: Rc<str> = method7(v88.clone());
+    let mut v94: f64 = v1.re;
+    let mut v96: f64 = v1.im;
+    let (mut v113, mut v114): (f64, f64) = method8(v94, v96);
+    let mut v115: (f64, f64) = (v113, v114);
+    let (mut v147, mut v148): (bool, (f64, f64)) = method9(v115.clone());
+    let mut v149: (bool, (f64, f64)) = (v147, v148);
+    let mut v165: pyo3::Python = method10(v0.clone());
+    let mut v436: &str = &*v92;
+    let mut v592: std::string::String = String::from(v436);
+    let mut v597: std::ffi::CString = std::ffi::CString::new(v592).unwrap();
+    let mut v599: &str = &*v35;
+    let mut v601: std::string::String = String::from(v599);
+    let mut v603: std::ffi::CString = std::ffi::CString::new(v601).unwrap();
+    let mut v605: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v165, &v597, &v603, &v603);
+    let mut v607: bool = true; let _result_map_error__ = v605.map_err(|x| { //;
+    let mut v609: pyo3::PyErr = x;
+    let mut v637: std::string::String = format!("{}", v609);
+    let mut v642: bool = true; v637 });
+    let mut v644: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
+    let mut v646: pyo3::Bound<pyo3::types::PyModule> = v644.unwrap();
+    let mut v647: Rc<str> = method11();
+    let mut v649: &str = &*v647;
+    let mut v650: pyo3::Bound<pyo3::types::PyModule> = method12(v646.clone());
+    let mut v652: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v650.getattr(v649);
+    let mut v654: bool = true; let _result_map_error__ = v652.map_err(|x| { //;
+    let mut v656: pyo3::PyErr = x;
+    let mut v658: std::string::String = format!("{}", v656);
+    let mut v660: bool = true; v658 });
+    let mut v662: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v664: pyo3::Bound<pyo3::PyAny> = v662.unwrap();
+    let mut v665: (bool, (f64, f64)) = method13(v149.clone());
+    let mut v666: pyo3::Bound<pyo3::PyAny> = method14(v664.clone());
+    let mut v668: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v666, v665, None);
+    let mut v670: bool = true; let _result_map_error__ = v668.map_err(|x| { //;
+    let mut v672: pyo3::PyErr = x;
+    let mut v674: std::string::String = format!("{}", v672);
+    let mut v676: bool = true; v674 });
+    let mut v678: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v680: pyo3::Bound<pyo3::PyAny> = v678?;
+    let mut v681: pyo3::Bound<pyo3::PyAny> = method15(v680.clone());
+    let mut v683: Result<(f64, f64), pyo3::PyErr> = v681.extract();
+    let mut v685: bool = true; let _result_map_error__ = v683.map_err(|x| { //;
+    let mut v687: pyo3::PyErr = x;
+    let mut v689: std::string::String = format!("{}", v687);
+    let mut v691: bool = true; v689 });
+    let mut v693: Result<(f64, f64), std::string::String> = _result_map_error__;
+    let (mut v695, mut v696): (f64, f64) = v693?;
+    let mut v698: num_complex::Complex<f64> = num_complex::Complex::new(v695, v696);
+    let mut v715: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v698);
+    v715.clone()
 }
 fn method17(mut v0: Rc<RefCell<Mut0>>) -> bool {
     let mut v1: i32 = v0.borrow().l0.clone();
@@ -256,14 +256,14 @@ fn method19(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> Result<n
     let mut v36: Rc<RefCell<Mut1>> = Rc::new(RefCell::new(Mut1 { l0: 0i32, l1: v35.clone(), l2: v35.clone() }));
     while method6(v34, v36.clone()) {
         let mut v38: i32 = v36.borrow().l0.clone();
-        let mut v39: i32 = -(v38);
-        let mut v40: i32 = v39 + v34;
-        let mut v41: i32 = v40 - 1i32;
+        let mut v39: i32 = v38.wrapping_neg();
+        let mut v40: i32 = v39.wrapping_add(v34);
+        let mut v41: i32 = v40.wrapping_sub(1i32);
         let (mut v42, mut v43): (Rc<str>, Rc<str>) = (v36.borrow().l1.clone(), v36.borrow().l2.clone());
         let mut v44: Rc<str> = v33.clone().borrow()[v41 as usize].clone();
         let mut v45: Rc<str> = Rc::<str>::from(format!("{}{}", v44, v43));
         let mut v46: Rc<str> = Rc::<str>::from(format!("{}{}", v45, v42));
-        let mut v47: i32 = v38 + 1i32;
+        let mut v47: i32 = v38.wrapping_add(1i32);
         let mut v48: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) };
         v36.borrow_mut().l0 = v47;
         v36.borrow_mut().l1 = v46.clone();
@@ -347,7 +347,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
         while method17(v9.clone()) {
             let mut v11: i32 = v9.borrow().l0.clone();
             v8.clone().borrow_mut()[v11 as usize] = v11;
-            let mut v12: i32 = v11 + 1i32;
+            let mut v12: i32 = v11.wrapping_add(1i32);
             v9.borrow_mut().l0 = v12;
             ()
         };
@@ -363,7 +363,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
             let mut v57: num_complex::Complex<f64> = num_complex::Complex::powc(v55, v1.clone());
             let mut v59: num_complex::Complex<f64> = v20 / v57;
             let mut v61: num_complex::Complex<f64> = v17 + v59;
-            let mut v62: i32 = v16 + 1i32;
+            let mut v62: i32 = v16.wrapping_add(1i32);
             v14.borrow_mut().l0 = v62;
             v14.borrow_mut().l1 = v61.clone();
             ()
@@ -392,7 +392,6 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                 let mut v191: num_complex::Complex<f64> = v191.clone();
                 v191.clone()
             }
-            _ => unreachable!(),
         };
         let mut v195: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
         let mut v197: num_complex::Complex<f64> = v195 * v1;
@@ -420,7 +419,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                 while method17(v224.clone()) {
                     let mut v226: i32 = v224.borrow().l0.clone();
                     v223.clone().borrow_mut()[v226 as usize] = v226;
-                    let mut v227: i32 = v226 + 1i32;
+                    let mut v227: i32 = v226.wrapping_add(1i32);
                     v224.borrow_mut().l0 = v227;
                     ()
                 };
@@ -436,7 +435,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                     let mut v240: num_complex::Complex<f64> = num_complex::Complex::powc(v238, v211.clone());
                     let mut v242: num_complex::Complex<f64> = v235 / v240;
                     let mut v244: num_complex::Complex<f64> = v232 + v242;
-                    let mut v245: i32 = v231 + 1i32;
+                    let mut v245: i32 = v231.wrapping_add(1i32);
                     v229.borrow_mut().l0 = v245;
                     v229.borrow_mut().l1 = v244.clone();
                     ()
@@ -464,7 +463,6 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                         let mut v265: num_complex::Complex<f64> = v265.clone();
                         v265.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v269: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
                 let mut v271: num_complex::Complex<f64> = v269 * v211;
@@ -492,7 +490,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                         while method17(v298.clone()) {
                             let mut v300: i32 = v298.borrow().l0.clone();
                             v297.clone().borrow_mut()[v300 as usize] = v300;
-                            let mut v301: i32 = v300 + 1i32;
+                            let mut v301: i32 = v300.wrapping_add(1i32);
                             v298.borrow_mut().l0 = v301;
                             ()
                         };
@@ -508,7 +506,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                             let mut v314: num_complex::Complex<f64> = num_complex::Complex::powc(v312, v285.clone());
                             let mut v316: num_complex::Complex<f64> = v309 / v314;
                             let mut v318: num_complex::Complex<f64> = v306 + v316;
-                            let mut v319: i32 = v305 + 1i32;
+                            let mut v319: i32 = v305.wrapping_add(1i32);
                             v303.borrow_mut().l0 = v319;
                             v303.borrow_mut().l1 = v318.clone();
                             ()
@@ -536,7 +534,6 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                 let mut v339: num_complex::Complex<f64> = v339.clone();
                                 v339.clone()
                             }
-                            _ => unreachable!(),
                         };
                         let mut v343: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
                         let mut v345: num_complex::Complex<f64> = v343 * v285;
@@ -564,7 +561,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                 while method17(v372.clone()) {
                                     let mut v374: i32 = v372.borrow().l0.clone();
                                     v371.clone().borrow_mut()[v374 as usize] = v374;
-                                    let mut v375: i32 = v374 + 1i32;
+                                    let mut v375: i32 = v374.wrapping_add(1i32);
                                     v372.borrow_mut().l0 = v375;
                                     ()
                                 };
@@ -580,7 +577,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                     let mut v388: num_complex::Complex<f64> = num_complex::Complex::powc(v386, v359.clone());
                                     let mut v390: num_complex::Complex<f64> = v383 / v388;
                                     let mut v392: num_complex::Complex<f64> = v380 + v390;
-                                    let mut v393: i32 = v379 + 1i32;
+                                    let mut v393: i32 = v379.wrapping_add(1i32);
                                     v377.borrow_mut().l0 = v393;
                                     v377.borrow_mut().l1 = v392.clone();
                                     ()
@@ -608,7 +605,6 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                         let mut v413: num_complex::Complex<f64> = v413.clone();
                                         v413.clone()
                                     }
-                                    _ => unreachable!(),
                                 };
                                 let mut v417: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
                                 let mut v419: num_complex::Complex<f64> = v417 * v359;
@@ -636,7 +632,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                         while method17(v446.clone()) {
                                             let mut v448: i32 = v446.borrow().l0.clone();
                                             v445.clone().borrow_mut()[v448 as usize] = v448;
-                                            let mut v449: i32 = v448 + 1i32;
+                                            let mut v449: i32 = v448.wrapping_add(1i32);
                                             v446.borrow_mut().l0 = v449;
                                             ()
                                         };
@@ -652,7 +648,7 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                             let mut v462: num_complex::Complex<f64> = num_complex::Complex::powc(v460, v433.clone());
                                             let mut v464: num_complex::Complex<f64> = v457 / v462;
                                             let mut v466: num_complex::Complex<f64> = v454 + v464;
-                                            let mut v467: i32 = v453 + 1i32;
+                                            let mut v467: i32 = v453.wrapping_add(1i32);
                                             v451.borrow_mut().l0 = v467;
                                             v451.borrow_mut().l1 = v466.clone();
                                             ()
@@ -680,7 +676,6 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                                 let mut v487: num_complex::Complex<f64> = v487.clone();
                                                 v487.clone()
                                             }
-                                            _ => unreachable!(),
                                         };
                                         let mut v491: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
                                         let mut v493: num_complex::Complex<f64> = v491 * v433;
@@ -859,7 +854,6 @@ fn method2(mut v0: pyo3::Python) -> () {
                 let mut v28: num_complex::Complex<f64> = v28.clone();
                 v28.clone()
             }
-            _ => unreachable!(),
         };
         let mut v32: f64 = v30.im;
         let mut v33: bool = v32 == 0.0f64;
@@ -928,7 +922,7 @@ fn method2(mut v0: pyo3::Python) -> () {
         if v106 {
             std::panic::panic_any::<std::string::String>(format!("{}", v105.clone()))
         };
-        let mut v107: i32 = v9 + 1i32;
+        let mut v107: i32 = v9.wrapping_add(1i32);
         v7.borrow_mut().l0 = v107;
         ()
     };
@@ -967,7 +961,6 @@ fn method32(mut v0: pyo3::Python) -> () {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
-        _ => unreachable!(),
     };
     let mut v23: f64 = v21.re;
     let mut v24: f64 = v23 - 0.8673f64;
@@ -1059,7 +1052,7 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
             UH0::UH0_1(v2, v3) => { // Cons
-                let mut v2: f64 = v2.clone();
+                let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, 0.0f64);
                 let mut v6: num_complex::Complex<f64> = method4(v5.clone());
@@ -1082,7 +1075,6 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v26: f64 = v24.re;
                 let mut v27: bool = v26 == 0.0f64;
@@ -1148,7 +1140,6 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
             UH0::UH0_0 => { // Nil
                 return ();
             }
-            _ => unreachable!(),
         }
         return ();
     }
@@ -1224,7 +1215,6 @@ fn method38(mut v0: pyo3::Python) -> () {
                 let mut v35: num_complex::Complex<f64> = v35.clone();
                 v35.clone()
             }
-            _ => unreachable!(),
         };
         let mut v39: f64 = v37.re;
         let mut v40: f64 = -(v39);
@@ -1298,7 +1288,7 @@ fn method38(mut v0: pyo3::Python) -> () {
         if v81 {
             std::panic::panic_any::<std::string::String>(format!("{}", v80.clone()))
         };
-        let mut v82: i32 = v17 + 1i32;
+        let mut v82: i32 = v17.wrapping_add(1i32);
         v15.borrow_mut().l0 = v82;
         ()
     };
@@ -1343,7 +1333,6 @@ fn method40(mut v0: pyo3::Python) -> () {
                 let mut v25: num_complex::Complex<f64> = v25.clone();
                 v25.clone()
             }
-            _ => unreachable!(),
         };
         let mut v29: f64 = v27.re;
         let mut v30: bool = v29 > 0.0f64;
@@ -1404,7 +1393,7 @@ fn method40(mut v0: pyo3::Python) -> () {
         if v83 {
             std::panic::panic_any::<std::string::String>(format!("{}", v82.clone()))
         };
-        let mut v84: i32 = v5 + 1i32;
+        let mut v84: i32 = v5.wrapping_add(1i32);
         v3.borrow_mut().l0 = v84;
         ()
     };
@@ -1443,7 +1432,6 @@ fn method42(mut v0: pyo3::Python) -> () {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
-        _ => unreachable!(),
     };
     let mut v23: f64 = v21.re;
     let mut v24: bool = v23 == f64::INFINITY;
@@ -1537,7 +1525,6 @@ fn method44(mut v0: pyo3::Python) -> () {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
-        _ => unreachable!(),
     };
     let mut v23: f64 = v2.re;
     let mut v25: f64 = v2.im;
@@ -1562,7 +1549,6 @@ fn method44(mut v0: pyo3::Python) -> () {
             let mut v44: num_complex::Complex<f64> = v44.clone();
             v44.clone()
         }
-        _ => unreachable!(),
     };
     let mut v48: num_complex::Complex<f64> = v46.conj();
     let mut v50: f64 = v21.re;
@@ -1651,7 +1637,6 @@ fn method46(mut v0: pyo3::Python) -> () {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
-        _ => unreachable!(),
     };
     let mut v23: f64 = v21.re;
     let mut v24: bool = v23 < f64::INFINITY;
@@ -1727,7 +1712,7 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
             UH0::UH0_1(v2, v3) => { // Cons
-                let mut v2: f64 = v2.clone();
+                let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, v2);
                 let mut v6: num_complex::Complex<f64> = method4(v5.clone());
@@ -1750,7 +1735,6 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v26: f64 = v24.re;
                 let mut v33: bool = v26 != 0.0f64 ;
@@ -1816,7 +1800,6 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
             UH0::UH0_0 => { // Nil
                 return ();
             }
-            _ => unreachable!(),
         }
         return ();
     }
@@ -1875,7 +1858,6 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v24: f64 = v22.re;
                 let mut v25: bool = v24 != 0.0f64 ;
@@ -1941,7 +1923,6 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
             UH1::UH1_0 => { // Nil
                 return ();
             }
-            _ => unreachable!(),
         }
         return ();
     }
@@ -2000,7 +1981,6 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v24: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
                 let mut v26: num_complex::Complex<f64> = num_complex::Complex::powc(v24, v2.clone());
@@ -2035,7 +2015,6 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                         let mut v67: num_complex::Complex<f64> = v67.clone();
                         v67.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v71: num_complex::Complex<f64> = v48 * v69;
                 let mut v73: f64 = v2.re;
@@ -2062,7 +2041,6 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                         let mut v95: num_complex::Complex<f64> = v95.clone();
                         v95.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v99: num_complex::Complex<f64> = v71 * v97;
                 let mut v101: f64 = v22.re;
@@ -2147,7 +2125,6 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
             UH1::UH1_0 => { // Nil
                 return ();
             }
-            _ => unreachable!(),
         }
         return ();
     }
@@ -2182,7 +2159,7 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
     loop {
         match &*v1 {
             UH0::UH0_1(v3, v4) => { // Cons
-                let mut v3: f64 = v3.clone();
+                let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v5: f64 = -(v0);
                 let mut v6: f64 = v3.powf(v5);
@@ -2194,7 +2171,6 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
             UH0::UH0_0 => { // Nil
                 return v2;
             }
-            _ => unreachable!(),
         }
     }
 }
@@ -2202,7 +2178,7 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
     loop {
         match &*v2 {
             UH0::UH0_1(v3, v4) => { // Cons
-                let mut v3: f64 = v3.clone();
+                let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0f64);
                 let mut v7: f64 = 1.0f64;
@@ -2227,7 +2203,6 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
                         let mut v25: num_complex::Complex<f64> = v25.clone();
                         v25.clone()
                     }
-                    _ => unreachable!(),
                 };
                 let mut v29: f64 = v27.re;
                 let mut v30: f64 = v29 - v8;
@@ -2301,7 +2276,6 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
             UH0::UH0_0 => { // Nil
                 return ();
             }
-            _ => unreachable!(),
         }
         return ();
     }

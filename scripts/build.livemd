@@ -8,12 +8,6 @@
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-{ pwsh ../apps/builder/build.ps1 } | Invoke-Block
-```
-
-<!-- livebook:{"spiral_code":"pwsh"} -->
-
-```pwsh
 { pwsh ../deps/spiral/apps/spiral/build.ps1 -fast 1 } | Invoke-Block
 ```
 
@@ -21,12 +15,6 @@
 
 ```pwsh
 { pwsh ../apps/parser/build.ps1 } | Invoke-Block
-```
-
-<!-- livebook:{"spiral_code":"pwsh"} -->
-
-```pwsh
-{ pwsh ../apps/spiral/build.ps1 } | Invoke-Block
 ```
 
 <!-- livebook:{"spiral_code":"pwsh"} -->

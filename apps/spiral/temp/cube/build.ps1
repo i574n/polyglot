@@ -8,7 +8,8 @@ $ErrorActionPreference = "Stop"
 
 # Spinning ASCII cubes on every backend that runs them: exports cube.spi from cube.livemd (Kino), compiles it per
 # backend, builds and runs each program, and requires the same 60-frame checksum everywhere (the float math agrees
-# across runtimes). Lua is left out until the compiler's Lua backend reads multi-field mutable records correctly.
+# across runtimes). Output goes through the portable `!!!!Printf` on every backend. Gleam is left out until its backend builds the cube
+# (2026-10-07: float negation needs `-.`, `am.init` arrays need the gary package and a sized ArrayCreate).
 $projectName = "cube"
 $expected = "cube: 60 frames, checksum 970392"
 $targetDir = GetTargetDir $projectName
@@ -24,6 +25,8 @@ $backends = [ordered]@{
     "Fsharp" = @{ Out = "$projectName.fsx"; Build = { }; Run = { dotnet fsi --quiet --nowarn:25 "$projectName.fsx" } }
     "TypeScript" = @{ Out = "$projectName.ts"; Build = { }; Run = { bun run "$projectName.ts" } }
     "Python + Cuda" = @{ Out = "$projectName.py"; Build = { }; Run = { python "$projectName.py" } }
+    "Lua" = @{ Out = "$projectName.lua"; Build = { }; Run = { lua "$projectName.lua" } }
+    "Zig" = @{ Out = "$projectName.zig"; Build = { zig build-exe -O ReleaseFast -fno-emit-implib "$projectName.zig" "-femit-bin=$targetDir/cube_zig$exe" }; Run = { & "$targetDir/cube_zig$exe" } }
 }
 
 $failed = @()

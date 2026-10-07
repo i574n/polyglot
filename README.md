@@ -93,8 +93,6 @@ Build
 - Full build output (PowerShell)  
 <https://i574n.github.io/polyglot/scripts/build.livemd.html>
 
-- Spiral supervisor notebook (F#)  
-<https://i574n.github.io/polyglot/apps/spiral/Supervisor.livemd.html>
 
 </td>
 </tr>
