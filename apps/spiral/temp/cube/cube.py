@@ -19,6 +19,7 @@ import math
 def spiral_array_index(array, index):
     value = array[index]
     return value.item() if isinstance(array, cp.ndarray) and array.dtype.kind != 'O' else value
+import sys
 @dataclass
 class Mut0:
     v0 : i32
@@ -381,4 +382,4 @@ def main():
     del v27
     return 0
 
-if __name__ == '__main__': result = main(); None if result is None else print(result)
+if __name__ == '__main__': sys.exit(main())

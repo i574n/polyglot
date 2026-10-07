@@ -7924,25 +7924,25 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
  INFO resolve: Resolving package: 'cargo-outdated'
  INFO Cloning with worktree::receiving pack: Enumerating objects → 34.0 objects
- INFO ℹCloning with worktree::receiving pack::create index file::indexing → done 34.0 objects in 0.04s (798.0 objects/s)
- INFO ℹCloning with worktree::receiving pack::create index file::decompressing → done 210.1KB in 0.04s (4.9MB/s)
- INFO ℹCloning with worktree::receiving pack::create index file::Resolving → done 34.0 objects in 0.05s (674.0 objects/s)
+ INFO ℹCloning with worktree::receiving pack::create index file::indexing → done 34.0 objects in 0.00s (11.7K objects/s)
+ INFO ℹCloning with worktree::receiving pack::create index file::decompressing → done 210.1KB in 0.00s (71.7MB/s)
+ INFO ℹCloning with worktree::receiving pack::create index file::Resolving → done 34.0 objects in 0.05s (672.0 objects/s)
  INFO ℹCloning with worktree::receiving pack::create index file::Decoding → done 210.1KB in 0.05s (4.2MB/s)
- INFO ✓Cloning with worktree::receiving pack::create index file::writing index file → done 2.0KB in 0.00s (56.2MB/s)
- INFO ✓Cloning with worktree::receiving pack::create index file → done 34.0 objects in 0.09s (365.0 objects/s)
- INFO ℹCloning with worktree::receiving pack::read pack → done 56.8KB in 0.09s (602.9KB/s)
- INFO ℹCloning with worktree::receiving pack::checkout → done 27.0 files in 0.00s (20.3K files/s)
- INFO ℹCloning with worktree::receiving pack::writing → done 208.7KB in 0.00s (154.7MB/s)
- WARN Failed to send quickinstall report for package cargo-outdated-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz)
+ INFO ✓Cloning with worktree::receiving pack::create index file::writing index file → done 2.0KB in 0.00s (35.2MB/s)
+ INFO ✓Cloning with worktree::receiving pack::create index file → done 34.0 objects in 0.05s (633.0 objects/s)
+ INFO ℹCloning with worktree::receiving pack::read pack → done 56.8KB in 0.06s (989.3KB/s)
+ INFO ℹCloning with worktree::receiving pack::checkout → done 27.0 files in 0.00s (19.9K files/s)
+ INFO ℹCloning with worktree::receiving pack::writing → done 208.7KB in 0.00s (151.7MB/s)
  WARN Failed to send quickinstall report for package cargo-outdated-0.15.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-gnu.tar.gz)
+ WARN Failed to send quickinstall report for package cargo-outdated-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz)
  WARN The package cargo-outdated v0.15.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
  INFO This will install the following binaries:
  INFO   - cargo-outdated (cargo-outdated -&gt; /home/runner/.cargo/bin/cargo-outdated)
  INFO Installing binaries...
- INFO Done in 1.051954093s
+ INFO Done in 907.924757ms
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   81G  45% /
+/dev/root       145G   64G   81G  45% /
 </pre>
 </div>
 </div>
@@ -7978,17 +7978,17 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 'cargo binstall -y sccache'
 
  INFO resolve: Resolving package: 'sccache'
- WARN Failed to send quickinstall report for package sccache-0.18.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz)
  WARN Failed to send quickinstall report for package sccache-0.18.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-musl.tar.gz)
+ WARN Failed to send quickinstall report for package sccache-0.18.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz)
  WARN resolve: When resolving sccache bin sccache-dist is not found. But since it requires features dist-server, this bin is ignored.
  WARN The package sccache v0.18.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
  INFO This will install the following binaries:
  INFO   - sccache (sccache -&gt; /home/runner/.cargo/bin/sccache)
  INFO Installing binaries...
- INFO Done in 968.52121ms
+ INFO Done in 980.78009ms
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   81G  45% /
+/dev/root       145G   64G   81G  45% /
 </pre>
 </div>
 </div>
@@ -8024,16 +8024,16 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 'cargo binstall -y wasm-pack'
 
  INFO resolve: Resolving package: 'wasm-pack'
- WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz)
  WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz)
+ WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz)
  WARN The package wasm-pack v0.15.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
  INFO This will install the following binaries:
  INFO   - wasm-pack (wasm-pack -&gt; /home/runner/.cargo/bin/wasm-pack)
  INFO Installing binaries...
- INFO Done in 864.240303ms
+ INFO Done in 716.68923ms
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   81G  45% /
+/dev/root       145G   64G   81G  45% /
 </pre>
 </div>
 </div>
@@ -8100,14 +8100,13 @@ Chromium 125.0.6422.26 (playwright build v1117) downloaded to /home/runner/.cach
 Downloading FFMPEG playwright build v1009 from https://playwright.azureedge.net/builds/ffmpeg/1009/ffmpeg-linux.zip
 |                                                                                |   0% of 2.6 MiB
 |■■■■■■■■                                                                        |  10% of 2.6 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 2.6 MiB
+|■■■■■■■■■■■■■■■■                                                                |  21% of 2.6 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  41% of 2.6 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  74% of 2.6 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  92% of 2.6 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.6 MiB
 FFMPEG playwright build v1009 downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1009
 Downloading Firefox 125.0.1 (playwright build v1449) from https://playwright.azureedge.net/builds/firefox/1449/firefox-ubuntu-22.04.zip
@@ -8138,7 +8137,7 @@ Downloading Webkit 17.4 (playwright build v2003) from https://playwright.azureed
 Webkit 17.4 (playwright build v2003) downloaded to /home/runner/.cache/ms-playwright/webkit-2003
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>
@@ -8186,7 +8185,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>
@@ -8228,7 +8227,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>
@@ -8266,7 +8265,7 @@ bun install v1.4.2 (744846f84)
 + npm-check-updates@17.1.14
 + typescript@5.5.0-dev.20240404
 
-4 packages installed [112.00ms]
+4 packages installed [94.00ms]
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   66G   80G  46% /
@@ -8428,7 +8427,7 @@ bun install v1.4.2 (744846f84)
 + react@19.1.1
 + react-dom@19.1.1
 
-655 packages installed [1.94s]
+655 packages installed [1.98s]
 
 Blocked 1 postinstall. Run `bun pm untrusted` for details.
 core.Invoke-Block / df - /dev/root
@@ -8448,7 +8447,7 @@ https://nextjs.org/telemetry
    ▲ Next.js 15.5.2
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 9.3s
+ ✓ Compiled successfully in 9.9s
    Linting and checking validity of types ...
    Collecting page data ...
    Generating static pages (0/21) ...
