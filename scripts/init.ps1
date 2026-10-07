@@ -81,7 +81,9 @@ if (!(Search-Command "nix")) {
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
-    { pip install -r ../requirements.txt } | Invoke-Block -OnError Continue
+    # Ubuntu's system Python is externally managed (PEP 668): pip refuses a plain install there.
+    $pipArgs = $IsLinux ? @("--break-system-packages") : @()
+    { pip install @pipArgs -r ../requirements.txt } | Invoke-Block -OnError Continue
 }
 else {
     mkdir -p ~/.bun/bin

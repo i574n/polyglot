@@ -310,9 +310,9 @@ function _exe {
     }
 }
 
-# Runs a notebook through Kino (spiral/apps/kino/spi/livebook_dib.ps1: Spiral cells on the native backends, F# cells on
-# dotnet fsi) with the given livebook_dib.ps1 arguments (--spi-path, --fs-path, --no-spi, --export-only, ...). The run's
-# outputs keep the .dib route's names (<nb>.dib.ipynb, <nb>.dib.html) unless --output-path is given.
+# Runs a notebook through Kino (spiral/apps/kino/spi/run_notebook.ps1: Spiral cells on the native backends, F# cells on
+# dotnet fsi) with the given run_notebook.ps1 arguments (--spi-path, --fs-path, --no-spi, --export-only, ...). A run
+# writes <nb>.livemd.ipynb and <nb>.livemd.html unless --output-path is given.
 function Invoke-Notebook {
     param (
         [Parameter(Mandatory)]
@@ -321,17 +321,14 @@ function Invoke-Notebook {
         [int] $Retries = 1
     )
     $fullPath = (Resolve-Path $Path).Path
-    $livebook = Join-Path $PSScriptRoot "../deps/spiral/apps/kino/spi/livebook_dib.ps1"
-    # Not `$output`: Invoke-Block runs the script block in its own scope, where its `$output = $null` would shadow it.
-    $notebookOutput = $Arguments -contains "--export-only" -or $Arguments -contains "--output-path" `
-        ? @() : @("--output-path", ([IO.Path]::ChangeExtension($fullPath, ".dib.ipynb")))
-    { pwsh -NoProfile -File $livebook --path $fullPath @notebookOutput @Arguments } | Invoke-Block -Retries $Retries
+    $runNotebook = Join-Path $PSScriptRoot "../deps/spiral/apps/kino/spi/run_notebook.ps1"
+    { pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments } | Invoke-Block -Retries $Retries
 }
 
 # Runs a notebook whose code cells are all pwsh (e.g. init.livemd) as one plain pwsh script, without a notebook kernel:
 # its cells in order, in one session (they share variables, as in the notebook), from the notebook's directory
 # (nbs_header.ps1 then takes it as $ScriptDir); the first error stops it, like a failing cell. A .livemd's pwsh cells are
-# its `<!-- livebook:{"spiral_code":"pwsh"} -->` fences (spiral/apps/kino Document); a .dib's are its `#!pwsh` cells.
+# its `<!-- livebook:{"spiral_code":"pwsh"} -->` fences (spiral/apps/kino Document).
 function Invoke-PwshNotebook {
     param (
         [Parameter(Mandatory)]
@@ -339,28 +336,13 @@ function Invoke-PwshNotebook {
     )
     $fullPath = (Resolve-Path $Path).Path
     $cells = @()
-    if ([IO.Path]::GetExtension($fullPath) -eq ".livemd") {
-        $text = [IO.File]::ReadAllText($fullPath).Replace("`r`n", "`n")
-        $fence = '(?ms)^<!-- livebook:\{"spiral_code":"([^"]+)"\} -->\n\n```[^\n]*\n(.*?)\n^```[ \t]*$'
-        foreach ($match in [regex]::Matches($text, $fence)) {
-            $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = $match.Groups[2].Value }
-        }
-        foreach ($match in [regex]::Matches($text, '(?m)^```(elixir|fsharp|spiral)\s*$')) {
-            $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = "-" }
-        }
-    } else {
-        $kernel = $null
-        $lines = @()
-        foreach ($line in (Get-Content $fullPath)) {
-            if ($line -match '^#!([\w-]+)\s*$' -and $Matches[1] -notin @("import", "set", "share", "connect", "value")) {
-                if ($kernel) { $cells += [pscustomobject]@{ Kernel = $kernel; Code = $lines -join "`n" } }
-                $kernel = $Matches[1]
-                $lines = @()
-            } else {
-                $lines += $line
-            }
-        }
-        if ($kernel) { $cells += [pscustomobject]@{ Kernel = $kernel; Code = $lines -join "`n" } }
+    $text = [IO.File]::ReadAllText($fullPath).Replace("`r`n", "`n")
+    $fence = '(?ms)^<!-- livebook:\{"spiral_code":"([^"]+)"\} -->\n\n```[^\n]*\n(.*?)\n^```[ \t]*$'
+    foreach ($match in [regex]::Matches($text, $fence)) {
+        $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = $match.Groups[2].Value }
+    }
+    foreach ($match in [regex]::Matches($text, '(?m)^```(elixir|fsharp|spiral)\s*$')) {
+        $cells += [pscustomobject]@{ Kernel = $match.Groups[1].Value; Code = "-" }
     }
     $other = $cells | Where-Object { $_.Kernel -notin @("meta", "markdown", "pwsh") -and $_.Code.Trim() }
     if ($other) {
@@ -378,8 +360,8 @@ function Invoke-PwshNotebook {
     Write-Output "polyglot/scripts/core.ps1/Invoke-PwshNotebook / path: $fullPath / cells: $($pwshCells.Count)"
     try {
         { pwsh -NoProfile -NonInteractive -File $script | Tee-Object -FilePath $log } | Invoke-Block -Location (Split-Path $fullPath)
-        # A successful run writes <nb>.dib.ipynb (the cells with their stdout) and, through jupyter nbconvert when it's
-        # installed, <nb>.dib.html: the names the .dib route gave them (README and gh-pages link to them).
+        # A successful run writes <nb>.livemd.ipynb (the cells with their stdout) and, through jupyter nbconvert when it's
+        # installed, <nb>.livemd.html (README and gh-pages link to them), the names Kino gives a notebook's outputs.
         $outputs = foreach ($i in 0..$pwshCells.Count) { , [Collections.Generic.List[string]]::new() }
         $current = 0
         foreach ($line in [IO.File]::ReadAllLines($log)) {
@@ -395,7 +377,7 @@ function Invoke-PwshNotebook {
                 source = @(for ($j = 0; $j -lt $lines.Count; $j++) { $j -lt $lines.Count - 1 ? "$($lines[$j])`n" : $lines[$j] })
             }
         }
-        $ipynb = [IO.Path]::ChangeExtension($fullPath, ".dib.ipynb")
+        $ipynb = "$fullPath.ipynb"
         $notebook = [ordered]@{
             cells = @($notebookCells)
             metadata = [ordered]@{ kernelspec = [ordered]@{ display_name = "PowerShell"; language = "pwsh"; name = "pwsh" }; language_info = @{ name = "pwsh" } }

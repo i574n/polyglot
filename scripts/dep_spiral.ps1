@@ -16,5 +16,5 @@ git clone --recurse-submodules https://$domain/$owner/The-Spiral-Language.git
 { git pull } | Invoke-Block -Location The-Spiral-Language -OnError Continue
 Set-Location $ScriptDir
 
-{ dotnet build -c Release "../deps/The-Spiral-Language/The Spiral Language 2/The Spiral Language 2.fsproj" } | Invoke-Block
-Copy-Item "../deps/The-Spiral-Language/VS Code Plugin/core/" "../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2" -Recurse -Force
+# Only the fork's `VS Code Plugin/core` is used (the `|core-` package). Its legacy "The Spiral Language 2" server build
+# compiled apps/spiral/Eval.fs (the dotnet-interactive kernel engine, removed) and only fed the old VS Code extension.

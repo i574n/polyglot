@@ -7,16 +7,16 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
-# The F# library notebooks run through Kino (spiral/apps/kino/spi/livebook_dib.ps1: F# cells on dotnet fsi) and export
-# their module (<nb>.fs, `--fs-path`: what `spiral dib-export <nb>.dib fs` wrote). The run's outputs keep the .dib route's
-# names (<nb>.dib.ipynb, <nb>.dib.html).
-$livebook = Join-Path $ScriptDir "../../deps/spiral/apps/kino/spi/livebook_dib.ps1"
+# The F# library notebooks run through Kino (spiral/apps/kino/spi/run_notebook.ps1: F# cells on dotnet fsi) and export
+# their module (<nb>.fs, `--fs-path`: `spiral export` of the notebook's cells, fs). A run writes <nb>.livemd.ipynb and
+# <nb>.livemd.html.
+$livebook = Join-Path $ScriptDir "../../deps/spiral/apps/kino/spi/run_notebook.ps1"
 $notebooks = @("Async", "AsyncSeq", "Common", "CommonFSharp", "FileSystem", "Runtime")
 
 if (!$fast) {
     $runs = $notebooks | ForEach-Object -ThrottleLimit ($sequential ? 1 : 3) -Parallel {
         $notebook = $_
-        $arguments = @("--path", "$using:ScriptDir/$notebook.livemd", "--output-path", "$using:ScriptDir/$notebook.dib.ipynb", "--no-spi")
+        $arguments = @("--path", "$using:ScriptDir/$notebook.livemd", "--output-path", "$using:ScriptDir/$notebook.livemd.ipynb", "--no-spi")
         $log = @()
         $exitCode = 1
         foreach ($attempt in 1..3) {

@@ -23,7 +23,7 @@ union command =
     | Ship
 
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
-    $'Fable.Core.RustInterop.emitRustExpr !args !code '
+    $'__spiral_emit_rust !args !code '
 
 inl host_arg_count () : i32 =
     !\\((), $'"std::env::args().count() as i32"')

@@ -16,7 +16,7 @@ inl (++) (left : string) (right : string) : string = sm.concat left right
 inl (<.) (left : char) (right : char) : bool = !!!!LT(left, right)
 
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
-    $'Fable.Core.RustInterop.emitRustExpr !args !code '
+    $'__spiral_emit_rust !args !code '
 
 inl host_arg_count () : i32 =
     !\\((), $'"std::env::args().count() as i32"')

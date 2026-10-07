@@ -2,9 +2,10 @@
 # minutes after a WSL cold boot (the workflow waited on it at 0% cpu).
 installed() { [ "$(dpkg-query -W -f='${Status}' "$1" 2>/dev/null)" = "install ok installed" ]; }
 
-if ! installed snapd || ! installed unzip; then
+# build-essential: cargo's build scripts (proc-macro2, quote, libc) link with `cc` (apps/wasm's Linux build).
+if ! installed snapd || ! installed unzip || ! installed build-essential; then
     apt update
-    apt install -y snapd unzip
+    apt install -y snapd unzip build-essential
 
     df -h
     apt-get autoremove -y

@@ -1,5 +1,5 @@
 ```fsharp
-#r @"../../../../../../../.nuget/packages/expecto/11.0.0-alpha8/lib/net6.0/Expecto.dll"
+#r "nuget: expecto, 11.0.0-alpha8"
 ```
 
 ```fsharp

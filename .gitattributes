@@ -5,5 +5,5 @@ bun.lockb merge=ours
 Cargo.lock merge=ours
 paket.lock merge=ours
 
-*.dib.ipynb linguist-generated
-*.dib.html linguist-generated
+*.livemd.ipynb linguist-generated
+*.livemd.html linguist-generated
