@@ -1,8 +1,8 @@
 /// # cube
 /// Spinning ASCII cubes: three cubes rotated in 3D and projected through a z-buffer into a 160 x 44 character
 /// frame (the classic rotating-cube demo). Core-only Spiral: loops, mutable cells, arrays and float math run on every
-/// backend; the only effect is printing (the portable `!!!!Printf`). A run renders `frames` frames, each preceded by ESC[H (cursor home, so a
-/// terminal redraws in place), then prints a checksum of all frames.
+/// backend; the only effect is printing (the portable `!!!!Printf`). A run renders `frames` frames, each preceded
+/// by ESC[H (cursor home, so a terminal redraws in place), then prints a checksum of all frames.
 /// ## cube
 /// ### rotation
 nominal rotation =
