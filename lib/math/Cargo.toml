@@ -4,19 +4,15 @@ cargo-features = ["edition2024"]
 name = "math"
 workspace = "../../workspace"
 version.workspace = true
-edition.workspace = true
+# the generated code is verified with edition 2021 (the staged native build before this crate)
+edition = "2021"
 license-file.workspace = true
 repository.workspace = true
 
+# math.rs is math.spi's native Rust output (build.ps1 regenerates it with the Spiral compiler's Rust backend): its `main`
+# runs the tests by name, and each test also has a `#[test]` wrapper (pyo3 + Python's mpmath).
 [dependencies]
-fable_library_rust = { workspace = true, features = ["static_do_bindings", "datetime", "guid", "threaded"] }
-inline_colorization = { workspace = true }
-chrono = { workspace = true }
-regex = { workspace = true }
-sha2 = { workspace = true }
 num-complex = ">=0.4,<1"
-statrs = ">=0.17,<1"
-float-cmp = ">=0.9,<1"
 pyo3 = "=0.26.0"
 
 [[bin]]

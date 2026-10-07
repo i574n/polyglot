@@ -1,36 +1,30 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
-
-#!markdown
-
 # Async (Polyglot)
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Common.fs
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
+`#!import ../../lib/fsharp/Common.fs`
+
+```fsharp
 #if !INTERACTIVE
 open Lib
 #endif
+```
 
-#!fsharp
-
+```fsharp
 open Common
-
-#!markdown
+```
 
 ## choice
 
-#!fsharp
-
+```fsharp
 let inline choice asyncs = async {
     let e = Event<_> ()
     use cts = new System.Threading.CancellationTokenSource ()
@@ -47,24 +41,20 @@ let inline choice asyncs = async {
     cts.Cancel ()
     return result
 }
-
-#!markdown
+```
 
 ## map
 
-#!fsharp
-
+```fsharp
 let inline map fn a = async {
     let! x = a
     return fn x
 }
-
-#!markdown
+```
 
 ## runWithTimeoutChoiceAsync
 
-#!fsharp
-
+```fsharp
 let inline runWithTimeoutChoiceAsync (timeout : int) fn =
     let _locals () = $"timeout: {timeout} / {_locals ()}"
 
@@ -96,32 +86,32 @@ let inline runWithTimeoutChoiceAsync (timeout : int) fn =
 
     [ timeoutTask; task ]
     |> choice
+```
 
-#!fsharp
-
+```fsharp
 let inline runWithTimeoutChoice timeout fn =
     fn
     |> runWithTimeoutChoiceAsync timeout
     |> Async.RunSynchronously
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 120
 |> runWithTimeoutChoice 10
 |> _assertEqual None
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 10
 |> runWithTimeoutChoice 60
 |> _assertEqual (Some ())
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 async {
@@ -129,13 +119,11 @@ async {
 }
 |> runWithTimeoutChoice 60
 |> _assertEqual None
-
-#!markdown
+```
 
 ## catch
 
-#!fsharp
-
+```fsharp
 let inline catch a =
     a
     |> Async.Catch
@@ -143,13 +131,11 @@ let inline catch a =
         | Choice1Of2 result -> Ok result
         | Choice2Of2 ex -> Error ex
     )
-
-#!markdown
+```
 
 ## runWithTimeoutAsync
 
-#!fsharp
-
+```fsharp
 let inline runWithTimeoutAsync (timeout : int) fn = async {
     let _locals () = $"timeout: {timeout} / {_locals ()}"
     let! child = Async.StartChild (fn, timeout)
@@ -166,32 +152,32 @@ let inline runWithTimeoutAsync (timeout : int) fn = async {
                 None
         )
 }
+```
 
-#!fsharp
-
+```fsharp
 let inline runWithTimeout timeout fn =
     fn
     |> runWithTimeoutAsync timeout
     |> Async.RunSynchronously
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 60
 |> runWithTimeout 10
 |> _assertEqual None
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 10
 |> runWithTimeout 60
 |> _assertEqual (Some ())
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 async {
@@ -199,13 +185,11 @@ async {
 }
 |> runWithTimeout 60
 |> _assertEqual None
-
-#!markdown
+```
 
 ## runWithTimeoutStrict
 
-#!fsharp
-
+```fsharp
 let inline runWithTimeoutStrict (timeout : int) fn =
     let _locals () = $"timeout: {timeout} / {_locals ()}"
 
@@ -252,25 +236,25 @@ let inline runWithTimeoutStrict (timeout : int) fn =
             (fun () -> "Async.runWithTimeoutStrict / task error")
             (fun () -> $"ex: {ex |> SpiralSm.format_exception} / {_locals ()}")
         None
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 60
 |> runWithTimeoutStrict 10
 |> _assertEqual None
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Async.Sleep 10
 |> runWithTimeoutStrict 60
 |> _assertEqual (Some ())
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 async {
@@ -278,49 +262,43 @@ async {
 }
 |> runWithTimeoutStrict 60
 |> _assertEqual None
-
-#!markdown
+```
 
 ## awaitValueTask
 
-#!fsharp
-
+```fsharp
 let inline awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
     task.AsTask () |> Async.AwaitTask
 
 let inline awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
     task.AsTask () |> Async.AwaitTask
-
-#!markdown
+```
 
 ## init
 
-#!fsharp
-
+```fsharp
 let inline init x = async {
     return x
 }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 init 1
 |> Async.RunSynchronously
 |> _assertEqual 1
-
-#!markdown
+```
 
 ## withCancellationToken
 
-#!fsharp
-
+```fsharp
 let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
     Async.StartImmediateAsTask (fn, ct)
     |> Async.AwaitTask
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let cts = new System.Threading.CancellationTokenSource ()
@@ -344,13 +322,11 @@ async {
 |> Async.RunSynchronously
 |> Result.mapError _.Message
 |> _assertEqual (Error ("A task was canceled."))
-
-#!markdown
+```
 
 ## retryAsync
 
-#!fsharp
-
+```fsharp
 let inline retryAsync retries fn =
     let rec 루프 retry lastError = async {
         try
@@ -364,9 +340,9 @@ let inline retryAsync retries fn =
             return! 루프 (retry + 1) (ex |> SpiralSm.format_exception)
     }
     루프 1 "Async.retryAsync / invalid retries / retries: {retries}"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let retry_fn_test = ref 0
@@ -377,9 +353,9 @@ async {
 |> retryAsync 3
 |> Async.RunSynchronously
 |> _assertEqual (Ok 1)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let retry_fn_test = ref 0
@@ -394,13 +370,11 @@ async {
 |> retryAsync 3
 |> Async.RunSynchronously
 |> _assertEqual (Ok 2)
-
-#!markdown
+```
 
 ## fold
 
-#!fsharp
-
+```fsharp
 let fold folder state array =
     let rec 루프 acc i =
         async {
@@ -411,3 +385,4 @@ let fold folder state array =
                 return acc
         }
     루프 state 0
+```

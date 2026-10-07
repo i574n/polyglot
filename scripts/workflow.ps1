@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-{ pwsh init.ps1 -Fable 1 -Repl 1 } | Invoke-Block
+{ pwsh init.ps1 } | Invoke-Block
 
 { pwsh build.ps1 } | Invoke-Block
 

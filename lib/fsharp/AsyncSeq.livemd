@@ -1,50 +1,45 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
-
-#!markdown
-
 # AsyncSeq (Polyglot)
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
+`#!import ../../lib/fsharp/Testing.livemd`
+
+```fsharp
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+```
 
-#!fsharp
+`#!import ../../lib/fsharp/Common.fs`
 
-#!import ../../lib/fsharp/Common.fs
-#!import ../../lib/fsharp/Async.fs
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Async.fs`
 
+```fsharp
 #if !INTERACTIVE
 open Lib
 #endif
+```
 
-#!fsharp
-
+```fsharp
 open Common
-
-#!markdown
+```
 
 ## subscribeEvent
 
-#!fsharp
-
+```fsharp
 let inline subscribeEvent (event: IEvent<'H, 'A>) map =
     let observable = System.Reactive.Linq.Observable.FromEventPattern<'H, 'A>(event.AddHandler, event.RemoveHandler)
     System.Reactive.Linq.Observable.Select (observable, fun event -> map event.EventArgs)
     |> FSharp.Control.AsyncSeq.ofObservableBuffered
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 type TestEvent () as self =
@@ -92,9 +87,9 @@ type TestEvent () as self =
         while self.Calls |> List.last <> text do
             do! Async.SwitchToThreadPool ()
     }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let testEvent = TestEvent ()
@@ -113,9 +108,9 @@ async {
 testEvent.Calls
 |> Seq.toList
 |> _assertEqual [ "1"; "AddHandler"; "2"; "RemoveHandler" ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let testEvent = TestEvent ()
@@ -137,9 +132,9 @@ async {
 
 testEvent.Calls
 |> _assertEqual [ "1"; "AddHandler"; "2"; "IObservable.Subscribe"; "3"; "RemoveHandler"; "IObservable.Dispose" ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let testEvent = TestEvent ()
@@ -179,13 +174,11 @@ testEvent.Calls
     "RemoveHandler"
     "IObservable.Dispose"
 ]
-
-#!markdown
+```
 
 ## subscribeToken
 
-#!fsharp
-
+```fsharp
 let subscribeToken (token : System.Threading.CancellationToken) =
     let tcs = new System.Threading.Tasks.TaskCompletionSource ()
     System.Action tcs.SetResult |> token.Register |> ignore
@@ -196,9 +189,9 @@ let subscribeToken (token : System.Threading.CancellationToken) =
             return Some (System.DateTime.Now.Ticks - start, ())
         })
         ()
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let cts = new System.Threading.CancellationTokenSource ()
@@ -218,3 +211,4 @@ async {
 |> Option.get
 |> fun x -> x > 900000
 |> _assertEqual true
+```

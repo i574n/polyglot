@@ -8,12 +8,10 @@ $ErrorActionPreference = "Stop"
 . ../../deps/spiral/lib/spiral/lib.ps1
 
 
-if (!$fast) {
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path JsonParser.dib } | Invoke-Block
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Parser.dib } | Invoke-Block
+# The notebooks run through Kino (core.ps1 Invoke-Notebook) and export their F# modules (<nb>.fs).
+foreach ($notebook in "JsonParser", "Parser") {
+    if (!$fast) { Invoke-Notebook "$notebook.livemd" @("--no-spi") }
+    Invoke-Notebook "$notebook.livemd" @("--no-spi", "--fs-path", "$ScriptDir/$notebook.fs", "--export-only")
 }
-
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export JsonParser.dib fs } | Invoke-Block
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export Parser.dib fs } | Invoke-Block
 
 Write-Output "polyglot/apps/parser/build.ps1 / `$env:CI:'$env:CI'"

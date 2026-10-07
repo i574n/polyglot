@@ -13,20 +13,15 @@ if (!$fast) {
     { pwsh ../../deps/spiral/apps/compiler/build.ps1 -fast 1 } | Invoke-Block
 }
 
+# The notebooks run through Kino (core.ps1 Invoke-Notebook) and export their F# modules (<nb>.fs).
 if (!$fast -and !$SkipNotebook) {
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Supervisor.dib --retries 3 } | Invoke-Block
+    Invoke-Notebook Supervisor.livemd @("--no-spi") -Retries 3
 }
 
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export Supervisor.dib fs } | Invoke-Block
+Invoke-Notebook Supervisor.livemd @("--no-spi", "--fs-path", "$ScriptDir/Supervisor.fs", "--export-only")
 
 $runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
 $builderArgs = @("Supervisor.fs", $runtime, "--packages", "Argu", "FSharp.Control.AsyncSeq", "FSharp.Json", "Microsoft.AspNetCore.SignalR.Client", "System.Reactive.Linq", "Hopac", "FSharpx.Collections", "FParsec", "System.Management", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs", "deps/spiral/apps/compiler/spiral_compiler.fs")
 { . ../builder/dist/Builder$(_exe) @builderArgs } | Invoke-Block
-
-if (!$fast -and !$SkipNotebook) {
-    { . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib --path Eval.dib --retries 3 } | Invoke-Block
-}
-
-{ . ../../deps/spiral/workspace/target/release/spiral$(_exe) dib-export Eval.dib fs } | Invoke-Block
 
 Write-Output "polyglot/apps/spiral/build.ps1 / `$env:CI:'$env:CI'"

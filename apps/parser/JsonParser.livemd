@@ -1,32 +1,29 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
-
-#!markdown
-
 # JsonParser (Polyglot)
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Common.fs
-#!import Parser.fs
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
+`#!import ../../lib/fsharp/Common.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import Parser.fs`
+
+```fsharp
 open Common
 open Parser
-
-#!markdown
+```
 
 ## JsonParser
 
-#!fsharp
-
+```fsharp
 (*
 // --------------------------------
 JSON spec from http://www.json.org/
@@ -48,9 +45,9 @@ The JSON spec is available at [json.org](http://www.json.org/). I'll paraphase i
   * Values are separated by , (comma).
 * Whitespace can be inserted between any pair of tokens.
 *)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
@@ -65,13 +62,11 @@ let inline parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * I
         printfn $"Expected: {expected}"
         failwith "Parse failed"
     actual
-
-#!markdown
+```
 
 ### JValue
 
-#!fsharp
-
+```fsharp
 type JValue =
     | JString of string
     | JNumber of float
@@ -79,24 +74,22 @@ type JValue =
     | JNull
     | JObject of Map<string, JValue>
     | JArray  of JValue list
+```
 
-#!fsharp
-
+```fsharp
 let jValue, jValueRef = createParserForwardedToRef<JValue> ()
-
-#!markdown
+```
 
 ### jNull
 
-#!fsharp
-
+```fsharp
 let jNull =
     pstring "null"
     >>% JNull
     <?> "null"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 jValueRef <|
@@ -104,16 +97,16 @@ jValueRef <|
         [
             jNull
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jValue "null"
 |> parserEqual (Success JNull)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNull "nulp"
@@ -124,13 +117,11 @@ run jNull "nulp"
         { currentLine = "nulp"; line = 0; column = 3 }
     )
 )
-
-#!markdown
+```
 
 ### jBool
 
-#!fsharp
-
+```fsharp
 let jBool =
     let jtrue =
         pstring "true"
@@ -141,9 +132,9 @@ let jBool =
 
     jtrue <|> jfalse
     <?> "bool"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 jValueRef <|
@@ -152,23 +143,23 @@ jValueRef <|
             jNull
             jBool
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jBool "true"
 |> parserEqual (Success (JBool true))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jBool "false"
 |> parserEqual (Success (JBool false))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jBool "truX"
@@ -179,25 +170,23 @@ run jBool "truX"
         { currentLine = "truX"; line = 0; column = 0 }
     )
 )
-
-#!markdown
+```
 
 ### jUnescapedChar
 
-#!fsharp
-
+```fsharp
 let jUnescapedChar =
     satisfy (fun ch -> ch <> '\\' && ch <> '\"') "char"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jUnescapedChar "a"
 |> parserEqual (Success 'a')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jUnescapedChar "\\"
@@ -208,13 +197,11 @@ run jUnescapedChar "\\"
         { currentLine = "\\"; line = 0; column = 0 }
     )
 )
-
-#!markdown
+```
 
 ### jEscapedChar
 
-#!fsharp
-
+```fsharp
 let jEscapedChar =
     [
         ("\\\"",'\"')
@@ -231,37 +218,37 @@ let jEscapedChar =
     )
     |> choice
     <?> "escaped char"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jEscapedChar "\\\\"
 |> parserEqual (Success '\\')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jEscapedChar "\\t"
 |> parserEqual (Success '\t')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jEscapedChar @"\\"
 |> parserEqual (Success '\\')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jEscapedChar @"\n"
 |> parserEqual (Success '\n')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jEscapedChar "a"
@@ -272,13 +259,11 @@ run jEscapedChar "a"
         { currentLine = "a"; line = 0; column = 0 }
     )
 )
-
-#!markdown
+```
 
 ### jUnicodeChar
 
-#!fsharp
-
+```fsharp
 let jUnicodeChar =
     let backslash = pchar '\\'
     let uChar = pchar 'u'
@@ -291,35 +276,33 @@ let jUnicodeChar =
 
     backslash >>. uChar >>. fourHexDigits
     |>> convertToChar
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jUnicodeChar "\\u263A"
 |> parserEqual (Success '☺')
-
-#!markdown
+```
 
 ### jString
 
-#!fsharp
-
+```fsharp
 let quotedString =
     let quote = pchar '\"' <?> "quote"
     let jchar = jUnescapedChar <|> jEscapedChar <|> jUnicodeChar
 
     quote >>. manyChars jchar .>> quote
+```
 
-#!fsharp
-
+```fsharp
 let jString =
     quotedString
     |>> JString
     <?> "quoted string"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 jValueRef <|
@@ -329,48 +312,46 @@ jValueRef <|
             jBool
             jString
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jString "\"\""
 |> parserEqual (Success (JString ""))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jString "\"a\""
 |> parserEqual (Success (JString "a"))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jString "\"ab\""
 |> parserEqual (Success (JString "ab"))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jString "\"ab\\tde\""
 |> parserEqual (Success (JString "ab\tde"))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jString "\"ab\\u263Ade\""
 |> parserEqual (Success (JString "ab☺de"))
-
-#!markdown
+```
 
 ### jNumber
 
-#!fsharp
-
+```fsharp
 let jNumber =
     let optSign = opt (pchar '-')
 
@@ -425,9 +406,9 @@ let jNumber =
     optSign .>>. intPart .>>. opt fractionPart .>>. opt exponentPart
     |>> convertToJNumber
     <?> "number"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 jValueRef <|
@@ -438,64 +419,64 @@ jValueRef <|
             jString
             jNumber
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber "123"
 |> parserEqual (Success (JNumber 123.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber "-123"
 |> parserEqual (Success (JNumber -123.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber "123.4"
 |> parserEqual (Success (JNumber 123.4))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber "-123."
 |> parserEqual (Success (JNumber -123.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber "00.1"
 |> parserEqual (Success (JNumber 0.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let jNumber_ = jNumber .>> spaces1
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "123"
 |> parserEqual (Success (JNumber 123.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "-123"
 |> parserEqual (Success (JNumber -123.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "-123."
@@ -506,16 +487,16 @@ run jNumber_ "-123."
         { currentLine = "-123."; line = 0; column = 4 }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "123.4"
 |> parserEqual (Success (JNumber 123.4))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "00.4"
@@ -526,34 +507,32 @@ run jNumber_ "00.4"
         { currentLine = "00.4"; line = 0; column = 1 }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "123e4"
 |> parserEqual (Success (JNumber 1230000.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "123.4e5"
 |> parserEqual (Success (JNumber 12340000.0))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jNumber_ "123.4e-5"
 |> parserEqual (Success (JNumber 0.001234))
-
-#!markdown
+```
 
 ### jArray
 
-#!fsharp
-
+```fsharp
 let jArray =
     let left = pchar '[' .>> spaces
     let right = pchar ']' .>> spaces
@@ -565,9 +544,9 @@ let jArray =
     between left values right
     |>> JArray
     <?> "array"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 jValueRef <|
@@ -579,16 +558,16 @@ jValueRef <|
             jNumber
             jArray
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jArray "[ 1, 2 ]"
 |> parserEqual (Success (JArray [ JNumber 1.0; JNumber 2.0 ]))
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jArray "[ 1, 2, ]"
@@ -599,13 +578,11 @@ run jArray "[ 1, 2, ]"
         { currentLine = "[ 1, 2, ]"; line = 0; column = 6 }
     )
 )
-
-#!markdown
+```
 
 ### jObject
 
-#!fsharp
-
+```fsharp
 let jObject =
     let left = spaces >>. pchar '{' .>> spaces
     let right = pchar '}' .>> spaces
@@ -621,9 +598,9 @@ let jObject =
     |>> Map.ofList
     |>> JObject
     <?> "object"
+```
 
-#!fsharp
-
+```fsharp
 jValueRef <|
     choice
         [
@@ -634,9 +611,9 @@ jValueRef <|
             jArray
             jObject
         ]
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jObject """{ "a":1, "b"  :  2 }"""
@@ -650,9 +627,9 @@ run jObject """{ "a":1, "b"  :  2 }"""
         )
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run jObject """{ "a":1, "b"  :  2, }"""
@@ -663,13 +640,11 @@ run jObject """{ "a":1, "b"  :  2, }"""
         { currentLine = """{ "a":1, "b"  :  2, }"""; line = 0; column = 18 }
     )
 )
-
-#!markdown
+```
 
 ### jValue
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let example1 = """{
@@ -701,9 +676,9 @@ run jValue example1
         )
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let example2 = """{"widget": {
@@ -776,9 +751,9 @@ run jValue example2
         )
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let example3 = """{
@@ -855,3 +830,4 @@ run jValue example3
         )
     )
 )
+```

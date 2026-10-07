@@ -1,48 +1,52 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
-
-#!markdown
-
 # FileSystem (Polyglot)
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.2.4/lib/netstandard2.0/Argu.dll"
+```
 
-#!fsharp
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!import ../../lib/fsharp/Common.fs
-#!import ../../lib/fsharp/CommonFSharp.fs
-#!import ../../lib/fsharp/Async.fs
-#!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Runtime.fs
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Common.fs`
 
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/CommonFSharp.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Async.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/AsyncSeq.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Runtime.fs`
+
+```fsharp
 #if !INTERACTIVE
 open Lib
 #endif
+```
 
-#!fsharp
-
+```fsharp
 open Common
 open SpiralFileSystem.Operators
-
-#!markdown
+```
 
 ## watchDirectory
 
-#!fsharp
-
+```fsharp
 [<RequireQualifiedAccess>]
 type FileSystemChangeType =
     | Failure
@@ -179,13 +183,11 @@ let inline watchDirectory path =
         // ||| System.IO.NotifyFilters.Security
         )
         path
-
-#!markdown
+```
 
 ### testEventsRaw (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline testEventsRaw
@@ -250,13 +252,11 @@ let inline testEventsRaw
         )
         []
     |> List.rev
-
-#!markdown
+```
 
 #### fast (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -314,13 +314,11 @@ let inline run () =
 run
 |> retry_fn 3
 |> _assertEqual (Some ())
-
-#!markdown
+```
 
 #### slow (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -395,13 +393,11 @@ let inline run () =
 run
 |> retry_fn 5
 |> _assertEqual (Some ())
-
-#!markdown
+```
 
 ### testEventsSorted (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline sortEvent event =
@@ -484,13 +480,11 @@ let inline testEventsSorted
         |> List.map (fun (_ticks, path, event) -> path, event)
 
     eventMap, eventList
-
-#!markdown
+```
 
 #### create and delete (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -534,13 +528,11 @@ let inline run () =
 run
 |> retry_fn 3
 |> _assertEqual (Some ())
-
-#!markdown
+```
 
 #### change (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -582,13 +574,11 @@ let inline run () =
 run
 |> retry_fn 3
 |> _assertEqual (Some ())
-
-#!markdown
+```
 
 #### rename (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -635,13 +625,11 @@ let inline run () =
 run
 |> retry_fn 3
 |> _assertEqual (Some ())
-
-#!markdown
+```
 
 #### full (test)
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline write path = async {
@@ -696,3 +684,4 @@ let inline run () =
 run
 |> retry_fn 3
 |> _assertEqual (Some ())
+```

@@ -1,17 +1,10 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
-
-#!fsharp
-
+```fsharp
 #nowarn 0686
-
-#!markdown
+```
 
 # Supervisor (Polyglot)
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
@@ -22,39 +15,53 @@
 #r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.dll"
 #r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client.core/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.Core.dll"
 #r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"
+```
 
-#!fsharp
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!import ../../lib/fsharp/Common.fs
-#!import ../../lib/fsharp/CommonFSharp.fs
-#!import ../../lib/fsharp/Async.fs
-#!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Runtime.fs
-#!import ../../lib/fsharp/FileSystem.fs
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Common.fs`
 
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/CommonFSharp.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Async.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/AsyncSeq.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Runtime.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/FileSystem.fs`
+
+```fsharp
 #if !INTERACTIVE
 open Lib
 #endif
+```
 
-#!fsharp
-
+```fsharp
 open Common
 open SpiralFileSystem.Operators
 open Microsoft.AspNetCore.SignalR.Client
-
-#!markdown
+```
 
 ### sendJson
 
-#!fsharp
-
+```fsharp
 let sendJson (port : int) (json : string) = async {
     let host = "127.0.0.1"
     let! portOpen = SpiralNetworking.test_port_open host port
@@ -73,53 +80,43 @@ let sendJson (port : int) (json : string) = async {
         trace Debug (fun () -> $"Supervisor.sendJson / port: {port} / error: port not open") _locals
         return None
 }
-
-#!markdown
+```
 
 ### sendObj
 
-#!fsharp
-
+```fsharp
 let sendObj port obj =
     obj
     |> System.Text.Json.JsonSerializer.Serialize
     |> sendJson port
-
-#!markdown
+```
 
 ### workspaceRoot
 
-#!fsharp
-
+```fsharp
 let workspaceRoot = SpiralFileSystem.get_workspace_root ()
-
-#!markdown
+```
 
 ### getFilePathFromUri
 
-#!fsharp
-
+```fsharp
 let getFilePathFromUri uri =
     match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
     | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
     | _ -> failwith "invalid uri"
-
-#!markdown
+```
 
 ### getCompilerPort
 
-#!fsharp
-
+```fsharp
 let getCompilerPort () =
     13805
-
-#!markdown
+```
 
 ### serialize_obj
 
-#!fsharp
-
-    let serializeObj obj =
+```fsharp
+let serializeObj obj =
         try
             obj
             |> FSharp.Json.Json.serialize
@@ -129,13 +126,11 @@ let getCompilerPort () =
         with ex ->
             trace Critical (fun () -> "Supervisor.serialize_obj / obj: %A{obj}") _locals
             ""
-
-#!markdown
+```
 
 ### Backend
 
-#!fsharp
-
+```fsharp
 type Backend =
     | Gleam
     | Lua
@@ -143,9 +138,9 @@ type Backend =
     | Python
     | Cpp
     | Rust
+```
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/fsharpx.collections/3.1.0/lib/netstandard2.0/FSharpx.Collections.dll"
 #r @"../../../../../../../.nuget/packages/hopac/0.5.1/lib/netstandard2.0/Hopac.dll"
 #r @"../../../../../../../.nuget/packages/hopac/0.5.1/lib/netstandard2.0/Hopac.Core.dll"
@@ -207,41 +202,41 @@ type Backend =
 #else
 #r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/9.0.3/runtimes/win-x64/lib/net9.0/Microsoft.AspNetCore.Routing.dll"
 #endif
+```
 
-#!pwsh
+<!-- livebook:{"spiral_code":"pwsh"} -->
 
+```pwsh
 ls ~/.nuget/packages/microsoft.extensions.logging
 echo "`n"
 ls ~/.nuget/packages/microsoft.extensions.logging.abstractions
+```
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/microsoft.extensions.logging/9.0.5/lib/net9.0/Microsoft.Extensions.Logging.dll"
 #r @"../../../../../../../.nuget/packages/microsoft.extensions.logging.abstractions/9.0.10/lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll"
 #r @"../../../../../../../.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+```
 
-#!pwsh
+<!-- livebook:{"spiral_code":"pwsh"} -->
 
+```pwsh
 ls ~/.nuget/packages/system.management
+```
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/system.management/9.0.4/lib/netstandard2.0/System.Management.dll"
+```
 
-#!fsharp
+`#!import ../../deps/spiral/apps/compiler/spiral_compiler.fs`
 
-#!import ../../deps/spiral/apps/compiler/spiral_compiler.fs
-
-#!fsharp
-
+```fsharp
 open spiral_compiler
-
-#!markdown
+```
 
 ### awaitCompiler
 
-#!fsharp
-
+```fsharp
 let awaitCompiler port cancellationToken = async {
     let host = "127.0.0.1"
     let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
@@ -334,18 +329,16 @@ let awaitCompiler port cancellationToken = async {
         ct,
         disposable'
 }
+```
 
-#!fsharp
-
+```fsharp
 open Hopac
 open Hopac.Infixes
-
-#!markdown
+```
 
 ### server
 
-#!fsharp
-
+```fsharp
 // No editor here: errors come from BuildFile, so the compiler's attention loop (per-file diagnostics for an
 // editor) would only type check files for diagnostics nobody reads.
 if isNull (System.Environment.GetEnvironmentVariable "SPIRAL_ATTENTION_SERVER") then
@@ -353,13 +346,11 @@ if isNull (System.Environment.GetEnvironmentVariable "SPIRAL_ATTENTION_SERVER") 
 
 let server1 = new_server<Job<unit>, obj, string option, Job<unit>, unit> ()
 let server2 = new_server<Job<unit>, obj, int array, Job<unit>, unit> ()
-
-#!markdown
+```
 
 ### rewriteRustEmitExpr
 
-#!fsharp
-
+```fsharp
 /// Fallback for Rust output produced (or cached under target/spiral_Eval) before the compiler's own `inlineFableEmits`
 /// pass: such output prints Fable's `emitRustExpr` (lib/spiral's `!\` / `!\\` operators) as a call and keeps the
 /// snippet in a separate string binding. Inline the snippet and drop that binding. A no-op on current compiler output
@@ -443,13 +434,11 @@ let rewriteRustEmitExpr (generated : string) =
         |> Array.mapi (fun index line -> if drop.Contains index then None else Some line)
         |> Array.choose id
         |> String.concat "\n"
-
-#!markdown
+```
 
 ### buildFile
 
-#!fsharp
-
+```fsharp
 let buildFile backend timeout port cancellationToken path =
 #if INTERACTIVE
     let errorWait = 3
@@ -736,23 +725,19 @@ let buildFile backend timeout port cancellationToken path =
             return outputPath, buildFileResult, result
     }
     루프 0
-
-#!markdown
+```
 
 ### SpiralInput
 
-#!fsharp
-
+```fsharp
 type SpiralInput =
     | Spi of string * string option
     | Spir of string
-
-#!markdown
+```
 
 ### persistCode
 
-#!fsharp
-
+```fsharp
 let persistCode (input: {| backend : Backend option; input: SpiralInput; packages: string [] |}) = async {
     let targetDir = workspaceRoot </> "target/spiral_Eval"
 
@@ -860,13 +845,11 @@ modules:
                 let! outputCode = outputPath |> SpiralFileSystem.read_all_text_async
                 return spiralPath, Some (outputPath, outputCode |> SpiralSm.replace "\r\n" "\n")
     }
-
-#!markdown
+```
 
 ### buildCode
 
-#!fsharp
-
+```fsharp
 let buildCode backend packages isCache timeout cancellationToken input = async {
     let! mainPath, outputCache =
         persistCode {| input = input; backend = Some backend; packages = packages |}
@@ -876,9 +859,9 @@ let buildCode backend packages isCache timeout cancellationToken input = async {
         let! outputPath, outputCode, errors = mainPath |> buildFile backend timeout None cancellationToken
         return mainPath, (outputPath, outputCode), errors
 }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -912,9 +895,9 @@ let v0 : (unit -> int32) = closure0()
         []
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """
@@ -943,9 +926,9 @@ inl main () =
         []
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """
@@ -1299,9 +1282,9 @@ if __name__ == '__main__': result = main(); None if result is None else print(re
         []
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """
@@ -1606,9 +1589,9 @@ int main() {
         []
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """
@@ -1637,9 +1620,9 @@ inl main () =
         []
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1671,9 +1654,9 @@ inl main () =
 )
 // |> _assertEqual None
 // |> fun x -> printfn $"{x.ToDisplayString ()}"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1688,9 +1671,9 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
         [ "Cannot find `main` in file main." ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1707,9 +1690,9 @@ SpiralTrace.TraceLevel.US0_0 |> set_trace_level
         [ "An attempt to divide by zero has been detected at compile time." ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1732,9 +1715,9 @@ inl main () =
         [ "Cannot apply a forall with a term." ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1756,9 +1739,9 @@ inl main () =
         [ "The main function should not have a forall." ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1781,9 +1764,9 @@ inl main () =
         [ "Cannot apply a forall with a term." ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1805,9 +1788,9 @@ Fails to satisfy: number"
         ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1828,9 +1811,9 @@ main.spi:2:9: Unbound variable: y."
         ]
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 SpiralTrace.TraceLevel.US0_0 |> set_trace_level
@@ -1852,13 +1835,11 @@ Expected: () -> 'a"
 )
 // |> _assertEqual None
 // |> fun x -> printfn $"{x.ToDisplayString ()}"
-
-#!markdown
+```
 
 ## getFileTokenRange
 
-#!fsharp
-
+```fsharp
 let getFileTokenRange port cancellationToken path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
     let codeDir = fullPath |> System.IO.Path.GetDirectoryName
@@ -1935,21 +1916,19 @@ let getFileTokenRange port cancellationToken path = async {
 
         return fileTokenRangeResult |> FSharp.Json.Json.deserialize<int array> |> Some
 }
-
-#!markdown
+```
 
 ## getCodeTokenRange
 
-#!fsharp
-
+```fsharp
 let getCodeTokenRange cancellationToken code = async {
     let! mainPath, _ =
         persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
     return! mainPath |> getFileTokenRange None cancellationToken
 }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """inl main () = ()"""
@@ -1958,9 +1937,9 @@ let getCodeTokenRange cancellationToken code = async {
 |> Option.flatten
 |> _assertEqual (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 8; 0; 0; 1; 1; 8; 0 |])
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 """inl main () = 1i32"""
@@ -1969,13 +1948,11 @@ let getCodeTokenRange cancellationToken code = async {
 |> Option.flatten
 |> _assertEqual (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 3; 0; 0; 1; 3; 12; 0 |])
-
-#!markdown
+```
 
 ## getFileHoverAt
 
-#!fsharp
-
+```fsharp
 let getFileHoverAt
     port
     cancellationToken
@@ -2029,13 +2006,11 @@ let getFileHoverAt
 
     return hoverAtResult |> Some
 }
-
-#!markdown
+```
 
 ## getCodeHoverAt
 
-#!fsharp
-
+```fsharp
 let getCodeHoverAt cancellationToken code position = async {
     let! mainPath, _ =
         persistCode {| input = Spi (code, None); backend = None; packages = [||] |}
@@ -2058,49 +2033,47 @@ let getCodeHoverAt cancellationToken code position = async {
         return output |> Some
     | None -> return! getFileHoverAt None cancellationToken mainPath position
 }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 4 |}
 |> Async.runWithTimeout 10000
 |> Option.flatten
 |> _assertEqual (Some "() -> ()")
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 getCodeHoverAt None """inl main () = ()""" {| line = 0; character = 0 |}
 |> Async.runWithTimeout 10000
 |> Option.flatten
 |> _assertEqual (Some null)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 getCodeHoverAt None """inl rec main () = main""" {| line = 0; character = 8 |}
 |> Async.runWithTimeout 10000
 |> Option.flatten
 |> _assertEqual (Some "forall 'a. () -> 'a")
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 getCodeHoverAt None """inl main () = 1""" {| line = 0; character = 4 |}
 |> Async.runWithTimeout 10000
 |> Option.flatten
 |> _assertEqual (Some "forall 'a {number}. () -> 'a")
-
-#!markdown
+```
 
 ## Arguments
 
-#!fsharp
-
+```fsharp
 [<RequireQualifiedAccess>]
 type Arguments =
     | Build_File of string * string
@@ -2123,19 +2096,17 @@ type Arguments =
             | Port _ -> nameof Port
             | Parallel -> nameof Parallel
             | Exit_On_Error-> nameof Exit_On_Error
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
-
-#!markdown
+```
 
 ## main
 
-#!fsharp
-
+```fsharp
 let main args =
     SpiralTrace.TraceLevel.US0_1 |> set_trace_level
     let argsMap = args |> Runtime.parseArgsMap<Arguments>
@@ -2314,9 +2285,9 @@ let main args =
     }
     |> Async.runWithTimeout timeout
     |> Option.defaultValue 1
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let args =
@@ -2328,3 +2299,4 @@ let args =
 match args with
 | [||] -> 0
 | args -> if main args = 0 then 0 else failwith "main failed"
+```

@@ -6,4 +6,5 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-{ . ../deps/spiral/workspace/target/release/spiral$(_exe) dib --path build.dib } | Invoke-Block
+# build.livemd's cells are all pwsh: one pwsh session (core.ps1 Invoke-PwshNotebook), no notebook kernel.
+Invoke-PwshNotebook build.livemd

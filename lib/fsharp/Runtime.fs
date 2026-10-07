@@ -14,7 +14,7 @@ module Runtime =
     let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
         let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
         let errorHandler : Argu.IExiter =
-            if [ "Microsoft.DotNet.Interactive.App"; "dotnet-repl" ] |> List.contains assemblyName
+            if assemblyName = "fsi" // a notebook cell (Kino runs F# cells on dotnet fsi): report the error, don't exit
             then Argu.ExceptionExiter ()
             else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
 

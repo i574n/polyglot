@@ -1,58 +1,65 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
-
-#!markdown
-
 # Runtime (Polyglot)
 
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.2.4/lib/netstandard2.0/Argu.dll"
+```
 
-#!fsharp
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!import ../../lib/fsharp/Common.fs
-#!import ../../lib/fsharp/CommonFSharp.fs
-#!import ../../lib/fsharp/Async.fs
-#!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Runtime.fs
-#!import ../../lib/fsharp/FileSystem.fs
+<!-- livebook:{"break_markdown":true} -->
 
-#!fsharp
+`#!import ../../lib/fsharp/Common.fs`
 
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/CommonFSharp.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Async.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/AsyncSeq.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/Runtime.fs`
+
+<!-- livebook:{"break_markdown":true} -->
+
+`#!import ../../lib/fsharp/FileSystem.fs`
+
+```fsharp
 #if !INTERACTIVE
 open Lib
 #endif
+```
 
-#!fsharp
-
+```fsharp
 open Common
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 open SpiralFileSystem.Operators
-
-#!markdown
+```
 
 ## parseArgs
 
-#!fsharp
-
+```fsharp
 let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
     let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     let errorHandler : Argu.IExiter =
-        if [ "Microsoft.DotNet.Interactive.App"; "dotnet-repl" ] |> List.contains assemblyName
+        if assemblyName = "fsi" // a notebook cell (Kino runs F# cells on dotnet fsi): report the error, don't exit
         then Argu.ExceptionExiter ()
         else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
 
@@ -63,9 +70,9 @@ let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
         )
 
     parser.ParseCommandLine args
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 [<RequireQualifiedAccess>]
@@ -77,15 +84,15 @@ type Arguments =
         member s.Usage =
             match s with
             | Paths _ -> nameof Paths
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 fun () -> parseArgs<Arguments> [||] |> ignore
@@ -93,16 +100,16 @@ fun () -> parseArgs<Arguments> [||] |> ignore
     SpiralSm.format_exception ex
     |> _stringContains "Argu.ArguParseException: ERROR: missing parameter '<paths>...'."
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline parseAllArgs<'T when 'T :> Argu.IArgParserTemplate> args =
     args
     |> parseArgs<'T>
     |> fun results -> results.GetAllResults ()
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 [<RequireQualifiedAccess>]
@@ -117,17 +124,17 @@ type Arguments =
 
 parseAllArgs<Arguments> [| "a b"; "c" |]
 |> _assertEqual [ Arguments.Paths [ "a b"; "c" ] ]
+```
 
-#!fsharp
-
+```fsharp
 let inline parseArgsMap<'T when 'T :> Argu.IArgParserTemplate> args =
     args
     |> parseAllArgs<'T>
     |> List.groupBy CommonFSharp.getUnionCaseName<'T>
     |> Map.ofList
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 parseArgsMap<Arguments> [| "a b"; "c" |]
@@ -135,3 +142,4 @@ parseArgsMap<Arguments> [| "a b"; "c" |]
     [ nameof Arguments.Paths, [ Arguments.Paths [ "a b"; "c" ] ] ]
     |> Map.ofList
 )
+```

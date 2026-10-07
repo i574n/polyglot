@@ -1,14 +1,8 @@
 param(
     $fast,
     $init,
-    # Opt-in toolchains, for the callers that still use them (polyglot's own build: build.dib and every `spiral dib
-    # --path` notebook run, lib/math, lib/fsharp and lib/typescript Fable outputs; spiral's notebooks; alphabet
-    # documents). Without them (dice) init doesn't fetch dotnet-repl and doesn't build the Fable fork; the stock Fable
-    # tool and fable-library-rust are always set up (polyglot's cargo workspace has the Fable crate lib/math as a member).
-    # -Fable 1: the Fable fork build (dep_fable.ps1, also lib/typescript/fable).
-    # -Repl 1: the dotnet-repl and dotnet-interactive tools, and (unless -fast) their fork builds.
-    $Fable,
-    $Repl,
+    # No Fable, dotnet-repl or dotnet-interactive: the Spiral apps and libraries build with the Spiral compiler's native
+    # backends, notebooks run through Kino (spiral/apps/kino).
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -128,17 +122,7 @@ if (!(Search-Command "gleam")) {
     }
 }
 
-if ($Fable -or $Repl) {
-    { dotnet tool restore } | Invoke-Block -OnError Continue
-} else {
-    # paket and Fable only, at the versions of the tool manifest (a plain `dotnet tool restore` also fetches dotnet-repl
-    # and dotnet-interactive).
-    $tools = (Get-Content ../.config/dotnet-tools.json -Raw | ConvertFrom-Json).tools
-    $toolsManifest = Join-Path ([IO.Path]::GetTempPath()) "polyglot-tools-$([guid]::NewGuid().ToString('N')).json"
-    @{ version = 1; isRoot = $true; tools = @{ paket = $tools.paket; Fable = $tools.Fable } } | ConvertTo-Json -Depth 5 | Set-Content $toolsManifest
-    { dotnet tool restore --tool-manifest $toolsManifest } | Invoke-Block -OnError Continue
-    Remove-Item $toolsManifest -Force -ErrorAction Ignore
-}
+{ dotnet tool restore } | Invoke-Block -OnError Continue
 
 { dotnet paket restore } | Invoke-Block
 
@@ -146,9 +130,6 @@ Set-Location $ResolvedScriptDir
 
 { pwsh symlinks.ps1 } | Invoke-Block
 
-# fable-library-rust: polyglot's cargo workspace (builder, dir-tree-html, plot) has the Fable crate lib/math as a member,
-# and cargo can't load the workspace until this path dependency exists.
-{ pwsh ../lib/rust/fable/build.ps1 } | Invoke-Block
 
 $gitPath = ResolveLink (GetFullPath "../..")
 
@@ -171,17 +152,8 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
-if ($Repl -and !$fast) {
-    { pwsh dep_dotnet-interactive.ps1 } | Invoke-Block
-    { pwsh dep_dotnet-repl.ps1 } | Invoke-Block
-}
-
-# init.dib's cells are all pwsh: a plain script run, no notebook kernel.
-Invoke-PwshDib init.dib
-
-if ($Fable) {
-    { pwsh dep_fable.ps1 } | Invoke-Block
-}
+# init.livemd's cells are all pwsh: a plain script run, no notebook kernel.
+Invoke-PwshNotebook init.livemd
 
 # The native Rust spiral CLI (apps/spiral/build.ps1 ships it to spiral/workspace/target/release).
 

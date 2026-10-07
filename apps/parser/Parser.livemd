@@ -1,60 +1,54 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"name":"spiral"}]}}
-
-#!markdown
-
 # Parser (Polyglot)
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
+`#!import ../../lib/fsharp/Notebooks.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
-#!import ../../lib/fsharp/Common.fs
+`#!import ../../lib/fsharp/Testing.livemd`
 
-#!fsharp
+<!-- livebook:{"break_markdown":true} -->
 
+`#!import ../../lib/fsharp/Common.fs`
+
+```fsharp
 open Common
-
-#!markdown
+```
 
 ### TextInput
 
-#!fsharp
-
+```fsharp
 type Position =
     {
         line : int
         column : int
     }
+```
 
-#!fsharp
-
+```fsharp
 let initialPos = { line = 0; column = 0 }
+```
 
-#!fsharp
-
+```fsharp
 let inline incrCol (pos : Position) =
     { pos with column = pos.column + 1 }
+```
 
-#!fsharp
-
+```fsharp
 let inline incrLine pos =
     { line = pos.line + 1; column = 0 }
+```
 
-#!fsharp
-
+```fsharp
 type InputState =
     {
         lines : string[]
         position : Position
     }
+```
 
-#!fsharp
-
+```fsharp
 let inline fromStr str =
     {
         lines =
@@ -63,35 +57,35 @@ let inline fromStr str =
             else str |> SpiralSm.split_string [| "\r\n"; "\n" |]
         position = initialPos
     }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 fromStr "" |> _assertEqual {
     lines = [||]
     position = { line = 0; column = 0 }
 }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 fromStr "Hello \n World" |> _assertEqual {
     lines = [| "Hello "; " World" |]
     position = { line = 0; column = 0 }
 }
+```
 
-#!fsharp
-
+```fsharp
 let inline currentLine inputState =
     let linePos = inputState.position.line
     if linePos < inputState.lines.Length
     then inputState.lines.[linePos]
     else "end of file"
+```
 
-#!fsharp
-
+```fsharp
 let inline nextChar input =
     let linePos = input.position.line
     let colPos = input.position.column
@@ -110,9 +104,9 @@ let inline nextChar input =
             let newPos = incrLine input.position
             let newState = { input with position = newPos }
             newState, Some char
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let newInput, charOpt = fromStr "Hello World" |> nextChar
@@ -122,9 +116,9 @@ newInput |> _assertEqual {
     position = { line = 0; column = 1 }
 }
 charOpt |> _assertEqual (Some 'H')
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let newInput, charOpt = fromStr "Hello\n\nWorld" |> nextChar
@@ -134,13 +128,11 @@ newInput |> _assertEqual {
     position = { line = 0; column = 1 }
 }
 charOpt |> _assertEqual (Some 'H')
-
-#!markdown
+```
 
 ### Parser
 
-#!fsharp
-
+```fsharp
 type Input = InputState
 type ParserLabel = string
 type ParserError = string
@@ -161,9 +153,9 @@ type Parser<'a> =
         label : ParserLabel
         parseFn : Input -> ParseResult<'a * Input>
     }
+```
 
-#!fsharp
-
+```fsharp
 let inline printResult result =
     match result with
     | Success (value, input) ->
@@ -174,33 +166,33 @@ let inline printResult result =
         let linePos = parserPos.line
         let failureCaret = $"{' ' |> string |> String.replicate colPos}^{error}"
         printfn $"Line:%i{linePos} Col:%i{colPos} Error parsing %s{label}\n%s{errorLine}\n%s{failureCaret}"
+```
 
-#!fsharp
-
+```fsharp
 let inline runOnInput parser input =
     parser.parseFn input
+```
 
-#!fsharp
-
+```fsharp
 let inline run parser inputStr =
     runOnInput parser (fromStr inputStr)
+```
 
-#!fsharp
-
+```fsharp
 let inline parserPositionFromInputState (inputState : Input) =
     {
         currentLine = currentLine inputState
         line = inputState.position.line
         column = inputState.position.column
     }
+```
 
-#!fsharp
-
+```fsharp
 let inline getLabel parser =
     parser.label
+```
 
-#!fsharp
-
+```fsharp
 let inline setLabel parser newLabel =
     {
         label = newLabel
@@ -209,13 +201,13 @@ let inline setLabel parser newLabel =
             | Success s -> Success s
             | Failure (oldLabel, err, pos) -> Failure (newLabel, err, pos)
     }
+```
 
-#!fsharp
-
+```fsharp
 let (<?>) = setLabel
+```
 
-#!fsharp
-
+```fsharp
 let inline satisfy predicate label =
     {
         label = label
@@ -234,9 +226,9 @@ let inline satisfy predicate label =
                     let pos = parserPositionFromInputState input
                     Failure (label, err, pos)
     }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -250,9 +242,9 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "World"
@@ -268,9 +260,9 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline bindP f p =
     {
         label = "unknown"
@@ -279,13 +271,13 @@ let inline bindP f p =
             | Failure (label, err, pos) -> Failure (label, err, pos)
             | Success (value1, remainingInput) -> runOnInput (f value1) remainingInput
     }
+```
 
-#!fsharp
-
+```fsharp
 let inline (>>=) p f = bindP f p
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -300,9 +292,9 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "World"
@@ -319,17 +311,17 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline returnP x =
     {
         label = $"%A{x}"
         parseFn = fun input -> Success (x, input)
     }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -343,22 +335,22 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline mapP f =
     bindP (f >> returnP)
+```
 
-#!fsharp
-
+```fsharp
 let (<!>) = mapP
+```
 
-#!fsharp
-
+```fsharp
 let inline (|>>) x f = f <!> x
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -373,27 +365,27 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline applyP fP xP =
     fP >>=
         fun f ->
             xP >>=
                 fun x ->
                     returnP (f x)
+```
 
-#!fsharp
-
+```fsharp
 let (<*>) = applyP
+```
 
-#!fsharp
-
+```fsharp
 let inline lift2 f xP yP =
     returnP f <*> xP <*> yP
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -409,9 +401,9 @@ runOnInput parser3 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline andThen p1 p2 =
     p1 >>=
         fun p1Result ->
@@ -419,13 +411,13 @@ let inline andThen p1 p2 =
                 fun p2Result ->
                     returnP (p1Result, p2Result)
     <?> $"{getLabel p1} andThen {getLabel p2}"
+```
 
-#!fsharp
-
+```fsharp
 let (.>>.) = andThen
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -441,9 +433,9 @@ runOnInput parser3 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline orElse p1 p2 =
     {
         label = $"{getLabel p1} orElse {getLabel p2}"
@@ -452,13 +444,13 @@ let inline orElse p1 p2 =
             | Success _ as result -> result
             | Failure _ -> runOnInput p2 input
     }
+```
 
-#!fsharp
-
+```fsharp
 let (<|>) = orElse
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "hello"
@@ -474,14 +466,14 @@ runOnInput parser3 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline choice listOfParsers =
     listOfParsers |> List.reduce (<|>)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "hello"
@@ -497,16 +489,16 @@ runOnInput parser3 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let rec sequence parserList =
     match parserList with
     | [] -> returnP []
     | head :: tail -> (lift2 cons) head (sequence tail)
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -522,9 +514,9 @@ runOnInput parser3 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let rec parseZeroOrMore parser input =
     match runOnInput parser input with
     | Failure (_, _, _) ->
@@ -532,17 +524,17 @@ let rec parseZeroOrMore parser input =
     | Success (firstValue, inputAfterFirstParse) ->
         let subsequentValues, remainingInput = parseZeroOrMore parser inputAfterFirstParse
         firstValue :: subsequentValues, remainingInput
+```
 
-#!fsharp
-
+```fsharp
 let inline many parser =
     {
         label = $"many {getLabel parser}"
         parseFn = fun input -> Success (parseZeroOrMore parser input)
     }
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "hello"
@@ -557,9 +549,9 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline many1 p =
     p >>=
         fun head ->
@@ -567,9 +559,9 @@ let inline many1 p =
                 fun tail ->
                     returnP (head :: tail)
     <?> $"many1 {getLabel p}"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "hello"
@@ -586,17 +578,17 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline opt p =
     let some = p |>> Some
     let none = returnP None
     (some <|> none)
     <?> $"opt {getLabel p}"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "hello"
@@ -611,26 +603,26 @@ runOnInput parser2 input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline (.>>) p1 p2 =
     p1 .>>. p2
     |> mapP fst
+```
 
-#!fsharp
-
+```fsharp
 let inline (>>.) p1 p2 =
     p1 .>>. p2
     |> mapP snd
+```
 
-#!fsharp
-
+```fsharp
 let inline between p1 p2 p3 =
     p1 >>. p2 .>> p3
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "[Hello]"
@@ -648,21 +640,21 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline sepBy1 p sep =
     let sepThenP = sep >>. p
     p .>>. many sepThenP
     |>> fun (p, pList) -> p :: pList
+```
 
-#!fsharp
-
+```fsharp
 let inline sepBy p sep =
     sepBy1 p sep <|> returnP []
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello,World"
@@ -676,22 +668,22 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline pchar charToMatch =
     satisfy ((=) charToMatch) $"%c{charToMatch}"
+```
 
-#!fsharp
-
+```fsharp
 let inline anyOf listOfChars =
     listOfChars
     |> List.map pchar
     |> choice
     <?> $"anyOf %A{listOfChars}"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -705,26 +697,26 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline charListToStr charList =
     charList |> List.toArray |> String
+```
 
-#!fsharp
-
+```fsharp
 let inline manyChars cp =
     many cp
     |>> charListToStr
+```
 
-#!fsharp
-
+```fsharp
 let inline manyChars1 cp =
     many1 cp
     |>> charListToStr
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -738,9 +730,9 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline pstring str =
     str
     |> List.ofSeq
@@ -748,9 +740,9 @@ let inline pstring str =
     |> sequence
     |> mapP charListToStr
     <?> str
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -764,22 +756,22 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let whitespaceChar =
     satisfy Char.IsWhiteSpace "whitespace"
+```
 
-#!fsharp
-
+```fsharp
 let spaces = many whitespaceChar
+```
 
-#!fsharp
-
+```fsharp
 let spaces1 = many1 whitespaceChar
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "  Hello"
@@ -793,14 +785,14 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let digitChar =
     satisfy Char.IsDigit "digit"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let input = fromStr "Hello"
@@ -816,9 +808,9 @@ runOnInput parser input |> _assertEqual (
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let pint =
     let inline resultToInt (sign, digits) =
         let i = int digits
@@ -831,9 +823,9 @@ let pint =
     opt (pchar '-') .>>. digits
     |> mapP resultToInt
     <?> "integer"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run pint "-123"
@@ -846,9 +838,9 @@ run pint "-123"
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let pfloat =
     let inline resultToFloat (((sign, digits1), point), digits2) =
         let fl = float $"{digits1}.{digits2}"
@@ -861,9 +853,9 @@ let pfloat =
     opt (pchar '-') .>>. digits .>>. pchar '.' .>>. digits
     |> mapP resultToFloat
     <?> "float"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 run pfloat "-123.45"
@@ -876,9 +868,9 @@ run pfloat "-123.45"
         }
     )
 )
+```
 
-#!fsharp
-
+```fsharp
 let inline createParserForwardedToRef<'a> () =
     let mutable parserRef : Parser<'a> =
         {
@@ -892,9 +884,10 @@ let inline createParserForwardedToRef<'a> () =
         }
 
     wrapperParser, (fun v -> parserRef <- v)
+```
 
-#!fsharp
-
+```fsharp
 let inline (>>%) p x =
     p
     |>> fun _ -> x
+```

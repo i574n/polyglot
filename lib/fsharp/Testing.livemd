@@ -1,13 +1,8 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[{"aliases":[],"name":"spiral"}]}}
-
-#!fsharp
-
+```fsharp
 #r @"../../../../../../../.nuget/packages/expecto/11.0.0-alpha8/lib/net6.0/Expecto.dll"
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 type AssertExceptionFormatter (ex) =
@@ -20,9 +15,9 @@ type AssertExceptionFormatter (ex) =
 
 
 Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter) -> x.Text), "text/html")
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline __expect fn log expected actual =
@@ -65,9 +60,9 @@ let inline _stringStarts expected actual = __stringStarts true expected actual
 
 let inline __throwsC log expected actual = __expect Expecto.Expect.throwsC log expected actual
 let inline _throwsC expected actual = __throwsC true expected actual
+```
 
-#!fsharp
-
+```fsharp
 ///- --test
 
 let inline __isBetween log a b actual =
@@ -76,3 +71,4 @@ let inline __isBetween log a b actual =
         __isLessThanOrEqual log b actual
     __expect isBetween log (a, b) actual
 let inline _isBetween a b actual = __isBetween true a b actual
+```
