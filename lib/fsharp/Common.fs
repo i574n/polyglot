@@ -30,19 +30,19 @@ module Common =
 
     /// ### to_trace_level
     let to_trace_level = function
-        | Verbose -> SpiralTrace.TraceLevel.US0_0
-        | Debug -> SpiralTrace.TraceLevel.US0_1
-        | Info -> SpiralTrace.TraceLevel.US0_2
-        | Warning -> SpiralTrace.TraceLevel.US0_3
-        | Critical -> SpiralTrace.TraceLevel.US0_4
+        | Verbose -> SpiralTrace.TraceLevel.Verbose
+        | Debug -> SpiralTrace.TraceLevel.Debug
+        | Info -> SpiralTrace.TraceLevel.Info
+        | Warning -> SpiralTrace.TraceLevel.Warning
+        | Critical -> SpiralTrace.TraceLevel.Critical
 
     /// ### from_trace_level
     let from_trace_level = function
-        | SpiralTrace.TraceLevel.US0_0 -> Verbose
-        | SpiralTrace.TraceLevel.US0_1 -> Debug
-        | SpiralTrace.TraceLevel.US0_2 -> Info
-        | SpiralTrace.TraceLevel.US0_3 -> Warning
-        | SpiralTrace.TraceLevel.US0_4 -> Critical
+        | SpiralTrace.TraceLevel.Verbose -> Verbose
+        | SpiralTrace.TraceLevel.Debug -> Debug
+        | SpiralTrace.TraceLevel.Info -> Info
+        | SpiralTrace.TraceLevel.Warning -> Warning
+        | SpiralTrace.TraceLevel.Critical -> Critical
 
     /// ### trace
     let trace level fn locals =
