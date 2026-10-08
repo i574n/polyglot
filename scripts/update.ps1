@@ -29,8 +29,6 @@ function UpdateJson {
 
 { cargo update } | Invoke-Block
 
-UpdateToml "../apps/plot/Cargo.toml"
-
 if (!$fast) {
     UpdateJson ".."
 }

@@ -24,27 +24,7 @@ open Parser
 ## JsonParser
 
 ```fsharp
-(*
-// --------------------------------
-JSON spec from http://www.json.org/
-// --------------------------------
 
-The JSON spec is available at [json.org](http://www.json.org/). I'll paraphase it here:
-
-* A `value` can be a `string` or a `number` or a `bool` or `null` or an `object` or an `array`.
-  * These structures can be nested.
-* A `string` is a sequence of zero or more Unicode characters, wrapped in double quotes, using backslash escapes.
-* A `number` is very much like a C or Java number, except that the octal and hexadecimal formats are not used.
-* A `boolean` is the literal `true` or `false`
-* A `null` is the literal `null`
-* An `object` is an unordered set of name/value pairs.
-  * An object begins with { (left brace) and ends with } (right brace).
-  * Each name is followed by : (colon) and the name/value pairs are separated by , (comma).
-* An `array` is an ordered collection of values.
-  * An array begins with [ (left bracket) and ends with ] (right bracket).
-  * Values are separated by , (comma).
-* Whitespace can be inserted between any pair of tokens.
-*)
 ```
 
 ```fsharp

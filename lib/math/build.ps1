@@ -11,7 +11,6 @@ $ErrorActionPreference = "Stop"
 
 $projectName = "math"
 
-# The notebook runs through Kino (core.ps1 Invoke-Notebook) and exports math.spi.
 if (!$fast -and !$SkipNotebook) {
     Invoke-Notebook "$projectName.livemd" -Retries ($fast -or !$env:CI ? 1 : 2)
 }
@@ -20,9 +19,6 @@ Invoke-Notebook "$projectName.livemd" @("--spi-path", "$ScriptDir/$projectName.s
 
 $targetDir = GetTargetDir $projectName
 
-# Rust: math.spi (its `main` has a `Rust` arm that runs the tests by name, plus one `#[test]` wrapper per test) ->
-# math.rs (tracked) with the Spiral compiler's own Rust backend: the `math` bin of Cargo.toml, a member of the polyglot
-# workspace. Required check: `cargo test` must pass all 12 tests (pyo3 + Python's mpmath).
 $rustTests = 12
 if (!(BuildSpiral "$projectName.spi" "$projectName.rs" "lib/math")) {
     throw "RUST-FAILED lib/math / compile"

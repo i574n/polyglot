@@ -1,7 +1,3 @@
-# The shared pwsh helpers (Invoke-Block, EnsureSymbolicLink, Invoke-Notebook, ...) live in spiral/scripts/core.ps1; this
-# file only loads them, so every script that dot-sources polyglot's core.ps1 (polyglot, dice, alphabet, i574n.github)
-# keeps working. spiral is found through polyglot's deps/spiral link, else as polyglot's sibling checkout; a fresh
-# checkout without either (a CI runner before polyglot's init cloned spiral) clones spiral next to polyglot first.
 $script:SpiralCore = @("$PSScriptRoot/../deps/spiral/scripts/core.ps1", "$PSScriptRoot/../../spiral/scripts/core.ps1") |
     Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 if (!$script:SpiralCore) {

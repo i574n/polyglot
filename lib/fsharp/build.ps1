@@ -7,9 +7,6 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
-# The F# library notebooks run through Kino (spiral/apps/kino/spi/run_notebook.ps1: F# cells on dotnet fsi) and export
-# their module (<nb>.fs, `--fs-path`: `spiral export` of the notebook's cells, fs). A run writes <nb>.livemd.ipynb and
-# <nb>.livemd.html.
 $livebook = Join-Path $ScriptDir "../../deps/spiral/apps/kino/spi/run_notebook.ps1"
 $notebooks = @("Async", "AsyncSeq", "Common", "CommonFSharp", "FileSystem", "Runtime")
 

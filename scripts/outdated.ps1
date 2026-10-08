@@ -31,7 +31,5 @@ function CheckJson {
 
 CheckToml "../workspace/Cargo.toml" `-w
 
-CheckToml "../apps/plot/Cargo.toml"
-
 CheckJson ".."
 CheckJson "../deps/The-Spiral-Language/VS Code Plugin"

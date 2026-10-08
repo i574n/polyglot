@@ -8,26 +8,25 @@
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-# rustup component add clippy rust-src rustfmt
+
 ```
 
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-# rustup target add wasm32-unknown-unknown
+
 ```
 
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-# rustup update
+
 ```
 
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
 if (!(Search-Command "cargo-binstall")) {
-    # { cargo +nightly-2025-11-01 install --timings cargo-binstall --locked } | Invoke-Block -OnError Continue
     if ($IsWindows) {
         Set-ExecutionPolicy Unrestricted -Scope Process; iex (iwr "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
     } else {
@@ -53,7 +52,6 @@ if (!(Search-Command "cargo-outdated")) {
 
 ```pwsh
 if (!(Search-Command "sccache")) {
-    # { cargo install --timings sccache --locked } | Invoke-Block -OnError Continue
     { cargo binstall -y sccache } | Invoke-Block -OnError Continue
 }
 ```
@@ -62,7 +60,6 @@ if (!(Search-Command "sccache")) {
 
 ```pwsh
 if (!(Search-Command "wasm-pack")) {
-    # { cargo install --timings wasm-pack --locked } | Invoke-Block -OnError Continue
     { cargo binstall -y wasm-pack } | Invoke-Block -OnError Continue
 }
 ```
@@ -71,7 +68,6 @@ if (!(Search-Command "wasm-pack")) {
 
 ```pwsh
 if (!(Search-Command "trunk")) {
-    # { cargo install --timings trunk --version 0.21.14 } | Invoke-Block -OnError Continue
     { cargo binstall -y trunk --version 0.21.14 } | Invoke-Block -OnError Continue
 }
 ```
@@ -123,7 +119,7 @@ if (!(Search-Command "nix")) {
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-if (!(Test-Path ../deps/hyperui/.next/package.json)) {
+if (!(Test-Path ../deps/hyperui/public/component.css)) {
     { . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block
 }
 ```

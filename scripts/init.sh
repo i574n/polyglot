@@ -1,11 +1,9 @@
-# apt only runs when something is missing: it needs the dpkg lock, which unattended-upgrades holds for
-# minutes after a WSL cold boot (the workflow waited on it at 0% cpu).
 installed() { [ "$(dpkg-query -W -f='${Status}' "$1" 2>/dev/null)" = "install ok installed" ]; }
 
-# build-essential: cargo's build scripts (proc-macro2, quote, libc) link with `cc` (apps/wasm's Linux build).
-if ! installed snapd || ! installed unzip || ! installed build-essential; then
+cargo_build_script_linker=build-essential
+if ! installed snapd || ! installed unzip || ! installed "$cargo_build_script_linker"; then
     apt update
-    apt install -y snapd unzip build-essential
+    apt install -y snapd unzip "$cargo_build_script_linker"
 
     df -h
     apt-get autoremove -y
