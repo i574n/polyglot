@@ -1,0 +1,475 @@
+## Tasks (Polyglot)
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"\nopen testing","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+
+  open testing
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"open sm'_operators","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  open sm'_operators
+  """,
+  timeout: 300_000
+)
+```
+
+## task_id
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"nominal task_id = string","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  nominal task_id = string
+  """,
+  timeout: 300_000
+)
+```
+
+## task_name
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"nominal task_name = string","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  nominal task_name = string
+  """,
+  timeout: 300_000
+)
+```
+
+## manual_scheduling
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union manual_scheduling =\n    | WithSuggestion\n    | WithoutSuggestion","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union manual_scheduling =
+      | WithSuggestion
+      | WithoutSuggestion
+  """,
+  timeout: 300_000
+)
+```
+
+## day_offset
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"nominal day_offset = int","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  nominal day_offset = int
+  """,
+  timeout: 300_000
+)
+```
+
+## week_offset
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"nominal week_offset = int","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  nominal week_offset = int
+  """,
+  timeout: 300_000
+)
+```
+
+## month_offset
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"nominal month_offset = int","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  nominal month_offset = int
+  """,
+  timeout: 300_000
+)
+```
+
+## recurrency_offset
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union recurrency_offset =\n    | Days : day_offset\n    | Weeks : week_offset\n    | Months : month_offset","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union recurrency_offset =
+      | Days : day_offset
+      | Weeks : week_offset
+      | Months : month_offset
+  """,
+  timeout: 300_000
+)
+```
+
+## fixed_recurrency
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union fixed_recurrency =\n    | Weekly : date_time.day_of_week\n    | Monthly : date_time.day\n    | Yearly : date_time.day * date_time.month","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union fixed_recurrency =
+      | Weekly : date_time.day_of_week
+      | Monthly : date_time.day
+      | Yearly : date_time.day * date_time.month
+  """,
+  timeout: 300_000
+)
+```
+
+## recurrency
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union recurrency =\n    | Offset : recurrency_offset\n    | Fixed : list fixed_recurrency","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union recurrency =
+      | Offset : recurrency_offset
+      | Fixed : list fixed_recurrency
+  """,
+  timeout: 300_000
+)
+```
+
+## scheduling
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union scheduling =\n    | Manual : manual_scheduling\n    | Recurrent : recurrency","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union scheduling =
+      | Manual : manual_scheduling
+      | Recurrent : recurrency
+  """,
+  timeout: 300_000
+)
+```
+
+## task
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"type task =\n    {\n        id : task_id\n        name : task_name\n        scheduling : scheduling\n    }","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  type task =
+      {
+          id : task_id
+          name : task_name
+          scheduling : scheduling
+      }
+  """,
+  timeout: 300_000
+)
+```
+
+## date
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"type date =\n    {\n        year : date_time.year\n        month : date_time.month\n        day : date_time.day\n    }","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  type date =
+      {
+          year : date_time.year
+          month : date_time.month
+          day : date_time.day
+      }
+  """,
+  timeout: 300_000
+)
+```
+
+## status
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union status =\n    | Postponed : option ()","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union status =
+      | Postponed : option ()
+  """,
+  timeout: 300_000
+)
+```
+
+### action
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"union action =\n    | SetDate : date\n    | AddTask : task\n    | SetScheduling : task * scheduling\n    | AddStatus : task * date * status","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  union action =
+      | SetDate : date
+      | AddTask : task
+      | SetScheduling : task * scheduling
+      | AddStatus : task * date * status
+  """,
+  timeout: 300_000
+)
+```
+
+## get_actions (test)
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"\ninl get_actions () : list action =\n    open date_time\n    [\n        SetDate {\n            year = year 2000\n            month = February\n            day = day 29\n        }\n        AddTask {\n            id = task_id \"1\"\n            name = task_name \"1\"\n            scheduling = Manual WithSuggestion\n        }\n        AddTask {\n            id = task_id \"02\"\n            name = task_name \"02\"\n            scheduling = Manual WithSuggestion\n        }\n        AddTask {\n            id = task_id \"00003\"\n            name = task_name \"00003\"\n            scheduling = Manual WithSuggestion\n        }\n    ]","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+
+  inl get_actions () : list action =
+      open date_time
+      [
+          SetDate {
+              year = year 2000
+              month = February
+              day = day 29
+          }
+          AddTask {
+              id = task_id "1"
+              name = task_name "1"
+              scheduling = Manual WithSuggestion
+          }
+          AddTask {
+              id = task_id "02"
+              name = task_name "02"
+              scheduling = Manual WithSuggestion
+          }
+          AddTask {
+              id = task_id "00003"
+              name = task_name "00003"
+              scheduling = Manual WithSuggestion
+          }
+      ]
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"///! gleam\n///! fsharp\n///! cuda\n///! rust\n///! typescript\n///! python\n\nget_actions ()\n|> sm'.format_debug\n|> _assert sm'.contains \"00003\"","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  ///! gleam
+  ///! fsharp
+  ///! cuda
+  ///! rust
+  ///! typescript
+  ///! python
+
+  get_actions ()
+  |> sm'.format_debug
+  |> _assert sm'.contains "00003"
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"///! gleam\n///! fsharp\n///! cuda\n///! rust\n///! typescript\n///! python\n\nget_actions ()\n|> listm'.try_item 3i32\n|> function\n    | Some (AddTask { name }) => name\n|> _assert_eq (task_name \"00003\")","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  ///! gleam
+  ///! fsharp
+  ///! cuda
+  ///! rust
+  ///! typescript
+  ///! python
+
+  get_actions ()
+  |> listm'.try_item 3i32
+  |> function
+      | Some (AddTask { name }) => name
+  |> _assert_eq (task_name "00003")
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"\ninl print padding cols =\n    ({ lines = []; last_lines = []; max_acc = 0i32 }, cols)\n    ||> listm.fold fun { last_lines max_acc } lines =>\n        inl { count max } =\n            (lines, { count = 0i32; max = 0i32 })\n            ||> listm.foldBack fun line { count max } => {\n                count = count + 1\n                max =\n                    inl len = line |> sm'.length\n                    if len > max\n                    then len\n                    else max\n            }\n        inl { lines } =\n            (lines, { lines = []; i = 0i32 })\n            ||> listm.foldBack fun line { lines i } => {\n                lines =\n                    inl last_line =\n                        last_lines\n                        |> listm'.try_item (count - i - 1)\n                        |> optionm'.default_with fun () =>\n                            \" \" |> sm'.replicate max_acc\n                    inl line =\n                        if padding = 0\n                        then line\n                        else\n                            inl padding = \" \" |> sm'.replicate padding\n                            line ++# padding\n                    inl line = line |> sm'.pad_right (max + padding) ' '\n                    last_line ++# line :: lines\n                i = i + 1\n            }\n        {\n            lines\n            last_lines = lines\n            max_acc = max_acc + max + padding\n        }\n    |> fun x => x.lines\n    |> listm'.box\n    |> seq.of_list'\n    |> sm'.concat \"\\n\"\n\ninl col () =\n    [ \"Task\" ]\n    ++ (\n        get_actions ()\n        |> listm.map function\n            | AddTask { name } =>\n                inl (task_name name) = name\n                name\n            | _ => \"\"\n    )\n\ninl cols () =\n    [\n        col ()\n        col ()\n        [ \"a\"; \"b\"; \"c\"; \"d\"; \"e\" ]\n    ]","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+
+  inl print padding cols =
+      ({ lines = []; last_lines = []; max_acc = 0i32 }, cols)
+      ||> listm.fold fun { last_lines max_acc } lines =>
+          inl { count max } =
+              (lines, { count = 0i32; max = 0i32 })
+              ||> listm.foldBack fun line { count max } => {
+                  count = count + 1
+                  max =
+                      inl len = line |> sm'.length
+                      if len > max
+                      then len
+                      else max
+              }
+          inl { lines } =
+              (lines, { lines = []; i = 0i32 })
+              ||> listm.foldBack fun line { lines i } => {
+                  lines =
+                      inl last_line =
+                          last_lines
+                          |> listm'.try_item (count - i - 1)
+                          |> optionm'.default_with fun () =>
+                              " " |> sm'.replicate max_acc
+                      inl line =
+                          if padding = 0
+                          then line
+                          else
+                              inl padding = " " |> sm'.replicate padding
+                              line ++# padding
+                      inl line = line |> sm'.pad_right (max + padding) ' '
+                      last_line ++# line :: lines
+                  i = i + 1
+              }
+          {
+              lines
+              last_lines = lines
+              max_acc = max_acc + max + padding
+          }
+      |> fun x => x.lines
+      |> listm'.box
+      |> seq.of_list'
+      |> sm'.concat "\n"
+
+  inl col () =
+      [ "Task" ]
+      ++ (
+          get_actions ()
+          |> listm.map function
+              | AddTask { name } =>
+                  inl (task_name name) = name
+                  name
+              | _ => ""
+      )
+
+  inl cols () =
+      [
+          col ()
+          col ()
+          [ "a"; "b"; "c"; "d"; "e" ]
+      ]
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"///! gleam\n///! fsharp\n///! cuda\n///! rust\n///! typescript\n///! python\n\ncols ()\n|> print 1i32\n|> console.write_line","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+  ///! gleam
+  ///! fsharp
+  ///! cuda
+  ///! rust
+  ///! typescript
+  ///! python
+
+  cols ()
+  |> print 1i32
+  |> console.write_line
+  """,
+  timeout: 300_000
+)
+```
+
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"\ninl task_name_width =\n    (0, get_actions ())\n    ||> listm.fold fun acc => function\n        | AddTask { name } =>\n            inl (task_name name) = name\n            inl l = name |> sm'.length\n            if l > acc\n            then l\n            else acc\n        | _ => acc\n    |> (+) 1\n\n\ninl lines =\n    (\"\" |> sm'.pad_right task_name_width ' ')\n    ++# \"|\" ++# \" 2000               \"\n    ++# \"|\\n\"\n\n    ++# (\"\" |> sm'.pad_right task_name_width ' ')\n    ++# \"|\" ++# \" february  \"\n    ++# \"|\" ++# \" march  \"\n    ++# \"|\\n\"\n\n    ++# (\"\" |> sm'.pad_right task_name_width ' ')\n    ++# \"|\" ++# \"sa\"\n    ++# \"|\" ++# \"su\"\n    ++# \"|\" ++# \"mo\"\n    ++# \"|\" ++# \"tu\"\n    ++# \"|\" ++# \"we\"\n    ++# \"|\" ++# \"th\"\n    ++# \"|\" ++# \"fr\"\n    ++# \"|\\n\"\n\n    ++# (\"\" |> sm'.pad_right task_name_width ' ')\n    ++# \"|\" ++# \"26\"\n    ++# \"|\" ++# \"27\"\n    ++# \"|\" ++# \"28\"\n    ++# \"|\" ++# \"29\"\n    ++# \"|\" ++# \"01\"\n    ++# \"|\" ++# \"02\"\n    ++# \"|\" ++# \"03\"\n    ++# \"|\"\n\ninl lines =\n    (lines, get_actions ())\n    ||> listm.fold fun acc => function\n        | AddTask { name } =>\n            inl (task_name name) = name\n            if acc = \"\"\n            then acc\n            else acc ++# \"\\n\"\n            ++# (name |> sm'.pad_right task_name_width ' ')\n            ++# \"|\" ++# console.color_bright_white () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_bright_white () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_bright_green () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_yellow () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_bright_red () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_bright_magenta () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\" ++# console.color_bright_cyan () ++# \"??\" ++# console.color_reset ()\n            ++# \"|\"\n        | _ => acc\nlines","print_code":false},"livebook_object":"smart_cell"} -->
+
+```elixir
+Spiral.Kino.eval!(
+  ~S"""
+
+  inl task_name_width =
+      (0, get_actions ())
+      ||> listm.fold fun acc => function
+          | AddTask { name } =>
+              inl (task_name name) = name
+              inl l = name |> sm'.length
+              if l > acc
+              then l
+              else acc
+          | _ => acc
+      |> (+) 1
+
+
+  inl lines =
+      ("" |> sm'.pad_right task_name_width ' ')
+      ++# "|" ++# " 2000               "
+      ++# "|\n"
+
+      ++# ("" |> sm'.pad_right task_name_width ' ')
+      ++# "|" ++# " february  "
+      ++# "|" ++# " march  "
+      ++# "|\n"
+
+      ++# ("" |> sm'.pad_right task_name_width ' ')
+      ++# "|" ++# "sa"
+      ++# "|" ++# "su"
+      ++# "|" ++# "mo"
+      ++# "|" ++# "tu"
+      ++# "|" ++# "we"
+      ++# "|" ++# "th"
+      ++# "|" ++# "fr"
+      ++# "|\n"
+
+      ++# ("" |> sm'.pad_right task_name_width ' ')
+      ++# "|" ++# "26"
+      ++# "|" ++# "27"
+      ++# "|" ++# "28"
+      ++# "|" ++# "29"
+      ++# "|" ++# "01"
+      ++# "|" ++# "02"
+      ++# "|" ++# "03"
+      ++# "|"
+
+  inl lines =
+      (lines, get_actions ())
+      ||> listm.fold fun acc => function
+          | AddTask { name } =>
+              inl (task_name name) = name
+              if acc = ""
+              then acc
+              else acc ++# "\n"
+              ++# (name |> sm'.pad_right task_name_width ' ')
+              ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_yellow () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_bright_red () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_bright_magenta () ++# "??" ++# console.color_reset ()
+              ++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
+              ++# "|"
+          | _ => acc
+  lines
+  """,
+  timeout: 300_000
+)
+```
