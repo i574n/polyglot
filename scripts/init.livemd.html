@@ -7895,27 +7895,6 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"cargo-outdated"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nv">$url</span> <span class="p">=</span> <span class="n">git</span> <span class="n">ls-remote</span> <span class="p">-</span><span class="n">-get-url</span>
-    <span class="nv">$owner</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$url</span> <span class="n">-split</span> <span class="s1">'/'</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Last</span> <span class="n">2</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span><span class="p">)</span> <span class="o">-replace</span> <span class="s1">'\.git$'</span><span class="p">,</span> <span class="s1">''</span> <span class="p">??</span> <span class="nv">$env:GITHUB_REPOSITORY_OWNER</span>
-    <span class="nv">$domain</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$url</span> <span class="n">-split</span> <span class="s1">'/'</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Last</span> <span class="n">3</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">1</span><span class="p">)</span> <span class="p">??</span> <span class="nv">$env:GITHUB_SERVER_URL</span> <span class="o">-replace</span> <span class="s1">'https?://'</span><span class="p">,</span> <span class="s1">''</span>
-    <span class="nb">Write-Output</span> <span class="s2">"polyglot/scripts/init.livemd / url: $url / owner: $owner / domain: $domain"</span>
-
-    <span class="p">{</span> <span class="n">cargo</span> <span class="n">binstall</span> <span class="n">-y</span> <span class="p">-</span><span class="n">-git</span> <span class="n">https</span><span class="p">://</span><span class="nv">$domain</span><span class="p">/</span><span class="nv">$owner</span><span class="p">/</span><span class="n">cargo-outdated</span><span class="p">.</span><span class="n">git</span> <span class="p">-</span><span class="n">-locked</span> <span class="n">cargo-outdated</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"sccache"</span><span class="p">))</span> <span class="p">{</span>
     <span class="p">{</span> <span class="n">cargo</span> <span class="n">binstall</span> <span class="n">-y</span> <span class="n">sccache</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
 <span class="p">}</span>
@@ -7924,12 +7903,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"wasm-pack"</span><span class="p">))</span> <span class="p">{</span>
@@ -7959,21 +7938,21 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
  INFO This will install the following binaries:
  INFO   - wasm-pack (wasm-pack -&gt; /home/runner/.cargo/bin/wasm-pack)
  INFO Installing binaries...
- INFO Done in 1.351192226s
+ INFO Done in 1.247612016s
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  45% /
+/dev/root       145G   66G   80G  46% /
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"trunk"</span><span class="p">))</span> <span class="p">{</span>
@@ -7984,12 +7963,12 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"nix"</span><span class="p">))</span> <span class="p">{</span>
@@ -8014,18 +7993,18 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  45% /
+/dev/root       145G   66G   80G  46% /
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="no">[Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="p">=</span> <span class="no">[Net.SecurityProtocolType]</span><span class="p">::</span><span class="n">Tls12</span>
@@ -8034,12 +8013,12 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="p">{</span> <span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PowerShellGet</span> <span class="n">-Force</span> <span class="n">-AllowClobber</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
@@ -8062,18 +8041,18 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  45% /
+/dev/root       145G   66G   80G  46% /
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="p">{</span> <span class="k">if</span> <span class="p">((</span><span class="nb">Get-PSRepository</span> <span class="n">-Name</span> <span class="n">PSGallery</span><span class="p">).</span><span class="n">InstallationPolicy</span> <span class="o">-ne</span> <span class="s1">'Trusted'</span><span class="p">)</span> <span class="p">{</span> <span class="nb">Set-PSRepository</span> <span class="n">-Name</span> <span class="n">PSGallery</span> <span class="n">-InstallationPolicy</span> <span class="n">Trusted</span> <span class="p">}</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
@@ -8104,18 +8083,18 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  45% /
+/dev/root       145G   66G   80G  46% /
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="p">{</span> <span class="p">.</span> <span class="p">$(</span><span class="nb">Search-Command</span> <span class="n">bun</span><span class="p">)</span> <span class="n">install</span> <span class="p">-</span><span class="n">-cwd</span> <span class="p">..</span> <span class="p">-</span><span class="n">-frozen-lockfile</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span>
@@ -8142,21 +8121,21 @@ bun install v1.4.2 (744846f84)
 + npm-check-updates@17.1.14
 + typescript@5.5.0-dev.20240404
 
-4 packages installed [154.00ms]
+4 packages installed [161.00ms]
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  45% /
+/dev/root       145G   66G   80G  46% /
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="p">{</span> <span class="p">.</span> <span class="s2">"$ScriptDir/dep_spiral.ps1"</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span>
@@ -8186,10 +8165,45 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/The-S
 Already up to date.
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   66G   79G  46% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   66G   79G  46% /
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-pwsh"><pre><span></span><span class="p">{</span> <span class="p">.</span> <span class="s2">"$ScriptDir/../deps/spiral/scripts/patched-crates/install.ps1"</span> <span class="n">cargo-outdated</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+────────────────────────────────────────────────────────────────────────────────
+core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / $ScriptBlock:
+'. "$ScriptDir/../deps/spiral/scripts/patched-crates/install.ps1" cargo-outdated'
+
+patched-crates / cargo-outdated 0.19.0 already installed
+core.Invoke-Block / df - /dev/root
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   66G   79G  46% /
 </pre>
 </div>
 </div>
@@ -8223,7 +8237,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   66G   79G  46% /
 </pre>
 </div>
 </div>
@@ -8266,10 +8280,10 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/hyper
 Already up to date.
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   66G   79G  46% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   66G   79G  46% /
 </pre>
 </div>
 </div>
