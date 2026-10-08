@@ -25,16 +25,14 @@ jobs:
               with:
                   otp-version: "27"
                   elixir-version: "1.18"
-                  gleam-version: "1.14.0"
+                  gleam-version: "1.19.1"
                   rebar3-version: "3.24.0"
 
             - uses: actions/setup-dotnet@v5
               with:
                   dotnet-version: "9.0.202"
 
-            - uses: actions/setup-node@v6
-              with:
-                  node-version: 21
+            - uses: oven-sh/setup-bun@v2
 
             - uses: actions/setup-python@v6
               with:
