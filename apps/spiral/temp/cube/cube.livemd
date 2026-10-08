@@ -24,7 +24,7 @@ Spiral.Kino.eval!(
 
 ### settings
 
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"inl width () = 160i32\ninl height () = 44i32\ninl distance_from_cam () = 100f64\ninl k1 () = 40f64\ninl increment_speed () = 0.6f64\ninl background () = 46i32 // '.'","print_code":false},"livebook_object":"smart_cell"} -->
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"inl width () = 160i32\ninl height () = 44i32\ninl distance_from_cam () = 100f64\ninl k1 () = 40f64\ninl increment_speed () = 0.6f64\ninl background () = 46i32","print_code":false},"livebook_object":"smart_cell"} -->
 
 ```elixir
 Spiral.Kino.eval!(
@@ -34,7 +34,7 @@ Spiral.Kino.eval!(
   inl distance_from_cam () = 100f64
   inl k1 () = 40f64
   inl increment_speed () = 0.6f64
-  inl background () = 46i32 // '.'
+  inl background () = 46i32
   """,
   timeout: 300_000
 )
@@ -131,7 +131,7 @@ Spiral.Kino.eval!(
 
 ### draw_cube
 
-<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"let draw_cube (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (cw : f64) (offset : f64) : () =\n    inl plot = plot depth chars rot offset\n    inl cube_x = mut (0f64 - cw)\n    loopw.while (fun () => *cube_x < cw) fun () =>\n        inl cube_y = mut (0f64 - cw)\n        loopw.while (fun () => *cube_y < cw) fun () =>\n            inl x, y = *cube_x, *cube_y\n            plot x y (0f64 - cw) 59i32 // ';'\n            plot cw y x 92i32 // '\\'\n            plot (0f64 - cw) y (0f64 - x) 47i32 // '/'\n            plot (0f64 - x) y cw 61i32 // '='\n            plot x (0f64 - cw) (0f64 - y) 62i32 // '>'\n            plot x cw y 60i32 // '<'\n            cube_y <- *cube_y + increment_speed ()\n        cube_x <- *cube_x + increment_speed ()","print_code":false},"livebook_object":"smart_cell"} -->
+<!-- livebook:{"chunks":null,"kind":"Elixir.Spiral.Kino.SmartCell","attrs":{"timeout":300,"source":"let draw_cube (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (cw : f64) (offset : f64) : () =\n    inl plot = plot depth chars rot offset\n    inl cube_x = mut (0f64 - cw)\n    loopw.while (fun () => *cube_x < cw) fun () =>\n        inl cube_y = mut (0f64 - cw)\n        loopw.while (fun () => *cube_y < cw) fun () =>\n            inl x, y = *cube_x, *cube_y\n            plot x y (0f64 - cw) 59i32\n            plot cw y x 92i32\n            plot (0f64 - cw) y (0f64 - x) 47i32\n            plot (0f64 - x) y cw 61i32\n            plot x (0f64 - cw) (0f64 - y) 62i32\n            plot x cw y 60i32\n            cube_y <- *cube_y + increment_speed ()\n        cube_x <- *cube_x + increment_speed ()","print_code":false},"livebook_object":"smart_cell"} -->
 
 ```elixir
 Spiral.Kino.eval!(
@@ -143,12 +143,12 @@ Spiral.Kino.eval!(
           inl cube_y = mut (0f64 - cw)
           loopw.while (fun () => *cube_y < cw) fun () =>
               inl x, y = *cube_x, *cube_y
-              plot x y (0f64 - cw) 59i32 // ';'
-              plot cw y x 92i32 // '\'
-              plot (0f64 - cw) y (0f64 - x) 47i32 // '/'
-              plot (0f64 - x) y cw 61i32 // '='
-              plot x (0f64 - cw) (0f64 - y) 62i32 // '>'
-              plot x cw y 60i32 // '<'
+              plot x y (0f64 - cw) 59i32
+              plot cw y x 92i32
+              plot (0f64 - cw) y (0f64 - x) 47i32
+              plot (0f64 - x) y cw 61i32
+              plot x (0f64 - cw) (0f64 - y) 62i32
+              plot x cw y 60i32
               cube_y <- *cube_y + increment_speed ()
           cube_x <- *cube_x + increment_speed ()
   """,

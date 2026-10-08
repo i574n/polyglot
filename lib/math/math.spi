@@ -79,7 +79,6 @@ inl conj forall t. (c : complex t) : complex t =
 
 /// ## zeta
 inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    // inl rec zeta count gamma s =
     inl rec zeta forall t {number}.
         (count : t)
         (gamma : complex f64 -> complex f64)
@@ -146,7 +145,6 @@ inl call forall t. (args : t) (module : bound pyany) : _ (bound pyany) _ =
     inl args = join args
     inl module = join module
     inl result : resultm.result' (bound pyany) pyerr =
-        // pairs are plain Rust tuples: pyo3 takes the tuple as the call's args
         !\($'"pyo3::prelude::PyAnyMethods::call(&!module, !args, None)"') : resultm.result' (bound pyany) pyerr
     result
     |> resultm.map_error'' fun (x : pyerr) => x |> sm'.format'
@@ -250,11 +248,7 @@ inl run_test log (fn : (complex f64 -> complex f64) * (complex f64 -> complex f6
                 inl s = join s
                 !\($'"println\!(\\\"zeta__ / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
 
-    //             re result - re x |> abs
-    //             |> _assert_lt 0.001
 
-    //             im result - im x |> abs
-    //             |> _assert_lt 0.001
 
             result |> resultm.ok' |> optionm'.unbox |> optionm'.default_value .^(nan (), nan ())
         join fn (zeta__, gamma__)
@@ -268,7 +262,6 @@ inl run_test log (fn : (complex f64 -> complex f64) * (complex f64 -> complex f6
         !\($'"let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //"')
 
         let x' = fn_ (!\($'"py"') : python)
-        // native Rust clones method arguments and PyErr isn't Clone: keep the Result in place
         inl x' : resultm.result' () pyerr = x'
 
         inl closure_fix = 2u8, 1u8
@@ -444,8 +437,6 @@ inl run_main (_args : array_base string) : i32 =
     console.write_line (sm'.(++#) "value: " (value |> sm'.obj_to_string))
     0i32
 
-/// Native Rust test runner (the Rust arm of `main`): runs the test called `name`, or every test when `name` is empty;
-/// 1 for an unknown name.
 inl run_native_tests (name : string) : i32 =
     inl name = join name
     inl run (test_name : string) (fn : bool -> ()) (found : bool) : bool =
@@ -472,15 +463,11 @@ inl run_native_tests (name : string) : i32 =
         console.write_line (sm'.(++#) "unknown test: " name)
         1i32
 
-/// Native Rust `#[test]` wrappers: `cargo test` runs each test through `spiral_main` on a 1 GiB-stack thread with its
-/// name in `SPIRAL_TEST_NAME` (a thread local, so the harness's parallel test threads don't share it).
 inl native_test_wrappers () =
     global "thread_local! { static SPIRAL_TEST_NAME: std::cell::RefCell<Option<std::rc::Rc<str>>> = const { std::cell::RefCell::new(None) }; }"
     global "#[cfg(test)]\nfn spiral_test(name: &'static str) {\n    let code = std::thread::Builder::new().stack_size(1 << 30).spawn(move || { SPIRAL_TEST_NAME.with(|x| *x.borrow_mut() = Some(std::rc::Rc::from(name))); spiral_main() }).unwrap().join().unwrap();\n    assert_eq!(code, 0);\n}"
     global "#[cfg(test)]\nmod spiral_tests {\n    macro_rules! tests { ($($name:ident),*) => { $(#[test] fn $name() { super::spiral_test(stringify!($name)) })* } }\n    tests!(test_zeta_at_known_values_, test_zeta_at_2_minus2, test_trivial_zero_at_negative_even___, test_non_trivial_zero___, test_real_part_greater_than_one___, test_zeta_at_1___, test_symmetry_across_real_axis___, test_behavior_near_origin___, test_imaginary_axis, test_critical_strip, test_reflection_formula_for_specific_value, test_euler_product_formula);\n}"
 
-/// Native Rust (`--backend Rust`, see build.ps1): a bin crate whose
-/// `cargo run -- <test>` runs one test (no argument: all of them) and whose `cargo test` runs the `#[test]` wrappers.
 inl main () : () =
     native_test_wrappers ()
     inl name =

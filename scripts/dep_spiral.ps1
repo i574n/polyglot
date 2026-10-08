@@ -15,6 +15,3 @@ Set-Location (New-Item "../deps" -ItemType Directory -Force)
 git clone --recurse-submodules https://$domain/$owner/The-Spiral-Language.git
 { git pull } | Invoke-Block -Location The-Spiral-Language -OnError Continue
 Set-Location $ScriptDir
-
-# Only the fork's `VS Code Plugin/core` is used (the `|core-` package). Its legacy "The Spiral Language 2" server build
-# compiled apps/spiral/Eval.fs (the dotnet-interactive kernel engine, removed) and only fed the old VS Code extension.

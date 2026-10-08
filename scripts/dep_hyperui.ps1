@@ -6,18 +6,20 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-$url = git ls-remote --get-url
-$owner = ($url -split '/' | Select-Object -Last 2 | Select-Object -First 1) -replace '\.git$', '' ?? $env:GITHUB_REPOSITORY_OWNER
-$domain = ($url -split '/' | Select-Object -Last 3 | Select-Object -First 1) ?? $env:GITHUB_SERVER_URL -replace 'https?://', ''
-Write-Output "dep_hyperui.ps1 / url: $url / owner: $owner / domain: $domain"
+$upstream = "https://github.com/markmead/hyperui.git"
+Write-Output "dep_hyperui.ps1 / upstream: $upstream"
 
 Set-Location (New-Item "../deps" -ItemType Directory -Force)
-git clone --recurse-submodules https://$domain/$owner/hyperui.git
+if ((Test-Path hyperui) -and !(Test-Path hyperui/src/styles/component.css)) {
+    $aside = "hyperui-fork-$(Get-Date -Format yyyyMMddHHmmss)"
+    Write-Output "dep_hyperui.ps1 / moving the previous fork checkout aside: $aside"
+    Move-Item hyperui $aside
+}
+if (!(Test-Path hyperui)) {
+    git clone --depth 1 $upstream hyperui
+}
 { git pull } | Invoke-Block -Location hyperui -OnError Continue
 
-{ . $(Search-Command bun) install --frozen-lockfile } | Invoke-Block -Location hyperui
-{ . $(Search-Command bun) --bun run build } | Invoke-Block -Location hyperui
-
-if ($env:CI) {
-    Remove-Item hyperui/node_modules -Recurse -Force -ErrorAction Ignore
+if (!(Test-Path hyperui/public/component.css)) {
+    throw "dep_hyperui.ps1 / upstream no longer ships public/component.css"
 }

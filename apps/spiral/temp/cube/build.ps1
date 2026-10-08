@@ -6,10 +6,6 @@ $ErrorActionPreference = "Stop"
 . ../../../../scripts/core.ps1
 . ../../../../deps/spiral/lib/spiral/lib.ps1
 
-# Spinning ASCII cubes on every backend that runs them: exports cube.spi from cube.livemd (Kino), compiles it per
-# backend, builds and runs each program, and requires the same 60-frame checksum everywhere (the float math agrees
-# across runtimes). Output goes through the portable `!!!!Printf` on every backend. Gleam is left out until its backend builds the cube
-# (2026-10-07: float negation needs `-.`, `am.init` arrays need the gary package and a sized ArrayCreate).
 $projectName = "cube"
 $expected = "cube: 60 frames, checksum 970392"
 $targetDir = GetTargetDir $projectName

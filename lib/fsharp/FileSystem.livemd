@@ -174,13 +174,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
 let inline watchDirectory path =
     watchDirectoryWithFilter
         (System.IO.NotifyFilters.FileName
-        // ||| System.IO.NotifyFilters.DirectoryName
-        // ||| System.IO.NotifyFilters.Attributes
-        //// ||| System.IO.NotifyFilters.Size
         ||| System.IO.NotifyFilters.LastWrite
-        //// ||| System.IO.NotifyFilters.LastAccess
-        // ||| System.IO.NotifyFilters.CreationTime
-        // ||| System.IO.NotifyFilters.Security
         )
         path
 ```

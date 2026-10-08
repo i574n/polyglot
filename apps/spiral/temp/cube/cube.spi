@@ -18,7 +18,7 @@ inl height () = 44i32
 inl distance_from_cam () = 100f64
 inl k1 () = 40f64
 inl increment_speed () = 0.6f64
-inl background () = 46i32 // '.'
+inl background () = 46i32
 
 /// ### math
 inl sin64 (x : f64) : f64 = !!!!Sin(x)
@@ -67,12 +67,12 @@ let draw_cube (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (cw : f64
         inl cube_y = mut (0f64 - cw)
         loopw.while (fun () => *cube_y < cw) fun () =>
             inl x, y = *cube_x, *cube_y
-            plot x y (0f64 - cw) 59i32 // ';'
-            plot cw y x 92i32 // '\'
-            plot (0f64 - cw) y (0f64 - x) 47i32 // '/'
-            plot (0f64 - x) y cw 61i32 // '='
-            plot x (0f64 - cw) (0f64 - y) 62i32 // '>'
-            plot x cw y 60i32 // '<'
+            plot x y (0f64 - cw) 59i32
+            plot cw y x 92i32
+            plot (0f64 - cw) y (0f64 - x) 47i32
+            plot (0f64 - x) y cw 61i32
+            plot x (0f64 - cw) (0f64 - y) 62i32
+            plot x cw y 60i32
             cube_y <- *cube_y + increment_speed ()
         cube_x <- *cube_x + increment_speed ()
 

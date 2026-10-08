@@ -7833,7 +7833,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-pwsh"><pre><span></span><span class="c"># rustup component add clippy rust-src rustfmt</span>
+<div class="highlight hl-pwsh"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -7847,7 +7847,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-pwsh"><pre><span></span><span class="c"># rustup target add wasm32-unknown-unknown</span>
+<div class="highlight hl-pwsh"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -7861,7 +7861,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-pwsh"><pre><span></span><span class="c"># rustup update</span>
+<div class="highlight hl-pwsh"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -7876,7 +7876,6 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"cargo-binstall"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c"># { cargo +nightly-2025-11-01 install --timings cargo-binstall --locked } | Invoke-Block -OnError Continue</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$IsWindows</span><span class="p">)</span> <span class="p">{</span>
         <span class="nb">Set-ExecutionPolicy</span> <span class="n">Unrestricted</span> <span class="n">-Scope</span> <span class="k">Process</span><span class="p">;</span> <span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="s2">"https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1"</span><span class="p">).</span><span class="n">Content</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -7888,7 +7887,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7909,46 +7908,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>polyglot/scripts/init.livemd / url: https://github.com/i574n/polyglot / owner: i574n / domain: github.com
-
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / $ScriptBlock:
-'cargo binstall -y --git https://$domain/$owner/cargo-outdated.git --locked cargo-outdated'
-
- INFO resolve: Resolving package: 'cargo-outdated'
- INFO Cloning with worktree::receiving pack: Enumerating objects → 34.0 objects
- INFO ℹCloning with worktree::receiving pack::create index file::indexing → done 34.0 objects in 0.00s (11.7K objects/s)
- INFO ℹCloning with worktree::receiving pack::create index file::decompressing → done 210.1KB in 0.00s (71.7MB/s)
- INFO ℹCloning with worktree::receiving pack::create index file::Resolving → done 34.0 objects in 0.05s (672.0 objects/s)
- INFO ℹCloning with worktree::receiving pack::create index file::Decoding → done 210.1KB in 0.05s (4.2MB/s)
- INFO ✓Cloning with worktree::receiving pack::create index file::writing index file → done 2.0KB in 0.00s (35.2MB/s)
- INFO ✓Cloning with worktree::receiving pack::create index file → done 34.0 objects in 0.05s (633.0 objects/s)
- INFO ℹCloning with worktree::receiving pack::read pack → done 56.8KB in 0.06s (989.3KB/s)
- INFO ℹCloning with worktree::receiving pack::checkout → done 27.0 files in 0.00s (19.9K files/s)
- INFO ℹCloning with worktree::receiving pack::writing → done 208.7KB in 0.00s (151.7MB/s)
- WARN Failed to send quickinstall report for package cargo-outdated-0.15.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-gnu.tar.gz)
- WARN Failed to send quickinstall report for package cargo-outdated-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/cargo-outdated-0.15.0-x86_64-unknown-linux-musl.tar.gz)
- WARN The package cargo-outdated v0.15.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
- INFO This will install the following binaries:
- INFO   - cargo-outdated (cargo-outdated -&gt; /home/runner/.cargo/bin/cargo-outdated)
- INFO Installing binaries...
- INFO Done in 907.924757ms
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   64G   81G  45% /
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7957,39 +7917,9 @@ Filesystem      Size  Used Avail Use% Mounted on
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"sccache"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c"># { cargo install --timings sccache --locked } | Invoke-Block -OnError Continue</span>
     <span class="p">{</span> <span class="n">cargo</span> <span class="n">binstall</span> <span class="n">-y</span> <span class="n">sccache</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
 <span class="p">}</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / $ScriptBlock:
-'cargo binstall -y sccache'
-
- INFO resolve: Resolving package: 'sccache'
- WARN Failed to send quickinstall report for package sccache-0.18.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-musl.tar.gz)
- WARN Failed to send quickinstall report for package sccache-0.18.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/sccache-0.18.0-x86_64-unknown-linux-gnu.tar.gz)
- WARN resolve: When resolving sccache bin sccache-dist is not found. But since it requires features dist-server, this bin is ignored.
- WARN The package sccache v0.18.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
- INFO This will install the following binaries:
- INFO   - sccache (sccache -&gt; /home/runner/.cargo/bin/sccache)
- INFO Installing binaries...
- INFO Done in 980.78009ms
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   64G   81G  45% /
-</pre>
 </div>
 </div>
 </div>
@@ -8003,7 +7933,6 @@ Filesystem      Size  Used Avail Use% Mounted on
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"wasm-pack"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c"># { cargo install --timings wasm-pack --locked } | Invoke-Block -OnError Continue</span>
     <span class="p">{</span> <span class="n">cargo</span> <span class="n">binstall</span> <span class="n">-y</span> <span class="n">wasm-pack</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
 <span class="p">}</span>
 </pre></div>
@@ -8024,16 +7953,16 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 'cargo binstall -y wasm-pack'
 
  INFO resolve: Resolving package: 'wasm-pack'
- WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz)
  WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-gnu: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-gnu.tar.gz)
+ WARN Failed to send quickinstall report for package wasm-pack-0.15.0-x86_64-unknown-linux-musl: Failed to download from remote: could not HEAD https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz: HTTP status client error (402 Payment Required) for url (https://warehouse-clerk-tmp.vercel.app/api/crate/wasm-pack-0.15.0-x86_64-unknown-linux-musl.tar.gz)
  WARN The package wasm-pack v0.15.0 (x86_64-unknown-linux-musl) has been downloaded from github.com
  INFO This will install the following binaries:
  INFO   - wasm-pack (wasm-pack -&gt; /home/runner/.cargo/bin/wasm-pack)
  INFO Installing binaries...
- INFO Done in 716.68923ms
+ INFO Done in 1.351192226s
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   64G   81G  45% /
+/dev/root       145G   65G   80G  45% /
 </pre>
 </div>
 </div>
@@ -8048,7 +7977,6 @@ Filesystem      Size  Used Avail Use% Mounted on
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Search-Command</span> <span class="s2">"trunk"</span><span class="p">))</span> <span class="p">{</span>
-    <span class="c"># { cargo install --timings trunk --version 0.21.14 } | Invoke-Block -OnError Continue</span>
     <span class="p">{</span> <span class="n">cargo</span> <span class="n">binstall</span> <span class="n">-y</span> <span class="n">trunk</span> <span class="p">-</span><span class="n">-version</span> <span class="n">0</span><span class="p">.</span><span class="n">21</span><span class="p">.</span><span class="n">14</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span> <span class="n">-OnError</span> <span class="k">Continue</span>
 <span class="p">}</span>
 </pre></div>
@@ -8084,60 +8012,9 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / $ScriptBlock:
 '. $(Search-Command bunx) --bun playwright@1.44.0 install'
 
-Downloading Chromium 125.0.6422.26 (playwright build v1117) from https://playwright.azureedge.net/builds/chromium/1117/chromium-linux.zip
-|                                                                                |   0% of 156.8 MiB
-|■■■■■■■■                                                                        |  10% of 156.8 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 156.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 156.8 MiB
-Chromium 125.0.6422.26 (playwright build v1117) downloaded to /home/runner/.cache/ms-playwright/chromium-1117
-Downloading FFMPEG playwright build v1009 from https://playwright.azureedge.net/builds/ffmpeg/1009/ffmpeg-linux.zip
-|                                                                                |   0% of 2.6 MiB
-|■■■■■■■■                                                                        |  10% of 2.6 MiB
-|■■■■■■■■■■■■■■■■                                                                |  21% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  41% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  74% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  92% of 2.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.6 MiB
-FFMPEG playwright build v1009 downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1009
-Downloading Firefox 125.0.1 (playwright build v1449) from https://playwright.azureedge.net/builds/firefox/1449/firefox-ubuntu-22.04.zip
-|                                                                                |   0% of 85.7 MiB
-|■■■■■■■■                                                                        |  10% of 85.7 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 85.7 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 85.7 MiB
-Firefox 125.0.1 (playwright build v1449) downloaded to /home/runner/.cache/ms-playwright/firefox-1449
-Downloading Webkit 17.4 (playwright build v2003) from https://playwright.azureedge.net/builds/webkit/2003/webkit-ubuntu-22.04.zip
-|                                                                                |   0% of 84.8 MiB
-|■■■■■■■■                                                                        |  10% of 84.8 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 84.8 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 84.8 MiB
-Webkit 17.4 (playwright build v2003) downloaded to /home/runner/.cache/ms-playwright/webkit-2003
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   65G   80G  45% /
 </pre>
 </div>
 </div>
@@ -8185,7 +8062,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   65G   80G  45% /
 </pre>
 </div>
 </div>
@@ -8227,7 +8104,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   65G   80G  46% /
+/dev/root       145G   65G   80G  45% /
 </pre>
 </div>
 </div>
@@ -8265,10 +8142,10 @@ bun install v1.4.2 (744846f84)
 + npm-check-updates@17.1.14
 + typescript@5.5.0-dev.20240404
 
-4 packages installed [94.00ms]
+4 packages installed [154.00ms]
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  45% /
 </pre>
 </div>
 </div>
@@ -8309,10 +8186,10 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/The-S
 Already up to date.
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>
@@ -8346,7 +8223,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>
@@ -8360,7 +8237,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="p">../</span><span class="n">deps</span><span class="p">/</span><span class="n">hyperui</span><span class="p">/.</span><span class="n">next</span><span class="p">/</span><span class="n">package</span><span class="p">.</span><span class="n">json</span><span class="p">))</span> <span class="p">{</span>
+<div class="highlight hl-pwsh"><pre><span></span><span class="k">if</span> <span class="p">(!(</span><span class="nb">Test-Path</span> <span class="p">../</span><span class="n">deps</span><span class="p">/</span><span class="n">hyperui</span><span class="p">/</span><span class="n">public</span><span class="p">/</span><span class="n">component</span><span class="p">.</span><span class="n">css</span><span class="p">))</span> <span class="p">{</span>
     <span class="p">{</span> <span class="p">.</span> <span class="s2">"$ScriptDir/dep_hyperui.ps1"</span> <span class="p">}</span> <span class="p">|</span> <span class="nb">Invoke-Block</span>
 <span class="p">}</span>
 </pre></div>
@@ -8380,7 +8257,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / $ScriptBlock:
 '. "$ScriptDir/dep_hyperui.ps1"'
 
-dep_hyperui.ps1 / url: https://github.com/i574n/polyglot / owner: i574n / domain: github.com
+dep_hyperui.ps1 / upstream: https://github.com/markmead/hyperui.git
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/hyperui / $ScriptBlock:
@@ -8389,109 +8266,10 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/hyper
 Already up to date.
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   80G  46% /
-
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/hyperui / $ScriptBlock:
-'. $(Search-Command bun) install --frozen-lockfile'
-
-bun install v1.4.2 (744846f84)
-
-+ @eslint/eslintrc@3.3.1
-+ @formkit/auto-animate@0.9.0
-+ @next/eslint-plugin-next@15.5.2
-+ @radix-ui/react-tooltip@1.2.8
-+ @tailwindcss/cli@4.1.16
-+ @tailwindcss/forms@0.5.10
-+ @tailwindcss/postcss@4.1.16
-+ @tailwindcss/typography@0.5.19
-+ @typescript-eslint/parser@8.46.2
-+ eslint@9.35.0
-+ eslint-config-next@15.5.2
-+ eslint-plugin-react@7.37.5
-+ eslint-plugin-unicorn@61.0.2
-+ fast-glob@3.3.3
-+ gray-matter@4.0.3
-+ next-mdx-remote@5.0.0
-+ postcss@8.5.6
-+ prettier@3.6.2
-+ prettier-plugin-tailwindcss@0.6.14
-+ prismjs@1.30.0
-+ react-intersection-observer@9.16.0
-+ rehype-external-links@3.0.0
-+ remark@15.0.1
-+ remark-html@16.0.1
-+ tailwindcss@4.1.16
-+ typescript@5.9.3
-+ next@15.5.2
-+ react@19.1.1
-+ react-dom@19.1.1
-
-655 packages installed [1.98s]
-
-Blocked 1 postinstall. Run `bun pm untrusted` for details.
+/dev/root       145G   65G   80G  46% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   79G  46% /
-
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/hyperui / $ScriptBlock:
-'. $(Search-Command bun) --bun run build'
-
-⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
-Attention: Next.js now collects completely anonymous telemetry regarding usage.
-This information is used to shape Next.js' roadmap and prioritize features.
-You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
-https://nextjs.org/telemetry
-
-   ▲ Next.js 15.5.2
-
-   Creating an optimized production build ...
- ✓ Compiled successfully in 9.9s
-   Linting and checking validity of types ...
-   Collecting page data ...
-   Generating static pages (0/21) ...
-   Generating static pages (5/21) 
-   Generating static pages (10/21) 
-   Generating static pages (15/21) 
- ✓ Generating static pages (21/21)
-   Finalizing page optimization ...
-   Collecting build traces ...
-
-Route (app)                                                   Size  First Load JS
-┌ ○ /                                                        622 B         106 kB
-├ ○ /_not-found                                              135 B         102 kB
-├ ● /[components]/[category]                                 625 B         106 kB
-├ ● /[components]/[category]/[collection]                  1.77 kB         140 kB
-├ ● /about/[slug]                                            966 B         136 kB
-├   ├ /about/acknowledgements
-├   └ /about/faqs
-├ ƒ /api/search                                              135 B         102 kB
-├ ○ /blog                                                    625 B         106 kB
-├ ● /blog/[slug]                                             966 B         136 kB
-├   ├ /blog/how-to-write-better-containers-in-tailwindcss
-├   ├ /blog/remove-number-input-spinners-with-tailwindcss
-├   ├ /blog/animated-border-gradient-with-tailwindcss
-├   └ [+6 more paths]
-├ ○ /favourites                                              876 B         136 kB
-├ ○ /robots.txt                                              135 B         102 kB
-└ ○ /sitemap.xml                                             135 B         102 kB
-+ First Load JS shared by all                               102 kB
-  ├ chunks/255-e3bf15caf1f1e0f9.js                         45.9 kB
-  ├ chunks/4bd1b696-c023c6e3521b1417.js                    54.4 kB
-  └ other shared chunks (total)                            1.92 kB
-
-
-○  (Static)   prerendered as static content
-●  (SSG)      prerendered as static HTML (uses generateStaticParams)
-ƒ  (Dynamic)  server-rendered on demand
-
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   79G  46% /
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   66G   79G  46% /
+/dev/root       145G   65G   80G  46% /
 </pre>
 </div>
 </div>

@@ -143,70 +143,70 @@ fn method5(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> Result<nu
         let mut v41: i32 = v40.wrapping_sub(1i32);
         let (mut v42, mut v43): (Rc<str>, Rc<str>) = (v36.borrow().l1.clone(), v36.borrow().l2.clone());
         let mut v44: Rc<str> = v33.clone().borrow()[v41 as usize].clone();
-        let mut v62: Rc<str> = Rc::<str>::from(format!("{}{}", v44, v43));
-        let mut v79: Rc<str> = Rc::<str>::from(format!("{}{}", v62, v42));
-        let mut v80: i32 = v38.wrapping_add(1i32);
-        let mut v81: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) };
-        v36.borrow_mut().l0 = v80;
-        v36.borrow_mut().l1 = v79.clone();
-        v36.borrow_mut().l2 = v81.clone();
+        let mut v63: Rc<str> = Rc::<str>::from(format!("{}{}", v44, v43));
+        let mut v71: Rc<str> = Rc::<str>::from(format!("{}{}", v63, v42));
+        let mut v72: i32 = v38.wrapping_add(1i32);
+        let mut v73: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("\n"); } LIT.with(|lit| lit.clone()) };
+        v36.borrow_mut().l0 = v72;
+        v36.borrow_mut().l1 = v71.clone();
+        v36.borrow_mut().l2 = v73.clone();
         ()
     };
-    let (mut v82, mut v83): (Rc<str>, Rc<str>) = (v36.borrow().l1.clone(), v36.borrow().l2.clone());
-    let mut v98: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__NAME__"); } LIT.with(|lit| lit.clone()) };
-    let mut v99: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("zeta_"); } LIT.with(|lit| lit.clone()) };
-    let mut v100: Rc<str> = Rc::<str>::from(v82.replace(&*v98, &*v99));
-    let mut v105: Rc<str> = method7(v100.clone());
-    let mut v107: f64 = v1.re;
-    let mut v109: f64 = v1.im;
-    let (mut v127, mut v128): (f64, f64) = method8(v107, v109);
-    let mut v129: (f64, f64) = (v127, v128);
-    let (mut v163, mut v164): (bool, (f64, f64)) = method9(v129.clone());
-    let mut v165: (bool, (f64, f64)) = (v163, v164);
-    let mut v182: pyo3::Python = method10(v0.clone());
-    let mut v529: &str = &*v105;
-    let mut v723: std::string::String = String::from(v529);
-    let mut v729: std::ffi::CString = std::ffi::CString::new(v723).unwrap();
-    let mut v731: &str = &*v35;
-    let mut v733: std::string::String = String::from(v731);
-    let mut v735: std::ffi::CString = std::ffi::CString::new(v733).unwrap();
-    let mut v737: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v182, &v729, &v735, &v735);
-    let mut v740: bool = true; let _result_map_error__ = v737.map_err(|x| { //;
-    let mut v742: pyo3::PyErr = x;
-    let mut v771: std::string::String = format!("{}", v742);
-    let mut v777: bool = true; v771 });
-    let mut v779: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
-    let mut v781: pyo3::Bound<pyo3::types::PyModule> = v779.unwrap();
-    let mut v782: Rc<str> = method11();
-    let mut v784: &str = &*v782;
-    let mut v785: pyo3::Bound<pyo3::types::PyModule> = method12(v781.clone());
-    let mut v787: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v785.getattr(v784);
-    let mut v789: bool = true; let _result_map_error__ = v787.map_err(|x| { //;
-    let mut v791: pyo3::PyErr = x;
-    let mut v793: std::string::String = format!("{}", v791);
-    let mut v795: bool = true; v793 });
-    let mut v797: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v799: pyo3::Bound<pyo3::PyAny> = v797.unwrap();
-    let mut v800: (bool, (f64, f64)) = method13(v165.clone());
-    let mut v801: pyo3::Bound<pyo3::PyAny> = method14(v799.clone());
-    let mut v803: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v801, v800, None);
-    let mut v805: bool = true; let _result_map_error__ = v803.map_err(|x| { //;
-    let mut v807: pyo3::PyErr = x;
-    let mut v809: std::string::String = format!("{}", v807);
-    let mut v811: bool = true; v809 });
-    let mut v813: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v815: pyo3::Bound<pyo3::PyAny> = v813?;
-    let mut v816: pyo3::Bound<pyo3::PyAny> = method15(v815.clone());
-    let mut v818: Result<(f64, f64), pyo3::PyErr> = v816.extract();
-    let mut v820: bool = true; let _result_map_error__ = v818.map_err(|x| { //;
-    let mut v822: pyo3::PyErr = x;
-    let mut v824: std::string::String = format!("{}", v822);
-    let mut v826: bool = true; v824 });
-    let mut v828: Result<(f64, f64), std::string::String> = _result_map_error__;
-    let (mut v830, mut v831): (f64, f64) = v828?;
-    let mut v833: num_complex::Complex<f64> = num_complex::Complex::new(v830, v831);
-    let mut v851: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v833);
-    v851.clone()
+    let (mut v74, mut v75): (Rc<str>, Rc<str>) = (v36.borrow().l1.clone(), v36.borrow().l2.clone());
+    let mut v90: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__NAME__"); } LIT.with(|lit| lit.clone()) };
+    let mut v91: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("zeta_"); } LIT.with(|lit| lit.clone()) };
+    let mut v92: Rc<str> = Rc::<str>::from(v74.replace(&*v90, &*v91));
+    let mut v98: Rc<str> = method7(v92.clone());
+    let mut v100: f64 = v1.re;
+    let mut v102: f64 = v1.im;
+    let (mut v121, mut v122): (f64, f64) = method8(v100, v102);
+    let mut v123: (f64, f64) = (v121, v122);
+    let (mut v169, mut v170): (bool, (f64, f64)) = method9(v123.clone());
+    let mut v171: (bool, (f64, f64)) = (v169, v170);
+    let mut v199: pyo3::Python = method10(v0.clone());
+    let mut v604: &str = &*v98;
+    let mut v836: std::string::String = String::from(v604);
+    let mut v843: std::ffi::CString = std::ffi::CString::new(v836).unwrap();
+    let mut v845: &str = &*v35;
+    let mut v847: std::string::String = String::from(v845);
+    let mut v849: std::ffi::CString = std::ffi::CString::new(v847).unwrap();
+    let mut v851: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v199, &v843, &v849, &v849);
+    let mut v875: bool = true; let _result_map_error__ = v851.map_err(|x| { //;
+    let mut v877: pyo3::PyErr = x;
+    let mut v907: std::string::String = format!("{}", v877);
+    let mut v914: bool = true; v907 });
+    let mut v916: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
+    let mut v918: pyo3::Bound<pyo3::types::PyModule> = v916.unwrap();
+    let mut v919: Rc<str> = method11();
+    let mut v921: &str = &*v919;
+    let mut v922: pyo3::Bound<pyo3::types::PyModule> = method12(v918.clone());
+    let mut v924: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v922.getattr(v921);
+    let mut v926: bool = true; let _result_map_error__ = v924.map_err(|x| { //;
+    let mut v928: pyo3::PyErr = x;
+    let mut v930: std::string::String = format!("{}", v928);
+    let mut v932: bool = true; v930 });
+    let mut v934: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v936: pyo3::Bound<pyo3::PyAny> = v934.unwrap();
+    let mut v937: (bool, (f64, f64)) = method13(v171.clone());
+    let mut v938: pyo3::Bound<pyo3::PyAny> = method14(v936.clone());
+    let mut v940: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v938, v937, None);
+    let mut v942: bool = true; let _result_map_error__ = v940.map_err(|x| { //;
+    let mut v944: pyo3::PyErr = x;
+    let mut v946: std::string::String = format!("{}", v944);
+    let mut v948: bool = true; v946 });
+    let mut v950: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v952: pyo3::Bound<pyo3::PyAny> = v950?;
+    let mut v953: pyo3::Bound<pyo3::PyAny> = method15(v952.clone());
+    let mut v955: Result<(f64, f64), pyo3::PyErr> = v953.extract();
+    let mut v957: bool = true; let _result_map_error__ = v955.map_err(|x| { //;
+    let mut v959: pyo3::PyErr = x;
+    let mut v961: std::string::String = format!("{}", v959);
+    let mut v963: bool = true; v961 });
+    let mut v965: Result<(f64, f64), std::string::String> = _result_map_error__;
+    let (mut v967, mut v968): (f64, f64) = v965?;
+    let mut v970: num_complex::Complex<f64> = num_complex::Complex::new(v967, v968);
+    let mut v989: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v970);
+    v989.clone()
 }
 fn method17(mut v0: Rc<RefCell<Mut0>>) -> bool {
     let mut v1: i32 = v0.borrow().l0.clone();
@@ -274,57 +274,57 @@ fn method19(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> Result<n
     let mut v65: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__NAME__"); } LIT.with(|lit| lit.clone()) };
     let mut v66: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("gamma_"); } LIT.with(|lit| lit.clone()) };
     let mut v67: Rc<str> = Rc::<str>::from(v49.replace(&*v65, &*v66));
-    let mut v72: Rc<str> = method7(v67.clone());
-    let mut v74: f64 = v1.re;
-    let mut v76: f64 = v1.im;
-    let (mut v77, mut v78): (f64, f64) = method8(v74, v76);
-    let mut v79: (f64, f64) = (v77, v78);
-    let (mut v80, mut v81): (bool, (f64, f64)) = method9(v79.clone());
-    let mut v82: (bool, (f64, f64)) = (v80, v81);
-    let mut v83: pyo3::Python = method10(v0.clone());
-    let mut v85: &str = &*v72;
-    let mut v87: std::string::String = String::from(v85);
-    let mut v89: std::ffi::CString = std::ffi::CString::new(v87).unwrap();
-    let mut v91: &str = &*v35;
-    let mut v93: std::string::String = String::from(v91);
-    let mut v95: std::ffi::CString = std::ffi::CString::new(v93).unwrap();
-    let mut v97: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v83, &v89, &v95, &v95);
-    let mut v99: bool = true; let _result_map_error__ = v97.map_err(|x| { //;
-    let mut v101: pyo3::PyErr = x;
-    let mut v103: std::string::String = format!("{}", v101);
-    let mut v105: bool = true; v103 });
-    let mut v107: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
-    let mut v109: pyo3::Bound<pyo3::types::PyModule> = v107.unwrap();
-    let mut v110: Rc<str> = method11();
-    let mut v112: &str = &*v110;
-    let mut v113: pyo3::Bound<pyo3::types::PyModule> = method12(v109.clone());
-    let mut v115: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v113.getattr(v112);
-    let mut v117: bool = true; let _result_map_error__ = v115.map_err(|x| { //;
-    let mut v119: pyo3::PyErr = x;
-    let mut v121: std::string::String = format!("{}", v119);
-    let mut v123: bool = true; v121 });
-    let mut v125: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v127: pyo3::Bound<pyo3::PyAny> = v125.unwrap();
-    let mut v128: (bool, (f64, f64)) = method13(v82.clone());
-    let mut v129: pyo3::Bound<pyo3::PyAny> = method14(v127.clone());
-    let mut v131: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v129, v128, None);
-    let mut v133: bool = true; let _result_map_error__ = v131.map_err(|x| { //;
-    let mut v135: pyo3::PyErr = x;
-    let mut v137: std::string::String = format!("{}", v135);
-    let mut v139: bool = true; v137 });
-    let mut v141: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
-    let mut v143: pyo3::Bound<pyo3::PyAny> = v141?;
-    let mut v144: pyo3::Bound<pyo3::PyAny> = method15(v143.clone());
-    let mut v146: Result<(f64, f64), pyo3::PyErr> = v144.extract();
-    let mut v148: bool = true; let _result_map_error__ = v146.map_err(|x| { //;
-    let mut v150: pyo3::PyErr = x;
-    let mut v152: std::string::String = format!("{}", v150);
-    let mut v154: bool = true; v152 });
-    let mut v156: Result<(f64, f64), std::string::String> = _result_map_error__;
-    let (mut v158, mut v159): (f64, f64) = v156?;
-    let mut v161: num_complex::Complex<f64> = num_complex::Complex::new(v158, v159);
-    let mut v162: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v161);
-    v162.clone()
+    let mut v73: Rc<str> = method7(v67.clone());
+    let mut v75: f64 = v1.re;
+    let mut v77: f64 = v1.im;
+    let (mut v78, mut v79): (f64, f64) = method8(v75, v77);
+    let mut v80: (f64, f64) = (v78, v79);
+    let (mut v81, mut v82): (bool, (f64, f64)) = method9(v80.clone());
+    let mut v83: (bool, (f64, f64)) = (v81, v82);
+    let mut v84: pyo3::Python = method10(v0.clone());
+    let mut v86: &str = &*v73;
+    let mut v88: std::string::String = String::from(v86);
+    let mut v90: std::ffi::CString = std::ffi::CString::new(v88).unwrap();
+    let mut v92: &str = &*v35;
+    let mut v94: std::string::String = String::from(v92);
+    let mut v96: std::ffi::CString = std::ffi::CString::new(v94).unwrap();
+    let mut v98: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> = pyo3::types::PyModule::from_code(v84, &v90, &v96, &v96);
+    let mut v100: bool = true; let _result_map_error__ = v98.map_err(|x| { //;
+    let mut v102: pyo3::PyErr = x;
+    let mut v104: std::string::String = format!("{}", v102);
+    let mut v106: bool = true; v104 });
+    let mut v108: Result<pyo3::Bound<pyo3::types::PyModule>, std::string::String> = _result_map_error__;
+    let mut v110: pyo3::Bound<pyo3::types::PyModule> = v108.unwrap();
+    let mut v111: Rc<str> = method11();
+    let mut v113: &str = &*v111;
+    let mut v114: pyo3::Bound<pyo3::types::PyModule> = method12(v110.clone());
+    let mut v116: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = v114.getattr(v113);
+    let mut v118: bool = true; let _result_map_error__ = v116.map_err(|x| { //;
+    let mut v120: pyo3::PyErr = x;
+    let mut v122: std::string::String = format!("{}", v120);
+    let mut v124: bool = true; v122 });
+    let mut v126: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v128: pyo3::Bound<pyo3::PyAny> = v126.unwrap();
+    let mut v129: (bool, (f64, f64)) = method13(v83.clone());
+    let mut v130: pyo3::Bound<pyo3::PyAny> = method14(v128.clone());
+    let mut v132: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = pyo3::prelude::PyAnyMethods::call(&v130, v129, None);
+    let mut v134: bool = true; let _result_map_error__ = v132.map_err(|x| { //;
+    let mut v136: pyo3::PyErr = x;
+    let mut v138: std::string::String = format!("{}", v136);
+    let mut v140: bool = true; v138 });
+    let mut v142: Result<pyo3::Bound<pyo3::PyAny>, std::string::String> = _result_map_error__;
+    let mut v144: pyo3::Bound<pyo3::PyAny> = v142?;
+    let mut v145: pyo3::Bound<pyo3::PyAny> = method15(v144.clone());
+    let mut v147: Result<(f64, f64), pyo3::PyErr> = v145.extract();
+    let mut v149: bool = true; let _result_map_error__ = v147.map_err(|x| { //;
+    let mut v151: pyo3::PyErr = x;
+    let mut v153: std::string::String = format!("{}", v151);
+    let mut v155: bool = true; v153 });
+    let mut v157: Result<(f64, f64), std::string::String> = _result_map_error__;
+    let (mut v159, mut v160): (f64, f64) = v157?;
+    let mut v162: num_complex::Complex<f64> = num_complex::Complex::new(v159, v160);
+    let mut v163: Result<num_complex::Complex<f64>, std::string::String> = Ok::<num_complex::Complex<f64>, std::string::String>(v162);
+    v163.clone()
 }
 fn method20(mut v0: Option<num_complex::Complex<f64>>) -> Option<num_complex::Complex<f64>> {
     v0.clone()
@@ -357,391 +357,391 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
             let mut v17: num_complex::Complex<f64> = v14.borrow().l1.clone();
             let mut v18: i32 = v8.clone().borrow()[v16 as usize].clone();
             let mut v20: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-            let mut v39: f64 = (v18 as f64);
-            let mut v67: num_complex::Complex<f64> = num_complex::Complex::new(v39, 0.0f64);
-            let mut v69: num_complex::Complex<f64> = num_complex::Complex::powc(v67, v1.clone());
-            let mut v71: num_complex::Complex<f64> = v20 / v69;
-            let mut v73: num_complex::Complex<f64> = v17 + v71;
-            let mut v74: i32 = v16.wrapping_add(1i32);
-            v14.borrow_mut().l0 = v74;
-            v14.borrow_mut().l1 = v73.clone();
+            let mut v40: f64 = (v18 as f64);
+            let mut v59: num_complex::Complex<f64> = num_complex::Complex::new(v40, 0.0f64);
+            let mut v61: num_complex::Complex<f64> = num_complex::Complex::powc(v59, v1.clone());
+            let mut v63: num_complex::Complex<f64> = v20 / v61;
+            let mut v65: num_complex::Complex<f64> = v17 + v63;
+            let mut v66: i32 = v16.wrapping_add(1i32);
+            v14.borrow_mut().l0 = v66;
+            v14.borrow_mut().l1 = v65.clone();
             ()
         };
-        let mut v75: num_complex::Complex<f64> = v14.borrow().l1.clone();
-        v75.clone()
+        let mut v67: num_complex::Complex<f64> = v14.borrow().l1.clone();
+        v67.clone()
     } else {
-        let mut v77: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-        let mut v79: num_complex::Complex<f64> = v77 - v1;
-        let mut v80: num_complex::Complex<f64> = method4(v79.clone());
-        let mut v81: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v80.clone());
-        let mut v83: Option<num_complex::Complex<f64>> = v81.ok();
-        let mut v183: Option<num_complex::Complex<f64>> = method20(v83.clone());
-        let mut v184: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
-        let mut v185: Option<US0> = v183.map(|x| v184(x));
-        let mut v216: US0 = US0::US0_1;
-        let mut v217: US0 = v185.unwrap_or(v216);
-        let mut v236: f64 = f64::NAN;
-        let mut v238: f64 = f64::NAN;
-        let mut v240: num_complex::Complex<f64> = num_complex::Complex::new(v236, v238);
-        let mut v243: num_complex::Complex<f64> = match &v217 {
-            US0::US0_1 => { // None
-                v240.clone()
+        let mut v69: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+        let mut v71: num_complex::Complex<f64> = v69 - v1;
+        let mut v72: num_complex::Complex<f64> = method4(v71.clone());
+        let mut v73: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v72.clone());
+        let mut v75: Option<num_complex::Complex<f64>> = v73.ok();
+        let mut v160: Option<num_complex::Complex<f64>> = method20(v75.clone());
+        let mut v161: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
+        let mut v162: Option<US0> = v160.map(|x| v161(x));
+        let mut v251: US0 = US0::US0_1;
+        let mut v252: US0 = v162.unwrap_or(v251);
+        let mut v264: f64 = f64::NAN;
+        let mut v266: f64 = f64::NAN;
+        let mut v268: num_complex::Complex<f64> = num_complex::Complex::new(v264, v266);
+        let mut v271: num_complex::Complex<f64> = match &v252 {
+            US0::US0_1 => {
+                v268.clone()
             }
-            US0::US0_0(v241) => { // Some
-                let mut v241: num_complex::Complex<f64> = v241.clone();
-                v241.clone()
+            US0::US0_0(v269) => {
+                let mut v269: num_complex::Complex<f64> = v269.clone();
+                v269.clone()
             }
         };
-        let mut v245: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-        let mut v247: num_complex::Complex<f64> = v245 * v1;
-        let mut v249: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-        let mut v251: num_complex::Complex<f64> = v247 / v249;
-        let mut v253: num_complex::Complex<f64> = v251.sin();
-        let mut v255: f64 = v1.re;
-        let mut v256: f64 = 1.0f64 - v255;
-        let mut v258: f64 = v1.im;
-        let mut v259: f64 = -(v258);
-        let mut v261: num_complex::Complex<f64> = num_complex::Complex::new(v256, v259);
-        let mut v263: f64 = v261.re;
-        let mut v264: bool = v263 <= 1.0f64;
-        let mut v627: num_complex::Complex<f64> = if v264 {
-            let mut v266: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-            v266.clone()
+        let mut v273: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+        let mut v275: num_complex::Complex<f64> = v273 * v1;
+        let mut v277: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+        let mut v279: num_complex::Complex<f64> = v275 / v277;
+        let mut v281: num_complex::Complex<f64> = v279.sin();
+        let mut v283: f64 = v1.re;
+        let mut v284: f64 = 1.0f64 - v283;
+        let mut v286: f64 = v1.im;
+        let mut v287: f64 = -(v286);
+        let mut v289: num_complex::Complex<f64> = num_complex::Complex::new(v284, v287);
+        let mut v291: f64 = v289.re;
+        let mut v292: bool = v291 <= 1.0f64;
+        let mut v655: num_complex::Complex<f64> = if v292 {
+            let mut v294: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+            v294.clone()
         } else {
-            println!("zeta / count: {:?} / s: {:?}", 1i32, v261);
-            let mut v269: f64 = v261.re;
-            let mut v270: bool = v269 > 1.0f64;
-            if v270 {
-                let mut v272: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                let mut v273: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
-                let mut v274: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-                while method17(v274.clone()) {
-                    let mut v276: i32 = v274.borrow().l0.clone();
-                    v273.clone().borrow_mut()[v276 as usize] = v276;
-                    let mut v277: i32 = v276.wrapping_add(1i32);
-                    v274.borrow_mut().l0 = v277;
+            println!("zeta / count: {:?} / s: {:?}", 1i32, v289);
+            let mut v297: f64 = v289.re;
+            let mut v298: bool = v297 > 1.0f64;
+            if v298 {
+                let mut v300: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                let mut v301: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
+                let mut v302: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+                while method17(v302.clone()) {
+                    let mut v304: i32 = v302.borrow().l0.clone();
+                    v301.clone().borrow_mut()[v304 as usize] = v304;
+                    let mut v305: i32 = v304.wrapping_add(1i32);
+                    v302.borrow_mut().l0 = v305;
                     ()
                 };
-                let mut v278: i32 = (v273.clone().borrow().len() as i32);
-                let mut v279: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v272.clone() }));
-                while method18(v278, v279.clone()) {
-                    let mut v281: i32 = v279.borrow().l0.clone();
-                    let mut v282: num_complex::Complex<f64> = v279.borrow().l1.clone();
-                    let mut v283: i32 = v273.clone().borrow()[v281 as usize].clone();
-                    let mut v285: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                    let mut v286: f64 = (v283 as f64);
-                    let mut v288: num_complex::Complex<f64> = num_complex::Complex::new(v286, 0.0f64);
-                    let mut v290: num_complex::Complex<f64> = num_complex::Complex::powc(v288, v261.clone());
-                    let mut v292: num_complex::Complex<f64> = v285 / v290;
-                    let mut v294: num_complex::Complex<f64> = v282 + v292;
-                    let mut v295: i32 = v281.wrapping_add(1i32);
-                    v279.borrow_mut().l0 = v295;
-                    v279.borrow_mut().l1 = v294.clone();
+                let mut v306: i32 = (v301.clone().borrow().len() as i32);
+                let mut v307: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v300.clone() }));
+                while method18(v306, v307.clone()) {
+                    let mut v309: i32 = v307.borrow().l0.clone();
+                    let mut v310: num_complex::Complex<f64> = v307.borrow().l1.clone();
+                    let mut v311: i32 = v301.clone().borrow()[v309 as usize].clone();
+                    let mut v313: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                    let mut v314: f64 = (v311 as f64);
+                    let mut v316: num_complex::Complex<f64> = num_complex::Complex::new(v314, 0.0f64);
+                    let mut v318: num_complex::Complex<f64> = num_complex::Complex::powc(v316, v289.clone());
+                    let mut v320: num_complex::Complex<f64> = v313 / v318;
+                    let mut v322: num_complex::Complex<f64> = v310 + v320;
+                    let mut v323: i32 = v309.wrapping_add(1i32);
+                    v307.borrow_mut().l0 = v323;
+                    v307.borrow_mut().l1 = v322.clone();
                     ()
                 };
-                let mut v296: num_complex::Complex<f64> = v279.borrow().l1.clone();
-                v296.clone()
+                let mut v324: num_complex::Complex<f64> = v307.borrow().l1.clone();
+                v324.clone()
             } else {
-                let mut v298: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                let mut v300: num_complex::Complex<f64> = v298 - v261;
-                let mut v301: num_complex::Complex<f64> = method4(v300.clone());
-                let mut v302: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v301.clone());
-                let mut v304: Option<num_complex::Complex<f64>> = v302.ok();
-                let mut v305: Option<num_complex::Complex<f64>> = method20(v304.clone());
-                let mut v306: Option<US0> = v305.map(|x| v184(x));
-                let mut v307: US0 = US0::US0_1;
-                let mut v308: US0 = v306.unwrap_or(v307);
-                let mut v310: f64 = f64::NAN;
-                let mut v312: f64 = f64::NAN;
-                let mut v314: num_complex::Complex<f64> = num_complex::Complex::new(v310, v312);
-                let mut v317: num_complex::Complex<f64> = match &v308 {
-                    US0::US0_1 => { // None
-                        v314.clone()
+                let mut v326: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                let mut v328: num_complex::Complex<f64> = v326 - v289;
+                let mut v329: num_complex::Complex<f64> = method4(v328.clone());
+                let mut v330: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v329.clone());
+                let mut v332: Option<num_complex::Complex<f64>> = v330.ok();
+                let mut v333: Option<num_complex::Complex<f64>> = method20(v332.clone());
+                let mut v334: Option<US0> = v333.map(|x| v161(x));
+                let mut v335: US0 = US0::US0_1;
+                let mut v336: US0 = v334.unwrap_or(v335);
+                let mut v338: f64 = f64::NAN;
+                let mut v340: f64 = f64::NAN;
+                let mut v342: num_complex::Complex<f64> = num_complex::Complex::new(v338, v340);
+                let mut v345: num_complex::Complex<f64> = match &v336 {
+                    US0::US0_1 => {
+                        v342.clone()
                     }
-                    US0::US0_0(v315) => { // Some
-                        let mut v315: num_complex::Complex<f64> = v315.clone();
-                        v315.clone()
+                    US0::US0_0(v343) => {
+                        let mut v343: num_complex::Complex<f64> = v343.clone();
+                        v343.clone()
                     }
                 };
-                let mut v319: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                let mut v321: num_complex::Complex<f64> = v319 * v261;
-                let mut v323: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                let mut v325: num_complex::Complex<f64> = v321 / v323;
-                let mut v327: num_complex::Complex<f64> = v325.sin();
-                let mut v329: f64 = v261.re;
-                let mut v330: f64 = 1.0f64 - v329;
-                let mut v332: f64 = v261.im;
-                let mut v333: f64 = -(v332);
-                let mut v335: num_complex::Complex<f64> = num_complex::Complex::new(v330, v333);
-                let mut v337: f64 = v335.re;
-                let mut v338: bool = v337 <= 1.0f64;
-                let mut v611: num_complex::Complex<f64> = if v338 {
-                    let mut v340: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                    v340.clone()
+                let mut v347: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                let mut v349: num_complex::Complex<f64> = v347 * v289;
+                let mut v351: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                let mut v353: num_complex::Complex<f64> = v349 / v351;
+                let mut v355: num_complex::Complex<f64> = v353.sin();
+                let mut v357: f64 = v289.re;
+                let mut v358: f64 = 1.0f64 - v357;
+                let mut v360: f64 = v289.im;
+                let mut v361: f64 = -(v360);
+                let mut v363: num_complex::Complex<f64> = num_complex::Complex::new(v358, v361);
+                let mut v365: f64 = v363.re;
+                let mut v366: bool = v365 <= 1.0f64;
+                let mut v639: num_complex::Complex<f64> = if v366 {
+                    let mut v368: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                    v368.clone()
                 } else {
-                    println!("zeta / count: {:?} / s: {:?}", 2i32, v335);
-                    let mut v343: f64 = v335.re;
-                    let mut v344: bool = v343 > 1.0f64;
-                    if v344 {
-                        let mut v346: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                        let mut v347: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
-                        let mut v348: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-                        while method17(v348.clone()) {
-                            let mut v350: i32 = v348.borrow().l0.clone();
-                            v347.clone().borrow_mut()[v350 as usize] = v350;
-                            let mut v351: i32 = v350.wrapping_add(1i32);
-                            v348.borrow_mut().l0 = v351;
+                    println!("zeta / count: {:?} / s: {:?}", 2i32, v363);
+                    let mut v371: f64 = v363.re;
+                    let mut v372: bool = v371 > 1.0f64;
+                    if v372 {
+                        let mut v374: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                        let mut v375: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
+                        let mut v376: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+                        while method17(v376.clone()) {
+                            let mut v378: i32 = v376.borrow().l0.clone();
+                            v375.clone().borrow_mut()[v378 as usize] = v378;
+                            let mut v379: i32 = v378.wrapping_add(1i32);
+                            v376.borrow_mut().l0 = v379;
                             ()
                         };
-                        let mut v352: i32 = (v347.clone().borrow().len() as i32);
-                        let mut v353: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v346.clone() }));
-                        while method18(v352, v353.clone()) {
-                            let mut v355: i32 = v353.borrow().l0.clone();
-                            let mut v356: num_complex::Complex<f64> = v353.borrow().l1.clone();
-                            let mut v357: i32 = v347.clone().borrow()[v355 as usize].clone();
-                            let mut v359: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                            let mut v360: f64 = (v357 as f64);
-                            let mut v362: num_complex::Complex<f64> = num_complex::Complex::new(v360, 0.0f64);
-                            let mut v364: num_complex::Complex<f64> = num_complex::Complex::powc(v362, v335.clone());
-                            let mut v366: num_complex::Complex<f64> = v359 / v364;
-                            let mut v368: num_complex::Complex<f64> = v356 + v366;
-                            let mut v369: i32 = v355.wrapping_add(1i32);
-                            v353.borrow_mut().l0 = v369;
-                            v353.borrow_mut().l1 = v368.clone();
+                        let mut v380: i32 = (v375.clone().borrow().len() as i32);
+                        let mut v381: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v374.clone() }));
+                        while method18(v380, v381.clone()) {
+                            let mut v383: i32 = v381.borrow().l0.clone();
+                            let mut v384: num_complex::Complex<f64> = v381.borrow().l1.clone();
+                            let mut v385: i32 = v375.clone().borrow()[v383 as usize].clone();
+                            let mut v387: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                            let mut v388: f64 = (v385 as f64);
+                            let mut v390: num_complex::Complex<f64> = num_complex::Complex::new(v388, 0.0f64);
+                            let mut v392: num_complex::Complex<f64> = num_complex::Complex::powc(v390, v363.clone());
+                            let mut v394: num_complex::Complex<f64> = v387 / v392;
+                            let mut v396: num_complex::Complex<f64> = v384 + v394;
+                            let mut v397: i32 = v383.wrapping_add(1i32);
+                            v381.borrow_mut().l0 = v397;
+                            v381.borrow_mut().l1 = v396.clone();
                             ()
                         };
-                        let mut v370: num_complex::Complex<f64> = v353.borrow().l1.clone();
-                        v370.clone()
+                        let mut v398: num_complex::Complex<f64> = v381.borrow().l1.clone();
+                        v398.clone()
                     } else {
-                        let mut v372: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                        let mut v374: num_complex::Complex<f64> = v372 - v335;
-                        let mut v375: num_complex::Complex<f64> = method4(v374.clone());
-                        let mut v376: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v375.clone());
-                        let mut v378: Option<num_complex::Complex<f64>> = v376.ok();
-                        let mut v379: Option<num_complex::Complex<f64>> = method20(v378.clone());
-                        let mut v380: Option<US0> = v379.map(|x| v184(x));
-                        let mut v381: US0 = US0::US0_1;
-                        let mut v382: US0 = v380.unwrap_or(v381);
-                        let mut v384: f64 = f64::NAN;
-                        let mut v386: f64 = f64::NAN;
-                        let mut v388: num_complex::Complex<f64> = num_complex::Complex::new(v384, v386);
-                        let mut v391: num_complex::Complex<f64> = match &v382 {
-                            US0::US0_1 => { // None
-                                v388.clone()
+                        let mut v400: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                        let mut v402: num_complex::Complex<f64> = v400 - v363;
+                        let mut v403: num_complex::Complex<f64> = method4(v402.clone());
+                        let mut v404: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v403.clone());
+                        let mut v406: Option<num_complex::Complex<f64>> = v404.ok();
+                        let mut v407: Option<num_complex::Complex<f64>> = method20(v406.clone());
+                        let mut v408: Option<US0> = v407.map(|x| v161(x));
+                        let mut v409: US0 = US0::US0_1;
+                        let mut v410: US0 = v408.unwrap_or(v409);
+                        let mut v412: f64 = f64::NAN;
+                        let mut v414: f64 = f64::NAN;
+                        let mut v416: num_complex::Complex<f64> = num_complex::Complex::new(v412, v414);
+                        let mut v419: num_complex::Complex<f64> = match &v410 {
+                            US0::US0_1 => {
+                                v416.clone()
                             }
-                            US0::US0_0(v389) => { // Some
-                                let mut v389: num_complex::Complex<f64> = v389.clone();
-                                v389.clone()
+                            US0::US0_0(v417) => {
+                                let mut v417: num_complex::Complex<f64> = v417.clone();
+                                v417.clone()
                             }
                         };
-                        let mut v393: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                        let mut v395: num_complex::Complex<f64> = v393 * v335;
-                        let mut v397: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                        let mut v399: num_complex::Complex<f64> = v395 / v397;
-                        let mut v401: num_complex::Complex<f64> = v399.sin();
-                        let mut v403: f64 = v335.re;
-                        let mut v404: f64 = 1.0f64 - v403;
-                        let mut v406: f64 = v335.im;
-                        let mut v407: f64 = -(v406);
-                        let mut v409: num_complex::Complex<f64> = num_complex::Complex::new(v404, v407);
-                        let mut v411: f64 = v409.re;
-                        let mut v412: bool = v411 <= 1.0f64;
-                        let mut v595: num_complex::Complex<f64> = if v412 {
-                            let mut v414: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                            v414.clone()
+                        let mut v421: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                        let mut v423: num_complex::Complex<f64> = v421 * v363;
+                        let mut v425: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                        let mut v427: num_complex::Complex<f64> = v423 / v425;
+                        let mut v429: num_complex::Complex<f64> = v427.sin();
+                        let mut v431: f64 = v363.re;
+                        let mut v432: f64 = 1.0f64 - v431;
+                        let mut v434: f64 = v363.im;
+                        let mut v435: f64 = -(v434);
+                        let mut v437: num_complex::Complex<f64> = num_complex::Complex::new(v432, v435);
+                        let mut v439: f64 = v437.re;
+                        let mut v440: bool = v439 <= 1.0f64;
+                        let mut v623: num_complex::Complex<f64> = if v440 {
+                            let mut v442: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                            v442.clone()
                         } else {
-                            println!("zeta / count: {:?} / s: {:?}", 3i32, v409);
-                            let mut v417: f64 = v409.re;
-                            let mut v418: bool = v417 > 1.0f64;
-                            if v418 {
-                                let mut v420: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                                let mut v421: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
-                                let mut v422: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-                                while method17(v422.clone()) {
-                                    let mut v424: i32 = v422.borrow().l0.clone();
-                                    v421.clone().borrow_mut()[v424 as usize] = v424;
-                                    let mut v425: i32 = v424.wrapping_add(1i32);
-                                    v422.borrow_mut().l0 = v425;
+                            println!("zeta / count: {:?} / s: {:?}", 3i32, v437);
+                            let mut v445: f64 = v437.re;
+                            let mut v446: bool = v445 > 1.0f64;
+                            if v446 {
+                                let mut v448: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                                let mut v449: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
+                                let mut v450: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+                                while method17(v450.clone()) {
+                                    let mut v452: i32 = v450.borrow().l0.clone();
+                                    v449.clone().borrow_mut()[v452 as usize] = v452;
+                                    let mut v453: i32 = v452.wrapping_add(1i32);
+                                    v450.borrow_mut().l0 = v453;
                                     ()
                                 };
-                                let mut v426: i32 = (v421.clone().borrow().len() as i32);
-                                let mut v427: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v420.clone() }));
-                                while method18(v426, v427.clone()) {
-                                    let mut v429: i32 = v427.borrow().l0.clone();
-                                    let mut v430: num_complex::Complex<f64> = v427.borrow().l1.clone();
-                                    let mut v431: i32 = v421.clone().borrow()[v429 as usize].clone();
-                                    let mut v433: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                                    let mut v434: f64 = (v431 as f64);
-                                    let mut v436: num_complex::Complex<f64> = num_complex::Complex::new(v434, 0.0f64);
-                                    let mut v438: num_complex::Complex<f64> = num_complex::Complex::powc(v436, v409.clone());
-                                    let mut v440: num_complex::Complex<f64> = v433 / v438;
-                                    let mut v442: num_complex::Complex<f64> = v430 + v440;
-                                    let mut v443: i32 = v429.wrapping_add(1i32);
-                                    v427.borrow_mut().l0 = v443;
-                                    v427.borrow_mut().l1 = v442.clone();
+                                let mut v454: i32 = (v449.clone().borrow().len() as i32);
+                                let mut v455: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v448.clone() }));
+                                while method18(v454, v455.clone()) {
+                                    let mut v457: i32 = v455.borrow().l0.clone();
+                                    let mut v458: num_complex::Complex<f64> = v455.borrow().l1.clone();
+                                    let mut v459: i32 = v449.clone().borrow()[v457 as usize].clone();
+                                    let mut v461: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                                    let mut v462: f64 = (v459 as f64);
+                                    let mut v464: num_complex::Complex<f64> = num_complex::Complex::new(v462, 0.0f64);
+                                    let mut v466: num_complex::Complex<f64> = num_complex::Complex::powc(v464, v437.clone());
+                                    let mut v468: num_complex::Complex<f64> = v461 / v466;
+                                    let mut v470: num_complex::Complex<f64> = v458 + v468;
+                                    let mut v471: i32 = v457.wrapping_add(1i32);
+                                    v455.borrow_mut().l0 = v471;
+                                    v455.borrow_mut().l1 = v470.clone();
                                     ()
                                 };
-                                let mut v444: num_complex::Complex<f64> = v427.borrow().l1.clone();
-                                v444.clone()
+                                let mut v472: num_complex::Complex<f64> = v455.borrow().l1.clone();
+                                v472.clone()
                             } else {
-                                let mut v446: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                                let mut v448: num_complex::Complex<f64> = v446 - v409;
-                                let mut v449: num_complex::Complex<f64> = method4(v448.clone());
-                                let mut v450: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v449.clone());
-                                let mut v452: Option<num_complex::Complex<f64>> = v450.ok();
-                                let mut v453: Option<num_complex::Complex<f64>> = method20(v452.clone());
-                                let mut v454: Option<US0> = v453.map(|x| v184(x));
-                                let mut v455: US0 = US0::US0_1;
-                                let mut v456: US0 = v454.unwrap_or(v455);
-                                let mut v458: f64 = f64::NAN;
-                                let mut v460: f64 = f64::NAN;
-                                let mut v462: num_complex::Complex<f64> = num_complex::Complex::new(v458, v460);
-                                let mut v465: num_complex::Complex<f64> = match &v456 {
-                                    US0::US0_1 => { // None
-                                        v462.clone()
+                                let mut v474: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                                let mut v476: num_complex::Complex<f64> = v474 - v437;
+                                let mut v477: num_complex::Complex<f64> = method4(v476.clone());
+                                let mut v478: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v477.clone());
+                                let mut v480: Option<num_complex::Complex<f64>> = v478.ok();
+                                let mut v481: Option<num_complex::Complex<f64>> = method20(v480.clone());
+                                let mut v482: Option<US0> = v481.map(|x| v161(x));
+                                let mut v483: US0 = US0::US0_1;
+                                let mut v484: US0 = v482.unwrap_or(v483);
+                                let mut v486: f64 = f64::NAN;
+                                let mut v488: f64 = f64::NAN;
+                                let mut v490: num_complex::Complex<f64> = num_complex::Complex::new(v486, v488);
+                                let mut v493: num_complex::Complex<f64> = match &v484 {
+                                    US0::US0_1 => {
+                                        v490.clone()
                                     }
-                                    US0::US0_0(v463) => { // Some
-                                        let mut v463: num_complex::Complex<f64> = v463.clone();
-                                        v463.clone()
+                                    US0::US0_0(v491) => {
+                                        let mut v491: num_complex::Complex<f64> = v491.clone();
+                                        v491.clone()
                                     }
                                 };
-                                let mut v467: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                                let mut v469: num_complex::Complex<f64> = v467 * v409;
-                                let mut v471: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                                let mut v473: num_complex::Complex<f64> = v469 / v471;
-                                let mut v475: num_complex::Complex<f64> = v473.sin();
-                                let mut v477: f64 = v409.re;
-                                let mut v478: f64 = 1.0f64 - v477;
-                                let mut v480: f64 = v409.im;
-                                let mut v481: f64 = -(v480);
-                                let mut v483: num_complex::Complex<f64> = num_complex::Complex::new(v478, v481);
-                                let mut v485: f64 = v483.re;
-                                let mut v486: bool = v485 <= 1.0f64;
-                                let mut v579: num_complex::Complex<f64> = if v486 {
-                                    let mut v488: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                                    v488.clone()
+                                let mut v495: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                                let mut v497: num_complex::Complex<f64> = v495 * v437;
+                                let mut v499: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                                let mut v501: num_complex::Complex<f64> = v497 / v499;
+                                let mut v503: num_complex::Complex<f64> = v501.sin();
+                                let mut v505: f64 = v437.re;
+                                let mut v506: f64 = 1.0f64 - v505;
+                                let mut v508: f64 = v437.im;
+                                let mut v509: f64 = -(v508);
+                                let mut v511: num_complex::Complex<f64> = num_complex::Complex::new(v506, v509);
+                                let mut v513: f64 = v511.re;
+                                let mut v514: bool = v513 <= 1.0f64;
+                                let mut v607: num_complex::Complex<f64> = if v514 {
+                                    let mut v516: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                                    v516.clone()
                                 } else {
-                                    println!("zeta / count: {:?} / s: {:?}", 4i32, v483);
-                                    let mut v491: f64 = v483.re;
-                                    let mut v492: bool = v491 > 1.0f64;
-                                    if v492 {
-                                        let mut v494: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                                        let mut v495: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
-                                        let mut v496: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
-                                        while method17(v496.clone()) {
-                                            let mut v498: i32 = v496.borrow().l0.clone();
-                                            v495.clone().borrow_mut()[v498 as usize] = v498;
-                                            let mut v499: i32 = v498.wrapping_add(1i32);
-                                            v496.borrow_mut().l0 = v499;
+                                    println!("zeta / count: {:?} / s: {:?}", 4i32, v511);
+                                    let mut v519: f64 = v511.re;
+                                    let mut v520: bool = v519 > 1.0f64;
+                                    if v520 {
+                                        let mut v522: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                                        let mut v523: Rc<RefCell<Vec<i32>>> = Rc::new(RefCell::new(vec![<i32>::default(); 10000i32 as usize]));
+                                        let mut v524: Rc<RefCell<Mut0>> = Rc::new(RefCell::new(Mut0 { l0: 0i32 }));
+                                        while method17(v524.clone()) {
+                                            let mut v526: i32 = v524.borrow().l0.clone();
+                                            v523.clone().borrow_mut()[v526 as usize] = v526;
+                                            let mut v527: i32 = v526.wrapping_add(1i32);
+                                            v524.borrow_mut().l0 = v527;
                                             ()
                                         };
-                                        let mut v500: i32 = (v495.clone().borrow().len() as i32);
-                                        let mut v501: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v494.clone() }));
-                                        while method18(v500, v501.clone()) {
-                                            let mut v503: i32 = v501.borrow().l0.clone();
-                                            let mut v504: num_complex::Complex<f64> = v501.borrow().l1.clone();
-                                            let mut v505: i32 = v495.clone().borrow()[v503 as usize].clone();
-                                            let mut v507: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                                            let mut v508: f64 = (v505 as f64);
-                                            let mut v510: num_complex::Complex<f64> = num_complex::Complex::new(v508, 0.0f64);
-                                            let mut v512: num_complex::Complex<f64> = num_complex::Complex::powc(v510, v483.clone());
-                                            let mut v514: num_complex::Complex<f64> = v507 / v512;
-                                            let mut v516: num_complex::Complex<f64> = v504 + v514;
-                                            let mut v517: i32 = v503.wrapping_add(1i32);
-                                            v501.borrow_mut().l0 = v517;
-                                            v501.borrow_mut().l1 = v516.clone();
+                                        let mut v528: i32 = (v523.clone().borrow().len() as i32);
+                                        let mut v529: Rc<RefCell<Mut2>> = Rc::new(RefCell::new(Mut2 { l0: 0i32, l1: v522.clone() }));
+                                        while method18(v528, v529.clone()) {
+                                            let mut v531: i32 = v529.borrow().l0.clone();
+                                            let mut v532: num_complex::Complex<f64> = v529.borrow().l1.clone();
+                                            let mut v533: i32 = v523.clone().borrow()[v531 as usize].clone();
+                                            let mut v535: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                                            let mut v536: f64 = (v533 as f64);
+                                            let mut v538: num_complex::Complex<f64> = num_complex::Complex::new(v536, 0.0f64);
+                                            let mut v540: num_complex::Complex<f64> = num_complex::Complex::powc(v538, v511.clone());
+                                            let mut v542: num_complex::Complex<f64> = v535 / v540;
+                                            let mut v544: num_complex::Complex<f64> = v532 + v542;
+                                            let mut v545: i32 = v531.wrapping_add(1i32);
+                                            v529.borrow_mut().l0 = v545;
+                                            v529.borrow_mut().l1 = v544.clone();
                                             ()
                                         };
-                                        let mut v518: num_complex::Complex<f64> = v501.borrow().l1.clone();
-                                        v518.clone()
+                                        let mut v546: num_complex::Complex<f64> = v529.borrow().l1.clone();
+                                        v546.clone()
                                     } else {
-                                        let mut v520: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
-                                        let mut v522: num_complex::Complex<f64> = v520 - v483;
-                                        let mut v523: num_complex::Complex<f64> = method4(v522.clone());
-                                        let mut v524: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v523.clone());
-                                        let mut v526: Option<num_complex::Complex<f64>> = v524.ok();
-                                        let mut v527: Option<num_complex::Complex<f64>> = method20(v526.clone());
-                                        let mut v528: Option<US0> = v527.map(|x| v184(x));
-                                        let mut v529: US0 = US0::US0_1;
-                                        let mut v530: US0 = v528.unwrap_or(v529);
-                                        let mut v532: f64 = f64::NAN;
-                                        let mut v534: f64 = f64::NAN;
-                                        let mut v536: num_complex::Complex<f64> = num_complex::Complex::new(v532, v534);
-                                        let mut v539: num_complex::Complex<f64> = match &v530 {
-                                            US0::US0_1 => { // None
-                                                v536.clone()
+                                        let mut v548: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 0.0f64);
+                                        let mut v550: num_complex::Complex<f64> = v548 - v511;
+                                        let mut v551: num_complex::Complex<f64> = method4(v550.clone());
+                                        let mut v552: Result<num_complex::Complex<f64>, std::string::String> = method19(v0.clone(), v551.clone());
+                                        let mut v554: Option<num_complex::Complex<f64>> = v552.ok();
+                                        let mut v555: Option<num_complex::Complex<f64>> = method20(v554.clone());
+                                        let mut v556: Option<US0> = v555.map(|x| v161(x));
+                                        let mut v557: US0 = US0::US0_1;
+                                        let mut v558: US0 = v556.unwrap_or(v557);
+                                        let mut v560: f64 = f64::NAN;
+                                        let mut v562: f64 = f64::NAN;
+                                        let mut v564: num_complex::Complex<f64> = num_complex::Complex::new(v560, v562);
+                                        let mut v567: num_complex::Complex<f64> = match &v558 {
+                                            US0::US0_1 => {
+                                                v564.clone()
                                             }
-                                            US0::US0_0(v537) => { // Some
-                                                let mut v537: num_complex::Complex<f64> = v537.clone();
-                                                v537.clone()
+                                            US0::US0_0(v565) => {
+                                                let mut v565: num_complex::Complex<f64> = v565.clone();
+                                                v565.clone()
                                             }
                                         };
-                                        let mut v541: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                                        let mut v543: num_complex::Complex<f64> = v541 * v483;
-                                        let mut v545: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                                        let mut v547: num_complex::Complex<f64> = v543 / v545;
-                                        let mut v549: num_complex::Complex<f64> = v547.sin();
-                                        let mut v551: f64 = v483.re;
-                                        let mut v552: f64 = 1.0f64 - v551;
-                                        let mut v554: f64 = v483.im;
-                                        let mut v555: f64 = -(v554);
-                                        let mut v557: num_complex::Complex<f64> = num_complex::Complex::new(v552, v555);
-                                        let mut v559: f64 = v557.re;
-                                        let mut v560: bool = v559 <= 1.0f64;
-                                        let mut v563: num_complex::Complex<f64> = if v560 {
-                                            let mut v562: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
-                                            v562.clone()
+                                        let mut v569: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                                        let mut v571: num_complex::Complex<f64> = v569 * v511;
+                                        let mut v573: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                                        let mut v575: num_complex::Complex<f64> = v571 / v573;
+                                        let mut v577: num_complex::Complex<f64> = v575.sin();
+                                        let mut v579: f64 = v511.re;
+                                        let mut v580: f64 = 1.0f64 - v579;
+                                        let mut v582: f64 = v511.im;
+                                        let mut v583: f64 = -(v582);
+                                        let mut v585: num_complex::Complex<f64> = num_complex::Complex::new(v580, v583);
+                                        let mut v587: f64 = v585.re;
+                                        let mut v588: bool = v587 <= 1.0f64;
+                                        let mut v591: num_complex::Complex<f64> = if v588 {
+                                            let mut v590: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, 0.0f64);
+                                            v590.clone()
                                         } else {
-                                            v557.clone()
+                                            v585.clone()
                                         };
-                                        let mut v565: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                                        let mut v567: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                                        let mut v569: num_complex::Complex<f64> = num_complex::Complex::powc(v567, v483);
-                                        let mut v571: num_complex::Complex<f64> = v565 * v569;
-                                        let mut v573: num_complex::Complex<f64> = v571 * v549;
-                                        let mut v575: num_complex::Complex<f64> = v573 * v539;
-                                        let mut v577: num_complex::Complex<f64> = v575 * v563;
-                                        v577.clone()
+                                        let mut v593: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                                        let mut v595: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                                        let mut v597: num_complex::Complex<f64> = num_complex::Complex::powc(v595, v511);
+                                        let mut v599: num_complex::Complex<f64> = v593 * v597;
+                                        let mut v601: num_complex::Complex<f64> = v599 * v577;
+                                        let mut v603: num_complex::Complex<f64> = v601 * v567;
+                                        let mut v605: num_complex::Complex<f64> = v603 * v591;
+                                        v605.clone()
                                     }
                                 };
-                                let mut v581: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                                let mut v583: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                                let mut v585: num_complex::Complex<f64> = num_complex::Complex::powc(v583, v409);
-                                let mut v587: num_complex::Complex<f64> = v581 * v585;
-                                let mut v589: num_complex::Complex<f64> = v587 * v475;
-                                let mut v591: num_complex::Complex<f64> = v589 * v465;
-                                let mut v593: num_complex::Complex<f64> = v591 * v579;
-                                v593.clone()
+                                let mut v609: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                                let mut v611: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                                let mut v613: num_complex::Complex<f64> = num_complex::Complex::powc(v611, v437);
+                                let mut v615: num_complex::Complex<f64> = v609 * v613;
+                                let mut v617: num_complex::Complex<f64> = v615 * v503;
+                                let mut v619: num_complex::Complex<f64> = v617 * v493;
+                                let mut v621: num_complex::Complex<f64> = v619 * v607;
+                                v621.clone()
                             }
                         };
-                        let mut v597: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                        let mut v599: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                        let mut v601: num_complex::Complex<f64> = num_complex::Complex::powc(v599, v335);
-                        let mut v603: num_complex::Complex<f64> = v597 * v601;
-                        let mut v605: num_complex::Complex<f64> = v603 * v401;
-                        let mut v607: num_complex::Complex<f64> = v605 * v391;
-                        let mut v609: num_complex::Complex<f64> = v607 * v595;
-                        v609.clone()
+                        let mut v625: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                        let mut v627: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                        let mut v629: num_complex::Complex<f64> = num_complex::Complex::powc(v627, v363);
+                        let mut v631: num_complex::Complex<f64> = v625 * v629;
+                        let mut v633: num_complex::Complex<f64> = v631 * v429;
+                        let mut v635: num_complex::Complex<f64> = v633 * v419;
+                        let mut v637: num_complex::Complex<f64> = v635 * v623;
+                        v637.clone()
                     }
                 };
-                let mut v613: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-                let mut v615: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-                let mut v617: num_complex::Complex<f64> = num_complex::Complex::powc(v615, v261);
-                let mut v619: num_complex::Complex<f64> = v613 * v617;
-                let mut v621: num_complex::Complex<f64> = v619 * v327;
-                let mut v623: num_complex::Complex<f64> = v621 * v317;
-                let mut v625: num_complex::Complex<f64> = v623 * v611;
-                v625.clone()
+                let mut v641: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+                let mut v643: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+                let mut v645: num_complex::Complex<f64> = num_complex::Complex::powc(v643, v289);
+                let mut v647: num_complex::Complex<f64> = v641 * v645;
+                let mut v649: num_complex::Complex<f64> = v647 * v355;
+                let mut v651: num_complex::Complex<f64> = v649 * v345;
+                let mut v653: num_complex::Complex<f64> = v651 * v639;
+                v653.clone()
             }
         };
-        let mut v629: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
-        let mut v631: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
-        let mut v633: num_complex::Complex<f64> = num_complex::Complex::powc(v631, v1);
-        let mut v635: num_complex::Complex<f64> = v629 * v633;
-        let mut v637: num_complex::Complex<f64> = v635 * v253;
-        let mut v639: num_complex::Complex<f64> = v637 * v243;
-        let mut v641: num_complex::Complex<f64> = v639 * v627;
-        v641.clone()
+        let mut v657: num_complex::Complex<f64> = num_complex::Complex::new(2.0f64, 0.0f64);
+        let mut v659: num_complex::Complex<f64> = num_complex::Complex::new(3.141592653589793f64, 0.0f64);
+        let mut v661: num_complex::Complex<f64> = num_complex::Complex::powc(v659, v1);
+        let mut v663: num_complex::Complex<f64> = v657 * v661;
+        let mut v665: num_complex::Complex<f64> = v663 * v281;
+        let mut v667: num_complex::Complex<f64> = v665 * v271;
+        let mut v669: num_complex::Complex<f64> = v667 * v655;
+        v669.clone()
     }
 }
 fn method21(mut v0: bool) -> bool {
@@ -782,16 +782,16 @@ fn method27(mut v0: Rc<RefCell<Mut3>>) -> () {
     ()
 }
 fn method22(mut v0: f64) -> Rc<str> {
-    let mut v7: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
-    let mut v8: Rc<RefCell<Mut3>> = Rc::new(RefCell::new(Mut3 { l0: v7.clone() }));
-    method23(v8.clone());
-    method24(v8.clone());
-    method25(v8.clone());
+    let mut v6: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) };
+    let mut v7: Rc<RefCell<Mut3>> = Rc::new(RefCell::new(Mut3 { l0: v6.clone() }));
+    method23(v7.clone());
+    method24(v7.clone());
+    method25(v7.clone());
     let mut v101: Rc<str> = Rc::<str>::from({ let v = v0; if v.is_finite() { format!("{:+.6}", v) } else if v.is_nan() { String::from("NaN") } else if v > 0.0 { String::from("Infinity") } else { String::from("-Infinity") } });
-    method26(v8.clone(), v101.clone());
-    method27(v8.clone());
-    let mut v138: Rc<str> = v8.borrow().l0.clone();
-    v138.clone()
+    method26(v7.clone(), v101.clone());
+    method27(v7.clone());
+    let mut v139: Rc<str> = v7.borrow().l0.clone();
+    v139.clone()
 }
 fn method29(mut v0: Rc<RefCell<Mut3>>) -> () {
     let mut v1: Rc<str> = v0.borrow().l0.clone();
@@ -846,10 +846,10 @@ fn method2(mut v0: pyo3::Python) -> () {
         let mut v25: f64 = f64::NAN;
         let mut v27: num_complex::Complex<f64> = num_complex::Complex::new(v23, v25);
         let mut v30: num_complex::Complex<f64> = match &v21 {
-            US0::US0_1 => { // None
+            US0::US0_1 => {
                 v27.clone()
             }
-            US0::US0_0(v28) => { // Some
+            US0::US0_0(v28) => {
                 let mut v28: num_complex::Complex<f64> = v28.clone();
                 v28.clone()
             }
@@ -871,58 +871,58 @@ fn method2(mut v0: pyo3::Python) -> () {
         let mut v55: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq"); } LIT.with(|lit| lit.clone()) };
         let mut v56: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" "); } LIT.with(|lit| lit.clone()) };
         let mut v57: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq "); } LIT.with(|lit| lit.clone()) };
-        let mut v66: Rc<str> = if v33 {
-            let mut v62: f64 = 0.0f64;
-            method22(v62)
+        let mut v67: Rc<str> = if v33 {
+            let mut v63: f64 = 0.0f64;
+            method22(v63)
         } else {
-            let mut v64: f64 = 0.0f64;
-            method28(v32, v64)
+            let mut v65: f64 = 0.0f64;
+            method28(v32, v65)
         };
-        let mut v67: Rc<str> = Rc::<str>::from(format!("{}{}", v57, v66));
-        println!("{}", v67);
-        let mut v71: bool = v35 == false;
-        if v71 {
-            std::panic::panic_any::<std::string::String>(format!("{}", v67.clone()))
+        let mut v68: Rc<str> = Rc::<str>::from(format!("{}{}", v57, v67));
+        println!("{}", v68);
+        let mut v72: bool = v35 == false;
+        if v72 {
+            std::panic::panic_any::<std::string::String>(format!("{}", v68.clone()))
         };
-        let mut v73: f64 = v30.re;
-        let mut v74: f64 = v73 - v11;
-        let mut v75: f64 = -(v74);
-        let mut v76: bool = v74 >= v75;
-        let mut v77: f64 = if v76 {
-            v74
-        } else {
+        let mut v74: f64 = v30.re;
+        let mut v75: f64 = v74 - v11;
+        let mut v76: f64 = -(v75);
+        let mut v77: bool = v75 >= v76;
+        let mut v78: f64 = if v77 {
             v75
+        } else {
+            v76
         };
-        let mut v78: bool = v77 < 0.0001f64;
-        let mut v80: bool = if v78 {
+        let mut v79: bool = v78 < 0.0001f64;
+        let mut v81: bool = if v79 {
             true
         } else {
-            method21(v78)
+            method21(v79)
         };
-        let mut v85: Rc<str> = if v78 {
-            let mut v81: f64 = 0.0001f64;
-            method22(v81)
+        let mut v86: Rc<str> = if v79 {
+            let mut v82: f64 = 0.0001f64;
+            method22(v82)
         } else {
-            let mut v83: f64 = 0.0001f64;
-            method28(v77, v83)
+            let mut v84: f64 = 0.0001f64;
+            method28(v78, v84)
         };
-        let mut v96: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_lt"); } LIT.with(|lit| lit.clone()) };
-        let mut v97: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_lt "); } LIT.with(|lit| lit.clone()) };
-        let mut v106: Rc<str> = if v78 {
-            let mut v102: f64 = 0.0001f64;
-            method22(v102)
-        } else {
+        let mut v97: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_lt"); } LIT.with(|lit| lit.clone()) };
+        let mut v98: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_lt "); } LIT.with(|lit| lit.clone()) };
+        let mut v108: Rc<str> = if v79 {
             let mut v104: f64 = 0.0001f64;
-            method28(v77, v104)
+            method22(v104)
+        } else {
+            let mut v106: f64 = 0.0001f64;
+            method28(v78, v106)
         };
-        let mut v107: Rc<str> = Rc::<str>::from(format!("{}{}", v97, v106));
-        println!("{}", v107);
-        let mut v108: bool = v80 == false;
-        if v108 {
-            std::panic::panic_any::<std::string::String>(format!("{}", v107.clone()))
+        let mut v109: Rc<str> = Rc::<str>::from(format!("{}{}", v98, v108));
+        println!("{}", v109);
+        let mut v110: bool = v81 == false;
+        if v110 {
+            std::panic::panic_any::<std::string::String>(format!("{}", v109.clone()))
         };
-        let mut v109: i32 = v9.wrapping_add(1i32);
-        v7.borrow_mut().l0 = v109;
+        let mut v111: i32 = v9.wrapping_add(1i32);
+        v7.borrow_mut().l0 = v111;
         ()
     };
     ()
@@ -932,10 +932,10 @@ fn method1() -> () {
     let __run_test = pyo3::Python::attach(|py| -> pyo3::PyResult<()> { //;
     let mut v3: pyo3::Python = py;
     method2(v3.clone());
-    let mut v21: Result<(), pyo3::PyErr> = Ok::<(), pyo3::PyErr>(());
-    let mut v52: bool = true; (v21) }); //;
-    let mut v55: Result<(), pyo3::PyErr> = __run_test;
-    v55.unwrap();
+    let mut v22: Result<(), pyo3::PyErr> = Ok::<(), pyo3::PyErr>(());
+    let mut v64: bool = true; (v22) }); //;
+    let mut v67: Result<(), pyo3::PyErr> = __run_test;
+    v67.unwrap();
     ()
 }
 fn method32(mut v0: pyo3::Python) -> () {
@@ -953,10 +953,10 @@ fn method32(mut v0: pyo3::Python) -> () {
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => { // None
+        US0::US0_1 => {
             v18.clone()
         }
-        US0::US0_0(v19) => { // Some
+        US0::US0_0(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1050,7 +1050,7 @@ fn method31() -> () {
 fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
-            UH0::UH0_1(v2, v3) => { // Cons
+            UH0::UH0_1(v2, v3) => {
                 let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, 0.0f64);
@@ -1067,10 +1067,10 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 let mut v19: f64 = f64::NAN;
                 let mut v21: num_complex::Complex<f64> = num_complex::Complex::new(v17, v19);
                 let mut v24: num_complex::Complex<f64> = match &v15 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v21.clone()
                     }
-                    US0::US0_0(v22) => { // Some
+                    US0::US0_0(v22) => {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
@@ -1136,7 +1136,7 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH0::UH0_0 => { // Nil
+            UH0::UH0_0 => {
                 return ();
             }
         }
@@ -1207,10 +1207,10 @@ fn method38(mut v0: pyo3::Python) -> () {
         let mut v32: f64 = f64::NAN;
         let mut v34: num_complex::Complex<f64> = num_complex::Complex::new(v30, v32);
         let mut v37: num_complex::Complex<f64> = match &v28 {
-            US0::US0_1 => { // None
+            US0::US0_1 => {
                 v34.clone()
             }
-            US0::US0_0(v35) => { // Some
+            US0::US0_0(v35) => {
                 let mut v35: num_complex::Complex<f64> = v35.clone();
                 v35.clone()
             }
@@ -1325,10 +1325,10 @@ fn method40(mut v0: pyo3::Python) -> () {
         let mut v22: f64 = f64::NAN;
         let mut v24: num_complex::Complex<f64> = num_complex::Complex::new(v20, v22);
         let mut v27: num_complex::Complex<f64> = match &v18 {
-            US0::US0_1 => { // None
+            US0::US0_1 => {
                 v24.clone()
             }
-            US0::US0_0(v25) => { // Some
+            US0::US0_0(v25) => {
                 let mut v25: num_complex::Complex<f64> = v25.clone();
                 v25.clone()
             }
@@ -1350,50 +1350,50 @@ fn method40(mut v0: pyo3::Python) -> () {
         let mut v52: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_gt"); } LIT.with(|lit| lit.clone()) };
         let mut v53: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" "); } LIT.with(|lit| lit.clone()) };
         let mut v54: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_gt "); } LIT.with(|lit| lit.clone()) };
-        let mut v63: Rc<str> = if v30 {
-            let mut v59: f64 = 0.0f64;
-            method22(v59)
+        let mut v64: Rc<str> = if v30 {
+            let mut v60: f64 = 0.0f64;
+            method22(v60)
         } else {
-            let mut v61: f64 = 0.0f64;
-            method28(v29, v61)
+            let mut v62: f64 = 0.0f64;
+            method28(v29, v62)
         };
-        let mut v64: Rc<str> = Rc::<str>::from(format!("{}{}", v54, v63));
-        println!("{}", v64);
-        let mut v65: bool = v32 == false;
-        if v65 {
-            std::panic::panic_any::<std::string::String>(format!("{}", v64.clone()))
+        let mut v65: Rc<str> = Rc::<str>::from(format!("{}{}", v54, v64));
+        println!("{}", v65);
+        let mut v66: bool = v32 == false;
+        if v66 {
+            std::panic::panic_any::<std::string::String>(format!("{}", v65.clone()))
         };
-        let mut v67: f64 = v27.im;
-        let mut v68: bool = v67 == 0.0f64;
-        let mut v70: bool = if v68 {
+        let mut v68: f64 = v27.im;
+        let mut v69: bool = v68 == 0.0f64;
+        let mut v71: bool = if v69 {
             true
         } else {
-            method21(v68)
+            method21(v69)
         };
-        let mut v75: Rc<str> = if v68 {
-            let mut v71: f64 = 0.0f64;
-            method22(v71)
+        let mut v76: Rc<str> = if v69 {
+            let mut v72: f64 = 0.0f64;
+            method22(v72)
         } else {
-            let mut v73: f64 = 0.0f64;
-            method28(v67, v73)
+            let mut v74: f64 = 0.0f64;
+            method28(v68, v74)
         };
-        let mut v76: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq"); } LIT.with(|lit| lit.clone()) };
-        let mut v77: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq "); } LIT.with(|lit| lit.clone()) };
-        let mut v82: Rc<str> = if v68 {
-            let mut v78: f64 = 0.0f64;
-            method22(v78)
+        let mut v77: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq"); } LIT.with(|lit| lit.clone()) };
+        let mut v78: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_eq "); } LIT.with(|lit| lit.clone()) };
+        let mut v83: Rc<str> = if v69 {
+            let mut v79: f64 = 0.0f64;
+            method22(v79)
         } else {
-            let mut v80: f64 = 0.0f64;
-            method28(v67, v80)
+            let mut v81: f64 = 0.0f64;
+            method28(v68, v81)
         };
-        let mut v83: Rc<str> = Rc::<str>::from(format!("{}{}", v77, v82));
-        println!("{}", v83);
-        let mut v84: bool = v70 == false;
-        if v84 {
-            std::panic::panic_any::<std::string::String>(format!("{}", v83.clone()))
+        let mut v84: Rc<str> = Rc::<str>::from(format!("{}{}", v78, v83));
+        println!("{}", v84);
+        let mut v85: bool = v71 == false;
+        if v85 {
+            std::panic::panic_any::<std::string::String>(format!("{}", v84.clone()))
         };
-        let mut v85: i32 = v5.wrapping_add(1i32);
-        v3.borrow_mut().l0 = v85;
+        let mut v86: i32 = v5.wrapping_add(1i32);
+        v3.borrow_mut().l0 = v86;
         ()
     };
     ()
@@ -1424,10 +1424,10 @@ fn method42(mut v0: pyo3::Python) -> () {
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => { // None
+        US0::US0_1 => {
             v18.clone()
         }
-        US0::US0_0(v19) => { // Some
+        US0::US0_0(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1517,10 +1517,10 @@ fn method44(mut v0: pyo3::Python) -> () {
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => { // None
+        US0::US0_1 => {
             v18.clone()
         }
-        US0::US0_0(v19) => { // Some
+        US0::US0_0(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1541,10 +1541,10 @@ fn method44(mut v0: pyo3::Python) -> () {
     let mut v41: f64 = f64::NAN;
     let mut v43: num_complex::Complex<f64> = num_complex::Complex::new(v39, v41);
     let mut v46: num_complex::Complex<f64> = match &v37 {
-        US0::US0_1 => { // None
+        US0::US0_1 => {
             v43.clone()
         }
-        US0::US0_0(v44) => { // Some
+        US0::US0_0(v44) => {
             let mut v44: num_complex::Complex<f64> = v44.clone();
             v44.clone()
         }
@@ -1629,10 +1629,10 @@ fn method46(mut v0: pyo3::Python) -> () {
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => { // None
+        US0::US0_1 => {
             v18.clone()
         }
-        US0::US0_0(v19) => { // Some
+        US0::US0_0(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1710,7 +1710,7 @@ fn method45() -> () {
 fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
-            UH0::UH0_1(v2, v3) => { // Cons
+            UH0::UH0_1(v2, v3) => {
                 let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, v2);
@@ -1727,76 +1727,76 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 let mut v19: f64 = f64::NAN;
                 let mut v21: num_complex::Complex<f64> = num_complex::Complex::new(v17, v19);
                 let mut v24: num_complex::Complex<f64> = match &v15 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v21.clone()
                     }
-                    US0::US0_0(v22) => { // Some
+                    US0::US0_0(v22) => {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
                 };
                 let mut v26: f64 = v24.re;
                 let mut v33: bool = v26 != 0.0f64 ;
-                let mut v39: bool = if v33 {
+                let mut v40: bool = if v33 {
                     true
                 } else {
                     method21(v33)
                 };
-                let mut v44: Rc<str> = if v33 {
-                    let mut v40: f64 = 0.0f64;
-                    method22(v40)
+                let mut v45: Rc<str> = if v33 {
+                    let mut v41: f64 = 0.0f64;
+                    method22(v41)
                 } else {
-                    let mut v42: f64 = 0.0f64;
-                    method28(v26, v42)
+                    let mut v43: f64 = 0.0f64;
+                    method28(v26, v43)
                 };
-                let mut v59: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne"); } LIT.with(|lit| lit.clone()) };
-                let mut v60: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" "); } LIT.with(|lit| lit.clone()) };
-                let mut v61: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne "); } LIT.with(|lit| lit.clone()) };
-                let mut v70: Rc<str> = if v33 {
-                    let mut v66: f64 = 0.0f64;
-                    method22(v66)
-                } else {
+                let mut v60: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne"); } LIT.with(|lit| lit.clone()) };
+                let mut v61: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(" "); } LIT.with(|lit| lit.clone()) };
+                let mut v62: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne "); } LIT.with(|lit| lit.clone()) };
+                let mut v72: Rc<str> = if v33 {
                     let mut v68: f64 = 0.0f64;
-                    method28(v26, v68)
+                    method22(v68)
+                } else {
+                    let mut v70: f64 = 0.0f64;
+                    method28(v26, v70)
                 };
-                let mut v71: Rc<str> = Rc::<str>::from(format!("{}{}", v61, v70));
-                println!("{}", v71);
-                let mut v72: bool = v39 == false;
-                if v72 {
-                    std::panic::panic_any::<std::string::String>(format!("{}", v71.clone()))
+                let mut v73: Rc<str> = Rc::<str>::from(format!("{}{}", v62, v72));
+                println!("{}", v73);
+                let mut v74: bool = v40 == false;
+                if v74 {
+                    std::panic::panic_any::<std::string::String>(format!("{}", v73.clone()))
                 };
-                let mut v74: f64 = v24.im;
-                let mut v75: bool = v74 != 0.0f64 ;
-                let mut v77: bool = if v75 {
+                let mut v76: f64 = v24.im;
+                let mut v77: bool = v76 != 0.0f64 ;
+                let mut v79: bool = if v77 {
                     true
                 } else {
-                    method21(v75)
+                    method21(v77)
                 };
-                let mut v82: Rc<str> = if v75 {
-                    let mut v78: f64 = 0.0f64;
-                    method22(v78)
-                } else {
+                let mut v84: Rc<str> = if v77 {
                     let mut v80: f64 = 0.0f64;
-                    method28(v74, v80)
-                };
-                let mut v83: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne "); } LIT.with(|lit| lit.clone()) };
-                let mut v88: Rc<str> = if v75 {
-                    let mut v84: f64 = 0.0f64;
-                    method22(v84)
+                    method22(v80)
                 } else {
-                    let mut v86: f64 = 0.0f64;
-                    method28(v74, v86)
+                    let mut v82: f64 = 0.0f64;
+                    method28(v76, v82)
                 };
-                let mut v89: Rc<str> = Rc::<str>::from(format!("{}{}", v83, v88));
-                println!("{}", v89);
-                let mut v90: bool = v77 == false;
-                if v90 {
-                    std::panic::panic_any::<std::string::String>(format!("{}", v89.clone()))
+                let mut v85: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("__assert_ne "); } LIT.with(|lit| lit.clone()) };
+                let mut v90: Rc<str> = if v77 {
+                    let mut v86: f64 = 0.0f64;
+                    method22(v86)
+                } else {
+                    let mut v88: f64 = 0.0f64;
+                    method28(v76, v88)
+                };
+                let mut v91: Rc<str> = Rc::<str>::from(format!("{}{}", v85, v90));
+                println!("{}", v91);
+                let mut v92: bool = v79 == false;
+                if v92 {
+                    std::panic::panic_any::<std::string::String>(format!("{}", v91.clone()))
                 };
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH0::UH0_0 => { // Nil
+            UH0::UH0_0 => {
                 return ();
             }
         }
@@ -1834,7 +1834,7 @@ fn method47() -> () {
 fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
     loop {
         match &*v1 {
-            UH1::UH1_1(v2, v3) => { // Cons
+            UH1::UH1_1(v2, v3) => {
                 let mut v2: num_complex::Complex<f64> = v2.clone();
                 let mut v3: Rc<UH1> = v3.clone();
                 let mut v4: num_complex::Complex<f64> = method4(v2.clone());
@@ -1850,10 +1850,10 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v17: f64 = f64::NAN;
                 let mut v19: num_complex::Complex<f64> = num_complex::Complex::new(v15, v17);
                 let mut v22: num_complex::Complex<f64> = match &v13 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v19.clone()
                     }
-                    US0::US0_0(v20) => { // Some
+                    US0::US0_0(v20) => {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
@@ -1919,7 +1919,7 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH1::UH1_0 => { // Nil
+            UH1::UH1_0 => {
                 return ();
             }
         }
@@ -1957,7 +1957,7 @@ fn method51() -> () {
 fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
     loop {
         match &*v1 {
-            UH1::UH1_1(v2, v3) => { // Cons
+            UH1::UH1_1(v2, v3) => {
                 let mut v2: num_complex::Complex<f64> = v2.clone();
                 let mut v3: Rc<UH1> = v3.clone();
                 let mut v4: num_complex::Complex<f64> = method4(v2.clone());
@@ -1973,10 +1973,10 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v17: f64 = f64::NAN;
                 let mut v19: num_complex::Complex<f64> = num_complex::Complex::new(v15, v17);
                 let mut v22: num_complex::Complex<f64> = match &v13 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v19.clone()
                     }
-                    US0::US0_0(v20) => { // Some
+                    US0::US0_0(v20) => {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
@@ -2007,10 +2007,10 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v64: f64 = f64::NAN;
                 let mut v66: num_complex::Complex<f64> = num_complex::Complex::new(v62, v64);
                 let mut v69: num_complex::Complex<f64> = match &v60 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v66.clone()
                     }
-                    US0::US0_0(v67) => { // Some
+                    US0::US0_0(v67) => {
                         let mut v67: num_complex::Complex<f64> = v67.clone();
                         v67.clone()
                     }
@@ -2033,10 +2033,10 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v92: f64 = f64::NAN;
                 let mut v94: num_complex::Complex<f64> = num_complex::Complex::new(v90, v92);
                 let mut v97: num_complex::Complex<f64> = match &v88 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v94.clone()
                     }
-                    US0::US0_0(v95) => { // Some
+                    US0::US0_0(v95) => {
                         let mut v95: num_complex::Complex<f64> = v95.clone();
                         v95.clone()
                     }
@@ -2121,7 +2121,7 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH1::UH1_0 => { // Nil
+            UH1::UH1_0 => {
                 return ();
             }
         }
@@ -2157,7 +2157,7 @@ fn method55() -> () {
 fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
     loop {
         match &*v1 {
-            UH0::UH0_1(v3, v4) => { // Cons
+            UH0::UH0_1(v3, v4) => {
                 let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v5: f64 = -(v0);
@@ -2167,7 +2167,7 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
                 (v0, v1, v2) = (v0, v4.clone(), v8);
                 continue;
             }
-            UH0::UH0_0 => { // Nil
+            UH0::UH0_0 => {
                 return v2;
             }
         }
@@ -2176,7 +2176,7 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
 fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
     loop {
         match &*v2 {
-            UH0::UH0_1(v3, v4) => { // Cons
+            UH0::UH0_1(v3, v4) => {
                 let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0f64);
@@ -2195,10 +2195,10 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
                 let mut v22: f64 = f64::NAN;
                 let mut v24: num_complex::Complex<f64> = num_complex::Complex::new(v20, v22);
                 let mut v27: num_complex::Complex<f64> = match &v18 {
-                    US0::US0_1 => { // None
+                    US0::US0_1 => {
                         v24.clone()
                     }
-                    US0::US0_0(v25) => { // Some
+                    US0::US0_0(v25) => {
                         let mut v25: num_complex::Complex<f64> = v25.clone();
                         v25.clone()
                     }
@@ -2272,7 +2272,7 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
                 (v0, v1, v2) = (v0.clone(), v1.clone(), v4.clone());
                 continue;
             }
-            UH0::UH0_0 => { // Nil
+            UH0::UH0_0 => {
                 return ();
             }
         }
@@ -2476,7 +2476,7 @@ fn spiral_main() -> i32 {
     } else {
         v35
     };
-    let mut v55: i32 = if v38 {
+    let mut v56: i32 = if v38 {
         0i32
     } else {
         let mut v49: Rc<str> = { thread_local!{ static LIT: Rc<str> = Rc::<str>::from("unknown test: "); } LIT.with(|lit| lit.clone()) };
@@ -2484,7 +2484,7 @@ fn spiral_main() -> i32 {
         println!("{}", v50);
         1i32
     };
-    if v55 != 0 { std::process::exit(v55) };
+    if v56 != 0 { std::process::exit(v56) };
     0
 }
 fn main() { #[cfg(target_arch = "wasm32")] { spiral_main(); return; }

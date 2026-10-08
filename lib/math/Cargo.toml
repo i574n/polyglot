@@ -4,13 +4,10 @@ cargo-features = ["edition2024"]
 name = "math"
 workspace = "../../workspace"
 version.workspace = true
-# the generated code is verified with edition 2021 (the staged native build before this crate)
 edition = "2021"
 license-file.workspace = true
 repository.workspace = true
 
-# math.rs is math.spi's native Rust output (build.ps1 regenerates it with the Spiral compiler's Rust backend): its `main`
-# runs the tests by name, and each test also has a `#[test]` wrapper (pyo3 + Python's mpmath).
 [dependencies]
 num-complex = ">=0.4,<1"
 pyo3 = "=0.26.0"

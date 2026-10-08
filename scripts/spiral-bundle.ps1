@@ -1,5 +1,3 @@
-# Dot-source from an app build. Resolves the sibling spiral checkout that init.ps1 clones,
-# installs the .NET 11 SDK, and builds the single-flight compiler when the cache has none.
 $ErrorActionPreference = "Stop"
 
 function Resolve-PolyglotSpiralBundle {

@@ -8,7 +8,6 @@ $ErrorActionPreference = "Stop"
 . ../../deps/spiral/lib/spiral/lib.ps1
 
 
-# The notebooks run through Kino (core.ps1 Invoke-Notebook) and export their F# modules (<nb>.fs).
 foreach ($notebook in "JsonParser", "Parser") {
     if (!$fast) { Invoke-Notebook "$notebook.livemd" @("--no-spi") }
     Invoke-Notebook "$notebook.livemd" @("--no-spi", "--fs-path", "$ScriptDir/$notebook.fs", "--export-only")

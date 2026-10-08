@@ -1,8 +1,6 @@
 param(
     $fast,
     $init,
-    # No Fable, dotnet-repl or dotnet-interactive: the Spiral apps and libraries build with the Spiral compiler's native
-    # backends, notebooks run through Kino (spiral/apps/kino).
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -81,7 +79,6 @@ if (!(Search-Command "nix")) {
         { pwsh init.ps1 -init 1 } | Invoke-Block -Linux
     }
 
-    # Ubuntu's system Python is externally managed (PEP 668): pip refuses a plain install there.
     $pipArgs = $IsLinux ? @("--break-system-packages") : @()
     { pip install @pipArgs -r ../requirements.txt } | Invoke-Block -OnError Continue
 }
@@ -107,9 +104,7 @@ if (!(Search-Command "gleam")) {
         { sudo apt update } | Invoke-Block -OnError Continue
         { apt update } | Invoke-Block -OnError Continue
 
-        # iwr https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb -OutFile erlang-solutions_1.0_all.deb; sudo dpkg -i erlang-solutions_1.0_all.deb
 
-        # sudo apt install -y esl-erlang
         { sudo apt install -y erlang } | Invoke-Block -OnError Continue
         { apt install -y erlang } | Invoke-Block -OnError Continue
 
@@ -150,9 +145,7 @@ Write-Output "polyglot/scripts/init.ps1 / Get-Location: $(Get-Location) / gitPat
 
 EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedScriptDir/../../spiral"
 
-# init.livemd's cells are all pwsh: a plain script run, no notebook kernel.
 Invoke-PwshNotebook init.livemd
 
-# The native Rust spiral CLI (apps/spiral/build.ps1 ships it to spiral/workspace/target/release).
 
 { pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") -SkipPreBuild 1 } | Invoke-Block
