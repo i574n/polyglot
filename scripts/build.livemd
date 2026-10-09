@@ -38,7 +38,7 @@
 <!-- livebook:{"spiral_code":"pwsh"} -->
 
 ```pwsh
-{ pwsh ../deps/spiral/apps/dir-tree-html/build.ps1 } | Invoke-Block
+{ pwsh ../deps/spiral/scripts/dir-tree-html.ps1 } | Invoke-Block
 ```
 
 <!-- livebook:{"spiral_code":"pwsh"} -->
