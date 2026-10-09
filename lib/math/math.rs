@@ -18,41 +18,41 @@ struct Mut1 { l0: i32, l1: Rc<str>, l2: Rc<str> }
 struct Mut2 { l0: i32, l1: num_complex::Complex<f64> }
 #[derive(Clone)]
 enum US0 {
-    US0_0(num_complex::Complex<f64>),
-    US0_1,
+    US0_Some(num_complex::Complex<f64>),
+    US0_None,
 }
 impl US0 {
     fn tag(&self) -> i32 {
         match self {
-            US0::US0_0(..) => 0,
-            US0::US0_1 => 1,
+            US0::US0_Some(..) => 0,
+            US0::US0_None => 1,
         }
     }
 }
 struct Mut3 { l0: Rc<str> }
 #[derive(Clone)]
 enum UH0 {
-    UH0_0,
-    UH0_1(f64, Rc<UH0>),
+    UH0_Nil,
+    UH0_Cons(f64, Rc<UH0>),
 }
 impl UH0 {
     fn tag(&self) -> i32 {
         match self {
-            UH0::UH0_0 => 0,
-            UH0::UH0_1(..) => 1,
+            UH0::UH0_Nil => 0,
+            UH0::UH0_Cons(..) => 1,
         }
     }
 }
 #[derive(Clone)]
 enum UH1 {
-    UH1_0,
-    UH1_1(num_complex::Complex<f64>, Rc<UH1>),
+    UH1_Nil,
+    UH1_Cons(num_complex::Complex<f64>, Rc<UH1>),
 }
 impl UH1 {
     fn tag(&self) -> i32 {
         match self {
-            UH1::UH1_0 => 0,
-            UH1::UH1_1(..) => 1,
+            UH1::UH1_Nil => 0,
+            UH1::UH1_Cons(..) => 1,
         }
     }
 }
@@ -332,7 +332,7 @@ fn method20(mut v0: Option<num_complex::Complex<f64>>) -> Option<num_complex::Co
 fn closure0() -> Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> {
     thread_local!{ static CLOSURE: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = Rc::new(move |mut v0: (num_complex::Complex<f64>)| -> US0 {
         let mut v1: num_complex::Complex<f64> = (v0);
-        US0::US0_0(v1.clone())
+        US0::US0_Some(v1.clone())
     }); } CLOSURE.with(|closure| closure.clone())
 }
 fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_complex::Complex<f64> {
@@ -378,16 +378,16 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
         let mut v271: Option<num_complex::Complex<f64>> = method20(v111.clone());
         let mut v272: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
         let mut v273: Option<US0> = v271.map(|x| v272(x));
-        let mut v407: US0 = US0::US0_1;
+        let mut v407: US0 = US0::US0_None;
         let mut v408: US0 = v273.unwrap_or(v407);
         let mut v453: f64 = f64::NAN;
         let mut v455: f64 = f64::NAN;
         let mut v457: num_complex::Complex<f64> = num_complex::Complex::new(v453, v455);
         let mut v460: num_complex::Complex<f64> = match &v408 {
-            US0::US0_1 => {
+            US0::US0_None => {
                 v457.clone()
             }
-            US0::US0_0(v458) => {
+            US0::US0_Some(v458) => {
                 let mut v458: num_complex::Complex<f64> = v458.clone();
                 v458.clone()
             }
@@ -449,16 +449,16 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                 let mut v521: Option<num_complex::Complex<f64>> = v519.ok();
                 let mut v522: Option<num_complex::Complex<f64>> = method20(v521.clone());
                 let mut v523: Option<US0> = v522.map(|x| v272(x));
-                let mut v524: US0 = US0::US0_1;
+                let mut v524: US0 = US0::US0_None;
                 let mut v525: US0 = v523.unwrap_or(v524);
                 let mut v527: f64 = f64::NAN;
                 let mut v529: f64 = f64::NAN;
                 let mut v531: num_complex::Complex<f64> = num_complex::Complex::new(v527, v529);
                 let mut v534: num_complex::Complex<f64> = match &v525 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v531.clone()
                     }
-                    US0::US0_0(v532) => {
+                    US0::US0_Some(v532) => {
                         let mut v532: num_complex::Complex<f64> = v532.clone();
                         v532.clone()
                     }
@@ -520,16 +520,16 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                         let mut v595: Option<num_complex::Complex<f64>> = v593.ok();
                         let mut v596: Option<num_complex::Complex<f64>> = method20(v595.clone());
                         let mut v597: Option<US0> = v596.map(|x| v272(x));
-                        let mut v598: US0 = US0::US0_1;
+                        let mut v598: US0 = US0::US0_None;
                         let mut v599: US0 = v597.unwrap_or(v598);
                         let mut v601: f64 = f64::NAN;
                         let mut v603: f64 = f64::NAN;
                         let mut v605: num_complex::Complex<f64> = num_complex::Complex::new(v601, v603);
                         let mut v608: num_complex::Complex<f64> = match &v599 {
-                            US0::US0_1 => {
+                            US0::US0_None => {
                                 v605.clone()
                             }
-                            US0::US0_0(v606) => {
+                            US0::US0_Some(v606) => {
                                 let mut v606: num_complex::Complex<f64> = v606.clone();
                                 v606.clone()
                             }
@@ -591,16 +591,16 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                 let mut v669: Option<num_complex::Complex<f64>> = v667.ok();
                                 let mut v670: Option<num_complex::Complex<f64>> = method20(v669.clone());
                                 let mut v671: Option<US0> = v670.map(|x| v272(x));
-                                let mut v672: US0 = US0::US0_1;
+                                let mut v672: US0 = US0::US0_None;
                                 let mut v673: US0 = v671.unwrap_or(v672);
                                 let mut v675: f64 = f64::NAN;
                                 let mut v677: f64 = f64::NAN;
                                 let mut v679: num_complex::Complex<f64> = num_complex::Complex::new(v675, v677);
                                 let mut v682: num_complex::Complex<f64> = match &v673 {
-                                    US0::US0_1 => {
+                                    US0::US0_None => {
                                         v679.clone()
                                     }
-                                    US0::US0_0(v680) => {
+                                    US0::US0_Some(v680) => {
                                         let mut v680: num_complex::Complex<f64> = v680.clone();
                                         v680.clone()
                                     }
@@ -662,16 +662,16 @@ fn method16(mut v0: pyo3::Python, mut v1: num_complex::Complex<f64>) -> num_comp
                                         let mut v743: Option<num_complex::Complex<f64>> = v741.ok();
                                         let mut v744: Option<num_complex::Complex<f64>> = method20(v743.clone());
                                         let mut v745: Option<US0> = v744.map(|x| v272(x));
-                                        let mut v746: US0 = US0::US0_1;
+                                        let mut v746: US0 = US0::US0_None;
                                         let mut v747: US0 = v745.unwrap_or(v746);
                                         let mut v749: f64 = f64::NAN;
                                         let mut v751: f64 = f64::NAN;
                                         let mut v753: num_complex::Complex<f64> = num_complex::Complex::new(v749, v751);
                                         let mut v756: num_complex::Complex<f64> = match &v747 {
-                                            US0::US0_1 => {
+                                            US0::US0_None => {
                                                 v753.clone()
                                             }
-                                            US0::US0_0(v754) => {
+                                            US0::US0_Some(v754) => {
                                                 let mut v754: num_complex::Complex<f64> = v754.clone();
                                                 v754.clone()
                                             }
@@ -840,16 +840,16 @@ fn method2(mut v0: pyo3::Python) -> () {
         let mut v17: Option<num_complex::Complex<f64>> = method20(v16.clone());
         let mut v18: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
         let mut v19: Option<US0> = v17.map(|x| v18(x));
-        let mut v20: US0 = US0::US0_1;
+        let mut v20: US0 = US0::US0_None;
         let mut v21: US0 = v19.unwrap_or(v20);
         let mut v23: f64 = f64::NAN;
         let mut v25: f64 = f64::NAN;
         let mut v27: num_complex::Complex<f64> = num_complex::Complex::new(v23, v25);
         let mut v30: num_complex::Complex<f64> = match &v21 {
-            US0::US0_1 => {
+            US0::US0_None => {
                 v27.clone()
             }
-            US0::US0_0(v28) => {
+            US0::US0_Some(v28) => {
                 let mut v28: num_complex::Complex<f64> = v28.clone();
                 v28.clone()
             }
@@ -947,16 +947,16 @@ fn method32(mut v0: pyo3::Python) -> () {
     let mut v8: Option<num_complex::Complex<f64>> = method20(v7.clone());
     let mut v9: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
     let mut v10: Option<US0> = v8.map(|x| v9(x));
-    let mut v11: US0 = US0::US0_1;
+    let mut v11: US0 = US0::US0_None;
     let mut v12: US0 = v10.unwrap_or(v11);
     let mut v14: f64 = f64::NAN;
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => {
+        US0::US0_None => {
             v18.clone()
         }
-        US0::US0_0(v19) => {
+        US0::US0_Some(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1050,7 +1050,7 @@ fn method31() -> () {
 fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
-            UH0::UH0_1(v2, v3) => {
+            UH0::UH0_Cons(v2, v3) => {
                 let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, 0.0f64);
@@ -1061,16 +1061,16 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 let mut v11: Option<num_complex::Complex<f64>> = method20(v10.clone());
                 let mut v12: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
                 let mut v13: Option<US0> = v11.map(|x| v12(x));
-                let mut v14: US0 = US0::US0_1;
+                let mut v14: US0 = US0::US0_None;
                 let mut v15: US0 = v13.unwrap_or(v14);
                 let mut v17: f64 = f64::NAN;
                 let mut v19: f64 = f64::NAN;
                 let mut v21: num_complex::Complex<f64> = num_complex::Complex::new(v17, v19);
                 let mut v24: num_complex::Complex<f64> = match &v15 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v21.clone()
                     }
-                    US0::US0_0(v22) => {
+                    US0::US0_Some(v22) => {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
@@ -1136,7 +1136,7 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH0::UH0_0 => {
+            UH0::UH0_Nil => {
                 return ();
             }
         }
@@ -1144,27 +1144,27 @@ fn method35(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     }
 }
 fn method36() -> Rc<UH0> {
-    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) };
-    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_1(-40.0f64, v0.clone()));
-    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_1(-38.0f64, v1.clone()));
-    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_1(-36.0f64, v2.clone()));
-    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_1(-34.0f64, v3.clone()));
-    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_1(-32.0f64, v4.clone()));
-    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_1(-30.0f64, v5.clone()));
-    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_1(-28.0f64, v6.clone()));
-    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_1(-26.0f64, v7.clone()));
-    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_1(-24.0f64, v8.clone()));
-    let mut v10: Rc<UH0> = Rc::new(UH0::UH0_1(-22.0f64, v9.clone()));
-    let mut v11: Rc<UH0> = Rc::new(UH0::UH0_1(-20.0f64, v10.clone()));
-    let mut v12: Rc<UH0> = Rc::new(UH0::UH0_1(-18.0f64, v11.clone()));
-    let mut v13: Rc<UH0> = Rc::new(UH0::UH0_1(-16.0f64, v12.clone()));
-    let mut v14: Rc<UH0> = Rc::new(UH0::UH0_1(-14.0f64, v13.clone()));
-    let mut v15: Rc<UH0> = Rc::new(UH0::UH0_1(-12.0f64, v14.clone()));
-    let mut v16: Rc<UH0> = Rc::new(UH0::UH0_1(-10.0f64, v15.clone()));
-    let mut v17: Rc<UH0> = Rc::new(UH0::UH0_1(-8.0f64, v16.clone()));
-    let mut v18: Rc<UH0> = Rc::new(UH0::UH0_1(-6.0f64, v17.clone()));
-    let mut v19: Rc<UH0> = Rc::new(UH0::UH0_1(-4.0f64, v18.clone()));
-    Rc::new(UH0::UH0_1(-2.0f64, v19.clone()))
+    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_Nil); } CASE.with(|case| case.clone()) };
+    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_Cons(-40.0f64, v0.clone()));
+    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_Cons(-38.0f64, v1.clone()));
+    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_Cons(-36.0f64, v2.clone()));
+    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_Cons(-34.0f64, v3.clone()));
+    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_Cons(-32.0f64, v4.clone()));
+    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_Cons(-30.0f64, v5.clone()));
+    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_Cons(-28.0f64, v6.clone()));
+    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_Cons(-26.0f64, v7.clone()));
+    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_Cons(-24.0f64, v8.clone()));
+    let mut v10: Rc<UH0> = Rc::new(UH0::UH0_Cons(-22.0f64, v9.clone()));
+    let mut v11: Rc<UH0> = Rc::new(UH0::UH0_Cons(-20.0f64, v10.clone()));
+    let mut v12: Rc<UH0> = Rc::new(UH0::UH0_Cons(-18.0f64, v11.clone()));
+    let mut v13: Rc<UH0> = Rc::new(UH0::UH0_Cons(-16.0f64, v12.clone()));
+    let mut v14: Rc<UH0> = Rc::new(UH0::UH0_Cons(-14.0f64, v13.clone()));
+    let mut v15: Rc<UH0> = Rc::new(UH0::UH0_Cons(-12.0f64, v14.clone()));
+    let mut v16: Rc<UH0> = Rc::new(UH0::UH0_Cons(-10.0f64, v15.clone()));
+    let mut v17: Rc<UH0> = Rc::new(UH0::UH0_Cons(-8.0f64, v16.clone()));
+    let mut v18: Rc<UH0> = Rc::new(UH0::UH0_Cons(-6.0f64, v17.clone()));
+    let mut v19: Rc<UH0> = Rc::new(UH0::UH0_Cons(-4.0f64, v18.clone()));
+    Rc::new(UH0::UH0_Cons(-2.0f64, v19.clone()))
 }
 fn method34(mut v0: pyo3::Python) -> () {
     let mut v1: Rc<UH0> = method36();
@@ -1201,16 +1201,16 @@ fn method38(mut v0: pyo3::Python) -> () {
         let mut v24: Option<num_complex::Complex<f64>> = method20(v23.clone());
         let mut v25: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
         let mut v26: Option<US0> = v24.map(|x| v25(x));
-        let mut v27: US0 = US0::US0_1;
+        let mut v27: US0 = US0::US0_None;
         let mut v28: US0 = v26.unwrap_or(v27);
         let mut v30: f64 = f64::NAN;
         let mut v32: f64 = f64::NAN;
         let mut v34: num_complex::Complex<f64> = num_complex::Complex::new(v30, v32);
         let mut v37: num_complex::Complex<f64> = match &v28 {
-            US0::US0_1 => {
+            US0::US0_None => {
                 v34.clone()
             }
-            US0::US0_0(v35) => {
+            US0::US0_Some(v35) => {
                 let mut v35: num_complex::Complex<f64> = v35.clone();
                 v35.clone()
             }
@@ -1319,16 +1319,16 @@ fn method40(mut v0: pyo3::Python) -> () {
         let mut v14: Option<num_complex::Complex<f64>> = method20(v13.clone());
         let mut v15: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
         let mut v16: Option<US0> = v14.map(|x| v15(x));
-        let mut v17: US0 = US0::US0_1;
+        let mut v17: US0 = US0::US0_None;
         let mut v18: US0 = v16.unwrap_or(v17);
         let mut v20: f64 = f64::NAN;
         let mut v22: f64 = f64::NAN;
         let mut v24: num_complex::Complex<f64> = num_complex::Complex::new(v20, v22);
         let mut v27: num_complex::Complex<f64> = match &v18 {
-            US0::US0_1 => {
+            US0::US0_None => {
                 v24.clone()
             }
-            US0::US0_0(v25) => {
+            US0::US0_Some(v25) => {
                 let mut v25: num_complex::Complex<f64> = v25.clone();
                 v25.clone()
             }
@@ -1418,16 +1418,16 @@ fn method42(mut v0: pyo3::Python) -> () {
     let mut v8: Option<num_complex::Complex<f64>> = method20(v7.clone());
     let mut v9: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
     let mut v10: Option<US0> = v8.map(|x| v9(x));
-    let mut v11: US0 = US0::US0_1;
+    let mut v11: US0 = US0::US0_None;
     let mut v12: US0 = v10.unwrap_or(v11);
     let mut v14: f64 = f64::NAN;
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => {
+        US0::US0_None => {
             v18.clone()
         }
-        US0::US0_0(v19) => {
+        US0::US0_Some(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1511,16 +1511,16 @@ fn method44(mut v0: pyo3::Python) -> () {
     let mut v8: Option<num_complex::Complex<f64>> = method20(v7.clone());
     let mut v9: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
     let mut v10: Option<US0> = v8.map(|x| v9(x));
-    let mut v11: US0 = US0::US0_1;
+    let mut v11: US0 = US0::US0_None;
     let mut v12: US0 = v10.unwrap_or(v11);
     let mut v14: f64 = f64::NAN;
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => {
+        US0::US0_None => {
             v18.clone()
         }
-        US0::US0_0(v19) => {
+        US0::US0_Some(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1535,16 +1535,16 @@ fn method44(mut v0: pyo3::Python) -> () {
     let mut v33: Option<num_complex::Complex<f64>> = v30.ok();
     let mut v34: Option<num_complex::Complex<f64>> = method20(v33.clone());
     let mut v35: Option<US0> = v34.map(|x| v9(x));
-    let mut v36: US0 = US0::US0_1;
+    let mut v36: US0 = US0::US0_None;
     let mut v37: US0 = v35.unwrap_or(v36);
     let mut v39: f64 = f64::NAN;
     let mut v41: f64 = f64::NAN;
     let mut v43: num_complex::Complex<f64> = num_complex::Complex::new(v39, v41);
     let mut v46: num_complex::Complex<f64> = match &v37 {
-        US0::US0_1 => {
+        US0::US0_None => {
             v43.clone()
         }
-        US0::US0_0(v44) => {
+        US0::US0_Some(v44) => {
             let mut v44: num_complex::Complex<f64> = v44.clone();
             v44.clone()
         }
@@ -1623,16 +1623,16 @@ fn method46(mut v0: pyo3::Python) -> () {
     let mut v8: Option<num_complex::Complex<f64>> = method20(v7.clone());
     let mut v9: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
     let mut v10: Option<US0> = v8.map(|x| v9(x));
-    let mut v11: US0 = US0::US0_1;
+    let mut v11: US0 = US0::US0_None;
     let mut v12: US0 = v10.unwrap_or(v11);
     let mut v14: f64 = f64::NAN;
     let mut v16: f64 = f64::NAN;
     let mut v18: num_complex::Complex<f64> = num_complex::Complex::new(v14, v16);
     let mut v21: num_complex::Complex<f64> = match &v12 {
-        US0::US0_1 => {
+        US0::US0_None => {
             v18.clone()
         }
-        US0::US0_0(v19) => {
+        US0::US0_Some(v19) => {
             let mut v19: num_complex::Complex<f64> = v19.clone();
             v19.clone()
         }
@@ -1710,7 +1710,7 @@ fn method45() -> () {
 fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     loop {
         match &*v1 {
-            UH0::UH0_1(v2, v3) => {
+            UH0::UH0_Cons(v2, v3) => {
                 let mut v2: f64 = *v2;
                 let mut v3: Rc<UH0> = v3.clone();
                 let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(0.0f64, v2);
@@ -1721,16 +1721,16 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 let mut v11: Option<num_complex::Complex<f64>> = method20(v10.clone());
                 let mut v12: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
                 let mut v13: Option<US0> = v11.map(|x| v12(x));
-                let mut v14: US0 = US0::US0_1;
+                let mut v14: US0 = US0::US0_None;
                 let mut v15: US0 = v13.unwrap_or(v14);
                 let mut v17: f64 = f64::NAN;
                 let mut v19: f64 = f64::NAN;
                 let mut v21: num_complex::Complex<f64> = num_complex::Complex::new(v17, v19);
                 let mut v24: num_complex::Complex<f64> = match &v15 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v21.clone()
                     }
-                    US0::US0_0(v22) => {
+                    US0::US0_Some(v22) => {
                         let mut v22: num_complex::Complex<f64> = v22.clone();
                         v22.clone()
                     }
@@ -1796,7 +1796,7 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH0::UH0_0 => {
+            UH0::UH0_Nil => {
                 return ();
             }
         }
@@ -1804,17 +1804,17 @@ fn method49(mut v0: pyo3::Python, mut v1: Rc<UH0>) -> () {
     }
 }
 fn method50() -> Rc<UH0> {
-    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) };
-    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_1(100.0f64, v0.clone()));
-    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_1(90.0f64, v1.clone()));
-    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_1(80.0f64, v2.clone()));
-    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_1(70.0f64, v3.clone()));
-    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_1(60.0f64, v4.clone()));
-    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_1(50.0f64, v5.clone()));
-    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_1(40.0f64, v6.clone()));
-    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_1(30.0f64, v7.clone()));
-    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_1(20.0f64, v8.clone()));
-    Rc::new(UH0::UH0_1(10.0f64, v9.clone()))
+    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_Nil); } CASE.with(|case| case.clone()) };
+    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_Cons(100.0f64, v0.clone()));
+    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_Cons(90.0f64, v1.clone()));
+    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_Cons(80.0f64, v2.clone()));
+    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_Cons(70.0f64, v3.clone()));
+    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_Cons(60.0f64, v4.clone()));
+    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_Cons(50.0f64, v5.clone()));
+    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_Cons(40.0f64, v6.clone()));
+    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_Cons(30.0f64, v7.clone()));
+    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_Cons(20.0f64, v8.clone()));
+    Rc::new(UH0::UH0_Cons(10.0f64, v9.clone()))
 }
 fn method48(mut v0: pyo3::Python) -> () {
     let mut v1: Rc<UH0> = method50();
@@ -1834,7 +1834,7 @@ fn method47() -> () {
 fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
     loop {
         match &*v1 {
-            UH1::UH1_1(v2, v3) => {
+            UH1::UH1_Cons(v2, v3) => {
                 let mut v2: num_complex::Complex<f64> = v2.clone();
                 let mut v3: Rc<UH1> = v3.clone();
                 let mut v4: num_complex::Complex<f64> = method4(v2.clone());
@@ -1844,16 +1844,16 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v9: Option<num_complex::Complex<f64>> = method20(v8.clone());
                 let mut v10: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
                 let mut v11: Option<US0> = v9.map(|x| v10(x));
-                let mut v12: US0 = US0::US0_1;
+                let mut v12: US0 = US0::US0_None;
                 let mut v13: US0 = v11.unwrap_or(v12);
                 let mut v15: f64 = f64::NAN;
                 let mut v17: f64 = f64::NAN;
                 let mut v19: num_complex::Complex<f64> = num_complex::Complex::new(v15, v17);
                 let mut v22: num_complex::Complex<f64> = match &v13 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v19.clone()
                     }
-                    US0::US0_0(v20) => {
+                    US0::US0_Some(v20) => {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
@@ -1919,7 +1919,7 @@ fn method53(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH1::UH1_0 => {
+            UH1::UH1_Nil => {
                 return ();
             }
         }
@@ -1932,12 +1932,12 @@ fn method54() -> Rc<UH1> {
     let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(1.25f64, 30.1f64);
     let mut v7: num_complex::Complex<f64> = num_complex::Complex::new(0.25f64, 40.0f64);
     let mut v9: num_complex::Complex<f64> = num_complex::Complex::new(1.0f64, 50.0f64);
-    let mut v10: Rc<UH1> = { thread_local!{ static CASE: Rc<UH1> = Rc::new(UH1::UH1_0); } CASE.with(|case| case.clone()) };
-    let mut v11: Rc<UH1> = Rc::new(UH1::UH1_1(v9.clone(), v10.clone()));
-    let mut v12: Rc<UH1> = Rc::new(UH1::UH1_1(v7.clone(), v11.clone()));
-    let mut v13: Rc<UH1> = Rc::new(UH1::UH1_1(v5.clone(), v12.clone()));
-    let mut v14: Rc<UH1> = Rc::new(UH1::UH1_1(v3.clone(), v13.clone()));
-    Rc::new(UH1::UH1_1(v1.clone(), v14.clone()))
+    let mut v10: Rc<UH1> = { thread_local!{ static CASE: Rc<UH1> = Rc::new(UH1::UH1_Nil); } CASE.with(|case| case.clone()) };
+    let mut v11: Rc<UH1> = Rc::new(UH1::UH1_Cons(v9.clone(), v10.clone()));
+    let mut v12: Rc<UH1> = Rc::new(UH1::UH1_Cons(v7.clone(), v11.clone()));
+    let mut v13: Rc<UH1> = Rc::new(UH1::UH1_Cons(v5.clone(), v12.clone()));
+    let mut v14: Rc<UH1> = Rc::new(UH1::UH1_Cons(v3.clone(), v13.clone()));
+    Rc::new(UH1::UH1_Cons(v1.clone(), v14.clone()))
 }
 fn method52(mut v0: pyo3::Python) -> () {
     let mut v1: Rc<UH1> = method54();
@@ -1957,7 +1957,7 @@ fn method51() -> () {
 fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
     loop {
         match &*v1 {
-            UH1::UH1_1(v2, v3) => {
+            UH1::UH1_Cons(v2, v3) => {
                 let mut v2: num_complex::Complex<f64> = v2.clone();
                 let mut v3: Rc<UH1> = v3.clone();
                 let mut v4: num_complex::Complex<f64> = method4(v2.clone());
@@ -1967,16 +1967,16 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v9: Option<num_complex::Complex<f64>> = method20(v8.clone());
                 let mut v10: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
                 let mut v11: Option<US0> = v9.map(|x| v10(x));
-                let mut v12: US0 = US0::US0_1;
+                let mut v12: US0 = US0::US0_None;
                 let mut v13: US0 = v11.unwrap_or(v12);
                 let mut v15: f64 = f64::NAN;
                 let mut v17: f64 = f64::NAN;
                 let mut v19: num_complex::Complex<f64> = num_complex::Complex::new(v15, v17);
                 let mut v22: num_complex::Complex<f64> = match &v13 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v19.clone()
                     }
-                    US0::US0_0(v20) => {
+                    US0::US0_Some(v20) => {
                         let mut v20: num_complex::Complex<f64> = v20.clone();
                         v20.clone()
                     }
@@ -2001,16 +2001,16 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v56: Option<num_complex::Complex<f64>> = v54.ok();
                 let mut v57: Option<num_complex::Complex<f64>> = method20(v56.clone());
                 let mut v58: Option<US0> = v57.map(|x| v10(x));
-                let mut v59: US0 = US0::US0_1;
+                let mut v59: US0 = US0::US0_None;
                 let mut v60: US0 = v58.unwrap_or(v59);
                 let mut v62: f64 = f64::NAN;
                 let mut v64: f64 = f64::NAN;
                 let mut v66: num_complex::Complex<f64> = num_complex::Complex::new(v62, v64);
                 let mut v69: num_complex::Complex<f64> = match &v60 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v66.clone()
                     }
-                    US0::US0_0(v67) => {
+                    US0::US0_Some(v67) => {
                         let mut v67: num_complex::Complex<f64> = v67.clone();
                         v67.clone()
                     }
@@ -2027,16 +2027,16 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 let mut v84: Option<num_complex::Complex<f64>> = v81.ok();
                 let mut v85: Option<num_complex::Complex<f64>> = method20(v84.clone());
                 let mut v86: Option<US0> = v85.map(|x| v10(x));
-                let mut v87: US0 = US0::US0_1;
+                let mut v87: US0 = US0::US0_None;
                 let mut v88: US0 = v86.unwrap_or(v87);
                 let mut v90: f64 = f64::NAN;
                 let mut v92: f64 = f64::NAN;
                 let mut v94: num_complex::Complex<f64> = num_complex::Complex::new(v90, v92);
                 let mut v97: num_complex::Complex<f64> = match &v88 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v94.clone()
                     }
-                    US0::US0_0(v95) => {
+                    US0::US0_Some(v95) => {
                         let mut v95: num_complex::Complex<f64> = v95.clone();
                         v95.clone()
                     }
@@ -2121,7 +2121,7 @@ fn method57(mut v0: pyo3::Python, mut v1: Rc<UH1>) -> () {
                 (v0, v1) = (v0.clone(), v3.clone());
                 continue;
             }
-            UH1::UH1_0 => {
+            UH1::UH1_Nil => {
                 return ();
             }
         }
@@ -2133,11 +2133,11 @@ fn method58() -> Rc<UH1> {
     let mut v3: num_complex::Complex<f64> = num_complex::Complex::new(2.5f64, -3.5f64);
     let mut v5: num_complex::Complex<f64> = num_complex::Complex::new(1.5f64, 2.5f64);
     let mut v7: num_complex::Complex<f64> = num_complex::Complex::new(0.5f64, 14.134725f64);
-    let mut v8: Rc<UH1> = { thread_local!{ static CASE: Rc<UH1> = Rc::new(UH1::UH1_0); } CASE.with(|case| case.clone()) };
-    let mut v9: Rc<UH1> = Rc::new(UH1::UH1_1(v7.clone(), v8.clone()));
-    let mut v10: Rc<UH1> = Rc::new(UH1::UH1_1(v5.clone(), v9.clone()));
-    let mut v11: Rc<UH1> = Rc::new(UH1::UH1_1(v3.clone(), v10.clone()));
-    Rc::new(UH1::UH1_1(v1.clone(), v11.clone()))
+    let mut v8: Rc<UH1> = { thread_local!{ static CASE: Rc<UH1> = Rc::new(UH1::UH1_Nil); } CASE.with(|case| case.clone()) };
+    let mut v9: Rc<UH1> = Rc::new(UH1::UH1_Cons(v7.clone(), v8.clone()));
+    let mut v10: Rc<UH1> = Rc::new(UH1::UH1_Cons(v5.clone(), v9.clone()));
+    let mut v11: Rc<UH1> = Rc::new(UH1::UH1_Cons(v3.clone(), v10.clone()));
+    Rc::new(UH1::UH1_Cons(v1.clone(), v11.clone()))
 }
 fn method56(mut v0: pyo3::Python) -> () {
     let mut v1: Rc<UH1> = method58();
@@ -2157,7 +2157,7 @@ fn method55() -> () {
 fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
     loop {
         match &*v1 {
-            UH0::UH0_1(v3, v4) => {
+            UH0::UH0_Cons(v3, v4) => {
                 let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v5: f64 = -(v0);
@@ -2167,7 +2167,7 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
                 (v0, v1, v2) = (v0, v4.clone(), v8);
                 continue;
             }
-            UH0::UH0_0 => {
+            UH0::UH0_Nil => {
                 return v2;
             }
         }
@@ -2176,7 +2176,7 @@ fn method62(mut v0: f64, mut v1: Rc<UH0>, mut v2: f64) -> f64 {
 fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
     loop {
         match &*v2 {
-            UH0::UH0_1(v3, v4) => {
+            UH0::UH0_Cons(v3, v4) => {
                 let mut v3: f64 = *v3;
                 let mut v4: Rc<UH0> = v4.clone();
                 let mut v6: num_complex::Complex<f64> = num_complex::Complex::new(v3, 0.0f64);
@@ -2189,16 +2189,16 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
                 let mut v14: Option<num_complex::Complex<f64>> = method20(v13.clone());
                 let mut v15: Rc<dyn Fn((num_complex::Complex<f64>)) -> US0> = closure0();
                 let mut v16: Option<US0> = v14.map(|x| v15(x));
-                let mut v17: US0 = US0::US0_1;
+                let mut v17: US0 = US0::US0_None;
                 let mut v18: US0 = v16.unwrap_or(v17);
                 let mut v20: f64 = f64::NAN;
                 let mut v22: f64 = f64::NAN;
                 let mut v24: num_complex::Complex<f64> = num_complex::Complex::new(v20, v22);
                 let mut v27: num_complex::Complex<f64> = match &v18 {
-                    US0::US0_1 => {
+                    US0::US0_None => {
                         v24.clone()
                     }
-                    US0::US0_0(v25) => {
+                    US0::US0_Some(v25) => {
                         let mut v25: num_complex::Complex<f64> = v25.clone();
                         v25.clone()
                     }
@@ -2272,7 +2272,7 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
                 (v0, v1, v2) = (v0.clone(), v1.clone(), v4.clone());
                 continue;
             }
-            UH0::UH0_0 => {
+            UH0::UH0_Nil => {
                 return ();
             }
         }
@@ -2280,37 +2280,37 @@ fn method61(mut v0: pyo3::Python, mut v1: Rc<UH0>, mut v2: Rc<UH0>) -> () {
     }
 }
 fn method63() -> Rc<UH0> {
-    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) };
-    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_1(5.0f64, v0.clone()));
-    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_1(4.5f64, v1.clone()));
-    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_1(4.0f64, v2.clone()));
-    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_1(3.5f64, v3.clone()));
-    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_1(3.0f64, v4.clone()));
-    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_1(2.5f64, v5.clone()));
-    Rc::new(UH0::UH0_1(2.0f64, v6.clone()))
+    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_Nil); } CASE.with(|case| case.clone()) };
+    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_Cons(5.0f64, v0.clone()));
+    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_Cons(4.5f64, v1.clone()));
+    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_Cons(4.0f64, v2.clone()));
+    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_Cons(3.5f64, v3.clone()));
+    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_Cons(3.0f64, v4.clone()));
+    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_Cons(2.5f64, v5.clone()));
+    Rc::new(UH0::UH0_Cons(2.0f64, v6.clone()))
 }
 fn method64() -> Rc<UH0> {
-    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_0); } CASE.with(|case| case.clone()) };
-    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_1(71.0f64, v0.clone()));
-    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_1(67.0f64, v1.clone()));
-    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_1(61.0f64, v2.clone()));
-    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_1(59.0f64, v3.clone()));
-    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_1(53.0f64, v4.clone()));
-    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_1(47.0f64, v5.clone()));
-    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_1(43.0f64, v6.clone()));
-    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_1(41.0f64, v7.clone()));
-    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_1(37.0f64, v8.clone()));
-    let mut v10: Rc<UH0> = Rc::new(UH0::UH0_1(31.0f64, v9.clone()));
-    let mut v11: Rc<UH0> = Rc::new(UH0::UH0_1(29.0f64, v10.clone()));
-    let mut v12: Rc<UH0> = Rc::new(UH0::UH0_1(23.0f64, v11.clone()));
-    let mut v13: Rc<UH0> = Rc::new(UH0::UH0_1(19.0f64, v12.clone()));
-    let mut v14: Rc<UH0> = Rc::new(UH0::UH0_1(17.0f64, v13.clone()));
-    let mut v15: Rc<UH0> = Rc::new(UH0::UH0_1(13.0f64, v14.clone()));
-    let mut v16: Rc<UH0> = Rc::new(UH0::UH0_1(11.0f64, v15.clone()));
-    let mut v17: Rc<UH0> = Rc::new(UH0::UH0_1(7.0f64, v16.clone()));
-    let mut v18: Rc<UH0> = Rc::new(UH0::UH0_1(5.0f64, v17.clone()));
-    let mut v19: Rc<UH0> = Rc::new(UH0::UH0_1(3.0f64, v18.clone()));
-    Rc::new(UH0::UH0_1(2.0f64, v19.clone()))
+    let mut v0: Rc<UH0> = { thread_local!{ static CASE: Rc<UH0> = Rc::new(UH0::UH0_Nil); } CASE.with(|case| case.clone()) };
+    let mut v1: Rc<UH0> = Rc::new(UH0::UH0_Cons(71.0f64, v0.clone()));
+    let mut v2: Rc<UH0> = Rc::new(UH0::UH0_Cons(67.0f64, v1.clone()));
+    let mut v3: Rc<UH0> = Rc::new(UH0::UH0_Cons(61.0f64, v2.clone()));
+    let mut v4: Rc<UH0> = Rc::new(UH0::UH0_Cons(59.0f64, v3.clone()));
+    let mut v5: Rc<UH0> = Rc::new(UH0::UH0_Cons(53.0f64, v4.clone()));
+    let mut v6: Rc<UH0> = Rc::new(UH0::UH0_Cons(47.0f64, v5.clone()));
+    let mut v7: Rc<UH0> = Rc::new(UH0::UH0_Cons(43.0f64, v6.clone()));
+    let mut v8: Rc<UH0> = Rc::new(UH0::UH0_Cons(41.0f64, v7.clone()));
+    let mut v9: Rc<UH0> = Rc::new(UH0::UH0_Cons(37.0f64, v8.clone()));
+    let mut v10: Rc<UH0> = Rc::new(UH0::UH0_Cons(31.0f64, v9.clone()));
+    let mut v11: Rc<UH0> = Rc::new(UH0::UH0_Cons(29.0f64, v10.clone()));
+    let mut v12: Rc<UH0> = Rc::new(UH0::UH0_Cons(23.0f64, v11.clone()));
+    let mut v13: Rc<UH0> = Rc::new(UH0::UH0_Cons(19.0f64, v12.clone()));
+    let mut v14: Rc<UH0> = Rc::new(UH0::UH0_Cons(17.0f64, v13.clone()));
+    let mut v15: Rc<UH0> = Rc::new(UH0::UH0_Cons(13.0f64, v14.clone()));
+    let mut v16: Rc<UH0> = Rc::new(UH0::UH0_Cons(11.0f64, v15.clone()));
+    let mut v17: Rc<UH0> = Rc::new(UH0::UH0_Cons(7.0f64, v16.clone()));
+    let mut v18: Rc<UH0> = Rc::new(UH0::UH0_Cons(5.0f64, v17.clone()));
+    let mut v19: Rc<UH0> = Rc::new(UH0::UH0_Cons(3.0f64, v18.clone()));
+    Rc::new(UH0::UH0_Cons(2.0f64, v19.clone()))
 }
 fn method60(mut v0: pyo3::Python) -> () {
     let mut v1: Rc<UH0> = method63();

@@ -1,0 +1,5 @@
+nbconvert>=7.16.6
+ipython_genutils>=0.2.0
+mpmath
+cupy-cuda12x
+mistune==3.0.2
