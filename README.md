@@ -112,13 +112,13 @@ Samples
 <https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.livemd.html>
 
 - Chat smart contract notebook (Rust, NEAR Protocol)  
-<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.livemd.html>
+<https://i574n.github.io/polyglot/apps/chat/contract/chat_contract.spi.html>
 
 - Domain Modeling Sample: Scheduling with recurrency  
 <https://i574n.github.io/polyglot/apps/scheduler/Tasks.livemd.html>
 
 - Computational Mathematics: Unit testing with Spiral, Rust and Python  
-<https://i574n.github.io/polyglot/lib/math/math.livemd.html>
+<https://i574n.github.io/polyglot/lib/math/math.spi.html>
 
 </td>
 </tr>

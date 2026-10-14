@@ -12,10 +12,8 @@ $ErrorActionPreference = "Stop"
 $projectName = "math"
 
 if (!$fast -and !$SkipNotebook) {
-    Invoke-Notebook "$projectName.livemd" -Retries ($fast -or !$env:CI ? 1 : 2)
+    Invoke-Notebook "$projectName.spi" @("--output-path", "$ScriptDir/$projectName.spi.ipynb") -Retries ($fast -or !$env:CI ? 1 : 2)
 }
-
-Invoke-Notebook "$projectName.livemd" @("--spi-path", "$ScriptDir/$projectName.spi", "--export-only")
 
 $targetDir = GetTargetDir $projectName
 

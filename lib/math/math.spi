@@ -9,6 +9,13 @@ nominal complex t = $'num_complex::Complex<`t>'
 inl complex forall t. ((re : t), (im : t)) : complex t =
     !\\((re, im), $'"num_complex::Complex::new($0, $1)"')
 
+///> rust -d num-complex
+test complex =
+    complex (0f64, 0f64)
+    |> sm'.format'
+    |> sm'.from_std_string
+    |> _assert_eq "0+0i"
+
 /// ## re
 inl re forall t. (c : complex t) : t =
     !\\(c, $'"$0.re"')
@@ -283,6 +290,10 @@ inl test_zeta_at_known_values_ log = run_test log fun zeta, gamma =>
         result |> im |> _assert_eq 0
         re result - e |> abs |> _assert_lt 0.0001
 
+///> rust -d num-complex pyo3='=0.26.0'
+test test_zeta_at_known_values =
+    test_zeta_at_known_values_ true
+
 /// ## test_zeta_at_2_minus2
 inl test_zeta_at_2_minus2 log = run_test log fun zeta, gamma =>
     inl s = .^(2, -2)
@@ -290,6 +301,10 @@ inl test_zeta_at_2_minus2 log = run_test log fun zeta, gamma =>
 
     (re result - 0.8673) |> abs |> _assert_lt 0.001
     (im result - 0.2750) |> abs |> _assert_lt 0.001
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_zeta_at_2_minus2 =
+    test_zeta_at_2_minus2 true
 
 /// ## test_trivial_zero_at_negative_even___
 inl test_trivial_zero_at_negative_even___ log = run_test log fun zeta, gamma =>
@@ -300,6 +315,10 @@ inl test_trivial_zero_at_negative_even___ log = run_test log fun zeta, gamma =>
 
         result |> re |> _assert_eq 0
         result |> im |> _assert_eq 0
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_trivial_zero_at_negative_even =
+    test_trivial_zero_at_negative_even___ true
 
 /// ## test_non_trivial_zero___
 inl test_non_trivial_zero___ log = run_test log fun zeta, gamma =>
@@ -317,6 +336,10 @@ inl test_non_trivial_zero___ log = run_test log fun zeta, gamma =>
             result |> re |> abs |> _assert_lt 0.0001
             result |> im |> abs |> _assert_lt 0.0001
 
+///> rust -d num-complex pyo3='=0.26.0'
+test test_non_trivial_zero =
+    test_non_trivial_zero___ true
+
 /// ## test_real_part_greater_than_one___
 inl test_real_part_greater_than_one___ log = run_test log fun zeta, gamma =>
     inl points = ;[ 2; 3; 4; 5; 10; 20; 50 ]
@@ -327,12 +350,20 @@ inl test_real_part_greater_than_one___ log = run_test log fun zeta, gamma =>
         result |> re |> _assert_gt 0
         result |> im |> _assert_eq 0
 
+///> rust -d num-complex pyo3='=0.26.0'
+test test_real_part_greater_than_one =
+    test_real_part_greater_than_one___ true
+
 /// ## test_zeta_at_1___
 inl test_zeta_at_1___ log = run_test log fun zeta, gamma =>
     inl s = .^(1, 0)
     inl result = zeta s
     result |> re |> _assert_eq limit.max
     result |> im |> _assert_eq 0
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_zeta_at_1 =
+    test_zeta_at_1___ true
 
 /// ## test_symmetry_across_real_axis___
 inl test_symmetry_across_real_axis___ log = run_test log fun zeta, gamma =>
@@ -343,12 +374,20 @@ inl test_symmetry_across_real_axis___ log = run_test log fun zeta, gamma =>
     result_positive_im |> re |> _assert_eq (conj |> re)
     result_positive_im |> im |> _assert_eq (conj |> im)
 
+///> rust -d num-complex pyo3='=0.26.0'
+test test_symmetry_across_real_axis =
+    test_symmetry_across_real_axis___ true
+
 /// ## test_behavior_near_origin___
 inl test_behavior_near_origin___ log = run_test log fun zeta, gamma =>
     inl s = .^(0.01, 0.01)
     inl result = zeta s
     result |> re |> _assert_lt limit.max
     result |> im |> _assert_lt limit.max
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_behavior_near_origin =
+    test_behavior_near_origin___ true
 
 /// ## test_imaginary_axis
 inl test_imaginary_axis log = run_test log fun zeta, gamma =>
@@ -358,6 +397,10 @@ inl test_imaginary_axis log = run_test log fun zeta, gamma =>
         inl result = zeta s
         result |> re |> _assert_ne 0
         result |> im |> _assert_ne 0
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_imaginary_axis =
+    test_imaginary_axis true
 
 /// ## test_critical_strip
 inl test_critical_strip log = run_test log fun zeta, gamma =>
@@ -372,6 +415,10 @@ inl test_critical_strip log = run_test log fun zeta, gamma =>
         inl result = zeta s
         result |> re |> _assert_ne 0
         result |> im |> _assert_ne 0
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_critical_strip =
+    test_critical_strip true
 
 /// ## test_reflection_formula_for_specific_value
 inl test_reflection_formula_for_specific_value log = run_test log fun zeta, gamma =>
@@ -395,6 +442,10 @@ inl test_reflection_formula_for_specific_value log = run_test log fun zeta, gamm
         re lhs - re rhs |> abs |> _assert_lt 0.0001
         im lhs - im rhs |> abs |> _assert_lt 0.0001
 
+///> rust -d num-complex pyo3='=0.26.0'
+test test_reflection_formula_for_specific_value =
+    test_reflection_formula_for_specific_value true
+
 /// ## test_euler_product_formula
 inl test_euler_product_formula log = run_test log fun zeta, gamma =>
     inl s_values = join [ 2; 2.5; 3; 3.5; 4; 4.5; 5 ]
@@ -410,6 +461,10 @@ inl test_euler_product_formula log = run_test log fun zeta, gamma =>
         inl result = zeta s
         re result - product |> abs |> _assert_lt 0.01
         result |> im |> _assert_lt 0.01
+
+///> rust -d num-complex pyo3='=0.26.0'
+test test_euler_product_formula =
+    test_euler_product_formula true
 
 /// ## graph
 

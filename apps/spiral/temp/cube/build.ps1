@@ -12,8 +12,6 @@ $targetDir = GetTargetDir $projectName
 New-Item -ItemType Directory -Force $targetDir | Out-Null
 $exe = $IsWindows ? ".exe" : ""
 
-{ pwsh -NoProfile -File ../../../../deps/spiral/apps/kino/spi/run_notebook.ps1 --path "$ScriptDir/$projectName.livemd" --spi-path "$ScriptDir/$projectName.spi" --export-only } | Invoke-Block
-
 $backends = [ordered]@{
     "C" = @{ Out = "$projectName.c"; Build = { gcc -O2 "$projectName.c" -o "$targetDir/cube_c$exe" -lm }; Run = { & "$targetDir/cube_c$exe" } }
     "Rust" = @{ Out = "$projectName.rs"; Build = { rustc -O --edition 2021 "$projectName.rs" -o "$targetDir/cube_rs$exe" }; Run = { & "$targetDir/cube_rs$exe" } }

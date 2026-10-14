@@ -3,6 +3,9 @@ open rust
 open rust.rust_operators
 open sm'_operators
 
+test chat_contract static =
+    open testing
+
 /// ## chat_contract
 
 /// ### state
@@ -16,6 +19,10 @@ type state =
         account_map : near.lookup_map near.account_id sm'.std_string
         alias_map : near.lookup_map sm'.std_string alias_accounts
     }
+
+///> rust -c
+test state =
+    ()
 
 /// ### new
 inl new () : state =
@@ -31,9 +38,38 @@ inl new () : state =
 inl is_valid_alias (alias : sm'.std_string) : bool =
     $'{ let alias: &str = &(!alias); alias.len() > 0 && alias.len() < 64 && \!alias.starts_with(\'-\') && \!alias.ends_with(\'-\') && alias.chars().all(|c| c.is_alphanumeric() || c == \'-\') }' : bool
 
+///> rust -c
+test is_valid_alias =
+    ""
+    |> sm'.to_std_string
+    |> is_valid_alias
+    |> _assert_eq false
+
+///> rust -c
+test is_valid_alias_2 =
+    "a-"
+    |> sm'.to_std_string
+    |> is_valid_alias
+    |> _assert_eq false
+
+///> rust -c
+test is_valid_alias_3 =
+    "a-a"
+    |> sm'.to_std_string
+    |> is_valid_alias
+    |> _assert_eq true
+
 /// ### generate_cid
 inl generate_cid (content : am'.vec u8) : sm'.std_string =
     $'{ let mut varint = unsigned_varint::encode::u64_buffer(); let codec_bytes = unsigned_varint::encode::u64(0x55, &mut varint).to_vec(); let mut hasher: sha2::Sha256 = sha2::Digest::new(); sha2::Digest::update(&mut hasher, &(!content)); let multihash: Vec<u8> = [0x12u8, 32].into_iter().chain(sha2::Digest::finalize(hasher).into_iter()).collect(); let cid_bytes = [vec\![1u8], codec_bytes, multihash].concat(); multibase::encode(multibase::Base::Base32Lower, &cid_bytes) }' : sm'.std_string
+
+///> rust -c -d multibase='=0.9.1' sha2 unsigned-varint
+test generate_cid =
+    ;[]
+    |> am'.to_vec
+    |> generate_cid
+    |> sm'.from_std_string
+    |> _assert_eq "bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku"
 
 /// ### claim_alias
 inl panic_str (text : string) : () =
@@ -87,6 +123,17 @@ inl claim_alias
         alias_set |> near.iterable_set_insert alias |> ignore
 
         $'{ let accounts = match (!alias_map).get(&(!alias)) { None => { let mut accounts = std::collections::HashMap::new(); accounts.insert((!signer_account_id).clone(), (!block_timestamp, 0u32)); accounts } Some(previous) => { let mut ordered = previous.iter().collect::<Vec<_>>(); ordered.sort_unstable_by_key(|(_, (_, index))| *index); let mut accounts = ordered.iter().enumerate().map(|(i, (account_id, (timestamp, _)))| ((*account_id).clone(), (*timestamp, i as u32))).collect::<std::collections::HashMap<_, _>>(); accounts.insert((!signer_account_id).clone(), (!block_timestamp, ordered.len() as u32)); accounts } }; (!alias_map).insert((!alias).clone(), accounts); }' : ()
+
+///> rust "-c=-e=\"chat_contract.claim_alias / invalid alias\""
+test claim_alias =
+    inl state = new ()
+    ""
+    |> sm'.to_std_string
+    |> claim_alias
+        (state.account_set |> rust.to_ref_mut)
+        (state.alias_set |> rust.to_ref_mut)
+        (state.account_map |> rust.to_ref_mut)
+        (state.alias_map |> rust.to_ref_mut)
 
 /// ### get_account_info
 nominal account_info = $'Option<(String, u64, u32)>'
