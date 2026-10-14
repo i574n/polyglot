@@ -7858,7 +7858,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/spiral/apps/spiral 
 'pwsh -NoProfile -File $livebook --path "$ResolvedScriptDir/$projectName.livemd" --spi-path "$ResolvedScriptDir/$projectName.spi" --export-only'
 
 Resolving Hex dependencies...
-Resolution completed in 0.017s
+Resolution completed in 0.014s
 Unchanged:
   kino 0.19.1
   table 0.1.2
@@ -7871,14 +7871,14 @@ Generated table app
 Compiling 50 files (.ex)
 Generated kino app
 ==&gt; spiral_kino
-Compiling 26 files (.ex)
+Compiling 33 files (.ex)
 Generated spiral_kino app
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/spiral
 spiral/lib/spiral/lib.ps1/BuildSpiral / apps/spiral / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust spiral.spi spiral.rs
-compiled spiral.spi -&gt; spiral.rs (Rust, 1442549 bytes, entry=main, revision=open, pid=23012)
+compiled spiral.spi -&gt; spiral.rs (Rust, 1587913 bytes, entry=main, revision=open, pid=23368)
 RUST-COMPILED apps/spiral / spiral.rs / 9 s
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -7887,7 +7887,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/spiral/workspace / 
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 spiral/apps/spiral/build.ps1 / run check / Usage: spiral &lt;COMMAND&gt;
 spiral/apps/spiral/build.ps1 / run check / 
 spiral/apps/spiral/build.ps1 / run check / Commands:
@@ -7905,19 +7905,25 @@ spiral/scripts/core.ps1/GetFullPath / Path: ../.. / Location: /home/runner/work/
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral
 spiral/scripts/core.ps1/GetFullPath / Path: ../kino / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/apps/kino
-spiral/apps/spiral/build.ps1 / run check / export of 43 notebooks compared with the previous CLI
+spiral/apps/spiral/build.ps1 / run check / export of 4 notebooks compared with the previous CLI
 spiral/scripts/core.ps1/GetFullPath / Path: /home/runner/work/polyglot/spiral/target/build/spiral/check/rust/main.rs / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/target/build/spiral/check/rust/main.rs
 spiral/scripts/core.ps1/GetFullPath / Path: /home/runner/work/polyglot/spiral/target/build/spiral/check/cuda/main.py / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/target/build/spiral/check/cuda/main.py
+spiral/scripts/core.ps1/GetFullPath / Path: /home/runner/work/polyglot/spiral/target/build/spiral/check/lua/main.lua / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
+spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/target/build/spiral/check/lua/main.lua
+spiral/scripts/core.ps1/GetFullPath / Path: /home/runner/work/polyglot/spiral/target/build/spiral/check/gleam/main.gleam / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
+spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/target/build/spiral/check/gleam/main.gleam
 spiral/apps/spiral/build.ps1 / run check / rust: exit 0 / spiral-check-rust 42
 spiral/apps/spiral/build.ps1 / run check / cuda: exit 0 / spiral-check-cuda 42
+spiral/apps/spiral/build.ps1 / run check / lua: exit 0 / spiral-check-lua	42
+spiral/apps/spiral/build.ps1 / run check / gleam: exit 0 / spiral-check-gleam 42
 RUST-OK apps/spiral
 spiral/apps/spiral/build.ps1 / shipped the new spiral to ../../workspace/target/release/spiral
 spiral/apps/spiral/build.ps1 / $projectName: spiral / $env:CI:'true'
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 </pre>
 </div>
 </div>
@@ -7954,9 +7960,11 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
 'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
 
+spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/apps/parser/JsonParser.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
@@ -7964,7 +7972,17 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parse
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
+
+────────────────────────────────────────────────────────────────────────────────
+core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
+'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
+
+spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/apps/parser/Parser.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+core.Invoke-Block / df - /dev/root
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
@@ -7972,19 +7990,11 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parse
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
-
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
-'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
-
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 polyglot/apps/parser/build.ps1 / $env:CI:'true'
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 </pre>
 </div>
 </div>
@@ -8029,7 +8039,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
@@ -8037,7 +8047,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
@@ -8045,7 +8055,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
@@ -8053,7 +8063,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
@@ -8061,7 +8071,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
@@ -8069,10 +8079,10 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   78G  47% /
 </pre>
 </div>
 </div>
@@ -8109,12 +8119,14 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spiral/apps/wasm / $ScriptBlock:
 'pwsh -NoProfile -File $livebook @notebook --output-path "$ScriptDir/$projectName.livemd.ipynb"'
 
+spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/deps/spiral/apps/wasm/spiral_wasm.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   67G   79G  46% /
+/dev/root       145G   68G   77G  48% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/spiral_wasm
 spiral/lib/spiral/lib.ps1/BuildSpiral / apps/wasm / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust spiral_wasm.spi spiral_wasm.rs
-compiled spiral_wasm.spi -&gt; spiral_wasm.rs (Rust, 182366 bytes, entry=main, revision=open, pid=26073)
+compiled spiral_wasm.spi -&gt; spiral_wasm.rs (Rust, 197838 bytes, entry=main, revision=open, pid=25819)
 RUST-COMPILED apps/wasm / spiral_wasm.rs / 5 s
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -8123,7 +8135,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spira
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   68G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 spiral/apps/wasm/build.ps1 / run / Usage: spiral_wasm [OPTIONS] --wasm &lt;wasm&gt;
 spiral/apps/wasm/build.ps1 / run / 
 spiral/apps/wasm/build.ps1 / run / Options:
@@ -8136,7 +8148,7 @@ spiral/apps/wasm/build.ps1 / shipped spiral_wasm to ../../workspace/target/relea
 spiral/apps/wasm/build.ps1 / $targetDir = /home/runner/work/polyglot/spiral/target/build/spiral_wasm / $projectName: spiral_wasm / $env:CI:'true'
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   68G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 </pre>
 </div>
 </div>
@@ -8173,24 +8185,19 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/scripts / 
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/math / $ScriptBlock:
 'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
 
+spiral-tests file {"accepted":0,"built":0,"discovered":13,"executed":13,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/lib/math/math.spi","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":13,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+spiral-tests total {"accepted":0,"built":0,"discovered":13,"executed":13,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":13,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
-
-────────────────────────────────────────────────────────────────────────────────
-core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/math / $ScriptBlock:
-'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
-
-core.Invoke-Block / df - /dev/root
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/math
 spiral/lib/spiral/lib.ps1/BuildSpiral / lib/math / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust math.spi math.rs
-compiled math.spi -&gt; math.rs (Rust, 131150 bytes, entry=main, revision=open, pid=56266)
+compiled math.spi -&gt; math.rs (Rust, 292284 bytes, entry=main, revision=open, pid=55094)
 RUST-COMPILED lib/math / math.rs / 3 s
 polyglot/lib/math/build.ps1 / cargo test / warning: /home/runner/work/polyglot/polyglot/lib/math/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
 polyglot/lib/math/build.ps1 / cargo test /   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 polyglot/lib/math/build.ps1 / cargo test /  Downloading crates ...
+polyglot/lib/math/build.ps1 / cargo test /   Downloaded indoc v2.0.7
 polyglot/lib/math/build.ps1 / cargo test /   Downloaded target-lexicon v0.13.3
 polyglot/lib/math/build.ps1 / cargo test /    Compiling target-lexicon v0.13.3
 polyglot/lib/math/build.ps1 / cargo test /    Compiling autocfg v1.5.0
@@ -8198,30 +8205,30 @@ polyglot/lib/math/build.ps1 / cargo test /    Compiling proc-macro2 v1.0.103
 polyglot/lib/math/build.ps1 / cargo test /    Compiling quote v1.0.41
 polyglot/lib/math/build.ps1 / cargo test /    Compiling unicode-ident v1.0.20
 polyglot/lib/math/build.ps1 / cargo test /    Compiling libc v0.2.177
-polyglot/lib/math/build.ps1 / cargo test /    Compiling memoffset v0.9.1
 polyglot/lib/math/build.ps1 / cargo test /    Compiling num-traits v0.2.19
+polyglot/lib/math/build.ps1 / cargo test /    Compiling memoffset v0.9.1
 polyglot/lib/math/build.ps1 / cargo test /    Compiling heck v0.5.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-build-config v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling syn v2.0.108
 polyglot/lib/math/build.ps1 / cargo test /    Compiling once_cell v1.21.3
-polyglot/lib/math/build.ps1 / cargo test /    Compiling indoc v2.0.7
 polyglot/lib/math/build.ps1 / cargo test /    Compiling unindent v0.2.4
+polyglot/lib/math/build.ps1 / cargo test /    Compiling indoc v2.0.7
 polyglot/lib/math/build.ps1 / cargo test /    Compiling num-complex v0.4.6
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-macros-backend v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-ffi v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3 v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-macros v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling math v0.0.1 (/home/runner/work/polyglot/polyglot/lib/math)
-polyglot/lib/math/build.ps1 / cargo test /     Finished `release` profile [optimized] target(s) in 16.92s
+polyglot/lib/math/build.ps1 / cargo test /     Finished `release` profile [optimized] target(s) in 24.55s
 polyglot/lib/math/build.ps1 / cargo test /      Running unittests math.rs (target/release/deps/math-33d80fd8b39fc355)
 polyglot/lib/math/build.ps1 / cargo test / 
 polyglot/lib/math/build.ps1 / cargo test / running 12 tests
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_euler_product_formula ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_critical_strip ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_behavior_near_origin___ ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_non_trivial_zero___ ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_symmetry_across_real_axis___ ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_euler_product_formula ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_real_part_greater_than_one___ ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_non_trivial_zero___ ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_critical_strip ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_symmetry_across_real_axis___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_1___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_2_minus2 ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_reflection_formula_for_specific_value ... ok
@@ -8229,13 +8236,13 @@ polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_known
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_imaginary_axis ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_trivial_zero_at_negative_even___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / 
-polyglot/lib/math/build.ps1 / cargo test / test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+polyglot/lib/math/build.ps1 / cargo test / test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
 polyglot/lib/math/build.ps1 / cargo test / 
 RUST-OK lib/math
 polyglot/lib/math/build.ps1 / $targetDir: /home/runner/work/polyglot/spiral/target/build/math / $projectName: math / $env:CI:'true'
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 </pre>
 </div>
 </div>
@@ -8293,17 +8300,17 @@ init-app-build.ps1 / url: https://github.com/i574n/spiral.git / owner: i574n / d
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spiral/scripts / $ScriptBlock:
 'pwsh (Join-Path $repo "build.ps1")'
 
 spiral/lib/spiral/lib.ps1/BuildSpiral / dir-tree-html / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust dir_tree_html.spi dir_tree_html.rs
-compiled dir_tree_html.spi -&gt; dir_tree_html.rs (Rust, 73466 bytes, entry=main, revision=open, pid=56934)
+compiled dir_tree_html.spi -&gt; dir_tree_html.rs (Rust, 73629 bytes, entry=main, revision=open, pid=55775)
 RUST-COMPILED dir-tree-html / dir_tree_html.rs / 1 s
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -8312,7 +8319,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/dir-tree-html / $Sc
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/dir-tree-html / $ScriptBlock:
@@ -8320,15 +8327,15 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/dir-tree-html / $Sc
 
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 RUST-OK dir-tree-html
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 /home/runner/work/polyglot/dir-tree-html/dist/dir-tree-html
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 </pre>
 </div>
 </div>
@@ -8385,7 +8392,7 @@ target-lexicon       0.13.3   ---     Removed  Normal       ---
 unindent             0.2.4    ---     Removed  Normal       ---
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 
 CheckJson / json: /home/runner/work/polyglot/polyglot
 
@@ -8397,12 +8404,12 @@ Using bun
 Checking /home/runner/work/polyglot/polyglot/package.json
 
  @types/node          ~22.10  →    ~26.6
- npm-check-updates  ~17.1.14  →  ~23.1.0
+ npm-check-updates  ~17.1.14  →  ~23.1.1
 
 Run ncu --target greatest -u to upgrade package.json
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 
 CheckJson / json: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/VS Code Plugin
 
@@ -8417,16 +8424,16 @@ Checking /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/VS Code Pl
  @types/vscode          ~1.95  →                      ~1.140
  @vscode/vsce            ~3.2  →                      ~4.0-3
  esbuild              ^0.28.1  →                     ^0.28.2
- npm-check-updates   ~17.1.14  →                     ~23.1.0
+ npm-check-updates   ~17.1.14  →                     ~23.1.1
  portfinder           ^1.0.32  →                     ^1.0.38
 
 Run ncu --target greatest -u to upgrade package.json
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/root       145G   69G   77G  48% /
+/dev/root       145G   70G   75G  49% /
 </pre>
 </div>
 </div>

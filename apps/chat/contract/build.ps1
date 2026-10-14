@@ -13,14 +13,10 @@ $projectName = "chat_contract"
 $contractToolchain = "nightly-2024-07-14"
 
 $livebook = Join-Path $ScriptDir "../../../deps/spiral/apps/kino/spi/run_notebook.ps1"
-$notebook = Join-Path $ScriptDir "$projectName.livemd"
 $spi = Join-Path $ScriptDir "$projectName.spi"
-$ipynb = Join-Path $ScriptDir "$projectName.livemd.ipynb"
+$ipynb = Join-Path $ScriptDir "$projectName.spi.ipynb"
 if (!$fast -and !$SkipNotebook) {
-    { pwsh -NoProfile -File $livebook --path $notebook --spi-path $spi --output-path $ipynb } | Invoke-Block -Retries $($fast -or !$env:CI ? 1 : 3)
-}
-else {
-    { pwsh -NoProfile -File $livebook --path $notebook --spi-path $spi --export-only } | Invoke-Block
+    { pwsh -NoProfile -File $livebook --path $spi --output-path $ipynb } | Invoke-Block -Retries $($fast -or !$env:CI ? 1 : 3)
 }
 
 function Get-WasmExports([string] $Path) {
