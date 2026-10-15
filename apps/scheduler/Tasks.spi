@@ -97,29 +97,17 @@ inl get_actions () : list action =
         }
     ]
 
-///! gleam
-///! fsharp
-///! cuda
-///! rust
-///! typescript
-///! python
+test get_actions =
+    get_actions ()
+    |> sm'.format_debug
+    |> _assert sm'.contains "00003"
 
-get_actions ()
-|> sm'.format_debug
-|> _assert sm'.contains "00003"
-
-///! gleam
-///! fsharp
-///! cuda
-///! rust
-///! typescript
-///! python
-
-get_actions ()
-|> listm'.try_item 3i32
-|> function
-    | Some (AddTask { name }) => name
-|> _assert_eq (task_name "00003")
+test get_actions_2 =
+    get_actions ()
+    |> listm'.try_item 3i32
+    |> function
+        | Some (AddTask { name }) => name
+    |> _assert_eq (task_name "00003")
 
 inl print padding cols =
     ({ lines = []; last_lines = []; max_acc = 0i32 }, cols)
@@ -181,18 +169,12 @@ inl cols () =
         [ "a"; "b"; "c"; "d"; "e" ]
     ]
 
-///! gleam
-///! fsharp
-///! cuda
-///! rust
-///! typescript
-///! python
+test cols =
+    cols ()
+    |> print 1i32
+    |> console.write_line
 
-cols ()
-|> print 1i32
-|> console.write_line
-
-inl task_name_width =
+inl task_name_width () =
     (0, get_actions ())
     ||> listm.fold fun acc => function
         | AddTask { name } =>
@@ -205,17 +187,17 @@ inl task_name_width =
     |> (+) 1
 
 
-inl lines =
-    ("" |> sm'.pad_right task_name_width ' ')
+inl header_lines () =
+    ("" |> sm'.pad_right (task_name_width ()) ' ')
     ++# "|" ++# " 2000               "
     ++# "|\n"
 
-    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# ("" |> sm'.pad_right (task_name_width ()) ' ')
     ++# "|" ++# " february  "
     ++# "|" ++# " march  "
     ++# "|\n"
 
-    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# ("" |> sm'.pad_right (task_name_width ()) ' ')
     ++# "|" ++# "sa"
     ++# "|" ++# "su"
     ++# "|" ++# "mo"
@@ -225,7 +207,7 @@ inl lines =
     ++# "|" ++# "fr"
     ++# "|\n"
 
-    ++# ("" |> sm'.pad_right task_name_width ' ')
+    ++# ("" |> sm'.pad_right (task_name_width ()) ' ')
     ++# "|" ++# "26"
     ++# "|" ++# "27"
     ++# "|" ++# "28"
@@ -235,15 +217,15 @@ inl lines =
     ++# "|" ++# "03"
     ++# "|"
 
-inl lines =
-    (lines, get_actions ())
+inl lines () =
+    (header_lines (), get_actions ())
     ||> listm.fold fun acc => function
         | AddTask { name } =>
             inl (task_name name) = name
             if acc = ""
             then acc
             else acc ++# "\n"
-            ++# (name |> sm'.pad_right task_name_width ' ')
+            ++# (name |> sm'.pad_right (task_name_width ()) ' ')
             ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
             ++# "|" ++# console.color_bright_white () ++# "??" ++# console.color_reset ()
             ++# "|" ++# console.color_bright_green () ++# "??" ++# console.color_reset ()
@@ -253,4 +235,6 @@ inl lines =
             ++# "|" ++# console.color_bright_cyan () ++# "??" ++# console.color_reset ()
             ++# "|"
         | _ => acc
-lines
+
+test lines =
+    lines () |> console.write_line
