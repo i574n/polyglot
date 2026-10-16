@@ -34,6 +34,10 @@ jobs:
 
             - uses: oven-sh/setup-bun@v2
 
+            - uses: mlugg/setup-zig@v2
+              with:
+                  version: 0.17.0
+
             - uses: actions/setup-python@v6
               with:
                   python-version: "3.12.10"
