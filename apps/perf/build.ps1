@@ -6,7 +6,7 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
-$livebook = Join-Path $ScriptDir "../../deps/spiral/apps/kino/spi/run_notebook.ps1"
+$livebook = Join-Path $ScriptDir "../../deps/spiral/apps/cells/spi/run_notebook.ps1"
 $notebook = Join-Path $ScriptDir "Perf.livemd"
 $spi = Join-Path $ScriptDir "Perf.spi"
 if (!$fast) {
