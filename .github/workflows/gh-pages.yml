@@ -13,36 +13,36 @@ jobs:
             matrix:
                 os: [ubuntu-24.04, windows-2025]
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v6.1.0
 
-            - uses: moonrepo/setup-rust@v1
+            - uses: moonrepo/setup-rust@v1.3.0
               with:
                   channel: "nightly-2025-05-09"
                   components: "clippy,rust-src,rustfmt"
                   targets: "wasm32-unknown-unknown"
 
-            - uses: erlef/setup-beam@v1
+            - uses: erlef/setup-beam@v1.24.1
               with:
                   otp-version: "27"
                   elixir-version: "1.18"
                   gleam-version: "1.19.1"
                   rebar3-version: "3.24.0"
 
-            - uses: actions/setup-dotnet@v5
+            - uses: actions/setup-dotnet@v5.4.0
               with:
                   dotnet-version: "9.0.202"
 
-            - uses: oven-sh/setup-bun@v2
+            - uses: oven-sh/setup-bun@v2.2.0
 
-            - uses: mlugg/setup-zig@v2
+            - uses: mlugg/setup-zig@v2.2.1
               with:
                   version: 0.17.0
 
-            - uses: actions/setup-python@v6
+            - uses: actions/setup-python@v6.3.0
               with:
                   python-version: "3.12.10"
 
-            - uses: snok/install-poetry@v1
+            - uses: snok/install-poetry@v1.4.2
               with:
                   virtualenvs-create: true
                   virtualenvs-in-project: true
@@ -50,7 +50,7 @@ jobs:
 
             - run: pwsh scripts/workflow.ps1
 
-            - uses: actions/upload-artifact@v5
+            - uses: actions/upload-artifact@v5.0.0
               if: contains(matrix.os, 'ubuntu')
               with:
                   name: gh-pages
@@ -64,14 +64,14 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v6.1.0
 
-            - uses: actions/download-artifact@v6
+            - uses: actions/download-artifact@v6.0.0
               with:
                   name: gh-pages
                   path: gh-pages
 
-            - uses: peaceiris/actions-gh-pages@v4
+            - uses: peaceiris/actions-gh-pages@v4.1.0
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: gh-pages
