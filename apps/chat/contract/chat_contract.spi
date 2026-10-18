@@ -171,8 +171,44 @@ inl get_alias_map
 ///> _
 
 inl main_native () : () =
-    global "#[near_sdk::near_bindgen]\n#[derive(near_sdk::PanicOnDefault, borsh::BorshDeserialize, borsh::BorshSerialize)]\npub struct State((u32, near_sdk::store::IterableSet<String>, near_sdk::store::IterableSet<String>, near_sdk::store::LookupMap<String, String>, near_sdk::store::LookupMap<String, std::collections::HashMap<String, (u64, u32)>>));"
-    global "#[near_sdk::near_bindgen]\nimpl State {\n    #[init]\n    pub fn new() -> Self {\n        Self(chat_contract_new())\n    }\n    pub fn is_valid_alias(&self, alias: String) -> bool {\n        chat_contract_is_valid_alias(alias)\n    }\n    pub fn generate_cid(&self, content: Vec<u8>) -> String {\n        chat_contract_generate_cid(content)\n    }\n    #[result_serializer(borsh)]\n    pub fn generate_cid_borsh(&self, #[serializer(borsh)] content: Vec<u8>) -> String {\n        self.generate_cid(content)\n    }\n    pub fn claim_alias(&mut self, alias: String) {\n        let state = &mut self.0;\n        chat_contract_claim_alias(&mut state.1, &mut state.2, &mut state.3, &mut state.4, alias)\n    }\n    pub fn get_account_info(&self, account_id: near_sdk::AccountId) -> Option<(String, u64, u32)> {\n        chat_contract_get_account_info(&self.0.3, &self.0.4, account_id.to_string())\n    }\n    pub fn get_alias_map(&self, alias: String) -> Option<std::collections::HashMap<String, (u64, u32)>> {\n        chat_contract_get_alias_map(&self.0.4, alias)\n    }\n    #[result_serializer(borsh)]\n    pub fn get_alias_map_borsh(&self, #[serializer(borsh)] alias: String) -> Option<std::collections::HashMap<String, (u64, u32)>> {\n        self.get_alias_map(alias)\n    }\n}"
+    global """
+        #[near_sdk::near_bindgen]
+        #[derive(near_sdk::PanicOnDefault, borsh::BorshDeserialize, borsh::BorshSerialize)]
+        pub struct State((u32, near_sdk::store::IterableSet<String>, near_sdk::store::IterableSet<String>, near_sdk::store::LookupMap<String, String>, near_sdk::store::LookupMap<String, std::collections::HashMap<String, (u64, u32)>>));
+        """
+    global """
+        #[near_sdk::near_bindgen]
+        impl State {
+            #[init]
+            pub fn new() -> Self {
+                Self(chat_contract_new())
+            }
+            pub fn is_valid_alias(&self, alias: String) -> bool {
+                chat_contract_is_valid_alias(alias)
+            }
+            pub fn generate_cid(&self, content: Vec<u8>) -> String {
+                chat_contract_generate_cid(content)
+            }
+            #[result_serializer(borsh)]
+            pub fn generate_cid_borsh(&self, #[serializer(borsh)] content: Vec<u8>) -> String {
+                self.generate_cid(content)
+            }
+            pub fn claim_alias(&mut self, alias: String) {
+                let state = &mut self.0;
+                chat_contract_claim_alias(&mut state.1, &mut state.2, &mut state.3, &mut state.4, alias)
+            }
+            pub fn get_account_info(&self, account_id: near_sdk::AccountId) -> Option<(String, u64, u32)> {
+                chat_contract_get_account_info(&self.0.3, &self.0.4, account_id.to_string())
+            }
+            pub fn get_alias_map(&self, alias: String) -> Option<std::collections::HashMap<String, (u64, u32)>> {
+                chat_contract_get_alias_map(&self.0.4, alias)
+            }
+            #[result_serializer(borsh)]
+            pub fn get_alias_map_borsh(&self, #[serializer(borsh)] alias: String) -> Option<std::collections::HashMap<String, (u64, u32)>> {
+                self.get_alias_map(alias)
+            }
+        }
+        """
     inl quiet () : () = set_trace_level Info
     !!!!Export("chat_contract_new", ((fun () => inl () = quiet () in inl x = new () in x.version, x.account_set, x.alias_set, x.account_map, x.alias_map) : () -> u32 * near.iterable_set near.account_id * near.iterable_set sm'.std_string * near.lookup_map near.account_id sm'.std_string * near.lookup_map sm'.std_string alias_accounts))
     !!!!Export("chat_contract_is_valid_alias", ((fun alias => inl () = quiet () in is_valid_alias alias) : sm'.std_string -> bool))
