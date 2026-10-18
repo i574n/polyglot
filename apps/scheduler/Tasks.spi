@@ -97,11 +97,13 @@ inl get_actions () : list action =
         }
     ]
 
+///> zig
 test get_actions =
     get_actions ()
     |> sm'.format_debug
     |> _assert sm'.contains "00003"
 
+///> zig
 test get_actions_2 =
     get_actions ()
     |> listm'.try_item 3i32
@@ -169,6 +171,7 @@ inl cols () =
         [ "a"; "b"; "c"; "d"; "e" ]
     ]
 
+///> zig
 test cols =
     cols ()
     |> print 1i32
@@ -236,5 +239,6 @@ inl lines () =
             ++# "|"
         | _ => acc
 
+///> zig
 test lines =
     lines () |> console.write_line
