@@ -7858,7 +7858,7 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/spiral/apps/spiral 
 'pwsh -NoProfile -File $livebook --path "$ResolvedScriptDir/$projectName.livemd" --spi-path "$ResolvedScriptDir/$projectName.spi" --export-only'
 
 Resolving Hex dependencies...
-Resolution completed in 0.011s
+Resolution completed in 0.015s
 Unchanged:
   kino 0.19.1
   table 0.1.2
@@ -7870,16 +7870,18 @@ Generated table app
 ==&gt; kino
 Compiling 50 files (.ex)
 Generated kino app
-==&gt; spiral_kino
+==&gt; spiral_cells
 Compiling 34 files (.ex)
-Generated spiral_kino app
+Generated spiral_cells app
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/spiral
 spiral/lib/spiral/lib.ps1/BuildSpiral / apps/spiral / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust spiral.spi spiral.rs
-compiled spiral.spi -&gt; spiral.rs (Rust, 1587913 bytes, entry=main, revision=open, pid=23391)
-RUST-COMPILED apps/spiral / spiral.rs / 6 s
+compiled spiral.spi -&gt; spiral.rs (Rust, 1571180 bytes, entry=main, revision=open, pid=23832)
+RUST-COMPILED apps/spiral / spiral.rs / 11 s
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/spiral/workspace / $ScriptBlock:
@@ -7903,8 +7905,8 @@ spiral/apps/spiral/build.ps1 / run check / Options:
 spiral/apps/spiral/build.ps1 / run check /   -h, --help  Print help
 spiral/scripts/core.ps1/GetFullPath / Path: ../.. / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral
-spiral/scripts/core.ps1/GetFullPath / Path: ../kino / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
-spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/apps/kino
+spiral/scripts/core.ps1/GetFullPath / Path: ../cells / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
+spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/apps/cells
 spiral/apps/spiral/build.ps1 / run check / export of 4 notebooks compared with the previous CLI
 spiral/scripts/core.ps1/GetFullPath / Path: /home/runner/work/polyglot/spiral/target/build/spiral/check/rust/main.rs / Location: /home/runner/work/polyglot/spiral/apps/spiral / ResolvedLocation: /home/runner/work/polyglot/spiral/apps/spiral
 spiral/scripts/core.ps1/GetFullPath / FullPath: /home/runner/work/polyglot/spiral/target/build/spiral/check/rust/main.rs
@@ -7962,6 +7964,8 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parse
 
 spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/apps/parser/JsonParser.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -7970,6 +7974,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
 'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -7980,6 +7986,8 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parse
 
 spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/apps/parser/Parser.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -7988,6 +7996,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/apps/parser / $ScriptBlock:
 'pwsh -NoProfile -File $runNotebook --path $fullPath @Arguments'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8037,6 +8047,8 @@ polyglot/lib/fsharp/build.ps1 / Runtime / exit 0
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8045,6 +8057,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8053,6 +8067,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8061,6 +8077,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8069,6 +8087,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8077,6 +8097,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/fsharp / $ScriptBlock:
 'pwsh -NoProfile -File $livebook --path "$ScriptDir/$notebook.livemd" --no-spi --fs-path "$ScriptDir/$notebook.fs" --export-only'
 
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
@@ -8121,13 +8143,15 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spira
 
 spiral-tests file {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/deps/spiral/apps/wasm/spiral_wasm.livemd","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 spiral-tests total {"accepted":0,"built":0,"discovered":0,"executed":0,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":0,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   68G   78G  47% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/spiral_wasm
 spiral/lib/spiral/lib.ps1/BuildSpiral / apps/wasm / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust spiral_wasm.spi spiral_wasm.rs
-compiled spiral_wasm.spi -&gt; spiral_wasm.rs (Rust, 197838 bytes, entry=main, revision=open, pid=25871)
-RUST-COMPILED apps/wasm / spiral_wasm.rs / 3 s
+compiled spiral_wasm.spi -&gt; spiral_wasm.rs (Rust, 194821 bytes, entry=main, revision=open, pid=26375)
+RUST-COMPILED apps/wasm / spiral_wasm.rs / 5 s
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spiral/workspace / $ScriptBlock:
@@ -8187,56 +8211,58 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/lib/math /
 
 spiral-tests file {"accepted":0,"built":0,"discovered":13,"executed":13,"failed":0,"failed_tests":[],"file":"/home/runner/work/polyglot/polyglot/lib/math/math.spi","filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":13,"preludes":0,"skipped":0,"static":0,"unsupported":0}
 spiral-tests total {"accepted":0,"built":0,"discovered":13,"executed":13,"failed":0,"files":1,"filtered":0,"memo_hits":0,"no_agree_reasons":{},"not_run":0,"passed":13,"preludes":0,"skipped":0,"static":0,"unsupported":0}
+<span class="ansi-yellow-intense-fg ansi-bold">WARNING: run ledger: The term 'Get-CimInstance' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.</span>
 core.Invoke-Block / df - /dev/root
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/root       145G   70G   76G  48% /
 spiral/lib/spiral/lib.ps1/GetTargetDir / targetDir: /home/runner/work/polyglot/spiral/target/build/math
 spiral/lib/spiral/lib.ps1/BuildSpiral / lib/math / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust math.spi math.rs
-compiled math.spi -&gt; math.rs (Rust, 292284 bytes, entry=main, revision=open, pid=54951)
-RUST-COMPILED lib/math / math.rs / 2 s
+compiled math.spi -&gt; math.rs (Rust, 291131 bytes, entry=main, revision=open, pid=55466)
+RUST-COMPILED lib/math / math.rs / 4 s
 polyglot/lib/math/build.ps1 / cargo test / warning: /home/runner/work/polyglot/polyglot/lib/math/Cargo.toml: the cargo feature `edition2024` has been stabilized in the 1.85 release and is no longer necessary to be listed in the manifest
 polyglot/lib/math/build.ps1 / cargo test /   See https://doc.rust-lang.org/nightly/cargo/reference/manifest.html#the-edition-field for more information about using this feature.
 polyglot/lib/math/build.ps1 / cargo test /  Downloading crates ...
-polyglot/lib/math/build.ps1 / cargo test /   Downloaded target-lexicon v0.13.3
 polyglot/lib/math/build.ps1 / cargo test /   Downloaded indoc v2.0.7
+polyglot/lib/math/build.ps1 / cargo test /   Downloaded target-lexicon v0.13.3
 polyglot/lib/math/build.ps1 / cargo test /    Compiling target-lexicon v0.13.3
 polyglot/lib/math/build.ps1 / cargo test /    Compiling autocfg v1.5.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling proc-macro2 v1.0.103
-polyglot/lib/math/build.ps1 / cargo test /    Compiling quote v1.0.41
 polyglot/lib/math/build.ps1 / cargo test /    Compiling unicode-ident v1.0.20
+polyglot/lib/math/build.ps1 / cargo test /    Compiling quote v1.0.41
 polyglot/lib/math/build.ps1 / cargo test /    Compiling libc v0.2.177
 polyglot/lib/math/build.ps1 / cargo test /    Compiling num-traits v0.2.19
 polyglot/lib/math/build.ps1 / cargo test /    Compiling memoffset v0.9.1
 polyglot/lib/math/build.ps1 / cargo test /    Compiling heck v0.5.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-build-config v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling syn v2.0.108
-polyglot/lib/math/build.ps1 / cargo test /    Compiling unindent v0.2.4
 polyglot/lib/math/build.ps1 / cargo test /    Compiling indoc v2.0.7
 polyglot/lib/math/build.ps1 / cargo test /    Compiling once_cell v1.21.3
+polyglot/lib/math/build.ps1 / cargo test /    Compiling unindent v0.2.4
 polyglot/lib/math/build.ps1 / cargo test /    Compiling num-complex v0.4.6
-polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-ffi v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-macros-backend v0.26.0
+polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-ffi v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3 v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling pyo3-macros v0.26.0
 polyglot/lib/math/build.ps1 / cargo test /    Compiling math v0.0.1 (/home/runner/work/polyglot/polyglot/lib/math)
-polyglot/lib/math/build.ps1 / cargo test /     Finished `release` profile [optimized] target(s) in 15.50s
+polyglot/lib/math/build.ps1 / cargo test /     Finished `release` profile [optimized] target(s) in 22.53s
 polyglot/lib/math/build.ps1 / cargo test /      Running unittests math.rs (target/release/deps/math-33d80fd8b39fc355)
 polyglot/lib/math/build.ps1 / cargo test / 
 polyglot/lib/math/build.ps1 / cargo test / running 12 tests
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_behavior_near_origin___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_euler_product_formula ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_non_trivial_zero___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_critical_strip ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_real_part_greater_than_one___ ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_non_trivial_zero___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_symmetry_across_real_axis___ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_1___ ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_reflection_formula_for_specific_value ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_imaginary_axis ... ok
-polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_known_values_ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_2_minus2 ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_reflection_formula_for_specific_value ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_zeta_at_known_values_ ... ok
 polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_trivial_zero_at_negative_even___ ... ok
+polyglot/lib/math/build.ps1 / cargo test / test spiral_tests::test_imaginary_axis ... ok
 polyglot/lib/math/build.ps1 / cargo test / 
-polyglot/lib/math/build.ps1 / cargo test / test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+polyglot/lib/math/build.ps1 / cargo test / test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
 polyglot/lib/math/build.ps1 / cargo test / 
 RUST-OK lib/math
 polyglot/lib/math/build.ps1 / $targetDir: /home/runner/work/polyglot/spiral/target/build/math / $projectName: math / $env:CI:'true'
@@ -8310,8 +8336,8 @@ core.Invoke-Block / Get-Location: /home/runner/work/polyglot/polyglot/deps/spira
 'pwsh (Join-Path $repo "build.ps1")'
 
 spiral/lib/spiral/lib.ps1/BuildSpiral / dir-tree-html / /home/runner/.cache/spiral-bin/bin/single-flight/SpiralCompiler/Release/net11.0/SpiralCompiler.dll --backend Rust dir_tree_html.spi dir_tree_html.rs
-compiled dir_tree_html.spi -&gt; dir_tree_html.rs (Rust, 73629 bytes, entry=main, revision=open, pid=55619)
-RUST-COMPILED dir-tree-html / dir_tree_html.rs / 0 s
+compiled dir_tree_html.spi -&gt; dir_tree_html.rs (Rust, 73132 bytes, entry=main, revision=open, pid=56136)
+RUST-COMPILED dir-tree-html / dir_tree_html.rs / 1 s
 
 ────────────────────────────────────────────────────────────────────────────────
 core.Invoke-Block / Get-Location: /home/runner/work/polyglot/dir-tree-html / $ScriptBlock:

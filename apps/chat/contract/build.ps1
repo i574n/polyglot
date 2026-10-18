@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $projectName = "chat_contract"
 $contractToolchain = "nightly-2024-07-14"
 
-$livebook = Join-Path $ScriptDir "../../../deps/spiral/apps/kino/spi/run_notebook.ps1"
+$livebook = Join-Path $ScriptDir "../../../deps/spiral/apps/cells/spi/run_notebook.ps1"
 $spi = Join-Path $ScriptDir "$projectName.spi"
 $ipynb = Join-Path $ScriptDir "$projectName.spi.ipynb"
 if (!$fast -and !$SkipNotebook) {

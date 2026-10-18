@@ -14,72 +14,23 @@ mod spiral_tests {
 }
 use pyo3::prelude::PyAnyMethods;
 struct Mut0 { l0: i32 }
-impl Default for Mut0 {
-    fn default() -> Self {
-        Mut0 { l0: <i32>::default() }
-    }
-}
 struct Mut1 { l0: i32, l1: Rc<str>, l2: Rc<str> }
-impl Default for Mut1 {
-    fn default() -> Self {
-        Mut1 { l0: <i32>::default(), l1: { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) }, l2: { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) } }
-    }
-}
 struct Mut2 { l0: i32, l1: num_complex::Complex<f64> }
 #[derive(Clone)]
 enum US0 {
     US0_Some(num_complex::Complex<f64>),
     US0_None,
 }
-impl US0 {
-    fn tag(&self) -> i32 {
-        match self {
-            US0::US0_Some(..) => 0,
-            US0::US0_None => 1,
-        }
-    }
-}
 struct Mut3 { l0: Rc<str> }
-impl Default for Mut3 {
-    fn default() -> Self {
-        Mut3 { l0: { thread_local!{ static LIT: Rc<str> = Rc::<str>::from(""); } LIT.with(|lit| lit.clone()) } }
-    }
-}
 #[derive(Clone)]
 enum UH0 {
     UH0_Nil,
     UH0_Cons(f64, Rc<UH0>),
 }
-impl UH0 {
-    fn tag(&self) -> i32 {
-        match self {
-            UH0::UH0_Nil => 0,
-            UH0::UH0_Cons(..) => 1,
-        }
-    }
-}
-impl Default for UH0 {
-    fn default() -> Self {
-        UH0::UH0_Nil
-    }
-}
 #[derive(Clone)]
 enum UH1 {
     UH1_Nil,
     UH1_Cons(num_complex::Complex<f64>, Rc<UH1>),
-}
-impl UH1 {
-    fn tag(&self) -> i32 {
-        match self {
-            UH1::UH1_Nil => 0,
-            UH1::UH1_Cons(..) => 1,
-        }
-    }
-}
-impl Default for UH1 {
-    fn default() -> Self {
-        UH1::UH1_Nil
-    }
 }
 fn method0(mut v0: Rc<str>) -> Rc<str> {
     v0.clone()
@@ -3939,5 +3890,5 @@ fn spiral_main() -> i32 {
 }
 fn main() { #[cfg(target_arch = "wasm32")] { spiral_main(); return; }
     let main = std::thread::Builder::new().stack_size(1 << 30).spawn(spiral_main).unwrap();
-    std::process::exit(match main.join() { Ok(code) => code, Err(_) => 101 });
+    std::process::exit(match main.join() { Ok(code) => code, Err(_) => 1 });
 }
