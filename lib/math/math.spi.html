@@ -33614,8 +33614,20 @@ __assert_lt { expected = 0.01 }</pre>
 
 <span class="n">inl</span> <span class="n">native_test_wrappers</span> <span class="p">()</span> <span class="o">=</span>
     <span class="k">global</span> <span class="s2">"thread_local! { static SPIRAL_TEST_NAME: std::cell::RefCell&lt;Option&lt;std::rc::Rc&lt;str&gt;&gt;&gt; = const { std::cell::RefCell::new(None) }; }"</span>
-    <span class="k">global</span> <span class="s2">"#[cfg(test)]</span><span class="se">\n</span><span class="s2">fn spiral_test(name: &amp;'static str) {</span><span class="se">\n</span><span class="s2">    let code = std::thread::Builder::new().stack_size(1 &lt;&lt; 30).spawn(move || { SPIRAL_TEST_NAME.with(|x| *x.borrow_mut() = Some(std::rc::Rc::from(name))); spiral_main() }).unwrap().join().unwrap();</span><span class="se">\n</span><span class="s2">    assert_eq!(code, 0);</span><span class="se">\n</span><span class="s2">}"</span>
-    <span class="k">global</span> <span class="s2">"#[cfg(test)]</span><span class="se">\n</span><span class="s2">mod spiral_tests {</span><span class="se">\n</span><span class="s2">    macro_rules! tests { ($($name:ident),*) =&gt; { $(#[test] fn $name() { super::spiral_test(stringify!($name)) })* } }</span><span class="se">\n</span><span class="s2">    tests!(test_zeta_at_known_values_, test_zeta_at_2_minus2, test_trivial_zero_at_negative_even___, test_non_trivial_zero___, test_real_part_greater_than_one___, test_zeta_at_1___, test_symmetry_across_real_axis___, test_behavior_near_origin___, test_imaginary_axis, test_critical_strip, test_reflection_formula_for_specific_value, test_euler_product_formula);</span><span class="se">\n</span><span class="s2">}"</span>
+    <span class="k">global</span> <span class="s2">"""</span>
+<span class="s2">        #[cfg(test)]</span>
+<span class="s2">        fn spiral_test(name: &amp;'static str) {</span>
+<span class="s2">            let code = std::thread::Builder::new().stack_size(1 &lt;&lt; 30).spawn(move || { SPIRAL_TEST_NAME.with(|x| *x.borrow_mut() = Some(std::rc::Rc::from(name))); spiral_main() }).unwrap().join().unwrap();</span>
+<span class="s2">            assert_eq!(code, 0);</span>
+<span class="s2">        }</span>
+<span class="s2">        """</span>
+    <span class="k">global</span> <span class="s2">"""</span>
+<span class="s2">        #[cfg(test)]</span>
+<span class="s2">        mod spiral_tests {</span>
+<span class="s2">            macro_rules! tests { ($($name:ident),*) =&gt; { $(#[test] fn $name() { super::spiral_test(stringify!($name)) })* } }</span>
+<span class="s2">            tests!(test_zeta_at_known_values_, test_zeta_at_2_minus2, test_trivial_zero_at_negative_even___, test_non_trivial_zero___, test_real_part_greater_than_one___, test_zeta_at_1___, test_symmetry_across_real_axis___, test_behavior_near_origin___, test_imaginary_axis, test_critical_strip, test_reflection_formula_for_specific_value, test_euler_product_formula);</span>
+<span class="s2">        }</span>
+<span class="s2">        """</span>
 
 <span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">native_test_wrappers</span> <span class="p">()</span>
