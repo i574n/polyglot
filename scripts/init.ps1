@@ -27,18 +27,18 @@ if (!(Search-Command "rustup")) {
     }
 }
 
-rustup install nightly-2025-05-09
-rustup default nightly-2025-05-09
-rustup +nightly-2025-05-09 target add wasm32-unknown-unknown
-rustup +nightly-2025-05-09 component add clippy rust-src rustfmt
+rustup install nightly-2026-10-18
+rustup default nightly-2026-10-18
+rustup +nightly-2026-10-18 target add wasm32-unknown-unknown
+rustup +nightly-2026-10-18 component add clippy rust-src rustfmt
 
 rustup install nightly-2024-07-14
 rustup +nightly-2024-07-14 target add wasm32-unknown-unknown
 rustup +nightly-2024-07-14 component add clippy rust-src rustfmt
 
-rustup install nightly-2025-11-01
+rustup install nightly-2026-10-18
 
-rustup install nightly-2024-10-07
+rustup install nightly-2026-10-18
 
 if ($env:CI) {
     rustup uninstall stable
