@@ -95,8 +95,8 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
         if log then
             !\\((count, s), $'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", $0, $1)"')
         if re s > 1 then
-            (.^(0, 0), (am.init 10000i32 id : a i32 _))
-            ||> am.fold fun acc n =>
+            (.^(0, 0), (arraym.init 10000i32 id : array _))
+            ||> arraym.fold fun acc n =>
                 acc .+ (.^(1, 0) ./ (.^(n |> convert.f64, 0) .** s))
         else
             inl gamma_term = gamma (.^(1, 0) .- s)
@@ -226,7 +226,7 @@ inl call1_ log name py s line =
             "            s = complex(float('inf'), 0)"
             "    return (s.real, s.imag)"
         ]
-        |> fun lines => (a lines : _ i32 _) |> sm'.concat_array "\n" |> sm'.replace "__NAME__" name
+        |> fun (lines : array _) => lines |> sm'.concat_array "\n" |> sm'.replace "__NAME__" name
         |> call1_ log py s
 
 inl gamma_ log py s =
@@ -283,8 +283,8 @@ inl test_zeta_at_known_values_ log = run_test log fun zeta, gamma =>
         .^(2, 0), pi ** 2 / 6
         .^(-1, 0), -1 / 12
     ]
-    |> fun x => a x : _ i32 _
-    |> am.iter fun s, e =>
+    |> fun (x : array _) => x
+    |> arraym.iter fun s, e =>
         inl result = zeta s
 
         result |> im |> _assert_eq 0
@@ -330,8 +330,8 @@ inl test_non_trivial_zero___ log = run_test log fun zeta, gamma =>
         .^(0.5, 32.935062)
         .^(0.5, 37.586178)
     ]
-    |> fun x => a x : _ i32 _
-    |> am.iter fun x =>
+    |> fun (x : array _) => x
+    |> arraym.iter fun x =>
             inl result = zeta x
             result |> re |> abs |> _assert_lt 0.0001
             result |> im |> abs |> _assert_lt 0.0001
@@ -343,8 +343,8 @@ test test_non_trivial_zero =
 /// ## test_real_part_greater_than_one___
 inl test_real_part_greater_than_one___ log = run_test log fun zeta, gamma =>
     inl points = ;[ 2; 3; 4; 5; 10; 20; 50 ]
-    (a points : _ i32 _)
-    |> am.iter fun point =>
+    (points : array _)
+    |> arraym.iter fun point =>
         inl s = .^(point, 0)
         inl result = zeta s
         result |> re |> _assert_gt 0
