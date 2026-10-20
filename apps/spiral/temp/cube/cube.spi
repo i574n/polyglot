@@ -46,7 +46,7 @@ inl calculate_z (i : f64) (j : f64) (k : f64) (rotation rot) : f64 =
 
 /// ### plot
 /// Projects one surface point; the z-buffer keeps the nearest one (the largest 1/z) per cell, the first on ties.
-let plot (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (offset : f64) (i : f64) (j : f64) (k : f64) (ch : i32) : () =
+let plot (depth : array f64) (chars : array i32) (rot : rotation) (offset : f64) (i : f64) (j : f64) (k : f64) (ch : i32) : () =
     inl x = calculate_x i j k rot
     inl y = calculate_y i j k rot
     inl z = calculate_z i j k rot + distance_from_cam ()
@@ -60,12 +60,12 @@ let plot (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (offset : f64)
             set chars idx ch
 
 /// ### draw_cube
-let draw_cube (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (cw : f64) (offset : f64) : () =
+let draw_cube (depth : array f64) (chars : array i32) (rot : rotation) (cw : f64) (offset : f64) : () =
     inl plot = plot depth chars rot offset
     inl cube_x = mut (0f64 - cw)
-    loopw.while (fun () => *cube_x < cw) fun () =>
+    loop.while' (fun () => *cube_x < cw) fun () =>
         inl cube_y = mut (0f64 - cw)
-        loopw.while (fun () => *cube_y < cw) fun () =>
+        loop.while' (fun () => *cube_y < cw) fun () =>
             inl x, y = *cube_x, *cube_y
             plot x y (0f64 - cw) 59i32
             plot cw y x 92i32
@@ -88,9 +88,9 @@ inl cell_text (ch : i32) : string =
 
 /// ### render
 /// Clears the buffers, draws the three cubes, prints the frame row by row and returns the updated checksum.
-let render (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (checksum : i32) : i32 =
+let render (depth : array f64) (chars : array i32) (rot : rotation) (checksum : i32) : i32 =
     inl size = width () * height ()
-    loopw.for' {from=0i32; nearTo=size} fun i =>
+    loop.for' {from=0i32; nearTo=size} fun i =>
         set depth i 0f64
         set chars i (background ())
     draw_cube depth chars rot 20f64 (0f64 - 40f64)
@@ -98,8 +98,8 @@ let render (depth : a i32 f64) (chars : a i32 i32) (rot : rotation) (checksum : 
     draw_cube depth chars rot 5f64 40f64
     !!!!Printf("\u001b[H")
     inl sum = mut checksum
-    loopw.for' {from=0i32; nearTo=height ()} fun row =>
-        loopw.for' {from=0i32; nearTo=width ()} fun col =>
+    loop.for' {from=0i32; nearTo=height ()} fun row =>
+        loop.for' {from=0i32; nearTo=width ()} fun col =>
             inl ch = index chars (col + row * width ())
             !!!!Printf("%s", cell_text ch)
             sum <- (*sum * 31i32 + ch) % 1000003i32
@@ -113,11 +113,11 @@ inl next_rotation (rotation r) : rotation = rotation { a = r.a + 0.05f64; b = r.
 inl main () : i32 =
     inl frames = 60i32
     inl size = width () * height ()
-    inl depth : a i32 f64 = am.init size (fun _ => 0f64)
-    inl chars : a i32 i32 = am.init size (fun _ => background ())
+    inl depth : array f64 = arraym.init size (fun _ => 0f64)
+    inl chars : array i32 = arraym.init size (fun _ => background ())
     inl rot = mut (rotation { a = 0f64; b = 0f64; c = 0f64 })
     inl checksum = mut 0i32
-    loopw.for' {from=0i32; nearTo=frames} fun _ =>
+    loop.for' {from=0i32; nearTo=frames} fun _ =>
         checksum <- render depth chars *rot *checksum
         rot <- next_rotation *rot
     inl checksum = *checksum

@@ -343,14 +343,14 @@ inl get_solutions () =
         "F",
         fun input =>
             inl input_length = input |> sm.length
-            am.singleton 0i32
-            |> am.append (am'.init_series 1 (input_length - 1) 1 |> fun x => a x : _ int _)
-            |> fun (a x) => x
+            arraym.singleton 0i32
+            |> arraym.append (am'.init_series 1 (input_length - 1) 1 |> fun x => array x : array _)
+            |> fun (array x) => x
             |> am'.map_base fun i =>
                 inl a = input |> sm'.slice i (input_length - 1)
                 inl b = input |> sm'.slice 0 (i - 1)
                 sm'.(++#) a b
-            |> fun x => a x : _ int _
+            |> fun x => array x : array _
             |> seq.of_array
             |> sm'.concat " "
 
@@ -366,7 +366,7 @@ inl get_solutions () =
             )
             |> listm'.box
             |> listm'.to_array'
-            |> fun x => a x : _ int _
+            |> fun x => array x : array _
             |> seq.of_array
             |> sm'.concat " "
 
@@ -575,17 +575,17 @@ inl rec binary_search_tests () =
         arr, (target, (len |> optionm'.default_with fun () => length arr))
 
     inl test_cases = [
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 None), (Some 3i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
-        ((am'.init_series 1i32 1000 1 |> fun x => a x : _ int _) |> arr_with_len 60 None), (Some 59)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 None), (Some 3i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
+        ((am'.init_series 1i32 1000 1 |> fun x => array x : array _) |> arr_with_len 60 None), (Some 59)
 
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
-        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
-        ((am'.init_series 1i32 1000 1 |> fun x => a x : _ int _) |> arr_with_len 60 (Some 100)), (Some 59)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
+        (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
+        ((am'.init_series 1i32 1000 1 |> fun x => array x : array _) |> arr_with_len 60 (Some 100)), (Some 59)
     ]
 
     inl solutions = get_solutions ()
