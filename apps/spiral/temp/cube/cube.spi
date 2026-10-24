@@ -46,7 +46,10 @@ inl calculate_z (i : f64) (j : f64) (k : f64) (rotation rot) : f64 =
 
 /// ### plot
 /// Projects one surface point; the z-buffer keeps the nearest one (the largest 1/z) per cell, the first on ties.
-let plot (depth : array f64) (chars : array i32) (rot : rotation) (offset : f64) (i : f64) (j : f64) (k : f64) (ch : i32) : () =
+let plot
+    (depth : array f64) (chars : array i32) (rot : rotation) (offset : f64) (i : f64) (j : f64) (k : f64) (ch : i32)
+    : ()
+    =
     inl x = calculate_x i j k rot
     inl y = calculate_y i j k rot
     inl z = calculate_z i j k rot + distance_from_cam ()
@@ -90,7 +93,7 @@ inl cell_text (ch : i32) : string =
 /// Clears the buffers, draws the three cubes, prints the frame row by row and returns the updated checksum.
 let render (depth : array f64) (chars : array i32) (rot : rotation) (checksum : i32) : i32 =
     inl size = width () * height ()
-    loop.for' {from=0i32; nearTo=size} fun i =>
+    loop.for' { from = 0i32; nearTo = size } fun i =>
         set depth i 0f64
         set chars i (background ())
     draw_cube depth chars rot 20f64 (0f64 - 40f64)
@@ -98,8 +101,8 @@ let render (depth : array f64) (chars : array i32) (rot : rotation) (checksum : 
     draw_cube depth chars rot 5f64 40f64
     !!!!Printf("\u001b[H")
     inl sum = mut checksum
-    loop.for' {from=0i32; nearTo=height ()} fun row =>
-        loop.for' {from=0i32; nearTo=width ()} fun col =>
+    loop.for' { from = 0i32; nearTo = height () } fun row =>
+        loop.for' { from = 0i32; nearTo = width () } fun col =>
             inl ch = index chars (col + row * width ())
             !!!!Printf("%s", cell_text ch)
             sum <- (*sum * 31i32 + ch) % 1000003i32
@@ -117,7 +120,7 @@ inl main () : i32 =
     inl chars : array i32 = arraym.init size (fun _ => background ())
     inl rot = mut (rotation { a = 0f64; b = 0f64; c = 0f64 })
     inl checksum = mut 0i32
-    loop.for' {from=0i32; nearTo=frames} fun _ =>
+    loop.for' { from = 0i32; nearTo = frames } fun _ =>
         checksum <- render depth chars *rot *checksum
         rot <- next_rotation *rot
     inl checksum = *checksum

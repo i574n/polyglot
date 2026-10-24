@@ -203,9 +203,16 @@ inl call1_ log name py s line =
             "    count += 1"
             "    if count < 200:"
             "        try:"
-            "            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != 'make_mpc' and k not in ['ctx'] and not callable(v) }"
-            "            args_str = ', '.join([ f\"{k}={re.sub(memory_address_pattern, ' at 0x<?>', repr(v))}\" for k, v in args.items() ])"
-            "            print(f\"{event}(__NAME__) / f_code.co_name: {frame.f_code.co_name} / f_locals: {args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: {frame.f_code.co_filename.split('site-packages')[-1]} / f_back.f_lineno: { '' if frame.f_back is None else frame.f_back.f_lineno } / f_back.f_code.co_filename: { '' if frame.f_back is None else frame.f_back.f_code.co_filename.split('site-packages')[-1] } / arg: {re.sub(memory_address_pattern, ' at 0x<?>', repr(arg))}\", flush=True)"
+            "            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != 'make_mpc' "
+            ^^ "and k not in ['ctx'] and not callable(v) }"
+            "            args_str = ', '.join([ f\"{k}={re.sub(memory_address_pattern, ' at 0x<?>', repr(v))}\" "
+            ^^ "for k, v in args.items() ])"
+            "            print(f\"{event}(__NAME__) / f_code.co_name: {frame.f_code.co_name} / f_locals: "
+            ^^ "{args_str} / f_lineno: {frame.f_lineno} / f_code.co_filename: "
+            ^^ "{frame.f_code.co_filename.split('site-packages')[-1]} / f_back.f_lineno: { '' if frame.f_back is None "
+            ^^ "else frame.f_back.f_lineno } / f_back.f_code.co_filename: { '' if frame.f_back is None else "
+            ^^ "frame.f_back.f_code.co_filename.split('site-packages')[-1] } / arg: {re.sub(memory_address_pattern, ' "
+            ^^ "at 0x<?>', repr(arg))}\", flush=True)"
             "        except ValueError as e:"
             "            print(f'__NAME__ / e: {e}', flush=True)"
             "        return trace_calls"
@@ -538,7 +545,8 @@ inl native_test_wrappers () =
 inl main () : () =
     native_test_wrappers ()
     inl name =
-        $'SPIRAL_TEST_NAME.with(|x| x.borrow().clone()).unwrap_or_else(|| Rc::<str>::from(std::env::args().nth(1).unwrap_or_default()))'
+        $'SPIRAL_TEST_NAME.with(|x| x.borrow().clone()).unwrap_or_else(|| \
+            Rc::<str>::from(std::env::args().nth(1).unwrap_or_default()))'
         : string
     inl code = run_native_tests name
     $'if !code \!= 0 { std::process::exit(!code) }' : ()

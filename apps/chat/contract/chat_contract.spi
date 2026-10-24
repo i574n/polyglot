@@ -36,7 +36,8 @@ inl new () : state =
 
 /// ### is_valid_alias
 inl is_valid_alias (alias : sm'.std_string) : bool =
-    $'{ let alias: &str = &(!alias); alias.len() > 0 && alias.len() < 64 && \!alias.starts_with(\'-\') && \!alias.ends_with(\'-\') && alias.chars().all(|c| c.is_alphanumeric() || c == \'-\') }' : bool
+    $'{ let alias: &str = &(!alias); alias.len() > 0 && alias.len() < 64 && \!alias.starts_with(\'-\') && \
+        \!alias.ends_with(\'-\') && alias.chars().all(|c| c.is_alphanumeric() || c == \'-\') }' : bool
 
 ///> rust -c
 test is_valid_alias =
@@ -61,7 +62,11 @@ test is_valid_alias_3 =
 
 /// ### generate_cid
 inl generate_cid (content : am'.vec u8) : sm'.std_string =
-    $'{ let mut varint = unsigned_varint::encode::u64_buffer(); let codec_bytes = unsigned_varint::encode::u64(0x55, &mut varint).to_vec(); let mut hasher: sha2::Sha256 = sha2::Digest::new(); sha2::Digest::update(&mut hasher, &(!content)); let multihash: Vec<u8> = [0x12u8, 32].into_iter().chain(sha2::Digest::finalize(hasher).into_iter()).collect(); let cid_bytes = [vec\![1u8], codec_bytes, multihash].concat(); multibase::encode(multibase::Base::Base32Lower, &cid_bytes) }' : sm'.std_string
+    $'{ let mut varint = unsigned_varint::encode::u64_buffer(); let codec_bytes = unsigned_varint::encode::u64(0x55, \
+        &mut varint).to_vec(); let mut hasher: sha2::Sha256 = sha2::Digest::new(); sha2::Digest::update(&mut hasher, \
+        &(!content)); let multihash: Vec<u8> = [0x12u8, 32].into_iter().chain(sha2::Digest::finalize(hasher).into_iter\
+        ()).collect(); let cid_bytes = [vec\![1u8], codec_bytes, multihash].concat(); \
+        multibase::encode(multibase::Base::Base32Lower, &cid_bytes) }' : sm'.std_string
 
 ///> rust -c -d multibase='=0.9.1' sha2 unsigned-varint
 test generate_cid =
@@ -114,7 +119,8 @@ inl claim_alias
 
         match account_alias' with
         | Some account_alias =>
-            $'{ if let Some(accounts) = (!alias_map).get_mut(&(!account_alias)) { accounts.remove(&(!signer_account_id)); } }' : ()
+            $'{ if let Some(accounts) = (!alias_map).get_mut(&(!account_alias)) { \
+                accounts.remove(&(!signer_account_id)); } }' : ()
         | None => ()
 
         $'{ (!account_map).insert((!signer_account_id).clone(), (!alias).clone()); }' : ()
@@ -122,7 +128,14 @@ inl claim_alias
         account_set |> near.iterable_set_insert signer_account_id |> ignore
         alias_set |> near.iterable_set_insert alias |> ignore
 
-        $'{ let accounts = match (!alias_map).get(&(!alias)) { None => { let mut accounts = std::collections::HashMap::new(); accounts.insert((!signer_account_id).clone(), (!block_timestamp, 0u32)); accounts } Some(previous) => { let mut ordered = previous.iter().collect::<Vec<_>>(); ordered.sort_unstable_by_key(|(_, (_, index))| *index); let mut accounts = ordered.iter().enumerate().map(|(i, (account_id, (timestamp, _)))| ((*account_id).clone(), (*timestamp, i as u32))).collect::<std::collections::HashMap<_, _>>(); accounts.insert((!signer_account_id).clone(), (!block_timestamp, ordered.len() as u32)); accounts } }; (!alias_map).insert((!alias).clone(), accounts); }' : ()
+        $'{ let accounts = match (!alias_map).get(&(!alias)) { None => { let mut accounts = \
+            std::collections::HashMap::new(); accounts.insert((!signer_account_id).clone(), (!block_timestamp, \
+            0u32)); accounts } Some(previous) => { let mut ordered = previous.iter().collect::<Vec<_>>(); \
+            ordered.sort_unstable_by_key(|(_, (_, index))| *index); let mut accounts = \
+            ordered.iter().enumerate().map(|(i, (account_id, (timestamp, _)))| ((*account_id).clone(), (*timestamp, i \
+            as u32))).collect::<std::collections::HashMap<_, _>>(); accounts.insert((!signer_account_id).clone(), \
+            (!block_timestamp, ordered.len() as u32)); accounts } }; (!alias_map).insert((!alias).clone(), accounts); \
+            }' : ()
 
 ///> rust "-c=-e=\"chat_contract.claim_alias / invalid alias\""
 test claim_alias =
@@ -145,7 +158,8 @@ inl get_account_info
     : account_info
     =
     inl result : account_info =
-        $'(!account_map).get(&(!account_id)).and_then(|alias| (!alias_map).get(alias).and_then(|accounts| accounts.get(&(!account_id)).map(|(timestamp, index)| (alias.clone(), *timestamp, *index))))'
+        $'(!account_map).get(&(!account_id)).and_then(|alias| (!alias_map).get(alias).and_then(|accounts| \
+            accounts.get(&(!account_id)).map(|(timestamp, index)| (alias.clone(), *timestamp, *index))))'
 
     trace Debug
         fun () => "chat_contract.get_account_info"

@@ -26,7 +26,7 @@ jobs:
                   otp-version: "29"
                   elixir-version: "1.20"
                   gleam-version: "1.19.2"
-                  rebar3-version: "3.27.3"
+                  rebar3-version: "3.28.0"
 
             - uses: actions/setup-dotnet@v5.4.0
               with:
@@ -71,7 +71,23 @@ jobs:
                   name: gh-pages
                   path: gh-pages
 
+            - run: echo "$GITHUB_SHA" > gh-pages/_deploy.txt
+
             - uses: peaceiris/actions-gh-pages@v4.1.0
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: gh-pages
+                  force_orphan: true
+
+            - name: verify the deploy is live
+              shell: pwsh
+              run: |
+                  $url = 'https://i574n.github.io/${{ github.event.repository.name }}/'
+                  $deadline = (Get-Date).AddMinutes(6)
+                  do {
+                      $live = try { (Invoke-WebRequest "${url}_deploy.txt?t=$([DateTime]::UtcNow.Ticks)" -SkipHttpErrorCheck).Content.Trim() } catch { '' }
+                      if ($live -ne $env:GITHUB_SHA) { Start-Sleep 15 }
+                  } while ($live -ne $env:GITHUB_SHA -and (Get-Date) -lt $deadline)
+                  if ($live -ne $env:GITHUB_SHA) { throw "pages serve '$live', expected $env:GITHUB_SHA" }
+                  $html = (Invoke-WebRequest "${url}?t=$([DateTime]::UtcNow.Ticks)").Content
+                  foreach ($mark in 'id="readme"|class="readme', 'name="viewport"') { if ($html -notmatch $mark) { throw "index lacks $mark" } }
