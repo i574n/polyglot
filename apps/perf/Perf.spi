@@ -1,6 +1,6 @@
 /// # Perf (Polyglot)
-open testing
-open benchmark
+:< testing
+:< benchmark
 
 /// ## TestCaseResult
 
@@ -9,8 +9,8 @@ open benchmark
 /// ## runAll
 
 /// ## sortResultList
-inl is_fast () =
-    false
+:= is_fast () =
+    !-
 
 /// ## empty3Tests
 
@@ -137,10 +137,10 @@ inl is_fast () =
 /// 
 /// Input                                                                           | Expected        | Result  | Best
 /// ---                                                                             | ---             | ---     | ---
-/// abc                                                                             | abc             | abc     | (11, 1219)
-/// accabb                                                                          | acb             | acb     | (11, 1317)
-/// pprrqqpp                                                                        | prq             | prq     | (11, 1322)
-/// aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb | acb             | acb     | (11, 2040)
+/// abc | abc | abc | (11, 1219)
+/// accabb | acb | acb | (11, 1317)
+/// pprrqqpp | prq | prq | (11, 1322)
+/// aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb | acb | acb | (11, 2040)
 /// 
 /// Averages
 /// Test case 1. Average Time: 4622L
@@ -252,14 +252,15 @@ inl is_fast () =
 /// Test case 10. FB. Time: 773L
 /// Test case 11. FC. Time: 1789L
 /// 
-/// Input           | Expected                                                                                        | Result                                                                                          | Best
-/// ---             | ---                                                                                             | ---                                                                                             | ---
-/// abc             | bca cab abc                                                                                     | bca cab abc                                                                                     | (8, 1517)
-/// abcde           | bcdea cdeab deabc eabcd abcde                                                                   | bcdea cdeab deabc eabcd abcde                                                                   | (8, 1771)
-/// abcdefghi       | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi       | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi       | (8, 3050)
-/// abab            | baba abab baba abab                                                                             | baba abab baba abab                                                                             | (8, 1558)
-/// aa              | aa aa                                                                                           | aa aa                                                                                           | (1, 1107)
-/// z               | z                                                                                               | z                                                                                               | (9, 232)
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
+/// abc | bca cab abc | bca cab abc | (8, 1517)
+/// abcde | bcdea cdeab deabc eabcd abcde | bcdea cdeab deabc eabcd abcde | (8, 1771)
+/// abcdefghi | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | bcdefghia
+/// cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | (8, 3050)
+/// abab | baba abab baba abab | baba abab baba abab | (8, 1558)
+/// aa | aa aa | aa aa | (1, 1107)
+/// z | z | z | (9, 232)
 /// 
 /// Averages
 /// Test case 1. Average Time: 2284L
@@ -316,19 +317,20 @@ inl is_fast () =
 /// 02:21:22 [90mverbose[0m #18 benchmark.run / solutions.map / {i = 1; test_name = F; time = 158}
 /// 02:21:22 [90mverbose[0m #19 benchmark.run / solutions.map / {i = 2; test_name = FA; time = 143}
 /// ```
-/// input      	| expected                                                                                   	| result                                                                                     	| best
-/// ---        	| ---                                                                                        	| ---                                                                                        	| ---
-/// "abc"      	| "bca cab abc"                                                                              	| "bca cab abc"                                                                              	| 1, 638
-/// "abcde"    	| "bcdea cdeab deabc eabcd abcde"                                                            	| "bcdea cdeab deabc eabcd abcde"                                                            	| 1, 745
-/// "abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 1092
-/// "abab"     	| "baba abab baba abab"                                                                      	| "baba abab baba abab"                                                                      	| 1, 536
-/// "aa"       	| "aa aa"                                                                                    	| "aa aa"                                                                                    	| 1, 365
-/// "z"        	| "z"                                                                                        	| "z"                                                                                        	| 2, 143
+/// input 	| expected 	| result 	| best
+/// --- 	| --- 	| --- 	| ---
+/// "abc" 	| "bca cab abc" 	| "bca cab abc" 	| 1, 638
+/// "abcde" 	| "bcdea cdeab deabc eabcd abcde" 	| "bcdea cdeab deabc eabcd abcde" 	| 1, 745
+/// "abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	|
+/// "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 1092
+/// "abab" 	| "baba abab baba abab" 	| "baba abab baba abab" 	| 1, 536
+/// "aa" 	| "aa aa" 	| "aa aa" 	| 1, 365
+/// "z" 	| "z" 	| "z" 	| 2, 143
 /// ```
 /// 02:21:22 [90mverbose[0m #20 benchmark.sort_result_list / averages.iter / {avg = 589; i = 1}
 /// 02:21:22 [90mverbose[0m #21 benchmark.sort_result_list / averages.iter / {avg = 675; i = 2}
 /// ```
-inl get_solutions () =
+:= get_solutions () =
     [
 
 
@@ -341,40 +343,40 @@ inl get_solutions () =
 
 
         "F",
-        fun input =>
-            inl input_length = input |> sm.length
+        \ input =>
+            := input_length = input |> sm.length
             arraym.singleton 0i32
-            |> arraym.append (am'.init_series 1 (input_length - 1) 1 |> fun x => array x : array _)
-            |> fun (array x) => x
-            |> am'.map_base fun i =>
-                inl a = input |> sm'.slice i (input_length - 1)
-                inl b = input |> sm'.slice 0 (i - 1)
+            |> arraym.append (am'.init_series 1 (input_length - 1) 1 |> \ x => array x : array _)
+            |> \ (array x) => x
+            |> am'.map_base \ i =>
+                := a = input |> sm'.slice i (input_length - 1)
+                := b = input |> sm'.slice 0 (i - 1)
                 sm'.(++#) a b
-            |> fun x => array x : array _
+            |> \ x => array x : array _
             |> seq.of_array
             |> sm'.concat " "
 
         "FA",
-        fun input =>
-            inl input_length = input |> sm.length
+        \ input =>
+            := input_length = input |> sm.length
             listm.singleton 0i32
             |> listm.append (listm'.init_series 1 (input_length - 1) 1)
-            |> listm.map (fun i =>
-                inl a = input |> sm'.slice i (input_length - 1)
-                inl b = if i = 0 then "" else input |> sm'.slice 0 (i - 1)
+            |> listm.map (\ i =>
+                := a = input |> sm'.slice i (input_length - 1)
+                := b = ? i = 0 ?> "" |: input |> sm'.slice 0 (i - 1)
                 sm'.(++#) a b
             )
             |> listm'.box
             |> listm'.to_array'
-            |> fun x => array x : array _
+            |> \ x => array x : array _
             |> seq.of_array
             |> sm'.concat " "
 
 
     ]
 
-inl rec rotate_strings_tests () =
-    inl test_cases = [
+:= ^ rotate_strings_tests () =
+    := test_cases = [
         "abc", "bca cab abc"
         "abcde", "bcdea cdeab deabc eabcd abcde"
         "abcdefghi", "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
@@ -383,13 +385,13 @@ inl rec rotate_strings_tests () =
         "z", "z"
     ]
 
-    inl solutions = get_solutions ()
+    := solutions = get_solutions ()
 
 
-    inl count =
-        if is_fast ()
-        then 1000i32
-        else 2000000i32
+    := count =
+        ? is_fast ()
+        ?> 1000i32
+        |: 2000000i32
 
     run_all (reflection.nameof { rotate_strings_tests }) count solutions test_cases
     |> sort_result_list
@@ -481,126 +483,126 @@ rotate_strings_tests ()
 /// 02:19:58 [90mverbose[0m #54 benchmark.sort_result_list / averages.iter / {avg = 619; i = 1}
 /// 02:19:58 [90mverbose[0m #55 benchmark.sort_result_list / averages.iter / {avg = 625; i = 3}
 /// ```
-inl binary_search_semi_open_1 arr target left right =
-    inl rec body left right =
-        if left >= right
-        then None
-        else
-            inl mid = (left + right) / 2
-            inl item = index arr mid
-            if item = target
-            then Some mid
-            elif item < target
-            then 루프 (mid + 1) right
-            else 루프 left mid
-    and inl 루프 left right =
-        if var_is right |> not
-        then body left right
-        else
-            inl left = dyn left
-            join body left right
+:= binary_search_semi_open_1 arr target left right =
+    := ^ body left right =
+        ? left >= right
+        ?> None
+        |:
+            := mid = (left + right) / 2
+            := item = index arr mid
+            ? item = target
+            ?> Some mid
+            |? item < target
+            ?> 루프 (mid + 1) right
+            |: 루프 left mid
+    :& := 루프 left right =
+        ? var_is right |> not
+        ?> body left right
+        |:
+            := left = dyn left
+            ~~ body left right
     루프 left right
 
-inl binary_search_closed_1 arr target left right =
-    inl rec body left right =
-        if left > right
-        then None
-        else
-            inl mid = (left + right) / 2
-            inl item = index arr mid
-            if item = target
-            then Some mid
-            elif item < target
-            then 루프 (mid + 1) right
-            else 루프 left (mid - 1)
-    and inl 루프 left right =
-        if var_is right |> not
-        then body left right
-        else
-            inl left = dyn left
-            join body left right
+:= binary_search_closed_1 arr target left right =
+    := ^ body left right =
+        ? left > right
+        ?> None
+        |:
+            := mid = (left + right) / 2
+            := item = index arr mid
+            ? item = target
+            ?> Some mid
+            |? item < target
+            ?> 루프 (mid + 1) right
+            |: 루프 left (mid - 1)
+    :& := 루프 left right =
+        ? var_is right |> not
+        ?> body left right
+        |:
+            := left = dyn left
+            ~~ body left right
     루프 left right
 
-inl binary_search_semi_open_2 arr target left right =
-    let rec body left right =
-        if left >= right
-        then None
-        else
-            inl mid = (left + right) / 2
-            inl item = index arr mid
-            if item = target
-            then Some mid
-            elif item < target
-            then 루프 (mid + 1) right
-            else 루프 left mid
-    and inl 루프 left right = body left right
+:= binary_search_semi_open_2 arr target left right =
+    :~ ^ body left right =
+        ? left >= right
+        ?> None
+        |:
+            := mid = (left + right) / 2
+            := item = index arr mid
+            ? item = target
+            ?> Some mid
+            |? item < target
+            ?> 루프 (mid + 1) right
+            |: 루프 left mid
+    :& := 루프 left right = body left right
     루프 left right
 
-inl binary_search_closed_2 arr target left right =
-    let rec body left right =
-        if left > right
-        then None
-        else
-            inl mid = (left + right) / 2
-            inl item = index arr mid
-            if item = target
-            then Some mid
-            elif item < target
-            then 루프 (mid + 1) right
-            else 루프 left (mid - 1)
-    and inl 루프 left right = body left right
+:= binary_search_closed_2 arr target left right =
+    :~ ^ body left right =
+        ? left > right
+        ?> None
+        |:
+            := mid = (left + right) / 2
+            := item = index arr mid
+            ? item = target
+            ?> Some mid
+            |? item < target
+            ?> 루프 (mid + 1) right
+            |: 루프 left (mid - 1)
+    :& := 루프 left right = body left right
     루프 left right
 
-inl get_solutions () =
+:= get_solutions () =
     [
         "semi_open_1",
-        fun (arr, (target, len)) =>
+        \ (arr, (target, len)) =>
             binary_search_semi_open_1 arr target 0 len
 
         "closed_1",
-        fun (arr, (target, len)) =>
+        \ (arr, (target, len)) =>
             binary_search_closed_1 arr target 0 (len - 1)
 
         "semi_open_2",
-        fun (arr, (target, len)) =>
+        \ (arr, (target, len)) =>
             binary_search_semi_open_2 arr target 0 len
 
         "closed_2",
-        fun (arr, (target, len)) =>
+        \ (arr, (target, len)) =>
             binary_search_closed_2 arr target 0 (len - 1)
     ]
 
-inl rec binary_search_tests () =
-    inl arr_with_len target len arr =
-        arr, (target, (len |> optionm'.default_with fun () => length arr))
+:= ^ binary_search_tests () =
+    := arr_with_len target len arr =
+        arr, (target, (len |> optionm'.default_with \ () => length arr))
 
-    inl test_cases = [
+    := test_cases = [
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 None), (Some 3i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
-        ((am'.init_series 1i32 1000 1 |> fun x => array x : array _) |> arr_with_len 60 None), (Some 59)
+        ((am'.init_series 1i32 1000 1 |> \ x => array x : array _) |> arr_with_len 60 None), (Some 59)
 
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
         (;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
-        ((am'.init_series 1i32 1000 1 |> fun x => array x : array _) |> arr_with_len 60 (Some 100)), (Some 59)
+        ((am'.init_series 1i32 1000 1 |> \ x => array x : array _) |> arr_with_len 60 (Some 100)), (Some 59)
     ]
 
-    inl solutions = get_solutions ()
+    := solutions = get_solutions ()
 
 
-    inl count =
-        if is_fast ()
-        then 1000i32
-        else 10000000i32
+    := count =
+        ? is_fast ()
+        ?> 1000i32
+        |: 10000000i32
 
     run_all (reflection.nameof { binary_search_tests }) count solutions test_cases
     |> sort_result_list
 
 
-let main () =
+:~ main () =
     binary_search_tests ()
 
 /// ## returnLettersWithOddCountTests

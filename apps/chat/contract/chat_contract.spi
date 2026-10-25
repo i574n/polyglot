@@ -1,17 +1,17 @@
 /// # chat_contract
-open rust
-open rust.rust_operators
-open sm'_operators
+:< rust
+:< rust.rust_operators
+:< sm'_operators
 
 test chat_contract static =
-    open testing
+    :< testing
 
 /// ## chat_contract
 
 /// ### state
-nominal alias_accounts = $'std::collections::HashMap<String, (u64, u32)>'
+:! alias_accounts = $'std::collections::HashMap<String, (u64, u32)>'
 
-type state =
+:== state =
     {
         version : u32
         account_set : near.iterable_set near.account_id
@@ -25,7 +25,7 @@ test state =
     ()
 
 /// ### new
-inl new () : state =
+:= new () : state =
     {
         version = 2
         account_set = "account_set" |> sm'.byte_slice |> near.new_iterable_set
@@ -35,7 +35,7 @@ inl new () : state =
     }
 
 /// ### is_valid_alias
-inl is_valid_alias (alias : sm'.std_string) : bool =
+:= is_valid_alias (alias : sm'.std_string) : bool =
     $'{ let alias: &str = &(!alias); alias.len() > 0 && alias.len() < 64 && \!alias.starts_with(\'-\') && \
         \!alias.ends_with(\'-\') && alias.chars().all(|c| c.is_alphanumeric() || c == \'-\') }' : bool
 
@@ -44,24 +44,24 @@ test is_valid_alias =
     ""
     |> sm'.to_std_string
     |> is_valid_alias
-    |> _assert_eq false
+    |> _assert_eq !-
 
 ///> rust -c
 test is_valid_alias_2 =
     "a-"
     |> sm'.to_std_string
     |> is_valid_alias
-    |> _assert_eq false
+    |> _assert_eq !-
 
 ///> rust -c
 test is_valid_alias_3 =
     "a-a"
     |> sm'.to_std_string
     |> is_valid_alias
-    |> _assert_eq true
+    |> _assert_eq !+
 
 /// ### generate_cid
-inl generate_cid (content : am'.vec u8) : sm'.std_string =
+:= generate_cid (content : am'.vec u8) : sm'.std_string =
     $'{ let mut varint = unsigned_varint::encode::u64_buffer(); let codec_bytes = unsigned_varint::encode::u64(0x55, \
         &mut varint).to_vec(); let mut hasher: sha2::Sha256 = sha2::Digest::new(); sha2::Digest::update(&mut hasher, \
         &(!content)); let multihash: Vec<u8> = [0x12u8, 32].into_iter().chain(sha2::Digest::finalize(hasher).into_iter\
@@ -77,10 +77,10 @@ test generate_cid =
     |> _assert_eq "bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku"
 
 /// ### claim_alias
-inl panic_str (text : string) : () =
+:= panic_str (text : string) : () =
     $'near_sdk::env::panic_str(&*!text)' : ()
 
-inl claim_alias
+:= claim_alias
     (account_set : rust.ref (rust.mut' (near.iterable_set near.account_id)))
     (alias_set : rust.ref (rust.mut' (near.iterable_set sm'.std_string)))
     (account_map : rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)))
@@ -88,36 +88,36 @@ inl claim_alias
     (alias : sm'.std_string)
     : ()
     =
-    inl signer_account_id = near.signer_account_id ()
-    inl predecessor_account_id = near.predecessor_account_id ()
-    inl block_timestamp = near.block_timestamp ()
+    := signer_account_id = near.signer_account_id ()
+    := predecessor_account_id = near.predecessor_account_id ()
+    := block_timestamp = near.block_timestamp ()
 
     trace Debug
-        fun () => "chat_contract.claim_alias"
-        fun () => {
+        \ () => "chat_contract.claim_alias"
+        \ () => {
             alias
             block_timestamp
             signer_account_id = signer_account_id |> sm'.to_string'
             predecessor_account_id = predecessor_account_id |> sm'.to_string'
         }
 
-    if alias |> is_valid_alias |> not then
+    ? alias |> is_valid_alias |> not ?>
         panic_str "chat_contract.claim_alias / invalid alias"
 
-    inl account_alias : optionm'.option' sm'.std_string =
+    := account_alias : optionm'.option' sm'.std_string =
         $'(!account_map).get(&(!signer_account_id)).cloned()'
 
-    match account_alias |> optionm'.unbox with
-    | Some account_alias when account_alias =. alias =>
+    ?= account_alias |> optionm'.unbox ?|
+    | Some account_alias ?& account_alias =. alias =>
         trace Warning
-            fun () => "chat_contract.claim_alias / alias already claimed"
-            fun () => { account_alias = account_alias |> sm'.format_debug }
+            \ () => "chat_contract.claim_alias / alias already claimed"
+            \ () => { account_alias = account_alias |> sm'.format_debug }
     | account_alias' =>
         trace Debug
-            fun () => "chat_contract.claim_alias"
-            fun () => { account_alias = account_alias' |> optionm'.box |> sm'.format_debug }
+            \ () => "chat_contract.claim_alias"
+            \ () => { account_alias = account_alias' |> optionm'.box |> sm'.format_debug }
 
-        match account_alias' with
+        ?= account_alias' ?|
         | Some account_alias =>
             $'{ if let Some(accounts) = (!alias_map).get_mut(&(!account_alias)) { \
                 accounts.remove(&(!signer_account_id)); } }' : ()
@@ -139,7 +139,7 @@ inl claim_alias
 
 ///> rust "-c=-e=\"chat_contract.claim_alias / invalid alias\""
 test claim_alias =
-    inl state = new ()
+    := state = new ()
     ""
     |> sm'.to_std_string
     |> claim_alias
@@ -149,42 +149,42 @@ test claim_alias =
         (state.alias_map |> rust.to_ref_mut)
 
 /// ### get_account_info
-nominal account_info = $'Option<(String, u64, u32)>'
+:! account_info = $'Option<(String, u64, u32)>'
 
-inl get_account_info
+:= get_account_info
     (account_map : rust.ref (near.lookup_map near.account_id sm'.std_string))
     (alias_map : rust.ref (near.lookup_map sm'.std_string alias_accounts))
     (account_id : near.account_id)
     : account_info
     =
-    inl result : account_info =
+    := result : account_info =
         $'(!account_map).get(&(!account_id)).and_then(|alias| (!alias_map).get(alias).and_then(|accounts| \
             accounts.get(&(!account_id)).map(|(timestamp, index)| (alias.clone(), *timestamp, *index))))'
 
     trace Debug
-        fun () => "chat_contract.get_account_info"
-        fun () => { account_id result = #?*result }
+        \ () => "chat_contract.get_account_info"
+        \ () => { account_id result = #?*result }
 
     result
 
 /// ### get_alias_map
-nominal alias_accounts_option = $'Option<std::collections::HashMap<String, (u64, u32)>>'
+:! alias_accounts_option = $'Option<std::collections::HashMap<String, (u64, u32)>>'
 
-inl get_alias_map
+:= get_alias_map
     (alias_map : rust.ref (near.lookup_map sm'.std_string alias_accounts))
     (alias : sm'.std_string)
     : alias_accounts_option
     =
     trace Debug
-        fun () => "chat_contract.get_alias_map"
-        fun () => { alias }
+        \ () => "chat_contract.get_alias_map"
+        \ () => { alias }
 
     $'(!alias_map).get(&(!alias)).cloned()' : alias_accounts_option
 
 /// ### main
 ///> _
 
-inl main_native () : () =
+:= main_native () : () =
     global """
         #[near_sdk::near_bindgen]
         #[derive(near_sdk::PanicOnDefault, borsh::BorshDeserialize, borsh::BorshSerialize)]
@@ -223,15 +223,54 @@ inl main_native () : () =
             }
         }
         """
-    inl quiet () : () = set_trace_level Info
-    !!!!Export("chat_contract_new", ((fun () => inl () = quiet () in inl x = new () in x.version, x.account_set, x.alias_set, x.account_map, x.alias_map) : () -> u32 * near.iterable_set near.account_id * near.iterable_set sm'.std_string * near.lookup_map near.account_id sm'.std_string * near.lookup_map sm'.std_string alias_accounts))
-    !!!!Export("chat_contract_is_valid_alias", ((fun alias => inl () = quiet () in is_valid_alias alias) : sm'.std_string -> bool))
-    !!!!Export("chat_contract_generate_cid", ((fun content => inl () = quiet () in generate_cid content) : am'.vec u8 -> sm'.std_string))
-    !!!!Export("chat_contract_claim_alias", ((fun (account_set, alias_set, account_map, alias_map, alias) => inl () = quiet () in claim_alias account_set alias_set account_map alias_map alias) : rust.ref (rust.mut' (near.iterable_set near.account_id)) * rust.ref (rust.mut' (near.iterable_set sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map sm'.std_string alias_accounts)) * sm'.std_string -> ()))
-    !!!!Export("chat_contract_get_account_info", ((fun (account_map, alias_map, account_id) => inl () = quiet () in get_account_info account_map alias_map account_id) : rust.ref (near.lookup_map near.account_id sm'.std_string) * rust.ref (near.lookup_map sm'.std_string alias_accounts) * near.account_id -> account_info))
-    !!!!Export("chat_contract_get_alias_map", ((fun (alias_map, alias) => inl () = quiet () in get_alias_map alias_map alias) : rust.ref (near.lookup_map sm'.std_string alias_accounts) * sm'.std_string -> alias_accounts_option))
+    := quiet () : () = set_trace_level Info
+    !!!!Export(
+        "chat_contract_new",
+        (
+            \ () =>
+                := () = quiet ()
+                := x = new ()
+                x.version, x.account_set, x.alias_set, x.account_map, x.alias_map
+            : () -> u32 * near.iterable_set near.account_id * near.iterable_set sm'.std_string * near.lookup_map near.account_id sm'.std_string * near.lookup_map sm'.std_string alias_accounts
+        )
+    )
+    !!!!Export(
+        "chat_contract_is_valid_alias",
+        ((\ alias => := () = quiet () ;; is_valid_alias alias) : sm'.std_string -> bool)
+    )
+    !!!!Export(
+        "chat_contract_generate_cid",
+        ((\ content => := () = quiet () ;; generate_cid content) : am'.vec u8 -> sm'.std_string)
+    )
+    !!!!Export(
+        "chat_contract_claim_alias",
+        (
+            \ (account_set, alias_set, account_map, alias_map, alias) =>
+                := () = quiet ()
+                claim_alias account_set alias_set account_map alias_map alias
+            : rust.ref (rust.mut' (near.iterable_set near.account_id)) * rust.ref (rust.mut' (near.iterable_set sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map sm'.std_string alias_accounts)) * sm'.std_string -> ()
+        )
+    )
+    !!!!Export(
+        "chat_contract_get_account_info",
+        (
+            \ (account_map, alias_map, account_id) =>
+                := () = quiet ()
+                get_account_info account_map alias_map account_id
+            : rust.ref (near.lookup_map near.account_id sm'.std_string) * rust.ref (near.lookup_map sm'.std_string alias_accounts) * near.account_id -> account_info
+        )
+    )
+    !!!!Export(
+        "chat_contract_get_alias_map",
+        (
+            \ (alias_map, alias) =>
+                := () = quiet ()
+                get_alias_map alias_map alias
+            : rust.ref (near.lookup_map sm'.std_string alias_accounts) * sm'.std_string -> alias_accounts_option
+        )
+    )
 
-inl main () =
-    if is_rust ()
-    then main_native ()
-    else ()
+:= main () =
+    ? is_rust ()
+    ?> main_native ()
+    |: ()
