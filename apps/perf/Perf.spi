@@ -2,12 +2,6 @@
 :< testing
 :< benchmark
 
-/// ## TestCaseResult
-
-/// ## run
-
-/// ## runAll
-
 /// ## sortResultList
 := is_fast () =
     !-
@@ -22,10 +16,10 @@
 /// Solution: (a, a)
 /// Test case 1. A. Time: 56L
 /// 
-/// Input  | Expected      | Result | Best
-/// ---    | ---           | ---    | ---
-/// (a, a) | a             | a      | (1, 91)
-/// (a, a) | a             | a      | (1, 56)
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
+/// (a, a) | a | a | (1, 91)
+/// (a, a) | a | a | (1, 56)
 /// 
 /// Averages
 /// Test case 1. Average Time: 73L
@@ -43,10 +37,10 @@
 /// Solution: (a, a)
 /// Test case 1. A. Time: 53L
 /// 
-/// Input   | Expected        | Result  | Best
-/// ---     | ---             | ---     | ---
-/// (a, a)  | a               | a       | (1, 59)
-/// (a, a)  | a               | a       | (1, 53)
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
+/// (a, a) | a | a | (1, 59)
+/// (a, a) | a | a | (1, 53)
 /// 
 /// Averages
 /// Test case 1. Average Time: 56L
@@ -67,11 +61,11 @@
 /// Solution: 5
 /// Test case 1. A. Time: 70L
 /// 
-/// Input   | Expected        | Result  | Best
-/// ---     | ---             | ---     | ---
-/// 0       | 0               | 0       | (1, 61)
-/// 2       | 2               | 2       | (1, 62)
-/// 5       | 5               | 5       | (1, 70)
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
+/// 0 | 0 | 0 | (1, 61)
+/// 2 | 2 | 2 | (1, 62)
+/// 5 | 5 | 5 | (1, 70)
 /// 
 /// Averages
 /// Test case 1. Average Time: 64L
@@ -135,8 +129,8 @@
 /// Test case 10. J. Time: 5993L
 /// Test case 11. K. Time: 2040L
 /// 
-/// Input                                                                           | Expected        | Result  | Best
-/// ---                                                                             | ---             | ---     | ---
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
 /// abc | abc | abc | (11, 1219)
 /// accabb | acb | acb | (11, 1317)
 /// pprrqqpp | prq | prq | (11, 1322)
@@ -256,8 +250,7 @@
 /// --- | --- | --- | ---
 /// abc | bca cab abc | bca cab abc | (8, 1517)
 /// abcde | bcdea cdeab deabc eabcd abcde | bcdea cdeab deabc eabcd abcde | (8, 1771)
-/// abcdefghi | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | bcdefghia
-/// cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | (8, 3050)
+/// abcdefghi | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi | (8, 3050)
 /// abab | baba abab baba abab | baba abab baba abab | (8, 1558)
 /// aa | aa aa | aa aa | (1, 1107)
 /// z | z | z | (9, 232)
@@ -321,8 +314,7 @@
 /// --- 	| --- 	| --- 	| ---
 /// "abc" 	| "bca cab abc" 	| "bca cab abc" 	| 1, 638
 /// "abcde" 	| "bcdea cdeab deabc eabcd abcde" 	| "bcdea cdeab deabc eabcd abcde" 	| 1, 745
-/// "abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	|
-/// "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 1092
+/// "abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| 1, 1092
 /// "abab" 	| "baba abab baba abab" 	| "baba abab baba abab" 	| 1, 536
 /// "aa" 	| "aa aa" 	| "aa aa" 	| 1, 365
 /// "z" 	| "z" 	| "z" 	| 2, 143
@@ -465,17 +457,17 @@ rotate_strings_tests ()
 /// 02:19:57 [90mverbose[0m #50 benchmark.run / solutions.map / {i = 3; test_name = semi_open_2; time = 653}
 /// 02:19:58 [90mverbose[0m #51 benchmark.run / solutions.map / {i = 4; test_name = closed_2; time = 646}
 /// ```
-/// input                                    	| expected	| result  	| best
-/// ---                                      	| ---     	| ---     	| ---
-/// struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US4_0 3 	| US4_0 3 	| 4, 610
-/// struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US4_0 0 	| US4_0 0 	| 2, 559
-/// struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US4_0 6 	| US4_0 6 	| 1, 550
-/// struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US4_1   	| US4_1   	| 1, 574
+/// input 	| expected	| result 	| best
+/// --- 	| --- 	| --- 	| ---
+/// struct ([1; 3; 4; 6; 8; 9; 11], 6, 7) 	| US4_0 3 	| US4_0 3 	| 4, 610
+/// struct ([1; 3; 4; 6; 8; 9; 11], 1, 7) 	| US4_0 0 	| US4_0 0 	| 2, 559
+/// struct ([1; 3; 4; 6; 8; 9; 11], 11, 7) 	| US4_0 6 	| US4_0 6 	| 1, 550
+/// struct ([1; 3; 4; 6; 8; 9; 11], 12, 7) 	| US4_1 	| US4_1 	| 1, 574
 /// struct ([1; 2; 3; 4...00; ...], 60, 1000)	| US4_0 59	| US4_0 59	| 1, 610
-/// struct ([1; 3; 4; 6; 8; 9; 11], 6, 7)    	| US4_0 3 	| US4_0 3 	| 2, 561
-/// struct ([1; 3; 4; 6; 8; 9; 11], 1, 7)    	| US4_0 0 	| US4_0 0 	| 2, 603
-/// struct ([1; 3; 4; 6; 8; 9; 11], 11, 7)   	| US4_0 6 	| US4_0 6 	| 2, 606
-/// struct ([1; 3; 4; 6; 8; 9; 11], 12, 7)   	| US4_1   	| US4_1   	| 2, 613
+/// struct ([1; 3; 4; 6; 8; 9; 11], 6, 7) 	| US4_0 3 	| US4_0 3 	| 2, 561
+/// struct ([1; 3; 4; 6; 8; 9; 11], 1, 7) 	| US4_0 0 	| US4_0 0 	| 2, 603
+/// struct ([1; 3; 4; 6; 8; 9; 11], 11, 7) 	| US4_0 6 	| US4_0 6 	| 2, 606
+/// struct ([1; 3; 4; 6; 8; 9; 11], 12, 7) 	| US4_1 	| US4_1 	| 2, 613
 /// struct ([1; 2; 3; 4...100; ...], 60, 100)	| US4_0 59	| US4_0 59	| 1, 630
 /// ```
 /// 02:19:58 [90mverbose[0m #52 benchmark.sort_result_list / averages.iter / {avg = 602; i = 2}
@@ -624,18 +616,16 @@ rotate_strings_tests ()
 /// Solution: 10
 /// Test case 1. A. Time: 815L
 /// 
-/// Input   | Expected        | Result          | Best
-/// ---     | ---             | ---             | ---
-/// 1       | a               | a               | (1, 645)
-/// 2       | ba              | ba              | (1, 663)
-/// 3       | aaa             | aaa             | (1, 680)
-/// 9       | aaaaaaaaa       | aaaaaaaaa       | (1, 730)
-/// 10      | baaaaaaaaa      | baaaaaaaaa      | (1, 815)
+/// Input | Expected | Result | Best
+/// --- | --- | --- | ---
+/// 1 | a | a | (1, 645)
+/// 2 | ba | ba | (1, 663)
+/// 3 | aaa | aaa | (1, 680)
+/// 9 | aaaaaaaaa | aaaaaaaaa | (1, 730)
+/// 10 | baaaaaaaaa | baaaaaaaaa | (1, 815)
 /// 
 /// Averages
 /// Test case 1. Average Time: 706L
 /// 
 /// Ranking
 /// Test case 1. Average Time: 706L
-
-/// ## hasAnyPairCloseToEachotherTests

@@ -61,16 +61,30 @@ test is_valid_alias_3 =
     |> _assert_eq !+
 
 /// ### generate_cid
+:= varint_u64 (n : u64) : am'.vec u8 =
+    global """
+        fn spiral_out_varint_u64(n: u64) -> Vec<u8> {
+            let mut buffer = unsigned_varint::encode::u64_buffer();
+            unsigned_varint::encode::u64(n, &mut buffer).to_vec()
+        }
+        """
+    $'spiral_out_varint_u64(!n)' : am'.vec u8
+
+:= sha256_digest (content : am'.vec u8) : am'.vec u8 =
+    $'<sha2::Sha256 as sha2::Digest>::digest(&!content).to_vec()' : am'.vec u8
+
+:= multibase_base32_lower (bytes : am'.vec u8) : sm'.std_string =
+    $'multibase::encode(multibase::Base::Base32Lower, &!bytes)' : sm'.std_string
+
 := generate_cid (content : am'.vec u8) : sm'.std_string =
-    $'{ let mut varint = unsigned_varint::encode::u64_buffer(); let codec_bytes = unsigned_varint::encode::u64(0x55, \
-        &mut varint).to_vec(); let mut hasher: sha2::Sha256 = sha2::Digest::new(); sha2::Digest::update(&mut hasher, \
-        &(!content)); let multihash: Vec<u8> = [0x12u8, 32].into_iter().chain(sha2::Digest::finalize(hasher).into_iter\
-        ()).collect(); let cid_bytes = [vec\![1u8], codec_bytes, multihash].concat(); \
-        multibase::encode(multibase::Base::Base32Lower, &cid_bytes) }' : sm'.std_string
+    := codec = varint_u64 85u64
+    := multihash = am'.new_vec [ 18u8; 32u8 ] |> am'.vec_extend (sha256_digest content)
+    am'.new_vec [ 1u8 ] |> am'.vec_extend codec |> am'.vec_extend multihash |> multibase_base32_lower
 
 ///> rust -c -d multibase='=0.9.1' sha2 unsigned-varint
 test generate_cid =
     ;[]
+    |> am'.base
     |> am'.to_vec
     |> generate_cid
     |> sm'.from_std_string

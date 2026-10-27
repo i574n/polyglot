@@ -545,11 +545,17 @@ test test_euler_product_formula =
         }
         """
 
+:= first_argument () : string =
+    ?= env.try_command_line_argument 0i32 ?|
+    | Some argument => argument
+    | None => ""
+
+:= test_name_or_first_argument () : string =
+    ?= ($'SPIRAL_TEST_NAME.with(|x| x.borrow().clone())' : optionm'.option' string) |> optionm'.unbox ?|
+    | Some name => name
+    | None => first_argument ()
+
 := main () : () =
     native_test_wrappers ()
-    := name =
-        $'SPIRAL_TEST_NAME.with(|x| x.borrow().clone()).unwrap_or_else(|| \
-            Rc::<str>::from(std::env::args().nth(1).unwrap_or_default()))'
-        : string
-    := code = run_native_tests name
-    $'if !code \!= 0 { std::process::exit(!code) }' : ()
+    := code = run_native_tests (test_name_or_first_argument ())
+    ? code <> 0 ?> env.exit_with code

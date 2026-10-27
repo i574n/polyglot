@@ -148,4 +148,4 @@ EnsureSymbolicLink -Path "$ResolvedScriptDir/../deps/spiral" -Target "$ResolvedS
 Invoke-PwshNotebook init.livemd
 
 
-{ pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") -SkipPreBuild 1 } | Invoke-Block
+{ pwsh $(ResolveLink "../deps/spiral/apps/spiral/build.ps1") } | Invoke-Block

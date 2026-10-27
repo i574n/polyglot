@@ -106,7 +106,7 @@ Samples
 <td>
 
 - Performance tests  
-<https://i574n.github.io/polyglot/apps/perf/Perf.livemd.html>
+<https://i574n.github.io/polyglot/apps/perf/Perf.spi.html>
 
 - Multiplatform rotating ASCII cube (F#, Rust, TypeScript, Python)  
 <https://i574n.github.io/polyglot/apps/spiral/temp/cube/cube.livemd.html>
