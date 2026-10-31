@@ -238,8 +238,8 @@ test claim_alias =
         }
         """
     := quiet () : () = set_trace_level Info
-    !!!!Export(
-        "chat_contract_new",
+    export
+        "chat_contract_new"
         (
             \ () =>
                 := () = quiet ()
@@ -247,42 +247,36 @@ test claim_alias =
                 x.version, x.account_set, x.alias_set, x.account_map, x.alias_map
             : () -> u32 * near.iterable_set near.account_id * near.iterable_set sm'.std_string * near.lookup_map near.account_id sm'.std_string * near.lookup_map sm'.std_string alias_accounts
         )
-    )
-    !!!!Export(
-        "chat_contract_is_valid_alias",
+    export
+        "chat_contract_is_valid_alias"
         ((\ alias => := () = quiet () ;; is_valid_alias alias) : sm'.std_string -> bool)
-    )
-    !!!!Export(
-        "chat_contract_generate_cid",
+    export
+        "chat_contract_generate_cid"
         ((\ content => := () = quiet () ;; generate_cid content) : am'.vec u8 -> sm'.std_string)
-    )
-    !!!!Export(
-        "chat_contract_claim_alias",
+    export
+        "chat_contract_claim_alias"
         (
             \ (account_set, alias_set, account_map, alias_map, alias) =>
                 := () = quiet ()
                 claim_alias account_set alias_set account_map alias_map alias
             : rust.ref (rust.mut' (near.iterable_set near.account_id)) * rust.ref (rust.mut' (near.iterable_set sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map near.account_id sm'.std_string)) * rust.ref (rust.mut' (near.lookup_map sm'.std_string alias_accounts)) * sm'.std_string -> ()
         )
-    )
-    !!!!Export(
-        "chat_contract_get_account_info",
+    export
+        "chat_contract_get_account_info"
         (
             \ (account_map, alias_map, account_id) =>
                 := () = quiet ()
                 get_account_info account_map alias_map account_id
             : rust.ref (near.lookup_map near.account_id sm'.std_string) * rust.ref (near.lookup_map sm'.std_string alias_accounts) * near.account_id -> account_info
         )
-    )
-    !!!!Export(
-        "chat_contract_get_alias_map",
+    export
+        "chat_contract_get_alias_map"
         (
             \ (alias_map, alias) =>
                 := () = quiet ()
                 get_alias_map alias_map alias
             : rust.ref (near.lookup_map sm'.std_string alias_accounts) * sm'.std_string -> alias_accounts_option
         )
-    )
 
 := main () =
     ? is_rust ()

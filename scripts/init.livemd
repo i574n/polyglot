@@ -64,7 +64,7 @@ if (!(Search-Command "trunk")) {
 
 ```pwsh
 if (!(Search-Command "nix")) {
-    { . $(Search-Command bunx) --bun playwright@1.44.0 install } | Invoke-Block -OnError Continue
+    { . $(Search-Command bunx) --bun playwright@1.64.1 install } | Invoke-Block -OnError Continue
 }
 ```
 

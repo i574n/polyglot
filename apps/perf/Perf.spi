@@ -1,5 +1,8 @@
 /// # Perf (Polyglot)
-:< testing
+///> fsharp
+test perf static =
+    :< testing
+
 :< benchmark
 
 /// ## sortResultList
@@ -388,10 +391,6 @@
     run_all (reflection.nameof { rotate_strings_tests }) count solutions test_cases
     |> sort_result_list
 
-rotate_strings_tests ()
-
-()
-
 /// ## binary_search_tests
 
 /// ```
@@ -595,6 +594,7 @@ rotate_strings_tests ()
 
 
 :~ main () =
+    rotate_strings_tests () |> ignore
     binary_search_tests ()
 
 /// ## returnLettersWithOddCountTests
